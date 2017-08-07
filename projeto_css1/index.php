@@ -84,7 +84,7 @@
 						<?php echo $msg; ?>
 					</div>
 					<div class="modal-footer">
-						<a href="index.php"><button type="button" class="btn btn-danger">Fechar</button></a>
+						<a href="index.php"><button type="button" class="btn btn-<?php echo $botao;?>">Fechar</button></a>
 					</div>
 				</div>
 			</div>

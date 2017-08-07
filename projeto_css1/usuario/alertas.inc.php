@@ -31,8 +31,8 @@ if ($inc == "sim"){
 			$botao = "danger";
 		}
 		elseif($flag == md5("msg_logout")){
-			$msg = "Logout com sucesso";
-			$botao = "info";
+			$msg = "Logout realizado com sucesso";
+			$botao = "success";
 		}
 		elseif($flag == md5("cadastro_ok")){
 			$msg = "Cadastro com sucesso";
