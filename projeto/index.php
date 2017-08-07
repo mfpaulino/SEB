@@ -1,4 +1,4 @@
--<?php
+<?php
 include_once('componentes/internos/php/constantes.inc.php');
 include_once('componentes/internos/php/cabecalho.inc.php');
 session_start();
@@ -38,7 +38,7 @@ elseif($_SESSION['acesso'] == "liberado"){
 	<?php require_once "usuario/form_esqueci_senha.inc.php";?>
 	<?php require_once "usuario/form_altera_senha.inc.php";?>
 </div>
- <!-- jQuery --->
+ <!-- jQuery -->
 <script src="componentes/externos/jquery/jquery.min.js"></script>
 <script src="componentes/externos/bootstrap/js/bootstrap.min.js"></script>
 <script src="componentes/internos/js/auto_tab.js"></script>
