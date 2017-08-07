@@ -1,3 +1,6 @@
+// 1
+// 2
+// 3
 <link href="componentes/externos/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <link href="componentes/externos/bootstrap-validator_/dist/css/bootstrapValidator.css" rel="stylesheet"/>
 
