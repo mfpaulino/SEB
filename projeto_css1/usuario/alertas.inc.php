@@ -10,7 +10,7 @@ if ($inc == "sim"){
 
 		$flag1 = unserialize($_GET['flag']);
 		$qtde = count($flag1);
-		$botao = "danger";
+		$botao = "warning";
 		for ($i = 0; $i < $qtde; $i++){
 			$msg .= $flag1[$i]."<br />";
 		}
