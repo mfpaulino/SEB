@@ -1,5 +1,5 @@
 <?php
-//conexao.inc.php
+//conexao.inc.php//
 
 $servidor = "localhost";
 $bd = "cciex_siaudi";
