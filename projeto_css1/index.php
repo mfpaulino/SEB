@@ -1,4 +1,4 @@
-<?php //include_once('componentes/internos/php/cabecalho.inc.php');?>
+<?php include_once 'componentes/internos/php/constantes.inc.php';?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -71,24 +71,17 @@
         | Your Page Content Here |
         -------------------------->
 
-		<?php $inc="sim";include_once __DIR__ .'/usuario/alertas.inc.php'; ?>
+		<?php
+			$inc="sim";
+			if(isset($_GET['flag']) and $_GET['flag'] == 'cadastro_usuario'){
+				include_once __DIR__ .'/usuario/alertas_usuario.inc.php';
+			}
+			else {
+				include_once __DIR__ .'/usuario/destroi_alertas_usuario.inc.php';
+			}
+			?>
 		<!--modal alert -->
-		<div class="modal modal-<?php echo $botao;?> fade" id="modalAlerta"  data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-			<div class="modal-dialog" role="document">
-				<div class="modal-content">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"></span></button>
-						<h4 class="modal-title" id="modalAlertaLabel">AVISO DO SISTEMA</h4>
-					</div>
-					<div class="modal-body">
-						<?php echo $msg; ?>
-					</div>
-					<div class="modal-footer">
-						<a href="index.php"><button type="button" class="btn btn-<?php echo $botao;?>">Fechar</button></a>
-					</div>
-				</div>
-			</div>
-		</div>
+
     </section>
   </div>
   <?php include_once('componentes/internos/php/rodape.inc.php');?>
