@@ -3,6 +3,7 @@
 //envia msg de erro para o script index.php
 
 if ($inc == "sim"){
+include_once(__DIR__ .'/../../path.inc.php');
 
 	session_start();
 
@@ -19,8 +20,8 @@ if ($inc == "sim"){
 				$msg1 = $_SESSION['duplo_cpf']."<br />";
 				$msg2 = $_SESSION['duplo_email']."<br />";
 				$msg4 = $_SESSION['erro_cadastro']."<br />";
-				$msg5 = $_SESSION['erro_validacao'];
-				$lista_erro_validacao = $_SESSION['lista_erro_validacao'];
+				$msg6 = $_SESSION['erro_validacao_cadastrar'];
+				$lista_erro_validacao = $_SESSION['lista_erro_validacao_cadastrar'];
 
 				$botao = $_SESSION['botao'];
 			}
@@ -29,8 +30,32 @@ if ($inc == "sim"){
 				unset($_SESSION['duplo_cpf']);
 				unset($_SESSION['duplo_email']);
 				unset($_SESSION['erro_cadastro']);
-				unset($_SESSION['erro_validacao']);
-				unset($_SESSION['lista_erro_validacao']);
+				unset($_SESSION['erro_validacao_cadastrar']);
+				unset($_SESSION['lista_erro_validacao_cadastrar']);
+			}
+			if($flag == md5("usuario_alterar")){
+
+				$msg0 = $_SESSION['alterar_rg']."<br />";
+				$msg1 = $_SESSION['alterar_posto']."<br />";
+				$msg2 = $_SESSION['alterar_nome_guerra']."<br />";
+				$msg3 = $_SESSION['alterar_nome']."<br />";
+				$msg4 = $_SESSION['alterar_email_erro']."<br />";
+				$msg5 = $_SESSION['alterar_email']."<br />";
+				$msg6 = $_SESSION['alterar_erro_validacao']."<br />";
+				$lista_erro_validacao = $_SESSION['alterar_lista_erro_validacao'];
+
+				$botao = $_SESSION['botao'];
+				$visite = "_visite";
+			}
+			else {
+				unset($_SESSION['alterar_rg']);
+				unset($_SESSION['alterar_posto']);
+				unset($_SESSION['alterar_nome_guerra']);
+				unset($_SESSION['alterar_nome']);
+				unset($_SESSION['alterar_email']);
+				unset($_SESSION['alterar_email_erro']);
+				unset($_SESSION['alterar_erro_validacao']);
+				unset($_SESSION['alterar_lista_erro_validacao']);
 			}
 
 			if($flag == md5("senha_recuperar")){
@@ -134,14 +159,6 @@ if ($inc == "sim"){
 			$botao = "danger";
 		}
 		?>
-		<!--<div class="box-body">
-			<div class="col-md-14">
-				<div class="alert alert-<?php echo $botao; ?>">
-					<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-					<div style="text-align:center;"><b><?php echo $msg; ?></b></div>
-				</div>
-			</div>
-		</div>-->
 		<div class="modal modal-<?php echo $botao;?> fade" id="modalAlerta"  data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 			<div class="modal-dialog" role="document">
 				<div class="modal-content">
@@ -152,38 +169,26 @@ if ($inc == "sim"){
 					<div class="modal-body">
 						<?php
 							echo "<b>";
-							echo $msg5.$msg0.$msg1.$msg2.$msg3.$msg4;
+							echo $msg6.$msg0.$msg1.$msg2.$msg3.$msg4.$msg5;
 
 							if($lista_erro_validacao){
-								foreach ($lista_erro_validacao as $msg6){
-									echo $msg6[0] = "<p>" . $msg6[0] . "</p>";
+								foreach ($lista_erro_validacao as $msg_lista){
+									echo $msg_lista[0] = "<p>" . $msg_lista[0] . "</p>";
 								}
 							}
 							echo "</b>";
 						?>
 					</div>
 					<div class="modal-footer">
-						<a href="index.php"><button type="button" class="btn btn-<?php echo $botao;?>">Fechar</button></a>
+						<a href="index<?php echo $visite;?>.php"><button type="button" class="btn btn-<?php echo $botao;?>">Fechar</button></a>
 					</div>
 				</div>
 			</div>
 		</div>
-    </section>
-  </div>
-
 		<?php
 	}
 }
 else {
-	?>
-<div style="text-align:center;">
-	<br />
-	<br />
-	<strong><h2>SIAUDI/EB</h2></strong>
-	<br />
-	<br />
-	<b><u>HTTP Erro 401.1</u> - Não autorizado: acesso negado devido a credenciais inválidas.</b>
-</div>
-<?php
+	include_once(PATH . '/controllers/autenticacao/'.ACESSO_NEGADO);
 }
 ?>

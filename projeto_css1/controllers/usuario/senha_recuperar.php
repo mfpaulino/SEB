@@ -69,8 +69,8 @@ if(isset($_POST['flag'])){
 			$con_update->execute();
 			$mysqli->close();
 
-			$_SESSION['senha_enviada'] = 'A nova senha foi enviada para o e-mail  <span style="background-color:#000000;">'.strtoupper($row_usuario['email']).  '</span> .<br />Em caso de não recebimento, peça ao Administrador do SIAUDI em sua Unidade para redefinir a senha manualmente.';
-			$_SESSION['botao'] = "primary";
+			$_SESSION['senha_enviada'] = 'A nova senha foi enviada para o e-mail  <span style="background-color:#000000;">&nbsp;'.strtoupper($row_usuario['email']).  '&nbsp;</span> .<br />Em caso de não recebimento, peça ao Administrador do SIAUDI em sua Unidade para redefinir a senha manualmente.';
+			$_SESSION['botao'] = "success";
 		}
 	}
 	$flag = md5("senha_recuperar");

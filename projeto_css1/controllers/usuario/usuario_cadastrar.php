@@ -19,8 +19,6 @@ include_once(__DIR__ .'/../../path.inc.php');
 
 include_once(PATH .'/controllers/usuario/usuario_alertas_destruir.inc.php');
 
-$_POST['flag'] = 1;
-
 if (isset($_POST['flag'])){
 
 	require_once(PATH . '/componentes/internos/php/conexao.inc.php');
@@ -79,7 +77,7 @@ if (isset($_POST['flag'])){
 			if($resultado){
 
 				$_SESSION['sucesso_cadastro'] = "Cadastro realizado com sucesso!";
-				$_SESSION['botao'] = "primary";
+				$_SESSION['botao'] = "success";
 			}
 			else{
 
@@ -90,10 +88,10 @@ if (isset($_POST['flag'])){
 		}
 	}
 	else {
-		$_SESSION['erro_validacao'] = "ERRO: dados inconsistentes, preencha novamente o formulário!";
+		$_SESSION['erro_validacao_cadastrar'] = "ERRO: dados inconsistentes, preencha novamente o formulário!";
 		$_SESSION['botao'] = "danger";
 
-		$_SESSION['lista_erro_validacao'] = $validar->get_errors(); //Captura os erros de todos os campos
+		$_SESSION['lista_erro_validacao_cadastrar'] = $validar->get_errors(); //Captura os erros de todos os campos
 	}
 	$flag = md5("usuario_cadastrar");
 	header(sprintf("Location:../../index.php?flag=$flag"));
