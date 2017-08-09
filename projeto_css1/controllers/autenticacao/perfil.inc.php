@@ -1,10 +1,9 @@
 <?php
-//autentica.inc.php
+$inc = "sim";
+include_once(__DIR__ .'/../../path.inc.php');
 
-//if (!isset($inc)){$flag = md5("acesso_indevido"); header("Location: logout.php?flag=$flag");}
-
-include_once(__DIR__ .'/../componentes/internos/php/constantes.inc.php');
-include_once(__DIR__ .'/../componentes/internos/php/conexao.inc.php');
+include_once(PATH . '/componentes/internos/php/constantes.inc.php');
+include_once(PATH . '/componentes/internos/php/conexao.inc.php');
 
 session_start();
 

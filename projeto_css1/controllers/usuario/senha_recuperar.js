@@ -1,4 +1,3 @@
-<script>
 $(document).ready(function() {
 	$('#form_senha_recuperar').bootstrapValidator({
 		feedbackIcons: {
@@ -32,4 +31,3 @@ $(document).ready(function() {
 		}
 	})
 });
-</script>

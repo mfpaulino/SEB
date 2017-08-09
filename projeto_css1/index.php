@@ -1,4 +1,3 @@
-<?php include_once(__DIR__ .'/componentes/internos/php/constantes.inc.php');?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -35,7 +34,7 @@
   <aside class="main-sidebar">
     <section class="sidebar">
       <div class="panel-body form-login">
-		<form name="form_acesso" id="form_acesso" role="form" method="POST" action="autenticacao/login.php">
+		<form name="form_usuario_acessar" id="form_usuario_acessar" role="form" method="POST" action="controllers/autenticacao/login.php">
 			<fieldset>
 				<div class="form-group">
 					<span class="barra-top"><b>ACESSO AO SISTEMA</b></span><hr>
@@ -73,8 +72,9 @@
 
 		<?php
 			$inc="sim";
-			if(isset($_GET['flag']) and $_GET['flag'] == md5('usuario_cadastrar')){
-				include_once('/controllers/usuario/usuario_alertas_criar.inc.php');
+			if(isset($_GET['flag']) and ($_GET['flag'] == md5('usuario_cadastrar') or  $_GET['flag'] == md5('senha_recuperar') or $_GET['flag'] == md5('usuario_acessar'))){
+
+				include_once('controllers/usuario/usuario_alertas_criar.inc.php');
 			}
 			else {
 				include_once('controllers/usuario/usuario_alertas_destruir.inc.php');
@@ -96,7 +96,9 @@
 <script src="componentes/externos/bower_components/bootstrap/dist/js/bootstrapValidator.min.js"></script>
 <script src="componentes/externos/dist/js/adminlte.min.js"></script>
 <script src="componentes/internos/js/auto_tab.js"></script>
-<?php include_once('controllers/usuario/senha_recuperar.js');?>
+<script src="controllers/usuario/usuario_cadastrar.js"></script>
+<script src="controllers/usuario/senha_recuperar.js"></script>
+<script src="controllers/autenticacao/login.js"></script>
 
 <script>
 	//script para receber a selecao da unidade de controle interno e atualizar o 2º select
@@ -106,140 +108,6 @@
 			$.post("listas/select_om.inc.php", {unidade_ci:$(this).val()},function(valor){$("select[name=codom]").html(valor);})
 		 })
 	 })
-</script>
-<script>
-	$(document).ready(function() {
-		$('#form_usuario_acessar').bootstrapValidator({
-			feedbackIcons: {
-				valid: 'glyphicon glyphicon-user',
-				invalid: '',
-				validating: ''
-			},
-			fields: {
-				cpf: {
-					validators: {
-						notEmpty: {
-							message:'Preenchimento obrigatório'
-						},
-						remote: {
-							type: 'POST',
-							url: 'controllers/usuario/usuario_verificar.json.php',
-							message: 'Usuário não encontrado',
-							delay: 1000
-						}
-					}
-				},
-				senha: {
-					validators: {
-						notEmpty: {
-							message:'Preenchimento obrigatório'
-						}
-					}
-				}
-			}
-		})
-	});
-</script>
-<script>
-	$(document).ready(function() {
-		$('#form_usuario_cadastrar').bootstrapValidator({
-			feedbackIcons: {
-				valid: 'glyphicon glyphicon-ok',
-				invalid: 'glyphicon glyphicon-remove',
-				validating: 'glyphicon glyphicon-refresh'
-			},
-			fields: {
-				cpf: {
-					validators: {
-						notEmpty: {
-							message:'Preenchimento obrigatório'
-						},
-						remote: {
-							type: 'POST',
-							url: 'componentes/internos/php/valida_cpf.json.php',
-							message: 'CPF inválido',
-							delay: 1000
-						}
-					}
-				},
-				posto: {
-					validators: {
-						notEmpty: {
-							message: 'Preenchimento obrigatório'
-						}
-					}
-				},
-				nome_guerra: {
-					validators: {
-						notEmpty: {
-							message: 'Preenchimento obrigatório'
-						}
-					}
-				},
-				nome: {
-					validators: {
-						notEmpty: {
-							message: 'Preenchimento obrigatório'
-						}
-					}
-				},
-				email: {
-					validators: {
-						notEmpty: {
-							message: 'Preenchimento obrigatório'
-						},
-						emailAddress: {
-							message: 'E-mail inválido'
-						},
-						remote: {
-							type: 'POST',
-							url: 'controllers/usuario/usuario_verificar.json.php',
-							message: 'E-mail já cadastrado no sistema',
-							delay: 1000
-						}
-					}
-				},
-				senha: {
-					validators: {
-						notEmpty: {
-							message: 'Preenchimento obrigatório'
-						},
-						stringLength: {
-							min: 8,
-							max: 20,
-							message: 'Mínimo de 8 caracteres'
-						},
-						identical: {
-							field: 'senha1',
-							message: 'As senhas devem ser iguais.'
-						},
-						different: {
-							field: 'cpf',
-							message: 'Não pode ser igual ao CPF.'
-						}
-					}
-				},
-				senha1: {
-					validators: {
-						notEmpty: {
-							message: 'Preenchimento obrigatório'
-						},
-						identical: {
-							field: 'senha',
-							message: 'As senhas devem ser iguais.'
-						}
-					}
-				},
-				codom: {
-					validators: {
-						notEmpty: {
-							message: 'Preenchimento obrigatório'
-						}
-					}
-				}
-			}
-		})
-	});
 </script>
 
 <?php

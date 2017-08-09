@@ -6,7 +6,7 @@
 				<h4 class="modal-title">Solicitação de acesso</h4>
 			</div>
 			<div class="modal-body">
-				<form name="form_cadastra" id="form_cadastra" role="form" action="../controllers/usuario/usuario_cadastrar.php" method="POST">
+				<form name="form_usuario_cadastrar" id="form_usuario_cadastrar" role="form" action="controllers/usuario/usuario_cadastrar.php" method="POST">
 					<div class="form-group">
 						<label for="cpf" class="control-label">CPF: </label>
 						<input class="form-control" type="text" name="cpf" id="cpf" placeholder="CPF" maxlength = "11" />

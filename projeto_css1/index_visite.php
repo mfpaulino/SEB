@@ -1,5 +1,8 @@
 <?php
-require_once('autenticacao/perfil.inc.php');
+$inc = "sim";
+include_once('path.inc.php');
+
+require_once(PATH .'/controllers/autenticacao/perfil.inc.php');
 
 switch ($status_usuario){
 	case ('recebido'):
@@ -28,7 +31,7 @@ $p = 'Ten Cel';
   <link rel="stylesheet" href="componentes/internos/css/siaudi.css">
 </head>
 <body class="hold-transition skin-green sidebar-mini">
-<?php include_once('componentes/internos/php/cabecalho.inc.php');?>
+<?php include_once(PATH . '/componentes/internos/php/cabecalho.inc.php');?>
 <div class="wrapper">
   <header class="main-header">
     <a href="index2.html" class="logo">

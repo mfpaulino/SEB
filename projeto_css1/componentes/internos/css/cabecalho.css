@@ -8,15 +8,15 @@ body{
 }
 #header-imagem {
 	background: url(../img/quartel.gif) no-repeat center right;
-	height: 98px;/*97px*/
+	height: 90px;/*97px*/
 	position: relative;
 }
-.header-mascara {
+.header-mascara- {
 	background: url(../img/header-mask.png) repeat top right;
- 	height: 98px;/*97px*/
+ 	height: 90px;/*97px*/
 	border-bottom:1px solid #cccccc;
 }
-#header-logo{
+#header-logo-{
 	background: url(../img/logo.gif) no-repeat;
 	margin: 0;
 	width: 65px;

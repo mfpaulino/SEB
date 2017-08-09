@@ -2,6 +2,7 @@
 /**************************************************************
 * Local/nome do script: controllers/usuario/senha_recuperar.php
 * Só executa se for chamado pelo formulario, senão chama o script de "acesso negado"
+* primeiramente destroi as variaveis de sessao de alertas de usuario
 * Recebe o CPF do script views/usuarios/form_senha_recuperar.inc.php
 * Trata o valor recebido com o método mysqli: mysqli_real_escape_string
 * Consulta o BD em busca de CPF
@@ -11,24 +12,30 @@
 * Ao final de tudo, redireciona para o index.php
 * *************************************************************/
 session_start();
-require_once('../../componentes/internos/php/constantes.inc.php');
-require_once('../../componentes/internos/php/cript.inc.php');
-require_once('../../componentes/internos/php/conexao.inc.php');
-require_once('../../componentes/externos/PHPMailer/class.phpmailer.php');
-require_once('../../componentes/internos/php/email.inc.php');
-require_once('../../componentes/internos/php/senha.inc.php');
+
+$inc = "sim";
+include_once(__DIR__ .'/../../path.inc.php');
+
+include_once(PATH .'/controllers/usuario/usuario_alertas_destruir.inc.php');
+
+require_once(PATH .'/componentes/internos/php/constantes.inc.php');
+require_once(PATH .'/componentes/internos/php/cript.inc.php');
+require_once(PATH .'/componentes/internos/php/conexao.inc.php');
+require_once(PATH .'/componentes/externos/PHPMailer/class.phpmailer.php');
+require_once(PATH .'/componentes/internos/php/email.inc.php');
+require_once(PATH .'/componentes/internos/php/senha.inc.php');
 
 if(isset($_POST['flag'])){
 
 	$cpf = isset($_POST['cpf']) ? mysqli_real_escape_string($mysqli, $_POST['cpf']) : "";
 
-	$sql = "select cpf, id_posto, nome_guerra, email from usuarios where cpf = '$cpf'";
+	$sql = "select cpf, postos.posto, nome_guerra, email from usuarios, postos where cpf = '$cpf' and usuarios.id_posto = postos.id_posto";
 	$con_usuario = $mysqli->query($sql);
 
 	$row_usuario = $con_usuario->fetch_assoc();
 
 	if($con_usuario->num_rows == 0 ){
-		$_SESSION['usuario_inexistente'] = "ERRO: usuário não cadastrado!"
+		$_SESSION['usuario_inexistente'] = "ERRO: usuário não cadastrado!";
 		$_SESSION['botao'] = "danger";
 	}
 	else {
@@ -44,12 +51,14 @@ if(isset($_POST['flag'])){
 		$msg .= "<br />";
 		$msg .= "<hr>";
 		$msg .= "Mensagem enviada automaticamente pelo SIAUDI.";
+		$msg .= "<br />";
+		$msg .= "N&atilde;o responda.";
 
 		smtpmailer($row_usuario['email'], "siaudi@cciex.eb.mil.br", "SIAUDI",  "SIAUDI - ENVIO DE NOVA SENHA", $msg);
 
 		if (!empty($error)) {
 
-			$_SESSION['senha_nao_enviada'] = "ERRO: a nova senha não pode ser enviada para o e-mail cadastrado!<br />Peça ao Administrador do SIAUDI em sua Unidade para redefinir a senha manualmente."
+			$_SESSION['senha_nao_enviada'] = "ERRO: a nova senha não pode ser enviada para o e-mail cadastrado!<br />Peça ao Administrador do SIAUDI em sua Unidade para redefinir a senha manualmente.";
 			$_SESSION['botao'] = "danger";
 		}
 		else {
@@ -60,8 +69,8 @@ if(isset($_POST['flag'])){
 			$con_update->execute();
 			$mysqli->close();
 
-			$_SESSION['senha_enviada'] = "AVISO: a nova senha foi enviada para o e-mail ".$row_usuario['email']. ".<br />Em caso de não recebimento, peça ao Administrador do SIAUDI em sua Unidade para redefinir a senha manualmente.";
-			$_SESSION['botao'] = "success";
+			$_SESSION['senha_enviada'] = 'A nova senha foi enviada para o e-mail  <span style="background-color:#000000;">'.strtoupper($row_usuario['email']).  '</span> .<br />Em caso de não recebimento, peça ao Administrador do SIAUDI em sua Unidade para redefinir a senha manualmente.';
+			$_SESSION['botao'] = "primary";
 		}
 	}
 	$flag = md5("senha_recuperar");
@@ -69,7 +78,6 @@ if(isset($_POST['flag'])){
 
 }
 else {
-
-	include_once('../../autenticacao/'.ACESSO_NEGADO);
+	include_once(PATH .'/controllers/autenticacao/'.ACESSO_NEGADO);
 }
 ?>

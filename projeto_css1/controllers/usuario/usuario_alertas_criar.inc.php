@@ -37,19 +37,29 @@ if ($inc == "sim"){
 
 				$msg0 = $_SESSION['senha_enviada'];
 
-				$msg1 = $_SESSION['usuario_inexistente'];
-				$msg2 = $_SESSION['senha_nao_enviada'];
+				$msg1 = $_SESSION['senha_usuario_inexistente']."<br />";
+				$msg2 = $_SESSION['senha_nao_enviada']."<br />";
 
 				$botao = $_SESSION['botao'];
 
 			}
 			else {
 				unset($_SESSION['senha_enviada']);
-				unset($_SESSION['usuario_inexistente']);
+				unset($_SESSION['senha_usuario_inexistente']);
 				unset($_SESSION['senha_nao_enviada']);
-				unset($_SESSION['botao']);
 			}
 
+			if($flag == md5("usuario_acessar")){
+
+				$msg1 = $_SESSION['acesso_usuario_inexistente']."<br />";
+				$msg2 = $_SESSION['senha_errada']."<br />";
+
+				$botao = $_SESSION['botao'];
+			}
+			else{
+				unset($_SESSION['acesso_usuario_inexistente']);
+				unset($_SESSION['senha_errada']);
+			}
 
 			$msg="x";
 
@@ -141,13 +151,15 @@ if ($inc == "sim"){
 					</div>
 					<div class="modal-body">
 						<?php
-							echo $msg5.$msg1.$msg2.$msg3.$msg4;
+							echo "<b>";
+							echo $msg5.$msg0.$msg1.$msg2.$msg3.$msg4;
 
 							if($lista_erro_validacao){
 								foreach ($lista_erro_validacao as $msg6){
 									echo $msg6[0] = "<p>" . $msg6[0] . "</p>";
 								}
 							}
+							echo "</b>";
 						?>
 					</div>
 					<div class="modal-footer">
