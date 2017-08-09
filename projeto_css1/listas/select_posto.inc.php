@@ -1,6 +1,6 @@
 <?php
 //postos_select.inc.php
-include_once (__DIR__ .'/../componentes/internos/php/conexao.inc.php');
+include_once ('componentes/internos/php/conexao.inc.php');
 
 $sql = "SELECT postos.* FROM postos ORDER BY postos.id_posto";
 $con_postos = $mysqli->query($sql);

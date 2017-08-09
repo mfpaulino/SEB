@@ -6,7 +6,7 @@
 				<h4 class="modal-title">Solicitação de acesso</h4>
 			</div>
 			<div class="modal-body">
-				<form name="form_cadastra" id="form_cadastra" role="form" action="usuario/cadastra_usuario.php" method="POST">
+				<form name="form_cadastra" id="form_cadastra" role="form" action="../controllers/usuario/usuario_cadastrar.php" method="POST">
 					<div class="form-group">
 						<label for="cpf" class="control-label">CPF: </label>
 						<input class="form-control" type="text" name="cpf" id="cpf" placeholder="CPF" maxlength = "11" />
@@ -17,7 +17,7 @@
 					</div>
 					<div class="form-group">
 						<label for="posto" class="control-label">Posto/Grad:</label>
-						<?php include_once('listas/postos_select.inc.php');?>
+						<?php include_once('listas/select_posto.inc.php');?>
 					</div>
 					<div class="form-group">
 						<label for="nome" class="control-label">Nome completo: </label>
@@ -41,7 +41,7 @@
 					</div>
 					<div class="form-group">
 						<label for="unidade_ci" class="control-label">Unidade Controle Interno:</label>
-						<?php include('listas/unidades_ci_select.inc.php');?>
+						<?php include('listas/select_unid_ci.inc.php');?>
 					</div>
 					<div class="form-group">
 						<label for="codom" class="control-label">Unidade do usuário:</label>

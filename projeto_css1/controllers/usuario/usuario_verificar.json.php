@@ -1,6 +1,6 @@
 <?php
 //verifica_usuario.json.php
-include_once('../componentes/internos/php/conexao.inc.php');
+include_once('../../componentes/internos/php/conexao.inc.php');
 
 header('Content-type: application/json');//usado para validação pelo bootstrapValidator
 

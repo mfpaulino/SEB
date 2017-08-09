@@ -6,7 +6,7 @@
 				<h4 class="modal-title">Solicitação de nova senha</h4>
 			</div>
 			<div class="modal-body">
-				<form name = "form_esqueci_senha" id = "form_esqueci_senha" action="usuario/solicita_nova_senha.php" method="POST" role="form">
+				<form name = "form_senha_recuperar" id = "form_senha_recuperar" action="controllers/usuario/senha_recuperar.php" method="POST" role="form">
 					<div class="form-group">
 						<label for="cpf" class="control-label">CPF: </label>
 						<input class="form-control" type="text" name="cpf" autofocus placeholder="CPF" maxlength="11" />

@@ -1,7 +1,7 @@
 <?php
 //om_select.inc.php
-include_once(__DIR__ .'/../componentes/internos/php/conexao.inc.php');
-include_once(__DIR__ .'/../autenticacao/perfil.inc.php');
+include_once(PATH .'/../componentes/internos/php/conexao.inc.php');
+include_once(PATH .'/../autenticacao/perfil.inc.php');
 
 
 if(isset($_POST['unidade_ci'])){

@@ -1,4 +1,4 @@
-<?php include_once 'componentes/internos/php/constantes.inc.php';?>
+<?php include_once(__DIR__ .'/componentes/internos/php/constantes.inc.php');?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -73,11 +73,11 @@
 
 		<?php
 			$inc="sim";
-			if(isset($_GET['flag']) and $_GET['flag'] == 'cadastro_usuario'){
-				include_once __DIR__ .'/usuario/alertas_usuario.inc.php';
+			if(isset($_GET['flag']) and $_GET['flag'] == md5('usuario_cadastrar')){
+				include_once('/controllers/usuario/usuario_alertas_criar.inc.php');
 			}
 			else {
-				include_once __DIR__ .'/usuario/destroi_alertas_usuario.inc.php';
+				include_once('controllers/usuario/usuario_alertas_destruir.inc.php');
 			}
 			?>
 		<!--modal alert -->
@@ -88,26 +88,28 @@
   <div class="control-sidebar-bg"></div>
 </div>
 <div class="container">
-	<?php require_once "usuario/form_esqueci_senha.inc.php";?>
-	<?php require_once "usuario/form_cadastra.inc.php";?>
+	<?php require_once "views/usuario/form_senha_recuperar.inc.php";?>
+	<?php require_once "views/usuario/form_usuario_cadastrar.inc.php";?>
 </div>
 <script src="componentes/externos/bower_components/jquery/dist/jquery.min.js"></script>
 <script src="componentes/externos/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <script src="componentes/externos/bower_components/bootstrap/dist/js/bootstrapValidator.min.js"></script>
 <script src="componentes/externos/dist/js/adminlte.min.js"></script>
 <script src="componentes/internos/js/auto_tab.js"></script>
+<?php include_once('controllers/usuario/senha_recuperar.js');?>
+
 <script>
 	//script para receber a selecao da unidade de controle interno e atualizar o 2º select
 	$(document).ready(function(){
 		$("select[name=unidade_ci]").change(function(){
 			$("select[name=codom]").html('<option value="">Carregando...</option>');
-			$.post("listas/om_select.inc.php", {unidade_ci:$(this).val()},function(valor){$("select[name=codom]").html(valor);})
+			$.post("listas/select_om.inc.php", {unidade_ci:$(this).val()},function(valor){$("select[name=codom]").html(valor);})
 		 })
 	 })
 </script>
 <script>
 	$(document).ready(function() {
-		$('#form_acesso').bootstrapValidator({
+		$('#form_usuario_acessar').bootstrapValidator({
 			feedbackIcons: {
 				valid: 'glyphicon glyphicon-user',
 				invalid: '',
@@ -121,7 +123,7 @@
 						},
 						remote: {
 							type: 'POST',
-							url: 'usuario/verifica_usuario.json.php',
+							url: 'controllers/usuario/usuario_verificar.json.php',
 							message: 'Usuário não encontrado',
 							delay: 1000
 						}
@@ -140,7 +142,7 @@
 </script>
 <script>
 	$(document).ready(function() {
-		$('#form_cadastra-').bootstrapValidator({
+		$('#form_usuario_cadastrar').bootstrapValidator({
 			feedbackIcons: {
 				valid: 'glyphicon glyphicon-ok',
 				invalid: 'glyphicon glyphicon-remove',
@@ -191,7 +193,7 @@
 						},
 						remote: {
 							type: 'POST',
-							url: 'usuario/verifica_usuario.json.php',
+							url: 'controllers/usuario/usuario_verificar.json.php',
 							message: 'E-mail já cadastrado no sistema',
 							delay: 1000
 						}
@@ -232,41 +234,6 @@
 					validators: {
 						notEmpty: {
 							message: 'Preenchimento obrigatório'
-						}
-					}
-				}
-			}
-		})
-	});
-</script>
-<script>
-	$(document).ready(function() {
-		$('#form_esqueci_senha').bootstrapValidator({
-			feedbackIcons: {
-				valid: 'glyphicon glyphicon-ok',
-				invalid: 'glyphicon glyphicon-remove',
-				validating: 'glyphicon glyphicon-refresh'
-			},
-			fields: {
-				cpf: {
-					validators: {
-						notEmpty: {
-							message:'Preenchimento obrigatório'
-						},
-						stringLength: {
-							min: 11,
-							max: 11,
-							message: '11 dígitos'
-						},
-						regexp: {
-							regexp: /^[0-9]+$/,
-							message: 'Somente dígitos'
-						},
-						remote: {
-							type: 'POST',
-							url: 'usuario/verifica_usuario.json.php',
-							message: 'Usuário não encontrado',
-							delay: 1000
 						}
 					}
 				}

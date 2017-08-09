@@ -4,17 +4,54 @@
 
 if ($inc == "sim"){
 
-	include_once(__DIR__ .'/../componentes/internos/php/conexao.inc.php');
+	session_start();
+
+	//include_once(__DIR__ .'/../componentes/internos/php/conexao.inc.php');
 
 	if (isset($_GET['flag'])){
 
-		$flag1 = unserialize($_GET['flag']);
-		$qtde = count($flag1);
-		$botao = "warning";
-		for ($i = 0; $i < $qtde; $i++){
-			$msg .= $flag1[$i]."<br />";
-		}
+			$flag = $_GET['flag'];
 
+			if($flag == md5("usuario_cadastrar")){
+
+				$msg0 = $_SESSION['sucesso_cadastro'];
+
+				$msg1 = $_SESSION['duplo_cpf']."<br />";
+				$msg2 = $_SESSION['duplo_email']."<br />";
+				$msg4 = $_SESSION['erro_cadastro']."<br />";
+				$msg5 = $_SESSION['erro_validacao'];
+				$lista_erro_validacao = $_SESSION['lista_erro_validacao'];
+
+				$botao = $_SESSION['botao'];
+			}
+			else {
+				unset($_SESSION['sucesso_cadastro']);
+				unset($_SESSION['duplo_cpf']);
+				unset($_SESSION['duplo_email']);
+				unset($_SESSION['erro_cadastro']);
+				unset($_SESSION['erro_validacao']);
+				unset($_SESSION['lista_erro_validacao']);
+			}
+
+			if($flag == md5("senha_recuperar")){
+
+				$msg0 = $_SESSION['senha_enviada'];
+
+				$msg1 = $_SESSION['usuario_inexistente'];
+				$msg2 = $_SESSION['senha_nao_enviada'];
+
+				$botao = $_SESSION['botao'];
+
+			}
+			else {
+				unset($_SESSION['senha_enviada']);
+				unset($_SESSION['usuario_inexistente']);
+				unset($_SESSION['senha_nao_enviada']);
+				unset($_SESSION['botao']);
+			}
+
+
+			$msg="x";
 
 		$flag = $_GET['flag'];
 
@@ -95,6 +132,32 @@ if ($inc == "sim"){
 				</div>
 			</div>
 		</div>-->
+		<div class="modal modal-<?php echo $botao;?> fade" id="modalAlerta"  data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"></span></button>
+						<h4 class="modal-title" id="modalAlertaLabel">AVISO DO SISTEMA</h4>
+					</div>
+					<div class="modal-body">
+						<?php
+							echo $msg5.$msg1.$msg2.$msg3.$msg4;
+
+							if($lista_erro_validacao){
+								foreach ($lista_erro_validacao as $msg6){
+									echo $msg6[0] = "<p>" . $msg6[0] . "</p>";
+								}
+							}
+						?>
+					</div>
+					<div class="modal-footer">
+						<a href="index.php"><button type="button" class="btn btn-<?php echo $botao;?>">Fechar</button></a>
+					</div>
+				</div>
+			</div>
+		</div>
+    </section>
+  </div>
 
 		<?php
 	}

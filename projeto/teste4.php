@@ -1,4 +1,3 @@
-<link href="componentes/externos/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <link href="componentes/externos/bootstrap-validator/dist/css/validator-.min.css" rel="stylesheet"/>
 
 
