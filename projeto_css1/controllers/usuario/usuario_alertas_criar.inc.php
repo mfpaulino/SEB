@@ -159,6 +159,7 @@ include_once(__DIR__ .'/../../path.inc.php');
 			$botao = "danger";
 		}
 		?>
+		<!--
 		<div class="modal modal-<?php echo $botao;?> fade" id="modalAlerta"  data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 			<div class="modal-dialog" role="document">
 				<div class="modal-content">
@@ -185,6 +186,7 @@ include_once(__DIR__ .'/../../path.inc.php');
 				</div>
 			</div>
 		</div>
+		-->
 		<?php
 	}
 }
