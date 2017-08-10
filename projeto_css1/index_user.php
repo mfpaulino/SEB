@@ -200,7 +200,7 @@ desired effect
                     <a href="#"></a>
                   </div>
                   <div class="col-xs-8 text-center btn btn-warning btn-flat">
-                    <a href="usuario/form_altera_senha.inc.php">Trocar senha</a>
+                    <a href="#" data-toggle="modal" data-target="#modalTrocarSenha">Trocar senha</a>
                   </div>
                   <div class="col-xs-2 text-center">
                     <a href="#"></a>
@@ -297,7 +297,8 @@ desired effect
 
     <!-- Main content -->
     <section class="content container-fluid">
-conteúdo
+		<!-- inicio alterar_senha -->
+		<?php include_once('views/usuario/form_senha_alterar.inc.php');?>
       <!--------------------------
         | Your Page Content Here |
         -------------------------->

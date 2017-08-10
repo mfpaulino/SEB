@@ -34,8 +34,8 @@ switch ($status_usuario){
 	<div class="wrapper">
 		<header class="main-header">
 			<a href="index2.html" class="logo">
-			  <span class="logo-mini"><b><-></b></span>
-			  <span class="logo-lg barra-top"><b>SIAUDI</b>/EB</span>
+				<span class="logo-mini"><b><-></b></span>
+				<span class="logo-lg barra-top"><b>SIAUDI</b>/EB</span>
 			</a>
 			<nav class="navbar navbar-static-top" role="navigation">
 				<section class="content-header barra-top" >
@@ -50,7 +50,7 @@ switch ($status_usuario){
 			<section class="sidebar form-login">
 				<ul class="sidebar-menu" data-widget="tree">
 					<li><a href="#"><i class="fa fa-file"></i> <span>Guia do Usuário</span></a></li>
-					<li><a href="#" data-toggle="modal" data-target="#alteraModal"><i class="fa fa-lock"></i> <span>Alterar senha</span></a></li>
+					<li><a href="#" data-toggle="modal" data-target="#modalTrocarSenha"><i class="fa fa-lock"></i> <span>Alterar senha</span></a></li>
 					<?php $flag = md5("logout");?>
 					<li><a href="autenticacao/logout.php?flag=<?php echo $flag;?>"><i class="fa fa-sign-out"></i> <span>Sair do sistema</span></a></li>
 				</ul>
@@ -62,209 +62,208 @@ switch ($status_usuario){
 					<h1>Informações do Usuário</h1>
 				</div>
 				<div class="row">
-				<div class="col-md-12">
-				<table class="table">
-					<thead>
-						<tr>
-							<th>CPF</th>
-							<th>STATUS</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td><?php echo $_SESSION['cpf']; ?></td>
-							<td><?php echo $status; ?></td>
-							<td>
-								<button type="button" class="btn btn-xs btn-primary" data-toggle="modal" data-target="#modalVisualizar<?php echo $cpf; ?>">Visualizar</button>
-
-								<button type="button" class="btn btn-xs btn-warning" data-toggle="modal" data-target="#modalEditar" data-cpf="<?php echo $cpf; ?>" data-rg="<?php echo $rg_usuario; ?>"  data-id_posto="<?php echo $id_posto_usuario; ?>" data-posto="<?php echo $posto_usuario; ?>" data-nome_guerra="<?php echo $nome_guerra_usuario; ?>" data-nome="<?php echo $nome_usuario; ?>"  data-email="<?php echo $email_usuario; ?>" data-ritex="<?php echo $ritex_usuario; ?>" data-celular="<?php echo $celular_usuario; ?>" data-om="<?php echo $sigla_usuario; ?>">Editar</button>
-
-								<button type="button" class="btn btn-xs btn-warning" data-toggle="modal" data-target="#modalTrocarOM" data-om="<?php echo $sigla_usuario; ?>">Trocar OM</button>
-
-								<button type="button" class="btn btn-xs btn-warning" data-toggle="modal" data-target="#modalTrocarSenha">Alterar Senha</button>
-
-								<?php $flag = md5("excluir_usuario");?>
-								<a href="usuario/exclui_usuario.php?flag=<?php echo $flag; ?>"><button type="button" class="btn btn-xs btn-danger">Excluir </button></a>
-							</td>
-						</tr>
-					</tbody>
-				</table>
-				<?php
-				if (isset($_GET['flag']) and $_GET['flag'] == md5("usuario_alterar")){
-					include_once('controllers/usuario/usuario_alertas_criar.inc.php');
-				}
-				else {
-					include_once('controllers/usuario/usuario_alertas_destruir.inc.php');
-				}
-				?>
-				<!-- Inicio modalVisualizar-->
-				<div class="modal modal-primary fade" id="modalVisualizar<?php echo $cpf; ?>" tabindex="-1" role="dialog" aria-labelledby="modalVisualizarLabel">
-					<div class="modal-dialog" role="document">
-						<div class="modal-content">
-							<div class="modal-header">
-								<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-								<h4 class="modal-title text-center" id="modalVisualizarLabel">Dados do usuário</h4>
-							</div>
-							<div class="modal-body">
-								<p><b>RG:</b> <?php echo $rg_usuario; ?></p>
-								<p><b>Posto/grad:</b> <?php echo $posto_usuario; ?></p>
-								<p><b>Nome de guerra:</b> <?php echo $nome_guerra_usuario; ?></p>
-								<p><b>Nome completo:</b> <?php echo $nome_usuario; ?></p>
-								<p><b>E-mail:</b> <?php echo $email_usuario; ?></p>
-								<p><b>Unidade:</b> <?php echo $sigla_usuario; ?></p>
-							</div>
-						</div>
-					</div>
-				</div>
-				<!-- Inicio modalEditar -->
-				<div class="modal fade" id="modalEditar" tabindex="-1" role="dialog" aria-labelledby="modalEditarLabel">
-					<div class="modal-dialog" role="document">
-						<div class="modal-content">
-							<div class="modal-header">
-								<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-								<h4 class="modal-title" id="modalEditarLabel"></h4>
-							</div>
-							<div class="modal-body">
-								<form name="form_usuario_alterar" id="form_usuario_alterar" method="POST" action="controllers/usuario/usuario_alterar.php" enctype="multipart/form-data">
-									<div class="alert alert-success" style="display: none;"></div>
-									<div class="form-group">
-									<label for="rg" class="control-label">RG:</label>
-									<input name="rg" id="rg" type="text" class="form-control" />
-									</div>
-									<div class="form-group">
-									<label for="posto" class="control-label">Posto/Grad:</label>
-									<?php include_once('listas/select_posto.inc.php');?>
-									</div>
-									<div class="form-group">
-									<label for="nome_guerra" class="control-label">Nome de guerra:</label>
-									<input name="nome_guerra" id="nome_guerra" type="text" class="form-control" />
-									</div>
-									<div class="form-group">
-									<label for="nome" class="control-label">Nome completo:</label>
-									<input name="nome" id="nome" type="text" class="form-control"  />
-									</div>
-									<div class="form-group">
-									<label for="email" class="control-label">E-mail:</label>
-									<input name="email" id="email" type="text" class="form-control" />
-									</div>
-									<div class="form-group">
-									<label for="ritex" class="control-label">RITEx:</label>
-									<input name="ritex" id="ritex" type="text" class="form-control" />
-									</div>
-									<div class="form-group">
-									<label for="celular" class="control-label">Celular:</label>
-									<input name="celular" id="celular" type="text" class="form-control" />
-									</div>
-									<div class="modal-footer">
-									<input name="flag" type="hidden" />
-									<input name="rg_atual" type="hidden" value="<?php echo $rg_usuario;?>" />
-									<input name="posto_atual" type="hidden" value="<?php echo $posto_usuario;?>" />
-									<input name="nome_guerra_atual" type="hidden" value="<?php echo $nome_guerra_usuario;?>" />
-									<input name="nome_atual" type="hidden" value="<?php echo $nome_usuario;?>" />
-									<input name="email_atual" type="hidden" value="<?php echo $email_usuario;?>" />
-									<input name="codom_atual" type="hidden" value="<?php echo $codom_usuario;?>" />
-
-									<button type="submit" class="btn btn-primary">Alterar</button>
-									<button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-									</div>
-								</form>
-							</div>
-						</div>
-					</div>
-				</div>
-				<!-- Inicio modalTrocarOM -->
-				<div class="modal fade" id="modalTrocarOM" tabindex="-1" role="dialog" aria-labelledby="modalTrocarOMLabel">
-					<div class="modal-dialog" role="document">
-						<div class="modal-content">
-							<div class="modal-header">
-								<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-								<h4 class="modal-title" id="modalTrocarOMLabel"></h4>
-							</div>
-							<div class="modal-body">
-								<form name="form_altera_om" id="form_altera_om" method="POST" action="usuario/altera_om.php" enctype="multipart/form-data">
-									<div class="form-group">
-										<label for="unidade_ci" class="control-label">Unidade Controle Interno:</label>
-										<?php include('listas/unidades_ci_select.inc.php');?>
-									</div>
-									<div class="form-group">
-										<label for="codom" class="control-label">Unidade do usuário:</label>
-										<select class="form-control" name="codom" id="codom" required>
-											<option value="">Aguardando Unidade de Controle Interno...</option>
-										</select>
-									</div>
-									<div class="modal-footer">
-										<input name="flag" type="hidden" value="<?php $codom_usuario;?>"/>
-										<button type="button" class="btn btn-primary" data-dismiss="modal">Cancelar</button>
-										<button type="submit" class="btn btn-danger"
-											data-toggle="confirmation"
-											data-placement="left"
-											data-btn-ok-label="Continue"
-											data-btn-ok-icon="glyphicon glyphicon-share-alt"
-											data-btn-ok-class="btn-success"
-											data-btn-cancel-label="Pare!"
-											data-btn-cancel-icon="glyphicon glyphicon-ban-circle"
-											data-btn-cancel-class="btn-danger"
-											data-title="Confirma alteração da Unidade?"
-											data-content="">
-											Alterar
+					<div class="col-md-12">
+						<table class="table">
+							<thead>
+								<tr>
+									<th>CPF</th>
+									<th>STATUS</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td><?php echo $_SESSION['cpf']; ?></td>
+									<td><?php echo $status; ?></td>
+									<td>
+										<button type="button" class="btn btn-xs btn-primary"
+											data-toggle="modal"
+											data-target="#modalVisualizar<?php echo $cpf; ?>">
+											Visualizar
 										</button>
+
+										<button type="button" class="btn btn-xs btn-warning"
+											data-toggle="modal"
+											data-target="#modalEditar"
+											data-cpf="<?php echo $cpf; ?>"
+											data-rg="<?php echo $rg_usuario; ?>"
+											data-id_posto="<?php echo $id_posto_usuario; ?>"
+											data-posto="<?php echo $posto_usuario; ?>"
+											data-nome_guerra="<?php echo $nome_guerra_usuario; ?>"
+											data-nome="<?php echo $nome_usuario; ?>"
+											data-email="<?php echo $email_usuario; ?>"
+											data-ritex="<?php echo $ritex_usuario; ?>"
+											data-celular="<?php echo $celular_usuario; ?>"
+											data-om="<?php echo $sigla_usuario; ?>">
+											Editar
+										</button>
+
+										<button type="button" class="btn btn-xs btn-warning"
+											data-toggle="modal"
+											data-target="#modalTrocarOM"
+											data-om="<?php echo $sigla_usuario; ?>">
+											Trocar OM
+										</button>
+
+										<?php $flag = md5("excluir_usuario");?>
+										<a href="usuario/exclui_usuario.php?flag=<?php echo $flag; ?>">
+
+										<button type="button" class="btn btn-xs btn-danger">Excluir </button>
+										</a>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+						<?php
+						if (isset($_GET['flag']) and $_GET['flag'] == md5("usuario_alterar")){
+							include_once('controllers/usuario/usuario_alertas_criar.inc.php');
+						}
+						else {
+							include_once('controllers/usuario/usuario_alertas_destruir.inc.php');
+						}
+						?>
+						<!-- Inicio modalVisualizar-->
+						<div class="modal modal-primary fade" id="modalVisualizar<?php echo $cpf; ?>" tabindex="-1" role="dialog" aria-labelledby="modalVisualizarLabel">
+							<div class="modal-dialog" role="document">
+								<div class="modal-content">
+									<div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+										<h4 class="modal-title text-center" id="modalVisualizarLabel">Dados do usuário</h4>
 									</div>
-								</form>
+									<div class="modal-body">
+										<p><b>RG:</b> <?php echo $rg_usuario; ?></p>
+										<p><b>Posto/grad:</b> <?php echo $posto_usuario; ?></p>
+										<p><b>Nome de guerra:</b> <?php echo $nome_guerra_usuario; ?></p>
+										<p><b>Nome completo:</b> <?php echo $nome_usuario; ?></p>
+										<p><b>E-mail:</b> <?php echo $email_usuario; ?></p>
+										<p><b>Unidade:</b> <?php echo $sigla_usuario; ?></p>
+									</div>
+								</div>
 							</div>
 						</div>
-					</div>
-				</div>
-				<!-- inicio alterar_senha -->
-				<div class="modal fade" data-backdrop="static" id="modalTrocarSenha" role="dialog">
-					<div class="modal-dialog">
-						<div class="modal-content">
-							<div class="modal-header">
-								<button type="button" class="close" data-dismiss="modal">&times;</button>
-								<h4 class="modal-title">Alteração de senha</h4>
-							</div>
-							<div class="modal-body">
-								<form action="usuario/altera_senha.php" method="POST">
-									<div class="form-group">
-										<label for="codom" class="control-label">Senha:</label>
-										<input class="form-control" type="password" name="senha_nova"  id="senha_nova"  autofocus required placeholder="nova senha" onpaste="return false;" />
+						<!-- Inicio modalEditar -->
+						<div class="modal fade" id="modalEditar" tabindex="-1" role="dialog" aria-labelledby="modalEditarLabel">
+							<div class="modal-dialog" role="document">
+								<div class="modal-content">
+									<div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+										<h4 class="modal-title" id="modalEditarLabel"></h4>
 									</div>
-									<div class="form-group">
-										<label for="codom" class="control-label">Confirme a senha:</label>
-										<input class="form-control" type="password" name="senha_nova1" id="senha_nova1" required placeholder="confirmar senha" onpaste="return false;" />
+									<div class="modal-body">
+										<form name="form_usuario_alterar" id="form_usuario_alterar" method="POST" action="controllers/usuario/usuario_alterar.php" enctype="multipart/form-data">
+											<div class="form-group">
+												<label for="rg" class="control-label">RG:</label>
+												<input name="rg" id="rg" type="text" class="form-control" />
+											</div>
+											<div class="form-group">
+												<label for="posto" class="control-label">Posto/Grad:</label>
+												<?php include_once('listas/select_posto.inc.php');?>
+											</div>
+											<div class="form-group">
+												<label for="nome_guerra" class="control-label">Nome de guerra:</label>
+												<input name="nome_guerra" id="nome_guerra" type="text" class="form-control" />
+											</div>
+											<div class="form-group">
+												<label for="nome" class="control-label">Nome completo:</label>
+												<input name="nome" id="nome" type="text" class="form-control"  />
+											</div>
+											<div class="form-group">
+												<label for="email" class="control-label">E-mail:</label>
+												<input name="email" id="email" type="text" class="form-control" />
+											</div>
+											<div class="form-group">
+												<label for="ritex" class="control-label">RITEx:</label>
+												<input name="ritex" id="ritex" type="text" class="form-control" />
+											</div>
+											<div class="form-group">
+												<label for="celular" class="control-label">Celular:</label>
+												<input name="celular" id="celular" type="text" class="form-control" />
+											</div>
+											<div class="modal-footer">
+												<input name="flag" type="hidden" />
+												<input name="rg_atual" type="hidden" value="<?php echo $rg_usuario;?>" />
+												<input name="posto_atual" type="hidden" value="<?php echo $posto_usuario;?>" />
+												<input name="nome_guerra_atual" type="hidden" value="<?php echo $nome_guerra_usuario;?>" />
+												<input name="nome_atual" type="hidden" value="<?php echo $nome_usuario;?>" />
+												<input name="email_atual" type="hidden" value="<?php echo $email_usuario;?>" />
+												<input name="codom_atual" type="hidden" value="<?php echo $codom_usuario;?>" />
+
+												<button type="submit" class="btn btn-primary">Alterar</button>
+												<button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+											</div>
+										</form>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- Inicio modalTrocarOM -->
+						<div class="modal fade" id="modalTrocarOM" tabindex="-1" role="dialog" aria-labelledby="modalTrocarOMLabel">
+							<div class="modal-dialog" role="document">
+								<div class="modal-content">
+									<div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+										<h4 class="modal-title" id="modalTrocarOMLabel"></h4>
+									</div>
+									<div class="modal-body">
+										<form name="form_altera_om" id="form_altera_om" method="POST" action="usuario/altera_om.php" enctype="multipart/form-data">
+											<div class="form-group">
+												<label for="unidade_ci" class="control-label">Unidade Controle Interno:</label>
+												<?php include('listas/unidades_ci_select.inc.php');?>
+											</div>
+											<div class="form-group">
+												<label for="codom" class="control-label">Unidade do usuário:</label>
+												<select class="form-control" name="codom" id="codom" required>
+													<option value="">Aguardando Unidade de Controle Interno...</option>
+												</select>
+											</div>
+											<div class="modal-footer">
+												<input name="flag" type="hidden" value="<?php $codom_usuario;?>"/>
+												<button type="button" class="btn btn-primary" data-dismiss="modal">Cancelar</button>
+												<button type="submit" class="btn btn-danger"
+													data-toggle="confirmation"
+													data-placement="left"
+													data-btn-ok-label="Continue"
+													data-btn-ok-icon="glyphicon glyphicon-share-alt"
+													data-btn-ok-class="btn-success"
+													data-btn-cancel-label="Pare!"
+													data-btn-cancel-icon="glyphicon glyphicon-ban-circle"
+													data-btn-cancel-class="btn-danger"
+													data-title="Confirma alteração da Unidade?"
+													data-content="">
+												Alterar
+												</button>
+											</div>
+										</form>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- inicio alterar_senha -->
+						<?php include_once('views/form_senha_alterar.inc.php');?>
+						<!--inicio modalAlerta -->
+						<div class="modal modal-<?php echo $botao;?> fade" id="modalAlerta"  data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+							<div class="modal-dialog" role="document">
+								<div class="modal-content">
+									<div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"></span></button>
+										<h4 class="modal-title" id="modalAlertaLabel">AVISO DO SISTEMA</h4>
+									</div>
+									<div class="modal-body">
+										<?php
+										echo "<b>";
+										echo $msg6.$msg0.$msg1.$msg2.$msg3.$msg4.$msg5;
+
+										if($lista_erro_validacao){
+											foreach ($lista_erro_validacao as $msg_lista){
+												echo $msg_lista[0] = "<p>" . $msg_lista[0] . "</p>";
+											}
+										}
+										echo "</b>";
+										?>
 									</div>
 									<div class="modal-footer">
-										<input type="hidden" name="flag" value="<?php echo $_SESSION['cpf'];?>"/>
-										<input type="submit" />
+										<a href="index<?php echo $visite;?>.php"><button type="button" class="btn btn-<?php echo $botao;?>">Fechar</button></a>
 									</div>
-								</form>
-							</div>
-						</div>
-					</div>
-				</div>
-				<!--inicio modalAlerta -->
-				<div class="modal modal-<?php echo $botao;?> fade" id="modalAlerta"  data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-					<div class="modal-dialog" role="document">
-						<div class="modal-content">
-							<div class="modal-header">
-								<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"></span></button>
-								<h4 class="modal-title" id="modalAlertaLabel">AVISO DO SISTEMA</h4>
-							</div>
-							<div class="modal-body">
-								<?php
-								echo "<b>";
-								echo $msg6.$msg0.$msg1.$msg2.$msg3.$msg4.$msg5;
-
-								if($lista_erro_validacao){
-								foreach ($lista_erro_validacao as $msg_lista){
-								echo $msg_lista[0] = "<p>" . $msg_lista[0] . "</p>";
-								}
-								}
-								echo "</b>";
-								?>
-							</div>
-							<div class="modal-footer">
-								<a href="index<?php echo $visite;?>.php"><button type="button" class="btn btn-<?php echo $botao;?>">Fechar</button></a>
-							</div>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -278,6 +277,7 @@ switch ($status_usuario){
 	<script src="componentes/externos/bower_components/bootstrap/dist/js/bootstrapValidator.min.js"></script>
 	<script src="componentes/externos/bower_components/bootstrap-confirmation/bootstrap-confirmation.min.js"></script>
 	<script src="componentes/externos/dist/js/adminlte.min.js"></script>
+	<script src="controllers/usuario/usuario_alterar.js"></script>
 	<script type="text/javascript">
 		$('#modalEditar').on('show.bs.modal', function (event) {
 			var button = $(event.relatedTarget) // Button that triggered the modal
@@ -324,87 +324,7 @@ switch ($status_usuario){
 			modal.find('#om').val(om)
 		})
 	</script>
-	<script>
-		$(document).ready(function() {
-			$('#form_usuario_alterar-').bootstrapValidator({
-				feedbackIcons: {
-					valid: 'glyphicon glyphicon-ok',
-					invalid: 'glyphicon glyphicon-remove',
-					validating: 'glyphicon glyphicon-refresh'
-				},
-				fields: {
-					rg: {
-						validators: {
-							notEmpty: {
-								message:'preenchimento obrigatório'
-							},
-							regexp: {
-								regexp: /^[0-9]+$/,
-								message: 'somente dígitos'
-							}
-						}
-					},
-					posto: {
-						validators: {
-							notEmpty: {
-								message: 'preenchimento obrigatório'
-							}
-						}
-					},
-					nome_guerra: {
-						validators: {
-							notEmpty: {
-								message: 'preenchimento obrigatório'
-							}
-						}
-					},
-					nome: {
-						validators: {
-							notEmpty: {
-								message: 'preenchimento obrigatório'
-							}
-						}
-					},
-					email: {
-						validators: {
-							notEmpty: {
-								message: 'preenchimento obrigatório'
-							},
-							emailAddress: {
-								message: 'E-mail válido'
-							}
-						}
-					},
-					ritex: {
-						validators: {
-							regexp: {
-								regexp: /^[0-9]+$/,
-								message: 'somente dígitos'
-							},
-							stringLength: {
-								min: 7,
-								max: 7,
-								message: 'RITEx inválido'
-							}
-						}
-					},
-					celular: {
-						validators: {
-							regexp: {
-								regexp: /^[0-9]+$/,
-								message: 'somente dígitos'
-							},
-							stringLength: {
-								min: 10,
-								max: 11,
-								message: 'Celular inválido'
-							}
-						}
-					}
-				}
-			})
-		});
-	</script><!--
+	<!--
 	<script>
 		$(document).ready(function() {
 			$('#form_altera_om').bootstrapValidator({
