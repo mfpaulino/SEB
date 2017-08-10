@@ -1,7 +1,6 @@
 <?php
 $inc = "sim";
 include_once('path.inc.php');
-
 require_once(PATH .'/controllers/autenticacao/perfil.inc.php');
 
 switch ($status_usuario){
@@ -52,7 +51,7 @@ switch ($status_usuario){
 					<li><a href="#"><i class="fa fa-file"></i> <span>Guia do Usuário</span></a></li>
 					<li><a href="#" data-toggle="modal" data-target="#modalTrocarSenha"><i class="fa fa-lock"></i> <span>Alterar senha</span></a></li>
 					<?php $flag = md5("logout");?>
-					<li><a href="autenticacao/logout.php?flag=<?php echo $flag;?>"><i class="fa fa-sign-out"></i> <span>Sair do sistema</span></a></li>
+					<li><a href="controllers/autenticacao/logout.php?flag=<?php echo $flag;?>"><i class="fa fa-sign-out"></i> <span>Sair do sistema</span></a></li>
 				</ul>
 			</section>
 		</aside>
@@ -73,7 +72,7 @@ switch ($status_usuario){
 							<tbody>
 								<tr>
 									<td><?php echo $_SESSION['cpf']; ?></td>
-									<td><?php echo $status; ?></td>
+									<td><?php echo $status; ?>
 									<td>
 										<button type="button" class="btn btn-xs btn-primary"
 											data-toggle="modal"
@@ -114,7 +113,7 @@ switch ($status_usuario){
 							</tbody>
 						</table>
 						<?php
-						if (isset($_GET['flag']) and $_GET['flag'] == md5("usuario_alterar")){
+						if (isset($_GET['flag']) and ($_GET['flag'] == md5("usuario_alterar") or $_GET['flag'] == md5("senha_alterar") or $_GET['flag'] == md5("logout") )){
 							include_once('controllers/usuario/usuario_alertas_criar.inc.php');
 						}
 						else {
@@ -186,6 +185,8 @@ switch ($status_usuario){
 												<input name="nome_atual" type="hidden" value="<?php echo $nome_usuario;?>" />
 												<input name="email_atual" type="hidden" value="<?php echo $email_usuario;?>" />
 												<input name="codom_atual" type="hidden" value="<?php echo $codom_usuario;?>" />
+												<input type="hidden" name="flag1" value="<?php echo strtr(end(explode('/', $_SERVER['PHP_SELF'])),'?', true);?>" />
+
 
 												<button type="submit" class="btn btn-primary">Alterar</button>
 												<button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
@@ -238,7 +239,7 @@ switch ($status_usuario){
 							</div>
 						</div>
 						<!-- inicio alterar_senha -->
-						<?php include_once('views/form_senha_alterar.inc.php');?>
+						<?php include_once('views/usuario/form_senha_alterar.inc.php'); ?>
 						<!--inicio modalAlerta -->
 						<div class="modal modal-<?php echo $botao;?> fade" id="modalAlerta"  data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 							<div class="modal-dialog" role="document">
@@ -257,11 +258,10 @@ switch ($status_usuario){
 												echo $msg_lista[0] = "<p>" . $msg_lista[0] . "</p>";
 											}
 										}
-										echo "</b>";
 										?>
 									</div>
 									<div class="modal-footer">
-										<a href="index<?php echo $visite;?>.php"><button type="button" class="btn btn-<?php echo $botao;?>">Fechar</button></a>
+										<a href="<?php echo $pagina;?>"><button type="button" class="btn btn-<?php echo $botao;?>">Fechar</button></a>
 									</div>
 								</div>
 							</div>

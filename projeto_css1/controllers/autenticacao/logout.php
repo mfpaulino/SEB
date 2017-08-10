@@ -1,8 +1,7 @@
 <?php
-//logout.php
-//$inc = "sim";
-require_once '../componentes/internos/php/constantes.inc.php';
-include_once '../componentes/internos/php/conexao.inc.php';
+$inc = "sim";
+include_once('../../path.inc.php');
+include_once(PATH. '/componentes/internos/php/conexao.inc.php');
 
 session_start();
 
@@ -15,29 +14,34 @@ if (isset($_SESSION['cpf'])){
 	$mysqli->close();
 
 	session_destroy();
+	session_start();
 
 	if(isset($_GET['flag'])){
+
+		$flag = $_GET['flag'];
 
 		switch ($_GET['flag']){
 
 			case md5("logout"):
-				$flag= md5("msg_logout");
+
+				$_SESSION['logout'] = "Logout realizado com sucesso!";
+				$_SESSION['botao'] = "success";
+
 				break;
 
-			case md5("troca_senha"):
-				$flag= md5("msg_logout_troca_senha");
-				break;
+			case md5("alterar_senha"):
 
-			case md5("acesso_indevido"):
-				$indevido =  md5("msg_acesso_indevido");
-				$flag= $indevido;
+				$_SESSION['logout'] = "Em caso de login, usar a nova senha!";
+				$_SESSION['botao'] = "primary";
+
 				break;
 		}
-		header(sprintf("Location:../index.php?flag=$flag"));
 	}
 	else {
-		header(sprintf("Location:../index.php?flag=$indevido"));
+		$_SESSION['logout'] = "ERRO: usuário desconectado pelo sistema!<br />(Tentativa de acesso indevido!!)";
+		$_SESSION['botao'] = "danger";
 	}
+	header(sprintf("Location:../../index.php?flag=$flag"));
 }
 else {
 	include_once ACESSO_NEGADO;

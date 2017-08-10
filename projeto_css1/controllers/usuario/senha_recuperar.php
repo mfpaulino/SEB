@@ -19,7 +19,7 @@ include_once(__DIR__ .'/../../path.inc.php');
 include_once(PATH .'/controllers/usuario/usuario_alertas_destruir.inc.php');
 
 require_once(PATH .'/componentes/internos/php/constantes.inc.php');
-require_once(PATH .'/componentes/internos/php/cript.inc.php');
+require_once(PATH .'/componentes/internos/php/bcript.inc.php');
 require_once(PATH .'/componentes/internos/php/conexao.inc.php');
 require_once(PATH .'/componentes/externos/PHPMailer/class.phpmailer.php');
 require_once(PATH .'/componentes/internos/php/email.inc.php');
@@ -40,7 +40,7 @@ if(isset($_POST['flag'])){
 	}
 	else {
 		$senha = geraSenha("L N L L S L N N");
-		$nova_senha = encripta($row_usuario['cpf'],$senha);
+		$nova_senha = Bcrypt::hash($senha);
 
 		$msg = "Prezado(a) " . htmlentities($row_usuario['posto']) . " " . $row_usuario['nome_guerra'] . ",";
 		$msg .= "<br />";

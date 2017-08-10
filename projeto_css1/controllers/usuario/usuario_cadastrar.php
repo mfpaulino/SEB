@@ -15,7 +15,7 @@
 session_start();
 
 $inc = "sim";
-include_once(__DIR__ .'/../../path.inc.php');
+include_once('../../path.inc.php');
 
 include_once(PATH .'/controllers/usuario/usuario_alertas_destruir.inc.php');
 

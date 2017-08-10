@@ -3,92 +3,120 @@
 //envia msg de erro para o script index.php
 
 if ($inc == "sim"){
-include_once(__DIR__ .'/../../path.inc.php');
+//include_once(__DIR__ .'/../../path.inc.php');
 
 	session_start();
 
-	//include_once(__DIR__ .'/../componentes/internos/php/conexao.inc.php');
-
 	if (isset($_GET['flag'])){
 
-			$flag = $_GET['flag'];
-
-			if($flag == md5("usuario_cadastrar")){
-
-				$msg0 = $_SESSION['sucesso_cadastro'];
-
-				$msg1 = $_SESSION['duplo_cpf']."<br />";
-				$msg2 = $_SESSION['duplo_email']."<br />";
-				$msg4 = $_SESSION['erro_cadastro']."<br />";
-				$msg6 = $_SESSION['erro_validacao_cadastrar'];
-				$lista_erro_validacao = $_SESSION['lista_erro_validacao_cadastrar'];
-
-				$botao = $_SESSION['botao'];
-			}
-			else {
-				unset($_SESSION['sucesso_cadastro']);
-				unset($_SESSION['duplo_cpf']);
-				unset($_SESSION['duplo_email']);
-				unset($_SESSION['erro_cadastro']);
-				unset($_SESSION['erro_validacao_cadastrar']);
-				unset($_SESSION['lista_erro_validacao_cadastrar']);
-			}
-			if($flag == md5("usuario_alterar")){
-
-				$msg0 = $_SESSION['alterar_rg']."<br />";
-				$msg1 = $_SESSION['alterar_posto']."<br />";
-				$msg2 = $_SESSION['alterar_nome_guerra']."<br />";
-				$msg3 = $_SESSION['alterar_nome']."<br />";
-				$msg4 = $_SESSION['alterar_email_erro']."<br />";
-				$msg5 = $_SESSION['alterar_email']."<br />";
-				$msg6 = $_SESSION['alterar_erro_validacao']."<br />";
-				$lista_erro_validacao = $_SESSION['alterar_lista_erro_validacao'];
-
-				$botao = $_SESSION['botao'];
-				$visite = "_visite";
-			}
-			else {
-				unset($_SESSION['alterar_rg']);
-				unset($_SESSION['alterar_posto']);
-				unset($_SESSION['alterar_nome_guerra']);
-				unset($_SESSION['alterar_nome']);
-				unset($_SESSION['alterar_email']);
-				unset($_SESSION['alterar_email_erro']);
-				unset($_SESSION['alterar_erro_validacao']);
-				unset($_SESSION['alterar_lista_erro_validacao']);
-			}
-
-			if($flag == md5("senha_recuperar")){
-
-				$msg0 = $_SESSION['senha_enviada'];
-
-				$msg1 = $_SESSION['senha_usuario_inexistente']."<br />";
-				$msg2 = $_SESSION['senha_nao_enviada']."<br />";
-
-				$botao = $_SESSION['botao'];
-
-			}
-			else {
-				unset($_SESSION['senha_enviada']);
-				unset($_SESSION['senha_usuario_inexistente']);
-				unset($_SESSION['senha_nao_enviada']);
-			}
-
-			if($flag == md5("usuario_acessar")){
-
-				$msg1 = $_SESSION['acesso_usuario_inexistente']."<br />";
-				$msg2 = $_SESSION['senha_errada']."<br />";
-
-				$botao = $_SESSION['botao'];
-			}
-			else{
-				unset($_SESSION['acesso_usuario_inexistente']);
-				unset($_SESSION['senha_errada']);
-			}
-
-			$msg="x";
-
 		$flag = $_GET['flag'];
+		$pagina = $_SESSION['pagina'];
+		$botao = $_SESSION['botao'];
+
+		if($flag == md5("usuario_cadastrar")){
+
+			$msg0 = $_SESSION['sucesso_cadastro'];
+
+			$msg1 = $_SESSION['duplo_cpf']."<br />";
+			$msg2 = $_SESSION['duplo_email']."<br />";
+			$msg4 = $_SESSION['erro_cadastro']."<br />";
+			$msg6 = $_SESSION['erro_validacao_cadastrar'];
+			$lista_erro_validacao = $_SESSION['lista_erro_validacao_cadastrar'];
+
+			//$botao = $_SESSION['botao'];
+		}
+		else {
+			unset($_SESSION['sucesso_cadastro']);
+			unset($_SESSION['duplo_cpf']);
+			unset($_SESSION['duplo_email']);
+			unset($_SESSION['erro_cadastro']);
+			unset($_SESSION['erro_validacao_cadastrar']);
+			unset($_SESSION['lista_erro_validacao_cadastrar']);
+		}
+		if($flag == md5("usuario_alterar")){
+
+			$msg0 = $_SESSION['alterar_rg']."<br />";
+			$msg1 = $_SESSION['alterar_posto']."<br />";
+			$msg2 = $_SESSION['alterar_nome_guerra']."<br />";
+			$msg3 = $_SESSION['alterar_nome']."<br />";
+			$msg4 = $_SESSION['alterar_email_erro']."<br />";
+			$msg5 = $_SESSION['alterar_email']."<br />";
+			$msg6 = $_SESSION['alterar_erro_validacao']."<br />";
+			$lista_erro_validacao = $_SESSION['alterar_lista_erro_validacao'];
+
+			//$botao = $_SESSION['botao'];
+		}
+		else {
+			unset($_SESSION['alterar_rg']);
+			unset($_SESSION['alterar_posto']);
+			unset($_SESSION['alterar_nome_guerra']);
+			unset($_SESSION['alterar_nome']);
+			unset($_SESSION['alterar_email']);
+			unset($_SESSION['alterar_email_erro']);
+			unset($_SESSION['alterar_erro_validacao']);
+			unset($_SESSION['alterar_lista_erro_validacao']);
+		}
+
+		if($flag == md5("senha_alterar")){
+
+			$msg0 = $_SESSION['alterar_senha_sucesso'];
+
+			if($msg0 <> ""){
+				$flag=md5("alterar_senha");
+				$pagina = "controllers/autenticacao/logout.php?flag=$flag";
+			}
+
+			$msg1 = $_SESSION['alterar_senha_erro_bd']."<br />";
+			$msg6 = $_SESSION['alterar_senha_erro_validacao']."<br />";
+
+			$lista_erro_validacao = $_SESSION['alterar_senha_erro_validacao_lista'];
+
+			//$botao = $_SESSION['botao'];
+		}
+		else {
+			unset($_SESSION['alterar_senha_sucesso']);
+			unset($_SESSION['alterar_senha_erro_bd']);
+			unset($_SESSION['alterar_senha_erro_validacao']);
+			unset($_SESSION['alterar_senha_erro_validacao_lista']);
+		}
+
+		if($flag == md5("senha_recuperar")){
+
+			$msg0 = $_SESSION['senha_enviada'];
+
+			$msg1 = $_SESSION['senha_usuario_inexistente']."<br />";
+			$msg2 = $_SESSION['senha_nao_enviada']."<br />";
+
+			//$botao = $_SESSION['botao'];
+
+		}
+		else {
+			unset($_SESSION['senha_enviada']);
+			unset($_SESSION['senha_usuario_inexistente']);
+			unset($_SESSION['senha_nao_enviada']);
+		}
+
+		if($flag == md5("usuario_acessar")){
+
+			$msg1 = $_SESSION['acesso_usuario_inexistente']."<br />";
+			$msg2 = $_SESSION['senha_errada']."<br />";
+
+			//$botao = $_SESSION['botao'];
+		}
+		else{
+			unset($_SESSION['acesso_usuario_inexistente']);
+			unset($_SESSION['senha_errada']);
+		}
+
+		if($flag == md5("logout")){
+
+			$msg0 = $_SESSION['logout'];
+		}
+
+		$msg="x";
+
+		//$flag = $_GET['flag'];
+		/*
 
 		if ($flag == md5("erro_usuario")){
 			$msg = "ERRO! Usuário não cadastrado";
@@ -158,36 +186,7 @@ include_once(__DIR__ .'/../../path.inc.php');
 			$msg = "ERRO: exclusão não realizada!";
 			$botao = "danger";
 		}
-		?>
-		<!--
-		<div class="modal modal-<?php echo $botao;?> fade" id="modalAlerta"  data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-			<div class="modal-dialog" role="document">
-				<div class="modal-content">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"></span></button>
-						<h4 class="modal-title" id="modalAlertaLabel">AVISO DO SISTEMA</h4>
-					</div>
-					<div class="modal-body">
-						<?php
-							echo "<b>";
-							echo $msg6.$msg0.$msg1.$msg2.$msg3.$msg4.$msg5;
-
-							if($lista_erro_validacao){
-								foreach ($lista_erro_validacao as $msg_lista){
-									echo $msg_lista[0] = "<p>" . $msg_lista[0] . "</p>";
-								}
-							}
-							echo "</b>";
-						?>
-					</div>
-					<div class="modal-footer">
-						<a href="index<?php echo $visite;?>.php"><button type="button" class="btn btn-<?php echo $botao;?>">Fechar</button></a>
-					</div>
-				</div>
-			</div>
-		</div>
-		-->
-		<?php
+		* */
 	}
 }
 else {

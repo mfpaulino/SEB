@@ -7,7 +7,7 @@ include_once(__DIR__ .'/../../path.inc.php');
 include_once(PATH .'/controllers/usuario/usuario_alertas_destruir.inc.php');
 
 require_once(PATH .'/componentes/internos/php/constantes.inc.php');
-require_once(PATH .'/componentes/internos/php/cript.inc.php');
+require_once(PATH .'/componentes/internos/php/bcript.inc.php');
 require_once(PATH .'/componentes/internos/php/conexao.inc.php');
 
 
@@ -20,8 +20,6 @@ if(isset($_POST['flag'])){
 	$cpf = isset($_POST['cpf']) ? $_POST['cpf']: "";
 	$senha = isset($_POST['senha']) ? $_POST['senha']: "";
 
-	$senha_criptografada = encripta($cpf,$senha);
-
 	$sql = "select * from usuarios where cpf = '$cpf'";
 	$con_login = $mysqli->query($sql);
 	$mysqli->close();
@@ -31,7 +29,7 @@ if(isset($_POST['flag'])){
 	if($con_login->num_rows == 0){
 		$_SESSION['acesso_usuario_inexistente'] = "ERRO: usuário não cadastrado!";
 	}
-	else if($row_login['senha'] <> $senha_criptografada){
+	else if(!Bcrypt::check($senha, $row_login['senha'])){
 		$_SESSION['senha_errada'] = "ERRO: senha incorreta!";
 	}
 	else{
