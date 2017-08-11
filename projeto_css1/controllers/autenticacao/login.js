@@ -23,6 +23,11 @@ $(document).ready(function() {
 				validators: {
 					notEmpty: {
 						message:'Preenchimento obrigatório'
+					},
+					stringLength: {
+						min: 8,
+						max: 20,
+						message: 'Mínimo de 8 caracteres'
 					}
 				}
 			}

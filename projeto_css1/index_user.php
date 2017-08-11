@@ -1,4 +1,8 @@
-<?php //include_once('componentes/internos/php/cabecalho.inc.php');?>
+<?php
+$inc = "sim";
+include_once('path.inc.php');
+require_once(PATH .'/controllers/autenticacao/perfil.inc.php');
+?>
 <!DOCTYPE html>
 <!--
 This is a starter template page. Use this page to start your new project from

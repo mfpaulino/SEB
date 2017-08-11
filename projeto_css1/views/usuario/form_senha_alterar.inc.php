@@ -6,19 +6,21 @@
 				<h4 class="modal-title">Alteração de senha</h4>
 			</div>
 			<div class="modal-body">
-				<form action="controllers/usuario/senha_alterar.php" method="POST">
+				<form name="form_senha_alterar" id="form_senha_alterar" action="controllers/usuario/senha_alterar.php" method="POST">
 					<div class="form-group">
 						<label for="codom" class="control-label">Senha:</label>
-						<input class="form-control" type="password" name="senha_nova"  id="senha_nova"  autofocus required placeholder="nova senha" onpaste="return false;" />
+						<input class="form-control" type="password" name="senha_nova"  id="senha_nova"  autofocus  placeholder="nova senha" onpaste="return false;" />
 					</div>
 					<div class="form-group">
 						<label for="codom" class="control-label">Confirme a senha:</label>
-						<input class="form-control" type="password" name="senha_nova1" id="senha_nova1" required placeholder="confirmar senha" onpaste="return false;" />
+						<input class="form-control" type="password" name="senha_nova1" id="senha_nova1" placeholder="confirmar senha" onpaste="return false;" />
 					</div>
 					<div class="modal-footer">
+						<input type="hidden" name="cpf" id="cpf" value="<?php echo $_SESSION['cpf'];?>" />
 						<input type="hidden" name="flag" value="<?php echo $_SESSION['cpf'];?>"/>
 						<input type="hidden" name="flag1" value="<?php echo strtr(end(explode('/', $_SERVER['PHP_SELF'])),'?', true);?>" />
-						<input type="submit" />
+						<button type="submit" class="btn btn-primary">Alterar</button>
+						<button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
 					</div>
 				</form>
 			</div>

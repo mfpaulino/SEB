@@ -58,7 +58,7 @@ switch ($status_usuario){
 		<div class="content-wrapper">
 			<section class="content container-fluid">
 				<div class="page-header">
-					<h1>Informações do Usuário</h1>
+					<h2>Informações de usuário: <u><?php echo $posto_usuario . " " . $nome_guerra_usuario;?></u></h2>
 				</div>
 				<div class="row">
 					<div class="col-md-12">
@@ -100,13 +100,24 @@ switch ($status_usuario){
 											data-toggle="modal"
 											data-target="#modalTrocarOM"
 											data-om="<?php echo $sigla_usuario; ?>">
-											Trocar OM
+											Trocar Unidade
 										</button>
 
 										<?php $flag = md5("excluir_usuario");?>
-										<a href="usuario/exclui_usuario.php?flag=<?php echo $flag; ?>">
+										<a href="controllers/usuario/exclui_usuario.php?flag=<?php echo $flag; ?>">
 
-										<button type="button" class="btn btn-xs btn-danger">Excluir </button>
+										<button type="button" class="btn btn-xs btn-danger" data-toggle="confirmation"
+											data-placement="left"
+											data-btn-ok-label="Continuar"
+											data-btn-ok-icon="glyphicon glyphicon-share-alt"
+											data-btn-ok-class="btn-success"
+											data-btn-cancel-label="Parar"
+											data-btn-cancel-icon="glyphicon glyphicon-ban-circle"
+											data-btn-cancel-class="btn-danger"
+											data-title="Confirma exclusão do cadastro?"
+											data-content="">
+											Excluir Cadastro
+										</button>
 										</a>
 									</td>
 								</tr>
@@ -129,6 +140,7 @@ switch ($status_usuario){
 										<h4 class="modal-title text-center" id="modalVisualizarLabel">Dados do usuário</h4>
 									</div>
 									<div class="modal-body">
+										<p><b>CPF:</b> <?php echo $cpf; ?></p>
 										<p><b>RG:</b> <?php echo $rg_usuario; ?></p>
 										<p><b>Posto/grad:</b> <?php echo $posto_usuario; ?></p>
 										<p><b>Nome de guerra:</b> <?php echo $nome_guerra_usuario; ?></p>
@@ -188,7 +200,7 @@ switch ($status_usuario){
 												<input type="hidden" name="flag1" value="<?php echo strtr(end(explode('/', $_SERVER['PHP_SELF'])),'?', true);?>" />
 
 
-												<button type="submit" class="btn btn-primary">Alterar</button>
+												<button type="submit" class="btn btn-primary">Confirmar</button>
 												<button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
 											</div>
 										</form>
@@ -205,33 +217,33 @@ switch ($status_usuario){
 										<h4 class="modal-title" id="modalTrocarOMLabel"></h4>
 									</div>
 									<div class="modal-body">
-										<form name="form_altera_om" id="form_altera_om" method="POST" action="usuario/altera_om.php" enctype="multipart/form-data">
+										<form name="form_altera_om" id="form_altera_om" method="POST" action="controllers/usuario/om_alterar.php" enctype="multipart/form-data">
 											<div class="form-group">
 												<label for="unidade_ci" class="control-label">Unidade Controle Interno:</label>
-												<?php include('listas/unidades_ci_select.inc.php');?>
+												<?php include('listas/select_unid_ci.inc.php');?>
 											</div>
 											<div class="form-group">
-												<label for="codom" class="control-label">Unidade do usuário:</label>
+												<label for="codom" class="control-label">Unidade usuário:</label>
 												<select class="form-control" name="codom" id="codom" required>
 													<option value="">Aguardando Unidade de Controle Interno...</option>
 												</select>
 											</div>
 											<div class="modal-footer">
 												<input name="flag" type="hidden" value="<?php $codom_usuario;?>"/>
-												<button type="button" class="btn btn-primary" data-dismiss="modal">Cancelar</button>
-												<button type="submit" class="btn btn-danger"
+												<button type="submit" class="btn btn-primary"
 													data-toggle="confirmation"
 													data-placement="left"
-													data-btn-ok-label="Continue"
+													data-btn-ok-label="Continuar"
 													data-btn-ok-icon="glyphicon glyphicon-share-alt"
 													data-btn-ok-class="btn-success"
-													data-btn-cancel-label="Pare!"
+													data-btn-cancel-label="Parar"
 													data-btn-cancel-icon="glyphicon glyphicon-ban-circle"
 													data-btn-cancel-class="btn-danger"
 													data-title="Confirma alteração da Unidade?"
 													data-content="">
-												Alterar
+												Confirmar
 												</button>
+												<button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
 											</div>
 										</form>
 									</div>
@@ -278,6 +290,7 @@ switch ($status_usuario){
 	<script src="componentes/externos/bower_components/bootstrap-confirmation/bootstrap-confirmation.min.js"></script>
 	<script src="componentes/externos/dist/js/adminlte.min.js"></script>
 	<script src="controllers/usuario/usuario_alterar.js"></script>
+	<script src="controllers/usuario/senha_alterar.js"></script>
 	<script type="text/javascript">
 		$('#modalEditar').on('show.bs.modal', function (event) {
 			var button = $(event.relatedTarget) // Button that triggered the modal
@@ -311,7 +324,7 @@ switch ($status_usuario){
 		$(document).ready(function(){
 			$("select[name=unidade_ci]").change(function(){
 				$("select[name=codom]").html('<option value="">Carregando...</option>');
-				$.post("listas/om_select_usuario.inc.php", {unidade_ci:$(this).val()},function(valor){$("select[name=codom]").html(valor);})
+				$.post("listas/select_om_usuario.inc.php", {unidade_ci:$(this).val()},function(valor){$("select[name=codom]").html(valor);})
 			 })
 		 })
 	</script>
@@ -324,7 +337,13 @@ switch ($status_usuario){
 			modal.find('#om').val(om)
 		})
 	</script>
-	<!--
+	<script>
+		$('[data-toggle="confirmation"]').confirmation({
+			onConfirm: function() {
+				$('#form_altera_om').submit();
+			}
+		});
+	</script>
 	<script>
 		$(document).ready(function() {
 			$('#form_altera_om').bootstrapValidator({
@@ -350,13 +369,6 @@ switch ($status_usuario){
 					}
 				}
 			})
-		});
-	</script>-->
-	<script>
-		$('[data-toggle="confirmation"]').confirmation({
-			onConfirm: function() {
-				$('#form_altera_om').submit();
-			}
 		});
 	</script>
 	<?php

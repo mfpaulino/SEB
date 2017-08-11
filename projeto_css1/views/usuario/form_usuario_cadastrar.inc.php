@@ -51,7 +51,7 @@
 					</div>
 					<div class="modal-footer">
 						<input  type="hidden" name="flag" />
-						<button type="submit" class="btn btn-primary" onClick="return TestaCPF();">Cadastrar</button>
+						<button type="submit" class="btn btn-primary">Cadastrar</button>
 						<button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
 					</div>
 				</form>

@@ -75,7 +75,6 @@ if(isset($_POST['flag'])){
 	}
 	$flag = md5("senha_recuperar");
 	header(sprintf("Location:../../index.php?flag=$flag"));
-
 }
 else {
 	include_once(PATH .'/controllers/autenticacao/'.ACESSO_NEGADO);

@@ -3,7 +3,6 @@
 //envia msg de erro para o script index.php
 
 if ($inc == "sim"){
-//include_once(__DIR__ .'/../../path.inc.php');
 
 	session_start();
 
@@ -22,8 +21,6 @@ if ($inc == "sim"){
 			$msg4 = $_SESSION['erro_cadastro']."<br />";
 			$msg6 = $_SESSION['erro_validacao_cadastrar'];
 			$lista_erro_validacao = $_SESSION['lista_erro_validacao_cadastrar'];
-
-			//$botao = $_SESSION['botao'];
 		}
 		else {
 			unset($_SESSION['sucesso_cadastro']);
@@ -43,8 +40,6 @@ if ($inc == "sim"){
 			$msg5 = $_SESSION['alterar_email']."<br />";
 			$msg6 = $_SESSION['alterar_erro_validacao']."<br />";
 			$lista_erro_validacao = $_SESSION['alterar_lista_erro_validacao'];
-
-			//$botao = $_SESSION['botao'];
 		}
 		else {
 			unset($_SESSION['alterar_rg']);
@@ -62,7 +57,6 @@ if ($inc == "sim"){
 			$msg0 = $_SESSION['alterar_senha_sucesso'];
 
 			if($msg0 <> ""){
-				$flag=md5("alterar_senha");
 				$pagina = "controllers/autenticacao/logout.php?flag=$flag";
 			}
 
@@ -70,8 +64,6 @@ if ($inc == "sim"){
 			$msg6 = $_SESSION['alterar_senha_erro_validacao']."<br />";
 
 			$lista_erro_validacao = $_SESSION['alterar_senha_erro_validacao_lista'];
-
-			//$botao = $_SESSION['botao'];
 		}
 		else {
 			unset($_SESSION['alterar_senha_sucesso']);
@@ -87,8 +79,6 @@ if ($inc == "sim"){
 			$msg1 = $_SESSION['senha_usuario_inexistente']."<br />";
 			$msg2 = $_SESSION['senha_nao_enviada']."<br />";
 
-			//$botao = $_SESSION['botao'];
-
 		}
 		else {
 			unset($_SESSION['senha_enviada']);
@@ -101,7 +91,6 @@ if ($inc == "sim"){
 			$msg1 = $_SESSION['acesso_usuario_inexistente']."<br />";
 			$msg2 = $_SESSION['senha_errada']."<br />";
 
-			//$botao = $_SESSION['botao'];
 		}
 		else{
 			unset($_SESSION['acesso_usuario_inexistente']);

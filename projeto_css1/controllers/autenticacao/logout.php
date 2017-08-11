@@ -18,7 +18,7 @@ if (isset($_SESSION['cpf'])){
 
 	$flag = isset($_GET['flag']) ? $_GET['flag'] : "";
 
-	if ($flag == md5("logout")){
+	if ($flag == md5("logout") or $flag == md5("senha_alterar")){
 
 		$_SESSION['logout'] = "Logout realizado com sucesso!";
 		$_SESSION['botao'] = "success";

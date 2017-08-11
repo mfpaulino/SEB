@@ -22,7 +22,7 @@ include_once(PATH .'/controllers/usuario/usuario_alertas_destruir.inc.php');
 if (isset($_POST['flag'])){
 
 	require_once(PATH . '/componentes/internos/php/conexao.inc.php');
-	require_once(PATH . '/componentes/internos/php/cript.inc.php');
+	require_once(PATH . '/componentes/internos/php/bcript.inc.php');
 	require_once(PATH . '/componentes/internos/php/validaForm.class.php');
 
 	$cpf 		 = isset($_POST['cpf']) ? mysqli_real_escape_string($mysqli, $_POST['cpf']) : "";
@@ -70,7 +70,7 @@ if (isset($_POST['flag'])){
 
 		if($validacao !== false){
 
-			$senha_criptografada = encripta($cpf,$senha);
+			$senha_criptografada = Bcrypt::hash($senha);
 
 			$resultado = $mysqli->query("INSERT INTO usuarios (cpf, senha, rg, nome_guerra, nome, email, id_posto, codom, status) VALUES ('$cpf', '$senha_criptografada', '$rg', '$nome_guerra', '$nome', '$email', '$posto', '$codom','recebido')");
 

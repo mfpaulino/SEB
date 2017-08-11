@@ -37,7 +37,7 @@ if(isset($_POST['flag'])){
 
 			$_SESSION['alterar_senha_sucesso'] = "Senha alterada com sucesso!<br />Faça login com a nova senha.";
 
-			header(sprintf("Location:.././autenticacao/logout.php?flag=$flag"));
+			//header(sprintf("Location:.././autenticacao/logout.php?flag=$flag"));
 
 			//$_SESSION['pagina'] = "controllers/autenticacao/logout.php";
 			$_SESSION['botao'] = "success";

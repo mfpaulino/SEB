@@ -1,14 +1,11 @@
 <?php
 $inc = "sim";
-include_once(__DIR__ .'/../../path.inc.php');
+include_once('../../path.inc.php');
 
 if(isset($_POST['flag'])){
 
 	session_start();
 
-
-
-	require_once(PATH . '/componentes/internos/php/cript.inc.php');
 	require_once(PATH . '/componentes/internos/php/conexao.inc.php');
 	require_once(PATH . '/componentes/internos/php/validaForm.class.php');
 
