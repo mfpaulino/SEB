@@ -217,14 +217,14 @@ switch ($status_usuario){
 										<h4 class="modal-title" id="modalTrocarOMLabel"></h4>
 									</div>
 									<div class="modal-body">
-										<form name="form_altera_om" id="form_altera_om" method="POST" action="controllers/usuario/om_alterar.php" enctype="multipart/form-data">
+										<form name="form_altera_om" id="form_altera_om" method="POST" action="controllers/usuario/om_alterar.php" enctype="multipart/form-data" >
 											<div class="form-group">
 												<label for="unidade_ci" class="control-label">Unidade Controle Interno:</label>
 												<?php include('listas/select_unid_ci.inc.php');?>
 											</div>
 											<div class="form-group">
 												<label for="codom" class="control-label">Unidade usuário:</label>
-												<select class="form-control" name="codom" id="codom" required>
+												<select class="form-control" name="codom" id="codom">
 													<option value="">Aguardando Unidade de Controle Interno...</option>
 												</select>
 											</div>
@@ -337,13 +337,7 @@ switch ($status_usuario){
 			modal.find('#om').val(om)
 		})
 	</script>
-	<script>
-		$('[data-toggle="confirmation"]').confirmation({
-			onConfirm: function() {
-				$('#form_altera_om').submit();
-			}
-		});
-	</script>
+	<!--
 	<script>
 		$(document).ready(function() {
 			$('#form_altera_om').bootstrapValidator({
@@ -371,6 +365,36 @@ switch ($status_usuario){
 			})
 		});
 	</script>
+	-->
+	<script>
+		$('[data-toggle="confirmation"]').confirmation({
+			onConfirm: function() {
+				$('#form_altera_om').bootstrapValidator({
+					feedbackIcons: {
+						valid: 'glyphicon glyphicon-ok',
+						invalid: 'glyphicon glyphicon-remove',
+						validating: 'glyphicon glyphicon-refresh'
+					},
+					fields: {
+						unidade_ci: {
+							validators: {
+								notEmpty: {
+									message:'preenchimento obrigatório'
+								}
+							}
+						},
+						codom: {
+							validators: {
+								notEmpty: {
+									message:'preenchimento obrigatório'
+								}
+							}
+						}
+					}
+				})
+			}
+		});
+	</script>
 	<?php
 	if ($msg <> ""){?>
 		<script>
@@ -381,5 +405,8 @@ switch ($status_usuario){
 	<?php
 	}
 	?>
-</body>
+	<!--
+[data-toggle="confirmation"]
+	-->
+	</body>
 </html>

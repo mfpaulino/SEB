@@ -1,1 +1,4 @@
 - nao abre a lsta de om na tela index_visite.php
+
+verificar troca de om na tela index.visite.php
+ao validar o form e trocar a unidade de ci, esta mantendo a validacao anterior, mesmo nao escolhendo nova om
