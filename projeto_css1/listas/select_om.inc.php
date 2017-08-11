@@ -8,8 +8,8 @@ if(isset($_POST['unidade_ci'])){
 	$unidade_ci = $_POST['unidade_ci'];
 
 	$sql = 	"SELECT codom, sigla, denominacao FROM cciex_om WHERE icfex = '$unidade_ci' and op_ativa = 'sim'";
-	$con_om = $mysqli1->query($sql);
-	$mysqli1->close();
+	$con_om = $mysqli->query($sql);
+	$mysqli->close();
 
 	$num_rows_om = $con_om->num_rows;
 

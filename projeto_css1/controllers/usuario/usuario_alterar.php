@@ -6,9 +6,13 @@ if(isset($_POST['flag'])){
 
 	session_start();
 
+
+
 	require_once(PATH . '/componentes/internos/php/cript.inc.php');
 	require_once(PATH . '/componentes/internos/php/conexao.inc.php');
 	require_once(PATH . '/componentes/internos/php/validaForm.class.php');
+
+	$pagina = $_POST['flag1'];
 
 	$cpf 				= $_SESSION['cpf'];
 
@@ -33,6 +37,7 @@ if(isset($_POST['flag'])){
 			->set('E-mail',			$email)->is_email();
 
 	$_SESSION['botao'] = "success";
+	$_SESSION['pagina'] = $pagina;
 
 	if ($validar->validate()){
 
@@ -100,7 +105,7 @@ if(isset($_POST['flag'])){
 		$_SESSION['botao'] = "danger";
 	}
 	$flag = md5("usuario_alterar");
-	header(sprintf("Location:../../index_visite.php?flag=$flag"));
+	header(sprintf("Location:../../".$pagina."?flag=$flag"));
 }
 else {
 	include_once(PATH . '/controllers/autenticacao/'.ACESSO_NEGADO);

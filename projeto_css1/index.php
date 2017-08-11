@@ -42,7 +42,7 @@
 				-------------------------->
 				<?php
 				$inc="sim";
-				if(isset($_GET['flag']) and ($_GET['flag'] == md5('usuario_cadastrar') or  $_GET['flag'] == md5('senha_recuperar') or $_GET['flag'] == md5('usuario_acessar'))){
+				if(isset($_GET['flag']) and ($_GET['flag'] == md5('usuario_cadastrar') or  $_GET['flag'] == md5('senha_recuperar') or $_GET['flag'] == md5('usuario_acessar') or $_GET['flag'] == md5('logout') or $_GET['flag'] == md5('acesso_indevido'))){
 					include_once('controllers/usuario/usuario_alertas_criar.inc.php');
 				}
 				else {

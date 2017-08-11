@@ -26,5 +26,15 @@ unset($_SESSION['alterar_email_erro']);
 unset($_SESSION['alterar_erro_validacao']);
 unset($_SESSION['alterar_lista_erro_validacao']);
 
+//senha_alterar
+unset($_SESSION['alterar_senha_sucesso']);
+unset($_SESSION['alterar_senha_erro_bd']);
+unset($_SESSION['alterar_senha_erro_validacao']);
+unset($_SESSION['alterar_senha_erro_validacao_lista']);
+
+//logout
+unset($_SESSION['logout']);
+
 unset($_SESSION['botao']);
+unset($_SESSION['pagina']);
 ?>
