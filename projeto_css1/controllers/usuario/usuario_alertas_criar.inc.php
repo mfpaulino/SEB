@@ -108,9 +108,12 @@ if ($inc == "sim"){
 			unset($_SESSION['senha_errada']);
 		}
 
-		if($flag == md5("logout")){
+		if($flag == md5("logout") or $flag == md5("acesso_indevido")){
 
 			$msg0 = $_SESSION['logout'];
+		}
+		else{
+			unset($_SESSION['logout']);
 		}
 
 		$msg="x";

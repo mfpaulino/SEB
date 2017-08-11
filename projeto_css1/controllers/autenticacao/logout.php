@@ -16,29 +16,17 @@ if (isset($_SESSION['cpf'])){
 	session_destroy();
 	session_start();
 
-	if(isset($_GET['flag'])){
+	$flag = isset($_GET['flag']) ? $_GET['flag'] : "";
 
-		$flag = $_GET['flag'];
+	if ($flag == md5("logout")){
 
-		switch ($_GET['flag']){
-
-			case md5("logout"):
-
-				$_SESSION['logout'] = "Logout realizado com sucesso!";
-				$_SESSION['botao'] = "success";
-
-				break;
-
-			case md5("alterar_senha"):
-
-				$_SESSION['logout'] = "Em caso de login, usar a nova senha!";
-				$_SESSION['botao'] = "primary";
-
-				break;
-		}
+		$_SESSION['logout'] = "Logout realizado com sucesso!";
+		$_SESSION['botao'] = "success";
 	}
 	else {
-		$_SESSION['logout'] = "ERRO: usuário desconectado pelo sistema!<br />(Tentativa de acesso indevido!!)";
+		$flag = md5("acesso_indevido");
+
+		$_SESSION['logout'] = "ERRO L01: usuário desconectado pelo sistema!<br />(Tentativa de acesso indevido!)";
 		$_SESSION['botao'] = "danger";
 	}
 	header(sprintf("Location:../../index.php?flag=$flag"));
