@@ -124,7 +124,7 @@ switch ($status_usuario){
 							</tbody>
 						</table>
 						<?php
-						if (isset($_GET['flag']) and ($_GET['flag'] == md5("usuario_alterar") or $_GET['flag'] == md5("senha_alterar") or $_GET['flag'] == md5("logout") )){
+						if (isset($_GET['flag']) and ($_GET['flag'] == md5("usuario_alterar") or $_GET['flag'] == md5("senha_alterar") or $_GET['flag'] == md5("om_alterar") or $_GET['flag'] == md5("logout") )){
 							include_once('controllers/usuario/usuario_alertas_criar.inc.php');
 						}
 						else {
@@ -244,6 +244,7 @@ switch ($status_usuario){
 												Confirmar
 												</button>
 												<button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+												<input type="hidden" name="flag1" value="<?php echo strtr(end(explode('/', $_SERVER['PHP_SELF'])),'?', true);?>" />
 											</div>
 										</form>
 									</div>
@@ -337,35 +338,6 @@ switch ($status_usuario){
 			modal.find('#om').val(om)
 		})
 	</script>
-	<!--
-	<script>
-		$(document).ready(function() {
-			$('#form_altera_om').bootstrapValidator({
-				feedbackIcons: {
-					valid: 'glyphicon glyphicon-ok',
-					invalid: 'glyphicon glyphicon-remove',
-					validating: 'glyphicon glyphicon-refresh'
-				},
-				fields: {
-					unidade_ci: {
-						validators: {
-							notEmpty: {
-								message:'preenchimento obrigatório'
-							}
-						}
-					},
-					codom: {
-						validators: {
-							notEmpty: {
-								message:'preenchimento obrigatório'
-							}
-						}
-					}
-				}
-			})
-		});
-	</script>
-	-->
 	<script>
 		$('[data-toggle="confirmation"]').confirmation({
 			onConfirm: function() {
@@ -405,8 +377,5 @@ switch ($status_usuario){
 	<?php
 	}
 	?>
-	<!--
-[data-toggle="confirmation"]
-	-->
 	</body>
 </html>

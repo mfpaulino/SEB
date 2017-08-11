@@ -52,6 +52,22 @@ if ($inc == "sim"){
 			unset($_SESSION['alterar_lista_erro_validacao']);
 		}
 
+		if($flag == md5("om_alterar")){
+
+			$msg0 = $_SESSION['alterar_om_sucesso'];
+
+			$msg1 = $_SESSION['alterar_om_erro_bd']."<br />";
+			$msg6 = $_SESSION['alterar_om_erro_validacao']."<br />";
+
+			$lista_erro_validacao = $_SESSION['alterar_om_erro_validacao_lista'];
+		}
+		else {
+			unset($_SESSION['alterar_om_sucesso']);
+			unset($_SESSION['alterar_om_erro_bd']);
+			unset($_SESSION['alterar_om_erro_validacao']);
+			unset($_SESSION['alterar_om_erro_validacao_lista']);
+		}
+
 		if($flag == md5("senha_alterar")){
 
 			$msg0 = $_SESSION['alterar_senha_sucesso'];

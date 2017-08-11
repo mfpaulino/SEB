@@ -37,4 +37,10 @@ unset($_SESSION['logout']);
 
 unset($_SESSION['botao']);
 unset($_SESSION['pagina']);
+
+//om_alterar
+unset($_SESSION['alterar_om_sucesso']);
+unset($_SESSION['alterar_om_erro_bd']);
+unset($_SESSION['alterar_om_erro_validacao']);
+unset($_SESSION['alterar_om_erro_validacao_lista']);
 ?>
