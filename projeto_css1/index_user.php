@@ -216,11 +216,11 @@ desired effect
               <!-- Menu Footer-->
               <li class="user-footer">
                 <div class="pull-left">
-                  <a href="#" class="btn btn-primary btn-flat">Perfil</a>
+                  <a href="#" class="btn btn-primary btn-flat">Trocar OM</a>
                 </div>
                 <div class="pull-right">
 					<?php $flag = md5("logout");?>
-                  <a href="autenticacao/logout.php?flag=<?php echo $flag;?>" class="btn btn-danger btn-flat">Sair</a>
+                  <a href="controllers/autenticacao/logout.php?flag=<?php echo $flag;?>" class="btn btn-danger btn-flat">Sair</a>
                 </div>
               </li>
             </ul>
@@ -302,8 +302,42 @@ desired effect
 
     <!-- Main content -->
     <section class="content container-fluid">
+		<?php
+		if (isset($_GET['flag']) and ($_GET['flag'] == md5("usuario_alterar") or $_GET['flag'] == md5("senha_alterar") or $_GET['flag'] == md5("om_alterar") or $_GET['flag'] == md5("logout") )){
+			include_once('controllers/usuario/usuario_alertas_criar.inc.php');
+		}
+		else {
+			include_once('controllers/usuario/usuario_alertas_destruir.inc.php');
+		}
+		?>
 		<!-- inicio alterar_senha -->
 		<?php include_once('views/usuario/form_senha_alterar.inc.php');?>
+		<!--inicio modalAlerta -->
+		<div class="modal modal-<?php echo $botao;?> fade" id="modalAlerta"  data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"></span></button>
+						<h4 class="modal-title" id="modalAlertaLabel">AVISO DO SISTEMA</h4>
+					</div>
+					<div class="modal-body">
+						<?php
+						echo "<b>";
+						echo $msg6.$msg0.$msg1.$msg2.$msg3.$msg4.$msg5;
+
+						if($lista_erro_validacao){
+							foreach ($lista_erro_validacao as $msg_lista){
+								echo $msg_lista[0] = "<p>" . $msg_lista[0] . "</p>";
+							}
+						}
+						?>
+					</div>
+					<div class="modal-footer">
+						<a href="<?php echo $pagina;?>"><button type="button" class="btn btn-<?php echo $botao;?>">Fechar</button></a>
+					</div>
+				</div>
+			</div>
+		</div>
       <!--------------------------
         | Your Page Content Here |
         -------------------------->
