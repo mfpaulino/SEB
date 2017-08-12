@@ -1,3 +1,17 @@
+<?php
+$inc = "sim";
+include_once('path.inc.php');
+
+session_start();
+
+if ($_SESSION['acesso'] == "nao_liberado"){
+
+	header(sprintf("Location:" . PAGINA_VISITANTE));
+}
+else if ($_SESSION['acesso'] == "liberado"){
+	header(sprintf("Location:" . PAGINA_INICIAL));
+}
+?>
 <!DOCTYPE html>
 <html>
 <head>

@@ -1,7 +1,11 @@
 <?php
 $inc = "sim";
 include_once('path.inc.php');
-require_once(PATH .'/controllers/autenticacao/perfil.inc.php');
+require_once(PATH . '/controllers/autenticacao/perfil.inc.php');
+
+if($_SESSION['acesso'] == "liberado"){
+	header(sprintf("Location: ". PAGINA_INICIAL));
+}
 
 switch ($status_usuario){
 	case ('recebido'):

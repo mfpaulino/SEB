@@ -16,7 +16,7 @@ session_start();
 
 $inc = "sim";
 include_once('../../path.inc.php');
-include_once(PATH .'/controllers/usuario/usuario_alertas_destruir.inc.php');
+//include_once(PATH .'/controllers/usuario/usuario_alertas_destruir.inc.php');
 
 if (isset($_POST['flag'])){
 
@@ -51,7 +51,7 @@ if (isset($_POST['flag'])){
 
 		if($busca_cpf->num_rows == 1){
 
-			$_SESSION['duplo_cpf'] = "ERRO: CPF já existe!";
+			$_SESSION['duplo_cpf'] = "ERRO U-01: CPF já existe!";
 			$_SESSION['botao'] = "danger";
 
 			$validacao = false;
@@ -61,7 +61,7 @@ if (isset($_POST['flag'])){
 
 		if($busca_email->num_rows == 1){
 
-			$_SESSION['duplo_email'] = "ERRO: e-mail já foi cadastrado para outro usuário!";
+			$_SESSION['duplo_email'] = "ERRO U-02: e-mail já foi cadastrado para outro usuário!";
 			$_SESSION['botao'] = "danger";
 
 			$validacao = false;
@@ -80,7 +80,7 @@ if (isset($_POST['flag'])){
 			}
 			else{
 
-				$_SESSION['erro_cadastro'] = "ERRO: cadastro não realizado, tente novamente!<br />Em caso de persistir o erro, entrar em contato com o suporte técnico.";
+				$_SESSION['erro_cadastro'] = "ERRO U-03: cadastro não realizado, tente novamente!<br />Em caso de persistir o erro, entrar em contato com o suporte técnico.";
 				$_SESSION['botao'] = "danger";
 			}
 

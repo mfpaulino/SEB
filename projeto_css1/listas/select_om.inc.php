@@ -17,7 +17,7 @@ if(isset($_POST['unidade_ci'])){
 	$num_rows_om = $con_om->num_rows;
 
 	if($num_rows_om == 0){
-	   echo  '<option value="">Aguardando Unidade de Controle Interno1...</option>';
+	   echo  '<option value="">Aguardando Unidade de Controle Interno...</option>';
 	}
 	else {
 		echo '<option value="">Selecione a unidade...</option>';

@@ -35,13 +35,13 @@ if(isset($_POST['flag'])){
 			$_SESSION['botao'] = "success";
 		}
 		else{
-			$_SESSION['alterar_senha_erro_bd'] = "ERRO S01: senha não alterada, tente novamente!";
+			$_SESSION['alterar_senha_erro_bd'] = "ERRO S-01: senha não alterada, tente novamente!";
 			$_SESSION['botao'] = "danger";
 		}
 
 	}
 	else{
-		$_SESSION['alterar_senha_erro_validacao'] = "ERRO S02: dados inconsistentes, preencha novamente o formulário!";
+		$_SESSION['alterar_senha_erro_validacao'] = "ERRO S-02: dados inconsistentes, preencha novamente o formulário!";
 		$_SESSION['alterar_senha_erro_validacao_lista'] = $validar->get_errors(); //Captura os erros de todos os campos
 		$_SESSION['botao'] = "danger";
 	}

@@ -8,12 +8,7 @@ include_once(PATH . '/componentes/internos/php/conexao.inc.php');
 session_start();
 
 if (!isset($_SESSION['cpf'])){
-	if($nivel == "1"){//usado para arquivos 1 nivel acima da raiz
-		header(sprintf("Location: ../index.php"));
-	}
-	else{
-		header(sprintf("Location: index.php"));
-	}
+	header(sprintf("Location: index.php"));
 }
 else {
 	$cpf = $_SESSION['cpf'];

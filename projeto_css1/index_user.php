@@ -1,6 +1,7 @@
 <?php
 $inc = "sim";
 include_once('path.inc.php');
+include_once(PATH . '/controllers/autenticacao/autentica.inc.php');
 require_once(PATH .'/controllers/autenticacao/perfil.inc.php');
 ?>
 <!DOCTYPE html>
