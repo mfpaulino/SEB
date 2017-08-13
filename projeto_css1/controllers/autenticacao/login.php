@@ -1,21 +1,14 @@
 <?php
-session_start();
-
 $inc = "sim";
-include_once(__DIR__ .'/../../path.inc.php');
-
-include_once(PATH .'/controllers/usuario/usuario_alertas_destruir.inc.php');
-
-require_once(PATH .'/componentes/internos/php/constantes.inc.php');
-require_once(PATH .'/componentes/internos/php/bcript.inc.php');
-require_once(PATH .'/componentes/internos/php/conexao.inc.php');
-
-
-
-//login.php
-//recebe os dados do script: pages/index.php
+include_once('../../config.inc.php');
 
 if(isset($_POST['flag'])){
+
+	session_start();
+
+	//include_once(PATH .'/controllers/usuario/usuario_alertas_destruir.inc.php');
+	require_once(PATH .'/componentes/internos/php/bcript.inc.php');
+	require_once(PATH .'/componentes/internos/php/conexao.inc.php');
 
 	$cpf = isset($_POST['cpf']) ? $_POST['cpf']: "";
 	$senha = isset($_POST['senha']) ? $_POST['senha']: "";
@@ -27,10 +20,10 @@ if(isset($_POST['flag'])){
 	$row_login = $con_login->fetch_assoc();
 
 	if($con_login->num_rows == 0){
-		$_SESSION['acesso_usuario_inexistente'] = "ERRO: usuário não cadastrado!";
+		$_SESSION['acesso_usuario_inexistente'] = "ERRO A-01: usuário não cadastrado!";
 	}
 	else if(!Bcrypt::check($senha, $row_login['senha'])){
-		$_SESSION['senha_errada'] = "ERRO: senha incorreta!";
+		$_SESSION['senha_errada'] = "ERRO A-02: senha incorreta!";
 	}
 	else{
 		$_SESSION['cpf'] = $cpf;

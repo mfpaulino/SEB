@@ -15,7 +15,7 @@
 session_start();
 
 $inc = "sim";
-include_once('../../path.inc.php');
+include_once('../../config.inc.php');
 //include_once(PATH .'/controllers/usuario/usuario_alertas_destruir.inc.php');
 
 if (isset($_POST['flag'])){
@@ -43,7 +43,10 @@ if (isset($_POST['flag'])){
 			->set('Nome', 			$nome)->is_required()
 			->set('Nome de guerra', $nome_guerra)->is_required()
 			->set('E-mail',			$email)->is_email()
+			//->set('RITEx', 			$ritex)->is_num()
+			//->set('Celular', 		$celular)->is_num()
 			->set('Unidade', 		$codom)->is_required();
+
 
 	if ($validar->validate()){
 
@@ -71,7 +74,7 @@ if (isset($_POST['flag'])){
 
 			$senha_criptografada = Bcrypt::hash($senha);
 
-			$resultado = $mysqli->query("INSERT INTO usuarios (cpf, senha, rg, nome_guerra, nome, email, id_posto, codom, status) VALUES ('$cpf', '$senha_criptografada', '$rg', '$nome_guerra', '$nome', '$email', '$posto', '$codom','recebido')");
+			$resultado = $mysqli->query("INSERT INTO usuarios (cpf, senha, rg, nome_guerra, nome, email, ritex, celular, id_posto, codom, status) VALUES ('$cpf', '$senha_criptografada', '$rg', '$nome_guerra', '$nome', '$email', '$ritex', '$celular', '$posto', '$codom','recebido')");
 
 			if($resultado){
 

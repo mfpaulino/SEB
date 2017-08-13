@@ -1,31 +1,25 @@
 <?php
 //altera_usuario.php
-require_once('../componentes/internos/php/constantes.inc.php');
+$inc = "sim";
+require_once('../../config.inc.php');
 
-if(isset($_GET['flag']) and $_GET['flag'] == md5("excluir_usuario")){
+if(isset($_GET['flag']) and $_GET['flag'] == md5("usuario_excluir")){
 
 	session_start();
 
-	require_once('../componentes/internos/php/conexao.inc.php');
+	require_once(PATH . '/componentes/internos/php/conexao.inc.php');
 
 	$cpf = $_SESSION['cpf'];
 
-	$mysqli->query("DELETE FROM usuarios WHERE cpf ='$cpf'");
+	$con_del   = $mysqli->query("DELETE FROM usuarios WHERE cpf = '$cpf'");
+	$con_teste = $mysqli->query("SELECT cpf FROM usuarios WHERE cpf = '$cpf'");
 
-	if($mysqli->affected_rows == 1 ){
-
+	if($con_teste->num_rows == 0){
 		session_destroy();
-
-		$flag = md5("exclusao_usuario_sucesso");
-		header(sprintf("Location:../index.php?flag=$flag"));
 	}
-	else {
-
-		$flag = md5("exclusao_usuario_erro");
-		header(sprintf("Location:../index_visite.php?flag=$flag"));
-	}
+	header(sprintf("Location:../../index.php"));
 }
 else {
-	include_once('../autenticacao/'.ACESSO_NEGADO);
+	include_once(PATH .'/controllers/autenticacao/'.ACESSO_NEGADO);
 }
 ?>

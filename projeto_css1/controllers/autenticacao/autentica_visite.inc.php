@@ -1,5 +1,5 @@
 <?php
-include_once(__DIR__ . '/../../config.inc.php');
+//autentica_visite.php
 
 session_start();
 
@@ -24,9 +24,8 @@ else {
 		$_SESSION["ultimoAcesso"] = $agora; //renovo o ultimo acesso
 	}
 
-	if($_SESSION['acesso'] == "nao_liberado"){
-
-		header(sprintf("Location: index.php"));
+	if($_SESSION['acesso'] == 'liberado'){
+		header(sprintf("Location: index.php" ));
 	}
 }
 ?>

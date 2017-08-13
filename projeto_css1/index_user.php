@@ -1,6 +1,6 @@
 <?php
 $inc = "sim";
-include_once('path.inc.php');
+include_once('config.inc.php');
 include_once(PATH . '/controllers/autenticacao/autentica.inc.php');
 require_once(PATH .'/controllers/autenticacao/perfil.inc.php');
 ?>
@@ -69,7 +69,7 @@ desired effect
     <!-- Logo -->
     <a href="index2.html" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini"><b><-></b></span>
+      <span class="logo-mini"><b>...</b></span>
       <!-- logo for regular state and mobile devices -->
       <span class="logo-lg barra-top"><b>SIAUDI</b>/EB</span>
     </a>
@@ -438,9 +438,17 @@ desired effect
 <script src="componentes/externos/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <!-- AdminLTE App -->
 <script src="componentes/externos/dist/js/adminlte.min.js"></script>
+<script src="controllers/usuario/senha_alterar.js"></script>
 
-<!-- Optionally, you can add Slimscroll and FastClick plugins.
-     Both of these plugins are recommended to enhance the
-     user experience. -->
+	<?php
+	if ($msg <> ""){?>
+		<script>
+			$(document).ready(function(){
+				$('#modalAlerta').modal('show');
+			});
+		</script>
+	<?php
+	}
+	?>
 </body>
 </html>

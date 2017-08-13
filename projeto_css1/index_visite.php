@@ -1,11 +1,8 @@
 <?php
 $inc = "sim";
-include_once('path.inc.php');
-require_once(PATH . '/controllers/autenticacao/perfil.inc.php');
-
-if($_SESSION['acesso'] == "liberado"){
-	header(sprintf("Location: ". PAGINA_INICIAL));
-}
+include_once('config.inc.php');
+include_once(PATH . '/controllers/autenticacao/autentica_visite.inc.php');
+require_once(PATH .'/controllers/autenticacao/perfil.inc.php');
 
 switch ($status_usuario){
 	case ('recebido'):
@@ -107,8 +104,8 @@ switch ($status_usuario){
 											Trocar Unidade
 										</button>
 
-										<?php $flag = md5("excluir_usuario");?>
-										<a href="controllers/usuario/exclui_usuario.php?flag=<?php echo $flag; ?>">
+										<?php $flag = md5("usuario_excluir");?>
+										<a href="controllers/usuario/usuario_excluir.php?flag=<?php echo $flag; ?>">
 
 										<button type="button" class="btn btn-xs btn-danger" data-toggle="confirmation"
 											data-placement="left"
@@ -144,13 +141,15 @@ switch ($status_usuario){
 										<h4 class="modal-title text-center" id="modalVisualizarLabel">Dados do usuário</h4>
 									</div>
 									<div class="modal-body">
+										<p><b>Unidade:</b> <?php echo $sigla_usuario; ?></p>
 										<p><b>CPF:</b> <?php echo $cpf; ?></p>
 										<p><b>RG:</b> <?php echo $rg_usuario; ?></p>
 										<p><b>Posto/grad:</b> <?php echo $posto_usuario; ?></p>
 										<p><b>Nome de guerra:</b> <?php echo $nome_guerra_usuario; ?></p>
 										<p><b>Nome completo:</b> <?php echo $nome_usuario; ?></p>
 										<p><b>E-mail:</b> <?php echo $email_usuario; ?></p>
-										<p><b>Unidade:</b> <?php echo $sigla_usuario; ?></p>
+										<p><b>RITEx:</b> <?php echo $ritex_usuario; ?></p>
+										<p><b>Celular:</b> <?php echo $celular_usuario; ?></p>
 									</div>
 								</div>
 							</div>
@@ -195,15 +194,7 @@ switch ($status_usuario){
 											</div>
 											<div class="modal-footer">
 												<input name="flag" type="hidden" />
-												<input name="rg_atual" type="hidden" value="<?php echo $rg_usuario;?>" />
-												<input name="posto_atual" type="hidden" value="<?php echo $posto_usuario;?>" />
-												<input name="nome_guerra_atual" type="hidden" value="<?php echo $nome_guerra_usuario;?>" />
-												<input name="nome_atual" type="hidden" value="<?php echo $nome_usuario;?>" />
-												<input name="email_atual" type="hidden" value="<?php echo $email_usuario;?>" />
-												<input name="codom_atual" type="hidden" value="<?php echo $codom_usuario;?>" />
 												<input type="hidden" name="flag1" value="<?php echo strtr(end(explode('/', $_SERVER['PHP_SELF'])),'?', true);?>" />
-
-
 												<button type="submit" class="btn btn-primary">Confirmar</button>
 												<button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
 											</div>
@@ -268,7 +259,7 @@ switch ($status_usuario){
 									<div class="modal-body">
 										<?php
 										echo "<b>";
-										echo $msg6.$msg0.$msg1.$msg2.$msg3.$msg4.$msg5;
+										echo $msg6."<br />".$msg0."<br />".$msg1."<br />".$msg2."<br />".$msg3."<br />".$msg4."<br />".$msg5."<br />".$msg7."<br />".$msg8;
 
 										if($lista_erro_validacao){
 											foreach ($lista_erro_validacao as $msg_lista){
@@ -319,7 +310,6 @@ switch ($status_usuario){
 			modal.find('#ritex').val(ritex)
 			modal.find('#celular').val(celular)
 			modal.find('#posto').val(id_posto)
-			//modal.find('#om').val(om)
 			modal.find('#nome_guerra').val(nome_guerra)
 			modal.find('#nome').val(nome)
 		})

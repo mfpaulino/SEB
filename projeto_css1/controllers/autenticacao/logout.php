@@ -1,10 +1,8 @@
 <?php
 $inc = "sim";
-include_once('../../path.inc.php');
+include_once('../../config.inc.php');
 include_once(PATH. '/componentes/internos/php/conexao.inc.php');
-
 session_start();
-
 if (isset($_SESSION['cpf'])){
 
 	$ultimo_acesso = date('Y-m-d H:i:s');
@@ -14,6 +12,7 @@ if (isset($_SESSION['cpf'])){
 	$mysqli->close();
 
 	session_destroy();
+
 	session_start();
 
 	$flag = isset($_GET['flag']) ? $_GET['flag'] : "";
@@ -32,6 +31,6 @@ if (isset($_SESSION['cpf'])){
 	header(sprintf("Location:../../index.php?flag=$flag"));
 }
 else {
-	include_once ACESSO_NEGADO;
+	include_once(PATH . '/controllers/autenticacao/'. ACESSO_NEGADO);
 }
 ?>

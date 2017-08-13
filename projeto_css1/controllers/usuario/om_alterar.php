@@ -2,7 +2,7 @@
 //altera_usuario.php
 session_start();
 $inc = 'sim';
-include_once('../../path.inc.php');
+include_once('../../config.inc.php');
 include_once(PATH .'/controllers/usuario/usuario_alertas_destruir.inc.php');
 
 if(isset($_POST['flag'])){

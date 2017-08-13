@@ -12,6 +12,14 @@
 						<input class="form-control" type="text" name="cpf" id="cpf" placeholder="CPF" maxlength = "11" />
 					</div>
 					<div class="form-group">
+						<label for="senha" class="control-label">Senha: </label>
+						<input class="form-control" type="password" name="senha" id="senha"  maxlength = "20" placeholder="mínimo de 8 caracteres" onpaste="return false;" />
+					</div>
+					<div class="form-group">
+						<label for="senha1" class="control-label">Confirme a senha: </label>
+						<input class="form-control" type="password" name="senha1" id="senha1" maxlength = "20" placeholder="confirme a senha" onpaste="return false;" />
+					</div>
+					<div class="form-group">
 						<label for="rg" class="control-label">RG: </label>
 						<input class="form-control" type="text" name="rg" id="rg"  placeholder="Nr de identidade" maxlength="20" />
 					</div>
@@ -32,12 +40,12 @@
 						<input class="form-control" type="email" name="email" id="email" placeholder="digite um e-mail válido" />
 					</div>
 					<div class="form-group">
-						<label for="senha" class="control-label">Senha: </label>
-						<input class="form-control" type="password" name="senha" id="senha"  maxlength = "20" placeholder="mínimo de 8 caracteres" onpaste="return false;" />
+						<label for="ritex" class="control-label">RITEx:</label>
+						<input name="ritex" id="ritex" type="text" class="form-control" />
 					</div>
 					<div class="form-group">
-						<label for="senha1" class="control-label">Confirme a senha: </label>
-						<input class="form-control" type="password" name="senha1" id="senha1" maxlength = "20" placeholder="confirme a senha" onpaste="return false;" />
+						<label for="celular" class="control-label">Celular:</label>
+						<input name="celular" id="celular" type="text" class="form-control" />
 					</div>
 					<div class="form-group">
 						<label for="unidade_ci" class="control-label">Unidade Controle Interno:</label>

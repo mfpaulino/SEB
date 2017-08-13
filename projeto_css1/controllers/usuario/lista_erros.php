@@ -8,3 +8,7 @@ ERRO O-02 = FALHA NA VALIDAÇÃO - USUARIO ENVIOU SEM SELECIONAR A UNIDADE, Falh
 ERRO U-01 = TENTATIVA DE CADASTRAR CPF JA EXISTENTE NO BD. controllers/usuario/usuario_cadastra.php
 ERRO U-02 = TENTATIVA DE CADASTRAR E-MAIL JA EXISTENTE NO BD. controllers/usuario/usuario_cadastra.php
 ERRO U-03 = VALIDAÇÃO OK, MAS O BD NAO GRAVOU. script: controllers/usuario/usuario_cadastra.php
+ERRO U-04 = A EXCLUSAO DO USUARIO NAO FOI EFETIVADA NO BD script usuario_excluir.php
+
+ERRO A-01 = USUARIO NAO CADASTRADO login.php
+ERRO A-02 = SENHA INCORRETA login.php

@@ -1,5 +1,4 @@
 <?php
-session_start();
 //usuario_cadastrar
 unset($_SESSION['duplo_cpf']);
 unset($_SESSION['duplo_email']);
@@ -21,8 +20,11 @@ unset($_SESSION['senha_errada']);
 unset($_SESSION['alterar_rg']);
 unset($_SESSION['alterar_posto']);
 unset($_SESSION['alterar_nome_guerra']);
-unset($_SESSION['alterarnome']);
+unset($_SESSION['alterar_nome']);
+unset($_SESSION['alterar_email']);
 unset($_SESSION['alterar_email_erro']);
+unset($_SESSION['alterar_ritex']);
+unset($_SESSION['alterar_celular']);
 unset($_SESSION['alterar_erro_validacao']);
 unset($_SESSION['alterar_lista_erro_validacao']);
 
@@ -43,4 +45,5 @@ unset($_SESSION['alterar_om_sucesso']);
 unset($_SESSION['alterar_om_erro_bd']);
 unset($_SESSION['alterar_om_erro_validacao']);
 unset($_SESSION['alterar_om_erro_validacao_lista']);
+
 ?>

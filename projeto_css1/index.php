@@ -1,6 +1,6 @@
 <?php
 $inc = "sim";
-include_once('path.inc.php');
+include_once('config.inc.php');
 
 session_start();
 

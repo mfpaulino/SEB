@@ -1,10 +1,9 @@
 <?php
 //om_select.inc.php
 $inc = 'sim';
-include_once('../path.inc.php');
-
-include_once(PATH .'/componentes/internos/php/conexao.inc.php');
+include_once('../config.inc.php');
 include_once(PATH .'/controllers/autenticacao/perfil.inc.php');
+include_once(PATH .'/componentes/internos/php/conexao.inc.php');
 
 if(isset($_POST['unidade_ci'])){
 
