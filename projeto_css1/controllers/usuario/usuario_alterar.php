@@ -35,6 +35,7 @@ if(isset($_POST['flag'])){
 	$_SESSION['pagina'] = $pagina;
 
 	if ($validar->validate()){
+		$altera = "nao";
 
 		if ($rg <> "" and $rg <> $rg_usuario){
 
@@ -43,7 +44,8 @@ if(isset($_POST['flag'])){
 			$con_rg->execute();
 
 			if($con_rg->affected_rows <> 0 ){
-					$_SESSION['alterar_rg'] = "O RG foi alterado com sucesso!";
+				$_SESSION['alterar_rg'] = "O RG foi alterado com sucesso!";
+				$altera = "sim";
 			}
 		}
 		if ($id_posto <> "" and $id_posto <> $id_posto_usuario){
@@ -53,6 +55,7 @@ if(isset($_POST['flag'])){
 
 			if($con_update->affected_rows <> 0 ){
 				$_SESSION['alterar_posto'] = "O Posto/Grad foi alterado com sucesso!";
+				$altera = "sim";
 			}
 		}
 		if ($nome_guerra <> "" and $nome_guerra <> $nome_guerra_usuario){
@@ -62,6 +65,7 @@ if(isset($_POST['flag'])){
 
 			if($con_update->affected_rows <> 0 ){
 				$_SESSION['alterar_nome_guerra'] = "O nome de guerra foi alterado com sucesso!";
+				$altera = "sim";
 			}
 		}
 		if ($nome <> "" and $nome <> $nome_usuario){
@@ -71,6 +75,7 @@ if(isset($_POST['flag'])){
 
 			if($con_update->affected_rows <> 0 ){
 				$_SESSION['alterar_nome'] = "O nome foi alterado com sucesso!";
+				$altera = "sim";
 			}
 		}
 		if ($email <> "" and $email <> $email_usuario){
@@ -90,6 +95,7 @@ if(isset($_POST['flag'])){
 
 				if($con_update->affected_rows <> 0 ){
 					$_SESSION['alterar_email'] = "O e-mail foi alterado com sucesso!";
+					$altera = "sim";
 				}
 			}
 		}
@@ -100,6 +106,7 @@ if(isset($_POST['flag'])){
 
 			if($con_update->affected_rows <> 0 ){
 				$_SESSION['alterar_ritex'] = "O RITEx foi alterado com sucesso!";
+				$altera = "sim";
 			}
 		}
 		if ($celular <> "" and $celular <> $celular_usuario){
@@ -109,6 +116,7 @@ if(isset($_POST['flag'])){
 
 			if($con_update->affected_rows <> 0 ){
 				$_SESSION['alterar_celular'] = "O celular foi alterado com sucesso!";
+				$altera = "sim";
 			}
 		}
 		if ($codom <> "" and $codom <> $codom_usuario){
@@ -122,7 +130,12 @@ if(isset($_POST['flag'])){
 				$mysqli1->close();
 
 				$_SESSION['alterar_codom'] = "Alteração da Unidade realizada com sucesso!<br /><br />Nova Unidade: ".$row_om['denominacao'];
+				$altera = "sim";
 			}
+		}
+		if($altera == "nao"){
+			$_SESSION['alterar_nada'] = "AVISO: nenhuma alteração foi realizada!";
+			$_SESSION['botao'] = "warning";
 		}
 	}
 	else {

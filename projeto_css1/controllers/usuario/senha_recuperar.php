@@ -52,7 +52,7 @@ if(isset($_POST['flag'])){
 		$msg .= "<hr>";
 		$msg .= "Mensagem enviada automaticamente pelo SIAUDI.";
 		$msg .= "<br />";
-		$msg .= "N&atilde;o responda.";
+		$msg .= "Suporte t&eacute;cnico: 860-3572 (RITEx)";
 
 		smtpmailer($row_usuario['email'], "siaudi@cciex.eb.mil.br", "SIAUDI",  "SIAUDI - ENVIO DE NOVA SENHA", $msg);
 

@@ -23,10 +23,6 @@ $(document).ready(function() {
 						max: 20,
 						message: 'Mínimo de 8 caracteres'
 					},
-					identical: {
-						field: 'senha_nova1',
-						message: 'As senhas devem ser iguais.'
-					},
 					different: {
 						field: 'cpf',
 						message: 'Não pode ser igual ao CPF.'

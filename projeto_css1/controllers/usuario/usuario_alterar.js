@@ -44,7 +44,7 @@ $(document).ready(function() {
 						message: 'preenchimento obrigatório'
 					},
 					emailAddress: {
-						message: 'E-mail válido'
+						message: 'E-mail inválido'
 					}
 				}
 			},

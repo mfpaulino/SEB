@@ -41,6 +41,7 @@ if ($inc == "sim"){
 			$msg7 = $_SESSION['alterar_ritex'];
 			$msg8 = $_SESSION['alterar_celular'];
 			$msg9 = $_SESSION['alterar_codom'];
+			$msg10 = $_SESSION['alterar_nada'];
 			$msg6 = $_SESSION['alterar_erro_validacao'];
 			$lista_erro_validacao = $_SESSION['alterar_lista_erro_validacao'];
 		}

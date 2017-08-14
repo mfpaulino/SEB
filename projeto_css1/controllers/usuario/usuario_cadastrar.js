@@ -40,6 +40,13 @@ $(document).ready(function() {
 					}
 				}
 			},
+			rg: {
+				validators: {
+					notEmpty: {
+						message: 'Preenchimento obrigatório'
+					}
+				}
+			},
 			email: {
 				validators: {
 					notEmpty: {
@@ -66,10 +73,6 @@ $(document).ready(function() {
 						max: 20,
 						message: 'Mínimo de 8 caracteres'
 					},
-					identical: {
-						field: 'senha1',
-						message: 'As senhas devem ser iguais.'
-					},
 					different: {
 						field: 'cpf',
 						message: 'Não pode ser igual ao CPF.'
@@ -88,6 +91,13 @@ $(document).ready(function() {
 				}
 			},
 			codom: {
+				validators: {
+					notEmpty: {
+						message: 'Preenchimento obrigatório'
+					}
+				}
+			},
+			unidade_ci: {
 				validators: {
 					notEmpty: {
 						message: 'Preenchimento obrigatório'

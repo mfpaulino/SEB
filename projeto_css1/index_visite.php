@@ -103,7 +103,7 @@ switch ($status_usuario){
 											data-toggle="modal"
 											data-target="#modalTrocarOM"
 											data-om="<?php echo $sigla_usuario; ?>">
-											Trocar Unidade
+											Alterar Unidade
 										</button>
 
 										<?php $flag = md5("usuario_excluir");?>
@@ -165,41 +165,77 @@ switch ($status_usuario){
 										<h4 class="modal-title" id="modalEditarLabel"></h4>
 									</div>
 									<div class="modal-body">
-										<form name="form_usuario_alterar" id="form_usuario_alterar" method="POST" action="controllers/usuario/usuario_alterar.php" enctype="multipart/form-data">
-											<div class="form-group">
-												<label for="rg" class="control-label">RG:</label>
-												<input name="rg" id="rg" type="text" class="form-control" />
-											</div>
-											<div class="form-group">
-												<label for="posto" class="control-label">Posto/Grad:</label>
-												<?php include_once('listas/select_posto.inc.php');?>
-											</div>
-											<div class="form-group">
-												<label for="nome_guerra" class="control-label">Nome de guerra:</label>
-												<input name="nome_guerra" id="nome_guerra" type="text" class="form-control" />
-											</div>
-											<div class="form-group">
-												<label for="nome" class="control-label">Nome completo:</label>
-												<input name="nome" id="nome" type="text" class="form-control"  />
-											</div>
-											<div class="form-group">
-												<label for="email" class="control-label">E-mail:</label>
-												<input name="email" id="email" type="text" class="form-control" />
-											</div>
-											<div class="form-group">
-												<label for="ritex" class="control-label">RITEx:</label>
-												<input name="ritex" id="ritex" type="text" class="form-control" />
-											</div>
-											<div class="form-group">
-												<label for="celular" class="control-label">Celular:</label>
-												<input name="celular" id="celular" type="text" class="form-control" />
-											</div>
-											<div class="modal-footer">
+										<form class="form-horizontal" name="form_usuario_alterar" id="form_usuario_alterar" method="POST" action="controllers/usuario/usuario_alterar.php" enctype="multipart/form-data">
+
+											<fieldset>
+												<!-- Text input-->
+												<div class="form-group">
+													<label for="rg" class="col-md-4 control-label">*RG:</label>
+													<div class="col-md-6">
+													<input name="rg" id="rg" type="text" class="form-control" />
+													</div>
+												</div>
+
+												<!-- Select input-->
+												<div class="form-group">
+													<label for="posto" class="col-md-4 control-label">*Posto/Grad:</label>
+													<div class="col-md-6">
+													<?php include_once('listas/select_posto.inc.php');?>
+													</div>
+												</div>
+
+												<!-- Text input-->
+												<div class="form-group">
+													<label for="nome_guerra" class="col-md-4 control-label">*Nome de guerra:</label>
+													<div class="col-md-6">
+													<input name="nome_guerra" id="nome_guerra" type="text" class="form-control" />
+													</div>
+												</div>
+
+												<!-- Text input-->
+												<div class="form-group">
+													<label for="nome" class="col-md-4 control-label">*Nome completo:</label>
+													<div class="col-md-6">
+													<input name="nome" id="nome" type="text" class="form-control"  />
+													</div>
+												</div>
+
+												<!-- Text input-->
+												<div class="form-group">
+													<label for="email" class="col-md-4 control-label">*E-mail:</label>
+													<div class="col-md-6">
+													<input name="email" id="email" type="text" class="form-control" />
+													</div>
+												</div>
+
+												<!-- Text input-->
+												<div class="form-group">
+													<label for="ritex" class="col-md-4 control-label">RITEx:</label>
+													<div class="col-md-6">
+													<input name="ritex" id="ritex" type="text" class="form-control" />
+													</div>
+												</div>
+
+												<!-- Text input-->
+												<div class="form-group">
+													<label for="celular" class="col-md-4 control-label">Celular:</label>
+													<div class="col-md-6">
+													<input name="celular" id="celular" type="text" class="form-control" />
+													</div>
+												</div>
+
+												<!-- Hidden input -->
 												<input name="flag" type="hidden" />
 												<input type="hidden" name="flag1" value="<?php echo $pagina;?>" />
-												<button type="submit" class="btn btn-primary">Confirmar</button>
-												<button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-											</div>
+
+												<div class="modal-footer">
+													<label class="col-md-4 control-label"></label>
+													<div class="col-md-8">
+														<button type="submit" class="btn btn-success">Alterar</button>
+														<button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+													</div>
+												</div>
+											</fieldset>
 										</form>
 									</div>
 								</div>
@@ -216,18 +252,18 @@ switch ($status_usuario){
 									<div class="modal-body">
 										<form name="form_altera_om" id="form_altera_om" method="POST" action="controllers/usuario/usuario_alterar.php" enctype="multipart/form-data" >
 											<div class="form-group">
-												<label for="unidade_ci" class="control-label">Unidade Controle Interno:</label>
+												<label for="unidade_ci" class="control-label">*Unidade Controle Interno:</label>
 												<?php include('listas/select_unid_ci.inc.php');?>
 											</div>
 											<div class="form-group">
-												<label for="codom" class="control-label">Unidade usuário:</label>
+												<label for="codom" class="control-label">*Unidade usuário:</label>
 												<select class="form-control" name="codom" id="codom">
 													<option value="">Aguardando Unidade de Controle Interno...</option>
 												</select>
 											</div>
 											<div class="modal-footer">
 												<input name="flag" type="hidden" value="<?php $codom_usuario;?>"/>
-												<button type="submit" class="btn btn-primary"
+												<button type="submit" class="btn btn-success"
 													data-toggle="confirmation"
 													data-placement="left"
 													data-btn-ok-label="Continuar"
@@ -238,7 +274,7 @@ switch ($status_usuario){
 													data-btn-cancel-class="btn-danger"
 													data-title="Confirma alteração da Unidade?"
 													data-content="">
-												Confirmar
+												Alterar
 												</button>
 												<button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
 												<input type="hidden" name="flag1" value="<?php echo $pagina;?>" />
@@ -261,7 +297,7 @@ switch ($status_usuario){
 									<div class="modal-body">
 										<?php
 										echo "<b>";
-										echo $msg6."<br />".$msg0."<br />".$msg1."<br />".$msg2."<br />".$msg3."<br />".$msg4."<br />".$msg5."<br />".$msg7."<br />".$msg8."<br />".$msg9;
+										echo $msg6."<br />".$msg0."<br />".$msg1."<br />".$msg2."<br />".$msg3."<br />".$msg4."<br />".$msg5."<br />".$msg7."<br />".$msg8."<br />".$msg9."<br />".$msg10;
 
 										if($lista_erro_validacao){
 											foreach ($lista_erro_validacao as $msg_lista){
