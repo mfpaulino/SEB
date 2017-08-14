@@ -10,7 +10,7 @@ include_once(PATH . '/componentes/internos/php/validaForm.class.php');
 
 if(isset($_POST['flag'])){
 
-	$cpf 	= $_POST['flag'];
+	$cpf 	= $_SESSION['cpf'];
 	$pagina = $_POST['flag1'];
 
 	$senha 		 = isset($_POST['senha_nova'])  ? mysqli_real_escape_string($mysqli, $_POST['senha_nova']) : "";
@@ -46,6 +46,7 @@ if(isset($_POST['flag'])){
 		$_SESSION['botao'] = "danger";
 	}
 	$_SESSION['pagina'] = $pagina;
+	$flag = md5("senha_alterar");
 	header(sprintf("Location:../../".$pagina."?flag=$flag"));
 }
 else {

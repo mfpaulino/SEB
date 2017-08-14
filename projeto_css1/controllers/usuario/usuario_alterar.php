@@ -117,9 +117,9 @@ if(isset($_POST['flag'])){
 			$con_update->execute();
 
 			if($con_update->affected_rows <> 0 ){
-				$con_om = $mysqli->query("SELECT denominacao FROM cciex_om  WHERE codom = '$codom'");
+				$con_om = $mysqli1->query("SELECT denominacao FROM cciex_om  WHERE codom = '$codom'");
 				$row_om = $con_om->fetch_assoc();
-				$mysqli->close();
+				$mysqli1->close();
 
 				$_SESSION['alterar_codom'] = "Alteração da Unidade realizada com sucesso!<br /><br />Nova Unidade: ".$row_om['denominacao'];
 			}

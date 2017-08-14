@@ -16,7 +16,6 @@
 						<input class="form-control" type="password" name="senha_nova1" id="senha_nova1" placeholder="confirmar senha" onpaste="return false;" />
 					</div>
 					<div class="modal-footer">
-						<input type="hidden" name="cpf" id="cpf" value="<?php echo $_SESSION['cpf'];?>" />
 						<input type="hidden" name="flag" value="<?php echo $_SESSION['cpf'];?>"/>
 						<input type="hidden" name="flag1" value="<?php echo strtr(end(explode('/', $_SERVER['PHP_SELF'])),'?', true);?>" />
 						<button type="submit" class="btn btn-primary">Alterar</button>

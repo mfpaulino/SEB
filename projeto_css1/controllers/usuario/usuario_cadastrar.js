@@ -93,6 +93,32 @@ $(document).ready(function() {
 						message: 'Preenchimento obrigatório'
 					}
 				}
+			},
+			ritex: {
+				validators: {
+					regexp: {
+						regexp: /^[0-9]+$/,
+						message: 'somente dígitos'
+					},
+					stringLength: {
+						min: 7,
+						max: 7,
+						message: 'RITEx inválido'
+					}
+				}
+			},
+			celular: {
+				validators: {
+					regexp: {
+						regexp: /^[0-9]+$/,
+						message: 'somente dígitos'
+					},
+					stringLength: {
+						min: 10,
+						max: 11,
+						message: 'Celular inválido'
+					}
+				}
 			}
 		}
 	})
