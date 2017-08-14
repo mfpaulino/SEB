@@ -2,7 +2,7 @@
 session_start();
 
 $inc = "sim";
-include_once('../../path.inc.php');
+include_once('../../config.inc.php');
 
 include_once(PATH. '/componentes/internos/php/bcript.inc.php');
 include_once(PATH .'/componentes/internos/php/conexao.inc.php');

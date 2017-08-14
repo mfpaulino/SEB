@@ -25,6 +25,7 @@ unset($_SESSION['alterar_email']);
 unset($_SESSION['alterar_email_erro']);
 unset($_SESSION['alterar_ritex']);
 unset($_SESSION['alterar_celular']);
+unset($_SESSION['alterar_codom']);
 unset($_SESSION['alterar_erro_validacao']);
 unset($_SESSION['alterar_lista_erro_validacao']);
 
@@ -46,4 +47,9 @@ unset($_SESSION['alterar_om_erro_bd']);
 unset($_SESSION['alterar_om_erro_validacao']);
 unset($_SESSION['alterar_om_erro_validacao_lista']);
 
+//usuario_excluir
+/*
+unset($_SESSION['usuario_excluir_sucesso']);
+unset($_SESSION['usuario_excluir_erro']);
+*/
 ?>

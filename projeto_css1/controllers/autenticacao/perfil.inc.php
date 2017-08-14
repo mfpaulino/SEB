@@ -1,4 +1,5 @@
 <?php
+session_start();
 include_once(PATH . '/componentes/internos/php/conexao.inc.php');
 
 $cpf = $_SESSION['cpf'];
@@ -19,15 +20,13 @@ $celular_usuario = $row['celular'];
 $email_usuario = $row['email'];
 $codom_usuario = $row['codom'];
 $status_usuario = $row['status'];
-$ultimo_acesso = date('d-m-Y H:i:s', strtotime($row['ultimo_acesso']));
 
 $sql = "select sigla, denominacao from cciex_om where codom = '$codom_usuario'";
-$con_om = $mysqli1->query($sql);
+$con_om = $mysqli->query($sql);
 
 $row = $con_om->fetch_assoc();
 
 $sigla_usuario = $row['sigla'];
 $denominacao_usuario = $row['denominacao'];
-
 /**********************************/
 ?>

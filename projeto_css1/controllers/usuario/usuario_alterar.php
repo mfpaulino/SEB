@@ -1,43 +1,34 @@
 <?php
 $inc = "sim";
 include_once('../../config.inc.php');
-include_once(PATH . '/controllers/autenticacao/perfil.inc.php');
 
 if(isset($_POST['flag'])){
 
-	session_start();
+	//session_start();
 	require_once(PATH . '/controllers/autenticacao/perfil.inc.php');
-	require_once(PATH . '/componentes/internos/php/conexao.inc.php');
+	//require_once(PATH . '/componentes/internos/php/conexao.inc.php');
 	require_once(PATH . '/componentes/internos/php/validaForm.class.php');
 
 	$pagina = $_POST['flag1'];
 
-	$cpf 				= $_SESSION['cpf'];
-
-	$rg_atual			= $_SESSION['rg_usuario'];
-	$posto_atual 		= $_SESSION['posto_usuario'];
-	$nome_guerra_atual  = $_SESSION['nome_guerra_usuario'];
-	$nome_atual			= $_SESSION['nome_usuario'];
-	$email_atual 		= $_SESSION['email_usuario'];
-	$ritex_atual 		= $_SESSION['ritex_usuario'];
-	$celular_atual 		= $_SESSION['celular_usuario'];
-
-	$rg 				= $_POST['rg'];
-	$posto 				= $_POST['posto'];
-	$nome_guerra 		= $_POST['nome_guerra'];
-	$nome 				= $_POST['nome'];
-	$email 				= $_POST['email'];
-	$ritex 				= $_POST['ritex'];
-	$celular 			= $_POST['celular'];
+	$rg 		 = isset($_POST['rg']) ? mysqli_real_escape_string($mysqli, $_POST['rg']) : $rg_usuario;
+	$nome_guerra = isset($_POST['nome_guerra']) ? mysqli_real_escape_string($mysqli, $_POST['nome_guerra']) : $nome_guerra_usuario;
+	$id_posto 	 	 = isset($_POST['posto']) ? mysqli_real_escape_string($mysqli, $_POST['posto']) : $id_posto_usuario;
+	$nome 		 = isset($_POST['nome']) ? mysqli_real_escape_string($mysqli, $_POST['nome']) : $nome_usuario;
+	$email 		 = isset($_POST['email']) ? mysqli_real_escape_string($mysqli, $_POST['email']) : $email_usuario;
+	$ritex 		 = isset($_POST['ritex']) ? mysqli_real_escape_string($mysqli, $_POST['ritex']) : $ritex_usuario;
+	$celular 	 = isset($_POST['celular']) ? mysqli_real_escape_string($mysqli, $_POST['celular']) : $celular_usuario;
+	$codom 		 = isset($_POST['codom']) ? mysqli_real_escape_string($mysqli, $_POST['codom']) : $codom_usuario;
 
 	$validar = new validaForm();
 
 	$validar->set('RG', 			$rg)->is_required()->is_num()
-			->set('Posto/Grad', 	$posto)->is_required()
+			->set('Posto/Grad', 	$id_posto)->is_required()
 			->set('Nome', 			$nome)->is_required()
 			->set('Nome de guerra', $nome_guerra)->is_required()
-			->set('E-mail',			$email)->is_email();
-			//->set('RITEx',			$ritex)->is_required()->is_num()->min_length(7)->max_length(7)
+			->set('E-mail',			$email)->is_email()
+			->set('Unidade',		$codom)->is_required();
+			//->set('RITEx',		$ritex)->is_required()->is_num()->min_length(7)->max_length(7)
 			//->set('Celular',		$celular)->is_required()->is_num()->min_length(10)->max_length(11)
 
 	$_SESSION['botao'] = "success";
@@ -45,7 +36,7 @@ if(isset($_POST['flag'])){
 
 	if ($validar->validate()){
 
-		if ($rg <> "" and $rg <> $rg_atual){
+		if ($rg <> "" and $rg <> $rg_usuario){
 
 			$con_rg = $mysqli->prepare("UPDATE usuarios SET rg = ? WHERE cpf ='$cpf'");
 			$con_rg->bind_param('s', $rg);
@@ -55,16 +46,16 @@ if(isset($_POST['flag'])){
 					$_SESSION['alterar_rg'] = "O RG foi alterado com sucesso!";
 			}
 		}
-		if ($posto <> "" and $posto <> $posto_atual){
+		if ($id_posto <> "" and $id_posto <> $id_posto_usuario){
 			$con_update = $mysqli->prepare("UPDATE usuarios SET id_posto = ? WHERE cpf ='$cpf'");
-			$con_update->bind_param('s', $posto);
+			$con_update->bind_param('i', $id_posto);
 			$con_update->execute();
 
 			if($con_update->affected_rows <> 0 ){
 				$_SESSION['alterar_posto'] = "O Posto/Grad foi alterado com sucesso!";
 			}
 		}
-		if ($nome_guerra <> "" and $nome_guerra <> $nome_guerra_atual){
+		if ($nome_guerra <> "" and $nome_guerra <> $nome_guerra_usuario){
 			$con_update = $mysqli->prepare("UPDATE usuarios SET nome_guerra = ? WHERE cpf ='$cpf'");
 			$con_update->bind_param('s', $nome_guerra);
 			$con_update->execute();
@@ -73,7 +64,7 @@ if(isset($_POST['flag'])){
 				$_SESSION['alterar_nome_guerra'] = "O nome de guerra foi alterado com sucesso!";
 			}
 		}
-		if ($nome <> "" and $nome <> $nome_atual){
+		if ($nome <> "" and $nome <> $nome_usuario){
 			$con_update = $mysqli->prepare("UPDATE usuarios SET nome = ? WHERE cpf ='$cpf'");
 			$con_update->bind_param('s', $nome);
 			$con_update->execute();
@@ -82,7 +73,7 @@ if(isset($_POST['flag'])){
 				$_SESSION['alterar_nome'] = "O nome foi alterado com sucesso!";
 			}
 		}
-		if ($email <> "" and $email <> $email_atual){
+		if ($email <> "" and $email <> $email_usuario){
 
 			$sql = "SELECT email FROM usuarios WHERE email = '$email'";
 			$con = $mysqli->query($sql);
@@ -102,7 +93,7 @@ if(isset($_POST['flag'])){
 				}
 			}
 		}
-		if ($ritex <> "" and $ritex <> $ritex_atual){
+		if ($ritex <> "" and $ritex <> $ritex_usuario){
 			$con_update = $mysqli->prepare("UPDATE usuarios SET ritex = ? WHERE cpf ='$cpf'");
 			$con_update->bind_param('i', $ritex);
 			$con_update->execute();
@@ -111,13 +102,26 @@ if(isset($_POST['flag'])){
 				$_SESSION['alterar_ritex'] = "O RITEx foi alterado com sucesso!";
 			}
 		}
-		if ($celular <> "" and $celular <> $celular_atual){
+		if ($celular <> "" and $celular <> $celular_usuario){
 			$con_update = $mysqli->prepare("UPDATE usuarios SET celular = ? WHERE cpf ='$cpf'");
 			$con_update->bind_param('i', $celular);
 			$con_update->execute();
 
 			if($con_update->affected_rows <> 0 ){
 				$_SESSION['alterar_celular'] = "O celular foi alterado com sucesso!";
+			}
+		}
+		if ($codom <> "" and $codom <> $codom_usuario){
+			$con_update = $mysqli->prepare("UPDATE usuarios SET codom = ? WHERE cpf ='$cpf'");
+			$con_update->bind_param('s', $codom);
+			$con_update->execute();
+
+			if($con_update->affected_rows <> 0 ){
+				$con_om = $mysqli->query("SELECT denominacao FROM cciex_om  WHERE codom = '$codom'");
+				$row_om = $con_om->fetch_assoc();
+				$mysqli->close();
+
+				$_SESSION['alterar_codom'] = "Alteração da Unidade realizada com sucesso!<br /><br />Nova Unidade: ".$row_om['denominacao'];
 			}
 		}
 	}

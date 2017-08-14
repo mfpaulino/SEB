@@ -40,6 +40,7 @@ if ($inc == "sim"){
 			$msg5 = $_SESSION['alterar_email'];
 			$msg7 = $_SESSION['alterar_ritex'];
 			$msg8 = $_SESSION['alterar_celular'];
+			$msg9 = $_SESSION['alterar_codom'];
 			$msg6 = $_SESSION['alterar_erro_validacao'];
 			$lista_erro_validacao = $_SESSION['alterar_lista_erro_validacao'];
 		}
@@ -52,6 +53,7 @@ if ($inc == "sim"){
 			unset($_SESSION['alterar_email_erro']);
 			unset($_SESSION['alterar_ritex']);
 			unset($_SESSION['alterar_celular']);
+			unset($_SESSION['alterar_codom']);
 			unset($_SESSION['alterar_erro_validacao']);
 			unset($_SESSION['alterar_lista_erro_validacao']);
 		}
@@ -124,6 +126,22 @@ if ($inc == "sim"){
 		else{
 			unset($_SESSION['logout']);
 		}
+		/*
+
+		if($flag == md5("usuario_excluir")){
+
+			$msg0 = $_SESSION['usuario_excluir_sucesso'];
+			$msg1 = $_SESSION['usuario_excluir_erro'];
+
+			if($msg0 <> ""){
+				$pagina = "controllers/autenticacao/logout.php?flag=$flag";
+			}
+		}
+		else{
+			unset($_SESSION['usuario_excluir_sucesso']);
+			unset($_SESSION['usuario_excluir_erro']);
+		}
+		* */
 
 		$msg="x";
 

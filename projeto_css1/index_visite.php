@@ -1,8 +1,10 @@
 <?php
+session_start();
 $inc = "sim";
 include_once('config.inc.php');
 include_once(PATH . '/controllers/autenticacao/autentica_visite.inc.php');
-require_once(PATH .'/controllers/autenticacao/perfil.inc.php');
+
+$pagina = strtr(end(explode('/', $_SERVER['PHP_SELF'])),'?', true);
 
 switch ($status_usuario){
 	case ('recebido'):
@@ -59,7 +61,7 @@ switch ($status_usuario){
 		<div class="content-wrapper">
 			<section class="content container-fluid">
 				<div class="page-header">
-					<h2>Informações de usuário: <u><?php echo $posto_usuario . " " . $nome_guerra_usuario;?></u></h2>
+					<h3>Informações de usuário: <u><?php echo $posto_usuario . " " . $nome_guerra_usuario;?></u></h3>
 				</div>
 				<div class="row">
 					<div class="col-md-12">
@@ -72,7 +74,7 @@ switch ($status_usuario){
 							</thead>
 							<tbody>
 								<tr>
-									<td><?php echo $_SESSION['cpf']; ?></td>
+									<td><?php echo $cpf; ?></td>
 									<td><?php echo $status; ?>
 									<td>
 										<button type="button" class="btn btn-xs btn-primary"
@@ -194,7 +196,7 @@ switch ($status_usuario){
 											</div>
 											<div class="modal-footer">
 												<input name="flag" type="hidden" />
-												<input type="hidden" name="flag1" value="<?php echo strtr(end(explode('/', $_SERVER['PHP_SELF'])),'?', true);?>" />
+												<input type="hidden" name="flag1" value="<?php echo $pagina;?>" />
 												<button type="submit" class="btn btn-primary">Confirmar</button>
 												<button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
 											</div>
@@ -212,7 +214,7 @@ switch ($status_usuario){
 										<h4 class="modal-title" id="modalTrocarOMLabel"></h4>
 									</div>
 									<div class="modal-body">
-										<form name="form_altera_om" id="form_altera_om" method="POST" action="controllers/usuario/om_alterar.php" enctype="multipart/form-data" >
+										<form name="form_altera_om" id="form_altera_om" method="POST" action="controllers/usuario/usuario_alterar.php" enctype="multipart/form-data" >
 											<div class="form-group">
 												<label for="unidade_ci" class="control-label">Unidade Controle Interno:</label>
 												<?php include('listas/select_unid_ci.inc.php');?>
@@ -239,7 +241,7 @@ switch ($status_usuario){
 												Confirmar
 												</button>
 												<button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-												<input type="hidden" name="flag1" value="<?php echo strtr(end(explode('/', $_SERVER['PHP_SELF'])),'?', true);?>" />
+												<input type="hidden" name="flag1" value="<?php echo $pagina;?>" />
 											</div>
 										</form>
 									</div>
@@ -259,7 +261,7 @@ switch ($status_usuario){
 									<div class="modal-body">
 										<?php
 										echo "<b>";
-										echo $msg6."<br />".$msg0."<br />".$msg1."<br />".$msg2."<br />".$msg3."<br />".$msg4."<br />".$msg5."<br />".$msg7."<br />".$msg8;
+										echo $msg6."<br />".$msg0."<br />".$msg1."<br />".$msg2."<br />".$msg3."<br />".$msg4."<br />".$msg5."<br />".$msg7."<br />".$msg8."<br />".$msg9;
 
 										if($lista_erro_validacao){
 											foreach ($lista_erro_validacao as $msg_lista){

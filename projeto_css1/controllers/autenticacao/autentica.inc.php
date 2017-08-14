@@ -28,5 +28,6 @@ else {
 
 		header(sprintf("Location: index.php"));
 	}
+	include_once(PATH . '/controllers/autenticacao/perfil.inc.php');
 }
 ?>

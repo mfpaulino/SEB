@@ -1,8 +1,6 @@
 <?php
 //autentica_visite.php
-
 session_start();
-
 if (!isset($_SESSION['cpf'])){
 	header(sprintf("Location: index.php"));
 }
@@ -27,5 +25,6 @@ else {
 	if($_SESSION['acesso'] == 'liberado'){
 		header(sprintf("Location: index.php" ));
 	}
+	include_once(PATH . '/controllers/autenticacao/perfil.inc.php');
 }
 ?>

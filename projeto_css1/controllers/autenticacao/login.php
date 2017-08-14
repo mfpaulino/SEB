@@ -15,7 +15,6 @@ if(isset($_POST['flag'])){
 
 	$sql = "select * from usuarios where cpf = '$cpf'";
 	$con_login = $mysqli->query($sql);
-	$mysqli->close();
 
 	$row_login = $con_login->fetch_assoc();
 
