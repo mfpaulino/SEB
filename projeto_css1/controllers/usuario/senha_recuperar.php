@@ -58,7 +58,7 @@ if(isset($_POST['flag'])){
 
 		if (!empty($error)) {
 
-			$_SESSION['senha_nao_enviada'] = "ERRO: a nova senha não pode ser enviada para o e-mail cadastrado!<br />Peça ao Administrador do SIAUDI em sua Unidade para redefinir a senha manualmente.";
+			$_SESSION['senha_nao_enviada'] = "ERRO SE-01: a nova senha não pode ser enviada para o e-mail cadastrado!<br />Peça ao responsável pelo SIAUDI em sua Unidade para redefinir a senha manualmente.";
 			$_SESSION['botao'] = "danger";
 		}
 		else {
@@ -69,7 +69,7 @@ if(isset($_POST['flag'])){
 			$con_update->execute();
 			$mysqli->close();
 
-			$_SESSION['senha_enviada'] = 'A nova senha foi enviada para o e-mail  <span style="background-color:#000000;">&nbsp;'.strtoupper($row_usuario['email']).  '&nbsp;</span> .<br />Em caso de não recebimento, peça ao Administrador do SIAUDI em sua Unidade para redefinir a senha manualmente.';
+			$_SESSION['senha_enviada'] = 'A nova senha foi enviada para o e-mail  <span style="background-color:#000000;">&nbsp;'.strtoupper($row_usuario['email']).  '&nbsp;</span> .<br />Em caso de não recebimento, peça ao responsável pelo SIAUDI em sua Unidade para redefinir a senha manualmente.';
 			$_SESSION['botao'] = "success";
 		}
 	}

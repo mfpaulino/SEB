@@ -61,7 +61,7 @@ switch ($status_usuario){
 		<div class="content-wrapper">
 			<section class="content container-fluid">
 				<div class="page-header">
-					<h3>Informações de usuário: <u><?php echo $posto_usuario . " " . $nome_guerra_usuario . "</u>(".$sigla_usuario.")";?></h3>
+					<h3>Informações de usuário: <u><?php echo $posto_usuario . " " . $nome_guerra_usuario;?></u></h3>
 				</div>
 				<div class="row">
 					<div class="col-md-12">
@@ -128,39 +128,7 @@ switch ($status_usuario){
 						</table>
 						<?php
 						if (isset($_GET['flag']) and ($_GET['flag'] == md5("usuario_alterar") or $_GET['flag'] == md5("senha_alterar") or $_GET['flag'] == md5("om_alterar") or $_GET['flag'] == md5("logout") )){
-							include_once('controllers/usuario/usuario_alertas_criar.inc.php');?>
-							<!-- Incio modalAlerta -->
-							<div class="modal modal-<?php echo $botao;?> fade" id="modalAlerta"  data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-								<div class="modal-dialog" role="document">
-									<div class="modal-content">
-										<div class="modal-header">
-											<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"></span></button>
-											<h4 class="modal-title" id="modalAlertaLabel">AVISO DO SISTEMA</h4>
-										</div>
-										<div class="modal-body">
-											<?php
-											echo "<b>";
-											for($i = 0; $i < 15; $i++){
-												if(${"msg{$i}"} <> ""){
-													echo ${"msg{$i}"}."<br />";
-												}
-											}
-											if($lista_erro_validacao){
-												foreach ($lista_erro_validacao as $msg_lista){
-													echo $msg_lista[0] = "<p>" . $msg_lista[0] . "</p>";
-												}
-											}
-											echo "</b>";
-											?>
-										</div>
-										<div class="modal-footer">
-											<a href="<?php echo $pagina;?>"><button type="button" class="btn btn-<?php echo $botao;?>">Fechar</button></a>
-										</div>
-									</div>
-								</div>
-							</div>
-							<!-- fim modalalerta-->
-							<?php
+							include_once('controllers/usuario/usuario_alertas_criar.inc.php');
 						}
 						else {
 							include_once('controllers/usuario/usuario_alertas_destruir.inc.php');
@@ -319,7 +287,31 @@ switch ($status_usuario){
 						<!-- inicio alterar_senha -->
 						<?php include_once('views/usuario/form_senha_alterar.inc.php'); ?>
 						<!--inicio modalAlerta -->
+						<div class="modal modal-<?php echo $botao;?> fade" id="modalAlerta"  data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+							<div class="modal-dialog" role="document">
+								<div class="modal-content">
+									<div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"></span></button>
+										<h4 class="modal-title" id="modalAlertaLabel">AVISO DO SISTEMA</h4>
+									</div>
+									<div class="modal-body">
+										<?php
+										echo "<b>";
+										echo $msg6."<br />".$msg0."<br />".$msg1."<br />".$msg2."<br />".$msg3."<br />".$msg4."<br />".$msg5."<br />".$msg7."<br />".$msg8."<br />".$msg9."<br />".$msg10;
 
+										if($lista_erro_validacao){
+											foreach ($lista_erro_validacao as $msg_lista){
+												echo $msg_lista[0] = "<p>" . $msg_lista[0] . "</p>";
+											}
+										}
+										?>
+									</div>
+									<div class="modal-footer">
+										<a href="<?php echo $pagina;?>"><button type="button" class="btn btn-<?php echo $botao;?>">Fechar</button></a>
+									</div>
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
 			</section>

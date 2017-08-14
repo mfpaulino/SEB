@@ -23,14 +23,15 @@ if (isset($_POST['flag'])){
 	require_once(PATH . '/componentes/internos/php/conexao.inc.php');
 	require_once(PATH . '/componentes/internos/php/bcript.inc.php');
 	require_once(PATH . '/componentes/internos/php/validaForm.class.php');
+	require_once(PATH . '/componentes/internos/php/funcoes.inc.php');
 
 	$cpf 		 = isset($_POST['cpf']) ? mysqli_real_escape_string($mysqli, $_POST['cpf']) : "";
 	$senha 		 = isset($_POST['senha'])  ? mysqli_real_escape_string($mysqli, $_POST['senha']) : "";
 	$senha1 	 = isset($_POST['senha1']) ? mysqli_real_escape_string($mysqli, $_POST['senha1']) : "";
 	$rg 		 = isset($_POST['rg']) ? mysqli_real_escape_string($mysqli, $_POST['rg']) : "";
-	$nome_guerra = isset($_POST['nome_guerra']) ? mysqli_real_escape_string($mysqli, $_POST['nome_guerra']) : "";
+	$nome_guerra = isset($_POST['nome_guerra']) ? mysqli_real_escape_string($mysqli, formata_nome($_POST['nome_guerra'])) : "";
 	$posto 		 = isset($_POST['posto']) ? mysqli_real_escape_string($mysqli, $_POST['posto']) : "";
-	$nome 		 = isset($_POST['nome']) ? mysqli_real_escape_string($mysqli, $_POST['nome']) : "";
+	$nome 		 = isset($_POST['nome']) ? mysqli_real_escape_string($mysqli, formata_nome($_POST['nome'])) : "";
 	$email 		 = isset($_POST['email']) ? mysqli_real_escape_string($mysqli, $_POST['email']) : "";
 	$codom 		 = isset($_POST['codom']) ? mysqli_real_escape_string($mysqli, $_POST['codom']) : "";
 

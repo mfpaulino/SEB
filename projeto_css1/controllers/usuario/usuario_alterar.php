@@ -8,13 +8,14 @@ if(isset($_POST['flag'])){
 	require_once(PATH . '/controllers/autenticacao/perfil.inc.php');
 	//require_once(PATH . '/componentes/internos/php/conexao.inc.php');
 	require_once(PATH . '/componentes/internos/php/validaForm.class.php');
+	require_once(PATH . '/componentes/internos/php/funcoes.inc.php');
 
 	$pagina = $_POST['flag1'];
 
 	$rg 		 = isset($_POST['rg']) ? mysqli_real_escape_string($mysqli, $_POST['rg']) : $rg_usuario;
-	$nome_guerra = isset($_POST['nome_guerra']) ? mysqli_real_escape_string($mysqli, $_POST['nome_guerra']) : $nome_guerra_usuario;
-	$id_posto 	 	 = isset($_POST['posto']) ? mysqli_real_escape_string($mysqli, $_POST['posto']) : $id_posto_usuario;
+	$id_posto 	 = isset($_POST['posto']) ? mysqli_real_escape_string($mysqli, $_POST['posto']) : $id_posto_usuario;
 	$nome 		 = isset($_POST['nome']) ? mysqli_real_escape_string($mysqli, $_POST['nome']) : $nome_usuario;
+	$nome_guerra = isset($_POST['nome_guerra']) ? mysqli_real_escape_string($mysqli, $_POST['nome_guerra']) : $nome_guerra_usuario;
 	$email 		 = isset($_POST['email']) ? mysqli_real_escape_string($mysqli, $_POST['email']) : $email_usuario;
 	$ritex 		 = isset($_POST['ritex']) ? mysqli_real_escape_string($mysqli, $_POST['ritex']) : $ritex_usuario;
 	$celular 	 = isset($_POST['celular']) ? mysqli_real_escape_string($mysqli, $_POST['celular']) : $celular_usuario;
@@ -58,23 +59,23 @@ if(isset($_POST['flag'])){
 				$altera = "sim";
 			}
 		}
-		if ($nome_guerra <> "" and $nome_guerra <> $nome_guerra_usuario){
-			$con_update = $mysqli->prepare("UPDATE usuarios SET nome_guerra = ? WHERE cpf ='$cpf'");
-			$con_update->bind_param('s', $nome_guerra);
-			$con_update->execute();
-
-			if($con_update->affected_rows <> 0 ){
-				$_SESSION['alterar_nome_guerra'] = "O nome de guerra foi alterado com sucesso!";
-				$altera = "sim";
-			}
-		}
-		if ($nome <> "" and $nome <> $nome_usuario){
+		if (formata_nome($nome) <> "" and formata_nome($nome) <> formata_nome($nome_usuario)){
 			$con_update = $mysqli->prepare("UPDATE usuarios SET nome = ? WHERE cpf ='$cpf'");
-			$con_update->bind_param('s', $nome);
+			$con_update->bind_param('s', formata_nome($nome));
 			$con_update->execute();
 
 			if($con_update->affected_rows <> 0 ){
 				$_SESSION['alterar_nome'] = "O nome foi alterado com sucesso!";
+				$altera = "sim";
+			}
+		}
+		if (formata_nome($nome_guerra) <> "" and formata_nome($nome_guerra) <> formata_nome($nome_guerra_usuario)){
+			$con_update = $mysqli->prepare("UPDATE usuarios SET nome_guerra = ? WHERE cpf ='$cpf'");
+			$con_update->bind_param('s', formata_nome($nome_guerra));
+			$con_update->execute();
+
+			if($con_update->affected_rows <> 0 ){
+				$_SESSION['alterar_nome_guerra'] = "O nome de guerra foi alterado com sucesso!";
 				$altera = "sim";
 			}
 		}

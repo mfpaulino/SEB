@@ -14,12 +14,11 @@ if ($inc == "sim"){
 
 		if($flag == md5("usuario_cadastrar")){
 
-			$msg0 = $_SESSION['sucesso_cadastro'];
-
-			$msg1 = $_SESSION['duplo_cpf'];
-			$msg2 = $_SESSION['duplo_email'];
+			$msg0 = $_SESSION['erro_validacao_cadastrar'];
+			$msg1 = $_SESSION['sucesso_cadastro'];
+			$msg2 = $_SESSION['duplo_cpf'];
+			$msg3 = $_SESSION['duplo_email'];
 			$msg4 = $_SESSION['erro_cadastro'];
-			$msg6 = $_SESSION['erro_validacao_cadastrar'];
 			$lista_erro_validacao = $_SESSION['lista_erro_validacao_cadastrar'];
 		}
 		else {
@@ -31,18 +30,17 @@ if ($inc == "sim"){
 			unset($_SESSION['lista_erro_validacao_cadastrar']);
 		}
 		if($flag == md5("usuario_alterar")){
-
-			$msg0 = $_SESSION['alterar_rg'];
-			$msg1 = $_SESSION['alterar_posto'];
-			$msg2 = $_SESSION['alterar_nome_guerra'];
-			$msg3 = $_SESSION['alterar_nome'];
-			$msg4 = $_SESSION['alterar_email_erro'];
-			$msg5 = $_SESSION['alterar_email'];
+			$msg0 = $_SESSION['alterar_erro_validacao'];
+			$msg1 = $_SESSION['alterar_rg'];
+			$msg2 = $_SESSION['alterar_posto'];
+			$msg3 = $_SESSION['alterar_nome_guerra'];
+			$msg4 = $_SESSION['alterar_nome'];
+			$msg5 = $_SESSION['alterar_email_erro'];
+			$msg6 = $_SESSION['alterar_email'];
 			$msg7 = $_SESSION['alterar_ritex'];
 			$msg8 = $_SESSION['alterar_celular'];
 			$msg9 = $_SESSION['alterar_codom'];
 			$msg10 = $_SESSION['alterar_nada'];
-			$msg6 = $_SESSION['alterar_erro_validacao'];
 			$lista_erro_validacao = $_SESSION['alterar_lista_erro_validacao'];
 		}
 		else {
@@ -58,35 +56,16 @@ if ($inc == "sim"){
 			unset($_SESSION['alterar_erro_validacao']);
 			unset($_SESSION['alterar_lista_erro_validacao']);
 		}
-		/*
-		if($flag == md5("om_alterar")){
-
-			$msg0 = $_SESSION['alterar_om_sucesso'];
-
-			$msg1 = $_SESSION['alterar_om_erro_bd'];
-			$msg6 = $_SESSION['alterar_om_erro_validacao'];
-
-			$lista_erro_validacao = $_SESSION['alterar_om_erro_validacao_lista'];
-		}
-		else {
-			unset($_SESSION['alterar_om_sucesso']);
-			unset($_SESSION['alterar_om_erro_bd']);
-			unset($_SESSION['alterar_om_erro_validacao']);
-			unset($_SESSION['alterar_om_erro_validacao_lista']);
-		}
-		*/
 		if($flag == md5("senha_alterar")){
 
-			$msg0 = $_SESSION['alterar_senha_sucesso'];
+			$msg0 = $_SESSION['alterar_senha_erro_validacao'];
+			$msg1 = $_SESSION['alterar_senha_sucesso'];
+			$msg2 = $_SESSION['alterar_senha_erro_bd'];
+			$lista_erro_validacao = $_SESSION['alterar_senha_erro_validacao_lista'];
 
-			if($msg0 <> ""){
+			if($msg1 <> ""){
 				$pagina = "controllers/autenticacao/logout.php?flag=$flag";
 			}
-
-			$msg1 = $_SESSION['alterar_senha_erro_bd'];
-			$msg6 = $_SESSION['alterar_senha_erro_validacao'];
-
-			$lista_erro_validacao = $_SESSION['alterar_senha_erro_validacao_lista'];
 		}
 		else {
 			unset($_SESSION['alterar_senha_sucesso']);
@@ -97,10 +76,9 @@ if ($inc == "sim"){
 
 		if($flag == md5("senha_recuperar")){
 
-			$msg0 = $_SESSION['senha_enviada'];
-
-			$msg1 = $_SESSION['senha_usuario_inexistente'];
-			$msg2 = $_SESSION['senha_nao_enviada'];
+			$msg1 = $_SESSION['senha_enviada'];
+			$msg2 = $_SESSION['senha_usuario_inexistente'];
+			$msg3 = $_SESSION['senha_nao_enviada'];
 
 		}
 		else {
@@ -122,7 +100,7 @@ if ($inc == "sim"){
 
 		if($flag == md5("logout") or $flag == md5("acesso_indevido")){
 
-			$msg0 = $_SESSION['logout'];
+			$msg1 = $_SESSION['logout'];
 		}
 		else{
 			unset($_SESSION['logout']);

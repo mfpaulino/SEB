@@ -13,7 +13,8 @@
 						<input type="hidden" name="flag" />
 					</div>
 					<div class="modal-footer">
-						<button type="submit" class="btn btn-primary">Enviar</button>
+						<button type="submit" class="btn btn-success">Enviar</button>
+						<button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
 					</div>
 				</form>
 			</div>

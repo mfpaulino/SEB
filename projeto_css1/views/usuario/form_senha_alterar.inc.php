@@ -18,7 +18,7 @@
 					<div class="modal-footer">
 						<input type="hidden" name="flag" value="<?php echo $_SESSION['cpf'];?>"/>
 						<input type="hidden" name="flag1" value="<?php echo strtr(end(explode('/', $_SERVER['PHP_SELF'])),'?', true);?>" />
-						<button type="submit" class="btn btn-success">Alterar</button>
+						<button type="submit" class="btn btn-success">Enviar</button>
 						<button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
 					</div>
 				</form>

@@ -114,7 +114,7 @@
 							<div class="form-group">
 								<label class="col-md-4 control-label"></label>
 								<div class="col-md-8">
-									<button class="btn btn-success" type="submit">Cadastrar</button>
+									<button class="btn btn-success" type="submit">Enviar</button>
 									<button class="btn btn-danger"  type="button" data-dismiss="modal">Cancelar</button>
 								</div>
 							</div>
