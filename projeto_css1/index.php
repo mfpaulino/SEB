@@ -57,44 +57,39 @@ else if ($_SESSION['acesso'] == "liberado"){
 				<?php
 				$inc="sim";
 				if(isset($_GET['flag']) and ($_GET['flag'] == md5('usuario_cadastrar') or  $_GET['flag'] == md5('senha_recuperar') or $_GET['flag'] == md5('usuario_acessar') or $_GET['flag'] == md5('logout') or $_GET['flag'] == md5('acesso_indevido'))){
-					include_once('controllers/usuario/usuario_alertas_criar.inc.php');?>
-					<!-- Incio modalAlerta -->
-					<div class="modal modal-<?php echo $botao;?> fade" id="modalAlerta"  data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-						<div class="modal-dialog" role="document">
-							<div class="modal-content">
-								<div class="modal-header">
-									<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"></span></button>
-									<h4 class="modal-title" id="modalAlertaLabel">AVISO DO SISTEMA</h4>
-								</div>
-								<div class="modal-body">
-									<?php
-									echo "<b>";
-									for($i = 0; $i < 15; $i++){
-										if(${"msg{$i}"} <> ""){
-											echo ${"msg{$i}"}."<br />";
-										}
-									}
-									if($lista_erro_validacao){
-										foreach ($lista_erro_validacao as $msg_lista){
-											echo $msg_lista[0] = "<p>" . $msg_lista[0] . "</p>";
-										}
-									}
-									echo "</b>";
-									?>
-								</div>
-								<div class="modal-footer">
-									<a href="<?php echo $visite;?>"><button type="button" class="btn btn-<?php echo $botao;?>">Fechar</button></a>
-								</div>
-							</div>
-						</div>
-					</div>
-					<!-- fim modalalerta-->
-					<?php
+					include_once('controllers/usuario/usuario_alertas_criar.inc.php');
 				}
 				else {
 					include_once('controllers/usuario/usuario_alertas_destruir.inc.php');
 				}
 				?>
+				<!--inicio modalAlerta -->
+				<div class="modal modal-<?php echo $botao;?> fade" id="modalAlerta"  data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+					<div class="modal-dialog" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"></span></button>
+								<h4 class="modal-title" id="modalAlertaLabel">AVISO DO SISTEMA</h4>
+							</div>
+							<div class="modal-body">
+								<?php
+								echo "<b>";
+								echo $msg6.$msg0.$msg1.$msg2.$msg3.$msg4.$msg5;
+								if($lista_erro_validacao){
+									foreach ($lista_erro_validacao as $msg_lista){
+										echo $msg_lista[0] = "<p>" . $msg_lista[0] . "</p>";
+									}
+								}
+								echo "</b>";
+								?>
+							</div>
+							<div class="modal-footer">
+								<a href="index.php"><button type="button" class="btn btn-<?php echo $botao;?>">Fechar</button></a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- fim modalAlerta-->
 			</section>
 		</div>
 		<?php include_once('componentes/internos/php/rodape.inc.php');?>
