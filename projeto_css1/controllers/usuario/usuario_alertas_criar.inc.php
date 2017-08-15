@@ -63,7 +63,7 @@ if ($inc == "sim"){
 			$lista_erro_validacao = $_SESSION['alterar_senha_erro_validacao_lista'];
 
 			if($msg1 <> ""){
-				$pagina = "controllers/autenticacao/logout.php?flag=$flag";
+				//$pagina = "controllers/autenticacao/logout.php?flag=$flag";
 			}
 		}
 		else {

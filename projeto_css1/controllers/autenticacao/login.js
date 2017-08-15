@@ -9,12 +9,12 @@ $(document).ready(function() {
 			cpf: {
 				validators: {
 					notEmpty: {
-						message:'PREENCHIMENTO OBRIGATÓRIO'
+						message:' Preenchimento obrigatório'
 					},
 					remote: {
 						type: 'POST',
 						url: 'controllers/usuario/usuario_verificar.json.php',
-						message: 'USUÁRIO NÃO ENCONTRADO',
+						message: ' Usuário não encontrado',
 						delay: 1000
 					}
 				}
@@ -22,12 +22,12 @@ $(document).ready(function() {
 			senha: {
 				validators: {
 					notEmpty: {
-						message:'PREENCHIMENTO OBRIGATÓRIO'
+						message:' Preenchimento obrigatório'
 					},
 					stringLength: {
 						min: 8,
 						max: 20,
-						message: 'MÍNIMO DE 8 (OITO) CARACTERES'
+						message: ' Mínimo de 8 caracteres'
 					}
 				}
 			}

@@ -5,7 +5,7 @@
 				<span class="barra-top"><b>ACESSO AO SISTEMA</b></span><hr>
 			</div>
 			<div class="form-group has-feedback">
-				<input class="form-control" type="text" name="cpf" maxlength="11" placeholder="CPF" onKeyUp="return autoTab(this, 11, event);" />
+				<input class="form-control" type="text" name="cpf" maxlength="11" placeholder="CPF" onKeyUp="return autoTab(this, 11, event);" autofocus />
 				<i class="glyphicon glyphicon-user form-control-feedback"></i>
 			</div>
 			<div class="form-group has-feedback">

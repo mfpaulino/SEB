@@ -8,7 +8,9 @@
 * Se o usuario estiver logado, redireciona para as paginas iniciais de usuario                             *
 * Exibe na tela alertas diversos recebiso pelo script 'controllers/usuario/usuario_alertas_criar.inc.php'  *
 * **********************************************************************************************************/
-$inc = "sim";
+$inc 	= "sim";
+$pagina = strtr(end(explode('/', $_SERVER['PHP_SELF'])),'?', true); //será usada no botao de fechar dos alertas
+
 include_once('config.inc.php');
 
 session_start();
@@ -95,7 +97,6 @@ else if ($_SESSION['acesso'] == "liberado"){
 	}
 	?>
 	<!--inicio modalAlerta -->
-	<?php $pagina = strtr(end(explode('/', $_SERVER['PHP_SELF'])),'?', true); //será usada no botao de fechar dos alertas ?>
 	<?php include_once('views/usuario/view_usuario_alertas.inc.php');?>
 	<div class="container">
 		<!--alterarModal-->

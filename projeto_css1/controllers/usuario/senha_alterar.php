@@ -36,7 +36,7 @@ if(isset($_POST['flag'])){
 		$mysqli->close();
 
 		if($con_update->affected_rows <> 0 ){
-			//$_SESSION['logout'] = "logout";
+			$_SESSION['alterar_senha_logout'] = "";
 			$_SESSION['alterar_senha_sucesso'] = "Senha alterada com sucesso!<br />Faça login com a nova senha.";
 			$_SESSION['botao'] = "success";
 		}

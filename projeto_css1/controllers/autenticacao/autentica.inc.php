@@ -1,7 +1,12 @@
 <?php
+/********************************************************************************************
+ * local/nome: ./controllers/autenticacao/autentica.inc.php                                 *
+ * se nao estiver logado ou (se logado e nao liberado) redireciona para o index.php         *
+ * se estiver liberado inclui o arquivo que gera todos os dados do usuario(perfil.inc.php)  *
+ * ******************************************************************************************/
 session_start();
 
-if (!isset($_SESSION['cpf'])){
+if (!isset($_SESSION['cpf']) or $_SESSION['acesso'] == "nao_liberado"){
 	header(sprintf("Location: index.php"));
 }
 else {
@@ -22,10 +27,6 @@ else {
 		$_SESSION["ultimoAcesso"] = $agora; //renovo o ultimo acesso
 	}
 
-	if($_SESSION['acesso'] == "nao_liberado"){
-
-		header(sprintf("Location: index.php"));
-	}
 	include_once(PATH . '/controllers/autenticacao/perfil.inc.php');
 }
 ?>

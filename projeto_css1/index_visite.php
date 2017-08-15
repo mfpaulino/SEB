@@ -8,12 +8,12 @@
 * Inclui o form de alterar Unidade                                                                         *
 * Exibe na tela alertas diversos vindos do script 'controllers/usuario/usuario_alertas_criar.inc.php'      *
 * **********************************************************************************************************/
-session_start();
-$inc = "sim";
+
+$inc 	= "sim";
+$pagina = strtr(end(explode('/', $_SERVER['PHP_SELF'])),'?', true);
+
 include_once('config.inc.php');
 include_once(PATH . '/controllers/autenticacao/autentica_visite.inc.php');
-
-$pagina = strtr(end(explode('/', $_SERVER['PHP_SELF'])),'?', true);
 
 switch ($status_usuario){
 	case ('recebido'):
@@ -95,8 +95,8 @@ switch ($status_usuario){
 						<!-- inicio modalTrocarSenha -->
 						<?php include_once('views/usuario/form_senha_alterar.inc.php'); ?>
 						<!-- Inicio modalAlerta-->
-						<?php //$pagina = strtr(end(explode('/', $_SERVER['PHP_SELF'])),'?', true); ?>
 						<?php include_once('views/usuario/view_usuario_alertas.inc.php');?>
+						<?php if(isset($_SESSION['alterar_senha_logout'])){session_destroy();}//termina a sessao se alterar a senha?>
 
 					</div>
 				</div>
