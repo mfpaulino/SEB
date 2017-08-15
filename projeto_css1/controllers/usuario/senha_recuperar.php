@@ -15,15 +15,10 @@ session_start();
 
 $inc = "sim";
 include_once('../../config.inc.php');
-
-include_once(PATH .'/controllers/usuario/usuario_alertas_destruir.inc.php');
-
-require_once(PATH .'/componentes/internos/php/constantes.inc.php');
-require_once(PATH .'/componentes/internos/php/bcript.inc.php');
-require_once(PATH .'/componentes/internos/php/conexao.inc.php');
-require_once(PATH .'/componentes/externos/PHPMailer/class.phpmailer.php');
-require_once(PATH .'/componentes/internos/php/email.inc.php');
-require_once(PATH .'/componentes/internos/php/senha.inc.php');
+include_once(PATH .'/componentes/internos/php/senha.inc.php');
+include_once(PATH .'/componentes/internos/php/bcript.inc.php');
+include_once(PATH .'/componentes/externos/PHPMailer/class.phpmailer.php');
+include_once(PATH .'/componentes/internos/php/email.inc.php');
 
 if(isset($_POST['flag'])){
 

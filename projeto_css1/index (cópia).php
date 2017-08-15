@@ -17,7 +17,7 @@ else if ($_SESSION['acesso'] == "liberado"){
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title><?php echo TITULO;?></title>
+	<title>SIAUDI</title>
 	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 	<link rel="stylesheet" href="componentes/externos/bower_components/bootstrap/dist/css/bootstrap.min.css">
 	<link rel="stylesheet" href="componentes/externos/bower_components/bootstrap/dist/css/bootstrapValidator.min.css" />
@@ -33,12 +33,12 @@ else if ($_SESSION['acesso'] == "liberado"){
 		<header class="main-header">
 			<a href="#" class="logo">
 				<span class="logo-mini"><b><-></b></span>
-				<span class="logo-lg barra-top"><b>SIAUD</b>-EB</span>
+				<span class="logo-lg barra-top"><b>SIAUDI</b>/EB</span>
 			</a>
 			<nav class="navbar navbar-static-top" role="navigation">
 				<section class="content-header barra-top" >
 					<h1>
-						<strong>SISTEMA DE AUDITORIA DO EXÉRCITO</strong>
+						<strong>SISTEMA DE AUDITORIA INTERNA DO EXÉRCITO</strong>
 						<small></small>
 					</h1>
 				</section>

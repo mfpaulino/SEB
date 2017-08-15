@@ -9,8 +9,6 @@ if(isset($_GET['flag']) and $_GET['flag'] == md5("usuario_excluir")){
 
 	session_start();
 
-	require_once(PATH . '/componentes/internos/php/conexao.inc.php');
-
 	$cpf = $_SESSION['cpf'];
 
 	$con_del   = $mysqli->query("DELETE FROM usuarios WHERE cpf = '$cpf'");

@@ -16,11 +16,9 @@ session_start();
 
 $inc = "sim";
 include_once('../../config.inc.php');
-//include_once(PATH .'/controllers/usuario/usuario_alertas_destruir.inc.php');
 
 if (isset($_POST['flag'])){
 
-	require_once(PATH . '/componentes/internos/php/conexao.inc.php');
 	require_once(PATH . '/componentes/internos/php/bcript.inc.php');
 	require_once(PATH . '/componentes/internos/php/validaForm.class.php');
 	require_once(PATH . '/componentes/internos/php/funcoes.inc.php');

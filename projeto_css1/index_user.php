@@ -2,13 +2,8 @@
 $inc = "sim";
 include_once('config.inc.php');
 include_once(PATH . '/controllers/autenticacao/autentica.inc.php');
-require_once(PATH .'/controllers/autenticacao/perfil.inc.php');
 ?>
 <!DOCTYPE html>
-<!--
-This is a starter template page. Use this page to start your new project from
-scratch. This page gets rid of all links and provides the needed markup only.
--->
 <html>
 <head>
   <meta charset="utf-8">
@@ -17,48 +12,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <link rel="stylesheet" href="componentes/externos/bower_components/bootstrap/dist/css/bootstrap.min.css">
-  <!-- Font Awesome -->
   <link rel="stylesheet" href="componentes/externos/bower_components/font-awesome/css/font-awesome.min.css">
-  <!-- Ionicons -->
   <link rel="stylesheet" href="componentes/externos/bower_components/Ionicons/css/ionicons.min.css">
-  <!-- Theme style -->
   <link rel="stylesheet" href="componentes/externos/dist/css/AdminLTE.css">
-  <!-- AdminLTE Skins. We have chosen the skin-blue for this starter
-        page. However, you can choose any other skin. Make sure you
-        apply the skin class to the body tag so the changes take effect. -->
   <link rel="stylesheet" href="componentes/externos/dist/css/skins/skin-green.css">
   <link rel="stylesheet" href="componentes/internos/css/siaudi-.css">
-
-  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-  <!--[if lt IE 9]>
-  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-  <![endif]-->
-
-  <!-- Google Font -->
-  <!--<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">-->
 </head>
-<!--
-BODY TAG OPTIONS:
-=================
-Apply one or more of the following classes to get the
-desired effect
-|---------------------------------------------------------|
-| SKINS         | skin-blue                               |
-|               | skin-black                              |
-|               | skin-purple                             |
-|               | skin-yellow                             |
-|               | skin-red                                |
-|               | skin-green                              |
-|---------------------------------------------------------|
-|LAYOUT OPTIONS | fixed                                   |
-|               | layout-boxed                            |
-|               | layout-top-nav                          |
-|               | sidebar-collapse                        |
-|               | sidebar-mini                            |
-|---------------------------------------------------------|
--->
 <body class="hold-transition skin-green sidebar-mini">
 <?php include_once('componentes/internos/php/cabecalho.inc.php');?>
 <div class="wrapper">
@@ -71,7 +30,7 @@ desired effect
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>...</b></span>
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg barra-top"><b>SIAUDI</b>/EB</span>
+      <span class="logo-lg barra-top"><b>SIAUD</b> - EB</span>
     </a>
 
     <!-- Header Navbar -->
@@ -216,7 +175,7 @@ desired effect
               <!-- Menu Footer-->
               <li class="user-footer">
                 <div class="pull-left">
-                  <a href="#" class="btn btn-primary btn-flat">Trocar OM</a>
+                  <a href="#" data-toggle="modal" data-target="#modalTrocarOM" data-om="<?php echo $sigla_usuario; ?>" class="btn btn-primary btn-flat">Trocar OM</a>
                 </div>
                 <div class="pull-right">
 					<?php $flag = md5("logout");?>
@@ -291,8 +250,8 @@ desired effect
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        SISTEMA DE AUDITORIA INTERNA DO EXÉRCITO
-        <small>V1.0</small>
+        SISTEMA DE AUDITORIA DO EXÉRCITO
+        <small></small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
@@ -312,7 +271,7 @@ desired effect
 		?>
 		<!-- inicio alterar_senha -->
 		<?php include_once('views/usuario/form_senha_alterar.inc.php');?>
-		<!--inicio modalAlerta -->
+		<!-- Incio modalAlerta -->
 		<div class="modal modal-<?php echo $botao;?> fade" id="modalAlerta"  data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 			<div class="modal-dialog" role="document">
 				<div class="modal-content">
@@ -323,17 +282,65 @@ desired effect
 					<div class="modal-body">
 						<?php
 						echo "<b>";
-						echo $msg6.$msg0.$msg1.$msg2.$msg3.$msg4.$msg5;
-
+						for($i = 0; $i < 15; $i++){
+							if(${"msg{$i}"} <> ""){
+								echo ${"msg{$i}"}."<br />";
+							}
+						}
 						if($lista_erro_validacao){
 							foreach ($lista_erro_validacao as $msg_lista){
 								echo $msg_lista[0] = "<p>" . $msg_lista[0] . "</p>";
 							}
 						}
+						echo "</b>";
 						?>
 					</div>
 					<div class="modal-footer">
 						<a href="<?php echo $pagina;?>"><button type="button" class="btn btn-<?php echo $botao;?>">Fechar</button></a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- fim modalalerta-->
+		<!-- Inicio modalTrocarOM -->
+		<div class="modal fade" id="modalTrocarOM" tabindex="-1" role="dialog" aria-labelledby="modalTrocarOMLabel">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						<h4 class="modal-title" id="modalTrocarOMLabel"></h4>
+					</div>
+					<div class="modal-body">
+						<form name="form_altera_om" id="form_altera_om" method="POST" action="controllers/usuario/usuario_alterar.php" enctype="multipart/form-data" >
+							<div class="form-group">
+								<label for="unidade_ci" class="control-label">*Unidade Controle Interno:</label>
+								<?php include('listas/select_unid_ci.inc.php');?>
+							</div>
+							<div class="form-group">
+								<label for="codom" class="control-label">*Unidade usuário:</label>
+								<select class="form-control" name="codom" id="codom">
+									<option value="">Aguardando Unidade de Controle Interno...</option>
+								</select>
+							</div>
+							<div class="modal-footer">
+								<input name="flag" type="hidden" value="<?php $codom_usuario;?>"/>
+								<button type="submit" class="btn btn-success"
+									data-toggle="confirmation"
+									data-placement="left"
+									data-btn-ok-label="Continuar"
+									data-btn-ok-icon="glyphicon glyphicon-share-alt"
+									data-btn-ok-class="btn-success"
+									data-btn-cancel-label="Parar"
+									data-btn-cancel-icon="glyphicon glyphicon-ban-circle"
+									data-btn-cancel-class="btn-danger"
+									data-title="Confirma alteração da Unidade?"
+									data-content="">
+								Enviar
+								</button>
+								<button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+								<input type="hidden" name="flag1" value="<?php echo $pagina;?>" />
+							</div>
+						</form>
 					</div>
 				</div>
 			</div>
@@ -436,9 +443,50 @@ desired effect
 <script src="componentes/externos/bower_components/jquery/dist/jquery.min.js"></script>
 <!-- Bootstrap 3.3.7 -->
 <script src="componentes/externos/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script src="componentes/externos/bower_components/bootstrap/dist/js/bootstrapValidator.min.js"></script>
+	<script src="componentes/externos/bower_components/bootstrap-confirmation/bootstrap-confirmation.min.js"></script>
 <!-- AdminLTE App -->
 <script src="componentes/externos/dist/js/adminlte.min.js"></script>
 <script src="controllers/usuario/senha_alterar.js"></script>
+
+	<script type="text/javascript">
+		$('#modalTrocarOM').on('show.bs.modal', function (event) {
+			var button = $(event.relatedTarget) // Button that triggered the modal
+			var om = button.data('om')
+			var modal = $(this)
+			modal.find('.modal-title').text('Unidade atual: ' + om )
+			modal.find('#om').val(om)
+		})
+	</script>
+	<script>
+		$('[data-toggle="confirmation"]').confirmation({
+			onConfirm: function() {
+				$('#form_altera_om').bootstrapValidator({
+					feedbackIcons: {
+						valid: 'glyphicon glyphicon-ok',
+						invalid: 'glyphicon glyphicon-remove',
+						validating: 'glyphicon glyphicon-refresh'
+					},
+					fields: {
+						unidade_ci: {
+							validators: {
+								notEmpty: {
+									message:'preenchimento obrigatório'
+								}
+							}
+						},
+						codom: {
+							validators: {
+								notEmpty: {
+									message:'preenchimento obrigatório'
+								}
+							}
+						}
+					}
+				})
+			}
+		});
+	</script>
 
 	<?php
 	if ($msg <> ""){?>

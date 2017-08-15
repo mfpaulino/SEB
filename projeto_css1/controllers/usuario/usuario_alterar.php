@@ -5,8 +5,7 @@ include_once('../../config.inc.php');
 if(isset($_POST['flag'])){
 
 	//session_start();
-	require_once(PATH . '/controllers/autenticacao/perfil.inc.php');
-	//require_once(PATH . '/componentes/internos/php/conexao.inc.php');
+	require_once(PATH . '/controllers/autenticacao/autentica.inc.php');
 	require_once(PATH . '/componentes/internos/php/validaForm.class.php');
 	require_once(PATH . '/componentes/internos/php/funcoes.inc.php');
 

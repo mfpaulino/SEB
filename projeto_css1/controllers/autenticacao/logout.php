@@ -1,7 +1,6 @@
 <?php
 $inc = "sim";
 include_once('../../config.inc.php');
-include_once(PATH. '/componentes/internos/php/conexao.inc.php');
 session_start();
 if (isset($_SESSION['cpf'])){
 

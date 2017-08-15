@@ -3,9 +3,7 @@ session_start();
 
 $inc = "sim";
 include_once('../../config.inc.php');
-
-include_once(PATH. '/componentes/internos/php/bcript.inc.php');
-include_once(PATH .'/componentes/internos/php/conexao.inc.php');
+include_once(PATH . '/componentes/internos/php/bcript.inc.php');
 include_once(PATH . '/componentes/internos/php/validaForm.class.php');
 
 if(isset($_POST['flag'])){
@@ -18,7 +16,7 @@ if(isset($_POST['flag'])){
 
 	$validar = new validaForm();
 
-	$validar->set('Senha', $senha)->is_not_equals($cpf, true,"CPF")->min_length(7)->is_equals($senha1, true, "Confirmação da senha");
+	$validar->set('Senha', $senha)->is_not_equals($cpf, true,"CPF")->min_length(8)->is_equals($senha1, true, "Confirmação da senha");
 
 	if ($validar->validate()){
 

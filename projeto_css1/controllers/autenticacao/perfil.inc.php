@@ -1,6 +1,5 @@
 <?php
 session_start();
-include_once(PATH . '/componentes/internos/php/conexao.inc.php');
 
 $cpf = $_SESSION['cpf'];
 $ultimoAcesso = $_SESSION['ultimoAcesso'];
@@ -22,7 +21,7 @@ $codom_usuario = $row['codom'];
 $status_usuario = $row['status'];
 
 $sql = "select sigla, denominacao from cciex_om where codom = '$codom_usuario'";
-$con_om = $mysqli1->query($sql);
+$con_om = $mysqli->query($sql);
 
 $row = $con_om->fetch_assoc();
 

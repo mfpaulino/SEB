@@ -189,7 +189,7 @@ switch ($status_usuario){
 							</div>
 						</div>
 						<!-- Inicio modalEditar -->
-						<div class="modal fade" id="modalEditar" tabindex="-1" role="dialog" aria-labelledby="modalEditarLabel">
+						<div class="modal fade" data-backdrop="static" id="modalEditar" tabindex="-1" role="dialog" aria-labelledby="modalEditarLabel">
 							<div class="modal-dialog" role="document">
 								<div class="modal-content">
 									<div class="modal-header">
@@ -274,7 +274,7 @@ switch ($status_usuario){
 							</div>
 						</div>
 						<!-- Inicio modalTrocarOM -->
-						<div class="modal fade" id="modalTrocarOM" tabindex="-1" role="dialog" aria-labelledby="modalTrocarOMLabel">
+						<div class="modal fade" id="modalTrocarOM" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="modalTrocarOMLabel">
 							<div class="modal-dialog" role="document">
 								<div class="modal-content">
 									<div class="modal-header">
@@ -346,9 +346,8 @@ switch ($status_usuario){
 			var ritex = button.data('ritex')
 			var celular = button.data('celular')
 			var om = button.data('om')
-			// If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
-			// Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
 			var modal = $(this)
+
 			modal.find('.modal-title').text('Usuário: ' + posto + ' ' + nome_guerra + ' - ' + om )
 			modal.find('#cpf').val(cpf)
 			modal.find('#rg').val(rg)
@@ -417,5 +416,5 @@ switch ($status_usuario){
 	<?php
 	}
 	?>
-	</body>
+</body>
 </html>

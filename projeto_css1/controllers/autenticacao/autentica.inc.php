@@ -1,6 +1,4 @@
 <?php
-include_once(__DIR__ . '/../../config.inc.php');
-
 session_start();
 
 if (!isset($_SESSION['cpf'])){

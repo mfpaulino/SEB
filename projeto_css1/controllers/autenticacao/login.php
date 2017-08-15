@@ -6,9 +6,7 @@ if(isset($_POST['flag'])){
 
 	session_start();
 
-	//include_once(PATH .'/controllers/usuario/usuario_alertas_destruir.inc.php');
 	require_once(PATH .'/componentes/internos/php/bcript.inc.php');
-	require_once(PATH .'/componentes/internos/php/conexao.inc.php');
 
 	$cpf = isset($_POST['cpf']) ? $_POST['cpf']: "";
 	$senha = isset($_POST['senha']) ? $_POST['senha']: "";
