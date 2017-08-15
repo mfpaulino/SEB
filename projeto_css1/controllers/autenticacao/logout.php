@@ -20,6 +20,7 @@ if (isset($_SESSION['cpf'])){
 
 		$_SESSION['logout'] = "Logout realizado com sucesso!";
 		$_SESSION['botao'] = "success";
+
 	}
 	else {
 		$flag = md5("acesso_indevido");

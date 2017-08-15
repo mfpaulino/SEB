@@ -4,12 +4,11 @@ include_once('../../config.inc.php');
 
 if(isset($_POST['flag'])){
 
-	//session_start();
 	require_once(PATH . '/controllers/autenticacao/autentica.inc.php');
 	require_once(PATH . '/componentes/internos/php/validaForm.class.php');
 	require_once(PATH . '/componentes/internos/php/funcoes.inc.php');
 
-	$pagina = $_POST['flag1'];
+	$pagina 	 = $_POST['flag1'];
 
 	$rg 		 = isset($_POST['rg']) ? mysqli_real_escape_string($mysqli, $_POST['rg']) : $rg_usuario;
 	$id_posto 	 = isset($_POST['posto']) ? mysqli_real_escape_string($mysqli, $_POST['posto']) : $id_posto_usuario;
@@ -32,7 +31,7 @@ if(isset($_POST['flag'])){
 			//->set('Celular',		$celular)->is_required()->is_num()->min_length(10)->max_length(11)
 
 	$_SESSION['botao'] = "success";
-	$_SESSION['pagina'] = $pagina;
+	//$_SESSION['pagina'] = $pagina;
 
 	if ($validar->validate()){
 		$altera = "nao";
@@ -125,11 +124,11 @@ if(isset($_POST['flag'])){
 			$con_update->execute();
 
 			if($con_update->affected_rows <> 0 ){
-				$con_om = $mysqli1->query("SELECT denominacao FROM cciex_om  WHERE codom = '$codom'");
-				$row_om = $con_om->fetch_assoc();
+				$con_unidade = $mysqli1->query("SELECT denominacao FROM cciex_om  WHERE codom = '$codom'");
+				$row_unidade = $con_unidade->fetch_assoc();
 				$mysqli1->close();
 
-				$_SESSION['alterar_codom'] = "Alteração da Unidade realizada com sucesso!<br /><br />Nova Unidade: ".$row_om['denominacao'];
+				$_SESSION['alterar_codom'] = "Alteração da Unidade realizada com sucesso!<br /><br />Nova Unidade: ".$row_unidade['denominacao'];
 				$altera = "sim";
 			}
 		}

@@ -68,7 +68,7 @@
 
 						<!-- Text input-->
 						<div class="form-group">
-							<label class="col-md-4 control-label" for="nome">*Nome Completo:</label>
+							<label class="col-md-4 control-label" for="nome">*Nome:</label>
 							<div class="col-md-8">
 								<input id="nome" name="nome" placeholder="Nome Completo" class="form-control input-md" type="text">
 							</div>
@@ -86,7 +86,7 @@
 						<div class="form-group">
 							<label class="col-md-4 control-label" for="email">*E-Mail:</label>
 							<div class="col-md-8">
-								<input id="email" name="email" placeholder="digite um e-mail válido" class="form-control input-md" type="email">
+								<input id="email" name="email" placeholder="Para o recebimento de msg do sistema" class="form-control input-md" type="email">
 							</div>
 						</div>
 
@@ -94,7 +94,7 @@
 						<div class="form-group">
 							<label class="col-md-4 control-label" for="ritex">RITEx:</label>
 							<div class="col-md-8">
-								<input id="ritex" name="ritex" placeholder="" class="form-control input-md" type="text">
+								<input id="ritex" name="ritex" placeholder="somente dígitos" class="form-control input-md" type="text">
 							</div>
 						</div>
 
@@ -102,7 +102,7 @@
 						<div class="form-group">
 							<label class="col-md-4 control-label" for="celular">Celular:</label>
 							<div class="col-md-8">
-								<input id="celular" name="celular" placeholder="" class="form-control input-md" type="text">
+								<input id="celular" name="celular" placeholder="somente dígitos" class="form-control input-md" type="text">
 							</div>
 						</div>
 

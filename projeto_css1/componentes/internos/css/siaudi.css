@@ -75,3 +75,9 @@
 	padding-bottom:9px;
 	text-shadow: 2px 2px 2px #000;
 }
+.main-header .navbar{
+	margin-left: 0px;
+}
+.has-error .help-block{
+	background-color:#ffffff;
+}

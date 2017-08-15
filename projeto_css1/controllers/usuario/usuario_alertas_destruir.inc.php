@@ -40,7 +40,7 @@ unset($_SESSION['alterar_senha_erro_validacao_lista']);
 unset($_SESSION['logout']);
 
 unset($_SESSION['botao']);
-unset($_SESSION['pagina']);
+//unset($_SESSION['pagina']);
 
 //om_alterar
 /*

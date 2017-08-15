@@ -11,6 +11,7 @@
 						<label for="cpf" class="control-label">CPF: </label>
 						<input class="form-control" type="text" name="cpf" autofocus placeholder="CPF" maxlength="11" />
 						<input type="hidden" name="flag" />
+						<input type="hidden" name="flag1" value = "<?php echo $pagina;?>" />
 					</div>
 					<div class="modal-footer">
 						<button type="submit" class="btn btn-success">Enviar</button>

@@ -1,4 +1,13 @@
 <?php
+/***********************************************************************************************************
+* local/script name: ./index_user.php                                                                      *
+* Primeira tela de usuario logado e liberado                                                               *
+* Inclui o form de alterar senha                                                                           *
+* Inclui o form de visualizar dados                                                                        *
+* Inclui o form de alterar dados                                                                           *
+* Inclui o form de alterar Unidade                                                                         *
+* Exibe na tela alertas diversos vindos do script 'controllers/usuario/usuario_alertas_criar.inc.php'      *
+* **********************************************************************************************************/
 $inc = "sim";
 include_once('config.inc.php');
 include_once(PATH . '/controllers/autenticacao/autentica.inc.php');
@@ -8,7 +17,7 @@ include_once(PATH . '/controllers/autenticacao/autentica.inc.php');
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>SIAUDI</title>
+  <title><?php echo TITULO;?></title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <link rel="stylesheet" href="componentes/externos/bower_components/bootstrap/dist/css/bootstrap.min.css">
@@ -30,7 +39,7 @@ include_once(PATH . '/controllers/autenticacao/autentica.inc.php');
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>...</b></span>
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg barra-top"><b>SIAUD</b> - EB</span>
+      <span class="logo-lg barra-top"><b>SIAUD</b>-EB</span>
     </a>
 
     <!-- Header Navbar -->

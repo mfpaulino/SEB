@@ -9,7 +9,6 @@ if ($inc == "sim"){
 	if (isset($_GET['flag'])){
 
 		$flag = $_GET['flag'];
-		$pagina = $_SESSION['pagina'];
 		$botao = $_SESSION['botao'];
 
 		if($flag == md5("usuario_cadastrar")){

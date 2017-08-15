@@ -1,6 +1,7 @@
 <?php
 //autentica_visite.php
 session_start();
+
 if (!isset($_SESSION['cpf'])){
 	header(sprintf("Location: index.php"));
 }

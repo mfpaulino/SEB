@@ -1,14 +1,15 @@
 <?php
 /**************************************************************
-* Local/nome do script: ./controllers/usuario/senha_recuperar.php
-* Recebe o CPF do usuario
-* Se o pedido foi feito pela tela de recupera senha:
-* - Cria uma senha aleatória
-* - Envia para o email cadastrado
-* - Salva nova senha no BD
-* Se a redefinição de senha for feito pelo admim:
-* - a senha será igual ao CPF do usuario cuja senha está sendo redefinida
-* - nao envia para o email
+* Local/nome do script: controllers/usuario/senha_recuperar.php
+* Só executa se for chamado pelo formulario, senão chama o script de "acesso negado"
+* primeiramente destroi as variaveis de sessao de alertas de usuario
+* Recebe o CPF do script views/usuarios/form_senha_recuperar.inc.php
+* Trata o valor recebido com o método mysqli: mysqli_real_escape_string
+* Consulta o BD em busca de CPF
+* Em caso de tudo certo, altera a senha no BD e envia para o email cadastrado
+* Em caso de erros, cria variaveis de sessão com mensagens de alertas que serão utilizadas
+* pelo script usuario/alertas.inc.php(incluido pelo index.php)
+* Ao final de tudo, redireciona para o index.php
 * *************************************************************/
 session_start();
 
@@ -21,7 +22,7 @@ include_once(PATH .'/componentes/internos/php/email.inc.php');
 
 if(isset($_POST['flag'])){
 
-	$pagina = $_POST['flag1'];
+	$pagina 	 = $_POST['flag1'];
 
 	$cpf = isset($_POST['cpf']) ? mysqli_real_escape_string($mysqli, $_POST['cpf']) : "";
 
@@ -34,7 +35,7 @@ if(isset($_POST['flag'])){
 		$_SESSION['usuario_inexistente'] = "ERRO: usuário não cadastrado!";
 		$_SESSION['botao'] = "danger";
 	}
-	else if(!isset($_SESSION['cpf'])){//siginifica que o pedido veio do form_recuperar_senha
+	else {
 		$senha = geraSenha("L N L L S L N N");
 		$nova_senha = Bcrypt::hash($senha);
 
@@ -47,6 +48,8 @@ if(isset($_POST['flag'])){
 		$msg .= "<br />";
 		$msg .= "<hr>";
 		$msg .= "Mensagem enviada automaticamente pelo SIAUDI.";
+		//$msg .= "<br />";
+		//$msg .= "Suporte t&eacute;cnico: 860-3572 (RITEx)";
 
 		smtpmailer($row_usuario['email'], "siaudi@cciex.eb.mil.br", "SIAUDI",  "SIAUDI - ENVIO DE NOVA SENHA", $msg);
 
@@ -56,23 +59,18 @@ if(isset($_POST['flag'])){
 			$_SESSION['botao'] = "danger";
 		}
 		else {
+			$cpf = $row_usuario['cpf'];
+
+			$con_update = $mysqli->prepare("UPDATE usuarios SET senha = ? WHERE cpf ='$cpf'");
+			$con_update->bind_param('s', $nova_senha);
+			$con_update->execute();
+			$mysqli->close();
+
 			$_SESSION['senha_enviada'] = 'A nova senha foi enviada para o e-mail  <span style="background-color:#000000;">&nbsp;'.strtoupper($row_usuario['email']).  '&nbsp;</span> .<br />Em caso de não recebimento, peça ao responsável pelo SIAUDI em sua Unidade para redefinir a senha manualmente.';
 			$_SESSION['botao'] = "success";
 		}
 	}
-	else {
-		$nova_senha = Bcrypt::hash($cpf);//o cpf veio da tela do admin
-
-		$_SESSION['senha_enviada'] = 'A senha foi redefinida com sucesso!<br /><br />Avise a(o) <span style="background-color:#000000;">&nbsp;'.strtoupper($row_usuario['posto'] . " " . $row_usuario['nome_guerra'] ).  '&nbsp;</span> que a nova senha é igual ao CPF.';
-		$_SESSION['botao'] = "success";
-	}
-
-	$con_update = $mysqli->prepare("UPDATE usuarios SET senha = ? WHERE cpf ='$cpf'");
-	$con_update->bind_param('s', $nova_senha);
-	$con_update->execute();
-	$mysqli->close();
-
-	//$_SESSION['pagina'] = $pagina;
+	$_SESSION['pagina'] = $pagina;
 	$flag = md5("senha_recuperar");
 	header(sprintf("Location:../../".$pagina."?flag=$flag"));
 }
