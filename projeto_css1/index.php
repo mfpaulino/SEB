@@ -32,7 +32,7 @@ else if ($_SESSION['acesso'] == "liberado"){
   <title><?php echo TITULO;?></title>
 	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 	<link rel="stylesheet" href="componentes/externos/bower_components/bootstrap/dist/css/bootstrap.css">
-	<link rel="stylesheet" href="componentes/externos/bower_components/bootstrap/dist/css/bootstrapValidator.min-.css" />
+	<link rel="stylesheet" href="componentes/externos/bower_components/bootstrap/dist/css/bootstrapValidator.min.css" />
 	<link rel="stylesheet" href="componentes/externos/bower_components/font-awesome/css/font-awesome.min.css">
 	<link rel="stylesheet" href="componentes/externos/bower_components/Ionicons/css/ionicons.min.css">
 	<link rel="stylesheet" href="componentes/externos/dist/css/AdminLTE.css">
@@ -52,39 +52,9 @@ else if ($_SESSION['acesso'] == "liberado"){
 			</nav>
 		</header>
 	</div>
-	<div class="login-box"><!--
-		<div class="login-logo">
-			<b>SIAUD-EB</b>
-		</div>-->
+	<div class="login-box">
 		<div class="panel-body form-login">
-			<form name="form_usuario_acessar" id="form_usuario_acessar" role="form" method="POST" action="controllers/autenticacao/login.php">
-				<fieldset>
-					<div class="form-group">
-						<span class="barra-top"><b>SIAUD-EB</b></span>
-						<hr>
-					</div>
-					<div class="form-group has-feedback">
-						<input class="form-control" type="text" name="cpf" maxlength="11" placeholder="CPF" onKeyUp="return autoTab(this, 11, event);" />
-						<i class="glyphicon glyphicon-user form-control-feedback"></i>
-					</div>
-					<div class="form-group has-feedback">
-						<input class="form-control" type="password" name="senha" placeholder="Senha" />
-						<i class="glyphicon glyphicon-lock form-control-feedback"></i>
-					</div>
-					<div class="form-group">
-						<input type="hidden" name="flag" />
-						<button type="submit" class="btn btn-lg btn-success btn-block">Entrar</button>
-					</div>
-					<div class="form-group">
-						<a  style="color:#ffffff" href="#" data-toggle="modal" data-target="#esqueciModal">> <b>Esqueci minha senha</b></a>
-						<br />
-						<a style="color:#ffffff" href="#" data-toggle="modal" data-target="#cadastroModal">> <b>Solicitar acesso ao sistema</b></a>
-						<br />
-						<hr>
-						<a style="color:#ffffff" href="#" target="_blank">> <b>Guia do Usuário</b></a>
-					</div>
-				</fieldset>
-			</form>
+			<?php include_once('views/usuario/form_usuario_acessar.inc.php');?>
 		</div>
 	</div>
 	<?php

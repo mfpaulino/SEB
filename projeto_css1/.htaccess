@@ -1,0 +1,4 @@
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^ 404.php [QSA,L]
+#RewriteRule ^ index_slim.php [QSA,L]

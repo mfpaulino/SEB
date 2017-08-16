@@ -30,6 +30,13 @@ $(document).ready(function() {
 						message: ' Mínimo de 8 caracteres'
 					}
 				}
+			},
+			captcha: {
+				validators: {
+					notEmpty: {
+						message:' Preenchimento obrigatório'
+					}
+				}
 			}
 		}
 	})

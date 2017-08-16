@@ -8,8 +8,9 @@ if(isset($_POST['flag'])){
 
 	require_once(PATH .'/componentes/internos/php/bcript.inc.php');
 
-	$cpf = isset($_POST['cpf']) ? $_POST['cpf']: "";
-	$senha = isset($_POST['senha']) ? $_POST['senha']: "";
+	$cpf 	 = isset($_POST['cpf']) ? $_POST['cpf']: "";
+	$senha 	 = isset($_POST['senha']) ? $_POST['senha']: "";
+	$captcha = isset($_POST['captcha']) ? $_POST['captcha']: "";
 
 	$sql = "select * from usuarios where cpf = '$cpf'";
 	$con_login = $mysqli->query($sql);
@@ -21,6 +22,9 @@ if(isset($_POST['flag'])){
 	}
 	else if(!Bcrypt::check($senha, $row_login['senha'])){
 		$_SESSION['senha_errada'] = "ERRO A-02: senha incorreta!";
+	}
+	else if($_SESSION['captcha'] <> $captcha){
+		$_SESSION['erro_captcha'] = "ERRO A-003: código captcha incorreto!";
 	}
 	else{
 		$_SESSION['cpf'] = $cpf;
@@ -35,15 +39,15 @@ if(isset($_POST['flag'])){
 	}
 	if ($_SESSION['acesso'] == "nao_liberado"){
 
-		header(sprintf("Location:../../". PAGINA_VISITANTE));
+		header("Location:../../". PAGINA_VISITANTE);
 	}
 	else if ($_SESSION['acesso'] == "liberado"){
-		header(sprintf("Location:../../". PAGINA_INICIAL));
+		header("Location:../../". PAGINA_INICIAL);
 	}
 	else {
 		$flag = md5("usuario_acessar");
 		$_SESSION['botao'] = "danger";
-		header(sprintf("Location:../../index.php?flag=$flag"));
+		header("Location:../../index.php?flag=$flag");
 	}
 }
 else {

@@ -1,8 +1,7 @@
 <?php
 /************************************************************************************************
  * local/nome: ./controllers/autenticacao/autentica_visite.inc.php                              *
- * se nao estiver logado ou (se estiver logado e liberado)                                      *
- * se estiver liberado redeireciona para o index.php                                            *
+ * se nao estiver logado ou (se estiver logado e liberado) redeireciona para o index.php        *
  * se nao estiver liberado inclui o arquivo que gera todos os dados do usuario(perfil.inc.php)  *
  * **********************************************************************************************/
 session_start();

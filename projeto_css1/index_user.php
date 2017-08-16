@@ -55,8 +55,8 @@ include_once(PATH . '/controllers/autenticacao/autentica.inc.php');
           <li class="dropdown messages-menu">
             <!-- Menu toggle button -->
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <i class="fa fa-envelope-o"></i>
-              <span class="label label-success">44</span>
+              <i class="fa fa-envelope"></i>
+              <span class="label label-primary">44</span>
             </a>
             <ul class="dropdown-menu">
               <li class="header">You have 4 messages</li>
@@ -72,7 +72,7 @@ include_once(PATH . '/controllers/autenticacao/autentica.inc.php');
                       <!-- Message title and timestamp -->
                       <h4>
                         Support Team
-                        <small><i class="fa fa-clock-o"></i> 5 mins</small>
+                        <small><i class="fa fa-clock"></i> 5 mins</small>
                       </h4>
                       <!-- The message -->
                       <p>Why not buy a new awesome theme?</p>
@@ -91,7 +91,7 @@ include_once(PATH . '/controllers/autenticacao/autentica.inc.php');
           <li class="dropdown notifications-menu">
             <!-- Menu toggle button -->
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <i class="fa fa-bell-o"></i>
+              <i class="fa fa-bell"></i>
               <span class="label label-warning">10</span>
             </a>
             <ul class="dropdown-menu">
@@ -114,7 +114,7 @@ include_once(PATH . '/controllers/autenticacao/autentica.inc.php');
           <li class="dropdown tasks-menu">
             <!-- Menu Toggle Button -->
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <i class="fa fa-flag-o"></i>
+              <i class="fa fa-flag"></i>
               <span class="label label-danger">9</span>
             </a>
             <ul class="dropdown-menu">

@@ -90,6 +90,7 @@ if ($inc == "sim"){
 
 			$msg1 = $_SESSION['acesso_usuario_inexistente'];
 			$msg2 = $_SESSION['senha_errada'];
+			$msg3 = $_SESSION['erro_captcha'];
 
 		}
 		else{

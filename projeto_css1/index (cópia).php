@@ -8,7 +8,9 @@
 * Se o usuario estiver logado, redireciona para as paginas iniciais de usuario                             *
 * Exibe na tela alertas diversos recebiso pelo script 'controllers/usuario/usuario_alertas_criar.inc.php'  *
 * **********************************************************************************************************/
-$inc = "sim";
+$inc 	= "sim";
+$pagina = strtr(end(explode('/', $_SERVER['PHP_SELF'])),'?', true); //será usada no botao de fechar dos alertas
+
 include_once('config.inc.php');
 
 session_start();
@@ -20,6 +22,7 @@ if ($_SESSION['acesso'] == "nao_liberado"){
 else if ($_SESSION['acesso'] == "liberado"){
 	header(sprintf("Location:" . PAGINA_INICIAL));
 }
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -49,43 +52,13 @@ else if ($_SESSION['acesso'] == "liberado"){
 			</nav>
 		</header>
 	</div>
-	<div class="login-box"><!--
-		<div class="login-logo">
-			<b>SIAUD-EB</b>
-		</div>-->
+	<div class="login-box">
 		<div class="panel-body form-login">
-			<form name="form_usuario_acessar" id="form_usuario_acessar" role="form" method="POST" action="controllers/autenticacao/login.php">
-				<fieldset>
-					<div class="form-group">
-						<span class="barra-top"><b>SIAUD-EB</b></span>
-						<hr>
-					</div>
-					<div class="form-group has-feedback">
-						<input class="form-control" type="text" name="cpf" maxlength="11" placeholder="CPF" onKeyUp="return autoTab(this, 11, event);" />
-						<i class="glyphicon glyphicon-user form-control-feedback"></i>
-					</div>
-					<div class="form-group has-feedback">
-						<input class="form-control" type="password" name="senha" placeholder="Senha" />
-						<i class="glyphicon glyphicon-lock form-control-feedback"></i>
-					</div>
-					<div class="form-group">
-						<input type="hidden" name="flag" />
-						<button type="submit" class="btn btn-lg btn-success btn-block">Entrar</button>
-					</div>
-					<div class="form-group">
-						<a  style="color:#ffffff" href="#" data-toggle="modal" data-target="#esqueciModal">> <b>Esqueci minha senha</b></a>
-						<br />
-						<a style="color:#ffffff" href="#" data-toggle="modal" data-target="#cadastroModal">> <b>Solicitar acesso ao sistema</b></a>
-						<br />
-						<hr>
-						<a style="color:#ffffff" href="#" target="_blank">> <b>Guia do Usuário</b></a>
-					</div>
-				</fieldset>
-			</form>
+			<?php include_once('views/usuario/form_usuario_acessar.inc.php');?>
 		</div>
 	</div>
 	<?php
-	$inc="sim";
+
 	if(isset($_GET['flag']) and ($_GET['flag'] == md5('usuario_cadastrar') or  $_GET['flag'] == md5('senha_recuperar') or $_GET['flag'] == md5('usuario_acessar') or $_GET['flag'] == md5('logout') or $_GET['flag'] == md5('acesso_indevido'))){
 		include_once('controllers/usuario/usuario_alertas_criar.inc.php');
 	}
@@ -94,31 +67,7 @@ else if ($_SESSION['acesso'] == "liberado"){
 	}
 	?>
 	<!--inicio modalAlerta -->
-	<div class="modal modal-<?php echo $botao;?> fade" id="modalAlerta"  data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"></span></button>
-					<h4 class="modal-title" id="modalAlertaLabel">AVISO DO SISTEMA</h4>
-				</div>
-				<div class="modal-body">
-					<?php
-					echo "<b>";
-					echo $msg6.$msg0.$msg1.$msg2.$msg3.$msg4.$msg5;
-					if($lista_erro_validacao){
-						foreach ($lista_erro_validacao as $msg_lista){
-							echo $msg_lista[0] = "<p>" . $msg_lista[0] . "</p>";
-						}
-					}
-					echo "</b>";
-					?>
-				</div>
-				<div class="modal-footer">
-					<a href="index.php"><button type="button" class="btn btn-<?php echo $botao;?>">Fechar</button></a>
-				</div>
-			</div>
-		</div>
-	</div>
+	<?php include_once('views/usuario/view_usuario_alertas.inc.php');?>
 	<div class="container">
 		<!--alterarModal-->
 		<?php require_once('views/usuario/form_senha_recuperar.inc.php');?>

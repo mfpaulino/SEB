@@ -15,6 +15,9 @@ unset($_SESSION['senha_nao_enviada']);
 //usuario_acessar
 unset($_SESSION['acesso_usuario_inexistente']);
 unset($_SESSION['senha_errada']);
+unset($_SESSION['erro_captcha']);
+
+
 
 //usuario_alterar
 unset($_SESSION['alterar_rg']);
