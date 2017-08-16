@@ -22,7 +22,6 @@ if ($_SESSION['acesso'] == "nao_liberado"){
 else if ($_SESSION['acesso'] == "liberado"){
 	header(sprintf("Location:" . PAGINA_INICIAL));
 }
-
 ?>
 <!DOCTYPE html>
 <html>
