@@ -220,8 +220,9 @@ include_once(PATH . '/controllers/autenticacao/autentica.inc.php');
           <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
         </div>
       </div>
+
       <!-- search form (Optional) -->
-     <!-- <form action="#" method="get" class="sidebar-form">
+      <form action="#" method="get" class="sidebar-form">
         <div class="input-group">
           <input type="text" name="q" class="form-control" placeholder="Search...">
           <span class="input-group-btn">
@@ -229,12 +230,12 @@ include_once(PATH . '/controllers/autenticacao/autentica.inc.php');
               </button>
             </span>
         </div>
-      </form>-->
+      </form>
       <!-- /.search form -->
 
       <!-- Sidebar Menu -->
       <ul class="sidebar-menu" data-widget="tree">
-        <li class="header">...</li>
+        <li class="header">HEADER</li>
         <!-- Optionally, you can add icons to the links -->
         <li class="active"><a href="#"><i class="fa fa-link"></i> <span>Link</span></a></li>
         <li><a href="#"><i class="fa fa-link"></i> <span>Another Link</span></a></li>
@@ -253,28 +254,7 @@ include_once(PATH . '/controllers/autenticacao/autentica.inc.php');
       <!-- /.sidebar-menu -->
     </section>
     <!-- /.sidebar -->
-  </aside><!--
-		<aside class="main-sidebar">
-			<section class="sidebar">
-				<div class="user-panel">
-					<div class="pull-left image">
-						<img src="componentes/externos/dist/img/cap_paulino.jpg" class="img-circle" alt="User Image">
-					</div>
-					<div class="pull-left info">
-						<p>Cap Paulino</p>
-						<!-- Status
-						<a href="#"><i class="fa fa-circle text-success"></i> Online</a>
-					</div>
-				</div>
-				<ul class="sidebar-menu" data-widget="tree">
-					<li class="header"></li>
-					<li class="active"><a href="#"><i class="fa fa-file"></i> <span>Guia do Usuário</span></a></li>
-					<li class="active"><a href="#" data-toggle="modal" data-target="#modalTrocarSenha"><i class="fa fa-lock"></i> <span>Alterar senha</span></a></li>
-					<?php $flag = md5("logout");?>
-					<li class="active"><a href="controllers/autenticacao/logout.php?flag=<?php echo $flag;?>"><i class="fa fa-sign-out"></i> <span>Sair do sistema</span></a></li>
-				</ul>
-			</section>
-		</aside>-->
+  </aside>
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
