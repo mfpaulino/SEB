@@ -2,17 +2,16 @@
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal">&times;</button>
 				<h4 class="modal-title">Alteração de senha</h4>
 			</div>
 			<div class="modal-body">
 				<form name="form_senha_alterar" id="form_senha_alterar" action="controllers/usuario/senha_alterar.php" method="POST">
 					<div class="form-group">
-						<label for="codom" class="control-label">*Senha:</label>
+						<label for="codom" class="control-label">*Nova senha:</label>
 						<input class="form-control" type="password" name="senha_nova"  id="senha_nova"  autofocus  placeholder="nova senha" onpaste="return false;" />
 					</div>
 					<div class="form-group">
-						<label for="codom" class="control-label">*Confirme a senha:</label>
+						<label for="codom" class="control-label">*Confirmar senha:</label>
 						<input class="form-control" type="password" name="senha_nova1" id="senha_nova1" placeholder="confirmar senha" onpaste="return false;" />
 					</div>
 					<div class="modal-footer">

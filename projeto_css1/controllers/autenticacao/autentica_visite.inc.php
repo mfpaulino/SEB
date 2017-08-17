@@ -8,7 +8,9 @@ session_start();
 if (!isset($_SESSION['cpf']) or $_SESSION['acesso'] == 'liberado'){
 	header(sprintf("Location: index.php"));
 }
-
+elseif(isset($_SESSION['obriga_troca_senha'])){
+	header("Location: index.php");
+}
 else {
 	$cpf = $_SESSION['cpf'];
 	$ultimoAcesso = $_SESSION['ultimoAcesso'];

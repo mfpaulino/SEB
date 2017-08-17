@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-$codigoCaptcha = substr(md5(time()) ,0, 5);//recebe os 5 primeiros caracteres do timestemp criptografado
+$codigoCaptcha = substr(md5(time()) ,0, 8);//recebe os 5 primeiros caracteres do timestemp criptografado
 
 $_SESSION['captcha'] = $codigoCaptcha; //cria a variavel global
 

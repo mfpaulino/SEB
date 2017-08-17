@@ -72,7 +72,6 @@ if(isset($_POST['flag'])){
 	$con_update->execute();
 	$mysqli->close();
 
-	//$_SESSION['pagina'] = $pagina;
 	$flag = md5("senha_recuperar");
 	header(sprintf("Location:../../".$pagina."?flag=$flag"));
 }
