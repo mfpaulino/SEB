@@ -51,8 +51,7 @@ switch ($status_usuario){
 			<nav class="navbar navbar-static-top" role="navigation">
 				<section class="content-header barra-top" >
 					<h1>
-						<strong>SISTEMA DE AUDITORIA INTERNA DO EXÉRCITO</strong>
-						<small></small>
+						<strong>SISTEMA DE AUDITORIA DO EXÉRCITO</strong>
 					</h1>
 				</section>
 			</nav>
@@ -64,10 +63,10 @@ switch ($status_usuario){
 					<div class="pull-left image">
 						<img src="componentes/externos/dist/img/cap_paulino.jpg" class="img-circle" alt="User Image">
 					</div>
-					<div class="pull-left info">
-						<p>Cap Paulino</p>
-						<!-- Status -->
-						<a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+					<div id="status_sessao" class="pull-left info">
+						<!--<p>Cap Paulino</p>
+						<!-- Status
+						<a href="#"><i class="fa fa-circle text-success"></i> Online</a>-->
 					</div>
 				</div>
 				<ul class="sidebar-menu" data-widget="tree">
@@ -109,6 +108,7 @@ switch ($status_usuario){
 						<?php include_once('views/usuario/view_usuario_alertas.inc.php');?>
 						<?php if(isset($_SESSION['alterar_senha_logout'])){session_destroy();}//termina a sessao se alterar a senha?>
 
+						<small><span id="contador"></span></small>
 					</div>
 				</div>
 			</section>
@@ -193,6 +193,24 @@ switch ($status_usuario){
 					}
 				})
 			}
+		});
+	</script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+
+			// Requisicao AJAX
+			var requisicao = function(){
+				$.ajax({
+					url: "status_sessao.inc.php"
+				}).done(function(resultado){
+					// Exibe o resultado no elemento com ID contador
+					$("#status_sessao").html(resultado);
+				});
+			};
+
+			// Executa a requisicao com intervalo de 100ms
+			setInterval(requisicao, 100);
+
 		});
 	</script>
 	<?php
