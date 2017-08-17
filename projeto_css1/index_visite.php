@@ -46,7 +46,7 @@ switch ($status_usuario){
 		<header class="main-header">
 			<a href="index2.html" class="logo">
 				<span class="logo-mini"><b><-></b></span>
-				<span class="logo-lg barra-top"><b>SIAUDI</b>/EB</span>
+				<span class="logo-lg barra-top"><b>SIAUD</b>-EB</span>
 			</a>
 			<nav class="navbar navbar-static-top" role="navigation">
 				<section class="content-header barra-top" >
@@ -59,8 +59,19 @@ switch ($status_usuario){
 		</header>
 		<!--Início Menu Lateral-->
 		<aside class="main-sidebar">
-			<section class="sidebar form-login">
+			<section class="sidebar">
+				<div class="user-panel">
+					<div class="pull-left image">
+						<img src="componentes/externos/dist/img/cap_paulino.jpg" class="img-circle" alt="User Image">
+					</div>
+					<div class="pull-left info">
+						<p>Cap Paulino</p>
+						<!-- Status -->
+						<a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+					</div>
+				</div>
 				<ul class="sidebar-menu" data-widget="tree">
+					<li class="active"><a href="#">Home</a></li>
 					<li><a href="#"><i class="fa fa-file"></i> <span>Guia do Usuário</span></a></li>
 					<li><a href="#" data-toggle="modal" data-target="#modalTrocarSenha"><i class="fa fa-lock"></i> <span>Alterar senha</span></a></li>
 					<?php $flag = md5("logout");?>
