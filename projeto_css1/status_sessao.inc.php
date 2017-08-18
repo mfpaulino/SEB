@@ -21,7 +21,7 @@ if(isset($_SESSION['cpf'])){?>
 else { ?>
 	<a href="#"><i class="fa fa-circle text-danger"></i> Offline</a>
 	<p></p>
-	<p><a href="index.php"><span style="color:#ffffff;"><u>Novo Login</u></span></a></p>
+	<p><a href="index.php"><span style="color:#ffffff;"><u>Logar novamente</u></span></a></p>
 
 	<script>
 		$(document).ready(function(){

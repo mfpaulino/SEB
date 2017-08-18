@@ -1,7 +1,7 @@
 <?php
 //constantes.inc.php
 
-define('TEMPO_MAX_INATIVIDADE', 3600);//tempo em segundos
+define('TEMPO_MAX_INATIVIDADE', 30);//tempo em segundos
 define('TITULO','SIAUD-EB');
 define('PAGINA_INICIAL','index_user.php');
 define('PAGINA_VISITANTE','index_visite.php');
