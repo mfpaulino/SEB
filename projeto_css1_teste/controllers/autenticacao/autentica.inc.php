@@ -7,7 +7,10 @@
 session_start();
 
 if (!isset($_SESSION['cpf']) or $_SESSION['acesso'] == "nao_liberado"){
-	header(sprintf("Location: index.php"));
+	header("Location: index.php");
+}
+elseif(isset($_SESSION['obriga_troca_senha'])){
+	header("Location: index.php");
 }
 else {
 	$cpf = $_SESSION['cpf'];
@@ -21,7 +24,7 @@ else {
 
 		$flag = md5("msg_inatividade");
 
-		header(sprintf("Location: index.php?flag=$flag"));
+		header("Location: index.php?flag=$flag");
 	}
 	else {
 		$_SESSION["ultimoAcesso"] = $agora; //renovo o ultimo acesso

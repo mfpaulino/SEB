@@ -8,13 +8,16 @@ session_start();
 if (!isset($_SESSION['cpf']) or $_SESSION['acesso'] == 'liberado'){
 	header(sprintf("Location: index.php"));
 }
-
+elseif(isset($_SESSION['obriga_troca_senha'])){
+	header("Location: index.php");
+}
 else {
 	$cpf = $_SESSION['cpf'];
 	$ultimoAcesso = $_SESSION['ultimoAcesso'];
 
 	$agora = date("Y-m-d H:i:s");
 	$tempo_inatividade = (strtotime($agora)-strtotime($ultimoAcesso));
+	//$_SESSION['tempo_inatividade'] = $tempo_inatividade;
 
 	if($tempo_inatividade >= TEMPO_MAX_INATIVIDADE){ // TEMPO_SESSAO vem de constantes.inc.php
 		session_destroy();
