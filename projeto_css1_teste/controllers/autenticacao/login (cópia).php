@@ -6,11 +6,6 @@ if(isset($_POST['flag'])){
 
 	session_start();
 
-	if(isset($_SESSION['obriga_troca_senha'])){
-		//unset($_SESSION['cpf']);
-		unset($_SESSION['obriga_troca_senha']);
-	}
-
 	require_once(PATH .'/componentes/internos/php/bcript.inc.php');
 
 	$cpf 	 = isset($_POST['cpf']) ? $_POST['cpf']: "";
@@ -42,11 +37,7 @@ if(isset($_POST['flag'])){
 			$_SESSION['acesso'] = "nao_liberado";
 		}
 	}
-	if($_SESSION['cpf'] == $senha){
-		$_SESSION['obriga_troca_senha'] = "sim";
-		header("Location:../../index.php");
-	}
-	else if ($_SESSION['acesso'] == "nao_liberado"){
+	if ($_SESSION['acesso'] == "nao_liberado"){
 
 		header("Location:../../". PAGINA_VISITANTE);
 	}

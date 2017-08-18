@@ -11,16 +11,19 @@
 $inc 	= "sim";
 $pagina = strtr(end(explode('/', $_SERVER['PHP_SELF'])),'?', true); //será usada no botao de fechar dos alertas
 
-include_once('config.inc.php');
+require_once('config.inc.php');
 
 session_start();
 
-if ($_SESSION['acesso'] == "nao_liberado"){
+if(isset($_SESSION['obriga_troca_senha'])){
+	include_once('views/usuario/form_senha_alterar.inc.php');
+}
+else if ($_SESSION['acesso'] == "nao_liberado"){
 
-	header(sprintf("Location:" . PAGINA_VISITANTE));
+	header("Location:" . PAGINA_VISITANTE);
 }
 else if ($_SESSION['acesso'] == "liberado"){
-	header(sprintf("Location:" . PAGINA_INICIAL));
+	header("Location:" . PAGINA_INICIAL);
 }
 ?>
 <!DOCTYPE html>
@@ -63,7 +66,7 @@ else if ($_SESSION['acesso'] == "liberado"){
 	</div>
 	<?php
 
-	if(isset($_GET['flag']) and ($_GET['flag'] == md5('usuario_cadastrar') or  $_GET['flag'] == md5('senha_recuperar') or $_GET['flag'] == md5('usuario_acessar') or $_GET['flag'] == md5('logout') or $_GET['flag'] == md5('acesso_indevido'))){
+	if(isset($_GET['flag']) and ($_GET['flag'] == md5('usuario_cadastrar') or  $_GET['flag'] == md5('senha_alterar') or  $_GET['flag'] == md5('senha_recuperar') or $_GET['flag'] == md5('usuario_acessar') or $_GET['flag'] == md5('logout') or $_GET['flag'] == md5('acesso_indevido'))){
 		include_once('controllers/usuario/usuario_alertas_criar.inc.php');
 	}
 	else {
@@ -72,11 +75,12 @@ else if ($_SESSION['acesso'] == "liberado"){
 	?>
 	<!--inicio modalAlerta -->
 	<?php include_once('views/usuario/view_usuario_alertas.inc.php');?>
+	<?php if(isset($_SESSION['alterar_senha_logout'])){session_destroy();}//termina a sessao se alterar a senha?>
 	<div class="container">
 		<!--alterarModal-->
-		<?php require_once('views/usuario/form_senha_recuperar.inc.php');?>
+		<?php include_once('views/usuario/form_senha_recuperar.inc.php');?>
 		<!--cadastroModal-->
-		<?php require_once('views/usuario/form_usuario_cadastrar.inc.php');?>
+		<?php include_once('views/usuario/form_usuario_cadastrar.inc.php');?>
 	</div>
 	<?php //include_once('componentes/internos/php/rodape.inc.php');?>
 	<script src="componentes/externos/bower_components/jquery/dist/jquery.min.js"></script>
@@ -97,7 +101,15 @@ else if ($_SESSION['acesso'] == "liberado"){
 		})
 	</script>
 	<?php
-	if ($msg <> ""){ ?>
+	if(isset($_SESSION['obriga_troca_senha'])) {?>
+		<script>
+			$(document).ready(function(){
+				$('#modalTrocarSenha').modal('show');
+			});
+		</script>
+	<?php } ?>
+	<?php
+	if ($msg <> ""){?>
 		<script>
 			$(document).ready(function(){
 				$('#modalAlerta').modal('show');

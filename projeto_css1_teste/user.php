@@ -9,6 +9,8 @@
 * Exibe na tela alertas diversos vindos do script 'controllers/usuario/usuario_alertas_criar.inc.php'      *
 * **********************************************************************************************************/
 $inc = "sim";
+$pagina = strtr(end(explode('/', $_SERVER['PHP_SELF'])),'?', true);
+
 include_once('config.inc.php');
 include_once(PATH . '/controllers/autenticacao/autentica.inc.php');
 ?>
@@ -25,7 +27,7 @@ include_once(PATH . '/controllers/autenticacao/autentica.inc.php');
   <link rel="stylesheet" href="componentes/externos/bower_components/Ionicons/css/ionicons.min.css">
   <link rel="stylesheet" href="componentes/externos/dist/css/AdminLTE.css">
   <link rel="stylesheet" href="componentes/externos/dist/css/skins/skin-green.css">
-  <link rel="stylesheet" href="componentes/internos/css/siaudi-.css">
+  <link rel="stylesheet" href="componentes/internos/css/siaudi.css">
 </head>
 <body class="hold-transition skin-green sidebar-mini">
 <?php include_once('componentes/internos/php/cabecalho.inc.php');?>
@@ -280,6 +282,9 @@ include_once(PATH . '/controllers/autenticacao/autentica.inc.php');
 		?>
 		<!-- inicio alterar_senha -->
 		<?php include_once('views/usuario/form_senha_alterar.inc.php');?>
+		<!-- Inicio modalAlerta-->
+		<?php include_once('views/usuario/view_usuario_alertas.inc.php');?>
+		<?php if(isset($_SESSION['alterar_senha_logout'])){session_destroy();}//termina a sessao se alterar a senha?>
 		<!-- Incio modalAlerta -->
 		<div class="modal modal-<?php echo $botao;?> fade" id="modalAlerta"  data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 			<div class="modal-dialog" role="document">

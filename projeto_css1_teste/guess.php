@@ -46,21 +46,31 @@ switch ($status_usuario){
 		<header class="main-header">
 			<a href="index2.html" class="logo">
 				<span class="logo-mini"><b><-></b></span>
-				<span class="logo-lg barra-top"><b>SIAUDI</b>/EB</span>
+				<span class="logo-lg barra-top"><b>SIAUD</b>-EB</span>
 			</a>
 			<nav class="navbar navbar-static-top" role="navigation">
 				<section class="content-header barra-top" >
 					<h1>
-						<strong>SISTEMA DE AUDITORIA INTERNA DO EXÉRCITO</strong>
-						<small></small>
+						<strong>SISTEMA DE AUDITORIA DO EXÉRCITO</strong>
 					</h1>
 				</section>
 			</nav>
 		</header>
 		<!--Início Menu Lateral-->
 		<aside class="main-sidebar">
-			<section class="sidebar form-login">
+			<section class="sidebar">
+				<div class="user-panel">
+					<div class="pull-left image">
+						<img src="<?php echo HOME;?>componentes/externos/dist/img/cap_paulino.jpg" class="img-circle" alt="User Image">
+					</div>
+					<div class="pull-left info">
+						<?php echo $posto_usuario . " " . $nome_guerra_usuario;?>
+					</div>
+					<div id="status_sessao" class="pull-left info">
+					</div>
+				</div>
 				<ul class="sidebar-menu" data-widget="tree">
+					<li class="active"><a href="#">Home</a></li>
 					<li><a href="#"><i class="fa fa-file"></i> <span>Guia do Usuário</span></a></li>
 					<li><a href="#" data-toggle="modal" data-target="#modalTrocarSenha"><i class="fa fa-lock"></i> <span>Alterar senha</span></a></li>
 					<?php $flag = md5("logout");?>
@@ -98,6 +108,7 @@ switch ($status_usuario){
 						<?php include_once('views/usuario/view_usuario_alertas.inc.php');?>
 						<?php if(isset($_SESSION['alterar_senha_logout'])){session_destroy();}//termina a sessao se alterar a senha?>
 
+						<small><span id="contador"></span></small>
 					</div>
 				</div>
 			</section>
@@ -182,6 +193,24 @@ switch ($status_usuario){
 					}
 				})
 			}
+		});
+	</script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+
+			// Requisicao AJAX
+			var requisicao = function(){
+				$.ajax({
+					url: "status_sessao.inc.php"
+				}).done(function(resultado){
+					// Exibe o resultado no elemento com ID contador
+					$("#status_sessao").html(resultado);
+				});
+			};
+
+			// Executa a requisicao com intervalo de 100ms
+			setInterval(requisicao, 100);
+
 		});
 	</script>
 	<?php
