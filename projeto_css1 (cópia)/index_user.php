@@ -211,14 +211,14 @@ include_once(PATH . '/controllers/autenticacao/autentica.inc.php');
 
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel">
-        <div class="pull-left image">
-          <img src="componentes/externos/dist/img/cap_paulino.jpg" class="img-circle" alt="User Image">
-        </div>
-        <div class="pull-left info">
-          <p>Cap Paulino</p>
-          <!-- Status -->
-          <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
-        </div>
+			<div class="pull-left image">
+				<img src="componentes/externos/dist/img/cap_paulino.jpg" class="img-circle" alt="User Image">
+			</div>
+			<div id="status_sessao" class="pull-left info">
+				<p><?php echo $posto_usuario . " " . $nome_guerra_usuario;?></p>
+				<!-- Status-->
+				<a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+			</div>
       </div>
 
       <!-- search form (Optional) -->
@@ -282,6 +282,8 @@ include_once(PATH . '/controllers/autenticacao/autentica.inc.php');
 		?>
 		<!-- inicio alterar_senha -->
 		<?php include_once('views/usuario/form_senha_alterar.inc.php');?>
+		<!-- inicio alerta FimSessao -->
+		<?php include_once('views/usuario/view_usuario_alerta_sessao.inc.php');?>
 		<!-- Inicio modalAlerta-->
 		<?php include_once('views/usuario/view_usuario_alertas.inc.php');?>
 		<?php if(isset($_SESSION['alterar_senha_logout'])){session_destroy();}//termina a sessao se alterar a senha?>
@@ -462,6 +464,7 @@ include_once(PATH . '/controllers/autenticacao/autentica.inc.php');
 <!-- AdminLTE App -->
 <script src="componentes/externos/dist/js/adminlte.min.js"></script>
 <script src="controllers/usuario/senha_alterar.js"></script>
+<script src="componentes/internos/js/status_sessao.js"></script>
 
 	<script type="text/javascript">
 		$('#modalTrocarOM').on('show.bs.modal', function (event) {
@@ -501,7 +504,24 @@ include_once(PATH . '/controllers/autenticacao/autentica.inc.php');
 			}
 		});
 	</script>
+	<!--<script type="text/javascript">
+		$(document).ready(function(){
 
+			// Requisicao AJAX
+			var requisicao = function(){
+				$.ajax({
+					url: "status_sessao.inc.php"
+				}).done(function(resultado){
+					// Exibe o resultado no elemento com ID contador
+					$("#status_sessao").html(resultado);
+				});
+			};
+
+			// Executa a requisicao com intervalo de 100ms
+			setInterval(requisicao, 10000);
+
+		});
+	</script>-->
 	<?php
 	if ($msg <> ""){?>
 		<script>

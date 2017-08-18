@@ -64,9 +64,9 @@ switch ($status_usuario){
 						<img src="componentes/externos/dist/img/cap_paulino.jpg" class="img-circle" alt="User Image">
 					</div>
 					<div id="status_sessao" class="pull-left info">
-						<!--<p>Cap Paulino</p>
-						<!-- Status
-						<a href="#"><i class="fa fa-circle text-success"></i> Online</a>-->
+						<p><?php echo $posto_usuario . " " . $nome_guerra_usuario;?></p>
+						<!-- Status-->
+						<a href="#"><i class="fa fa-circle text-success"></i> Online</a>
 					</div>
 				</div>
 				<ul class="sidebar-menu" data-widget="tree">
@@ -104,6 +104,8 @@ switch ($status_usuario){
 						<?php include_once('views/usuario/form_unidade_alterar.inc.php');?>
 						<!-- inicio modalTrocarSenha -->
 						<?php include_once('views/usuario/form_senha_alterar.inc.php'); ?>
+						<!-- inicio alerta FimSessao -->
+						<?php include_once('views/usuario/view_usuario_alerta_sessao.inc.php');?>
 						<!-- Inicio modalAlerta-->
 						<?php include_once('views/usuario/view_usuario_alertas.inc.php');?>
 						<?php if(isset($_SESSION['alterar_senha_logout'])){session_destroy();}//termina a sessao se alterar a senha?>
@@ -195,7 +197,7 @@ switch ($status_usuario){
 			}
 		});
 	</script>
-	<script type="text/javascript">
+	<!--<script type="text/javascript">
 		$(document).ready(function(){
 
 			// Requisicao AJAX
@@ -209,10 +211,10 @@ switch ($status_usuario){
 			};
 
 			// Executa a requisicao com intervalo de 100ms
-			setInterval(requisicao, 100);
+			setInterval(requisicao, 10000);
 
 		});
-	</script>
+	</script>-->
 	<?php
 	if ($msg <> ""){?>
 		<script>
