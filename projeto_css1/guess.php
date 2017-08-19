@@ -82,7 +82,8 @@ switch ($status_usuario){
 		<div class="content-wrapper">
 			<section class="content container-fluid">
 				<div class="page-header">
-					<h3>Informações de usuário: <u> &nbsp;<?php echo $posto_usuario . " " . $nome_guerra_usuario . "</u>&nbsp;&nbsp;(".$sigla_usuario.")";?></h3>
+					<h4 class="text-center">INFORMAÇÕES DO USUÁRIO</h4>
+					<!--<h3 class="text-center">INFORMAÇÕES DO USUÁRIO<u> &nbsp;<?php echo $posto_usuario . " " . $nome_guerra_usuario . "</u>&nbsp;&nbsp;(".$sigla_usuario.")";?></h3>-->
 				</div>
 				<div class="row">
 					<div class="col-md-12">

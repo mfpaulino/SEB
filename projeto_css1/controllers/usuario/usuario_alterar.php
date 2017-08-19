@@ -3,12 +3,22 @@ $inc = "sim";
 include_once('../../config.inc.php');
 
 if(isset($_POST['flag'])){
+	$pagina 	 = $_POST['flag1'];
 
-	require_once(PATH . '/controllers/autenticacao/autentica.inc.php');
+	if ($pagina == PAGINA_VISITANTE ){
+
+		require_once(PATH . '/controllers/autenticacao/autentica_visite.inc.php');
+	}
+	else{
+
+		require_once(PATH . '/controllers/autenticacao/autentica.inc.php');
+	}
+
+	require_once(PATH . '/controllers/autenticacao/autentica_visite.inc.php');
 	require_once(PATH . '/componentes/internos/php/validaForm.class.php');
 	require_once(PATH . '/componentes/internos/php/funcoes.inc.php');
 
-	$pagina 	 = $_POST['flag1'];
+
 
 	$rg 		 = isset($_POST['rg']) ? mysqli_real_escape_string($mysqli, $_POST['rg']) : $rg_usuario;
 	$id_posto 	 = isset($_POST['posto']) ? mysqli_real_escape_string($mysqli, $_POST['posto']) : $id_posto_usuario;

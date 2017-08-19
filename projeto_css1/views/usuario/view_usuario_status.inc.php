@@ -2,12 +2,14 @@
 	<thead>
 		<tr>
 			<th>CPF</th>
+			<th>UNIDADE</th>
 			<th>STATUS</th>
 		</tr>
 	</thead>
 	<tbody>
 		<tr>
 			<td><?php echo $cpf; ?></td>
+			<td><?php echo $sigla_usuario; ?></td>
 			<td><?php echo $status; ?>
 			<td>
 				<!--botao Visualizar-->

@@ -186,7 +186,12 @@ include_once(PATH . '/controllers/autenticacao/autentica.inc.php');
               <!-- Menu Footer-->
               <li class="user-footer">
                 <div class="pull-left">
-                  <a href="#" data-toggle="modal" data-target="#modalTrocarOM" data-om="<?php echo $sigla_usuario; ?>" class="btn btn-primary btn-flat">Trocar OM</a>
+                  <a href="#"><button type="button" class="btn btn-xs btn-warning"
+					data-toggle="modal"
+					data-target="#modalTrocarUnidade"
+					data-unidade="<?php echo $sigla_usuario; ?>">
+					Alterar Unidade
+				</button></a>
                 </div>
                 <div class="pull-right">
 					<?php $flag = md5("logout");?>
@@ -282,6 +287,8 @@ include_once(PATH . '/controllers/autenticacao/autentica.inc.php');
 		?>
 		<!-- inicio alterar_senha -->
 		<?php include_once('views/usuario/form_senha_alterar.inc.php');?>
+		<!-- Inicio modalTrocarUnidade -->
+		<?php include_once('views/usuario/form_unidade_alterar.inc.php');?>
 		<!-- inicio alerta Sessao -->
 		<?php include_once('views/usuario/view_usuario_alerta_sessao.inc.php');?>
 		<!-- inicio alerta FimSessao -->
@@ -289,49 +296,6 @@ include_once(PATH . '/controllers/autenticacao/autentica.inc.php');
 		<!-- Inicio modalAlerta-->
 		<?php include_once('views/usuario/view_usuario_alertas.inc.php');?>
 		<?php if(isset($_SESSION['alterar_senha_logout'])){session_destroy();}//termina a sessao se alterar a senha?>
-		<!-- Inicio modalTrocarOM -->
-		<div class="modal fade" id="modalTrocarOM" tabindex="-1" role="dialog" aria-labelledby="modalTrocarOMLabel">
-			<div class="modal-dialog" role="document">
-				<div class="modal-content">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-						<h4 class="modal-title" id="modalTrocarOMLabel"></h4>
-					</div>
-					<div class="modal-body">
-						<form name="form_altera_om" id="form_altera_om" method="POST" action="controllers/usuario/usuario_alterar.php" enctype="multipart/form-data" >
-							<div class="form-group">
-								<label for="unidade_ci" class="control-label">*Unidade Controle Interno:</label>
-								<?php include('listas/select_unid_ci.inc.php');?>
-							</div>
-							<div class="form-group">
-								<label for="codom" class="control-label">*Unidade usuário:</label>
-								<select class="form-control" name="codom" id="codom">
-									<option value="">Aguardando Unidade de Controle Interno...</option>
-								</select>
-							</div>
-							<div class="modal-footer">
-								<input name="flag" type="hidden" value="<?php $codom_usuario;?>"/>
-								<button type="submit" class="btn btn-success"
-									data-toggle="confirmation"
-									data-placement="left"
-									data-btn-ok-label="Continuar"
-									data-btn-ok-icon="glyphicon glyphicon-share-alt"
-									data-btn-ok-class="btn-success"
-									data-btn-cancel-label="Parar"
-									data-btn-cancel-icon="glyphicon glyphicon-ban-circle"
-									data-btn-cancel-class="btn-danger"
-									data-title="Confirma alteração da Unidade?"
-									data-content="">
-								Enviar
-								</button>
-								<button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-								<input type="hidden" name="flag1" value="<?php echo $pagina;?>" />
-							</div>
-						</form>
-					</div>
-				</div>
-			</div>
-		</div>
       <!--------------------------
         | Your Page Content Here |
         -------------------------->
@@ -436,14 +400,22 @@ include_once(PATH . '/controllers/autenticacao/autentica.inc.php');
 <script src="componentes/externos/dist/js/adminlte.min.js"></script>
 <script src="controllers/usuario/senha_alterar.js"></script>
 <script src="componentes/internos/js/status_sessao.js"></script>
-
+	<script>
+		//script para receber a selecao da unidade de controle interno e atualizar o 2º select
+		$(document).ready(function(){
+			$("select[name=unidade_ci]").change(function(){
+				$("select[name=codom]").html('<option value="">Carregando...</option>');
+				$.post("listas/select_unidade_usuario.inc.php", {unidade_ci:$(this).val()},function(valor){$("select[name=codom]").html(valor);})
+			 })
+		 })
+	</script>
 	<script type="text/javascript">
-		$('#modalTrocarOM').on('show.bs.modal', function (event) {
+		$('#modalTrocarUnidade').on('show.bs.modal', function (event) {
 			var button = $(event.relatedTarget) // Button that triggered the modal
-			var om = button.data('om')
+			var unidade = button.data('unidade')
 			var modal = $(this)
-			modal.find('.modal-title').text('Unidade atual: ' + om )
-			modal.find('#om').val(om)
+			modal.find('.modal-title').text('Unidade atual: ' + unidade )
+			modal.find('#unidade').val(unidade)
 		})
 	</script>
 	<script>

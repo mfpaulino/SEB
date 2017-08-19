@@ -9,14 +9,23 @@ session_start();
 
 $inc = "sim";
 include_once('../../config.inc.php');
-include_once(PATH . '/componentes/internos/php/bcript.inc.php');//arquivo para criptografia
-include_once(PATH . '/componentes/internos/php/validaForm.class.php'); //classe para validacao de dados
 
 if(isset($_POST['flag'])){
 
+	include_once(PATH . '/componentes/internos/php/bcript.inc.php');//arquivo para criptografia
+	include_once(PATH . '/componentes/internos/php/validaForm.class.php'); //classe para validacao de dados
+
 	$cpf 		 = $_SESSION['cpf'];
 	$pagina 	 = $_POST['flag1'];
-	//$pagina = $_SESSION['pagina'];
+
+	if ($pagina == PAGINA_VISITANTE ){
+
+		require_once(PATH . '/controllers/autenticacao/autentica_visite.inc.php');
+	}
+	else{
+
+		require_once(PATH . '/controllers/autenticacao/autentica.inc.php');
+	}
 
 	$senha 		 = isset($_POST['senha_nova'])  ? mysqli_real_escape_string($mysqli, $_POST['senha_nova']) : "";
 	$senha1 	 = isset($_POST['senha_nova1']) ? mysqli_real_escape_string($mysqli, $_POST['senha_nova1']) : "";
