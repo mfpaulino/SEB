@@ -16,7 +16,7 @@
 				<button type="button" class="btn btn-xs btn-primary"
 					data-toggle="modal"
 					data-target="#modalVisualizar<?php echo $cpf; ?>">
-					Visualizar
+					Visualizar perfil
 				</button>
 				<!--botao Alterar Dados-->
 				<button type="button" class="btn btn-xs btn-warning"
@@ -32,7 +32,7 @@
 					data-ritex="<?php echo $ritex_usuario; ?>"
 					data-celular="<?php echo $celular_usuario; ?>"
 					data-unidade="<?php echo $sigla_usuario; ?>">
-					Alterar dados
+					Alterar perfil
 				</button>
 				<!--botao Alterar Unidade-->
 				<button type="button" class="btn btn-xs btn-warning"
@@ -41,9 +41,15 @@
 					data-unidade="<?php echo $sigla_usuario; ?>">
 					Alterar Unidade
 				</button>
+				<!--botao Alterar Senha-->
+				<button type="button" class="btn btn-xs btn-warning"
+					data-toggle="modal"
+					data-target="#modalTrocarSenha">
+					Alterar Senha
+				</button>
 				<!--botao Excluir cadastro-->
 				<?php $flag = md5("usuario_excluir");?>
-				<a href="controllers/usuario/usuario_excluir.php?flag=<?php echo $flag; ?>">
+				<a href="controllers/usuario/usuario_excluir.php?flag=<?php echo $flag; ?>&flag1=<?php echo $pagina;?>">
 				<button type="button" class="btn btn-xs btn-danger" data-toggle="confirmation"
 					data-placement="left"
 					data-btn-ok-label="Continuar"

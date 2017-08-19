@@ -105,7 +105,6 @@ if ($inc == "sim"){
 		else{
 			unset($_SESSION['logout']);
 		}
-		/*
 
 		if($flag == md5("usuario_excluir")){
 
@@ -120,7 +119,6 @@ if ($inc == "sim"){
 			unset($_SESSION['usuario_excluir_sucesso']);
 			unset($_SESSION['usuario_excluir_erro']);
 		}
-		* */
 
 		$msg="x";
 

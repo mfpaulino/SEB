@@ -2,15 +2,19 @@
 //altera_usuario.php
 $inc = "sim";
 require_once('../../config.inc.php');
-require_once(PATH . '/controllers/autenticacao/autentica_visite.inc.php');
 
 if(isset($_GET['flag']) and $_GET['flag'] == md5("usuario_excluir")){
 
-	$pagina = $_GET['pagina'];
+	$pagina = $_GET['flag1'];
 
-	session_start();
+	if ($pagina == PAGINA_VISITANTE){
 
-	$cpf = $_SESSION['cpf'];
+		require_once(PATH . '/controllers/autenticacao/autentica_visite.inc.php');
+	}
+	else{
+
+		require_once(PATH . '/controllers/autenticacao/autentica.inc.php');
+	}
 
 	$con_del   = $mysqli->query("DELETE FROM usuarios WHERE cpf = '$cpf'");
 	$con_teste = $mysqli->query("SELECT cpf FROM usuarios WHERE cpf = '$cpf'");

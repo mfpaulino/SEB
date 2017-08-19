@@ -72,9 +72,9 @@ switch ($status_usuario){
 				<ul class="sidebar-menu" data-widget="tree">
 					<li class="active"><a href="#">Home</a></li>
 					<li><a href="#"><i class="fa fa-file"></i> <span>Guia do Usuário</span></a></li>
-					<li><a href="#" data-toggle="modal" data-target="#modalTrocarSenha"><i class="fa fa-lock"></i> <span>Alterar senha</span></a></li>
+					<!--<li><a href="#" data-toggle="modal" data-target="#modalTrocarSenha"><i class="fa fa-lock"></i> <span>Alterar senha</span></a></li>-->
 					<?php $flag = md5("logout");?>
-					<li><a href="controllers/autenticacao/logout.php?flag=<?php echo $flag;?>"><i class="fa fa-sign-out"></i> <span>Sair do sistema</span></a></li>
+					<li><a href="controllers/autenticacao/logout.php?flag=<?php echo $flag;?>"><i class="fa fa-sign-out"></i> <span>Sair</span></a></li>
 				</ul>
 			</section>
 		</aside>
@@ -83,7 +83,6 @@ switch ($status_usuario){
 			<section class="content container-fluid">
 				<div class="page-header">
 					<h4 class="text-center">INFORMAÇÕES DO USUÁRIO</h4>
-					<!--<h3 class="text-center">INFORMAÇÕES DO USUÁRIO<u> &nbsp;<?php echo $posto_usuario . " " . $nome_guerra_usuario . "</u>&nbsp;&nbsp;(".$sigla_usuario.")";?></h3>-->
 				</div>
 				<div class="row">
 					<div class="col-md-12">
@@ -98,7 +97,7 @@ switch ($status_usuario){
 						}
 						?>
 						<!-- Inicio modalVisualizar-->
-						<?php include_once('views/usuario/view_usuario_dados.inc.php');?>
+						<?php include_once('views/usuario/view_usuario_perfil.inc.php');?>
 						<!-- Inicio modalEditar -->
 						<?php include_once('views/usuario/form_usuario_alterar.inc.php');?>
 						<!-- Inicio modalTrocarUnidade -->

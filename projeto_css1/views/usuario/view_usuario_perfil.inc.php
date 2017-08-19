@@ -6,7 +6,7 @@
 				<h4 class="modal-title text-center" id="modalVisualizarLabel">Dados do usuário</h4>
 			</div>
 			<div class="modal-body">
-				<p><b>Unidade:</b> <?php echo $sigla_usuario; ?></p>
+				<!--<p><b>Unidade:</b> <?php echo $sigla_usuario; ?></p>-->
 				<p><b>CPF:</b> <?php echo $cpf; ?></p>
 				<p><b>RG:</b> <?php echo $rg_usuario; ?></p>
 				<p><b>Posto/grad:</b> <?php echo $posto_usuario; ?></p>
