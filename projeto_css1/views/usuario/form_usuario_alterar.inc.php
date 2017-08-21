@@ -14,15 +14,6 @@
 					</div>
 					<div class="col-sm-8">
 						<div class="row">
-							<!-- Text input-->
-							<div class="col-sm-12">
-								<div class="form-group">
-									<label for="posto">Perfil*</label>
-									<?php //include_once('listas/select_perfil.inc.php');?>
-								</div>
-							</div>
-						</div>
-						<div class="row">
 							<!-- CPF input-->
 							<div class="col-sm-6">
 								<div class="form-group">
@@ -83,6 +74,15 @@
 								<div class="form-group">
 									<label for="celular">Celular</label>
 									<input name="celular" id="celular" type="text" class="form-control" />
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<!-- Text input-->
+							<div class="col-sm-12">
+								<div class="form-group">
+									<label for="posto">Perfil*</label>
+									<?php include_once('listas/select_perfil.inc.php');?>
 								</div>
 							</div>
 						</div>
