@@ -39,6 +39,7 @@ switch ($status_usuario){
 	<link rel="stylesheet" href="componentes/externos/dist/css/AdminLTE.css">
 	<link rel="stylesheet" href="componentes/externos/dist/css/skins/skin-green.css">
 	<link rel="stylesheet" href="componentes/internos/css/siaudi.css">
+	<link rel="stylesheet" href="componentes/externos/bower_components/bootstrap-fileinput/css/fileinput.min.css">
 </head>
 <body class="hold-transition skin-green sidebar-mini">
 	<?php include_once(PATH . '/componentes/internos/php/cabecalho.inc.php');?>
@@ -127,6 +128,8 @@ switch ($status_usuario){
 	<script src="controllers/usuario/usuario_alterar.js"></script>
 	<script src="controllers/usuario/senha_alterar.js"></script>
 	<script src="componentes/internos/js/status_sessao.js"></script>
+    <script src="componentes/externos/bower_components/bootstrap-fileinput/js/fileinput.js" type="text/javascript"></script>
+    <script src="componentes/externos/bower_components/bootstrap-fileinput/js/locales/pt-BR.js" type="text/javascript"></script>
 	<script type="text/javascript">
 		$('#modalEditar').on('show.bs.modal', function (event) {
 			var button = $(event.relatedTarget) // Button that triggered the modal
@@ -198,6 +201,25 @@ switch ($status_usuario){
 					}
 				})
 			}
+		});
+	</script>
+	<script>
+		var btnCust = '';
+		$("#avatar-2").fileinput({
+			overwriteInitial: true,
+			maxFileSize: 1500,
+			showClose: false,
+			showCaption: false,
+			showBrowse: false,
+			browseOnZoneClick: true,
+			removeLabel: 'cancelar',
+			removeIcon: '<i class="glyphicon glyphicon-remove-"></i>',
+			removeTitle: 'Excluir imagem',
+			elErrorContainer: '#kv-avatar-errors-2',
+			msgErrorClass: 'alert alert-block alert-danger',
+			defaultPreviewContent: '<img src="componentes/externos/bower_components/bootstrap-fileinput/img/default_avatar_male.jpg" alt="Sua foto" title="Sua foto" style="width:160px"><h6 class="text-muted">Clique para adicionar<br />(Tam máx: 1500Kb)</h6>',
+			layoutTemplates: {main2: '{preview} ' +  btnCust + ' {remove} {browse}'},
+			allowedFileExtensions: ["jpg", "png", "gif"]
 		});
 	</script>
 	<?php

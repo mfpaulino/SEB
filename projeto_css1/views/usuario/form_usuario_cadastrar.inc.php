@@ -122,13 +122,14 @@
 								</div>
 							</div>
 						</div>
-					<!--Hidden input -->
-					<input  type="hidden" name="flag" />
-					<!-- Button (Double) -->
-					<div class="modal-footer">
-						<div class="form-group">
-							<button class="btn btn-success" type="submit">Enviar</button>
-							<button class="btn btn-danger"  type="button" data-dismiss="modal">Cancelar</button>
+						<!--Hidden input -->
+						<input  type="hidden" name="flag" />
+						<!-- Button (Double) -->
+						<div class="modal-footer">
+							<div class="form-group">
+								<button class="btn btn-success" type="submit">Enviar</button>
+								<button class="btn btn-danger"  type="button" data-dismiss="modal">Cancelar</button>
+							</div>
 						</div>
 					</div>
 				</form>
