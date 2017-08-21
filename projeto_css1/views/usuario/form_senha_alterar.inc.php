@@ -1,7 +1,8 @@
 <div class="modal fade" data-backdrop="static" id="modalTrocarSenha" role="dialog">
 	<div class="modal-dialog">
 		<div class="modal-content">
-			<div class="modal-header">
+			<div class="modal-header fundo">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
 				<h4 class="modal-title">Alteração de senha</h4>
 			</div>
 			<div class="modal-body">

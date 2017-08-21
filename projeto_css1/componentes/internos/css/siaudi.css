@@ -78,3 +78,17 @@
 .has-error .help-block{
 	background-color:#ffffff;
 }
+/*inicio modal */
+/*cor de fundo*/
+.fundo{
+	background-color:#337ab7;
+	color:#ffffff;
+}
+/* redimensionar janela modal */
+.modal.modal-wide .modal-dialog {
+  width: 65%;
+}
+.modal-wide .modal-body {
+  overflow-y: auto;
+}
+/* fim modal*/

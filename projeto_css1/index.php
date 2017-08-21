@@ -40,6 +40,8 @@ else if ($_SESSION['acesso'] == "liberado"){
 	<link rel="stylesheet" href="componentes/externos/dist/css/AdminLTE.css">
 	<link rel="stylesheet" href="componentes/externos/dist/css/skins/skin-green.css">
 	<link rel="stylesheet" href="componentes/internos/css/siaudi.css">
+	<link rel="stylesheet" href="componentes/externos/bower_components/bootstrap-fileinput/css/fileinput.min.css">
+	<!--<link rel="stylesheet" href="componentes/externos/bower_components/bootstrap-fileinput/themes/explorer/theme.css">-->
 	<style>
 		.main-header .navbar{
 			margin-left: 0px;
@@ -91,6 +93,14 @@ else if ($_SESSION['acesso'] == "liberado"){
 	<script src="controllers/usuario/usuario_cadastrar.js"></script>
 	<script src="controllers/usuario/senha_recuperar.js"></script>
 	<script src="controllers/autenticacao/login.js"></script>
+    <script src="componentes/externos/bower_components/bootstrap-fileinput/js/fileinput.js" type="text/javascript"></script>
+    <script src="componentes/externos/bower_components/bootstrap-fileinput/js/locales/pt-BR.js" type="text/javascript"></script>
+	<script>
+		$(".modal-wide").on("show.bs.modal", function() {
+		  var height = $(window).height() - 200;
+		  $(this).find(".modal-body").css("max-height", height);
+		});
+	</script>
 	<script>
 		//script para receber a selecao da unidade de controle interno e atualizar o 2º select
 		$(document).ready(function(){
@@ -100,6 +110,26 @@ else if ($_SESSION['acesso'] == "liberado"){
 			})
 		})
 	</script>
+	<script>
+		var btnCust = '';
+		$("#avatar-2").fileinput({
+			overwriteInitial: true,
+			maxFileSize: 1500,
+			showClose: false,
+			showCaption: false,
+			showBrowse: false,
+			browseOnZoneClick: true,
+			removeLabel: 'cancelar',
+			removeIcon: '<i class="glyphicon glyphicon-remove-"></i>',
+			removeTitle: 'Excluir imagem',
+			elErrorContainer: '#kv-avatar-errors-2',
+			msgErrorClass: 'alert alert-block alert-danger',
+			defaultPreviewContent: '<img src="componentes/externos/bower_components/bootstrap-fileinput/img/default_avatar_male.jpg" alt="Sua foto" title="Sua foto" style="width:160px"><h6 class="text-muted">Clique para adicionar<br />(Tam máx: 1500Kb)</h6>',
+			layoutTemplates: {main2: '{preview} ' +  btnCust + ' {remove} {browse}'},
+			allowedFileExtensions: ["jpg", "png", "gif"]
+		});
+	</script>
+
 	<?php
 	if(isset($_SESSION['obriga_troca_senha'])) {?>
 		<script>

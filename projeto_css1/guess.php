@@ -142,7 +142,7 @@ switch ($status_usuario){
 			var unidade = button.data('unidade')
 			var modal = $(this)
 
-			modal.find('.modal-title').text('Usuário: ' + posto + ' ' + nome_guerra + ' - ' + unidade )
+			modal.find('.modal-title').text('Alterar Perfil do(a) ' + posto + ' ' + nome_guerra + ' - ' + unidade )
 			modal.find('#cpf').val(cpf)
 			modal.find('#rg').val(rg)
 			modal.find('#email').val(email)

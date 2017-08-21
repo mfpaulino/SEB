@@ -1,9 +1,9 @@
-<div class="modal modal-primary fade" id="modalVisualizar<?php echo $cpf; ?>" tabindex="-1" role="dialog" aria-labelledby="modalVisualizarLabel">
+<div class="modal fade" id="modalVisualizar<?php echo $cpf; ?>" tabindex="-1" role="dialog" aria-labelledby="modalVisualizarLabel">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
-			<div class="modal-header">
+			<div class="modal-header fundo">
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-				<h4 class="modal-title text-center" id="modalVisualizarLabel">Dados do usuário</h4>
+				<h4 class="modal-title" id="modalVisualizarLabel">Perfil do Usuário</h4>
 			</div>
 			<div class="modal-body">
 				<!--<p><b>Unidade:</b> <?php echo $sigla_usuario; ?></p>-->

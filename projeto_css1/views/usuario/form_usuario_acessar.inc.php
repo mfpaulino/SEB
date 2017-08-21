@@ -1,8 +1,7 @@
 <form name="form_usuario_acessar" id="form_usuario_acessar" role="form" method="POST" action="controllers/autenticacao/login.php">
 	<fieldset>
-		<div class="form-group">
-			<span class="barra-top"><b>SIAUD-EB</b></span>
-			<hr>
+		<div class="form-group barra-top">
+			<span ><b>SIAUD-EB</b></span>
 		</div>
 		<div class="form-group has-feedback">
 			<input class="form-control" type="text" name="cpf" maxlength="11" placeholder="CPF" onKeyUp="return autoTab(this, 11, event);" />
