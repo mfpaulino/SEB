@@ -96,6 +96,7 @@ else if ($_SESSION['acesso'] == "liberado"){
     <script src="componentes/externos/bower_components/bootstrap-fileinput/js/fileinput.js" type="text/javascript"></script>
     <script src="componentes/externos/bower_components/bootstrap-fileinput/js/locales/pt-BR.js" type="text/javascript"></script>
 	<script>
+		<!-- Redimensona o tamanho padrao do modal. Está no siaudi.css-->
 		$(".modal-wide").on("show.bs.modal", function() {
 		  var height = $(window).height() - 200;
 		  $(this).find(".modal-body").css("max-height", height);
@@ -111,8 +112,17 @@ else if ($_SESSION['acesso'] == "liberado"){
 		})
 	</script>
 	<script>
+		//script para receber a selecao da unidade de controle interno e atualizar o 2º select
+		$(document).ready(function(){
+			$("select[name=codom]").change(function(){
+				$("select[name=perfil]").html('<option value="">Carregando...</option>');
+				$.post("listas/select_perfil.inc.php", {codom:$(this).val()},function(valor){$("select[name=perfil]").html(valor);})
+			})
+		})
+	</script>
+	<script>
 		var btnCust = '';
-		$("#avatar-2").fileinput({
+		$("#avatar").fileinput({
 			overwriteInitial: true,
 			maxFileSize: 1500,
 			showClose: false,

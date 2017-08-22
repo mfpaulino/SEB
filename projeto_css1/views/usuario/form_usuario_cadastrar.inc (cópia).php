@@ -9,7 +9,7 @@
 				<form name="form_usuario_cadastrar" id="form_usuario_cadastrar" role="form" action="controllers/usuario/usuario_cadastrar.php" method="POST" enctype="multipart/form-data">
 					<div class="col-sm-3">
 						<div class="kv-avatar center-block text-center" style="width:200px">
-							<input id="avatar" name="avatar" type="file" class="file-loading">
+							<input id="avatar-2" name="avatar-2" type="file" class="file-loading">
 						</div>
 					</div>
 					<div class="col-sm-8">
@@ -33,14 +33,12 @@
 								</div>
 							</div>
 						</div>
-
 						<div class="row">
+							<!-- Text input-->
 							<div class="col-sm-12">
 								<div class="form-group">
 									<label for="posto">Perfil*</label>
-									<select class="form-control" name="perfil" id="perfil">
-										<option value="">Aguardando Unidade...</option>
-									</select>
+									<?php include_once('listas/select_perfil.inc.php');?>
 								</div>
 							</div>
 						</div>
