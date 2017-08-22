@@ -56,14 +56,14 @@ if(isset($_POST['flag'])){
 			$_SESSION['botao'] = "danger";
 		}
 		else {
-			$_SESSION['senha_enviada'] = 'A nova senha foi enviada para o e-mail  <span style="background-color:#000000;">&nbsp;'.strtoupper($row_usuario['email']).  '&nbsp;</span> .<br />Em caso de não recebimento, peça ao responsável pelo SIAUDI em sua Unidade para redefinir a senha manualmente.';
+			$_SESSION['senha_enviada'] = 'A nova senha foi enviada para o e-mail <kbd>'.strtoupper($row_usuario['email']).  '</kbd>.<br />Em caso de não recebimento, peça ao responsável pelo SIAUDI em sua Unidade para redefinir a senha manualmente.';
 			$_SESSION['botao'] = "success";
 		}
 	}
 	else {
 		$nova_senha = Bcrypt::hash($cpf);//o cpf veio da tela do admin
 
-		$_SESSION['senha_enviada'] = 'A senha foi redefinida com sucesso!<br /><br />Avise a(o) <span style="background-color:#000000;">&nbsp;'.strtoupper($row_usuario['posto'] . " " . $row_usuario['nome_guerra'] ).  '&nbsp;</span> que a nova senha é igual ao CPF.';
+		$_SESSION['senha_enviada'] = 'A senha foi redefinida com sucesso!<br /><br />Avise a(o) <kbd>&nbsp;'.strtoupper($row_usuario['posto'] . " " . $row_usuario['nome_guerra'] ).  '&nbsp;</kbd> que a nova senha é igual ao CPF.';
 		$_SESSION['botao'] = "success";
 	}
 

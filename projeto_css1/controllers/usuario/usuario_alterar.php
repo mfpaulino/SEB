@@ -28,6 +28,7 @@ if(isset($_POST['flag'])){
 	$ritex 		 = isset($_POST['ritex']) ? mysqli_real_escape_string($mysqli, $_POST['ritex']) : $ritex_usuario;
 	$celular 	 = isset($_POST['celular']) ? mysqli_real_escape_string($mysqli, $_POST['celular']) : $celular_usuario;
 	$codom 		 = isset($_POST['codom']) ? mysqli_real_escape_string($mysqli, $_POST['codom']) : $codom_usuario;
+	$id_perfil 	 = isset($_POST['perfil']) ? mysqli_real_escape_string($mysqli, $_POST['perfil']) : $id_perfil_usuario;
 
 	$validar = new validaForm();
 
@@ -36,7 +37,8 @@ if(isset($_POST['flag'])){
 			->set('Nome', 			$nome)->is_required()
 			->set('Nome de guerra', $nome_guerra)->is_required()
 			->set('E-mail',			$email)->is_email()
-			->set('Unidade',		$codom)->is_required();
+			->set('Unidade',		$codom)->is_required()
+			->set('Perfil',			$id_perfil)->is_required();
 			//->set('RITEx',		$ritex)->is_required()->is_num()->min_length(7)->max_length(7)
 			//->set('Celular',		$celular)->is_required()->is_num()->min_length(10)->max_length(11)
 
@@ -139,6 +141,16 @@ if(isset($_POST['flag'])){
 				$mysqli1->close();
 
 				$_SESSION['alterar_codom'] = "Alteração da Unidade realizada com sucesso!<br /><br />Nova Unidade: ".$row_unidade['denominacao'];
+				$altera = "sim";
+			}
+		}
+		if ($id_perfil <> "" and $id_perfil <> $id_perfil_usuario){
+			$con_update = $mysqli->prepare("UPDATE usuarios SET id_perfil = ? WHERE cpf ='$cpf'");
+			$con_update->bind_param('i', $id_perfil);
+			$con_update->execute();
+
+			if($con_update->affected_rows <> 0 ){
+				$_SESSION['alterar_perfil'] = "O Perfil foi alterado com sucesso!";
 				$altera = "sim";
 			}
 		}

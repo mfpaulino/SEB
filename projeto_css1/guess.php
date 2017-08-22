@@ -71,8 +71,8 @@ switch ($status_usuario){
 					</div>
 				</div>
 				<ul class="sidebar-menu" data-widget="tree">
-					<li class="active"><a href="#">Home</a></li>
-					<li><a href="#"><i class="fa fa-file"></i> <span>Guia do Usuário</span></a></li>
+					<li class="active"><a href="#"><i class="fa fa-home"></i>Home</a></li>
+					<li><a href="#"><i class="fa fa-file"></i> Guia do Usuário</a></li>
 					<!--<li><a href="#" data-toggle="modal" data-target="#modalTrocarSenha"><i class="fa fa-lock"></i> <span>Alterar senha</span></a></li>-->
 					<?php $flag = md5("logout");?>
 					<li><a href="controllers/autenticacao/logout.php?flag=<?php echo $flag;?>"><i class="fa fa-sign-out"></i> <span>Sair</span></a></li>
@@ -133,7 +133,7 @@ switch ($status_usuario){
 	<script type="text/javascript">
 		$('#modalEditar').on('show.bs.modal', function (event) {
 			var button = $(event.relatedTarget) // Button that triggered the modal
-			var cpf = button.data('cpf') // Extract info from data-* attributes
+			var cpf = button.data('cpf') // Extract info from data-* attributes no script view_usuario_status.inc.php
 			var rg = button.data('rg')
 			var nome_guerra = button.data('nome_guerra')
 			var nome = button.data('nome')
@@ -143,9 +143,11 @@ switch ($status_usuario){
 			var ritex = button.data('ritex')
 			var celular = button.data('celular')
 			var unidade = button.data('unidade')
+			var id_perfil = button.data('id_perfil')
+			var perfil = button.data('perfil')
 			var modal = $(this)
 
-			modal.find('.modal-title').text('Alterar Perfil do(a) ' + posto + ' ' + nome_guerra + ' - ' + unidade )
+			modal.find('.modal-title').text('Alterar Perfil - ' + posto + ' ' + nome_guerra + ' (' + unidade + ')' )
 			modal.find('#cpf').val(cpf)
 			modal.find('#rg').val(rg)
 			modal.find('#email').val(email)
@@ -154,6 +156,7 @@ switch ($status_usuario){
 			modal.find('#posto').val(id_posto)
 			modal.find('#nome_guerra').val(nome_guerra)
 			modal.find('#nome').val(nome)
+			modal.find('#perfil').val(id_perfil)
 		})
 	</script>
 	<script>

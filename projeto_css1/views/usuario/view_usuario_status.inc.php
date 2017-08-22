@@ -31,6 +31,8 @@
 					data-email="<?php echo $email_usuario; ?>"
 					data-ritex="<?php echo $ritex_usuario; ?>"
 					data-celular="<?php echo $celular_usuario; ?>"
+					data-id_perfil="<?php echo $id_perfil_usuario; ?>"
+					data-perfil="<?php echo $perfil_usuario; ?>"
 					data-unidade="<?php echo $sigla_usuario; ?>">
 					Alterar perfil
 				</button>
@@ -47,22 +49,24 @@
 					data-target="#modalTrocarSenha">
 					Alterar Senha
 				</button>
-				<!--botao Excluir cadastro-->
-				<?php $flag = md5("usuario_excluir");?>
-				<a href="controllers/usuario/usuario_excluir.php?flag=<?php echo $flag; ?>&flag1=<?php echo $pagina;?>">
-				<button type="button" class="btn btn-xs btn-danger" data-toggle="confirmation"
-					data-placement="left"
-					data-btn-ok-label="Continuar"
-					data-btn-ok-icon="glyphicon glyphicon-share-alt"
-					data-btn-ok-class="btn-success"
-					data-btn-cancel-label="Parar"
-					data-btn-cancel-icon="glyphicon glyphicon-ban-circle"
-					data-btn-cancel-class="btn-danger"
-					data-title="Confirma exclusão do cadastro?"
-					data-content="">
-					Excluir Cadastro
-				</button>
-				</a>
+				<?php if ($status_usuario == "recebido"){?>
+					<!--botao Excluir cadastro-->
+					<?php $flag = md5("usuario_excluir");?>
+					<a href="controllers/usuario/usuario_excluir.php?flag=<?php echo $flag; ?>&flag1=<?php echo str_replace('.php','',$pagina);?>">
+						<button type="button" class="btn btn-xs btn-danger" data-toggle="confirmation"
+							data-placement="left"
+							data-btn-ok-label="Continuar"
+							data-btn-ok-icon="glyphicon glyphicon-share-alt"
+							data-btn-ok-class="btn-success"
+							data-btn-cancel-label="Parar"
+							data-btn-cancel-icon="glyphicon glyphicon-ban-circle"
+							data-btn-cancel-class="btn-danger"
+							data-title="Confirma exclusão do cadastro?"
+							data-content="">
+							Excluir Cadastro
+						</button>
+					</a>
+				<?php } ?>
 			</td>
 		</tr>
 	</tbody>

@@ -82,7 +82,7 @@
 							<div class="col-sm-12">
 								<div class="form-group">
 									<label for="posto">Perfil*</label>
-									<?php include_once('listas/select_perfil.inc.php');?>
+									<?php include_once('listas/select_perfil_usuario.inc.php');?>
 								</div>
 							</div>
 						</div>

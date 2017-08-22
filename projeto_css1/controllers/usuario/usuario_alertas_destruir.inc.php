@@ -29,6 +29,7 @@ unset($_SESSION['alterar_email_erro']);
 unset($_SESSION['alterar_ritex']);
 unset($_SESSION['alterar_celular']);
 unset($_SESSION['alterar_codom']);
+unset($_SESSION['alterar_perfil']);
 unset($_SESSION['alterar_nada']);
 unset($_SESSION['alterar_erro_validacao']);
 unset($_SESSION['alterar_lista_erro_validacao']);

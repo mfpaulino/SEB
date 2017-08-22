@@ -32,6 +32,7 @@ if (isset($_POST['flag'])){
 	$nome 		 = isset($_POST['nome']) ? mysqli_real_escape_string($mysqli, formata_nome($_POST['nome'])) : "";
 	$email 		 = isset($_POST['email']) ? mysqli_real_escape_string($mysqli, $_POST['email']) : "";
 	$codom 		 = isset($_POST['codom']) ? mysqli_real_escape_string($mysqli, $_POST['codom']) : "";
+	$perfil		 = isset($_POST['perfil']) ? mysqli_real_escape_string($mysqli, $_POST['perfil']) : "";
 
 	$validar = new validaForm();
 
@@ -44,7 +45,8 @@ if (isset($_POST['flag'])){
 			->set('E-mail',			$email)->is_email()
 			//->set('RITEx', 			$ritex)->is_num()
 			//->set('Celular', 		$celular)->is_num()
-			->set('Unidade', 		$codom)->is_required();
+			->set('Unidade', 		$codom)->is_required()
+			->set('Perfil', 		$perfil)->is_required();
 
 
 	if ($validar->validate()){
@@ -73,7 +75,7 @@ if (isset($_POST['flag'])){
 
 			$senha_criptografada = Bcrypt::hash($senha);
 
-			$resultado = $mysqli->query("INSERT INTO usuarios (cpf, senha, rg, nome_guerra, nome, email, ritex, celular, id_posto, codom, status) VALUES ('$cpf', '$senha_criptografada', '$rg', '$nome_guerra', '$nome', '$email', '$ritex', '$celular', '$posto', '$codom','recebido')");
+			$resultado = $mysqli->query("INSERT INTO usuarios (cpf, senha, rg, nome_guerra, nome, email, ritex, celular, id_posto, codom, id_perfil,status) VALUES ('$cpf', '$senha_criptografada', '$rg', '$nome_guerra', '$nome', '$email', '$ritex', '$celular', '$posto', '$codom', '$perfil', 'recebido')");
 
 			if($resultado){
 
