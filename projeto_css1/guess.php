@@ -208,6 +208,25 @@ switch ($status_usuario){
 	</script>
 	<script>
 		var btnCust = '';
+		$("#avatar-1").fileinput({
+			overwriteInitial: true,
+			maxFileSize: 1500,
+			showClose: false,
+			showCaption: false,
+			showBrowse: false,
+			browseOnZoneClick: false,
+			removeLabel: '',
+			removeIcon: '',
+			removeTitle: '',
+			elErrorContainer: '',
+			msgErrorClass: '',
+			defaultPreviewContent: '<img src="views/avatar/cap_paulino.jpg" style="width:160px">',
+			layoutTemplates: {main2: '{preview}'},
+			allowedFileExtensions: ["jpg", "png", "gif"]
+		});
+	</script>
+	<script>
+		var btnCust = '';
 		$("#avatar-2").fileinput({
 			overwriteInitial: true,
 			maxFileSize: 1500,

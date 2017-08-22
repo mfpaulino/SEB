@@ -9,6 +9,7 @@
 				<form name="form_usuario_cadastrar" id="form_usuario_cadastrar" role="form" action="controllers/usuario/usuario_cadastrar.php" method="POST" enctype="multipart/form-data">
 					<div class="col-sm-3">
 						<div class="kv-avatar center-block text-center" style="width:200px">
+							<input type="hidden" name="MAX_FILE_SIZE" value="1500000" />
 							<input id="avatar" name="avatar" type="file" class="file-loading">
 						</div>
 					</div>

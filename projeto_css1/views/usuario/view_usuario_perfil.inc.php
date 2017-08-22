@@ -1,20 +1,84 @@
-<div class="modal fade" id="modalVisualizar<?php echo $cpf; ?>" tabindex="-1" role="dialog" aria-labelledby="modalVisualizarLabel">
+<div class="modal fade modal-wide" id="modalVisualizar<?php echo $cpf; ?>" tabindex="-1" role="dialog" aria-labelledby="modalVisualizarLabel">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
 			<div class="modal-header fundo">
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-				<h4 class="modal-title" id="modalVisualizarLabel">Perfil do Usuário</h4>
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<h4 class="modal-title" id="modalVisualizarLabel"><?php echo "Perfil: " . $perfil_usuario . " (". $sigla_usuario.")";?></h4>
 			</div>
 			<div class="modal-body">
-				<!--<p><b>Unidade:</b> <?php echo $sigla_usuario; ?></p>-->
-				<p><b>CPF:</b> <?php echo $cpf; ?></p>
-				<p><b>RG:</b> <?php echo $rg_usuario; ?></p>
-				<p><b>Posto/grad:</b> <?php echo $posto_usuario; ?></p>
-				<p><b>Nome de guerra:</b> <?php echo $nome_guerra_usuario; ?></p>
-				<p><b>Nome completo:</b> <?php echo $nome_usuario; ?></p>
-				<p><b>E-mail:</b> <?php echo $email_usuario; ?></p>
-				<p><b>RITEx:</b> <?php echo $ritex_usuario; ?></p>
-				<p><b>Celular:</b> <?php echo $celular_usuario; ?></p>
+				<form>
+					<div class="col-sm-3">
+						<div class="kv-avatar center-block text-center" style="width:200px">
+							<input id="avatar-1" name="avatar-1" type="file" class="file-loading">
+						</div>
+					</div>
+					<div class="col-sm-8">
+						<div class="row">
+							<!-- CPF input-->
+							<div class="col-sm-6">
+								<div class="form-group">
+									<label for="cpf">CPF</label>
+									<input value="<?php echo $cpf;?>" class="form-control" disabled>
+								</div>
+							</div>
+							<!-- RG input-->
+							<div class="col-sm-6">
+								<div class="form-group">
+									<label for="rg">RG</label>
+									<input value="<?php echo $rg_usuario;?>" class="form-control" disabled>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<!-- Select input-->
+							<div class="col-sm-6">
+								<div class="form-group">
+									<label for="posto">Posto/Grad</label>
+									<input value="<?php echo $posto_usuario;?>" class="form-control" disabled>
+								</div>
+							</div>
+							<!-- Text input-->
+							<div class="col-sm-6">
+								<div class="form-group">
+									<label for="nome_guerra">Nome de guerra</label>
+									<input value="<?php echo $nome_guerra_usuario;?>" class="form-control" disabled>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<!-- Text input-->
+							<div class="col-sm-6">
+								<div class="form-group">
+									<label for="nome">Nome completo</label>
+									<input value="<?php echo $nome_usuario;?>" class="form-control" disabled>
+								</div>
+							</div>
+							<!-- Text input-->
+							<div class="col-sm-6">
+								<div class="form-group">
+									<label for="email">E-mail</label>
+									<input value="<?php echo $email_usuario;?>" class="form-control" disabled>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<!-- Text input-->
+							<div class="col-sm-6">
+								<div class="form-group">
+									<label for="ritex">RITEx</label>
+									<input value="<?php echo $ritex_usuario;?>" class="form-control" disabled>
+								</div>
+							</div>
+							<!-- Text input-->
+							<div class="col-sm-6">
+								<div class="form-group">
+									<label for="celular">Celular</label>
+									<input value="<?php echo $celular_usuario;?>" class="form-control" disabled>
+								</div>
+							</div>
+						</div>
+					</div>
+				</form>
 			</div>
 		</div>
 	</div>
