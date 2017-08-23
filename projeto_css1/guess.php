@@ -257,12 +257,12 @@ switch ($status_usuario){
 			showCaption: false,
 			showBrowse: false,
 			browseOnZoneClick: true,
-			removeLabel: 's',
-			removeIcon: '<i class="glyphicon glyphicon-return"></i>',
-			removeTitle: 'Cancel or reset changes',
+			removeLabel: 'Desfazer',
+			removeIcon: '<i class="fa fa-undo"></i>',
+			removeTitle: 'Desfazer troca da imagem',
 			elErrorContainer: '#kv-avatar-errors-2',
 			msgErrorClass: 'alert alert-block alert-danger',
-			defaultPreviewContent: '<img src="views/avatar/<?php echo $avatar_usuario;?>" alt="Your Avatar" style="width:160px"><h6 class="text-muted">Click to select</h6>',
+			defaultPreviewContent: '<img src="views/avatar/<?php echo $avatar_usuario;?>" alt="Sua Foto" style="width:160px"><h6 class="text-muted">clique para alterar<br />(Tam máx: 1500Kb)</h6>',
 			layoutTemplates: {main2: '{preview} ' +  btnCust + ' {remove} {browse}'},
 			allowedFileExtensions: ["jpg", "png", "gif"]
 		});
