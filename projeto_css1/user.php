@@ -170,33 +170,28 @@ include_once(PATH . '/controllers/autenticacao/autentica.inc.php');
               </li>
               <!-- Menu Body -->
               <li class="user-body">
-                <div class="row">
-                  <div class="col-xs-2 text-center">
-                    <a href="#"></a>
-                  </div>
-                  <div class="col-xs-8 text-center btn btn-warning btn-flat">
-                    <a href="#" data-toggle="modal" data-target="#modalTrocarSenha">Trocar senha</a>
-                  </div>
-                  <div class="col-xs-2 text-center">
-                    <a href="#"></a>
-                  </div>
-                </div>
+
                 <!-- /.row -->
               </li>
               <!-- Menu Footer-->
               <li class="user-footer">
                 <div class="pull-left">
-                  <a href="#"><button type="button" class="btn btn-xs btn-warning"
-					data-toggle="modal"
-					data-target="#modalTrocarUnidade"
-					data-unidade="<?php echo $sigla_usuario; ?>">
-					Alterar Unidade
-				</button></a>
+					<a href="#">
+						<button type="button" class="btn btn-xs btn-warning"
+							data-toggle="modal"
+							data-target="#modalTrocarUnidade"
+							data-unidade="<?php echo $sigla_usuario; ?>">
+							Alterar Unidade
+						</button>
+					</a>
                 </div>
-                <div class="pull-right">
+                <div class="pull-left">
+					<a href="#" data-toggle="modal" data-target="#modalTrocarSenha"><button type="button" class="btn btn-warning btn-xs">Trocar senha</button></a>
+				</div>
+				<div class="pull-right">
 					<?php $flag = md5("logout");?>
-                  <a href="controllers/autenticacao/logout.php?flag=<?php echo $flag;?>" class="btn btn-danger btn-flat">Sair</a>
-                </div>
+				  <a href="controllers/autenticacao/logout.php?flag=<?php echo $flag;?>"><button type="button" class="btn btn-xs btn-danger">Sair</button></a>
+				</div>
               </li>
             </ul>
           </li>
@@ -227,35 +222,29 @@ include_once(PATH . '/controllers/autenticacao/autentica.inc.php');
       </div>
 
       <!-- search form (Optional) -->
-      <form action="#" method="get" class="sidebar-form">
-        <div class="input-group">
-          <input type="text" name="q" class="form-control" placeholder="Search...">
-          <span class="input-group-btn">
-              <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
-              </button>
-            </span>
-        </div>
-      </form>
+
       <!-- /.search form -->
 
       <!-- Sidebar Menu -->
-      <ul class="sidebar-menu" data-widget="tree">
-        <li class="header">HEADER</li>
-        <!-- Optionally, you can add icons to the links -->
-        <li class="active"><a href="#"><i class="fa fa-link"></i> <span>Link</span></a></li>
-        <li><a href="#"><i class="fa fa-link"></i> <span>Another Link</span></a></li>
-        <li class="treeview">
-          <a href="#"><i class="fa fa-link"></i> <span>Multilevel</span>
-            <span class="pull-right-container">
-                <i class="fa fa-angle-left pull-right"></i>
-              </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="#">Link in level 2</a></li>
-            <li><a href="#">Link in level 2</a></li>
-          </ul>
-        </li>
-      </ul>
+		<ul class="sidebar-menu" data-widget="tree">
+			<!-- Optionally, you can add icons to the links -->
+			<li class="active" ><a href="#"><i class="fa fa-home"></i> Home</a></li>
+			<li><a href="#"><i class="fa fa-gears"></i> Administração</a></li>
+			<li><a href="#"><i class="fa fa-envelope"></i> <span>Correio</a></li>
+			<li class="treeview">
+				<a href="#"><i class="fa fa-search"></i> Auditoria
+					<span class="pull-right-container">
+						<i class="fa fa-angle-left pull-right"></i>
+					</span>
+				</a>
+				<ul class="treeview-menu">
+					<li><a href="#"><i class="fa fa-map"></i> Planejamento</a></li>
+					<li><a href="#"><i class="fa fa-edit"></i> Execução</a></li>
+					<li><a href="#"><i class="fa fa-tv"></i> Monitoramento</a></li>
+					<li><a href="#"><i class="fa fa-book"></i> Documentos</a></li>
+				</ul>
+			</li>
+		</ul>
       <!-- /.sidebar-menu -->
     </section>
     <!-- /.sidebar -->
@@ -266,7 +255,7 @@ include_once(PATH . '/controllers/autenticacao/autentica.inc.php');
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        SISTEMA DE AUDITORIA DO EXÉRCITO
+        HOME
         <small></small>
       </h1>
       <ol class="breadcrumb">

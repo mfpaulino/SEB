@@ -3,7 +3,7 @@
 		<div class="modal-content">
 			<div class="modal-header fundo">
 				<button type="button" class="close" data-dismiss="modal">&times;</button>
-				<h4 class="modal-title" id="modalVisualizarLabel"><?php echo "Perfil: " . $perfil_usuario . " (". $sigla_usuario.")";?></h4>
+				<h4 class="modal-title" id="modalVisualizarLabel">PERFIL DO USUÁRIO</h4>
 			</div>
 			<div class="modal-body">
 				<form>

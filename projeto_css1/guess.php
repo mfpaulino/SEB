@@ -72,7 +72,7 @@ switch ($status_usuario){
 				</div>
 				<ul class="sidebar-menu" data-widget="tree">
 					<li class="active"><a href="#"><i class="fa fa-home"></i>Home</a></li>
-					<li><a href="#"><i class="fa fa-file"></i> Guia do Usuário</a></li>
+					<li><a href="#"><i class="fa fa-book"></i> Guia do Usuário</a></li>
 					<!--<li><a href="#" data-toggle="modal" data-target="#modalTrocarSenha"><i class="fa fa-lock"></i> <span>Alterar senha</span></a></li>-->
 					<?php $flag = md5("logout");?>
 					<li><a href="controllers/autenticacao/logout.php?flag=<?php echo $flag;?>"><i class="fa fa-sign-out"></i> <span>Sair</span></a></li>
@@ -147,7 +147,7 @@ switch ($status_usuario){
 			var perfil = button.data('perfil')
 			var modal = $(this)
 
-			modal.find('.modal-title').text('Alterar Perfil - ' + posto + ' ' + nome_guerra + ' (' + unidade + ')' )
+			modal.find('.modal-title').text('ALTERAR PERFIL')
 			modal.find('#cpf').val(cpf)
 			modal.find('#rg').val(rg)
 			modal.find('#email').val(email)
@@ -173,7 +173,7 @@ switch ($status_usuario){
 			var button = $(event.relatedTarget) // Button that triggered the modal
 			var unidade = button.data('unidade')
 			var modal = $(this)
-			modal.find('.modal-title').text('Unidade atual: ' + unidade )
+			modal.find('.modal-title').text('ALTERAR UNIDADE')
 			modal.find('#unidade').val(unidade)
 		})
 	</script>
@@ -220,11 +220,11 @@ switch ($status_usuario){
 			removeTitle: '',
 			elErrorContainer: '',
 			msgErrorClass: '',
-			defaultPreviewContent: '<img src="views/avatar/cap_paulino.jpg" style="width:160px">',
+			defaultPreviewContent: '<img src="views/avatar/<?php echo $avatar_usuario;?>" style="width:160px">',
 			layoutTemplates: {main2: '{preview}'},
 			allowedFileExtensions: ["jpg", "png", "gif"]
 		});
-	</script>
+	</script><!--
 	<script>
 		var btnCust = '';
 		$("#avatar-2").fileinput({
@@ -234,12 +234,35 @@ switch ($status_usuario){
 			showCaption: false,
 			showBrowse: false,
 			browseOnZoneClick: true,
-			removeLabel: 'Alterar',
+			removeLabel: 'Remover',
 			removeIcon: '<i class="glyphicon glyphicon-trash"></i>',
 			removeTitle: 'Excluir imagem',
 			elErrorContainer: '#kv-avatar-errors-2',
 			msgErrorClass: 'alert alert-block alert-danger',
-			defaultPreviewContent: '<img src="componentes/externos/bower_components/bootstrap-fileinput/img/default_avatar_male.jpg" alt="Sua foto" title="Sua foto" style="width:160px"><h6 class="text-muted">Clique para adicionar<br />(Tam máx: 1500Kb)</h6>',
+			defaultPreviewContent: '<img src="views/avatar/<?php echo $avatar_usuario;?>" alt="Sua foto" title="Sua foto" style="width:160px"><h6 class="text-muted">Clique para alterar<br />(Tam máx: 1500Kb)</h6>',
+			layoutTemplates: {main2: '{preview} {remove} '},
+			allowedFileExtensions: ["jpg", "png", "gif"]
+		});
+	</script>-->
+	<script>
+		var bola;
+		var btnCust = '<button type="button" class="btn btn-default" title="Add picture tags" ' +
+			'onclick="">' +
+			'<i class="glyphicon glyphicon-tag"></i>' +
+			'</button>';
+		$("#avatar-2").fileinput({
+			overwriteInitial: true,
+			maxFileSize: 1500,
+			showClose: false,
+			showCaption: false,
+			showBrowse: false,
+			browseOnZoneClick: true,
+			removeLabel: 's',
+			removeIcon: '<i class="glyphicon glyphicon-return"></i>',
+			removeTitle: 'Cancel or reset changes',
+			elErrorContainer: '#kv-avatar-errors-2',
+			msgErrorClass: 'alert alert-block alert-danger',
+			defaultPreviewContent: '<img src="views/avatar/<?php echo $avatar_usuario;?>" alt="Your Avatar" style="width:160px"><h6 class="text-muted">Click to select</h6>',
 			layoutTemplates: {main2: '{preview} ' +  btnCust + ' {remove} {browse}'},
 			allowedFileExtensions: ["jpg", "png", "gif"]
 		});
