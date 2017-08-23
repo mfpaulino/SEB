@@ -134,7 +134,7 @@ else if ($_SESSION['acesso'] == "liberado"){
 			removeTitle: 'Excluir imagem',
 			elErrorContainer: '#kv-avatar-errors-2',
 			msgErrorClass: 'alert alert-block alert-danger',
-			defaultPreviewContent: '<img src="componentes/externos/bower_components/bootstrap-fileinput/img/default_avatar_male.jpg" alt="Sua foto" title="Sua foto" style="width:160px"><h6 class="text-muted">Clique para adicionar<br />(Tam máx: 1500Kb)</h6>',
+			defaultPreviewContent: '<img src="views/avatar/default_avatar.jpg" alt="Sua foto" title="Sua foto" style="width:160px"><h6 class="text-muted">Clique para adicionar<br />(Tam máx: 1500Kb)</h6>',
 			layoutTemplates: {main2: '{preview} ' +  btnCust + ' {remove} {browse}'},
 			allowedFileExtensions: ["jpg", "png", "gif"]
 		});

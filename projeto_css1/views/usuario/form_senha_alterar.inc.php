@@ -3,7 +3,7 @@
 		<div class="modal-content">
 			<div class="modal-header fundo">
 				<button type="button" class="close" data-dismiss="modal">&times;</button>
-				<h4 class="modal-title">Alteração de senha</h4>
+				<h4 class="modal-title">ALTERAR SENHA</h4>
 			</div>
 			<div class="modal-body">
 				<form name="form_senha_alterar" id="form_senha_alterar" action="controllers/usuario/senha_alterar.php" method="POST">

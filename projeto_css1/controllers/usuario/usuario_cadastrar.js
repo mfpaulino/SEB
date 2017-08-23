@@ -104,6 +104,13 @@ $(document).ready(function() {
 					}
 				}
 			},
+			perfil: {
+				validators: {
+					notEmpty: {
+						message: 'Preenchimento obrigatório'
+					}
+				}
+			},
 			ritex: {
 				validators: {
 					regexp: {

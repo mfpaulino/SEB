@@ -3,12 +3,13 @@
 		<div class="modal-content">
 			<div class="modal-header fundo">
 				<button type="button" class="close" data-dismiss="modal">&times;</button>
-				<h4 class="modal-title">Solicitação de Acesso</h4>
+				<h4 class="modal-title">SOLICITAR ACESSO</h4>
 			</div>
 			<div class="modal-body">
 				<form name="form_usuario_cadastrar" id="form_usuario_cadastrar" role="form" action="controllers/usuario/usuario_cadastrar.php" method="POST" enctype="multipart/form-data">
 					<div class="col-sm-3">
 						<div class="kv-avatar center-block text-center" style="width:200px">
+							<input type="hidden" name="MAX_FILE_SIZE" value="1500000" />
 							<input id="avatar" name="avatar" type="file" class="file-loading">
 						</div>
 					</div>

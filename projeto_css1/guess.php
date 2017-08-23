@@ -71,8 +71,8 @@ switch ($status_usuario){
 					</div>
 				</div>
 				<ul class="sidebar-menu" data-widget="tree">
-					<li class="active"><a href="#">Home</a></li>
-					<li><a href="#"><i class="fa fa-file"></i> <span>Guia do Usuário</span></a></li>
+					<li class="active"><a href="#"><i class="fa fa-home"></i>Home</a></li>
+					<li><a href="#"><i class="fa fa-book"></i> Guia do Usuário</a></li>
 					<!--<li><a href="#" data-toggle="modal" data-target="#modalTrocarSenha"><i class="fa fa-lock"></i> <span>Alterar senha</span></a></li>-->
 					<?php $flag = md5("logout");?>
 					<li><a href="controllers/autenticacao/logout.php?flag=<?php echo $flag;?>"><i class="fa fa-sign-out"></i> <span>Sair</span></a></li>
@@ -133,7 +133,7 @@ switch ($status_usuario){
 	<script type="text/javascript">
 		$('#modalEditar').on('show.bs.modal', function (event) {
 			var button = $(event.relatedTarget) // Button that triggered the modal
-			var cpf = button.data('cpf') // Extract info from data-* attributes
+			var cpf = button.data('cpf') // Extract info from data-* attributes no script view_usuario_status.inc.php
 			var rg = button.data('rg')
 			var nome_guerra = button.data('nome_guerra')
 			var nome = button.data('nome')
@@ -143,9 +143,11 @@ switch ($status_usuario){
 			var ritex = button.data('ritex')
 			var celular = button.data('celular')
 			var unidade = button.data('unidade')
+			var id_perfil = button.data('id_perfil')
+			var perfil = button.data('perfil')
 			var modal = $(this)
 
-			modal.find('.modal-title').text('Alterar Perfil do(a) ' + posto + ' ' + nome_guerra + ' - ' + unidade )
+			modal.find('.modal-title').text('ALTERAR PERFIL')
 			modal.find('#cpf').val(cpf)
 			modal.find('#rg').val(rg)
 			modal.find('#email').val(email)
@@ -154,6 +156,7 @@ switch ($status_usuario){
 			modal.find('#posto').val(id_posto)
 			modal.find('#nome_guerra').val(nome_guerra)
 			modal.find('#nome').val(nome)
+			modal.find('#perfil').val(id_perfil)
 		})
 	</script>
 	<script>
@@ -170,7 +173,7 @@ switch ($status_usuario){
 			var button = $(event.relatedTarget) // Button that triggered the modal
 			var unidade = button.data('unidade')
 			var modal = $(this)
-			modal.find('.modal-title').text('Unidade atual: ' + unidade )
+			modal.find('.modal-title').text('ALTERAR UNIDADE')
 			modal.find('#unidade').val(unidade)
 		})
 	</script>
@@ -205,6 +208,25 @@ switch ($status_usuario){
 	</script>
 	<script>
 		var btnCust = '';
+		$("#avatar-1").fileinput({
+			overwriteInitial: true,
+			maxFileSize: 1500,
+			showClose: false,
+			showCaption: false,
+			showBrowse: false,
+			browseOnZoneClick: false,
+			removeLabel: '',
+			removeIcon: '',
+			removeTitle: '',
+			elErrorContainer: '',
+			msgErrorClass: '',
+			defaultPreviewContent: '<img src="views/avatar/<?php echo $avatar_usuario;?>" style="width:160px">',
+			layoutTemplates: {main2: '{preview}'},
+			allowedFileExtensions: ["jpg", "png", "gif"]
+		});
+	</script><!--
+	<script>
+		var btnCust = '';
 		$("#avatar-2").fileinput({
 			overwriteInitial: true,
 			maxFileSize: 1500,
@@ -212,12 +234,35 @@ switch ($status_usuario){
 			showCaption: false,
 			showBrowse: false,
 			browseOnZoneClick: true,
-			removeLabel: 'Alterar',
+			removeLabel: 'Remover',
 			removeIcon: '<i class="glyphicon glyphicon-trash"></i>',
 			removeTitle: 'Excluir imagem',
 			elErrorContainer: '#kv-avatar-errors-2',
 			msgErrorClass: 'alert alert-block alert-danger',
-			defaultPreviewContent: '<img src="componentes/externos/bower_components/bootstrap-fileinput/img/default_avatar_male.jpg" alt="Sua foto" title="Sua foto" style="width:160px"><h6 class="text-muted">Clique para adicionar<br />(Tam máx: 1500Kb)</h6>',
+			defaultPreviewContent: '<img src="views/avatar/<?php echo $avatar_usuario;?>" alt="Sua foto" title="Sua foto" style="width:160px"><h6 class="text-muted">Clique para alterar<br />(Tam máx: 1500Kb)</h6>',
+			layoutTemplates: {main2: '{preview} {remove} '},
+			allowedFileExtensions: ["jpg", "png", "gif"]
+		});
+	</script>-->
+	<script>
+		var bola;
+		var btnCust = '<button type="button" class="btn btn-default" title="Add picture tags" ' +
+			'onclick="">' +
+			'<i class="glyphicon glyphicon-tag"></i>' +
+			'</button>';
+		$("#avatar-2").fileinput({
+			overwriteInitial: true,
+			maxFileSize: 1500,
+			showClose: false,
+			showCaption: false,
+			showBrowse: false,
+			browseOnZoneClick: true,
+			removeLabel: 'Desfazer',
+			removeIcon: '<i class="fa fa-undo"></i>',
+			removeTitle: 'Desfazer troca da imagem',
+			elErrorContainer: '#kv-avatar-errors-2',
+			msgErrorClass: 'alert alert-block alert-danger',
+			defaultPreviewContent: '<img src="views/avatar/<?php echo $avatar_usuario;?>" alt="Sua Foto" style="width:160px"><h6 class="text-muted">clique para alterar<br />(Tam máx: 1500Kb)</h6>',
 			layoutTemplates: {main2: '{preview} ' +  btnCust + ' {remove} {browse}'},
 			allowedFileExtensions: ["jpg", "png", "gif"]
 		});

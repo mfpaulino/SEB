@@ -1,43 +1,44 @@
 <?php
-//postos_select.inc.php
-include ('componentes/internos/php/conexao.inc.php');
+//select_perfil.inc.php
 
-//$_POST['codom'] = '11ª ICFEx';
+$inc = 'sim';
+include_once('../config.inc.php');
 
 if(isset($_POST['codom'])){
+
 	$codom = $_POST['codom'];
 
-	$sql = "select sigla from cciex_om WHERE codom = '$codom'";
-	$con_om = $mysqli->query($sql);
-	$row = $con_om->fetch_assoc();
-	$unidade = substr($row['sigla'],-5);
+	$sql_unidade = "select sigla from cciex_om WHERE codom = '$codom'";
+	$con_unidade = $mysqli1->query($sql_unidade);
 
-	if ($unidade == 'cciex'){
-		$perfil = "'Administrador','Supervisor','Coordenador','Auditor'";
-	}
-	else if ($unidade == 'icfex'){
-		$perfil = "'Supervisor','Coordenador','Auditor'";
+	$row_unidade = $con_unidade->fetch_assoc();
+	$unidade = strtolower(substr($row_unidade['sigla'], -5));//pega os 5 ultimos caracteres da sigla
+
+	$unidade = ($unidade == 'cciex' or $unidade == 'icfex') ? $unidade : 'unidades';
+
+	$sql_perfis = "SELECT perfis FROM perfis_unidade WHERE unidade = '$unidade'";
+	$con_perfis = $mysqli->query($sql_perfis);
+
+	$row_perfis = $con_perfis->fetch_assoc();
+	$perfis = unserialize($row_perfis['perfis']);
+
+	$perfis  = implode(',',$perfis);//separa os valores do array com uma virgula
+	$perfis  = "'".$perfis."'";//coloca um ' no inicio e fim da string
+	$perfis = str_replace(",","','",$perfis);//substitui a virgula por "','".
+
+	$sql_perfil = "SELECT * FROM perfis WHERE perfil in (".$perfis.") ORDER BY perfil";
+	$con_perfil= $mysqli->query($sql_perfil);
+
+	$num_rows_perfil = $con_perfil->num_rows;
+
+	if($num_rows_perfil == 0){
+	   echo  '<option value="">Aguardando Unidade...</option>';
 	}
 	else {
-		$perfil = "'Gestor','Operador'";
+		echo '<option value="">Selecione o perfil...</option>';
+		while($rows_perfil = $con_perfil->fetch_assoc()){
+			echo '<option value="' . $rows_perfil['id_perfil'] .'">' . $rows_perfil['perfil'] . ' - '. $rows_perfil['descricao'] .'</option>';
+		}
 	}
-
-	//$sql_ = "SELECT * FROM perfis WHERE perfil in (".$perfil.") ORDER BY perfil";
-	//$con_perfil= $mysqli->query($sql_);
-
-	//$num_rows_perfil = $con_perfil->num_rows;
-
-	//if($num_rows_perfil == 0){
-	  // echo  '<option value="">Aguardando Unidade...</option>';
-	//}
-	//else {
-		echo '<option value="">'.$unidade.'</option>';
-		//echo '<option value="">Selecione o perfil..</option>';
-		//while($rows_perfil = $con_perfil->fetch_assoc()){
-			//echo '<option value="' . $rows_perfil['id_perfil'] .'">' . $rows_perfil['perfil'] . '</option>';
-		//}
-	//}
 }
-else { echo  '<option value="">Aguardando ...Unidade...</option>';}
 ?>
-

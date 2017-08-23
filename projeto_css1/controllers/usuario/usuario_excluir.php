@@ -5,7 +5,7 @@ require_once('../../config.inc.php');
 
 if(isset($_GET['flag']) and $_GET['flag'] == md5("usuario_excluir")){
 
-	$pagina = $_GET['flag1'];
+	$pagina = $_GET['flag1'].".php";
 
 	if ($pagina == PAGINA_VISITANTE){
 
