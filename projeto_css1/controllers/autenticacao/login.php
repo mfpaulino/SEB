@@ -56,7 +56,7 @@ if(isset($_POST['flag'])){
 	}
 	else {
 		$flag = md5("usuario_acessar");
-		$_SESSION['botao'] = "danger";
+		$_SESSION['botao'] = "info";
 		header("Location:../../index.php?flag=$flag");
 	}
 }
