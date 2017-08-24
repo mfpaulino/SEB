@@ -56,7 +56,7 @@
 				<?php if ($status_usuario == "recebido"){?>
 					<!--botao Excluir cadastro-->
 					<?php $flag = md5("usuario_excluir");?>
-					<a href="controllers/usuario/usuario_excluir.php?flag=<?php echo $flag; ?>&flag1=<?php echo str_replace('.php','',$pagina);?>"  >
+					<a href="controllers/usuario/usuario_excluir.php?flag=<?php echo $flag; ?>&flag1=<?php echo str_replace('.php','',$pagina);?>" data-tooltip="tooltip" title="Cancelar Cadastro" >
 						<button type="button" class="btn btn-xs btn-danger" data-toggle="confirmation"
 							data-placement="left"
 							data-btn-ok-label="Continuar"

@@ -48,6 +48,25 @@ if(isset($_POST['flag'])){
 	if ($validar->validate()){
 		$altera = "nao";
 
+		if(isset($_FILES['avatar'])){
+
+			$ext = strtolower(substr($_FILES['avatar']['name'],-4)); //Pegando extensão do arquivo
+			$avatar = $cpf . $ext; //Definindo um novo nome para o arquivo
+			$dir = PATH . '/views/avatar/'; //Diretório para uploads
+
+			move_uploaded_file($_FILES['avatar']['tmp_name'], $dir.$avatar); //Fazer upload do arquivo
+
+			$con_avatar = $mysqli->prepare("UPDATE usuarios SET avatar = ? WHERE cpf ='$cpf'");
+			$con_avatar->bind_param('s', $avatar);
+			$con_avatar->execute();
+
+			if($con_avatar->affected_rows <> 0 ){
+				$_SESSION['alterar_avatar'] = "A imagem do perfil foi alterada com sucesso!";
+				$altera = "sim";
+			}
+
+		}
+
 		if ($rg <> "" and $rg <> $rg_usuario){
 
 			$con_rg = $mysqli->prepare("UPDATE usuarios SET rg = ? WHERE cpf ='$cpf'");

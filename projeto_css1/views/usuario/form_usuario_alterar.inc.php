@@ -9,7 +9,7 @@
 				<form name="form_usuario_alterar" id="form_usuario_alterar" method="POST" action="controllers/usuario/usuario_alterar.php" enctype="multipart/form-data">
 					<div class="col-sm-3">
 						<div class="kv-avatar center-block text-center" style="width:200px">
-							<input id="avatar-2" name="avatar-2" type="file" class="file-loading">
+							<input id="avatar" name="avatar" type="file" class="file-loading">
 						</div>
 					</div>
 					<div class="col-sm-8">

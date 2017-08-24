@@ -80,7 +80,7 @@ if (isset($_POST['flag'])){
 			  $dir = PATH . '/views/avatar/'; //Diretório para uploads
 
 			  move_uploaded_file($_FILES['avatar']['tmp_name'], $dir.$avatar); //Fazer upload do arquivo
-		   }
+		    }
 
 			$senha_criptografada = Bcrypt::hash($senha);
 

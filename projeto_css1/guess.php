@@ -254,7 +254,7 @@ switch ($status_usuario){
 			'onclick="">' +
 			'<i class="glyphicon glyphicon-tag"></i>' +
 			'</button>';
-		$("#avatar-2").fileinput({
+		$("#avatar").fileinput({
 			overwriteInitial: true,
 			maxFileSize: 1500,
 			showClose: false,
