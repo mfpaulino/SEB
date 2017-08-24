@@ -147,7 +147,7 @@ switch ($status_usuario){
 			var perfil = button.data('perfil')
 			var modal = $(this)
 
-			modal.find('.modal-title').text('ALTERAR PERFIL')
+			modal.find('.modal-title').text('Editar Perfil')
 			modal.find('#cpf').val(cpf)
 			modal.find('#rg').val(rg)
 			modal.find('#email').val(email)
@@ -173,7 +173,7 @@ switch ($status_usuario){
 			var button = $(event.relatedTarget) // Button that triggered the modal
 			var unidade = button.data('unidade')
 			var modal = $(this)
-			modal.find('.modal-title').text('ALTERAR UNIDADE')
+			modal.find('.modal-title').text('Alterar Unidade')
 			modal.find('#unidade').val(unidade)
 		})
 	</script>
@@ -250,10 +250,6 @@ switch ($status_usuario){
 		});
 	</script>-->
 	<script>
-		var btnCust = '<button type="button" class="btn btn-default" title="Add picture tags" ' +
-			'onclick="">' +
-			'<i class="fa fa-trash"></i>' +
-			'</button>';
 		$("#avatar").fileinput({
 			overwriteInitial: true,
 			maxFileSize: 1500,
@@ -266,14 +262,9 @@ switch ($status_usuario){
 			removeTitle: 'Desfazer troca da imagem',
 			elErrorContainer: '#kv-avatar-errors-2',
 			msgErrorClass: 'alert alert-block alert-danger',
-			defaultPreviewContent: '<img src="views/avatar/<?php echo $avatar_usuario;?>" alt="Sua Foto" style="width:160px"><h6 class="text-muted">clique para alterar<br />(Tam máx: 1500Kb)</h6>',
-			layoutTemplates: {main2: '{preview} ' +  btnCust + ' {remove} {browse}'},
-			allowedFileExtensions: ["jpg", "png", "gif"],
-			initialPreviewConfig: [
-            {showDelete: true},
-			],initialPreviewAsData: true,
-            {showDelete: false, showZoom: false}
-        ],
+			defaultPreviewContent: '<img src="views/avatar/<?php echo $avatar_usuario;?>" alt="Sua Fotos" style="width:160px"><h6 class="text-muted">clique para alterar<br />(Tam máx: 1500Kb)</h6>',
+			layoutTemplates: {main2: '{preview} {remove} '},
+			allowedFileExtensions: ["jpg", "png", "gif"]
 		});
 	</script>
 	<?php

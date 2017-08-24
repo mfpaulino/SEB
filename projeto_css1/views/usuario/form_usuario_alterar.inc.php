@@ -2,7 +2,7 @@
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
 			<div class="modal-header fundo">
-				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<!--<button type="button" class="close" data-dismiss="modal">&times;</button>-->
 				<h4 class="modal-title" id="modalEditarLabel"></h4>
 			</div>
 			<div class="modal-body">

@@ -54,16 +54,18 @@ if(isset($_POST['flag'])){
 			$avatar = $cpf . $ext; //Definindo um novo nome para o arquivo
 			$dir = PATH . '/views/avatar/'; //Diretório para uploads
 
+			unlink($dir.$cpf.'.jpg');
+			unlink($dir.$cpf.'.gif');
+			unlink($dir.$cpf.'.png');
+
 			move_uploaded_file($_FILES['avatar']['tmp_name'], $dir.$avatar); //Fazer upload do arquivo
 
 			$con_avatar = $mysqli->prepare("UPDATE usuarios SET avatar = ? WHERE cpf ='$cpf'");
 			$con_avatar->bind_param('s', $avatar);
 			$con_avatar->execute();
 
-			if($con_avatar->affected_rows <> 0 ){
-				$_SESSION['alterar_avatar'] = "A imagem do perfil foi alterada com sucesso!";
-				$altera = "sim";
-			}
+			$_SESSION['alterar_avatar'] = "A imagem do perfil foi alterada com sucesso!";
+			$altera = "sim";
 
 		}
 

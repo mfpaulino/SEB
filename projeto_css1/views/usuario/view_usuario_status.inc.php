@@ -35,7 +35,8 @@
 					data-celular="<?php echo $celular_usuario; ?>"
 					data-id_perfil="<?php echo $id_perfil_usuario; ?>"
 					data-perfil="<?php echo $perfil_usuario; ?>"
-					data-unidade="<?php echo $sigla_usuario; ?>">
+					data-unidade="<?php echo $sigla_usuario; ?>"
+					data-avatar="<?php echo 'views/avatar/'.$avatar_usuario; ?>">
 					<i class="fa fa-pencil"></i> Perfil
 				</button>
 				<!--botao Alterar Unidade-->
@@ -56,7 +57,7 @@
 				<?php if ($status_usuario == "recebido"){?>
 					<!--botao Excluir cadastro-->
 					<?php $flag = md5("usuario_excluir");?>
-					<a href="controllers/usuario/usuario_excluir.php?flag=<?php echo $flag; ?>&flag1=<?php echo str_replace('.php','',$pagina);?>" data-tooltip="tooltip" title="Cancelar Cadastro" >
+					<a href="controllers/usuario/usuario_excluir.php?flag=<?php echo $flag; ?>&flag1=<?php echo str_replace('.php','',$pagina);?>" data-tooltip="tooltip" title="Excluir Cadastro" >
 						<button type="button" class="btn btn-xs btn-danger" data-toggle="confirmation"
 							data-placement="left"
 							data-btn-ok-label="Continuar"

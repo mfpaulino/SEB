@@ -21,6 +21,11 @@ if(isset($_GET['flag']) and $_GET['flag'] == md5("usuario_excluir")){
 
 	if($con_teste->num_rows == 0){
 
+		$dir = PATH . '/views/avatar/'; //Diretório para uploads
+		unlink($dir.$cpf.'.jpg');//apaga os arquivos de imagem do usuario
+		unlink($dir.$cpf.'.gif');
+		unlink($dir.$cpf.'.png');
+
 		if($_SESSION['acesso'] == "nao_liberado"){
 			session_destroy();
 		}

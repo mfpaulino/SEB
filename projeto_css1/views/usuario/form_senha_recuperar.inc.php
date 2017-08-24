@@ -2,8 +2,8 @@
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header fundo">
-				<button type="button" class="close" data-dismiss="modal">&times;</button>
-				<h4 class="modal-title">RECUPERAR SENHA</h4>
+				<!--<button type="button" class="close" data-dismiss="modal">&times;</button>-->
+				<h4 class="modal-title">Resgatar Senha</h4>
 			</div>
 			<div class="modal-body">
 				<form name = "form_senha_recuperar" id = "form_senha_recuperar" action="controllers/usuario/senha_recuperar.php" method="POST" role="form">
