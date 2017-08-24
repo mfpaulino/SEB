@@ -73,7 +73,7 @@ if (isset($_POST['flag'])){
 
 		if($validacao !== false){
 
-			if(isset($_FILES['avatar'])){
+			if ($_FILES['avatar']['name'] <> ''){
 
 			  $ext = strtolower(substr($_FILES['avatar']['name'],-4)); //Pegando extensão do arquivo
 			  $avatar = $cpf . $ext; //Definindo um novo nome para o arquivo
@@ -81,6 +81,9 @@ if (isset($_POST['flag'])){
 
 			  move_uploaded_file($_FILES['avatar']['tmp_name'], $dir.$avatar); //Fazer upload do arquivo
 		    }
+		    else {
+				$avatar = "default_avatar.jpg";
+			}
 
 			$senha_criptografada = Bcrypt::hash($senha);
 

@@ -39,9 +39,9 @@ if ($inc == "sim"){
 			$msg7 = $_SESSION['alterar_ritex'];
 			$msg8 = $_SESSION['alterar_celular'];
 			$msg9 = $_SESSION['alterar_codom'];
-			$msg9 = $_SESSION['alterar_perfil'];
-			$msg9 = $_SESSION['alterar_avatar'];
-			$msg10 = $_SESSION['alterar_nada'];
+			$msg10 = $_SESSION['alterar_perfil'];
+			$msg11 = $_SESSION['alterar_avatar'];
+			$msg12 = $_SESSION['alterar_nada'];
 			$lista_erro_validacao = $_SESSION['alterar_lista_erro_validacao'];
 		}
 		else {

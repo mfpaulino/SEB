@@ -154,14 +154,14 @@ include_once(PATH . '/controllers/autenticacao/autentica.inc.php');
             <!-- Menu Toggle Button -->
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <!-- The user image in the navbar-->
-              <img src="componentes/externos/dist/img/cap_paulino.jpg" class="user-image" alt="User Image">
+              <img src="views/avatar/<?php echo $avatar_usuario;?>" class="user-image" alt="User Image">
               <!-- hidden-xs hides the username on small devices so only the image appears. -->
               <span class="hidden-xs">Cap Paulino</span>
             </a>
             <ul class="dropdown-menu">
               <!-- The user image in the menu -->
               <li class="user-header">
-                <img src="componentes/externos/dist/img/cap_paulino.jpg" class="img-circle" alt="User Image">
+                <img src="views/avatar/<?php echo $avatar_usuario;?>" class="img-circle" alt="User Image">
 
                 <p>
                   Cap Paulino - Administrador
@@ -212,7 +212,7 @@ include_once(PATH . '/controllers/autenticacao/autentica.inc.php');
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel">
 			<div class="pull-left image">
-				<img src="componentes/externos/dist/img/cap_paulino.jpg" class="img-circle" alt="User Image">
+				<img src="views/avatar/<?php echo $avatar_usuario;?>" class="img-circle" alt="User Image">
 			</div>
 			<div id="status_sessao" class="pull-left info">
 				<p><?php echo $posto_usuario . " " . $nome_guerra_usuario;?></p>

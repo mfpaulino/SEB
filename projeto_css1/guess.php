@@ -62,7 +62,7 @@ switch ($status_usuario){
 			<section class="sidebar">
 				<div class="user-panel">
 					<div class="pull-left image">
-						<img src="componentes/externos/dist/img/cap_paulino.jpg" class="img-circle" alt="User Image">
+						<img src="views/avatar/<?php echo $avatar_usuario;?>" class="img-circle" alt="User Image">
 					</div>
 					<div id="status_sessao" class="pull-left info">
 						<p><?php echo $posto_usuario . " " . $nome_guerra_usuario;?></p>

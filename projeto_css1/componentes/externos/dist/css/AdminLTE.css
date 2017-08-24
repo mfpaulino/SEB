@@ -3024,7 +3024,7 @@ table.text-center th {
 .modal-success .modal-footer,
 .modal-danger .modal-body,
 .modal-danger .modal-footer {
-  color: #444 !important;/*fff paulino */
+  color: #555 !important;/*fff paulino */
 }
 .modal-info    .modal-header,
 .modal-primary .modal-header,

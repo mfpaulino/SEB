@@ -51,7 +51,7 @@ if(isset($_POST['flag'])){
 		if(isset($_FILES['avatar'])){
 
 			if($_FILES['avatar']['name'] == ''){
-				$avatar = 'default_avatar.png';
+				$avatar = 'default_avatar.jpg';
 			}
 			else {
 				$ext = strtolower(substr($_FILES['avatar']['name'],-4)); //Pegando extensão do arquivo
