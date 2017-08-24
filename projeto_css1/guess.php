@@ -245,10 +245,9 @@ switch ($status_usuario){
 		});
 	</script>-->
 	<script>
-		var bola;
 		var btnCust = '<button type="button" class="btn btn-default" title="Add picture tags" ' +
 			'onclick="">' +
-			'<i class="glyphicon glyphicon-tag"></i>' +
+			'<i class="fa fa-trash"></i>' +
 			'</button>';
 		$("#avatar-2").fileinput({
 			overwriteInitial: true,
@@ -264,7 +263,10 @@ switch ($status_usuario){
 			msgErrorClass: 'alert alert-block alert-danger',
 			defaultPreviewContent: '<img src="views/avatar/<?php echo $avatar_usuario;?>" alt="Sua Foto" style="width:160px"><h6 class="text-muted">clique para alterar<br />(Tam máx: 1500Kb)</h6>',
 			layoutTemplates: {main2: '{preview} ' +  btnCust + ' {remove} {browse}'},
-			allowedFileExtensions: ["jpg", "png", "gif"]
+			allowedFileExtensions: ["jpg", "png", "gif"],
+			initialPreviewConfig: [
+            {showDelete: true},
+			],initialPreviewAsData: true
 		});
 	</script>
 	<?php
