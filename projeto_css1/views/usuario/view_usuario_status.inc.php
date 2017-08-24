@@ -14,12 +14,14 @@
 			<td>
 				<!--botao Visualizar-->
 				<button type="button" class="btn btn-xs btn-primary"
+					data-tooltip="tooltip" title="Exibir Perfil"
 					data-toggle="modal"
 					data-target="#modalVisualizar<?php echo $cpf; ?>">
-					Visualizar perfil
+					<i class="fa fa-search"></i> Perfil
 				</button>
 				<!--botao Alterar Dados-->
 				<button type="button" class="btn btn-xs btn-warning"
+					data-tooltip="tooltip" title="Editar Perfil"
 					data-toggle="modal"
 					data-target="#modalEditar"
 					data-cpf="<?php echo $cpf; ?>"
@@ -34,25 +36,27 @@
 					data-id_perfil="<?php echo $id_perfil_usuario; ?>"
 					data-perfil="<?php echo $perfil_usuario; ?>"
 					data-unidade="<?php echo $sigla_usuario; ?>">
-					Alterar perfil
+					<i class="fa fa-pencil"></i> Perfil
 				</button>
 				<!--botao Alterar Unidade-->
 				<button type="button" class="btn btn-xs btn-warning"
+					data-tooltip="tooltip" title="Alterar Unidade"
 					data-toggle="modal"
 					data-target="#modalTrocarUnidade"
 					data-unidade="<?php echo $sigla_usuario; ?>">
-					Alterar Unidade
+					<i class="fa fa-pencil"></i> Unidade
 				</button>
 				<!--botao Alterar Senha-->
 				<button type="button" class="btn btn-xs btn-warning"
+					data-tooltip="tooltip" title="Alterar Senha"
 					data-toggle="modal"
 					data-target="#modalTrocarSenha">
-					Alterar Senha
+					<i class="fa fa-pencil"></i> Senha
 				</button>
 				<?php if ($status_usuario == "recebido"){?>
 					<!--botao Excluir cadastro-->
 					<?php $flag = md5("usuario_excluir");?>
-					<a href="controllers/usuario/usuario_excluir.php?flag=<?php echo $flag; ?>&flag1=<?php echo str_replace('.php','',$pagina);?>">
+					<a href="controllers/usuario/usuario_excluir.php?flag=<?php echo $flag; ?>&flag1=<?php echo str_replace('.php','',$pagina);?>" data-tooltip="tooltip" title="Cancelar Cadastro" >
 						<button type="button" class="btn btn-xs btn-danger" data-toggle="confirmation"
 							data-placement="left"
 							data-btn-ok-label="Continuar"
@@ -63,7 +67,7 @@
 							data-btn-cancel-class="btn-danger"
 							data-title="Confirma exclusão do cadastro?"
 							data-content="">
-							Excluir Cadastro
+							<i class="fa fa-trash"></i> Perfil
 						</button>
 					</a>
 				<?php } ?>

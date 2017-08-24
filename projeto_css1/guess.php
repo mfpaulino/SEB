@@ -207,6 +207,11 @@ switch ($status_usuario){
 		});
 	</script>
 	<script>
+		$(document).ready(function(){
+			$('[data-tooltip="tooltip"]').tooltip();
+		});
+	</script>
+	<script>
 		var btnCust = '';
 		$("#avatar-1").fileinput({
 			overwriteInitial: true,
@@ -249,7 +254,7 @@ switch ($status_usuario){
 			'onclick="">' +
 			'<i class="fa fa-trash"></i>' +
 			'</button>';
-		$("#avatar-2").fileinput({
+		$("#avatar").fileinput({
 			overwriteInitial: true,
 			maxFileSize: 1500,
 			showClose: false,
@@ -266,7 +271,9 @@ switch ($status_usuario){
 			allowedFileExtensions: ["jpg", "png", "gif"],
 			initialPreviewConfig: [
             {showDelete: true},
-			],initialPreviewAsData: true
+			],initialPreviewAsData: true,
+            {showDelete: false, showZoom: false}
+        ],
 		});
 	</script>
 	<?php
