@@ -50,8 +50,14 @@ if(isset($_POST['flag'])){
 
 		if(isset($_FILES['avatar'])){
 
-			$ext = strtolower(substr($_FILES['avatar']['name'],-4)); //Pegando extensão do arquivo
-			$avatar = $cpf . $ext; //Definindo um novo nome para o arquivo
+			if($_FILES['avatar']['name'] == ''){
+				$avatar = 'default_avatar.png';
+			}
+			else {
+				$ext = strtolower(substr($_FILES['avatar']['name'],-4)); //Pegando extensão do arquivo
+				$avatar = $cpf . $ext; //Definindo um novo nome para o arquivo
+			}
+
 			$dir = PATH . '/views/avatar/'; //Diretório para uploads
 
 			unlink($dir.$cpf.'.jpg');

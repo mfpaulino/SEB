@@ -211,6 +211,7 @@ switch ($status_usuario){
 			$('[data-tooltip="tooltip"]').tooltip();
 		});
 	</script>
+	<?php //if ($avatar_usuario == $cpf){$avatar = 'default_avatar.jpg';} else {$avatar = $avatar_usuario;}?>
 	<script>
 		var btnCust = '';
 		$("#avatar-1").fileinput({
@@ -229,26 +230,7 @@ switch ($status_usuario){
 			layoutTemplates: {main2: '{preview}'},
 			allowedFileExtensions: ["jpg", "png", "gif"]
 		});
-	</script><!--
-	<script>
-		var btnCust = '';
-		$("#avatar-2").fileinput({
-			overwriteInitial: true,
-			maxFileSize: 1500,
-			showClose: false,
-			showCaption: false,
-			showBrowse: false,
-			browseOnZoneClick: true,
-			removeLabel: 'Remover',
-			removeIcon: '<i class="glyphicon glyphicon-trash"></i>',
-			removeTitle: 'Excluir imagem',
-			elErrorContainer: '#kv-avatar-errors-2',
-			msgErrorClass: 'alert alert-block alert-danger',
-			defaultPreviewContent: '<img src="views/avatar/<?php echo $avatar_usuario;?>" alt="Sua foto" title="Sua foto" style="width:160px"><h6 class="text-muted">Clique para alterar<br />(Tam máx: 1500Kb)</h6>',
-			layoutTemplates: {main2: '{preview} {remove} '},
-			allowedFileExtensions: ["jpg", "png", "gif"]
-		});
-	</script>-->
+	</script>
 	<script>
 		$("#avatar").fileinput({
 			overwriteInitial: true,
@@ -257,13 +239,16 @@ switch ($status_usuario){
 			showCaption: false,
 			showBrowse: false,
 			browseOnZoneClick: true,
-			removeLabel: 'Desfazer',
+			removeLabel: ' Imagem',
 			removeIcon: '<i class="fa fa-undo"></i>',
 			removeTitle: 'Desfazer troca da imagem',
+			uploadLabel: ' Imagem',
+			uploadIcon: '<i class="fa fa-trash"></i>',
+			uploadTitle: 'Excluir a imagem',
 			elErrorContainer: '#kv-avatar-errors-2',
 			msgErrorClass: 'alert alert-block alert-danger',
 			defaultPreviewContent: '<img src="views/avatar/<?php echo $avatar_usuario;?>" alt="Sua Fotos" style="width:160px"><h6 class="text-muted">clique para alterar<br />(Tam máx: 1500Kb)</h6>',
-			layoutTemplates: {main2: '{preview} {remove} '},
+			layoutTemplates: {main2: '{preview} {remove} {upload}'},
 			allowedFileExtensions: ["jpg", "png", "gif"]
 		});
 	</script>
