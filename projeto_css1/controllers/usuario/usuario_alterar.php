@@ -14,7 +14,6 @@ if(isset($_POST['flag'])){
 		require_once(PATH . '/controllers/autenticacao/autentica.inc.php');
 	}
 
-	require_once(PATH . '/controllers/autenticacao/autentica_visite.inc.php');
 	require_once(PATH . '/componentes/internos/php/validaForm.class.php');
 	require_once(PATH . '/componentes/internos/php/funcoes.inc.php');
 
@@ -43,35 +42,47 @@ if(isset($_POST['flag'])){
 			//->set('Celular',		$celular)->is_required()->is_num()->min_length(10)->max_length(11)
 
 	$_SESSION['botao'] = "success";
-	//$_SESSION['pagina'] = $pagina;
 
 	if ($validar->validate()){
 		$altera = "nao";
 
-		if(isset($_FILES['avatar'])){
-
-			if($_FILES['avatar']['name'] == ''){
-				$avatar = 'default_avatar.jpg';
-			}
-			else {
-				$ext = strtolower(substr($_FILES['avatar']['name'],-4)); //Pegando extensão do arquivo
-				$avatar = $cpf . $ext; //Definindo um novo nome para o arquivo
-			}
+		if(isset($_FILES['avatar'])){//clicou no botao enviar
 
 			$dir = PATH . '/views/avatar/'; //Diretório para uploads
 
-			unlink($dir.$cpf.'.jpg');
-			unlink($dir.$cpf.'.gif');
-			unlink($dir.$cpf.'.png');
+			if($_FILES['avatar']['name'] == '' and $_SESSION['confirma_excluir_avatar'] == 'sim' and $avatar_usuario <> 'default_avatar.jpg'){//clicou na lixeira
 
-			move_uploaded_file($_FILES['avatar']['tmp_name'], $dir.$avatar); //Fazer upload do arquivo
+				unlink($dir.$avatar_usuario);
 
-			$con_avatar = $mysqli->prepare("UPDATE usuarios SET avatar = ? WHERE cpf ='$cpf'");
-			$con_avatar->bind_param('s', $avatar);
-			$con_avatar->execute();
+				$avatar = 'default_avatar.jpg';
 
-			$_SESSION['alterar_avatar'] = "A imagem do perfil foi alterada com sucesso!";
-			$altera = "sim";
+				$con_avatar = $mysqli->prepare("UPDATE usuarios SET avatar = ? WHERE cpf ='$cpf'");
+				$con_avatar->bind_param('s', $avatar);
+				$con_avatar->execute();
+
+				$_SESSION['excluir_avatar'] = "A imagem do perfil foi excluída com sucesso!";
+
+				$altera = "sim";
+			}
+			else if ($_FILES['avatar']['name'] <> '') {
+
+				$ext = strtolower(substr($_FILES['avatar']['name'],-4)); //Pegando extensão do arquivo
+				$avatar = $cpf . $ext; //Definindo um novo nome para o arquivo
+
+				unlink($dir.$cpf.'.jpg');
+				unlink($dir.$cpf.'.gif');
+				unlink($dir.$cpf.'.png');
+
+				move_uploaded_file($_FILES['avatar']['tmp_name'], $dir.$avatar); //Fazer upload do arquivo
+
+				$con_avatar = $mysqli->prepare("UPDATE usuarios SET avatar = ? WHERE cpf ='$cpf'");
+				$con_avatar->bind_param('s', $avatar);
+				$con_avatar->execute();
+
+				$_SESSION['alterar_avatar'] = "A imagem do perfil foi alterada com sucesso!";
+
+				$altera = "sim";
+			}
 
 		}
 

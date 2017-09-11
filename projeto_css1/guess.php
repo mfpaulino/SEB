@@ -211,7 +211,6 @@ switch ($status_usuario){
 			$('[data-tooltip="tooltip"]').tooltip();
 		});
 	</script>
-	<?php //if ($avatar_usuario == $cpf){$avatar = 'default_avatar.jpg';} else {$avatar = $avatar_usuario;}?>
 	<script>
 		var btnCust = '';
 		$("#avatar-1").fileinput({
@@ -232,6 +231,22 @@ switch ($status_usuario){
 		});
 	</script>
 	<script>
+		function chamarPhpAjax() {
+		   $.ajax({
+			  url:'controllers/usuario/usuario_excluir_avatar.php',
+			  complete: function (response) {
+				 alert('Confirme no botão enviar!');
+			  }
+		  });
+
+		  return false;
+		}
+	</script>
+	<script>
+		var btnCust = '<button type="button" class="btn btn-secondary" title="Excluir imagem" ' +
+			'onclick="return chamarPhpAjax();">' +
+			'<i class="fa fa-trash"> </i>' +
+			'</button>';
 		$("#avatar").fileinput({
 			overwriteInitial: true,
 			maxFileSize: 1500,
@@ -239,16 +254,10 @@ switch ($status_usuario){
 			showCaption: false,
 			showBrowse: false,
 			browseOnZoneClick: true,
-			removeLabel: ' Imagem',
-			removeIcon: '<i class="fa fa-undo"></i>',
-			removeTitle: 'Desfazer troca da imagem',
-			uploadLabel: ' Imagem',
-			uploadIcon: '<i class="fa fa-trash"></i>',
-			uploadTitle: 'Excluir a imagem',
 			elErrorContainer: '#kv-avatar-errors-2',
 			msgErrorClass: 'alert alert-block alert-danger',
-			defaultPreviewContent: '<img src="views/avatar/<?php echo $avatar_usuario;?>" alt="Sua Fotos" style="width:160px"><h6 class="text-muted">clique para alterar<br />(Tam máx: 1500Kb)</h6>',
-			layoutTemplates: {main2: '{preview} {remove} {upload}'},
+			defaultPreviewContent: '<img src="views/avatar/<?php echo $avatar_usuario;?>" alt="Sua Foto" style="width:160px"><h6 class="text-muted">clique para alterar<br />(Tam máx: 1500Kb)</h6>',
+			layoutTemplates: {main2: '{preview} ' +  btnCust },
 			allowedFileExtensions: ["jpg", "png", "gif"]
 		});
 	</script>
