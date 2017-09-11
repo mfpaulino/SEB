@@ -7,7 +7,6 @@ if(isset($_POST['flag'])){
 	session_start();
 
 	if(isset($_SESSION['obriga_troca_senha'])){
-		//unset($_SESSION['cpf']);
 		unset($_SESSION['obriga_troca_senha']);
 	}
 

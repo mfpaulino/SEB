@@ -41,7 +41,8 @@ if ($inc == "sim"){
 			$msg9 = $_SESSION['alterar_codom'];
 			$msg10 = $_SESSION['alterar_perfil'];
 			$msg11 = $_SESSION['alterar_avatar'];
-			$msg12 = $_SESSION['alterar_nada'];
+			$msg12 = $_SESSION['excluir_avatar'];
+			$msg13 = $_SESSION['alterar_nada'];
 			$lista_erro_validacao = $_SESSION['alterar_lista_erro_validacao'];
 		}
 		else {

@@ -6,7 +6,7 @@ if (isset($_SESSION['cpf'])){
 
 	$ultimo_acesso = date('Y-m-d H:i:s');
 
-	$sql = "UPDATE usuarios SET ultimo_acesso = '$ultimo_acesso'";
+	$sql = "UPDATE usuarios SET ultimo_acesso = '$ultimo_acesso' WHERE cpf = '$_SESSION[cpf]'";
 	$mysqli->query($sql);
 	$mysqli->close();
 
