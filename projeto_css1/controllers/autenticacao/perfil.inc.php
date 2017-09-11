@@ -5,7 +5,7 @@ $cpf = $_SESSION['cpf'];
 $ultimoAcesso = $_SESSION['ultimoAcesso'];
 
 /* consultando os dados do usuario */
-$sql = "SELECT rg, nome_guerra, nome, email, ritex, celular, avatar, usuarios.id_posto, p.posto, codom, usuarios.id_perfil, pe.perfil, ultimo_acesso, status from usuarios, postos p, perfis pe where cpf = '$cpf' and usuarios.id_posto = p.id_posto and usuarios.id_perfil = pe.id_perfil";
+$sql = "SELECT rg, nome_guerra, nome, email, ritex, celular, avatar, dt_cad, usuarios.id_posto, p.posto, codom, usuarios.id_perfil, pe.perfil, ultimo_acesso, status from usuarios, postos p, perfis pe where cpf = '$cpf' and usuarios.id_posto = p.id_posto and usuarios.id_perfil = pe.id_perfil";
 $con_dados = $mysqli->query($sql);
 $row = $con_dados->fetch_assoc();
 
@@ -22,6 +22,8 @@ $id_perfil_usuario = $row['id_perfil'];
 $perfil_usuario = $row['perfil'];
 $status_usuario = $row['status'];
 $avatar_usuario = $row['avatar'];
+$dt_cad_usuario = date('d/m/Y', strtotime($row['dt_cad']));
+$ultimo_acesso_usuario = date('d/m/Y H:i:s', strtotime($row['ultimo_acesso']));
 
 $sql = "select sigla, denominacao from cciex_om where codom = '$codom_usuario'";
 $con_om = $mysqli1->query($sql);
