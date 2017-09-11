@@ -53,7 +53,7 @@ if(isset($_POST['flag'])){
 			if($_FILES['avatar']['name'] == ''){
 				$avatar = 'default_avatar.jpg';
 			}
-			else {
+			else if ($_FILES['avatar']['name'] <> $avatar_usuario){
 				$ext = strtolower(substr($_FILES['avatar']['name'],-4)); //Pegando extensão do arquivo
 				$avatar = $cpf . $ext; //Definindo um novo nome para o arquivo
 			}

@@ -117,6 +117,8 @@ switch ($status_usuario){
 					</div>
 				</div>
 			</section>
+
+
 		</div>
 		<?php include_once('componentes/internos/php/rodape.inc.php');?>
 	</div>
@@ -250,6 +252,18 @@ switch ($status_usuario){
 			defaultPreviewContent: '<img src="views/avatar/<?php echo $avatar_usuario;?>" alt="Sua Fotos" style="width:160px"><h6 class="text-muted">clique para alterar<br />(Tam máx: 1500Kb)</h6>',
 			layoutTemplates: {main2: '{preview} {remove} {upload}'},
 			allowedFileExtensions: ["jpg", "png", "gif"]
+		});
+	</script>
+	<script>
+		var inicial = $("form_usuario_alterar").serialize();
+
+		$("form_usuario_alterar").on("submit", function(e) {
+		  e.preventDefault();
+		  var atual = $("form_usuario_alterar").serialize();
+		  if (atual !== inicial) {
+			// modificou, pode submeter o form via ajax...
+			alert("modificou");
+		  }
 		});
 	</script>
 	<?php
