@@ -368,7 +368,7 @@ include_once(PATH . '/controllers/autenticacao/autentica.inc.php');
               <a href="#" data-tooltip="tooltip" title="O usuário deverá realizar novo login após alteração da senha!" data-toggle="modal" data-target="#modalTrocarSenha">Alterar senha</a>
             </label>
             <label class="control-sidebar-subheading">
-				<a href="#" data-tooltip="tooltip" title="O usuário será desabilitado na Unidade atual e ficará aguardando habilitação na nova Unidade!" data-toggle="modal" data-target="#modalTrocarUnidade" data-unidade="<?php echo $sigla_usuario; ?>">
+				<a href="#" data-tooltip="tooltip" title="O usuário será desabilitado na Unidade atual e ficará aguardando liberação de acesso pela nova Unidade!" data-toggle="modal" data-target="#modalTrocarUnidade" data-unidade="<?php echo $sigla_usuario; ?>">
 				Alterar Unidade
 				</a>
             </label>
@@ -509,7 +509,7 @@ include_once(PATH . '/controllers/autenticacao/autentica.inc.php');
 		   $.ajax({
 			  url:'controllers/usuario/usuario_excluir_avatar.php',
 			  complete: function (response) {
-				 alert('Confirme no botão enviar!');
+				 alert('Confirme a exclusão da imagem clicando no botão enviar!');
 			  }
 		  });
 
