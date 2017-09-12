@@ -17,8 +17,6 @@ unset($_SESSION['acesso_usuario_inexistente']);
 unset($_SESSION['senha_errada']);
 unset($_SESSION['erro_captcha']);
 
-
-
 //usuario_alterar
 unset($_SESSION['alterar_rg']);
 unset($_SESSION['alterar_posto']);
@@ -46,19 +44,10 @@ unset($_SESSION['alterar_senha_erro_validacao_lista']);
 //logout
 unset($_SESSION['logout']);
 
-unset($_SESSION['botao']);
-//unset($_SESSION['pagina']);
-
-//om_alterar
-/*
-unset($_SESSION['alterar_om_sucesso']);
-unset($_SESSION['alterar_om_erro_bd']);
-unset($_SESSION['alterar_om_erro_validacao']);
-unset($_SESSION['alterar_om_erro_validacao_lista']);
-*/
 //usuario_excluir
-/*
 unset($_SESSION['usuario_excluir_sucesso']);
 unset($_SESSION['usuario_excluir_erro']);
-*/
+
+unset($_SESSION['botao']);
+
 ?>

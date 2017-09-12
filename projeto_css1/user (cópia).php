@@ -28,6 +28,7 @@ include_once(PATH . '/controllers/autenticacao/autentica.inc.php');
   <link rel="stylesheet" href="componentes/externos/dist/css/AdminLTE.css">
   <link rel="stylesheet" href="componentes/externos/dist/css/skins/skin-green.css">
   <link rel="stylesheet" href="componentes/internos/css/siaudi.css">
+  <link rel="stylesheet" href="componentes/externos/bower_components/bootstrap-fileinput/css/fileinput.min.css">
 </head>
 <body class="hold-transition skin-green sidebar-mini">
 <?php include_once('componentes/internos/php/cabecalho.inc.php');?>
@@ -156,41 +157,23 @@ include_once(PATH . '/controllers/autenticacao/autentica.inc.php');
               <!-- The user image in the navbar-->
               <img src="views/avatar/<?php echo $avatar_usuario;?>" class="user-image" alt="User Image">
               <!-- hidden-xs hides the username on small devices so only the image appears. -->
-              <span class="hidden-xs">Cap Paulino</span>
+              <span class="hidden-xs"><b><?php echo $posto_usuario . " " . $nome_guerra_usuario;?></b></span>
             </a>
             <ul class="dropdown-menu">
               <!-- The user image in the menu -->
               <li class="user-header">
                 <img src="views/avatar/<?php echo $avatar_usuario;?>" class="img-circle" alt="User Image">
 
-                <p>
-                  Cap Paulino - Administrador
-                  <small>Usuário desde Jul. 2017</small>
+                <p><?php echo $perfil_usuario . " - " . $sigla_usuario;?>
+                  <!--<small><b>Usuário desde <?php echo $dt_cad_usuario;?></b></small>-->
+                  <small>Último acesso: <?php echo $ultimo_acesso_usuario;?></small>
                 </p>
               </li>
-              <!-- Menu Body -->
+              <!-- Menu Body-->
               <li class="user-body">
-
-                <!-- /.row -->
-              </li>
-              <!-- Menu Footer-->
-              <li class="user-footer">
-                <div class="pull-left">
-					<a href="#">
-						<button type="button" class="btn btn-xs btn-warning"
-							data-toggle="modal"
-							data-target="#modalTrocarUnidade"
-							data-unidade="<?php echo $sigla_usuario; ?>">
-							Alterar Unidade
-						</button>
-					</a>
-                </div>
-                <div class="pull-left">
-					<a href="#" data-toggle="modal" data-target="#modalTrocarSenha"><button type="button" class="btn btn-warning btn-xs">Trocar senha</button></a>
-				</div>
 				<div class="pull-right">
 					<?php $flag = md5("logout");?>
-				  <a href="controllers/autenticacao/logout.php?flag=<?php echo $flag;?>"><button type="button" class="btn btn-xs btn-danger">Sair</button></a>
+				  <a href="controllers/autenticacao/logout.php?flag=<?php echo $flag;?>"><button type="button" class="btn btn-xs btn-danger">Logout</button></a>
 				</div>
               </li>
             </ul>
@@ -274,6 +257,10 @@ include_once(PATH . '/controllers/autenticacao/autentica.inc.php');
 			include_once('controllers/usuario/usuario_alertas_destruir.inc.php');
 		}
 		?>
+		<!-- Inicio modalVisualizar-->
+		<?php include_once('views/usuario/view_usuario_perfil.inc.php');?>
+		<!-- Inicio modalEditar -->
+		<?php include_once('views/usuario/form_usuario_alterar.inc.php');?>
 		<!-- inicio alterar_senha -->
 		<?php include_once('views/usuario/form_senha_alterar.inc.php');?>
 		<!-- Inicio modalTrocarUnidade -->
@@ -284,7 +271,7 @@ include_once(PATH . '/controllers/autenticacao/autentica.inc.php');
 		<?php include_once('views/usuario/view_usuario_fim_sessao.inc.php');?>
 		<!-- Inicio modalAlerta-->
 		<?php include_once('views/usuario/view_usuario_alertas.inc.php');?>
-		<?php if(isset($_SESSION['alterar_senha_logout'])){session_destroy();}//termina a sessao se alterar a senha?>
+		<?php if(isset($_SESSION['alterar_senha_logout']) or isset($_SESSION['alterar_codom'])){session_destroy();}//termina a sessao se alterar a senha?>
       <!--------------------------
         | Your Page Content Here |
         -------------------------->
@@ -302,7 +289,7 @@ include_once(PATH . '/controllers/autenticacao/autentica.inc.php');
     <!-- Create the tabs -->
     <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
       <li class="active"><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i></a></li>
-      <li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gears"></i></a></li>
+      <li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gear"></i></a></li>
     </ul>
     <!-- Tab panes -->
     <div class="tab-content">
@@ -351,16 +338,43 @@ include_once(PATH . '/controllers/autenticacao/autentica.inc.php');
       <!-- Settings tab content -->
       <div class="tab-pane" id="control-sidebar-settings-tab">
         <form method="post">
-          <h3 class="control-sidebar-heading">General Settings</h3>
+          <h3 class="control-sidebar-heading">Perfil do Usuário</h3>
 
           <div class="form-group">
             <label class="control-sidebar-subheading">
-              Report panel usage
-              <input type="checkbox" class="pull-right" checked>
+              <a href="#" data-tooltip="tooltip" title="Exibir Perfil" data-toggle="modal" data-target="#modalVisualizar<?php echo $cpf; ?>">Exibir</a>
             </label>
+            <label class="control-sidebar-subheading">
+              <a href="#" data-toggle="modal" data-target="#modalEditar"
 
+					data-tooltip="tooltip" title="Editar Perfil"
+					data-toggle="modal"
+					data-target="#modalEditar"
+					data-cpf="<?php echo $cpf; ?>"
+					data-rg="<?php echo $rg_usuario; ?>"
+					data-id_posto="<?php echo $id_posto_usuario; ?>"
+					data-posto="<?php echo $posto_usuario; ?>"
+					data-nome_guerra="<?php echo $nome_guerra_usuario; ?>"
+					data-nome="<?php echo $nome_usuario; ?>"
+					data-email="<?php echo $email_usuario; ?>"
+					data-ritex="<?php echo $ritex_usuario; ?>"
+					data-celular="<?php echo $celular_usuario; ?>"
+					data-id_perfil="<?php echo $id_perfil_usuario; ?>"
+					data-perfil="<?php echo $perfil_usuario; ?>"
+					data-unidade="<?php echo $sigla_usuario; ?>"
+					data-avatar="<?php echo 'views/avatar/'.$avatar_usuario; ?>">Editar</a>
+            </label>
+            <label class="control-sidebar-subheading">
+              <a href="#" data-tooltip="tooltip" title="O usuário deverá realizar novo login após alteração da senha!" data-toggle="modal" data-target="#modalTrocarSenha">Alterar senha</a>
+            </label>
+            <label class="control-sidebar-subheading">
+				<a href="#" data-tooltip="tooltip" title="O usuário será desabilitado na Unidade atual e ficará aguardando habilitação na nova Unidade!" data-toggle="modal" data-target="#modalTrocarUnidade" data-unidade="<?php echo $sigla_usuario; ?>">
+				Alterar Unidade
+				</a>
+            </label>
+			<br />
             <p>
-              Some information about this general settings option
+              O usuário poderá visualizar e/ou alterar as informações do seu perfil clicando nos links acima.
             </p>
           </div>
           <!-- /.form-group -->
@@ -389,6 +403,37 @@ include_once(PATH . '/controllers/autenticacao/autentica.inc.php');
 <script src="componentes/externos/dist/js/adminlte.min.js"></script>
 <script src="controllers/usuario/senha_alterar.js"></script>
 <script src="componentes/internos/js/status_sessao.js"></script>
+<script src="componentes/externos/bower_components/bootstrap-fileinput/js/fileinput.js" type="text/javascript"></script>
+<script src="componentes/externos/bower_components/bootstrap-fileinput/js/locales/pt-BR.js" type="text/javascript"></script>
+<script type="text/javascript">
+		$('#modalEditar').on('show.bs.modal', function (event) {
+			var button = $(event.relatedTarget) // Button that triggered the modal
+			var cpf = button.data('cpf') // Extract info from data-* attributes no script view_usuario_status.inc.php
+			var rg = button.data('rg')
+			var nome_guerra = button.data('nome_guerra')
+			var nome = button.data('nome')
+			var id_posto = button.data('id_posto')
+			var posto = button.data('posto')
+			var email = button.data('email')
+			var ritex = button.data('ritex')
+			var celular = button.data('celular')
+			var unidade = button.data('unidade')
+			var id_perfil = button.data('id_perfil')
+			var perfil = button.data('perfil')
+			var modal = $(this)
+
+			modal.find('.modal-title').text('Editar Perfil')
+			modal.find('#cpf').val(cpf)
+			modal.find('#rg').val(rg)
+			modal.find('#email').val(email)
+			modal.find('#ritex').val(ritex)
+			modal.find('#celular').val(celular)
+			modal.find('#posto').val(id_posto)
+			modal.find('#nome_guerra').val(nome_guerra)
+			modal.find('#nome').val(nome)
+			modal.find('#perfil').val(id_perfil)
+		})
+	</script>
 	<script>
 		//script para receber a selecao da unidade de controle interno e atualizar o 2º select
 		$(document).ready(function(){
@@ -434,6 +479,60 @@ include_once(PATH . '/controllers/autenticacao/autentica.inc.php');
 					}
 				})
 			}
+		});
+	</script>
+	<script>
+		$(document).ready(function(){
+			$('[data-tooltip="tooltip"]').tooltip();
+		});
+	</script>
+	<script>
+		var btnCust = '';
+		$("#avatar-1").fileinput({
+			overwriteInitial: true,
+			maxFileSize: 1500,
+			showClose: false,
+			showCaption: false,
+			showBrowse: false,
+			browseOnZoneClick: false,
+			removeLabel: '',
+			removeIcon: '',
+			removeTitle: '',
+			elErrorContainer: '',
+			msgErrorClass: '',
+			defaultPreviewContent: '<img src="views/avatar/<?php echo $avatar_usuario;?>" style="width:160px">',
+			layoutTemplates: {main2: '{preview}'},
+			allowedFileExtensions: ["jpg", "png", "gif"]
+		});
+	</script><script>
+		function chamarPhpAjax() {
+		   $.ajax({
+			  url:'controllers/usuario/usuario_excluir_avatar.php',
+			  complete: function (response) {
+				 alert('Confirme no botão enviar!');
+			  }
+		  });
+
+		  return false;
+		}
+	</script>
+	<script>
+		var btnCust = '<button type="button" class="btn btn-secondary" title="Excluir imagem" ' +
+			'onclick="return chamarPhpAjax();">' +
+			'<i class="fa fa-trash"> </i>' +
+			'</button>';
+		$("#avatar").fileinput({
+			overwriteInitial: true,
+			maxFileSize: 1500,
+			showClose: false,
+			showCaption: false,
+			showBrowse: false,
+			browseOnZoneClick: true,
+			elErrorContainer: '#kv-avatar-errors-2',
+			msgErrorClass: 'alert alert-block alert-danger',
+			defaultPreviewContent: '<img src="views/avatar/<?php echo $avatar_usuario;?>" alt="Sua Foto" style="width:160px"><h6 class="text-muted">clique para alterar<br />(Tam máx: 1500Kb)</h6>',
+			layoutTemplates: {main2: '{preview} ' +  btnCust },
+			allowedFileExtensions: ["jpg", "png", "gif"]
 		});
 	</script>
 	<?php

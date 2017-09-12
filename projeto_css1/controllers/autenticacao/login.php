@@ -27,7 +27,7 @@ if(isset($_POST['flag'])){
 	else if(!Bcrypt::check($senha, $row_login['senha'])){
 		$_SESSION['senha_errada'] = "ERRO A-02: senha incorreta!";
 	}
-	else if($_SESSION['captcha'] <> $captcha){
+	else if($_SESSION['captcha'] <> $captcha and $_POST['flag1'] <> 'lock'){
 		$_SESSION['erro_captcha'] = "ERRO A-003: código captcha incorreto!";
 	}
 	else{

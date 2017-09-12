@@ -60,7 +60,6 @@ if(isset($_POST['flag'])){
 		$_SESSION['alterar_senha_erro_validacao_lista'] = $validar->get_errors(); //Captura os erros de todos os campos
 		$_SESSION['botao'] = "danger";
 	}
-	//$_SESSION['pagina'] = $pagina;
 
 	$flag = md5("senha_alterar");
 	header(sprintf("Location:../../".$pagina."?flag=$flag"));//redireciona para a pagina que chamou o script

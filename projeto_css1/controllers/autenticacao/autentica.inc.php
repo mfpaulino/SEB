@@ -12,6 +12,9 @@ if (!isset($_SESSION['cpf']) or $_SESSION['acesso'] == "nao_liberado"){
 elseif(isset($_SESSION['obriga_troca_senha'])){
 	header("Location: index.php");
 }
+elseif($_SESSION['acesso'] == 'lock'){
+	header("Location:". PAGINA_BLOQUEIO);
+}
 else {
 	$cpf = $_SESSION['cpf'];
 	$ultimoAcesso = $_SESSION['ultimoAcesso'];

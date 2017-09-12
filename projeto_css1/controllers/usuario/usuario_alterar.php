@@ -169,7 +169,7 @@ if(isset($_POST['flag'])){
 			}
 		}
 		if ($codom <> "" and $codom <> $codom_usuario){
-			$con_update = $mysqli->prepare("UPDATE usuarios SET codom = ? WHERE cpf ='$cpf'");
+			$con_update = $mysqli->prepare("UPDATE usuarios SET codom = ?, status = 'recebido' WHERE cpf ='$cpf'");
 			$con_update->bind_param('s', $codom);
 			$con_update->execute();
 

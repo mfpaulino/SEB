@@ -1,0 +1,79 @@
+body{
+	margin:0;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size:12px;
+}
+#header {
+	background: #111111;/*#069 para o caso de retirar o gradiente*/
+}
+#header-imagem {
+	background: url(../img/quartel.gif) no-repeat center right;
+	height: 98px;/*97px*/
+	position: relative;
+}
+.header-mascara {
+	background: url(../img/header-mask.png) repeat top right;
+ 	height: 98px;/*97px*/
+	border-bottom:1px solid #cccccc;
+}
+#header-logo{
+	background: url(../img/logo.gif) no-repeat;
+	margin: 0;
+	width: 65px;
+	height:90px;
+	top:4px;/*4*/
+	left:19px;
+	position:absolute;
+	z-index:20;
+}
+.header-txt1 {
+	color: #ffffff;
+	font-weight:bold;
+	text-transform: uppercase;
+	font-size:26px;/*22*/
+	bottom: 55px;
+	margin-left: 100px;
+	position: absolute;
+}
+.header-txt2 {
+	color: #ffffff;
+	font-weight:bold;
+	font-size: 22px;/*18*/
+	bottom: 30px;/*36*/
+	margin-left: 105px;
+	position: absolute
+}
+#header-bottom-menu {
+	top:8px;
+	width:500px;
+	right:0px;
+	position:absolute;
+	text-align:right;
+	border-bottom:0px solid blue;
+}
+#header-bottom {
+	height: 40px;
+	width: auto;
+	margin-right: auto;
+	margin-left: auto;
+	background: #003300;
+	background: -moz-linear-gradient(top, #003300, #5A6B5A);
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#003300), to(#5A6B5A));
+	background-repeat: repeat-x;
+	margin-top: 00px;
+	border-top-width: 0px;
+	border-top-style: solid;
+	border-top-color: #CCC;
+	border-bottom-width: 0px;
+	border-bottom-style: solid;
+	border-bottom-color: #CCC;
+	color: #FFF;
+	text-align:center;
+	vertical-align:midle;
+	text-decoration:none;
+	text-shadow: 2px 2px 2px #000;
+	padding-top: 2px;/*25px paulino */
+	padding-bottom: 2px;/*25px paulino */
+	font-size: 25px;
+}
+

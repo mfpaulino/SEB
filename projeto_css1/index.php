@@ -25,6 +25,9 @@ else if ($_SESSION['acesso'] == "nao_liberado"){
 else if ($_SESSION['acesso'] == "liberado"){
 	header("Location:" . PAGINA_INICIAL);
 }
+else if ($_SESSION['acesso'] == "lock"){
+	header("Location:" . PAGINA_BLOQUEIO);
+}
 ?>
 <!DOCTYPE html>
 <html>
