@@ -5,11 +5,8 @@
  * se nao estiver liberado inclui o arquivo que gera todos os dados do usuario(perfil.inc.php)  *
  * **********************************************************************************************/
 session_start();
-if (!isset($_SESSION['cpf']) or $_SESSION['acesso'] == 'liberado' or $_SESSION['acesso'] == 'lock' ){
+if (!isset($_SESSION['cpf']) or $_SESSION['acesso'] == 'liberado' or $_SESSION['acesso'] == 'lock' or isset($_SESSION['obriga_troca_senha'])){
 	header(sprintf("Location: index.php"));
-}
-elseif(isset($_SESSION['obriga_troca_senha'])){
-	header("Location: index.php");
 }
 else {
 	$cpf = $_SESSION['cpf'];

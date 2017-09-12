@@ -19,7 +19,6 @@ if(isset($_SESSION['obriga_troca_senha'])){
 	include_once('views/usuario/form_senha_alterar.inc.php');
 }
 else if ($_SESSION['acesso'] == "nao_liberado"){
-
 	header("Location:" . PAGINA_VISITANTE);
 }
 else if ($_SESSION['acesso'] == "liberado"){
@@ -44,7 +43,6 @@ else if ($_SESSION['acesso'] == "lock"){
 	<link rel="stylesheet" href="componentes/externos/dist/css/skins/skin-green.css">
 	<link rel="stylesheet" href="componentes/internos/css/siaudi.css">
 	<link rel="stylesheet" href="componentes/externos/bower_components/bootstrap-fileinput/css/fileinput.min.css">
-	<!--<link rel="stylesheet" href="componentes/externos/bower_components/bootstrap-fileinput/themes/explorer/theme.css">-->
 	<style>
 		.main-header .navbar{
 			margin-left: 0px;
@@ -142,7 +140,6 @@ else if ($_SESSION['acesso'] == "lock"){
 			allowedFileExtensions: ["jpg", "png", "gif"]
 		});
 	</script>
-
 	<?php
 	if(isset($_SESSION['obriga_troca_senha'])) {?>
 		<script>

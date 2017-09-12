@@ -150,17 +150,17 @@ include_once(PATH . '/controllers/autenticacao/autentica.inc.php');
 									<img src="views/avatar/<?php echo $avatar_usuario;?>" class="img-circle" alt="User Image">
 									<p>
 										<?php echo $perfil_usuario . " - " . $sigla_usuario;?>
-										<small>Último acesso: <?php echo $ultimo_acesso_usuario;?></small>
+										<small>Acesso anterior: <?php echo $acesso_anterior_usuario;?></small>
 									</p>
 								</li>
 								<!-- Menu Body-->
 								<li class="user-body">
 									<div class="pull-left">
-										<a href="<?php echo PAGINA_BLOQUEIO;?>"><button type="button" class="btn btn-xs btn-warning">Bloquear tela</button></a>
+										<a href="<?php echo PAGINA_BLOQUEIO;?>"><button type="button" class="btn btn-warning btn-flat">Bloquear tela</button></a>
 									</div>
 									<div class="pull-right">
 										<?php $flag = md5("logout");?>
-										<a href="controllers/autenticacao/logout.php?flag=<?php echo $flag;?>"><button type="button" class="btn btn-xs btn-danger">Sair</button></a>
+										<a href="controllers/autenticacao/logout.php?flag=<?php echo $flag;?>"><button type="button" class="btn btn-danger btn-flat">Fazer logout</button></a>
 									</div>
 								</li>
 							</ul>
@@ -191,9 +191,13 @@ include_once(PATH . '/controllers/autenticacao/autentica.inc.php');
 				<!-- Sidebar Menu -->
 				<ul class="sidebar-menu" data-widget="tree">
 					<!-- Optionally, you can add icons to the links -->
-					<li class="active" ><a href="#"><i class="fa fa-home"></i> <span>Home</span></a></li>
+					<li class="active" ><a href="index.php"><i class="fa fa-home"></i> <span>Home</span></a></li>
 					<li><a href="#"><i class="fa fa-gears"></i> <span>Administração</span></a></li>
-					<li><a href="#"><i class="fa fa-envelope"></i> <span>Correio</span></a></li>
+					<li>
+						<a href="mailbox.php">
+							<i class="fa fa-envelope"></i> <span>Correio</span>
+						</a>
+					</li>
 					<li class="treeview">
 						<a href="#">
 							<i class="fa fa-search"></i> <span>Auditoria</span>

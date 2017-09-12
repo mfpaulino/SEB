@@ -6,14 +6,8 @@
  * ******************************************************************************************/
 session_start();
 
-if (!isset($_SESSION['cpf']) or $_SESSION['acesso'] == "nao_liberado"){
+if (!isset($_SESSION['cpf']) or $_SESSION['acesso'] == "nao_liberado" or $_SESSION['acesso'] == 'lock' or isset($_SESSION['obriga_troca_senha'])){
 	header("Location: index.php");
-}
-elseif(isset($_SESSION['obriga_troca_senha'])){
-	header("Location: index.php");
-}
-elseif($_SESSION['acesso'] == 'lock'){
-	header("Location:". PAGINA_BLOQUEIO);
 }
 else {
 	$cpf = $_SESSION['cpf'];

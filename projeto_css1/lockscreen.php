@@ -11,6 +11,14 @@ include_once('config.inc.php');
 include_once(PATH . '/controllers/autenticacao/perfil.inc.php');
 
 $_SESSION['acesso'] = "lock";
+if(isset($_SESSION['senha_errada'])){
+	$msg = 'sim';
+	unset($_SESSION['senha_errada']);
+	$botao = "danger";
+	$msg0 = "ERRO A-03: senha incorreta!";
+	include_once('views/usuario/view_usuario_alertas.inc.php');
+}
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -43,7 +51,7 @@ $_SESSION['acesso'] = "lock";
 			<!-- lockscreen credentials (contains the form) -->
 			<form class="lockscreen-credentials" method="POST" action="controllers/autenticacao/login.php">
 				<div class="input-group">
-					<input type="password" name="senha" class="form-control" placeholder="senha">
+					<input type="password" name="senha" class="form-control" placeholder="Senha" required >
 					<input type="hidden" name="cpf" value="<?php echo $cpf;?>" />
 					<input type="hidden" name="flag" />
 					<input type="hidden" name="flag1" value="lock" />
@@ -70,5 +78,16 @@ $_SESSION['acesso'] = "lock";
 	<!-- /.center -->
 	<script src="componentes/externos/bower_components/jquery/dist/jquery.min.js"></script>
 	<script src="componentes/externos/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+	<?php
+	if ($msg <> ""){?>
+		<script>
+			$(document).ready(function(){
+				$('#modalAlerta').modal('show');
+			});
+		</script>
+	<?php
+	}
+	?>
 </body>
 </html>

@@ -27,13 +27,16 @@ if(isset($_POST['flag'])){
 	else if(!Bcrypt::check($senha, $row_login['senha'])){
 		$_SESSION['senha_errada'] = "ERRO A-02: senha incorreta!";
 	}
-	else if($_SESSION['captcha'] <> $captcha and $_POST['flag1'] <> 'lock'){
+	else if($_SESSION['captcha'] <> $captcha and $_POST['flag1'] <> 'lock'){//se for chamado pela tela de lockscreen nao precisa do captcha
 		$_SESSION['erro_captcha'] = "ERRO A-003: código captcha incorreto!";
 	}
 	else{
 		$_SESSION['cpf'] = $cpf;
-		$_SESSION['ultimoAcesso']= date("d-m-Y H:i:s");
-		$_SESSION['contador_sessao'] = 0;
+		$_SESSION['ultimoAcesso'] = date("d-m-Y H:i:s");
+		//$_SESSION['contador_sessao'] = 0;
+
+		$sql_contador = "UPDATE usuarios SET qtde_acessos = (qtde_acessos + 1), acesso_anterior = ultimo_acesso, ultimo_acesso = NOW() WHERE cpf = '$cpf'";
+		$con_contador = $mysqli->query($sql_contador); //contador de acessos por usuario
 
 		if($row_login['status'] == "habilitado"){
 			$_SESSION['acesso'] = "liberado";
