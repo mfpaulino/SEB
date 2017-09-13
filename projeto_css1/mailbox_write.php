@@ -8,10 +8,10 @@ $pagina = strtr(end(explode('/', $_SERVER['PHP_SELF'])),'?', true);
 include_once('config.inc.php');
 include_once(PATH . '/controllers/autenticacao/autentica.inc.php');
 
-$sql_destinatario = "SELECT cpf, nome_guerra, p.posto, codom from usuarios, postos p where status = 'habilitado' and usuarios.id_posto = p.id_posto";
+$sql_destinatario = "SELECT cpf, nome_guerra, p.posto, codom from usuarios, postos p where usuarios.id_posto = p.id_posto order by codom";
 $con_destinatario = $mysqli->query($sql_destinatario);
 
-$sql = "select sigla, denominacao from cciex_om where codom = '$codom_usuario'";
+$sql = "select sigla from cciex_om where codom = '$codom_usuario'";
 $con_om = $mysqli1->query($sql);
 ?>
 <!DOCTYPE html>
@@ -31,7 +31,6 @@ $con_om = $mysqli1->query($sql);
   <link rel="stylesheet" href="componentes/externos/bower_components/bootstrap-fileinput/css/fileinput.min.css">
   <link rel="stylesheet" href="componentes/externos/dist/css/skins/skin-blue.css">
   <link rel="stylesheet" href="componentes/internos/css/siaudi.css">
-  <link rel="stylesheet" href="componentes/externos/bower_components/iCheck/flat/blue.css">
   <link rel="stylesheet" href="componentes/externos/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.css">
   <link rel="stylesheet" href="componentes/externos/plugins/bootstrap-chosen/bootstrap-chosen.css">
 </head>
@@ -264,7 +263,7 @@ $con_om = $mysqli1->query($sql);
 		-------------------------->
       <div class="row">
         <div class="col-md-3">
-          <a href="mailbox.html" class="btn btn-primary btn-block margin-bottom disabled">Escrever</a>
+          <a href="mailbox.html" class="btn btn-primary btn-block margin-bottom disabled"><i class="fa fa-pencil"></i> Escrever</a>
 
           <div class="box box-solid">
             <div class="box-header with-border">
@@ -292,22 +291,21 @@ $con_om = $mysqli1->query($sql);
               <h3 class="box-title">Nova Mensagem</h3>
             </div>
             <!-- /.box-header -->
-            <form>
+            <form name="form_write_msg" method = "GET">
             <div class="box-body">
 
               <div class="form-group">
                 <select name="destinatario[]" id="destinatario" class="form-control chosen-select" multiple data-placeholder = " Para:" >
 					<?php while($row = $con_destinatario->fetch_assoc()){ ?>
-					  <option value="<?php echo $row['cpf'];?>"><?php echo $row['cpf'];?></option>
+					  <option value="<?php echo $row['cpf'];?>"><?php echo $row['posto'] . " " . $row['nome_guerra'] . " - " . $row['codom'] ;?></option>
 					  <?php } ?>
 			    </select>
               </div>
               <div class="form-group">
-                <input class="form-control" placeholder="Assunto:">
+                <input name="assunto" class="form-control" placeholder="Assunto:">
               </div>
               <div class="form-group">
-                    <textarea id="compose-textarea" class="form-control" style="height: 300px">
-
+                    <textarea name="texto" id="compose-textarea" class="form-control" style="height: 300px">
                     </textarea>
               </div>
               <!--
@@ -324,7 +322,7 @@ $con_om = $mysqli1->query($sql);
             <div class="box-footer">
               <div class="pull-right">
                 <button type="submit" class="btn btn-success"><i class="fa fa-envelope-o"></i> Enviar</button>
-                <button type="reset" class="btn btn-danger"><i class="fa fa-trash"></i>  Cancelar</button>
+                <a href="mailbox_write.php"><button class="btn btn-danger"><i class="fa fa-trash"></i>  Cancelar</button></a>
               </div>
             </div>
             <!-- /.box-footer -->
@@ -444,9 +442,6 @@ $con_om = $mysqli1->query($sql);
 	<script src="componentes/externos/dist/js/adminlte.min.js"></script>
 	<script src="controllers/usuario/senha_alterar.js"></script>
 	<script src="componentes/internos/js/status_sessao.js"></script>
-	<script src="componentes/externos/bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
-	<script src="componentes/externos/bower_components/fastclick/lib/fastclick.js"></script>
-	<script src="componentes/externos/plugins/iCheck/icheck.min.js"></script>
 	<script src="componentes/externos/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.js"></script>
 	<script src="componentes/externos/plugins/bootstrap-chosen/bootstrap-chosen.js"></script>
 	<script src="componentes/externos/bower_components/bootstrap-fileinput/js/fileinput.js" type="text/javascript"></script>
@@ -580,51 +575,6 @@ $con_om = $mysqli1->query($sql);
 			layoutTemplates: {main2: '{preview} ' +  btnCust },
 			allowedFileExtensions: ["jpg", "png", "gif"]
 		});
-	</script>
-	<script>
-	  $(function () {
-		//Enable iCheck plugin for checkboxes
-		//iCheck for checkbox and radio inputs
-		$('.mailbox-messages input[type="checkbox"]').iCheck({
-		  checkboxClass: 'icheckbox_flat-blue',
-		  radioClass: 'iradio_flat-blue'
-		});
-
-		//Enable check and uncheck all functionality
-		$(".checkbox-toggle").click(function () {
-		  var clicks = $(this).data('clicks');
-		  if (clicks) {
-			//Uncheck all checkboxes
-			$(".mailbox-messages input[type='checkbox']").iCheck("uncheck");
-			$(".fa", this).removeClass("fa-check-square-o").addClass('fa-square-o');
-		  } else {
-			//Check all checkboxes
-			$(".mailbox-messages input[type='checkbox']").iCheck("check");
-			$(".fa", this).removeClass("fa-square-o").addClass('fa-check-square-o');
-		  }
-		  $(this).data("clicks", !clicks);
-		});
-
-		//Handle starring for glyphicon and font awesome
-		$(".mailbox-star").click(function (e) {
-		  e.preventDefault();
-		  //detect type
-		  var $this = $(this).find("a > i");
-		  var glyph = $this.hasClass("glyphicon");
-		  var fa = $this.hasClass("fa");
-
-		  //Switch states
-		  if (glyph) {
-			$this.toggleClass("glyphicon-star");
-			$this.toggleClass("glyphicon-star-empty");
-		  }
-
-		  if (fa) {
-			$this.toggleClass("fa-star");
-			$this.toggleClass("fa-star-o");
-		  }
-		});
-	  });
 	</script>
 	<?php
 	if ($msg <> ""){?>
