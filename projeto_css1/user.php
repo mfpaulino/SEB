@@ -194,7 +194,7 @@ include_once(PATH . '/controllers/autenticacao/autentica.inc.php');
 					<li class="active" ><a href="index.php"><i class="fa fa-home"></i> <span>Home</span></a></li>
 					<li><a href="#"><i class="fa fa-gears"></i> <span>Administração</span></a></li>
 					<li>
-						<a href="mailbox.php">
+						<a href="mailbox_input.php">
 							<i class="fa fa-envelope"></i> <span>Correio</span>
 						</a>
 					</li>

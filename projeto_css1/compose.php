@@ -7,12 +7,6 @@ $pagina = strtr(end(explode('/', $_SERVER['PHP_SELF'])),'?', true);
 
 include_once('config.inc.php');
 include_once(PATH . '/controllers/autenticacao/autentica.inc.php');
-
-$sql_destinatario = "SELECT cpf, nome_guerra, p.posto, codom from usuarios, postos p where status = 'habilitado' and usuarios.id_posto = p.id_posto";
-$con_destinatario = $mysqli->query($sql_destinatario);
-
-$sql = "select sigla, denominacao from cciex_om where codom = '$codom_usuario'";
-$con_om = $mysqli1->query($sql);
 ?>
 <!DOCTYPE html>
 <html>
@@ -28,12 +22,10 @@ $con_om = $mysqli1->query($sql);
   <link rel="stylesheet" href="componentes/externos/bower_components/font-awesome/css/font-awesome.min.css">
   <link rel="stylesheet" href="componentes/externos/bower_components/Ionicons/css/ionicons.min.css">
   <link rel="stylesheet" href="componentes/externos/dist/css/AdminLTE.css">
-  <link rel="stylesheet" href="componentes/externos/bower_components/bootstrap-fileinput/css/fileinput.min.css">
   <link rel="stylesheet" href="componentes/externos/dist/css/skins/skin-blue.css">
   <link rel="stylesheet" href="componentes/internos/css/siaudi.css">
   <link rel="stylesheet" href="componentes/externos/bower_components/iCheck/flat/blue.css">
   <link rel="stylesheet" href="componentes/externos/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.css">
-  <link rel="stylesheet" href="componentes/externos/plugins/bootstrap-chosen/bootstrap-chosen.css">
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 	<?php include_once('componentes/internos/php/cabecalho.inc.php');?>
@@ -196,7 +188,7 @@ $con_om = $mysqli1->query($sql);
 					<li><a href="index.php"><i class="fa fa-home"></i> <span>Home</span></a></li>
 					<li><a href="#"><i class="fa fa-gears"></i> <span>Administração</span></a></li>
 					<li class="treeview active">
-						<a href="mailbox.html">
+						<a href="#">
 							<i class="fa fa-envelope"></i> <span>Correio</span>
 						</a>
 					</li>
@@ -235,33 +227,7 @@ $con_om = $mysqli1->query($sql);
     </section>
 
     <!-- Main content -->
-    <section class="content container-fluid">
-		<?php
-		if (isset($_GET['flag']) and ($_GET['flag'] == md5("usuario_alterar") or $_GET['flag'] == md5("senha_alterar") or $_GET['flag'] == md5("om_alterar") or $_GET['flag'] == md5("logout") )){
-			include_once('controllers/usuario/usuario_alertas_criar.inc.php');
-		}
-		else {
-			include_once('controllers/usuario/usuario_alertas_destruir.inc.php');
-		}
-		?>
-		<!-- Inicio modalVisualizar-->
-		<?php include_once('views/usuario/view_usuario_perfil.inc.php');?>
-		<!-- Inicio modalEditar -->
-		<?php include_once('views/usuario/form_usuario_alterar.inc.php');?>
-		<!-- inicio alterar_senha -->
-		<?php include_once('views/usuario/form_senha_alterar.inc.php');?>
-		<!-- Inicio modalTrocarUnidade -->
-		<?php include_once('views/usuario/form_unidade_alterar.inc.php');?>
-		<!-- inicio alerta Sessao -->
-		<?php include_once('views/usuario/view_usuario_alerta_sessao.inc.php');?>
-		<!-- inicio alerta FimSessao -->
-		<?php include_once('views/usuario/view_usuario_fim_sessao.inc.php');?>
-		<!-- Inicio modalAlerta-->
-		<?php include_once('views/usuario/view_usuario_alertas.inc.php');?>
-		<?php if(isset($_SESSION['alterar_senha_logout']) or isset($_SESSION['alterar_codom'])){session_destroy();}//termina a sessao se alterar a senha?>
-		<!--------------------------
-		| Your Page Content Here |
-		-------------------------->
+    <section class="content">
       <div class="row">
         <div class="col-md-3">
           <a href="mailbox.html" class="btn btn-primary btn-block margin-bottom disabled">Escrever</a>
@@ -296,11 +262,7 @@ $con_om = $mysqli1->query($sql);
             <div class="box-body">
 
               <div class="form-group">
-                <select name="destinatario[]" id="destinatario" class="form-control chosen-select" multiple data-placeholder = " Para:" >
-					<?php while($row = $con_destinatario->fetch_assoc()){ ?>
-					  <option value="<?php echo $row['cpf'];?>"><?php echo $row['cpf'];?></option>
-					  <?php } ?>
-			    </select>
+                <input class="form-control" placeholder="Para:">
               </div>
               <div class="form-group">
                 <input class="form-control" placeholder="Assunto:">
@@ -323,8 +285,8 @@ $con_om = $mysqli1->query($sql);
             <!-- /.box-body -->
             <div class="box-footer">
               <div class="pull-right">
-                <button type="submit" class="btn btn-success"><i class="fa fa-envelope-o"></i> Enviar</button>
                 <button type="reset" class="btn btn-danger"><i class="fa fa-trash"></i>  Cancelar</button>
+                <button type="submit" class="btn btn-primary"><i class="fa fa-envelope-o"></i> Enviar</button>
               </div>
             </div>
             <!-- /.box-footer -->
@@ -442,210 +404,17 @@ $con_om = $mysqli1->query($sql);
 	<script src="componentes/externos/bower_components/jquery/dist/jquery.min.js"></script>
 	<script src="componentes/externos/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 	<script src="componentes/externos/dist/js/adminlte.min.js"></script>
-	<script src="controllers/usuario/senha_alterar.js"></script>
 	<script src="componentes/internos/js/status_sessao.js"></script>
 	<script src="componentes/externos/bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
 	<script src="componentes/externos/bower_components/fastclick/lib/fastclick.js"></script>
 	<script src="componentes/externos/plugins/iCheck/icheck.min.js"></script>
 	<script src="componentes/externos/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.js"></script>
-	<script src="componentes/externos/plugins/bootstrap-chosen/bootstrap-chosen.js"></script>
-	<script src="componentes/externos/bower_components/bootstrap-fileinput/js/fileinput.js" type="text/javascript"></script>
-	<script src="componentes/externos/bower_components/bootstrap-fileinput/js/locales/pt-BR.js" type="text/javascript"></script>
-	<script type="text/javascript">
-		$('#modalEditar').on('show.bs.modal', function (event) {
-			var button = $(event.relatedTarget) // Button that triggered the modal
-			var cpf = button.data('cpf') // Extract info from data-* attributes no script view_usuario_status.inc.php
-			var rg = button.data('rg')
-			var nome_guerra = button.data('nome_guerra')
-			var nome = button.data('nome')
-			var id_posto = button.data('id_posto')
-			var posto = button.data('posto')
-			var email = button.data('email')
-			var ritex = button.data('ritex')
-			var celular = button.data('celular')
-			var unidade = button.data('unidade')
-			var id_perfil = button.data('id_perfil')
-			var perfil = button.data('perfil')
-			var modal = $(this)
-
-			modal.find('.modal-title').text('Editar Perfil')
-			modal.find('#cpf').val(cpf)
-			modal.find('#rg').val(rg)
-			modal.find('#email').val(email)
-			modal.find('#ritex').val(ritex)
-			modal.find('#celular').val(celular)
-			modal.find('#posto').val(id_posto)
-			modal.find('#nome_guerra').val(nome_guerra)
-			modal.find('#nome').val(nome)
-			modal.find('#perfil').val(id_perfil)
-		})
-	</script>
-	<script>
-		//script para receber a selecao da unidade de controle interno e atualizar o 2º select
-		$(document).ready(function(){
-			$("select[name=unidade_ci]").change(function(){
-				$("select[name=codom]").html('<option value="">Carregando...</option>');
-				$.post("listas/select_unidade_usuario.inc.php", {unidade_ci:$(this).val()},function(valor){$("select[name=codom]").html(valor);})
-			 })
-		 })
-	</script>
-	<script type="text/javascript">
-		$('#modalTrocarUnidade').on('show.bs.modal', function (event) {
-			var button = $(event.relatedTarget)
-			var unidade = button.data('unidade')
-			var modal = $(this)
-			modal.find('.modal-title').text('Unidade atual: ' + unidade )
-			modal.find('#unidade').val(unidade)
-		})
-	</script>
-	<script>
-		$('[data-toggle="confirmation"]').confirmation({
-			onConfirm: function() {
-				$('#form_altera_om').bootstrapValidator({
-					feedbackIcons: {
-						valid: 'glyphicon glyphicon-ok',
-						invalid: 'glyphicon glyphicon-remove',
-						validating: 'glyphicon glyphicon-refresh'
-					},
-					fields: {
-						unidade_ci: {
-							validators: {
-								notEmpty: {
-									message:'preenchimento obrigatório'
-								}
-							}
-						},
-						codom: {
-							validators: {
-								notEmpty: {
-									message:'preenchimento obrigatório'
-								}
-							}
-						}
-					}
-				})
-			}
-		});
-	</script>
-	<script>
-		$(document).ready(function(){
-			$('[data-tooltip="tooltip"]').tooltip();
-		});
-	</script>
-	<script>
-		var btnCust = '';
-		$("#avatar-1").fileinput({
-			overwriteInitial: true,
-			maxFileSize: 1500,
-			showClose: false,
-			showCaption: false,
-			showBrowse: false,
-			browseOnZoneClick: false,
-			removeLabel: '',
-			removeIcon: '',
-			removeTitle: '',
-			elErrorContainer: '',
-			msgErrorClass: '',
-			defaultPreviewContent: '<img src="views/avatar/<?php echo $avatar_usuario;?>" style="width:160px">',
-			layoutTemplates: {main2: '{preview}'},
-			allowedFileExtensions: ["jpg", "png", "gif"]
-		});
-	</script>
-	<script>
-		function chamarPhpAjax() {//chama o script que avisa ao usuario_alterar.php que o avatar será excluído
-		   $.ajax({
-			  url:'controllers/usuario/usuario_excluir_avatar.php',
-			  complete: function (response) {
-				 alert('Confirme no botão enviar!');
-			  }
-		  });
-		  return false;
-		}
-	</script>
-	<script>
-		var btnCust = '<button type="button" class="btn btn-secondary" title="Excluir imagem" ' +
-			'onclick="return chamarPhpAjax();">' +
-			'<i class="fa fa-trash"> </i>' +
-			'</button>';
-		$("#avatar").fileinput({
-			overwriteInitial: true,
-			maxFileSize: 1500,
-			showClose: false,
-			showCaption: false,
-			showBrowse: false,
-			browseOnZoneClick: true,
-			elErrorContainer: '#kv-avatar-errors-2',
-			msgErrorClass: 'alert alert-block alert-danger',
-			defaultPreviewContent: '<img src="views/avatar/<?php echo $avatar_usuario;?>" alt="Sua Foto" style="width:160px"><h6 class="text-muted">clique para alterar<br />(Tam máx: 1500Kb)</h6>',
-			layoutTemplates: {main2: '{preview} ' +  btnCust },
-			allowedFileExtensions: ["jpg", "png", "gif"]
-		});
-	</script>
-	<script>
-	  $(function () {
-		//Enable iCheck plugin for checkboxes
-		//iCheck for checkbox and radio inputs
-		$('.mailbox-messages input[type="checkbox"]').iCheck({
-		  checkboxClass: 'icheckbox_flat-blue',
-		  radioClass: 'iradio_flat-blue'
-		});
-
-		//Enable check and uncheck all functionality
-		$(".checkbox-toggle").click(function () {
-		  var clicks = $(this).data('clicks');
-		  if (clicks) {
-			//Uncheck all checkboxes
-			$(".mailbox-messages input[type='checkbox']").iCheck("uncheck");
-			$(".fa", this).removeClass("fa-check-square-o").addClass('fa-square-o');
-		  } else {
-			//Check all checkboxes
-			$(".mailbox-messages input[type='checkbox']").iCheck("check");
-			$(".fa", this).removeClass("fa-square-o").addClass('fa-check-square-o');
-		  }
-		  $(this).data("clicks", !clicks);
-		});
-
-		//Handle starring for glyphicon and font awesome
-		$(".mailbox-star").click(function (e) {
-		  e.preventDefault();
-		  //detect type
-		  var $this = $(this).find("a > i");
-		  var glyph = $this.hasClass("glyphicon");
-		  var fa = $this.hasClass("fa");
-
-		  //Switch states
-		  if (glyph) {
-			$this.toggleClass("glyphicon-star");
-			$this.toggleClass("glyphicon-star-empty");
-		  }
-
-		  if (fa) {
-			$this.toggleClass("fa-star");
-			$this.toggleClass("fa-star-o");
-		  }
-		});
-	  });
-	</script>
-	<?php
-	if ($msg <> ""){?>
-		<script>
-			$(document).ready(function(){
-				$('#modalAlerta').modal('show');
-			});
-		</script>
-	<?php
-	}
-	?>
 <!-- Page Script -->
 <script>
   $(function () {
     //Add text editor
     $("#compose-textarea").wysihtml5();
   });
-</script>
-<script>
-      var config = {'.chosen-select': {}}
-		for (var selector in config) {$(selector).chosen(config[selector]);}
 </script>
 </body>
 </html>

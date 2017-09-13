@@ -23,6 +23,7 @@ include_once(PATH . '/controllers/autenticacao/autentica.inc.php');
   <link rel="stylesheet" href="componentes/externos/bower_components/font-awesome/css/font-awesome.min.css">
   <link rel="stylesheet" href="componentes/externos/bower_components/Ionicons/css/ionicons.min.css">
   <link rel="stylesheet" href="componentes/externos/dist/css/AdminLTE.css">
+  <link rel="stylesheet" href="componentes/externos/bower_components/bootstrap-fileinput/css/fileinput.min.css">
   <link rel="stylesheet" href="componentes/externos/dist/css/skins/skin-blue.css">
   <link rel="stylesheet" href="componentes/internos/css/siaudi.css">
   <link rel="stylesheet" href="componentes/externos/bower_components/iCheck/flat/blue.css">
@@ -188,7 +189,7 @@ include_once(PATH . '/controllers/autenticacao/autentica.inc.php');
 					<li><a href="index.php"><i class="fa fa-home"></i> <span>Home</span></a></li>
 					<li><a href="#"><i class="fa fa-gears"></i> <span>Administração</span></a></li>
 					<li class="treeview active">
-						<a href="mailbox.html">
+						<a href="#">
 							<i class="fa fa-envelope"></i> <span>Correio</span>
 						</a>
 					</li>
@@ -216,36 +217,61 @@ include_once(PATH . '/controllers/autenticacao/autentica.inc.php');
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Caixa de Entrada
-        <small>(13 novas mensagens)</small>
+        Caixa Enviadas
       </h1>
       <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">Correio</li><li class="active">Entrada</li>
+        <li><a href="index.php"><i class="fa fa-home"></i>Home</a></li>
+        <li><a href="mailbox_input.php">Correio</a></li>
+        <li class="active">Enviadas</li>
       </ol>
     </section>
 
     <!-- Main content -->
-    <section class="content">
+    <section class="content container-fluid">
+<?php
+		if (isset($_GET['flag']) and ($_GET['flag'] == md5("usuario_alterar") or $_GET['flag'] == md5("senha_alterar") or $_GET['flag'] == md5("om_alterar") or $_GET['flag'] == md5("logout") )){
+			include_once('controllers/usuario/usuario_alertas_criar.inc.php');
+		}
+		else {
+			include_once('controllers/usuario/usuario_alertas_destruir.inc.php');
+		}
+		?>
+		<!-- Inicio modalVisualizar-->
+		<?php include_once('views/usuario/view_usuario_perfil.inc.php');?>
+		<!-- Inicio modalEditar -->
+		<?php include_once('views/usuario/form_usuario_alterar.inc.php');?>
+		<!-- inicio alterar_senha -->
+		<?php include_once('views/usuario/form_senha_alterar.inc.php');?>
+		<!-- Inicio modalTrocarUnidade -->
+		<?php include_once('views/usuario/form_unidade_alterar.inc.php');?>
+		<!-- inicio alerta Sessao -->
+		<?php include_once('views/usuario/view_usuario_alerta_sessao.inc.php');?>
+		<!-- inicio alerta FimSessao -->
+		<?php include_once('views/usuario/view_usuario_fim_sessao.inc.php');?>
+		<!-- Inicio modalAlerta-->
+		<?php include_once('views/usuario/view_usuario_alertas.inc.php');?>
+		<?php if(isset($_SESSION['alterar_senha_logout']) or isset($_SESSION['alterar_codom'])){session_destroy();}//termina a sessao se alterar a senha?>
+		<!--------------------------
+		| Your Page Content Here |
+		-------------------------->
       <div class="row">
         <div class="col-md-3">
-          <a href="compose.html" class="btn btn-primary btn-block margin-bottom">Escrever</a>
+          <a href="mailbox_write.php" class="btn btn-primary btn-block margin-bottom">Escrever</a>
 
           <div class="box box-solid">
             <div class="box-header with-border">
               <h3 class="box-title">Pastas</h3>
 
-              <div class="box-tools">
+             <!-- <div class="box-tools">
                 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
                 </button>
-              </div>
+              </div>-->
             </div>
             <div class="box-body no-padding">
               <ul class="nav nav-pills nav-stacked">
-                <li class="active"><a href="#"><i class="fa fa-inbox"></i> Entrada
-                  <span class="label label-primary pull-right">12</span></a></li>
-                <li><a href="#"><i class="fa fa-envelope-o"></i> Enviadas</a></li>
-                <li><a href="#"><i class="fa fa-file-text-o"></i> Já lidas</a></li>
+                <li><a href="mailbox_input.php"><i class="fa fa-inbox"></i> Entrada<span class="label label-danger pull-right"><?php echo $qtde_entrada;?></span></a></li>
+                <li><a href="mailbox_read.php"><i class="fa fa-envelope-open-o"></i> Já lidas<span class="label label-primary pull-right"><?php echo $qtde_lidas;?></span></a></li>
+                <li class="active"><a href="#"><i class="fa fa-send-o"></i> Enviadas<span class="label label-success pull-right"><?php echo $qtde_enviadas;?></span></a></li>
               </ul>
             </div>
             <!-- /.box-body -->
