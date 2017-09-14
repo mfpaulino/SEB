@@ -105,7 +105,7 @@ if (isset($_POST['flag'])){
 		}
 	}
 	else {
-		$_SESSION['erro_validacao_cadastrar'] = "ERRO: dados inconsistentes, preencha novamente o formulário!";
+		$_SESSION['erro_validacao_cadastrar'] = "ERRO U-04: dados inconsistentes, preencha novamente o formulário!";
 		$_SESSION['botao'] = "danger";
 
 		$_SESSION['lista_erro_validacao_cadastrar'] = $validar->get_errors(); //Captura os erros de todos os campos

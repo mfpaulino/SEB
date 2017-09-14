@@ -256,7 +256,7 @@ include_once(PATH . '/controllers/autenticacao/autentica.inc.php');
 		-------------------------->
       <div class="row">
         <div class="col-md-3">
-          <a href="mailbox_write.php" class="btn btn-primary btn-block margin-bottom"><i class="fa fa-pencil"></i> Escrever</a>
+          <a href="mailbox_write.php" class="btn btn-primary btn-block margin-bottom" title="Nova Mensagem"><i class="fa fa-pencil"></i> Escrever</a>
 
           <div class="box box-solid">
             <div class="box-header with-border">

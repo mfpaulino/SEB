@@ -8,11 +8,9 @@ $pagina = strtr(end(explode('/', $_SERVER['PHP_SELF'])),'?', true);
 include_once('config.inc.php');
 include_once(PATH . '/controllers/autenticacao/autentica.inc.php');
 
-$sql_destinatario = "SELECT cpf, nome_guerra, p.posto, codom from usuarios, postos p where usuarios.id_posto = p.id_posto order by codom";
+$sql_destinatario = "SELECT id_usuario, nome_guerra, p.posto, codom from usuarios, postos p where usuarios.cpf <> '$cpf' and usuarios.status = 'habilitado' and usuarios.id_posto = p.id_posto order by p.id_posto, codom";
 $con_destinatario = $mysqli->query($sql_destinatario);
 
-$sql = "select sigla from cciex_om where codom = '$codom_usuario'";
-$con_om = $mysqli1->query($sql);
 ?>
 <!DOCTYPE html>
 <html>
@@ -291,14 +289,20 @@ $con_om = $mysqli1->query($sql);
               <h3 class="box-title">Nova Mensagem</h3>
             </div>
             <!-- /.box-header -->
-            <form name="form_write_msg" method = "GET">
+            <form name="form_write_msg" method = "POST" action = "controllers/correio/correio_cadastrar.php">
             <div class="box-body">
 
               <div class="form-group">
                 <select name="destinatario[]" id="destinatario" class="form-control chosen-select" multiple data-placeholder = " Para:" >
-					<?php while($row = $con_destinatario->fetch_assoc()){ ?>
-					  <option value="<?php echo $row['cpf'];?>"><?php echo $row['posto'] . " " . $row['nome_guerra'] . " - " . $row['codom'] ;?></option>
-					  <?php } ?>
+					<?php
+					while($row = $con_destinatario->fetch_assoc()){
+
+						$sql_sigla = "select sigla from cciex_om where codom = '$row[codom]' limit 1";
+						$con_sigla = $mysqli1->query($sql_sigla);
+						$row_sigla = $con_sigla->fetch_assoc();?>
+
+						<option value="<?php echo $row['id_usuario'];?>"><?php echo $row['posto'] . " " . $row['nome_guerra'] . " - " . $row_sigla['sigla'];?></option>
+						<?php } ?>
 			    </select>
               </div>
               <div class="form-group">
@@ -318,6 +322,8 @@ $con_om = $mysqli1->query($sql);
               </div>
               -->
             </div>
+			<!-- Hidden input -->
+			<input name="flag" type="hidden" />
             <!-- /.box-body -->
             <div class="box-footer">
               <div class="pull-right">

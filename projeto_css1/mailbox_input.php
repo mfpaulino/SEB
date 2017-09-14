@@ -232,9 +232,17 @@ include_once(PATH . '/controllers/autenticacao/autentica.inc.php');
 			include_once('controllers/usuario/usuario_alertas_criar.inc.php');
 		}
 		else {
-			include_once('controllers/usuario/usuario_alertas_destruir.inc.php');
+			//include_once('controllers/usuario/usuario_alertas_destruir.inc.php');
+		}
+		if (isset($_GET['flag']) and $_GET['flag'] == md5("correio_cadastrar")){
+			include_once('controllers/correio/correio_alertas_criar.inc.php');
+		}
+		else {
+			include_once('controllers/correio/correio_alertas_destruir.inc.php');
 		}
 		?>
+		<!-- Inicio modalAlertaCorreio-->
+		<?php include_once('views/correio/view_correio_alertas.inc.php');?>
 		<!-- Inicio modalVisualizar-->
 		<?php include_once('views/usuario/view_usuario_perfil.inc.php');?>
 		<!-- Inicio modalEditar -->
@@ -255,7 +263,7 @@ include_once(PATH . '/controllers/autenticacao/autentica.inc.php');
 		-------------------------->
       <div class="row">
         <div class="col-md-3">
-          <a href="mailbox_write.php" class="btn btn-primary btn-block margin-bottom"><i class="fa fa-pencil"></i> Escrever</a>
+          <a href="mailbox_write.php" class="btn btn-primary btn-block margin-bottom" title="Nova Mensagem"><i class="fa fa-pencil"></i> Escrever</a>
 
           <div class="box box-solid">
             <div class="box-header with-border">
@@ -784,6 +792,14 @@ include_once(PATH . '/controllers/autenticacao/autentica.inc.php');
 		<script>
 			$(document).ready(function(){
 				$('#modalAlerta').modal('show');
+			});
+		</script>
+	<?php
+	}
+	if ($msg_correio <> ""){?>
+		<script>
+			$(document).ready(function(){
+				$('#modalAlertaCorreio').modal('show');
 			});
 		</script>
 	<?php
