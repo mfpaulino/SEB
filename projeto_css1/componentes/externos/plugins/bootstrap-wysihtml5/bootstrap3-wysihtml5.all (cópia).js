@@ -14811,16 +14811,16 @@ function program17(depth0,data) {
 
     var defaultOptions = $.fn.wysihtml5.defaultOptions = {
       toolbar: {
-        'font-styles': false,
+        'font-styles': true,
         'color': false,
         'emphasis': {
-          'small': false
+          'small': true
         },
-        'blockquote': false,
-        'lists': false,
+        'blockquote': true,
+        'lists': true,
         'html': false,
-        'link': false,
-        'image': false,
+        'link': true,
+        'image': true,
         'smallmodals': false
       },
       useLineBreaks: false,
@@ -14935,9 +14935,9 @@ function program17(depth0,data) {
       h6: 'Heading 6'
     },
     emphasis: {
-      bold: 'Negrito',
-      italic: 'Itálico',
-      underline: 'Sublinhado',
+      bold: 'Bold',
+      italic: 'Italic',
+      underline: 'Underline',
       small: 'Small'
     },
     lists: {

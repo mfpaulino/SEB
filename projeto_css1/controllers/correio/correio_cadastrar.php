@@ -25,16 +25,8 @@ if (isset($_POST['flag'])){
 	$texto 	 		= isset($_POST['texto']) ? mysqli_real_escape_string($mysqli, $_POST['texto']) : "";
 	$data			= isset($_POST['data']) ? mysqli_real_escape_string($mysqli, $_POST['data']) : "";
 
-	$qtde_destinatario = count($_POST['destinatario']);
-
-	if ($qtde_destinatario > 1){//se tiver mais de 1, separa com ;
-
-		foreach($_POST['destinatario'] as $destinatario){
-			$lista_destinatario = $lista_destinatario . $destinatario . ";";
-		}
-	}
-	else {
-		$lista_destinatario = $_POST['destinatario'][0];
+	foreach($_POST['destinatario'] as $destinatario){
+		$lista_destinatario = $lista_destinatario . $destinatario . ";";
 	}
 
 	$validar = new validaForm();
@@ -51,15 +43,10 @@ if (isset($_POST['flag'])){
 
 			$resultado = $mysqli->query("INSERT INTO correio_enviados (destinatario, assunto, texto, remetente, data) VALUES ('$lista_destinatario', '$assunto', '$texto', '$cpf', '$data')");
 
-			/*
-			 $qtde_destinatario = count($sigla);
-					for ($i = 0; $i < $qtde_sigla; $i++){
-						$om = $sigla[$i];
-						$add_demanda_om = new Consulta("INSERT INTO sist15_om (cod_demanda, sigla, login) VALUES ('$cod_demanda', '$om', '$cpf')");
-						$add_demanda_om->desconecta();
-					}
-			*/
-
+			$cod_correio = $cpf." ".$data;
+			foreach($_POST['destinatario'] as $destinatario){
+				$mysqli->query("INSERT INTO correio_recebidos (cod_correio, destinatario) VALUES ('$cod_correio', '$destinatario')");
+			}
 
 			if($resultado){
 
