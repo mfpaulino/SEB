@@ -7,6 +7,9 @@ $pagina = strtr(end(explode('/', $_SERVER['PHP_SELF'])),'?', true);
 
 include_once('config.inc.php');
 include_once(PATH . '/controllers/autenticacao/autentica.inc.php');
+
+$sql = "SELECT id_correio, assunto, texto, destinatario, data FROM correio_enviados WHERE remetente = '$cpf' ORDER BY data desc";
+$con_enviados = $mysqli->query($sql);
 ?>
 <!DOCTYPE html>
 <html>
@@ -217,12 +220,12 @@ include_once(PATH . '/controllers/autenticacao/autentica.inc.php');
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Caixa Enviadas
+        Correio
       </h1>
       <ol class="breadcrumb">
         <li><a href="index.php"><i class="fa fa-home"></i>Home</a></li>
-        <li><a href="mailbox_input.php">Correio</a></li>
-        <li class="active">Enviadas</li>
+        <li class="active">Correio</li>
+        <li class="active">Enviados</li>
       </ol>
     </section>
 
@@ -270,8 +273,8 @@ include_once(PATH . '/controllers/autenticacao/autentica.inc.php');
             <div class="box-body no-padding">
               <ul class="nav nav-pills nav-stacked">
                 <li><a href="mailbox_input.php"><i class="fa fa-inbox"></i> Entrada<span class="label label-danger pull-right"><?php echo $qtde_entrada;?></span></a></li>
-                <li><a href="mailbox_read.php"><i class="fa fa-envelope-open-o"></i> Já lidas<span class="label label-primary pull-right"><?php echo $qtde_lidas;?></span></a></li>
-                <li class="active"><a href="#"><i class="fa fa-send-o"></i> Enviadas<span class="label label-success pull-right"><?php echo $qtde_enviadas;?></span></a></li>
+                <li><a href="mailbox_read.php"><i class="fa fa-envelope-open-o"></i> Já lidos<span class="label label-primary pull-right"><?php echo $qtde_lidas;?></span></a></li>
+                <li class="active"><a href="#"><i class="fa fa-send-o"></i> Enviados<span class="label label-success pull-right"><?php echo $qtde_enviadas;?></span></a></li>
               </ul>
             </div>
             <!-- /.box-body -->
@@ -281,7 +284,7 @@ include_once(PATH . '/controllers/autenticacao/autentica.inc.php');
         <div class="col-md-9">
           <div class="box box-primary">
             <div class="box-header with-border">
-              <h3 class="box-title">Entrada</h3>
+              <h3 class="box-title">Enviados</h3>
 
               <div class="box-tools pull-right">
                 <div class="has-feedback">
@@ -317,141 +320,46 @@ include_once(PATH . '/controllers/autenticacao/autentica.inc.php');
               <div class="table-responsive mailbox-messages">
                 <table class="table table-hover table-striped">
                   <tbody>
-                  <tr>
-                    <td><input type="checkbox"></td>
-                    <td class="mailbox-star"><a href="#"><i class="fa fa-star text-yellow"></i></a></td>
-                    <td class="mailbox-name"><a href="read-mail.html">Alexander Pierce</a></td>
-                    <td class="mailbox-subject"><b>AdminLTE 2.0 Issue</b> - Trying to find a solution to this problem...
-                    </td>
-                    <td class="mailbox-attachment"></td>
-                    <td class="mailbox-date">5 mins ago</td>
-                  </tr>
-                  <tr>
-                    <td><input type="checkbox"></td>
-                    <td class="mailbox-star"><a href="#"><i class="fa fa-star-o text-yellow"></i></a></td>
-                    <td class="mailbox-name"><a href="read-mail.html">Alexander Pierce</a></td>
-                    <td class="mailbox-subject"><b>AdminLTE 2.0 Issue</b> - Trying to find a solution to this problem...
-                    </td>
-                    <td class="mailbox-attachment"><i class="fa fa-paperclip"></i></td>
-                    <td class="mailbox-date">28 mins ago</td>
-                  </tr>
-                  <tr>
-                    <td><input type="checkbox"></td>
-                    <td class="mailbox-star"><a href="#"><i class="fa fa-star-o text-yellow"></i></a></td>
-                    <td class="mailbox-name"><a href="read-mail.html">Alexander Pierce</a></td>
-                    <td class="mailbox-subject"><b>AdminLTE 2.0 Issue</b> - Trying to find a solution to this problem...
-                    </td>
-                    <td class="mailbox-attachment"><i class="fa fa-paperclip"></i></td>
-                    <td class="mailbox-date">11 hours ago</td>
-                  </tr>
-                  <tr>
-                    <td><input type="checkbox"></td>
-                    <td class="mailbox-star"><a href="#"><i class="fa fa-star text-yellow"></i></a></td>
-                    <td class="mailbox-name"><a href="read-mail.html">Alexander Pierce</a></td>
-                    <td class="mailbox-subject"><b>AdminLTE 2.0 Issue</b> - Trying to find a solution to this problem...
-                    </td>
-                    <td class="mailbox-attachment"></td>
-                    <td class="mailbox-date">15 hours ago</td>
-                  </tr>
-                  <tr>
-                    <td><input type="checkbox"></td>
-                    <td class="mailbox-star"><a href="#"><i class="fa fa-star text-yellow"></i></a></td>
-                    <td class="mailbox-name"><a href="read-mail.html">Alexander Pierce</a></td>
-                    <td class="mailbox-subject"><b>AdminLTE 2.0 Issue</b> - Trying to find a solution to this problem...
-                    </td>
-                    <td class="mailbox-attachment"><i class="fa fa-paperclip"></i></td>
-                    <td class="mailbox-date">Yesterday</td>
-                  </tr>
-                  <tr>
-                    <td><input type="checkbox"></td>
-                    <td class="mailbox-star"><a href="#"><i class="fa fa-star-o text-yellow"></i></a></td>
-                    <td class="mailbox-name"><a href="read-mail.html">Alexander Pierce</a></td>
-                    <td class="mailbox-subject"><b>AdminLTE 2.0 Issue</b> - Trying to find a solution to this problem...
-                    </td>
-                    <td class="mailbox-attachment"><i class="fa fa-paperclip"></i></td>
-                    <td class="mailbox-date">2 days ago</td>
-                  </tr>
-                  <tr>
-                    <td><input type="checkbox"></td>
-                    <td class="mailbox-star"><a href="#"><i class="fa fa-star-o text-yellow"></i></a></td>
-                    <td class="mailbox-name"><a href="read-mail.html">Alexander Pierce</a></td>
-                    <td class="mailbox-subject"><b>AdminLTE 2.0 Issue</b> - Trying to find a solution to this problem...
-                    </td>
-                    <td class="mailbox-attachment"><i class="fa fa-paperclip"></i></td>
-                    <td class="mailbox-date">2 days ago</td>
-                  </tr>
-                  <tr>
-                    <td><input type="checkbox"></td>
-                    <td class="mailbox-star"><a href="#"><i class="fa fa-star text-yellow"></i></a></td>
-                    <td class="mailbox-name"><a href="read-mail.html">Alexander Pierce</a></td>
-                    <td class="mailbox-subject"><b>AdminLTE 2.0 Issue</b> - Trying to find a solution to this problem...
-                    </td>
-                    <td class="mailbox-attachment"></td>
-                    <td class="mailbox-date">2 days ago</td>
-                  </tr>
-                  <tr>
-                    <td><input type="checkbox"></td>
-                    <td class="mailbox-star"><a href="#"><i class="fa fa-star text-yellow"></i></a></td>
-                    <td class="mailbox-name"><a href="read-mail.html">Alexander Pierce</a></td>
-                    <td class="mailbox-subject"><b>AdminLTE 2.0 Issue</b> - Trying to find a solution to this problem...
-                    </td>
-                    <td class="mailbox-attachment"></td>
-                    <td class="mailbox-date">2 days ago</td>
-                  </tr>
-                  <tr>
-                    <td><input type="checkbox"></td>
-                    <td class="mailbox-star"><a href="#"><i class="fa fa-star-o text-yellow"></i></a></td>
-                    <td class="mailbox-name"><a href="read-mail.html">Alexander Pierce</a></td>
-                    <td class="mailbox-subject"><b>AdminLTE 2.0 Issue</b> - Trying to find a solution to this problem...
-                    </td>
-                    <td class="mailbox-attachment"></td>
-                    <td class="mailbox-date">2 days ago</td>
-                  </tr>
-                  <tr>
-                    <td><input type="checkbox"></td>
-                    <td class="mailbox-star"><a href="#"><i class="fa fa-star-o text-yellow"></i></a></td>
-                    <td class="mailbox-name"><a href="read-mail.html">Alexander Pierce</a></td>
-                    <td class="mailbox-subject"><b>AdminLTE 2.0 Issue</b> - Trying to find a solution to this problem...
-                    </td>
-                    <td class="mailbox-attachment"><i class="fa fa-paperclip"></i></td>
-                    <td class="mailbox-date">4 days ago</td>
-                  </tr>
-                  <tr>
-                    <td><input type="checkbox"></td>
-                    <td class="mailbox-star"><a href="#"><i class="fa fa-star text-yellow"></i></a></td>
-                    <td class="mailbox-name"><a href="read-mail.html">Alexander Pierce</a></td>
-                    <td class="mailbox-subject"><b>AdminLTE 2.0 Issue</b> - Trying to find a solution to this problem...
-                    </td>
-                    <td class="mailbox-attachment"></td>
-                    <td class="mailbox-date">12 days ago</td>
-                  </tr>
-                  <tr>
-                    <td><input type="checkbox"></td>
-                    <td class="mailbox-star"><a href="#"><i class="fa fa-star-o text-yellow"></i></a></td>
-                    <td class="mailbox-name"><a href="read-mail.html">Alexander Pierce</a></td>
-                    <td class="mailbox-subject"><b>AdminLTE 2.0 Issue</b> - Trying to find a solution to this problem...
-                    </td>
-                    <td class="mailbox-attachment"><i class="fa fa-paperclip"></i></td>
-                    <td class="mailbox-date">12 days ago</td>
-                  </tr>
-                  <tr>
-                    <td><input type="checkbox"></td>
-                    <td class="mailbox-star"><a href="#"><i class="fa fa-star text-yellow"></i></a></td>
-                    <td class="mailbox-name"><a href="read-mail.html">Alexander Pierce</a></td>
-                    <td class="mailbox-subject"><b>AdminLTE 2.0 Issue</b> - Trying to find a solution to this problem...
-                    </td>
-                    <td class="mailbox-attachment"><i class="fa fa-paperclip"></i></td>
-                    <td class="mailbox-date">14 days ago</td>
-                  </tr>
-                  <tr>
-                    <td><input type="checkbox"></td>
-                    <td class="mailbox-star"><a href="#"><i class="fa fa-star text-yellow"></i></a></td>
-                    <td class="mailbox-name"><a href="read-mail.html">Alexander Pierce</a></td>
-                    <td class="mailbox-subject"><b>AdminLTE 2.0 Issue</b> - Trying to find a solution to this problem...
-                    </td>
-                    <td class="mailbox-attachment"><i class="fa fa-paperclip"></i></td>
-                    <td class="mailbox-date">15 days ago</td>
-                  </tr>
+					<?php
+					while($row_enviados = $con_enviados->fetch_assoc()){
+
+						if(date('d/m/Y') - 1 == date('d/m/Y', strtotime($row_enviados['data']))){
+							$data = "Ontem " . date('H:i',strtotime($row_enviados['data']));
+						}
+						else if(date('d/m/Y') == date('d/m/Y', strtotime($row_enviados['data']))){
+							$data = "Hoje " . date('H:i',strtotime($row_enviados['data']));
+						}
+						else{
+							$data = date('d/m/Y h:i', strtotime($row_enviados['data']));
+						}
+
+						$qtde = substr_count($row_enviados['destinatario'], ";");
+						$lista_destinatario = explode(";", $row_enviados['destinatario']);
+						$destinatario = "";
+
+						for($i = 0; $i < $qtde; $i++){
+
+							$sql_destinatario = "SELECT id_usuario, codom, nome_guerra, p.posto, codom from usuarios, postos p where usuarios.id_usuario = '$lista_destinatario[$i]' and usuarios.id_posto = p.id_posto order by p.id_posto";
+							$con_destinatario = $mysqli->query($sql_destinatario);
+							$row_destinatario = $con_destinatario->fetch_assoc();
+
+							$sql_sigla = "SELECT sigla FROM cciex_om WHERE codom = '$row_destinatario[codom]' limit 1";
+							$con_sigla = $mysqli1->query($sql_sigla);
+							$row_sigla = $con_sigla->fetch_assoc();
+
+							$destinatario = $destinatario . "[".$row_destinatario['posto']." ". $row_destinatario['nome_guerra']." - ".$row_sigla['sigla']."] ";
+							$destinatario = mb_strimwidth($destinatario, 0, 75, "...");
+						}
+						echo "
+						<tr>
+						<td><input type='checkbox'></td>
+						<td class='mailbox-name'><a href='mailbox_view.php?flag=$row_enviados[id_correio]'>$destinatario</a></td>
+						<td class='mailbox-subject'>$row_enviados[assunto]</td>
+						<td class='mailbox-date'>$data</td>
+						</tr>"
+						;
+					}
+					?>
                   </tbody>
                 </table>
                 <!-- /.table -->
@@ -736,49 +644,30 @@ include_once(PATH . '/controllers/autenticacao/autentica.inc.php');
 		});
 	</script>
 	<script>
-	  $(function () {
-		//Enable iCheck plugin for checkboxes
-		//iCheck for checkbox and radio inputs
-		$('.mailbox-messages input[type="checkbox"]').iCheck({
-		  checkboxClass: 'icheckbox_flat-blue',
-		  radioClass: 'iradio_flat-blue'
+		$(function () {
+			//Enable iCheck plugin for checkboxes
+			//iCheck for checkbox and radio inputs
+			$('.mailbox-messages input[type="checkbox"]').iCheck({
+				checkboxClass: 'icheckbox_flat-blue',
+				radioClass: 'iradio_flat-blue'
+			});
+
+			//Enable check and uncheck all functionality
+			$(".checkbox-toggle").click(function () {
+				var clicks = $(this).data('clicks');
+				if (clicks) {
+				//Uncheck all checkboxes
+					$(".mailbox-messages input[type='checkbox']").iCheck("uncheck");
+					$(".fa", this).removeClass("fa-check-square-o").addClass('fa-square-o');
+				}
+				else {
+					//Check all checkboxes
+					$(".mailbox-messages input[type='checkbox']").iCheck("check");
+					$(".fa", this).removeClass("fa-square-o").addClass('fa-check-square-o');
+				}
+				$(this).data("clicks", !clicks);
+			});
 		});
-
-		//Enable check and uncheck all functionality
-		$(".checkbox-toggle").click(function () {
-		  var clicks = $(this).data('clicks');
-		  if (clicks) {
-			//Uncheck all checkboxes
-			$(".mailbox-messages input[type='checkbox']").iCheck("uncheck");
-			$(".fa", this).removeClass("fa-check-square-o").addClass('fa-square-o');
-		  } else {
-			//Check all checkboxes
-			$(".mailbox-messages input[type='checkbox']").iCheck("check");
-			$(".fa", this).removeClass("fa-square-o").addClass('fa-check-square-o');
-		  }
-		  $(this).data("clicks", !clicks);
-		});
-
-		//Handle starring for glyphicon and font awesome
-		$(".mailbox-star").click(function (e) {
-		  e.preventDefault();
-		  //detect type
-		  var $this = $(this).find("a > i");
-		  var glyph = $this.hasClass("glyphicon");
-		  var fa = $this.hasClass("fa");
-
-		  //Switch states
-		  if (glyph) {
-			$this.toggleClass("glyphicon-star");
-			$this.toggleClass("glyphicon-star-empty");
-		  }
-
-		  if (fa) {
-			$this.toggleClass("fa-star");
-			$this.toggleClass("fa-star-o");
-		  }
-		});
-	  });
 	</script>
 	<?php
 	if ($msg <> ""){?>

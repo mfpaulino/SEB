@@ -22,6 +22,7 @@ if (isset($_POST['flag'])){
 	require_once(PATH . '/componentes/internos/php/validaForm.class.php');
 
 	$assunto		= isset($_POST['assunto'])  ? mysqli_real_escape_string($mysqli, $_POST['assunto']) : "";
+	$assunto		= ($assunto <> "") ? $assunto : "Sem assunto";
 	$texto 	 		= isset($_POST['texto']) ? mysqli_real_escape_string($mysqli, $_POST['texto']) : "";
 	$data			= isset($_POST['data']) ? mysqli_real_escape_string($mysqli, $_POST['data']) : "";
 
@@ -32,7 +33,6 @@ if (isset($_POST['flag'])){
 	$validar = new validaForm();
 
 	$validar->set('Destinatário', 	$lista_destinatario)->is_required()
-			->set('Assunto', 		$assunto)->is_required()
 			->set('Texto', 			$texto)->is_required();
 
 
@@ -43,9 +43,14 @@ if (isset($_POST['flag'])){
 
 			$resultado = $mysqli->query("INSERT INTO correio_enviados (destinatario, assunto, texto, remetente, data) VALUES ('$lista_destinatario', '$assunto', '$texto', '$cpf', '$data')");
 
-			$cod_correio = $cpf." ".$data;
+			//verifica o id_correio do email enviado
+			$sql_correio = "SELECT MAX(id_correio) as id_correio FROM correio_enviados WHERE remetente = '$cpf'";
+			$con_correio = $mysqli->query($sql_correio);
+			$row_correio = $con_correio->fetch_assoc();
+
+			//insere uma linha para cadas destinatario na tabela de correio_recebidos
 			foreach($_POST['destinatario'] as $destinatario){
-				$mysqli->query("INSERT INTO correio_recebidos (cod_correio, destinatario) VALUES ('$cod_correio', '$destinatario')");
+				$mysqli->query("INSERT INTO correio_recebidos (id_correio, destinatario) VALUES ('$row_correio[id_correio]', '$destinatario')");
 			}
 
 			if($resultado){

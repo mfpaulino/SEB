@@ -217,12 +217,12 @@ include_once(PATH . '/controllers/autenticacao/autentica.inc.php');
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Caixa Já Lidas
+        Correio
       </h1>
       <ol class="breadcrumb">
         <li><a href="index.php"><i class="fa fa-home"></i>Home</a></li>
-        <li><a href="mailbox_input.php">Correio</a></li>
-        <li class="active">Já Lidas</li>
+        <li class="active">Correio</li>
+        <li class="active">Já Lidos</li>
       </ol>
     </section>
 
@@ -270,8 +270,8 @@ include_once(PATH . '/controllers/autenticacao/autentica.inc.php');
             <div class="box-body no-padding">
               <ul class="nav nav-pills nav-stacked">
                 <li><a href="mailbox_input.php"><i class="fa fa-inbox"></i> Entrada<span class="label label-danger pull-right"><?php echo $qtde_entrada;?></span></a></li>
-                <li class="active"><a href="#"><i class="fa fa-envelope-open-o"></i> Já lidas<span class="label label-primary pull-right"><?php echo $qtde_lidas;?></span></a></li>
-                <li><a href="mailbox_sent.php"><i class="fa fa-send-o"></i> Enviadas<span class="label label-success pull-right"><?php echo $qtde_enviadas;?></span></a></li>
+                <li class="active"><a href="#"><i class="fa fa-envelope-open-o"></i> Já lidos<span class="label label-primary pull-right"><?php echo $qtde_lidas;?></span></a></li>
+                <li><a href="mailbox_sent.php"><i class="fa fa-send-o"></i> Enviados<span class="label label-success pull-right"><?php echo $qtde_enviadas;?></span></a></li>
               </ul>
             </div>
             <!-- /.box-body -->
@@ -281,7 +281,7 @@ include_once(PATH . '/controllers/autenticacao/autentica.inc.php');
         <div class="col-md-9">
           <div class="box box-primary">
             <div class="box-header with-border">
-              <h3 class="box-title">Entrada</h3>
+              <h3 class="box-title">Já Lidos</h3>
 
               <div class="box-tools pull-right">
                 <div class="has-feedback">
