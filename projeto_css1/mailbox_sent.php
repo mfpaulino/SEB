@@ -1,6 +1,7 @@
 <?php
 /***********************************************************************************************************
-* local/script name: ./mailbox.php
+* local/script name: ./mailbox_sent.php
+* caixa enviados
 * **********************************************************************************************************/
 $inc = "sim";
 $pagina = strtr(end(explode('/', $_SERVER['PHP_SELF'])),'?', true);
@@ -330,7 +331,7 @@ $con_enviados = $mysqli->query($sql);
 							$data = "Hoje " . date('H:i',strtotime($row_enviados['data']));
 						}
 						else{
-							$data = date('d/m/Y h:i', strtotime($row_enviados['data']));
+							$data = date('d/m/Y H:i', strtotime($row_enviados['data']));
 						}
 
 						$qtde = substr_count($row_enviados['destinatario'], ";");

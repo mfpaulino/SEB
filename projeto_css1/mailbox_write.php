@@ -1,6 +1,7 @@
 <?php
 /***********************************************************************************************************
-* local/script name: ./mailbox.php
+* local/script name: ./mailbox_write.php
+* escrever email
 * **********************************************************************************************************/
 $inc = "sim";
 $pagina = strtr(end(explode('/', $_SERVER['PHP_SELF'])),'?', true);
@@ -222,11 +223,11 @@ $con_destinatario = $mysqli->query($sql_destinatario);
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Escrever Mensagem
+        Correio
       </h1>
       <ol class="breadcrumb">
         <li><a href="index.php"><i class="fa fa-home"></i>Home</a></li>
-        <li><a href="mailbox_input.php">Correio</a></li>
+        <li class="active">Correio</li>
         <li class="active">Escrever</li>
       </ol>
     </section>
@@ -342,7 +343,8 @@ $con_destinatario = $mysqli->query($sql_destinatario);
     </section>
     <!-- /.content -->
   </div>
-  <!-- /.content-wrapper --><!-- Main Footer -->
+  <!-- /.content-wrapper -->
+  <!-- Main Footer -->
 		<?php include_once('componentes/internos/php/rodape.inc.php');?>
 
   <!-- Control Sidebar -->
