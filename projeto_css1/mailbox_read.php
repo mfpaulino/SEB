@@ -11,7 +11,32 @@ include_once(PATH . '/controllers/autenticacao/autentica.inc.php');
 
 $sql = "SELECT ce.id_correio, ce.assunto, ce.texto, ce.data, cr.lida, p.posto, u.nome_guerra, u.codom FROM correio_enviados ce, correio_recebidos cr, postos p, usuarios u WHERE cr.destinatario = '$id_usuario' and pasta = 'ja_lidos' and ce.id_correio = cr.id_correio and ce.remetente = u.cpf and p.id_posto = u.id_posto  ORDER BY ce.data desc";
 $con_ja_lidos = $mysqli->query($sql);
-$qtde = $con_ja_lidos->num_rows;
+
+/** paginacao **/
+$total_reg = "10";//registros por pagina
+
+$pag = $_GET['pagina'];
+if (!$pag) {
+	$pag = "1";
+}
+else {
+	$pag = $pag;
+}
+
+$inicio = $pag - 1;
+$inicio = $inicio * $total_reg;
+
+$con_limite = $mysqli->query("$sql LIMIT $inicio,$total_reg");
+$con_todos =  $mysqli->query($sql);
+
+$total_msg = $con_todos->num_rows; // verifica o número total de registros
+$total_pag = ceil($total_msg / $total_reg); // calcula e arredonda pra cima o número total de páginas
+
+// agora vamos criar os botões "Anterior e próximo"
+$anterior = $pag -1;
+$proximo = $pag +1;
+
+/** fim paginacao**/
 ?>
 <!DOCTYPE html>
 <html>
@@ -282,7 +307,7 @@ $qtde = $con_ja_lidos->num_rows;
 							</div>
 							<!-- /.box-header -->
 							<div class="box-body no-padding">
-								<?php if ($qtde > 0) {?>
+								<?php if ($total_msg > 0) {?>
 									<div class="mailbox-controls">
 									<!-- Check all button -->
 										<button type="button" class="btn btn-default btn-sm checkbox-toggle"><i class="fa fa-square-o"></i></button>
@@ -347,7 +372,7 @@ $qtde = $con_ja_lidos->num_rows;
 							</div>
 							<!-- /.box-body -->
 							<div class="box-footer no-padding">
-								<?php if ($qtde > 0) {?>
+								<?php if ($total_msg > 0) {?>
 									<div class="mailbox-controls">
 										<!-- Check all button -->
 										<button type="button" class="btn btn-default btn-sm checkbox-toggle"><i class="fa fa-square-o"></i></button>

@@ -12,7 +12,7 @@ include_once(PATH . '/controllers/autenticacao/autentica.inc.php');
 $sql = "SELECT id_correio, assunto, texto, destinatario, data FROM correio_enviados WHERE remetente = '$cpf' ORDER BY data desc";
 
 /** paginacao **/
-$total_reg = "20";//registros por pagina
+$total_reg = "10";//registros por pagina
 
 $pag=$_GET['pagina'];
 if (!$pag) {
@@ -311,17 +311,11 @@ $proximo = $pag +1;
           <div class="box box-primary">
             <div class="box-header with-border">
               <h3 class="box-title">Enviados</h3>
-
-              <div class="box-tools pull-right">
-                <div class="has-feedback">
-                  <input type="text" class="form-control input-sm" placeholder="Procurar mensagem">
-                  <span class="glyphicon glyphicon-search form-control-feedback"></span>
-                </div>
-              </div>
               <!-- /.box-tools -->
             </div>
             <!-- /.box-header -->
             <div class="box-body no-padding">
+				<?php if ($total_msg > 0) {?>
               <div class="mailbox-controls">
                 <!-- Check all button -->
                 <button type="button" class="btn btn-default btn-sm checkbox-toggle"><i class="fa fa-square-o"></i>
@@ -347,6 +341,7 @@ $proximo = $pag +1;
                 </div>
                 <!-- /.pull-right -->
               </div>
+              <?php } ?>
               <div class="table-responsive mailbox-messages">
                 <table class="table table-hover table-striped">
                   <tbody>
@@ -398,6 +393,7 @@ $proximo = $pag +1;
             </div>
             <!-- /.box-body -->
             <div class="box-footer no-padding">
+				<?php if ($total_msg > 0) {?>
               <div class="mailbox-controls">
                 <!-- Check all button -->
                 <button type="button" class="btn btn-default btn-sm checkbox-toggle"><i class="fa fa-square-o"></i>
@@ -422,6 +418,7 @@ $proximo = $pag +1;
                 </div>
                 <!-- /.pull-right -->
               </div>
+              <?php }?>
             </div>
           </div>
           <!-- /. box -->

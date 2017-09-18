@@ -12,7 +12,7 @@ include_once(PATH . '/controllers/autenticacao/autentica.inc.php');
 $sql = "SELECT ce.id_correio, ce.assunto, ce.texto, ce.data, cr.lida, p.posto, u.nome_guerra, u.codom FROM correio_enviados ce, correio_recebidos cr, postos p, usuarios u WHERE cr.destinatario = '$id_usuario' and cr.pasta = 'entrada' and ce.id_correio = cr.id_correio and ce.remetente = u.cpf and p.id_posto = u.id_posto  ORDER BY ce.data desc";
 
 /** paginacao **/
-$total_reg = "20";//registros por pagina
+$total_reg = "10";//registros por pagina
 
 $pag = $_GET['pagina'];
 if (!$pag) {
@@ -318,18 +318,11 @@ $proximo = $pag +1;
           <div class="box box-primary">
             <div class="box-header with-border">
               <h3 class="box-title">Entrada</h3>
-				<!--
-              <div class="box-tools pull-right">
-                <div class="has-feedback">
-                  <input type="text" class="form-control input-sm" placeholder="Procurar mensagem">
-                  <span class="glyphicon glyphicon-search form-control-feedback"></span>
-                </div>
-              </div>
-              -->
               <!-- /.box-tools -->
             </div>
             <!-- /.box-header -->
             <div class="box-body no-padding">
+			<?php if ($total_msg > 0) {?>
               <div class="mailbox-controls">
                 <!-- Check all button -->
                 <button type="button" class="btn btn-default btn-sm checkbox-toggle"><i class="fa fa-square-o"></i>
@@ -355,6 +348,7 @@ $proximo = $pag +1;
                 </div>
                 <!-- /.pull-right -->
               </div>
+              <?php } ?>
               <div class="table-responsive mailbox-messages">
                 <table class="table table-hover table-striped">
                   <tbody>
@@ -403,31 +397,33 @@ $proximo = $pag +1;
             </div>
             <!-- /.box-body -->
             <div class="box-footer no-padding">
-              <div class="mailbox-controls">
-                <!-- Check all button -->
-                <button type="button" class="btn btn-default btn-sm checkbox-toggle"><i class="fa fa-square-o"></i>
-                </button>
-                <div class="btn-group">
-                  <button type="button" class="btn btn-default btn-sm"><i class="fa fa-trash-o"></i></button>
-                  <button type="button" class="btn btn-default btn-sm"><i class="fa fa-reply"></i></button>
-                  <button type="button" class="btn btn-default btn-sm"><i class="fa fa-share"></i></button>
-                </div>
-                <!-- /.btn-group -->
-                <button type="button" class="btn btn-default btn-sm"><i class="fa fa-refresh"></i></button>
-                <div class="pull-right">
-                  <?php echo $pag."-".$total_pag."/".$total_msg;?>
-                  <div class="btn-group">
-					<?php if ($pag > 1) {?>
-                    <a href="?pagina=<?php echo $anterior;?>" type="button" class="btn btn-default btn-sm" title="Página anterior"><i class="fa fa-chevron-left"></i></a>
-                    <?php }
-                    if ($pag < $total_pag) {?>
-                    <a href="?pagina=<?php echo $proximo;?>" type="button" class="btn btn-default btn-sm" title="Próxima página"><i class="fa fa-chevron-right"></i></a>
-                    <?php } ?>
-                  </div>
-                  <!-- /.btn-group -->
-                </div>
-                <!-- /.pull-right -->
-              </div>
+			<?php if ($total_msg > 0) {?>
+				  <div class="mailbox-controls">
+					<!-- Check all button -->
+					<button type="button" class="btn btn-default btn-sm checkbox-toggle"><i class="fa fa-square-o"></i>
+					</button>
+					<div class="btn-group">
+					  <button type="button" class="btn btn-default btn-sm"><i class="fa fa-trash-o"></i></button>
+					  <button type="button" class="btn btn-default btn-sm"><i class="fa fa-reply"></i></button>
+					  <button type="button" class="btn btn-default btn-sm"><i class="fa fa-share"></i></button>
+					</div>
+					<!-- /.btn-group -->
+					<button type="button" class="btn btn-default btn-sm"><i class="fa fa-refresh"></i></button>
+					<div class="pull-right">
+					  <?php echo $pag."-".$total_pag."/".$total_msg;?>
+					  <div class="btn-group">
+						<?php if ($pag > 1) {?>
+						<a href="?pagina=<?php echo $anterior;?>" type="button" class="btn btn-default btn-sm" title="Página anterior"><i class="fa fa-chevron-left"></i></a>
+						<?php }
+						if ($pag < $total_pag) {?>
+						<a href="?pagina=<?php echo $proximo;?>" type="button" class="btn btn-default btn-sm" title="Próxima página"><i class="fa fa-chevron-right"></i></a>
+						<?php } ?>
+					  </div>
+					  <!-- /.btn-group -->
+					</div>
+					<!-- /.pull-right -->
+				  </div>
+			<?php } ?>
             </div>
           </div>
           <!-- /. box -->
