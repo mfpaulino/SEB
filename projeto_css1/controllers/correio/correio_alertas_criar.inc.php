@@ -24,6 +24,15 @@ if ($inc == "sim"){
 			unset($_SESSION['correio_envio_erro']);
 			unset($_SESSION['lista_erro_validacao_correio']);
 		}
+		if($flag == md5("correio_mover")){
+
+			$msg1 = $_SESSION['correio_mover_sucesso'];
+			$msg4 = $_SESSION['correio_mover_erro'];
+		}
+		else {
+			unset($_SESSION['correio_mover_sucesso']);
+			unset($_SESSION['correio_mover_erro']);
+		}
 
 		$msg_correio="exibir";
 	}

@@ -8,6 +8,34 @@ $pagina = strtr(end(explode('/', $_SERVER['PHP_SELF'])),'?', true);
 
 include_once('config.inc.php');
 include_once(PATH . '/controllers/autenticacao/autentica.inc.php');
+
+$sql = "SELECT ce.id_correio, ce.assunto, ce.texto, ce.data, cr.lida, p.posto, u.nome_guerra, u.codom FROM correio_enviados ce, correio_recebidos cr, postos p, usuarios u WHERE cr.destinatario = '$id_usuario' and cr.pasta = 'entrada' and ce.id_correio = cr.id_correio and ce.remetente = u.cpf and p.id_posto = u.id_posto  ORDER BY ce.data desc";
+
+/** paginacao **/
+$total_reg = "20";//registros por pagina
+
+$pag = $_GET['pagina'];
+if (!$pag) {
+	$pag = "1";
+}
+else {
+	$pag = $pag;
+}
+
+$inicio = $pag - 1;
+$inicio = $inicio * $total_reg;
+
+$con_limite = $mysqli->query("$sql LIMIT $inicio,$total_reg");
+$con_todos =  $mysqli->query($sql);
+
+$total_msg = $con_todos->num_rows; // verifica o número total de registros
+$total_pag = ceil($total_msg / $total_reg); // calcula e arredonda pra cima o número total de páginas
+
+// agora vamos criar os botões "Anterior e próximo"
+$anterior = $pag -1;
+$proximo = $pag +1;
+
+/** fim paginacao**/
 ?>
 <!DOCTYPE html>
 <html>
@@ -233,9 +261,9 @@ include_once(PATH . '/controllers/autenticacao/autentica.inc.php');
 			include_once('controllers/usuario/usuario_alertas_criar.inc.php');
 		}
 		else {
-			//include_once('controllers/usuario/usuario_alertas_destruir.inc.php');
+			include_once('controllers/usuario/usuario_alertas_destruir.inc.php');
 		}
-		if (isset($_GET['flag']) and $_GET['flag'] == md5("correio_cadastrar")){
+		if (isset($_GET['flag']) and ($_GET['flag'] == md5("correio_cadastrar") or $_GET['flag'] == md5("correio_mover") )){
 			include_once('controllers/correio/correio_alertas_criar.inc.php');
 		}
 		else {
@@ -290,13 +318,14 @@ include_once(PATH . '/controllers/autenticacao/autentica.inc.php');
           <div class="box box-primary">
             <div class="box-header with-border">
               <h3 class="box-title">Entrada</h3>
-
+				<!--
               <div class="box-tools pull-right">
                 <div class="has-feedback">
                   <input type="text" class="form-control input-sm" placeholder="Procurar mensagem">
                   <span class="glyphicon glyphicon-search form-control-feedback"></span>
                 </div>
               </div>
+              -->
               <!-- /.box-tools -->
             </div>
             <!-- /.box-header -->
@@ -313,10 +342,14 @@ include_once(PATH . '/controllers/autenticacao/autentica.inc.php');
                 <!-- /.btn-group -->
                 <button type="button" class="btn btn-default btn-sm"><i class="fa fa-refresh"></i></button>
                 <div class="pull-right">
-                  1-50/200
+                  <?php echo $pag."-".$total_pag."/".$total_msg;?>
                   <div class="btn-group">
-                    <button type="button" class="btn btn-default btn-sm"><i class="fa fa-chevron-left"></i></button>
-                    <button type="button" class="btn btn-default btn-sm"><i class="fa fa-chevron-right"></i></button>
+					  <?php if ($pag > 1) {?>
+                    <a href="?pagina=<?php echo $anterior;?>" type="button" class="btn btn-default btn-sm" title="Página anterior"><i class="fa fa-chevron-left"></i></a>
+                    <?php }
+                    if ($pag < $total_pag) {?>
+                    <a href="?pagina=<?php echo $proximo;?>" type="button" class="btn btn-default btn-sm" title="Próxima página"><i class="fa fa-chevron-right"></i></a>
+                    <?php } ?>
                   </div>
                   <!-- /.btn-group -->
                 </div>
@@ -325,141 +358,43 @@ include_once(PATH . '/controllers/autenticacao/autentica.inc.php');
               <div class="table-responsive mailbox-messages">
                 <table class="table table-hover table-striped">
                   <tbody>
-                  <tr>
-                    <td><input type="checkbox"></td>
-                    <td class="mailbox-star"><a href="#"><i class="fa fa-star text-yellow"></i></a></td>
-                    <td class="mailbox-name"><a href="mailbox_view.php">Alexander Pierce</a></td>
-                    <td class="mailbox-subject"><b>AdminLTE 2.0 Issue</b> - Trying to find a solution to this problem...
-                    </td>
-                    <td class="mailbox-attachment"></td>
-                    <td class="mailbox-date">5 mins ago</td>
-                  </tr>
-                  <tr>
-                    <td><input type="checkbox"></td>
-                    <td class="mailbox-star"><a href="#"><i class="fa fa-star-o text-yellow"></i></a></td>
-                    <td class="mailbox-name"><a href="read-mail.html">Alexander Pierce</a></td>
-                    <td class="mailbox-subject"><b>AdminLTE 2.0 Issue</b> - Trying to find a solution to this problem...
-                    </td>
-                    <td class="mailbox-attachment"><i class="fa fa-paperclip"></i></td>
-                    <td class="mailbox-date">28 mins ago</td>
-                  </tr>
-                  <tr>
-                    <td><input type="checkbox"></td>
-                    <td class="mailbox-star"><a href="#"><i class="fa fa-star-o text-yellow"></i></a></td>
-                    <td class="mailbox-name"><a href="read-mail.html">Alexander Pierce</a></td>
-                    <td class="mailbox-subject"><b>AdminLTE 2.0 Issue</b> - Trying to find a solution to this problem...
-                    </td>
-                    <td class="mailbox-attachment"><i class="fa fa-paperclip"></i></td>
-                    <td class="mailbox-date">11 hours ago</td>
-                  </tr>
-                  <tr>
-                    <td><input type="checkbox"></td>
-                    <td class="mailbox-star"><a href="#"><i class="fa fa-star text-yellow"></i></a></td>
-                    <td class="mailbox-name"><a href="read-mail.html">Alexander Pierce</a></td>
-                    <td class="mailbox-subject"><b>AdminLTE 2.0 Issue</b> - Trying to find a solution to this problem...
-                    </td>
-                    <td class="mailbox-attachment"></td>
-                    <td class="mailbox-date">15 hours ago</td>
-                  </tr>
-                  <tr>
-                    <td><input type="checkbox"></td>
-                    <td class="mailbox-star"><a href="#"><i class="fa fa-star text-yellow"></i></a></td>
-                    <td class="mailbox-name"><a href="read-mail.html">Alexander Pierce</a></td>
-                    <td class="mailbox-subject"><b>AdminLTE 2.0 Issue</b> - Trying to find a solution to this problem...
-                    </td>
-                    <td class="mailbox-attachment"><i class="fa fa-paperclip"></i></td>
-                    <td class="mailbox-date">Yesterday</td>
-                  </tr>
-                  <tr>
-                    <td><input type="checkbox"></td>
-                    <td class="mailbox-star"><a href="#"><i class="fa fa-star-o text-yellow"></i></a></td>
-                    <td class="mailbox-name"><a href="read-mail.html">Alexander Pierce</a></td>
-                    <td class="mailbox-subject"><b>AdminLTE 2.0 Issue</b> - Trying to find a solution to this problem...
-                    </td>
-                    <td class="mailbox-attachment"><i class="fa fa-paperclip"></i></td>
-                    <td class="mailbox-date">2 days ago</td>
-                  </tr>
-                  <tr>
-                    <td><input type="checkbox"></td>
-                    <td class="mailbox-star"><a href="#"><i class="fa fa-star-o text-yellow"></i></a></td>
-                    <td class="mailbox-name"><a href="read-mail.html">Alexander Pierce</a></td>
-                    <td class="mailbox-subject"><b>AdminLTE 2.0 Issue</b> - Trying to find a solution to this problem...
-                    </td>
-                    <td class="mailbox-attachment"><i class="fa fa-paperclip"></i></td>
-                    <td class="mailbox-date">2 days ago</td>
-                  </tr>
-                  <tr>
-                    <td><input type="checkbox"></td>
-                    <td class="mailbox-star"><a href="#"><i class="fa fa-star text-yellow"></i></a></td>
-                    <td class="mailbox-name"><a href="read-mail.html">Alexander Pierce</a></td>
-                    <td class="mailbox-subject"><b>AdminLTE 2.0 Issue</b> - Trying to find a solution to this problem...
-                    </td>
-                    <td class="mailbox-attachment"></td>
-                    <td class="mailbox-date">2 days ago</td>
-                  </tr>
-                  <tr>
-                    <td><input type="checkbox"></td>
-                    <td class="mailbox-star"><a href="#"><i class="fa fa-star text-yellow"></i></a></td>
-                    <td class="mailbox-name"><a href="read-mail.html">Alexander Pierce</a></td>
-                    <td class="mailbox-subject"><b>AdminLTE 2.0 Issue</b> - Trying to find a solution to this problem...
-                    </td>
-                    <td class="mailbox-attachment"></td>
-                    <td class="mailbox-date">2 days ago</td>
-                  </tr>
-                  <tr>
-                    <td><input type="checkbox"></td>
-                    <td class="mailbox-star"><a href="#"><i class="fa fa-star-o text-yellow"></i></a></td>
-                    <td class="mailbox-name"><a href="read-mail.html">Alexander Pierce</a></td>
-                    <td class="mailbox-subject"><b>AdminLTE 2.0 Issue</b> - Trying to find a solution to this problem...
-                    </td>
-                    <td class="mailbox-attachment"></td>
-                    <td class="mailbox-date">2 days ago</td>
-                  </tr>
-                  <tr>
-                    <td><input type="checkbox"></td>
-                    <td class="mailbox-star"><a href="#"><i class="fa fa-star-o text-yellow"></i></a></td>
-                    <td class="mailbox-name"><a href="read-mail.html">Alexander Pierce</a></td>
-                    <td class="mailbox-subject"><b>AdminLTE 2.0 Issue</b> - Trying to find a solution to this problem...
-                    </td>
-                    <td class="mailbox-attachment"><i class="fa fa-paperclip"></i></td>
-                    <td class="mailbox-date">4 days ago</td>
-                  </tr>
-                  <tr>
-                    <td><input type="checkbox"></td>
-                    <td class="mailbox-star"><a href="#"><i class="fa fa-star text-yellow"></i></a></td>
-                    <td class="mailbox-name"><a href="read-mail.html">Alexander Pierce</a></td>
-                    <td class="mailbox-subject"><b>AdminLTE 2.0 Issue</b> - Trying to find a solution to this problem...
-                    </td>
-                    <td class="mailbox-attachment"></td>
-                    <td class="mailbox-date">12 days ago</td>
-                  </tr>
-                  <tr>
-                    <td><input type="checkbox"></td>
-                    <td class="mailbox-star"><a href="#"><i class="fa fa-star-o text-yellow"></i></a></td>
-                    <td class="mailbox-name"><a href="read-mail.html">Alexander Pierce</a></td>
-                    <td class="mailbox-subject"><b>AdminLTE 2.0 Issue</b> - Trying to find a solution to this problem...
-                    </td>
-                    <td class="mailbox-attachment"><i class="fa fa-paperclip"></i></td>
-                    <td class="mailbox-date">12 days ago</td>
-                  </tr>
-                  <tr>
-                    <td><input type="checkbox"></td>
-                    <td class="mailbox-star"><a href="#"><i class="fa fa-star text-yellow"></i></a></td>
-                    <td class="mailbox-name"><a href="read-mail.html">Alexander Pierce</a></td>
-                    <td class="mailbox-subject"><b>AdminLTE 2.0 Issue</b> - Trying to find a solution to this problem...
-                    </td>
-                    <td class="mailbox-attachment"><i class="fa fa-paperclip"></i></td>
-                    <td class="mailbox-date">14 days ago</td>
-                  </tr>
-                  <tr>
-                    <td><input type="checkbox"></td>
-                    <td class="mailbox-star"><a href="#"><i class="fa fa-star text-yellow"></i></a></td>
-                    <td class="mailbox-name"><a href="read-mail.html">Alexander Pierce</a></td>
-                    <td class="mailbox-subject"><b>AdminLTE 2.0 Issue</b> - Trying to find a solution to this problem...
-                    </td>
-                    <td class="mailbox-attachment"><i class="fa fa-paperclip"></i></td>
-                    <td class="mailbox-date">15 days ago</td>
-                  </tr>
+                  <?php
+					while($row_recebidos = $con_limite->fetch_assoc()){
+
+						if ($row_recebidos['lida'] == 'nao'){
+							$b="<b>";
+							$b1="</b>";
+						}
+						else{
+							$b="";
+							$b1="";
+						}
+
+						$sql_sigla = "SELECT sigla FROM cciex_om WHERE codom = '$row_recebidos[codom]' limit 1";
+						$con_sigla = $mysqli1->query($sql_sigla);
+						$row_sigla = $con_sigla->fetch_assoc();
+
+						if(date('d/m/Y') - 1 == date('d/m/Y', strtotime($row_recebidos['data']))){
+							$data = "Ontem " . date('H:i',strtotime($row_recebidos['data']));
+						}
+						else if(date('d/m/Y') == date('d/m/Y', strtotime($row_recebidos['data']))){
+							$data = "Hoje " . date('H:i',strtotime($row_recebidos['data']));
+						}
+						else{
+							$data = date('d/m/Y H:i', strtotime($row_recebidos['data']));
+						}
+
+						$remetente = $row_recebidos['posto']." ". $row_recebidos['nome_guerra']." - ".$row_sigla['sigla'];
+						echo "
+						<tr>
+						<td><input type='checkbox'></td>
+						<td class='mailbox-name'><a href='mailbox_view.php?flag=$row_recebidos[id_correio]&flag0=i&flag1=$remetente'>$remetente</a></td>
+						<td class='mailbox-subject'>$b$row_recebidos[assunto]$b1</td>
+						<td class='mailbox-date'>$data</td>
+						</tr>"
+						;
+					}
+					?>
                   </tbody>
                 </table>
                 <!-- /.table -->
@@ -480,10 +415,14 @@ include_once(PATH . '/controllers/autenticacao/autentica.inc.php');
                 <!-- /.btn-group -->
                 <button type="button" class="btn btn-default btn-sm"><i class="fa fa-refresh"></i></button>
                 <div class="pull-right">
-                  1-50/200
+                  <?php echo $pag."-".$total_pag."/".$total_msg;?>
                   <div class="btn-group">
-                    <button type="button" class="btn btn-default btn-sm"><i class="fa fa-chevron-left"></i></button>
-                    <button type="button" class="btn btn-default btn-sm"><i class="fa fa-chevron-right"></i></button>
+					<?php if ($pag > 1) {?>
+                    <a href="?pagina=<?php echo $anterior;?>" type="button" class="btn btn-default btn-sm" title="Página anterior"><i class="fa fa-chevron-left"></i></a>
+                    <?php }
+                    if ($pag < $total_pag) {?>
+                    <a href="?pagina=<?php echo $proximo;?>" type="button" class="btn btn-default btn-sm" title="Próxima página"><i class="fa fa-chevron-right"></i></a>
+                    <?php } ?>
                   </div>
                   <!-- /.btn-group -->
                 </div>

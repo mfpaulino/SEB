@@ -10,7 +10,32 @@ include_once('config.inc.php');
 include_once(PATH . '/controllers/autenticacao/autentica.inc.php');
 
 $sql = "SELECT id_correio, assunto, texto, destinatario, data FROM correio_enviados WHERE remetente = '$cpf' ORDER BY data desc";
-$con_enviados = $mysqli->query($sql);
+
+/** paginacao **/
+$total_reg = "20";//registros por pagina
+
+$pag=$_GET['pagina'];
+if (!$pag) {
+	$pag = "1";
+}
+else {
+	$pag = $pag;
+}
+
+$inicio = $pag - 1;
+$inicio = $inicio * $total_reg;
+
+$con_limite = $mysqli->query("$sql LIMIT $inicio,$total_reg");
+$con_todos =  $mysqli->query($sql);
+
+$total_msg = $con_todos->num_rows; // verifica o número total de registros
+$total_pag = ceil($total_msg / $total_reg); // calcula e arredonda pra cima o número total de páginas
+
+// agora vamos criar os botões "Anterior e próximo"
+$anterior = $pag -1;
+$proximo = $pag +1;
+
+/** fim paginacao**/
 ?>
 <!DOCTYPE html>
 <html>
@@ -232,7 +257,7 @@ $con_enviados = $mysqli->query($sql);
 
     <!-- Main content -->
     <section class="content container-fluid">
-<?php
+	<?php
 		if (isset($_GET['flag']) and ($_GET['flag'] == md5("usuario_alterar") or $_GET['flag'] == md5("senha_alterar") or $_GET['flag'] == md5("om_alterar") or $_GET['flag'] == md5("logout") )){
 			include_once('controllers/usuario/usuario_alertas_criar.inc.php');
 		}
@@ -308,11 +333,15 @@ $con_enviados = $mysqli->query($sql);
                 </div>
                 <!-- /.btn-group -->
                 <button type="button" class="btn btn-default btn-sm"><i class="fa fa-refresh"></i></button>
-                <div class="pull-right">
-                  1-50/200
+                  <div class="pull-right">
+                  <?php echo $pag."-".$total_pag."/".$total_msg;?>
                   <div class="btn-group">
-                    <button type="button" class="btn btn-default btn-sm"><i class="fa fa-chevron-left"></i></button>
-                    <button type="button" class="btn btn-default btn-sm"><i class="fa fa-chevron-right"></i></button>
+					  <?php if ($pag > 1) {?>
+                    <a href="?pagina=<?php echo $anterior;?>" type="button" class="btn btn-default btn-sm" title="Página anterior"><i class="fa fa-chevron-left"></i></a>
+                    <?php }
+                    if ($pag < $total_pag) {?>
+                    <a href="?pagina=<?php echo $proximo;?>" type="button" class="btn btn-default btn-sm" title="Próxima página"><i class="fa fa-chevron-right"></i></a>
+                    <?php } ?>
                   </div>
                   <!-- /.btn-group -->
                 </div>
@@ -322,7 +351,7 @@ $con_enviados = $mysqli->query($sql);
                 <table class="table table-hover table-striped">
                   <tbody>
 					<?php
-					while($row_enviados = $con_enviados->fetch_assoc()){
+					while($row_enviados = $con_limite->fetch_assoc()){
 
 						if(date('d/m/Y') - 1 == date('d/m/Y', strtotime($row_enviados['data']))){
 							$data = "Ontem " . date('H:i',strtotime($row_enviados['data']));
@@ -349,12 +378,12 @@ $con_enviados = $mysqli->query($sql);
 							$row_sigla = $con_sigla->fetch_assoc();
 
 							$destinatario = $destinatario . "[".$row_destinatario['posto']." ". $row_destinatario['nome_guerra']." - ".$row_sigla['sigla']."] ";
-							$destinatario = mb_strimwidth($destinatario, 0, 75, "...");
+							//$destinatario = mb_strimwidth($destinatario, 0, 75, "...");
 						}
 						echo "
 						<tr>
 						<td><input type='checkbox'></td>
-						<td class='mailbox-name'><a href='mailbox_view.php?flag=$row_enviados[id_correio]'>$destinatario</a></td>
+						<td class='mailbox-name'><a href='mailbox_view.php?flag=$row_enviados[id_correio]&flag0=s&flag1=$destinatario'>$destinatario</a></td>
 						<td class='mailbox-subject'>$row_enviados[assunto]</td>
 						<td class='mailbox-date'>$data</td>
 						</tr>"
@@ -381,11 +410,14 @@ $con_enviados = $mysqli->query($sql);
                 <!-- /.btn-group -->
                 <button type="button" class="btn btn-default btn-sm"><i class="fa fa-refresh"></i></button>
                 <div class="pull-right">
-                  1-50/200
+                  <?php echo $pag."-".$total_pag."/".$total_msg;?>
                   <div class="btn-group">
-                    <button type="button" class="btn btn-default btn-sm"><i class="fa fa-chevron-left"></i></button>
-                    <button type="button" class="btn btn-default btn-sm"><i class="fa fa-chevron-right"></i></button>
-                  </div>
+					<?php if ($pag > 1) {?>
+                    <a href="?pagina=<?php echo $anterior;?>" type="button" class="btn btn-default btn-sm" title="Página anterior"><i class="fa fa-chevron-left"></i></a>
+                    <?php }
+                    if ($pag < $total_pag) {?>
+                    <a href="?pagina=<?php echo $proximo;?>" type="button" class="btn btn-default btn-sm" title="Próxima página"><i class="fa fa-chevron-right"></i></a>
+                    <?php } ?>
                   <!-- /.btn-group -->
                 </div>
                 <!-- /.pull-right -->

@@ -48,6 +48,6 @@ unset($_SESSION['logout']);
 unset($_SESSION['usuario_excluir_sucesso']);
 unset($_SESSION['usuario_excluir_erro']);
 
-unset($_SESSION['botao']);
+//unset($_SESSION['botao']);
 
 ?>

@@ -9,25 +9,35 @@ $pagina = strtr(end(explode('/', $_SERVER['PHP_SELF'])),'?', true);
 include_once('config.inc.php');
 include_once(PATH . '/controllers/autenticacao/autentica.inc.php');
 
-$sql_msg = "SELECT ce.id_correio, ce.assunto, ce.texto, ce.data, p.posto, u.nome_guerra, u.codom FROM correio_enviados ce, correio_recebidos cr, postos p, usuarios u WHERE ce.id_correio = cr.id_correio and p.id_posto = u.id_posto and ce.remetente = u.cpf  and ce.id_correio = '55'";
-$con_msg = $mysqli->query($sql_msg);
-$row_msg = $con_msg->fetch_assoc();
+if(isset($_GET['flag'])){
+	$id_correio = $_GET['flag'];
+	$input_sent = $_GET['flag0'];
+	$destinatario = $_GET['flag1'];
 
-$sql_sigla = "SELECT sigla FROM cciex_om WHERE codom = $row_msg[codom]";
-$con_sigla = $mysqli1->query($sql_sigla);
-$row_sigla = $con_sigla->fetch_assoc();
+	$sql_msg = "SELECT ce.id_correio, ce.assunto, ce.texto, ce.data, p.posto, u.nome_guerra, u.codom FROM correio_enviados ce, correio_recebidos cr, postos p, usuarios u WHERE ce.id_correio = cr.id_correio and p.id_posto = u.id_posto and ce.remetente = u.cpf  and ce.id_correio = '$id_correio'";
+	$con_msg = $mysqli->query($sql_msg);
+	$row_msg = $con_msg->fetch_assoc();
 
-$remetente = $row_msg['posto']." ".$row_msg['nome_guerra']." - ".$row_sigla['sigla'];
+	$sql_sigla = "SELECT sigla FROM cciex_om WHERE codom = $row_msg[codom]";
+	$con_sigla = $mysqli1->query($sql_sigla);
+	$row_sigla = $con_sigla->fetch_assoc();
 
-if(date('d/m/Y') - 1 == date('d/m/Y', strtotime($row_msg['data']))){
-	$data = "Ontem " . date('H:i',strtotime($row_msg['data']));
-}
-else if(date('d/m/Y') == date('d/m/Y', strtotime($row_msg['data']))){
-	$data = "Hoje " . date('H:i',strtotime($row_msg['data']));
-}
-else{
-	$data = date('d/m/Y H:i', strtotime($row_msg['data']));
-}
+	$remetente = $row_msg['posto']." ".$row_msg['nome_guerra']." - ".$row_sigla['sigla'];
+
+	if($input_sent == 'i'){
+		$sql_lida = "update correio_recebidos set lida = 'sim' where id_correio = $id_correio and destinatario = '$id_usuario'";
+		$mysqli->query($sql_lida);
+	}
+
+	if(date('d/m/Y') - 1 == date('d/m/Y', strtotime($row_msg['data']))){
+		$data = "Ontem " . date('H:i',strtotime($row_msg['data']));
+	}
+	else if(date('d/m/Y') == date('d/m/Y', strtotime($row_msg['data']))){
+		$data = "Hoje " . date('H:i',strtotime($row_msg['data']));
+	}
+	else{
+		$data = date('d/m/Y H:i', strtotime($row_msg['data']));
+	}
 
 ?>
 <head>
@@ -289,8 +299,8 @@ else{
             <div class="box-body no-padding">
               <ul class="nav nav-pills nav-stacked">
                 <li><a href="mailbox_input.php"><i class="fa fa-inbox"></i> Entrada<span class="label label-danger pull-right"><?php echo $qtde_entrada;?></span></a></li>
-                <li><a href="mailbox_read.php"><i class="fa fa-envelope-open-o"></i> Já lidas<span class="label label-primary pull-right"><?php echo $qtde_lidas;?></span></a></li>
-                <li><a href="mailbox_sent.php"><i class="fa fa-send-o"></i> Enviadas<span class="label label-success pull-right"><?php echo $qtde_enviadas;?></span></a></li>
+                <li><a href="mailbox_read.php"><i class="fa fa-envelope-open-o"></i> Já lidos<span class="label label-primary pull-right"><?php echo $qtde_lidas;?></span></a></li>
+                <li><a href="mailbox_sent.php"><i class="fa fa-send-o"></i> Enviados<span class="label label-success pull-right"><?php echo $qtde_enviadas;?></span></a></li>
               </ul>
             </div>
             <!-- /.box-body -->
@@ -311,8 +321,18 @@ else{
             <div class="box-body no-padding">
               <div class="mailbox-read-info">
                 <h3><?php echo $row_msg['assunto'];?></h3>
-                <h5>De: <?php echo $remetente;?>
-                  <span class="mailbox-read-time pull-right"><?php echo $data;?></span></h5>
+                <?php if ($input_sent == 'i'){?>
+                <h5>
+					De: <?php echo $remetente;?>
+					<span class="mailbox-read-time pull-right"><?php echo $data;?></span>
+                </h5>
+                <?php }
+                else if ($input_sent == 's'){?>
+                <h5>
+					Para: <?php echo $destinatario;?>
+					<span class="mailbox-read-time pull-right"><?php echo $data;?></span>
+                </h5>
+                <?php } ?>
               </div>
               <!-- /.mailbox-read-info -->
 
@@ -328,9 +348,14 @@ else{
             <!-- /.box-footer -->
             <div class="box-footer">
               <div class="pull-right">
-                <button type="button" class="btn btn-default"><i class="fa fa-reply"></i> Responder</button>
+                <?php if($input_sent == 'i'){?>
+					<button type="button" class="btn btn-default"><i class="fa fa-reply"></i> Responder</button>
+				<?php } ?>
                 <button type="button" class="btn btn-default"><i class="fa fa-share"></i> Encaminhar</button>
               </div>
+              <?php if($input_sent == 'i'){?>
+              <a href="controllers/correio/correio_mover.php?flag=<?php echo $id_correio;?>" type="button" class="btn btn-default"><i class="fa fa-envelope-open-o"></i> Mover para Já lidos</a>
+              <?php } ?>
               <button type="button" class="btn btn-default"><i class="fa fa-trash-o"></i> Excluir</button>
               <button type="button" class="btn btn-default"><i class="fa fa-print"></i> Imprimir</button>
             </div>
@@ -604,3 +629,9 @@ else{
 </script>
 </body>
 </html>
+<?php
+}
+else {
+	include_once(PATH . '/controllers/autenticacao/'.ACESSO_NEGADO);
+}
+?>
