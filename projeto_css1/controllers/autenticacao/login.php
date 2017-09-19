@@ -12,6 +12,7 @@ if(isset($_POST['flag'])){
 
 	require_once(PATH .'/componentes/internos/php/bcript.inc.php');
 
+	$pagina_lock  = isset($_POST['flag']) ? $_POST['flag']: "";
 	$cpf 	 = isset($_POST['cpf']) ? $_POST['cpf']: "";
 	$senha 	 = isset($_POST['senha']) ? $_POST['senha']: "";
 	$captcha = isset($_POST['captcha']) ? $_POST['captcha']: "";
@@ -54,7 +55,7 @@ if(isset($_POST['flag'])){
 		header("Location:../../". PAGINA_VISITANTE);
 	}
 	else if ($_SESSION['acesso'] == "liberado"){
-		header("Location:../../". PAGINA_INICIAL);
+		header("Location:../../". PAGINA_INICIAL.'?flag='.$pagina_lock);
 	}
 	else {
 		$flag = md5("usuario_acessar");

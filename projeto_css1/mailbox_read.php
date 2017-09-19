@@ -181,7 +181,7 @@ $proximo = $pag +1;
 								<!-- Menu Body-->
 								<li class="user-body">
 									<div class="pull-left">
-										<a href="<?php echo PAGINA_BLOQUEIO;?>"><button type="button" class="btn btn-warning btn-flat">Bloquear tela</button></a>
+										<a href="<?php echo PAGINA_BLOQUEIO.'?flag='.md5($pagina);?>"><button type="button" class="btn btn-warning btn-flat">Bloquear tela</button></a>
 									</div>
 									<div class="pull-right">
 										<?php $flag = md5("logout");?>
@@ -319,11 +319,20 @@ $proximo = $pag +1;
 										<!-- /.btn-group -->
 										<button type="button" class="btn btn-default btn-sm"><i class="fa fa-refresh"></i></button>
 										<div class="pull-right">
-											1-50/200
+										<?php echo $pag."-".$total_pag."/".$total_msg;?>
 											<div class="btn-group">
-												<button type="button" class="btn btn-default btn-sm"><i class="fa fa-chevron-left"></i></button>
-												<button type="button" class="btn btn-default btn-sm"><i class="fa fa-chevron-right"></i></button>
-											</div>
+											 <?php if ($pag == 1) {?>
+											<button class="btn btn-default btn-sm disabled"><i class="fa fa-chevron-left"></i></button>
+												 <?php } ?>
+											  <?php if ($pag > 1) {?>
+											<a href="?pagina=<?php echo $anterior;?>" type="button" class="btn btn-default btn-sm" title="Página anterior"><i class="fa fa-chevron-left"></i></a>
+											<?php }
+											if ($pag < $total_pag) {?>
+											<a href="?pagina=<?php echo $proximo;?>" type="button" class="btn btn-default btn-sm" title="Próxima página"><i class="fa fa-chevron-right"></i></a>
+											<?php } ?>
+											<?php if ($pag == $total_pag) {?>
+												<button class="btn btn-default btn-sm disabled"><i class="fa fa-chevron-right"></i></button>
+												<?php } ?>
 											<!-- /.btn-group -->
 										</div>
 										<!-- /.pull-right -->
@@ -333,7 +342,7 @@ $proximo = $pag +1;
 									<table class="table table-hover table-striped">
 										<tbody>
 										<?php
-										while($row_ja_lidos = $con_ja_lidos->fetch_assoc()){
+										while($row_ja_lidos = $con_limite->fetch_assoc()){
 
 											if ($row_ja_lidos['lida'] == 'nao'){
 												$b="<b>";
@@ -358,7 +367,7 @@ $proximo = $pag +1;
 											echo "
 											<tr>
 											<td><input type='checkbox'></td>
-											<td class='mailbox-name'><a href='mailbox_view.php?flag=$row_ja_lidos[id_correio]&flag0=i&flag1=$remetente'>$remetente</a></td>
+											<td class='mailbox-name'><a href='mailbox_view.php?flag=$row_ja_lidos[id_correio]&flag0=l&flag1=$remetente'>$remetente</a></td>
 											<td class='mailbox-subject'>$b$row_ja_lidos[assunto]$b1</td>
 											<td class='mailbox-date'>$data</td>
 											</tr>";
@@ -384,10 +393,21 @@ $proximo = $pag +1;
 										<!-- /.btn-group -->
 										<button type="button" class="btn btn-default btn-sm"><i class="fa fa-refresh"></i></button>
 										<div class="pull-right">
-											1-50/200
-											<div class="btn-group">
-												<button type="button" class="btn btn-default btn-sm"><i class="fa fa-chevron-left"></i></button>
-												<button type="button" class="btn btn-default btn-sm"><i class="fa fa-chevron-right"></i></button>
+										  <?php echo $pag."-".$total_pag."/".$total_msg;?>
+										  <div class="btn-group">
+											  <?php if ($pag == 1) {?>
+											<button class="btn btn-default btn-sm disabled"><i class="fa fa-chevron-left"></i></button>
+												 <?php } ?>
+											<?php if ($pag > 1) {?>
+											<a href="?pagina=<?php echo $anterior;?>" type="button" class="btn btn-default btn-sm" title="Página anterior"><i class="fa fa-chevron-left"></i></a>
+											<?php }
+											if ($pag < $total_pag) {?>
+											<a href="?pagina=<?php echo $proximo;?>" type="button" class="btn btn-default btn-sm" title="Próxima página"><i class="fa fa-chevron-right"></i></a>
+											<?php } ?>
+											<?php if ($pag == $total_pag) {?>
+											<button class="btn btn-default btn-sm disabled"><i class="fa fa-chevron-right"></i></button>
+											<?php } ?>
+
 											</div>
 											<!-- /.btn-group -->
 										</div>
@@ -653,8 +673,7 @@ $proximo = $pag +1;
 		//Enable iCheck plugin for checkboxes
 		//iCheck for checkbox and radio inputs
 		$('.mailbox-messages input[type="checkbox"]').iCheck({
-		  checkboxClass: 'icheckbox_flat-blue',
-		  radioClass: 'iradio_flat-blue'
+		  checkboxClass: 'icheckbox_flat-blue'
 		});
 
 		//Enable check and uncheck all functionality

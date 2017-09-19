@@ -180,7 +180,7 @@ $proximo = $pag +1;
 								<!-- Menu Body-->
 								<li class="user-body">
 									<div class="pull-left">
-										<a href="<?php echo PAGINA_BLOQUEIO;?>"><button type="button" class="btn btn-warning btn-flat">Bloquear tela</button></a>
+										<a href="<?php echo PAGINA_BLOQUEIO.'?flag='.md5($pagina);?>"><button type="button" class="btn btn-warning btn-flat">Bloquear tela</button></a>
 									</div>
 									<div class="pull-right">
 										<?php $flag = md5("logout");?>
@@ -678,8 +678,7 @@ $proximo = $pag +1;
 			//Enable iCheck plugin for checkboxes
 			//iCheck for checkbox and radio inputs
 			$('.mailbox-messages input[type="checkbox"]').iCheck({
-				checkboxClass: 'icheckbox_flat-blue',
-				radioClass: 'iradio_flat-blue'
+				checkboxClass: 'icheckbox_flat-blue'
 			});
 
 			//Enable check and uncheck all functionality

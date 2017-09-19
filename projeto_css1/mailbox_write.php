@@ -156,7 +156,7 @@ $con_destinatario = $mysqli->query($sql_destinatario);
 								<!-- Menu Body-->
 								<li class="user-body">
 									<div class="pull-left">
-										<a href="<?php echo PAGINA_BLOQUEIO;?>"><button type="button" class="btn btn-warning btn-flat">Bloquear tela</button></a>
+										<a href="<?php echo PAGINA_BLOQUEIO.'?flag='.md5($pagina);?>"><button type="button" class="btn btn-warning btn-flat">Bloquear tela</button></a>
 									</div>
 									<div class="pull-right">
 										<?php $flag = md5("logout");?>

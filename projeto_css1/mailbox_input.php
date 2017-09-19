@@ -180,7 +180,7 @@ $proximo = $pag +1;
 								<!-- Menu Body-->
 								<li class="user-body">
 									<div class="pull-left">
-										<a href="<?php echo PAGINA_BLOQUEIO;?>"><button type="button" class="btn btn-warning btn-flat">Bloquear tela</button></a>
+										<a href="<?php echo PAGINA_BLOQUEIO.'?flag='.md5($pagina);?>"><button type="button" class="btn btn-warning btn-flat">Bloquear tela</button></a>
 									</div>
 									<div class="pull-right">
 										<?php $flag = md5("logout");?>
@@ -337,12 +337,18 @@ $proximo = $pag +1;
                 <div class="pull-right">
                   <?php echo $pag."-".$total_pag."/".$total_msg;?>
                   <div class="btn-group">
+					  <?php if ($pag == 1) {?>
+					<button class="btn btn-default btn-sm disabled"><i class="fa fa-chevron-left"></i></button>
+					<?php } ?>
 					  <?php if ($pag > 1) {?>
                     <a href="?pagina=<?php echo $anterior;?>" type="button" class="btn btn-default btn-sm" title="Página anterior"><i class="fa fa-chevron-left"></i></a>
                     <?php }
                     if ($pag < $total_pag) {?>
                     <a href="?pagina=<?php echo $proximo;?>" type="button" class="btn btn-default btn-sm" title="Próxima página"><i class="fa fa-chevron-right"></i></a>
                     <?php } ?>
+                     <?php if ($pag == $total_pag) {?>
+					<button class="btn btn-default btn-sm disabled"><i class="fa fa-chevron-right"></i></button>
+					<?php } ?>
                   </div>
                   <!-- /.btn-group -->
                 </div>
@@ -381,7 +387,7 @@ $proximo = $pag +1;
 						$remetente = $row_recebidos['posto']." ". $row_recebidos['nome_guerra']." - ".$row_sigla['sigla'];
 						echo "
 						<tr>
-						<td><input type='checkbox'></td>
+						<td><input  type='checkbox'></td>
 						<td class='mailbox-name'><a href='mailbox_view.php?flag=$row_recebidos[id_correio]&flag0=i&flag1=$remetente'>$remetente</a></td>
 						<td class='mailbox-subject'>$b$row_recebidos[assunto]$b1</td>
 						<td class='mailbox-date'>$data</td>
@@ -412,12 +418,19 @@ $proximo = $pag +1;
 					<div class="pull-right">
 					  <?php echo $pag."-".$total_pag."/".$total_msg;?>
 					  <div class="btn-group">
+
+					  <?php if ($pag == 1) {?>
+					<button class="btn btn-default btn-sm disabled"><i class="fa fa-chevron-left"></i></button>
+					<?php } ?>
 						<?php if ($pag > 1) {?>
 						<a href="?pagina=<?php echo $anterior;?>" type="button" class="btn btn-default btn-sm" title="Página anterior"><i class="fa fa-chevron-left"></i></a>
 						<?php }
 						if ($pag < $total_pag) {?>
 						<a href="?pagina=<?php echo $proximo;?>" type="button" class="btn btn-default btn-sm" title="Próxima página"><i class="fa fa-chevron-right"></i></a>
 						<?php } ?>
+						<?php if ($pag == $total_pag) {?>
+					<button class="btn btn-default btn-sm disabled"><i class="fa fa-chevron-right"></i></button>
+					<?php } ?>
 					  </div>
 					  <!-- /.btn-group -->
 					</div>
@@ -683,9 +696,10 @@ $proximo = $pag +1;
 		//Enable iCheck plugin for checkboxes
 		//iCheck for checkbox and radio inputs
 		$('.mailbox-messages input[type="checkbox"]').iCheck({
-		  checkboxClass: 'icheckbox_flat-blue',
-		  radioClass: 'iradio_flat-blue'
+		  checkboxClass: 'icheckbox_flat-blue'
 		});
+
+
 
 		//Enable check and uncheck all functionality
 		$(".checkbox-toggle").click(function () {

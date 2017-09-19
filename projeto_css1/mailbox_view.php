@@ -4,7 +4,7 @@
 * ler email
 * **********************************************************************************************************/
 $inc = "sim";
-$pagina = strtr(end(explode('/', $_SERVER['PHP_SELF'])),'?', true);
+$pagina_lock = strtr(end(explode('/', $_SERVER['REQUEST_URI'])),'', true);
 
 include_once('config.inc.php');
 include_once(PATH . '/controllers/autenticacao/autentica.inc.php');
@@ -27,6 +27,14 @@ if(isset($_GET['flag'])){
 	if($input_sent == 'i'){
 		$sql_lida = "update correio_recebidos set lida = 'sim' where id_correio = $id_correio and destinatario = '$id_usuario'";
 		$mysqli->query($sql_lida);
+
+		$active_i = "class = active";
+	}
+	else if($input_sent == 's'){
+		$active_s = "class = active";
+	}
+	else if($input_sent == 'l'){
+		$active_l = "class = active";
 	}
 
 	if(date('d/m/Y') - 1 == date('d/m/Y', strtotime($row_msg['data']))){
@@ -179,7 +187,7 @@ if(isset($_GET['flag'])){
 								<!-- Menu Body-->
 								<li class="user-body">
 									<div class="pull-left">
-										<a href="<?php echo PAGINA_BLOQUEIO;?>"><button type="button" class="btn btn-warning btn-flat">Bloquear tela</button></a>
+										<a href="<?php echo PAGINA_BLOQUEIO.'?flag='.$pagina_lock;?>"><button type="button" class="btn btn-warning btn-flat">Bloquear tela</button></a>
 									</div>
 									<div class="pull-right">
 										<?php $flag = md5("logout");?>
@@ -298,9 +306,9 @@ if(isset($_GET['flag'])){
             </div>
             <div class="box-body no-padding">
               <ul class="nav nav-pills nav-stacked">
-                <li><a href="mailbox_input.php"><i class="fa fa-inbox"></i> Entrada<span class="label label-danger pull-right"><?php echo $qtde_entrada;?></span></a></li>
-                <li><a href="mailbox_read.php"><i class="fa fa-envelope-open-o"></i> Já lidos<span class="label label-primary pull-right"><?php echo $qtde_lidas;?></span></a></li>
-                <li><a href="mailbox_sent.php"><i class="fa fa-send-o"></i> Enviados<span class="label label-success pull-right"><?php echo $qtde_enviadas;?></span></a></li>
+                <li <?php echo $active_i;?>><a href="mailbox_input.php"><i class="fa fa-inbox"></i> Entrada<span class="label label-danger pull-right"><?php echo $qtde_entrada;?></span></a></li>
+                <li <?php echo $active_l;?>><a href="mailbox_read.php"><i class="fa fa-envelope-open-o"></i> Já lidos<span class="label label-primary pull-right"><?php echo $qtde_lidas;?></span></a></li>
+                <li <?php echo $active_s;?>><a href="mailbox_sent.php"><i class="fa fa-send-o"></i> Enviados<span class="label label-success pull-right"><?php echo $qtde_enviadas;?></span></a></li>
               </ul>
             </div>
             <!-- /.box-body -->
@@ -311,17 +319,18 @@ if(isset($_GET['flag'])){
           <div class="box box-primary">
             <div class="box-header with-border">
               <h3 class="box-title">Ler Mensagem</h3>
-
+				<!--
               <div class="box-tools pull-right">
                 <a href="#" class="btn btn-box-tool" data-toggle="tooltip" title="Previous"><i class="fa fa-chevron-left"></i></a>
                 <a href="#" class="btn btn-box-tool" data-toggle="tooltip" title="Next"><i class="fa fa-chevron-right"></i></a>
               </div>
+              -->
             </div>
             <!-- /.box-header -->
             <div class="box-body no-padding">
               <div class="mailbox-read-info">
                 <h3><?php echo $row_msg['assunto'];?></h3>
-                <?php if ($input_sent == 'i'){?>
+                <?php if ($input_sent == 'i' or $input_sent == 'l'){?>
                 <h5>
 					De: <?php echo $remetente;?>
 					<span class="mailbox-read-time pull-right"><?php echo $data;?></span>
@@ -348,7 +357,7 @@ if(isset($_GET['flag'])){
             <!-- /.box-footer -->
             <div class="box-footer">
               <div class="pull-right">
-                <?php if($input_sent == 'i'){?>
+                <?php if($input_sent == 'i' or $input_sent == 'l'){?>
 					<button type="button" class="btn btn-default"><i class="fa fa-reply"></i> Responder</button>
 				<?php } ?>
                 <button type="button" class="btn btn-default"><i class="fa fa-share"></i> Encaminhar</button>
