@@ -2,7 +2,6 @@
 /**************************************************************
 * Local/nome do script: correio/correio_mover.php
 * Só executa se for chamado pelo formulario, senão chama o script de "acesso negado"
-* primeiramente destroi as variaveis de sessao de alertas de usuario
 * Recebe o comando de mover do script mailbox_input.php
 * Em caso de erros, cria variaveis de sessão com mensagens de alertas que serão utilizadas
 * pelo script usuario/alertas.inc.php(incluido pelo index.php)
@@ -18,13 +17,12 @@ include_once('../../config.inc.php');
 if (isset($_GET['flag'])){
 
 	require_once(PATH . '/controllers/autenticacao/autentica.inc.php');
-	require_once(PATH . '/componentes/internos/php/validaForm.class.php');
 
 	$id_correio = $_GET['flag'];
 	$pasta = 'ja_lidos';
 
-	$con_update = $mysqli->prepare("UPDATE correio_recebidos SET pasta = ? WHERE id_correio = '$id_correio' AND destinatario = '$id_usuario'");
-	$con_update->bind_param('s', $pasta);
+	$con_update = $mysqli->prepare("UPDATE correio_recebidos SET pasta = ? WHERE id_correio = ? AND destinatario = ?");
+	$con_update->bind_param('sii', $pasta,$id_correio,$id_usuario);
 	$con_update->execute();
 
 	if($con_update->affected_rows <> 0){

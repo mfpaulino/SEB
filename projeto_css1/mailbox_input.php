@@ -71,128 +71,7 @@ $proximo = $pag +1;
 			</a>
 			<!-- Header Navbar -->
 			<nav class="navbar navbar-static-top" role="navigation">
-				<!-- Sidebar toggle button-->
-				<a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button"><span class="sr-only">Toggle navigation</span></a>
-				<!-- Navbar Right Menu -->
-				<div class="navbar-custom-menu">
-					<ul class="nav navbar-nav">
-						<!-- Messages: style can be found in dropdown.less-->
-						<li class="dropdown messages-menu">
-							<!-- Menu toggle button -->
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-envelope"></i><span class="label label-primary">44</span></a>
-							<ul class="dropdown-menu">
-								<li class="header">You have 4 messages</li>
-								<li>
-									<!-- inner menu: contains the messages -->
-									<ul class="menu">
-										<!-- start message -->
-										<li>
-											<a href="#">
-												<div class="pull-left">
-													<!-- User Image -->
-													<img src="componentes/externos/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
-												</div>
-												<!-- Message title and timestamp -->
-												<h4>
-													Support Team
-													<small><i class="fa fa-clock"></i> 5 mins</small>
-												</h4>
-												<!-- The message -->
-												<p>Why not buy a new awesome theme?</p>
-											</a>
-										</li>
-										<!-- end message -->
-									</ul>
-									<!-- /.menu -->
-								</li>
-								<li class="footer"><a href="#">See All Messages</a></li>
-							</ul>
-						</li>
-						<!-- /.messages-menu -->
-						<!-- Notifications Menu -->
-						<li class="dropdown notifications-menu">
-							<!-- Menu toggle button -->
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell"></i><span class="label label-warning">10</span></a>
-							<ul class="dropdown-menu">
-								<li class="header">You have 10 notifications</li>
-								<li>
-									<!-- Inner Menu: contains the notifications -->
-									<ul class="menu">
-										<li>
-											<!-- start notification -->
-											<a href="#">
-											  <i class="fa fa-users text-aqua"></i> 5 new members joined today
-											</a>
-											<!-- end notification -->
-										</li>
-									</ul>
-								</li>
-								<li class="footer"><a href="#">View all</a></li>
-							</ul>
-						</li>
-						<!-- Tasks Menu -->
-						<li class="dropdown tasks-menu">
-							<!-- Menu Toggle Button -->
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-flag"></i><span class="label label-danger">9</span></a>
-							<ul class="dropdown-menu">
-								<li class="header">You have 9 tasks</li>
-								<li>
-									<!-- Inner menu: contains the tasks -->
-									<ul class="menu">
-										<li>
-											<!-- Task item -->
-											<a href="#">
-												<!-- Task title and progress text -->
-												<h3>Design some buttons<small class="pull-right">20%</small></h3>
-												<!-- The progress bar -->
-												<div class="progress xs">
-													<!-- Change the css width attribute to simulate progress -->
-													<div class="progress-bar progress-bar-aqua" style="width: 20%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
-														<span class="sr-only">20% Complete</span>
-													</div>
-												</div>
-											</a>
-											<!-- end task item -->
-										</li>
-									</ul>
-								</li>
-								<li class="footer"><a href="#">View all tasks</a></li>
-							</ul>
-						</li>
-						<!-- User Account Menu -->
-						<li class="dropdown user user-menu">
-							<!-- Menu Toggle Button -->
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-								<!-- The user image in the navbar-->
-								<img src="views/avatar/<?php echo $avatar_usuario;?>" class="user-image" alt="User Image">
-								<!-- hidden-xs hides the username on small devices so only the image appears. -->
-								<span class="hidden-xs"><b><?php echo $posto_usuario . " " . $nome_guerra_usuario;?></b></span>
-							</a>
-							<ul class="dropdown-menu">
-								<!-- The user image in the menu -->
-								<li class="user-header">
-									<img src="views/avatar/<?php echo $avatar_usuario;?>" class="img-circle" alt="User Image">
-									<p>
-										<?php echo $perfil_usuario . " - " . $sigla_usuario;?>
-										<small>Acesso anterior: <?php echo $acesso_anterior_usuario;?></small>
-									</p>
-								</li>
-								<!-- Menu Body-->
-								<li class="user-body">
-									<div class="pull-left">
-										<a href="<?php echo PAGINA_BLOQUEIO.'?flag='.md5($pagina);?>"><button type="button" class="btn btn-warning btn-flat">Bloquear tela</button></a>
-									</div>
-									<div class="pull-right">
-										<?php $flag = md5("logout");?>
-										<a href="controllers/autenticacao/logout.php?flag=<?php echo $flag;?>"><button type="button" class="btn btn-danger btn-flat">Fazer logout</button></a>
-									</div>
-								</li>
-							</ul>
-						</li>
-						<!-- Control Sidebar Toggle Button -->
-						<li><a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a></li>
-					</ul>
-				</div>
+				<?php include_once ('views/menu/menu_top.inc.php');?>
 			</nav>
 		</header>
 		<!-- Left side column. contains the logo and sidebar -->
@@ -213,30 +92,9 @@ $proximo = $pag +1;
 				<!-- search form (Optional) -->
 				<!-- /.search form -->
 				<!-- Sidebar Menu -->
-				<ul class="sidebar-menu" data-widget="tree">
-					<!-- Optionally, you can add icons to the links -->
-					<li><a href="index.php"><i class="fa fa-home"></i> <span>Home</span></a></li>
-					<li><a href="#"><i class="fa fa-gears"></i> <span>Administração</span></a></li>
-					<li class="treeview active">
-						<a href="#">
-							<i class="fa fa-envelope"></i> <span>Correio</span>
-						</a>
-					</li>
-					<li class="treeview">
-						<a href="#">
-							<i class="fa fa-search"></i> <span>Auditoria</span>
-							<span class="pull-right-container">
-								<i class="fa fa-angle-left pull-right"></i>
-							</span>
-						</a>
-						<ul class="treeview-menu">
-							<li><a href="#"><i class="fa fa-map"></i> Planejamento</span></a></li>
-							<li><a href="#"><i class="fa fa-edit"></i> Execução</a></li>
-							<li><a href="#"><i class="fa fa-tv"></i> Monitoramento</a></li>
-							<li><a href="#"><i class="fa fa-book"></i> Documentos</a></li>
-						</ul>
-					</li>
-				</u>
+				<?php
+				$active_correio = 'class="active"';
+				include_once('views/menu/menu_left.inc.php');?>
 				<!-- /.sidebar-menu -->
 			</section>
 			<!-- /.sidebar -->
@@ -263,7 +121,7 @@ $proximo = $pag +1;
 		else {
 			include_once('controllers/usuario/usuario_alertas_destruir.inc.php');
 		}
-		if (isset($_GET['flag']) and ($_GET['flag'] == md5("correio_cadastrar") or $_GET['flag'] == md5("correio_mover") )){
+		if (isset($_GET['flag']) and ($_GET['flag'] == md5("correio_mover") or $_GET['flag'] == md5("correio_excluir") )){
 			include_once('controllers/correio/correio_alertas_criar.inc.php');
 		}
 		else {
@@ -297,15 +155,10 @@ $proximo = $pag +1;
           <div class="box box-solid">
             <div class="box-header with-border">
               <h3 class="box-title">Pastas</h3>
-
-              <!--<div class="box-tools">
-                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-                </button>
-              </div>-->
             </div>
             <div class="box-body no-padding">
               <ul class="nav nav-pills nav-stacked">
-                <li class="active"><a href="#"><i class="fa fa-inbox"></i> Entrada<span class="label label-danger pull-right"><?php echo $qtde_entrada;?></span></a></li>
+                <li class="active disabled"><a href="mailbox_input.php"><i class="fa fa-inbox"></i> Entrada<span class="label label-danger pull-right"><?php echo $qtde_entrada;?></span></a></li>
                 <li><a href="mailbox_read.php"><i class="fa fa-envelope-open-o"></i> Já lidos<span class="label label-primary pull-right"><?php echo $qtde_lidas;?></span></a></li>
                 <li><a href="mailbox_sent.php"><i class="fa fa-send-o"></i> Enviados<span class="label label-success pull-right"><?php echo $qtde_enviadas;?></span></a></li>
               </ul>
@@ -325,15 +178,15 @@ $proximo = $pag +1;
 			<?php if ($total_msg > 0) {?>
               <div class="mailbox-controls">
                 <!-- Check all button -->
-                <button type="button" class="btn btn-default btn-sm checkbox-toggle"><i class="fa fa-square-o"></i>
+                <button  class="btn btn-default btn-sm checkbox-toggle"><i class="fa fa-square-o"></i>
                 </button>
                 <div class="btn-group">
-                  <button type="button" class="btn btn-default btn-sm"><i class="fa fa-trash-o"></i></button>
-                  <button type="button" class="btn btn-default btn-sm"><i class="fa fa-reply"></i></button>
-                  <button type="button" class="btn btn-default btn-sm"><i class="fa fa-share"></i></button>
+                  <button  class="btn btn-default btn-sm" title="Excluir"><i class="fa fa-trash-o"></i></button>
+					<button  class="btn btn-default btn-sm" title="Responder"><i class="fa fa-reply"></i></button>
+					<button  class="btn btn-default btn-sm" title="Encaminhar"><i class="fa fa-share"></i></button>
                 </div>
                 <!-- /.btn-group -->
-                <button type="button" class="btn btn-default btn-sm"><i class="fa fa-refresh"></i></button>
+                <a href="<?php echo $pagina;?>"  class="btn btn-default btn-sm" title="Atualizar"><i class="fa fa-refresh"></i></a>
                 <div class="pull-right">
                   <?php echo $pag."-".$total_pag."/".$total_msg;?>
                   <div class="btn-group">
@@ -341,10 +194,10 @@ $proximo = $pag +1;
 					<button class="btn btn-default btn-sm disabled"><i class="fa fa-chevron-left"></i></button>
 					<?php } ?>
 					  <?php if ($pag > 1) {?>
-                    <a href="?pagina=<?php echo $anterior;?>" type="button" class="btn btn-default btn-sm" title="Página anterior"><i class="fa fa-chevron-left"></i></a>
+                    <a href="?pagina=<?php echo $anterior;?>"  class="btn btn-default btn-sm" title="Página anterior"><i class="fa fa-chevron-left"></i></a>
                     <?php }
                     if ($pag < $total_pag) {?>
-                    <a href="?pagina=<?php echo $proximo;?>" type="button" class="btn btn-default btn-sm" title="Próxima página"><i class="fa fa-chevron-right"></i></a>
+                    <a href="?pagina=<?php echo $proximo;?>"  class="btn btn-default btn-sm" title="Próxima página"><i class="fa fa-chevron-right"></i></a>
                     <?php } ?>
                      <?php if ($pag == $total_pag) {?>
 					<button class="btn btn-default btn-sm disabled"><i class="fa fa-chevron-right"></i></button>
@@ -406,15 +259,15 @@ $proximo = $pag +1;
 			<?php if ($total_msg > 0) {?>
 				  <div class="mailbox-controls">
 					<!-- Check all button -->
-					<button type="button" class="btn btn-default btn-sm checkbox-toggle"><i class="fa fa-square-o"></i>
+					<button  class="btn btn-default btn-sm checkbox-toggle"><i class="fa fa-square-o"></i>
 					</button>
 					<div class="btn-group">
-					  <button type="button" class="btn btn-default btn-sm"><i class="fa fa-trash-o"></i></button>
-					  <button type="button" class="btn btn-default btn-sm"><i class="fa fa-reply"></i></button>
-					  <button type="button" class="btn btn-default btn-sm"><i class="fa fa-share"></i></button>
+					  <button  class="btn btn-default btn-sm" title="Excluir"><i class="fa fa-trash-o"></i></button>
+						<button  class="btn btn-default btn-sm" title="Responder"><i class="fa fa-reply"></i></button>
+						<button  class="btn btn-default btn-sm" title="Encaminhar"><i class="fa fa-share"></i></button>
 					</div>
 					<!-- /.btn-group -->
-					<button type="button" class="btn btn-default btn-sm"><i class="fa fa-refresh"></i></button>
+					 <a href="<?php echo $pagina;?>"  class="btn btn-default btn-sm" title="Atualizar"><i class="fa fa-refresh"></i></a>
 					<div class="pull-right">
 					  <?php echo $pag."-".$total_pag."/".$total_msg;?>
 					  <div class="btn-group">
@@ -423,10 +276,10 @@ $proximo = $pag +1;
 					<button class="btn btn-default btn-sm disabled"><i class="fa fa-chevron-left"></i></button>
 					<?php } ?>
 						<?php if ($pag > 1) {?>
-						<a href="?pagina=<?php echo $anterior;?>" type="button" class="btn btn-default btn-sm" title="Página anterior"><i class="fa fa-chevron-left"></i></a>
+						<a href="?pagina=<?php echo $anterior;?>"  class="btn btn-default btn-sm" title="Página anterior"><i class="fa fa-chevron-left"></i></a>
 						<?php }
 						if ($pag < $total_pag) {?>
-						<a href="?pagina=<?php echo $proximo;?>" type="button" class="btn btn-default btn-sm" title="Próxima página"><i class="fa fa-chevron-right"></i></a>
+						<a href="?pagina=<?php echo $proximo;?>"  class="btn btn-default btn-sm" title="Próxima página"><i class="fa fa-chevron-right"></i></a>
 						<?php } ?>
 						<?php if ($pag == $total_pag) {?>
 					<button class="btn btn-default btn-sm disabled"><i class="fa fa-chevron-right"></i></button>
@@ -673,7 +526,7 @@ $proximo = $pag +1;
 		}
 	</script>
 	<script>
-		var btnCust = '<button type="button" class="btn btn-secondary" title="Excluir imagem" ' +
+		var btnCust = '<button  class="btn btn-secondary" title="Excluir imagem" ' +
 			'onclick="return chamarPhpAjax();">' +
 			'<i class="fa fa-trash"> </i>' +
 			'</button>';

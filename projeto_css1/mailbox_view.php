@@ -14,15 +14,23 @@ if(isset($_GET['flag'])){
 	$input_sent = $_GET['flag0'];
 	$destinatario = $_GET['flag1'];
 
-	$sql_msg = "SELECT ce.id_correio, ce.assunto, ce.texto, ce.data, p.posto, u.nome_guerra, u.codom FROM correio_enviados ce, correio_recebidos cr, postos p, usuarios u WHERE ce.id_correio = cr.id_correio and p.id_posto = u.id_posto and ce.remetente = u.cpf  and ce.id_correio = '$id_correio'";
-	$con_msg = $mysqli->query($sql_msg);
-	$row_msg = $con_msg->fetch_assoc();
+	if($input_sent == "i" or $input_sent == "l"){
 
-	$sql_sigla = "SELECT sigla FROM cciex_om WHERE codom = $row_msg[codom]";
-	$con_sigla = $mysqli1->query($sql_sigla);
-	$row_sigla = $con_sigla->fetch_assoc();
+		$sql_msg = "SELECT ce.id_correio, ce.assunto, ce.texto, ce.remetente, ce.data, p.posto, u.nome_guerra, u.codom FROM correio_enviados ce, correio_recebidos cr, postos p, usuarios u WHERE ce.id_correio = cr.id_correio and p.id_posto = u.id_posto and ce.remetente = u.cpf  and ce.id_correio = '$id_correio'";
+		$con_msg = $mysqli->query($sql_msg);
+		$row_msg = $con_msg->fetch_assoc();
 
-	$remetente = $row_msg['posto']." ".$row_msg['nome_guerra']." - ".$row_sigla['sigla'];
+		$sql_sigla = "SELECT sigla FROM cciex_om WHERE codom = $row_msg[codom]";
+		$con_sigla = $mysqli1->query($sql_sigla);
+		$row_sigla = $con_sigla->fetch_assoc();
+
+		$remetente = $row_msg['posto']." ".$row_msg['nome_guerra']." - ".$row_sigla['sigla'];
+	}
+	else{
+		$sql_msg = "SELECT id_correio, assunto, texto, data FROM correio_enviados WHERE id_correio = '$id_correio'";
+		$con_msg = $mysqli->query($sql_msg);
+		$row_msg = $con_msg->fetch_assoc();
+	}
 
 	if($input_sent == 'i'){
 		$sql_lida = "update correio_recebidos set lida = 'sim' where id_correio = $id_correio and destinatario = '$id_usuario'";
@@ -78,128 +86,7 @@ if(isset($_GET['flag'])){
 			</a>
 			<!-- Header Navbar -->
 			<nav class="navbar navbar-static-top" role="navigation">
-				<!-- Sidebar toggle button-->
-				<a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button"><span class="sr-only">Toggle navigation</span></a>
-				<!-- Navbar Right Menu -->
-				<div class="navbar-custom-menu">
-					<ul class="nav navbar-nav">
-						<!-- Messages: style can be found in dropdown.less-->
-						<li class="dropdown messages-menu">
-							<!-- Menu toggle button -->
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-envelope"></i><span class="label label-primary">44</span></a>
-							<ul class="dropdown-menu">
-								<li class="header">You have 4 messages</li>
-								<li>
-									<!-- inner menu: contains the messages -->
-									<ul class="menu">
-										<!-- start message -->
-										<li>
-											<a href="#">
-												<div class="pull-left">
-													<!-- User Image -->
-													<img src="componentes/externos/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
-												</div>
-												<!-- Message title and timestamp -->
-												<h4>
-													Support Team
-													<small><i class="fa fa-clock"></i> 5 mins</small>
-												</h4>
-												<!-- The message -->
-												<p>Why not buy a new awesome theme?</p>
-											</a>
-										</li>
-										<!-- end message -->
-									</ul>
-									<!-- /.menu -->
-								</li>
-								<li class="footer"><a href="#">See All Messages</a></li>
-							</ul>
-						</li>
-						<!-- /.messages-menu -->
-						<!-- Notifications Menu -->
-						<li class="dropdown notifications-menu">
-							<!-- Menu toggle button -->
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell"></i><span class="label label-warning">10</span></a>
-							<ul class="dropdown-menu">
-								<li class="header">You have 10 notifications</li>
-								<li>
-									<!-- Inner Menu: contains the notifications -->
-									<ul class="menu">
-										<li>
-											<!-- start notification -->
-											<a href="#">
-											  <i class="fa fa-users text-aqua"></i> 5 new members joined today
-											</a>
-											<!-- end notification -->
-										</li>
-									</ul>
-								</li>
-								<li class="footer"><a href="#">View all</a></li>
-							</ul>
-						</li>
-						<!-- Tasks Menu -->
-						<li class="dropdown tasks-menu">
-							<!-- Menu Toggle Button -->
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-flag"></i><span class="label label-danger">9</span></a>
-							<ul class="dropdown-menu">
-								<li class="header">You have 9 tasks</li>
-								<li>
-									<!-- Inner menu: contains the tasks -->
-									<ul class="menu">
-										<li>
-											<!-- Task item -->
-											<a href="#">
-												<!-- Task title and progress text -->
-												<h3>Design some buttons<small class="pull-right">20%</small></h3>
-												<!-- The progress bar -->
-												<div class="progress xs">
-													<!-- Change the css width attribute to simulate progress -->
-													<div class="progress-bar progress-bar-aqua" style="width: 20%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
-														<span class="sr-only">20% Complete</span>
-													</div>
-												</div>
-											</a>
-											<!-- end task item -->
-										</li>
-									</ul>
-								</li>
-								<li class="footer"><a href="#">View all tasks</a></li>
-							</ul>
-						</li>
-						<!-- User Account Menu -->
-						<li class="dropdown user user-menu">
-							<!-- Menu Toggle Button -->
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-								<!-- The user image in the navbar-->
-								<img src="views/avatar/<?php echo $avatar_usuario;?>" class="user-image" alt="User Image">
-								<!-- hidden-xs hides the username on small devices so only the image appears. -->
-								<span class="hidden-xs"><b><?php echo $posto_usuario . " " . $nome_guerra_usuario;?></b></span>
-							</a>
-							<ul class="dropdown-menu">
-								<!-- The user image in the menu -->
-								<li class="user-header">
-									<img src="views/avatar/<?php echo $avatar_usuario;?>" class="img-circle" alt="User Image">
-									<p>
-										<?php echo $perfil_usuario . " - " . $sigla_usuario;?>
-										<small>Acesso anterior: <?php echo $acesso_anterior_usuario;?></small>
-									</p>
-								</li>
-								<!-- Menu Body-->
-								<li class="user-body">
-									<div class="pull-left">
-										<a href="<?php echo PAGINA_BLOQUEIO.'?flag='.$pagina_lock;?>"><button type="button" class="btn btn-warning btn-flat">Bloquear tela</button></a>
-									</div>
-									<div class="pull-right">
-										<?php $flag = md5("logout");?>
-										<a href="controllers/autenticacao/logout.php?flag=<?php echo $flag;?>"><button type="button" class="btn btn-danger btn-flat">Fazer logout</button></a>
-									</div>
-								</li>
-							</ul>
-						</li>
-						<!-- Control Sidebar Toggle Button -->
-						<li><a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a></li>
-					</ul>
-				</div>
+				<?php include_once ('views/menu/menu_top.inc.php');?>
 			</nav>
 		</header>
  <!-- Left side column. contains the logo and sidebar -->
@@ -220,30 +107,9 @@ if(isset($_GET['flag'])){
 				<!-- search form (Optional) -->
 				<!-- /.search form -->
 				<!-- Sidebar Menu -->
-				<ul class="sidebar-menu" data-widget="tree">
-					<!-- Optionally, you can add icons to the links -->
-					<li><a href="index.php"><i class="fa fa-home"></i> <span>Home</span></a></li>
-					<li><a href="#"><i class="fa fa-gears"></i> <span>Administração</span></a></li>
-					<li class="treeview active">
-						<a href="mailbox.html">
-							<i class="fa fa-envelope"></i> <span>Correio</span>
-						</a>
-					</li>
-					<li class="treeview">
-						<a href="#">
-							<i class="fa fa-search"></i> <span>Auditoria</span>
-							<span class="pull-right-container">
-								<i class="fa fa-angle-left pull-right"></i>
-							</span>
-						</a>
-						<ul class="treeview-menu">
-							<li><a href="#"><i class="fa fa-map"></i> Planejamento</span></a></li>
-							<li><a href="#"><i class="fa fa-edit"></i> Execução</a></li>
-							<li><a href="#"><i class="fa fa-tv"></i> Monitoramento</a></li>
-							<li><a href="#"><i class="fa fa-book"></i> Documentos</a></li>
-						</ul>
-					</li>
-				</u>
+				<?php
+				$active_correio = 'class="active"';
+				include_once('views/menu/menu_left.inc.php');?>
 				<!-- /.sidebar-menu -->
 			</section>
 			<!-- /.sidebar -->
@@ -298,11 +164,6 @@ if(isset($_GET['flag'])){
           <div class="box box-solid">
             <div class="box-header with-border">
               <h3 class="box-title">Pastas</h3>
-
-             <!-- <div class="box-tools">
-                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-                </button>
-              </div>-->
             </div>
             <div class="box-body no-padding">
               <ul class="nav nav-pills nav-stacked">
@@ -319,55 +180,80 @@ if(isset($_GET['flag'])){
           <div class="box box-primary">
             <div class="box-header with-border">
               <h3 class="box-title">Ler Mensagem</h3>
-				<!--
-              <div class="box-tools pull-right">
-                <a href="#" class="btn btn-box-tool" data-toggle="tooltip" title="Previous"><i class="fa fa-chevron-left"></i></a>
-                <a href="#" class="btn btn-box-tool" data-toggle="tooltip" title="Next"><i class="fa fa-chevron-right"></i></a>
-              </div>
-              -->
             </div>
             <!-- /.box-header -->
-            <div class="box-body no-padding">
-              <div class="mailbox-read-info">
-                <h3><?php echo $row_msg['assunto'];?></h3>
-                <?php if ($input_sent == 'i' or $input_sent == 'l'){?>
-                <h5>
-					De: <?php echo $remetente;?>
-					<span class="mailbox-read-time pull-right"><?php echo $data;?></span>
-                </h5>
-                <?php }
-                else if ($input_sent == 's'){?>
-                <h5>
-					Para: <?php echo $destinatario;?>
-					<span class="mailbox-read-time pull-right"><?php echo $data;?></span>
-                </h5>
-                <?php } ?>
-              </div>
-              <!-- /.mailbox-read-info -->
+            <div id="area_print">
+				<div class="box-body no-padding">
+				  <div class="mailbox-read-info">
+					<h3><?php echo $row_msg['assunto'];?></h3>
+					<?php if ($input_sent == 'i' or $input_sent == 'l'){?>
+					<h5>
+						De: <?php echo $remetente;?>
+						<span class="mailbox-read-time pull-right"><?php echo $data;?></span>
+					</h5>
+					<?php }
+					else if ($input_sent == 's'){?>
+					<h5>
+						Para: <?php echo $destinatario;?>
+						<span class="mailbox-read-time pull-right"><?php echo $data;?></span>
+					</h5>
+					<?php } ?>
+				  </div>
+				  <!-- /.mailbox-read-info -->
 
-              <!-- /.mailbox-controls -->
-              <div class="mailbox-read-message">
-                <?php echo $row_msg['texto'];?>
-              </div>
-              <!-- /.mailbox-read-message -->
-            </div>
+				  <!-- /.mailbox-controls -->
+				  <div class="mailbox-read-message">
+					<?php echo $row_msg['texto'];?>
+				  </div>
+				  <!-- /.mailbox-read-message -->
+				</div>
+			</div>
             <!-- /.box-body -->
             <div class="box-footer">
             </div>
             <!-- /.box-footer -->
             <div class="box-footer">
               <div class="pull-right">
+
                 <?php if($input_sent == 'i' or $input_sent == 'l'){?>
-					<button type="button" class="btn btn-default"><i class="fa fa-reply"></i> Responder</button>
+					<button type="submit" class="btn btn-default" form="formResponder"><i class="fa fa-reply"></i> Responder</button>
 				<?php } ?>
-                <button type="button" class="btn btn-default"><i class="fa fa-share"></i> Encaminhar</button>
+                <button type="submit" class="btn btn-default" form="formEncaminhar"><i class="fa fa-share"></i> Encaminhar</button>
               </div>
               <?php if($input_sent == 'i'){?>
-              <a href="controllers/correio/correio_mover.php?flag=<?php echo $id_correio;?>" type="button" class="btn btn-default"><i class="fa fa-envelope-open-o"></i> Mover para Já lidos</a>
+              <a href="controllers/correio/correio_mover.php?flag=<?php echo $id_correio;?>" class="btn btn-default"><i class="fa fa-envelope-open-o"></i> Mover para Já lidos</a>
               <?php } ?>
-              <button type="button" class="btn btn-default"><i class="fa fa-trash-o"></i> Excluir</button>
-              <button type="button" class="btn btn-default"><i class="fa fa-print"></i> Imprimir</button>
+            <a class="btn btn-default"
+				data-toggle="confirmation"
+				data-placement="left"
+				data-btn-ok-label="Continuar"
+				data-btn-ok-icon="glyphicon glyphicon-share-alt"
+				data-btn-ok-class="btn-success"
+				data-btn-cancel-label="Parar"
+				data-btn-cancel-icon="glyphicon glyphicon-ban-circle"
+				data-btn-cancel-class="btn-danger"
+				data-title="Confirma exclusão da mensagem?"
+				data-content="" href="controllers/correio/correio_excluir.php?flag=<?php echo $id_correio;?>&flag0=<?php echo $input_sent;?>">
+				<i class="fa fa-trash-o"></i> Excluir
+			</a>
+                    <button id="btnPrint" class="btn btn-default"><i class="fa fa-print"></i> Imprimir</button>
+
+				<form name="formResponder" id="formResponder" method="POST" action="mailbox_write.php">
+					<input type="hidden" name="flag" value="resp" />
+					<input type="hidden" name="assunto" value="<?php echo 'RE: '.$row_msg['assunto'];?>" />
+					<input type="hidden" name="texto" value="<?php echo $row_msg['texto'];?>" />
+					<input type="hidden" name="destinatario" value="<?php echo $remetente;?>" />
+					<input type="hidden" name="cpf_destinatario" value="<?php echo $row_msg['remetente'];?>" />
+				</form>
+				<form name="formEncaminhar" id="formEncaminhar" method="POST" action="mailbox_write.php">
+					<input type="hidden" name="flag" value="enc" />
+					<input type="hidden" name="assunto" value="<?php echo 'ENC: '.$row_msg['assunto'];?>" />
+					<input type="hidden" name="texto" value="<?php echo $row_msg['texto'];?>" />
+				</form>
+
             </div>
+
+
             <!-- /.box-footer -->
           </div>
           <!-- /. box -->
@@ -482,6 +368,8 @@ if(isset($_GET['flag'])){
 
 <script src="componentes/externos/bower_components/jquery/dist/jquery.min.js"></script>
 	<script src="componentes/externos/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script src="componentes/externos/bower_components/bootstrap/dist/js/bootstrapValidator.min.js"></script>
+	<script src="componentes/externos/bower_components/bootstrap-confirmation/bootstrap-confirmation.min.js"></script>
 	<script src="componentes/externos/dist/js/adminlte.min.js"></script>
 	<script src="controllers/usuario/senha_alterar.js"></script>
 	<script src="componentes/internos/js/status_sessao.js"></script>
@@ -601,7 +489,7 @@ if(isset($_GET['flag'])){
 		}
 	</script>
 	<script>
-		var btnCust = '<button type="button" class="btn btn-secondary" title="Excluir imagem" ' +
+		var btnCust = '<button  class="btn btn-secondary" title="Excluir imagem" ' +
 			'onclick="return chamarPhpAjax();">' +
 			'<i class="fa fa-trash"> </i>' +
 			'</button>';
@@ -629,13 +517,22 @@ if(isset($_GET['flag'])){
 	<?php
 	}
 	?>
-<!-- Page Script -->
-<script>
-  $(function () {
-    //Add text editor
-    $("#compose-textarea").wysihtml5();
-  });
-</script>
+	<!-- Page Script -->
+	<script>
+	  $(function () {
+		//Add text editor
+		$("#compose-textarea").wysihtml5();
+	  });
+	</script>
+	<script>
+		document.getElementById('btnPrint').onclick = function() {
+			var conteudo = document.getElementById('area_print').innerHTML,
+				tela_impressao = window.open('','','width=0, height=0, top=50, left=50');
+			tela_impressao.document.write(conteudo);
+			tela_impressao.window.print();
+			tela_impressao.window.close();
+		};
+	</script>
 </body>
 </html>
 <?php

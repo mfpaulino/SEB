@@ -26,12 +26,21 @@ if ($inc == "sim"){
 		}
 		if($flag == md5("correio_mover")){
 
-			$msg1 = $_SESSION['correio_mover_sucesso'];
-			$msg4 = $_SESSION['correio_mover_erro'];
+			$msg0 = $_SESSION['correio_mover_sucesso'];
+			$msg1 = $_SESSION['correio_mover_erro'];
 		}
 		else {
 			unset($_SESSION['correio_mover_sucesso']);
 			unset($_SESSION['correio_mover_erro']);
+		}
+		if($flag == md5("correio_excluir")){
+
+			$msg0 = $_SESSION['correio_excluir_sucesso'];
+			$msg1 = $_SESSION['correio_excluir_erro'];
+		}
+		else {
+			unset($_SESSION['correio_excluir_sucesso']);
+			unset($_SESSION['correio_excluir_erro']);
 		}
 
 		$msg_correio="exibir";

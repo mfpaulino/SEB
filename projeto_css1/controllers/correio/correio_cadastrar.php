@@ -73,7 +73,7 @@ if (isset($_POST['flag'])){
 		$_SESSION['lista_erro_validacao_correio'] = $validar->get_errors(); //Captura os erros de todos os campos
 	}
 	$flag = md5("correio_cadastrar");
-	header(sprintf("Location:../../mailbox_input.php?flag=$flag"));
+	header(sprintf("Location:../../mailbox_sent.php?flag=$flag"));
 }
 else {
 	include_once(PATH . '/controllers/autenticacao/'.ACESSO_NEGADO);

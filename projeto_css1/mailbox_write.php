@@ -12,6 +12,11 @@ include_once(PATH . '/controllers/autenticacao/autentica.inc.php');
 $sql_destinatario = "SELECT id_usuario, nome_guerra, p.posto, codom from usuarios, postos p where usuarios.cpf <> '$cpf' and usuarios.status = 'habilitado' and usuarios.id_posto = p.id_posto order by p.id_posto, codom";
 $con_destinatario = $mysqli->query($sql_destinatario);
 
+if(isset($_POST['cpf_destinatario'])){
+	$con_destinatario = $mysqli->query("SELECT id_usuario FROM usuarios WHERE cpf = '$_POST[cpf_destinatario]'");
+	$row_destinatario = $con_destinatario->fetch_assoc();
+	}
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -47,128 +52,7 @@ $con_destinatario = $mysqli->query($sql_destinatario);
 			</a>
 			<!-- Header Navbar -->
 			<nav class="navbar navbar-static-top" role="navigation">
-				<!-- Sidebar toggle button-->
-				<a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button"><span class="sr-only">Toggle navigation</span></a>
-				<!-- Navbar Right Menu -->
-				<div class="navbar-custom-menu">
-					<ul class="nav navbar-nav">
-						<!-- Messages: style can be found in dropdown.less-->
-						<li class="dropdown messages-menu">
-							<!-- Menu toggle button -->
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-envelope"></i><span class="label label-primary">44</span></a>
-							<ul class="dropdown-menu">
-								<li class="header">You have 4 messages</li>
-								<li>
-									<!-- inner menu: contains the messages -->
-									<ul class="menu">
-										<!-- start message -->
-										<li>
-											<a href="#">
-												<div class="pull-left">
-													<!-- User Image -->
-													<img src="componentes/externos/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
-												</div>
-												<!-- Message title and timestamp -->
-												<h4>
-													Support Team
-													<small><i class="fa fa-clock"></i> 5 mins</small>
-												</h4>
-												<!-- The message -->
-												<p>Why not buy a new awesome theme?</p>
-											</a>
-										</li>
-										<!-- end message -->
-									</ul>
-									<!-- /.menu -->
-								</li>
-								<li class="footer"><a href="#">See All Messages</a></li>
-							</ul>
-						</li>
-						<!-- /.messages-menu -->
-						<!-- Notifications Menu -->
-						<li class="dropdown notifications-menu">
-							<!-- Menu toggle button -->
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell"></i><span class="label label-warning">10</span></a>
-							<ul class="dropdown-menu">
-								<li class="header">You have 10 notifications</li>
-								<li>
-									<!-- Inner Menu: contains the notifications -->
-									<ul class="menu">
-										<li>
-											<!-- start notification -->
-											<a href="#">
-											  <i class="fa fa-users text-aqua"></i> 5 new members joined today
-											</a>
-											<!-- end notification -->
-										</li>
-									</ul>
-								</li>
-								<li class="footer"><a href="#">View all</a></li>
-							</ul>
-						</li>
-						<!-- Tasks Menu -->
-						<li class="dropdown tasks-menu">
-							<!-- Menu Toggle Button -->
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-flag"></i><span class="label label-danger">9</span></a>
-							<ul class="dropdown-menu">
-								<li class="header">You have 9 tasks</li>
-								<li>
-									<!-- Inner menu: contains the tasks -->
-									<ul class="menu">
-										<li>
-											<!-- Task item -->
-											<a href="#">
-												<!-- Task title and progress text -->
-												<h3>Design some buttons<small class="pull-right">20%</small></h3>
-												<!-- The progress bar -->
-												<div class="progress xs">
-													<!-- Change the css width attribute to simulate progress -->
-													<div class="progress-bar progress-bar-aqua" style="width: 20%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
-														<span class="sr-only">20% Complete</span>
-													</div>
-												</div>
-											</a>
-											<!-- end task item -->
-										</li>
-									</ul>
-								</li>
-								<li class="footer"><a href="#">View all tasks</a></li>
-							</ul>
-						</li>
-						<!-- User Account Menu -->
-						<li class="dropdown user user-menu">
-							<!-- Menu Toggle Button -->
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-								<!-- The user image in the navbar-->
-								<img src="views/avatar/<?php echo $avatar_usuario;?>" class="user-image" alt="User Image">
-								<!-- hidden-xs hides the username on small devices so only the image appears. -->
-								<span class="hidden-xs"><b><?php echo $posto_usuario . " " . $nome_guerra_usuario;?></b></span>
-							</a>
-							<ul class="dropdown-menu">
-								<!-- The user image in the menu -->
-								<li class="user-header">
-									<img src="views/avatar/<?php echo $avatar_usuario;?>" class="img-circle" alt="User Image">
-									<p>
-										<?php echo $perfil_usuario . " - " . $sigla_usuario;?>
-										<small>Acesso anterior: <?php echo $acesso_anterior_usuario;?></small>
-									</p>
-								</li>
-								<!-- Menu Body-->
-								<li class="user-body">
-									<div class="pull-left">
-										<a href="<?php echo PAGINA_BLOQUEIO.'?flag='.md5($pagina);?>"><button type="button" class="btn btn-warning btn-flat">Bloquear tela</button></a>
-									</div>
-									<div class="pull-right">
-										<?php $flag = md5("logout");?>
-										<a href="controllers/autenticacao/logout.php?flag=<?php echo $flag;?>"><button type="button" class="btn btn-danger btn-flat">Fazer logout</button></a>
-									</div>
-								</li>
-							</ul>
-						</li>
-						<!-- Control Sidebar Toggle Button -->
-						<li><a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a></li>
-					</ul>
-				</div>
+				<?php include_once ('views/menu/menu_top.inc.php');?>
 			</nav>
 		</header>
   <!-- Left side column. contains the logo and sidebar -->
@@ -189,30 +73,9 @@ $con_destinatario = $mysqli->query($sql_destinatario);
 				<!-- search form (Optional) -->
 				<!-- /.search form -->
 				<!-- Sidebar Menu -->
-				<ul class="sidebar-menu" data-widget="tree">
-					<!-- Optionally, you can add icons to the links -->
-					<li><a href="index.php"><i class="fa fa-home"></i> <span>Home</span></a></li>
-					<li><a href="#"><i class="fa fa-gears"></i> <span>Administração</span></a></li>
-					<li class="treeview active">
-						<a href="mailbox.html">
-							<i class="fa fa-envelope"></i> <span>Correio</span>
-						</a>
-					</li>
-					<li class="treeview">
-						<a href="#">
-							<i class="fa fa-search"></i> <span>Auditoria</span>
-							<span class="pull-right-container">
-								<i class="fa fa-angle-left pull-right"></i>
-							</span>
-						</a>
-						<ul class="treeview-menu">
-							<li><a href="#"><i class="fa fa-map"></i> Planejamento</span></a></li>
-							<li><a href="#"><i class="fa fa-edit"></i> Execução</a></li>
-							<li><a href="#"><i class="fa fa-tv"></i> Monitoramento</a></li>
-							<li><a href="#"><i class="fa fa-book"></i> Documentos</a></li>
-						</ul>
-					</li>
-				</u>
+				<?php
+				$active_correio = 'class="active"';
+				include_once('views/menu/menu_left.inc.php');?>
 				<!-- /.sidebar-menu -->
 			</section>
 			<!-- /.sidebar -->
@@ -267,11 +130,6 @@ $con_destinatario = $mysqli->query($sql_destinatario);
           <div class="box box-solid">
             <div class="box-header with-border">
               <h3 class="box-title">Pastas</h3>
-
-             <!-- <div class="box-tools">
-                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-                </button>
-              </div>-->
             </div>
             <div class="box-body no-padding">
               <ul class="nav nav-pills nav-stacked">
@@ -287,13 +145,27 @@ $con_destinatario = $mysqli->query($sql_destinatario);
         <div class="col-md-9">
           <div class="box box-primary">
             <div class="box-header with-border">
-              <h3 class="box-title">Nova Mensagem</h3>
+				<?php if(isset($_POST['flag'] ) and $_POST['flag'] == 'resp'){?>
+              <h3 class="box-title">Responder Mensagem</h3>
+              <?php }
+              else if (isset($_POST['flag'] ) and $_POST['flag'] == 'enc'){?>
+              <h3 class="box-title">Encaminhar Mensagem</h3>
+              <?php }
+              else {?>
+			 <h3 class="box-title">Nova Mensagem</h3>
+
+			<?php	 }?>
             </div>
             <!-- /.box-header -->
             <form name="form_write_msg" method = "POST" action = "controllers/correio/correio_cadastrar.php">
             <div class="box-body">
 
               <div class="form-group">
+				  <?php if(isset($_POST['destinatario'])){?>
+					  <input class="form-control" disabled value="<?php echo $_POST['destinatario'];?>">
+					  <input type="hidden" name="destinatario[]" value = "<?php echo $row_destinatario['id_usuario'];?>" />
+					  <?php }
+					  else {?>
                 <select name="destinatario[]" id="destinatario" class="form-control chosen-select" multiple data-placeholder = " Para:" >
 					<?php
 					while($row = $con_destinatario->fetch_assoc()){
@@ -305,23 +177,15 @@ $con_destinatario = $mysqli->query($sql_destinatario);
 						<option value="<?php echo $row['id_usuario'];?>"><?php echo $row['posto'] . " " . $row['nome_guerra'] . " - " . $row_sigla['sigla'];?></option>
 						<?php } ?>
 			    </select>
+			    <?php } ?>
               </div>
               <div class="form-group">
-                <input name="assunto" class="form-control" placeholder="Assunto:">
+                <input name="assunto" class="form-control" placeholder="Assunto:" value="<?php echo $_POST['assunto'];?>">
               </div>
               <div class="form-group">
-                    <textarea name="texto" id="compose-textarea" class="form-control" style="height: 300px">
+                    <textarea name="texto" id="compose-textarea" class="form-control" style="height: 300px"><?php echo $_POST['texto'];?>
                     </textarea>
               </div>
-              <!--
-              <div class="form-group">
-                <div class="btn btn-default btn-file">
-                  <i class="fa fa-paperclip"></i> Attachment
-                  <input type="file" name="attachment">
-                </div>
-                <p class="help-block">Max. 32MB</p>
-              </div>
-              -->
             </div>
 			<!-- Hidden input -->
 			<input name="flag" type="hidden" />
@@ -329,7 +193,7 @@ $con_destinatario = $mysqli->query($sql_destinatario);
             <div class="box-footer">
               <div class="pull-right">
                 <button type="submit" class="btn btn-success"><i class="fa fa-envelope-o"></i> Enviar</button>
-                <a href="mailbox_write.php"><button class="btn btn-danger"><i class="fa fa-trash"></i>  Cancelar</button></a>
+                <a href="mailbox_input.php" class="btn btn-danger"><i class="fa fa-trash"></i>  Cancelar</a>
               </div>
             </div>
             <!-- /.box-footer -->
@@ -447,6 +311,8 @@ $con_destinatario = $mysqli->query($sql_destinatario);
 	<!-- ./wrapper -->
 	<script src="componentes/externos/bower_components/jquery/dist/jquery.min.js"></script>
 	<script src="componentes/externos/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script src="componentes/externos/bower_components/bootstrap/dist/js/bootstrapValidator.min.js"></script>
+	<script src="componentes/externos/bower_components/bootstrap-confirmation/bootstrap-confirmation.min.js"></script>
 	<script src="componentes/externos/dist/js/adminlte.min.js"></script>
 	<script src="controllers/usuario/senha_alterar.js"></script>
 	<script src="componentes/internos/js/status_sessao.js"></script>
@@ -566,7 +432,7 @@ $con_destinatario = $mysqli->query($sql_destinatario);
 		}
 	</script>
 	<script>
-		var btnCust = '<button type="button" class="btn btn-secondary" title="Excluir imagem" ' +
+		var btnCust = '<button  class="btn btn-secondary" title="Excluir imagem" ' +
 			'onclick="return chamarPhpAjax();">' +
 			'<i class="fa fa-trash"> </i>' +
 			'</button>';
