@@ -4,7 +4,7 @@
 * ler email
 * **********************************************************************************************************/
 $inc = "sim";
-$pagina_lock = strtr(end(explode('/', $_SERVER['REQUEST_URI'])),'', true);
+$pagina_lock = md5('mailbox_view').'_'.strtr(end(explode('/', $_SERVER['REQUEST_URI'])),'', true);
 
 include_once('config.inc.php');
 include_once(PATH . '/controllers/autenticacao/autentica.inc.php');

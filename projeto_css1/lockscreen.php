@@ -13,8 +13,8 @@ include_once('config.inc.php');
 		header("Location:index.php");
 	}
 	else{
-		$pagina_lock = $_GET['flag'];
-		//$pagina_lock = str_replace('&','',strtr(end(explode('/', $_SERVER['REQUEST_URI'])),'', true));
+
+		$pagina_lock = str_replace('lockscreen.php?flag=','',strtr(end(explode('/', $_SERVER['REQUEST_URI'])),'', true));
 
 		$_SESSION['acesso'] = "lock";
 
@@ -46,7 +46,6 @@ include_once('config.inc.php');
 			<div class="lockscreen-wrapper">
 				<div class="lockscreen-logo">
 					<a href="index.php"><b>SIAUDI</b>-EB</a>
-					<?php echo $pagina_lock;?>
 				</div>
 				<!-- User name -->
 				<div class="lockscreen-name"><?php echo $posto_usuario . " " . $nome_guerra_usuario;?></div>

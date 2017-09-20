@@ -8,6 +8,9 @@
 * Inclui o form de alterar Unidade                                                                         *
 * Exibe na tela alertas diversos vindos do script 'controllers/usuario/usuario_alertas_criar.inc.php'      *
 * **********************************************************************************************************/
+
+$pagina_lock = str_replace('user.php?flag='.md5('mailbox_view').'_','',strtr(end(explode('/', $_SERVER['REQUEST_URI'])),'', true));
+
 if(isset($_GET['flag'])){
 	switch ($_GET['flag']){
     case md5("mailbox_input.php"):
@@ -24,7 +27,7 @@ if(isset($_GET['flag'])){
       break;
   }
   if(strpos($_GET['flag'],'view') !== false){
-	  header("Location:".$_GET['flag']);
+	  header("Location:".$pagina_lock);
   }
 }
 $inc = "sim";
