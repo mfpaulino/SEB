@@ -3,14 +3,19 @@ session_start();
 
 $inc ="sim";
 
-include('config.inc.php');
-include(PATH . '/controllers/autenticacao/perfil.inc.php');
+include_once('config.inc.php');
+include_once(PATH . '/controllers/autenticacao/perfil.inc.php');
 
 $agora = date("Y-m-d H:i:s");
 $tempo_inatividade = (strtotime($agora)-strtotime($ultimoAcesso));
 $ultimoAcesso = $_SESSION['ultimoAcesso'];
 $tempo_restante = TEMPO_MAX_INATIVIDADE - $tempo_inatividade;
 
+$usuario = $posto_usuario . " " . $nome_guerra_usuario;
+
+if(strlen($usuario) > 19){
+	$usuario = substr($usuario, 0, 19)."...";
+}
 
 if ($tempo_inatividade >= (TEMPO_MAX_INATIVIDADE)){
 	?>
@@ -29,7 +34,7 @@ if ($tempo_inatividade >= (TEMPO_MAX_INATIVIDADE)){
 	session_destroy();
 }
 else if($tempo_inatividade >= (TEMPO_MAX_INATIVIDADE - 120)){ // TEMPO_SESSAO vem de constantes.inc.php ?>
-	<p><?php echo $posto_usuario . " " . $nome_guerra_usuario;?></p>
+	<p><?php echo $usuario;?></p>
 	<a href="#"><i class="fa fa-circle text-success"></i> Online (<?php echo $tempo_restante;?> s)</a>
 	<?php
 	if ($_SESSION['contador_sessao'] == 0){?>
@@ -43,7 +48,7 @@ else if($tempo_inatividade >= (TEMPO_MAX_INATIVIDADE - 120)){ // TEMPO_SESSAO ve
 	$_SESSION['contador_sessao'] = 1;
 }
 else {?>
-	<p><?php echo $posto_usuario . " " . $nome_guerra_usuario;?></p>
+	<p><?php echo $usuario;?></p>
 	<a href="#"><i class="fa fa-circle text-success"></i> Online</a>
 	<?php
 }

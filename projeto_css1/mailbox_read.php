@@ -43,12 +43,9 @@ $proximo = $pag +1;
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-
 	<title><?php echo TITULO;?></title>
-
 	<!-- Tell the browser to be responsive to screen width -->
 	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-
 	<link rel="stylesheet" href="componentes/externos/bower_components/bootstrap/dist/css/bootstrap.min.css">
 	<link rel="stylesheet" href="componentes/externos/bower_components/font-awesome/css/font-awesome.min.css">
 	<link rel="stylesheet" href="componentes/externos/bower_components/Ionicons/css/ionicons.min.css">
@@ -61,48 +58,23 @@ $proximo = $pag +1;
 <body class="hold-transition skin-blue sidebar-mini">
 	<?php include_once('componentes/internos/php/cabecalho.inc.php');?>
 	<div class="wrapper">
-		<!-- Main Header -->
 		<header class="main-header">
-			<!-- Logo -->
 			<a href="index.php" class="logo">
-				<!-- mini logo for sidebar mini 50x50 pixels -->
 				<span class="logo-mini"><b>...</b></span>
-				<!-- logo for regular state and mobile devices -->
 				<span class="logo-lg barra-top"><b>SIAUD</b>-EB</span>
 			</a>
-			<!-- Header Navbar -->
-			<nav class="navbar navbar-static-top" role="navigation">
+			<nav id="menu_top" class="navbar navbar-static-top" role="navigation">
 				<?php include_once ('views/menu/menu_top.inc.php');?>
 			</nav>
 		</header>
-		<!-- Left side column. contains the logo and sidebar -->
 		<aside class="main-sidebar">
-			<!-- sidebar: style can be found in sidebar.less -->
 			<section class="sidebar">
-				<!-- Sidebar user panel (optional) -->
-				<div class="user-panel">
-					<div class="pull-left image">
-						<img src="views/avatar/<?php echo $avatar_usuario;?>" class="img-circle" alt="User Image">
-					</div>
-					<div id="status_sessao" class="pull-left info">
-						<p><?php echo $posto_usuario . " " . $nome_guerra_usuario;?></p>
-						<!-- Status-->
-						<a href="#"><i class="fa fa-circle text-success"></i> Online</a>
-					</div>
-				</div>
-				<!-- search form (Optional) -->
-				<!-- /.search form -->
-				<!-- Sidebar Menu -->
 				<?php
 				$active_correio = 'class="active"';
 				include_once('views/menu/menu_left.inc.php');?>
-				<!-- /.sidebar-menu -->
 			</section>
-			<!-- /.sidebar -->
 		</aside>
-		<!-- Content Wrapper. Contains page content -->
 		<div class="content-wrapper">
-			<!-- Content Header (Page header) -->
 			<section class="content-header">
 				<h1>Correio</h1>
 				<ol class="breadcrumb">
@@ -111,7 +83,6 @@ $proximo = $pag +1;
 					<li class="active">Já Lidos</li>
 				</ol>
 			</section>
-			<!-- Main content -->
 			<section class="content container-fluid">
 				<?php
 				if (isset($_GET['flag']) and ($_GET['flag'] == md5("usuario_alterar") or $_GET['flag'] == md5("senha_alterar") or $_GET['flag'] == md5("om_alterar") or $_GET['flag'] == md5("logout") )){
@@ -161,146 +132,125 @@ $proximo = $pag +1;
 									<li><a href="mailbox_sent.php"><i class="fa fa-send-o"></i> Enviados<span class="label label-success pull-right"><?php echo $qtde_enviadas;?></span></a></li>
 								</ul>
 							</div>
-							<!-- /.box-body -->
 						</div>
 					</div>
-					<!-- /.col -->
 					<div class="col-md-9">
 						<div class="box box-primary">
 							<div class="box-header with-border">
 								<h3 class="box-title">Já Lidos</h3>
-							<!-- /.box-tools -->
 							</div>
-							<!-- /.box-header -->
 							<div class="box-body no-padding">
-								<?php if ($total_msg > 0) {?>
+								<?php
+								if ($total_msg > 0) {?>
 									<div class="mailbox-controls">
-									<!-- Check all button -->
 										<button  class="btn btn-default btn-sm checkbox-toggle"><i class="fa fa-square-o"></i></button>
 										<div class="btn-group">
 											<button  class="btn btn-default btn-sm" title="Excluir"><i class="fa fa-trash-o"></i></button>
-											<button  class="btn btn-default btn-sm" title="Responder"><i class="fa fa-reply"></i></button>
-											<button  class="btn btn-default btn-sm" title="Encaminhar"><i class="fa fa-share"></i></button>
 										</div>
-										<!-- /.btn-group -->
 										<div class="pull-right">
 										<?php echo $pag."-".$total_pag."/".$total_msg;?>
 											<div class="btn-group">
-											 <?php if ($pag == 1) {?>
-											<button class="btn btn-default btn-sm disabled"><i class="fa fa-chevron-left"></i></button>
-												 <?php } ?>
-											  <?php if ($pag > 1) {?>
-											<a href="?pagina=<?php echo $anterior;?>"  class="btn btn-default btn-sm" title="Página anterior"><i class="fa fa-chevron-left"></i></a>
-											<?php }
-											if ($pag < $total_pag) {?>
-											<a href="?pagina=<?php echo $proximo;?>"  class="btn btn-default btn-sm" title="Próxima página"><i class="fa fa-chevron-right"></i></a>
-											<?php } ?>
-											<?php if ($pag == $total_pag) {?>
-												<button class="btn btn-default btn-sm disabled"><i class="fa fa-chevron-right"></i></button>
-												<?php } ?>
-											<!-- /.btn-group -->
+												<?php
+												if ($pag == 1) {?>
+													<button class="btn btn-default btn-sm disabled"><i class="fa fa-chevron-left"></i></button>
+												<?php
+												}
+												if ($pag > 1) {?>
+													<a href="?pagina=<?php echo $anterior;?>"  class="btn btn-default btn-sm" title="Página anterior"><i class="fa fa-chevron-left"></i></a>
+												<?php
+												}
+												if ($pag < $total_pag) {?>
+													<a href="?pagina=<?php echo $proximo;?>"  class="btn btn-default btn-sm" title="Próxima página"><i class="fa fa-chevron-right"></i></a>
+												<?php
+												}
+												if ($pag == $total_pag) {?>
+													<button class="btn btn-default btn-sm disabled"><i class="fa fa-chevron-right"></i></button>
+												<?php
+												}
+												?>
 										</div>
-										<!-- /.pull-right -->
 									</div>
-								<?php } ?>
+								<?php
+								}
+								?>
 								<div class="table-responsive mailbox-messages">
 									<table class="table table-hover table-striped">
-										<tbody>
-										<?php
-										while($row_ja_lidos = $con_limite->fetch_assoc()){
+									<tbody>
+									<?php
+									while($row_ja_lidos = $con_limite->fetch_assoc()){
 
-											if ($row_ja_lidos['lida'] == 'nao'){
-												$b="<b>";
-												$b1="</b>";
-											}
-
-											$sql_sigla = "SELECT sigla FROM cciex_om WHERE codom = '$row_ja_lidos[codom]' limit 1";
-											$con_sigla = $mysqli1->query($sql_sigla);
-											$row_sigla = $con_sigla->fetch_assoc();
-
-											if(date('d/m/Y') - 1 == date('d/m/Y', strtotime($row_ja_lidos['data']))){
-												$data = "Ontem " . date('H:i',strtotime($row_ja_lidos['data']));
-											}
-											else if(date('d/m/Y') == date('d/m/Y', strtotime($row_ja_lidos['data']))){
-												$data = "Hoje " . date('H:i',strtotime($row_ja_lidos['data']));
-											}
-											else{
-												$data = date('d/m/Y H:i', strtotime($row_ja_lidos['data']));
-											}
-
-											$remetente = $row_ja_lidos['posto']." ". $row_ja_lidos['nome_guerra']." - ".$row_sigla['sigla'];
-											echo "
-											<tr>
-											<td><input type='checkbox'></td>
-											<td class='mailbox-name'><a href='mailbox_view.php?flag=$row_ja_lidos[id_correio]&flag0=l&flag1=$remetente'>$remetente</a></td>
-											<td class='mailbox-subject'>$b$row_ja_lidos[assunto]$b1</td>
-											<td class='mailbox-date'>$data</td>
-											</tr>";
+										if ($row_ja_lidos['lida'] == 'nao'){
+											$b="<b>";
+											$b1="</b>";
 										}
-										?>
-										</tbody>
+
+										$sql_sigla = "SELECT sigla FROM cciex_om WHERE codom = '$row_ja_lidos[codom]' limit 1";
+										$con_sigla = $mysqli1->query($sql_sigla);
+										$row_sigla = $con_sigla->fetch_assoc();
+
+										if(date('d/m/Y') - 1 == date('d/m/Y', strtotime($row_ja_lidos['data']))){
+											$data = "Ontem " . date('H:i',strtotime($row_ja_lidos['data']));
+										}
+										else if(date('d/m/Y') == date('d/m/Y', strtotime($row_ja_lidos['data']))){
+											$data = "Hoje " . date('H:i',strtotime($row_ja_lidos['data']));
+										}
+										else{
+											$data = date('d/m/Y H:i', strtotime($row_ja_lidos['data']));
+										}
+
+										$remetente = $row_ja_lidos['posto']." ". $row_ja_lidos['nome_guerra']." - ".$row_sigla['sigla'];
+										echo "
+										<tr>
+										<td><input type='checkbox'></td>
+										<td class='mailbox-name'><a href='mailbox_view.php?flag=$row_ja_lidos[id_correio]&flag0=l&flag1=$remetente'>$remetente</a></td>
+										<td class='mailbox-subject'>$b$row_ja_lidos[assunto]$b1</td>
+										<td class='mailbox-date'>$data</td>
+										</tr>";
+									}
+									?>
+									</tbody>
 									</table>
-									<!-- /.table -->
 								</div>
-								<!-- /.mail-box-messages -->
 							</div>
-							<!-- /.box-body -->
 							<div class="box-footer no-padding">
 								<?php if ($total_msg > 0) {?>
 									<div class="mailbox-controls">
-										<!-- Check all button -->
 										<button  class="btn btn-default btn-sm checkbox-toggle"><i class="fa fa-square-o"></i></button>
 										<div class="btn-group">
 											<button  class="btn btn-default btn-sm" title="Excluir"><i class="fa fa-trash-o"></i></button>
-											<button  class="btn btn-default btn-sm" title="Responder"><i class="fa fa-reply"></i></button>
-											<button  class="btn btn-default btn-sm" title="Encaminhar"><i class="fa fa-share"></i></button>
 										</div>
-										<!-- /.btn-group -->
 										<div class="pull-right">
-										  <?php echo $pag."-".$total_pag."/".$total_msg;?>
-										  <div class="btn-group">
-											  <?php if ($pag == 1) {?>
-											<button class="btn btn-default btn-sm disabled"><i class="fa fa-chevron-left"></i></button>
-												 <?php } ?>
-											<?php if ($pag > 1) {?>
-											<a href="?pagina=<?php echo $anterior;?>"  class="btn btn-default btn-sm" title="Página anterior"><i class="fa fa-chevron-left"></i></a>
-											<?php }
-											if ($pag < $total_pag) {?>
-											<a href="?pagina=<?php echo $proximo;?>"  class="btn btn-default btn-sm" title="Próxima página"><i class="fa fa-chevron-right"></i></a>
-											<?php } ?>
-											<?php if ($pag == $total_pag) {?>
-											<button class="btn btn-default btn-sm disabled"><i class="fa fa-chevron-right"></i></button>
-											<?php } ?>
-
+											<?php echo $pag."-".$total_pag."/".$total_msg;?>
+											<div class="btn-group">
+												<?php if ($pag == 1) {?>
+													<button class="btn btn-default btn-sm disabled"><i class="fa fa-chevron-left"></i></button>
+												<?php }
+												if ($pag > 1) {?>
+													<a href="?pagina=<?php echo $anterior;?>"  class="btn btn-default btn-sm" title="Página anterior"><i class="fa fa-chevron-left"></i></a>
+												<?php }
+												if ($pag < $total_pag) {?>
+													<a href="?pagina=<?php echo $proximo;?>"  class="btn btn-default btn-sm" title="Próxima página"><i class="fa fa-chevron-right"></i></a>
+												<?php }
+												if ($pag == $total_pag) {?>
+													<button class="btn btn-default btn-sm disabled"><i class="fa fa-chevron-right"></i></button>
+												<?php } ?>
 											</div>
-											<!-- /.btn-group -->
 										</div>
-										<!-- /.pull-right -->
 									</div>
 								<?php } ?>
 							</div>
 						</div>
-						<!-- /. box -->
 					</div>
-					<!-- /.col -->
 				</div>
-				<!-- /.row -->
 			</section>
-			<!-- /.content -->
 		</div>
-		<!-- /.content-wrapper -->
-		<!-- Main Footer -->
 		<?php include_once('componentes/internos/php/rodape.inc.php');?>
-		<!-- Control Sidebar -->
 		<aside class="control-sidebar control-sidebar-dark">
-			<!-- Create the tabs -->
 			<ul class="nav nav-tabs nav-justified control-sidebar-tabs">
 				<li class="active"><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i></a></li>
 				<li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gear"></i></a></li>
 			</ul>
-			<!-- Tab panes -->
 			<div class="tab-content">
-				<!-- Home tab content -->
 				<div class="tab-pane active" id="control-sidebar-home-tab">
 					<h3 class="control-sidebar-heading">Recent Activity</h3>
 					<ul class="control-sidebar-menu">
@@ -330,13 +280,8 @@ $proximo = $pag +1;
 							</a>
 						</li>
 					</ul>
-					<!-- /.control-sidebar-menu -->
 				</div>
-				<!-- /.tab-pane -->
-				<!-- Stats tab content -->
 				<div class="tab-pane" id="control-sidebar-stats-tab">Stats Tab Content</div>
-				<!-- /.tab-pane -->
-				<!-- Settings tab content -->
 				<div class="tab-pane" id="control-sidebar-settings-tab">
 					<form method="post">
 						<h3 class="control-sidebar-heading">Perfil do Usuário</h3>
@@ -378,31 +323,25 @@ $proximo = $pag +1;
 							O usuário poderá visualizar e/ou alterar as informações do seu perfil clicando nos links acima.
 							</p>
 						</div>
-						<!-- /.form-group -->
 					</form>
 				</div>
-				<!-- /.tab-pane -->
 			</div>
 		</aside>
-		<!-- /.control-sidebar -->
-		<!-- Add the sidebar's background. This div must be placed immediately after the control sidebar -->
 		<div class="control-sidebar-bg"></div>
 	</div>
-	<!-- ./wrapper -->
-	<!-- jQuery 3 -->
 	<script src="componentes/externos/bower_components/jquery/dist/jquery.min.js"></script>
-	<!-- Bootstrap 3.3.7 -->
 	<script src="componentes/externos/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 	<script src="componentes/externos/bower_components/bootstrap/dist/js/bootstrapValidator.min.js"></script>
 	<script src="componentes/externos/bower_components/bootstrap-confirmation/bootstrap-confirmation.min.js"></script>
-	<!-- AdminLTE App -->
 	<script src="componentes/externos/dist/js/adminlte.min.js"></script>
 	<script src="controllers/usuario/senha_alterar.js"></script>
-	<script src="componentes/internos/js/status_sessao.js"></script>
+	<script src="componentes/internos/js/status_sessao.js"></script
+	<script src="componentes/internos/js/status_menu_top.js"></script>
 	<script src="componentes/externos/bower_components/bootstrap-fileinput/js/fileinput.js" type="text/javascript"></script>
 	<script src="componentes/externos/bower_components/bootstrap-fileinput/js/locales/pt-BR.js" type="text/javascript"></script>
 	<script src="componentes/externos/bower_components/iCheck/icheck.min.js"></script>
-	<script type="text/javascript">
+	<script>
+		//exibe o modal editar perfil
 		$('#modalEditar').on('show.bs.modal', function (event) {
 			var button = $(event.relatedTarget) // Button that triggered the modal
 			var cpf = button.data('cpf') // Extract info from data-* attributes no script view_usuario_status.inc.php
@@ -440,7 +379,8 @@ $proximo = $pag +1;
 			 })
 		 })
 	</script>
-	<script type="text/javascript">
+	<script>
+		//exibe modal alterar unidade
 		$('#modalTrocarUnidade').on('show.bs.modal', function (event) {
 			var button = $(event.relatedTarget)
 			var unidade = button.data('unidade')
@@ -450,6 +390,7 @@ $proximo = $pag +1;
 		})
 	</script>
 	<script>
+		//verifica os dados ao confirmar alteracao de unidade
 		$('[data-toggle="confirmation"]').confirmation({
 			onConfirm: function() {
 				$('#form_altera_om').bootstrapValidator({
@@ -479,11 +420,13 @@ $proximo = $pag +1;
 		});
 	</script>
 	<script>
+		//exibe os titles ao passar o mouse
 		$(document).ready(function(){
 			$('[data-tooltip="tooltip"]').tooltip();
 		});
 	</script>
 	<script>
+		//exibe a imagem do avatar
 		var btnCust = '';
 		$("#avatar-1").fileinput({
 			overwriteInitial: true,
@@ -503,7 +446,8 @@ $proximo = $pag +1;
 		});
 	</script>
 	<script>
-		function chamarPhpAjax() {//chama o script que avisa ao usuario_alterar.php que o avatar será excluído
+		//chama o script que avisa ao usuario_alterar.php que o avatar será excluído
+		function chamarPhpAjax() {
 		   $.ajax({
 			  url:'controllers/usuario/usuario_excluir_avatar.php',
 			  complete: function (response) {
@@ -514,6 +458,7 @@ $proximo = $pag +1;
 		}
 	</script>
 	<script>
+		//editar imagem do avatar
 		var btnCust = '<button  class="btn btn-secondary" title="Excluir imagem" ' +
 			'onclick="return chamarPhpAjax();">' +
 			'<i class="fa fa-trash"> </i>' +
@@ -533,52 +478,34 @@ $proximo = $pag +1;
 		});
 	</script>
 	<script>
-	  $(function () {
-		//Enable iCheck plugin for checkboxes
-		//iCheck for checkbox and radio inputs
-		$('.mailbox-messages input[type="checkbox"]').iCheck({
-		  checkboxClass: 'icheckbox_flat-blue'
+		$(function () {
+			//Enable iCheck plugin for checkboxes
+			//iCheck for checkbox and radio inputs
+			$('.mailbox-messages input[type="checkbox"]').iCheck({
+				checkboxClass: 'icheckbox_flat-blue'
+			});
+
+			//Enable check and uncheck all functionality
+			$(".checkbox-toggle").click(function () {
+				var clicks = $(this).data('clicks');
+				if (clicks) {
+					//Uncheck all checkboxes
+					$(".mailbox-messages input[type='checkbox']").iCheck("uncheck");
+					$(".fa", this).removeClass("fa-check-square-o").addClass('fa-square-o');
+				}
+				else {
+					//Check all checkboxes
+					$(".mailbox-messages input[type='checkbox']").iCheck("check");
+					$(".fa", this).removeClass("fa-square-o").addClass('fa-check-square-o');
+				}
+				$(this).data("clicks", !clicks);
+			});
 		});
-
-		//Enable check and uncheck all functionality
-		$(".checkbox-toggle").click(function () {
-		  var clicks = $(this).data('clicks');
-		  if (clicks) {
-			//Uncheck all checkboxes
-			$(".mailbox-messages input[type='checkbox']").iCheck("uncheck");
-			$(".fa", this).removeClass("fa-check-square-o").addClass('fa-square-o');
-		  } else {
-			//Check all checkboxes
-			$(".mailbox-messages input[type='checkbox']").iCheck("check");
-			$(".fa", this).removeClass("fa-square-o").addClass('fa-check-square-o');
-		  }
-		  $(this).data("clicks", !clicks);
-		});
-
-		//Handle starring for glyphicon and font awesome
-		$(".mailbox-star").click(function (e) {
-		  e.preventDefault();
-		  //detect type
-		  var $this = $(this).find("a > i");
-		  var glyph = $this.hasClass("glyphicon");
-		  var fa = $this.hasClass("fa");
-
-		  //Switch states
-		  if (glyph) {
-			$this.toggleClass("glyphicon-star");
-			$this.toggleClass("glyphicon-star-empty");
-		  }
-
-		  if (fa) {
-			$this.toggleClass("fa-star");
-			$this.toggleClass("fa-star-o");
-		  }
-		});
-	  });
 	</script>
 	<?php
 	if ($msg <> ""){?>
 		<script>
+			//exibe o modal de alertas
 			$(document).ready(function(){
 				$('#modalAlerta').modal('show');
 			});
@@ -587,6 +514,7 @@ $proximo = $pag +1;
 	}
 	if ($msg_correio <> ""){?>
 		<script>
+			//exibe o modal de alertas correio
 			$(document).ready(function(){
 				$('#modalAlertaCorreio').modal('show');
 			});

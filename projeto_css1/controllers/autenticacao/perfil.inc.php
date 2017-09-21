@@ -27,6 +27,13 @@ $dt_cad_usuario = date('d/m/Y', strtotime($row['dt_cad']));
 $ultimo_acesso_usuario = date('d/m/Y H:i:s', strtotime($row['ultimo_acesso']));
 $acesso_anterior_usuario = date('d/m/Y H:i:s', strtotime($row['acesso_anterior']));
 
+/*** usado no menu esquerdo **/
+$usuario = $posto_usuario . " " . $nome_guerra_usuario;
+if(strlen($usuario) > 19){
+	$usuario = substr($usuario, 0, 19)."...";
+}
+/*** fim ***/
+
 $sql = "select sigla, denominacao from cciex_om where codom = '$codom_usuario'";
 $con_om = $mysqli1->query($sql);
 

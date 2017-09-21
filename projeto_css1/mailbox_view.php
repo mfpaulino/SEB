@@ -57,227 +57,172 @@ if(isset($_GET['flag'])){
 
 ?>
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-  <title><?php echo TITULO;?></title>
-  <!-- Tell the browser to be responsive to screen width -->
-  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+	<title><?php echo TITULO;?></title>
+	<!-- Tell the browser to be responsive to screen width -->
+	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 
-  <link rel="stylesheet" href="componentes/externos/bower_components/bootstrap/dist/css/bootstrap.min.css">
-  <link rel="stylesheet" href="componentes/externos/bower_components/font-awesome/css/font-awesome.min.css">
-  <link rel="stylesheet" href="componentes/externos/bower_components/Ionicons/css/ionicons.min.css">
-  <link rel="stylesheet" href="componentes/externos/dist/css/AdminLTE.css">
-  <link rel="stylesheet" href="componentes/externos/bower_components/bootstrap-fileinput/css/fileinput.min.css">
-  <link rel="stylesheet" href="componentes/externos/dist/css/skins/skin-blue.css">
-  <link rel="stylesheet" href="componentes/internos/css/siaudi.css">
+	<link rel="stylesheet" href="componentes/externos/bower_components/bootstrap/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" href="componentes/externos/bower_components/font-awesome/css/font-awesome.min.css">
+	<link rel="stylesheet" href="componentes/externos/bower_components/Ionicons/css/ionicons.min.css">
+	<link rel="stylesheet" href="componentes/externos/dist/css/AdminLTE.css">
+	<link rel="stylesheet" href="componentes/externos/bower_components/bootstrap-fileinput/css/fileinput.min.css">
+	<link rel="stylesheet" href="componentes/externos/dist/css/skins/skin-blue.css">
+	<link rel="stylesheet" href="componentes/internos/css/siaudi.css">
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 	<?php include_once('componentes/internos/php/cabecalho.inc.php');?>
 	<div class="wrapper">
-<!-- Main Header -->
 		<header class="main-header">
-			<!-- Logo -->
 			<a href="index.php" class="logo">
-				<!-- mini logo for sidebar mini 50x50 pixels -->
 				<span class="logo-mini"><b>...</b></span>
-				<!-- logo for regular state and mobile devices -->
 				<span class="logo-lg barra-top"><b>SIAUD</b>-EB</span>
 			</a>
-			<!-- Header Navbar -->
-			<nav class="navbar navbar-static-top" role="navigation">
+			<nav id="menu_top" class="navbar navbar-static-top" role="navigation">
 				<?php include_once ('views/menu/menu_top.inc.php');?>
 			</nav>
 		</header>
- <!-- Left side column. contains the logo and sidebar -->
 		<aside class="main-sidebar">
-			<!-- sidebar: style can be found in sidebar.less -->
 			<section class="sidebar">
-				<!-- Sidebar user panel (optional) -->
-				<div class="user-panel">
-					<div class="pull-left image">
-						<img src="views/avatar/<?php echo $avatar_usuario;?>" class="img-circle" alt="User Image">
-					</div>
-					<div id="status_sessao" class="pull-left info">
-						<p><?php echo $posto_usuario . " " . $nome_guerra_usuario;?></p>
-						<!-- Status-->
-						<a href="#"><i class="fa fa-circle text-success"></i> Online</a>
-					</div>
-				</div>
-				<!-- search form (Optional) -->
-				<!-- /.search form -->
-				<!-- Sidebar Menu -->
 				<?php
 				$active_correio = 'class="active"';
 				include_once('views/menu/menu_left.inc.php');?>
-				<!-- /.sidebar-menu -->
 			</section>
-			<!-- /.sidebar -->
 		</aside>
-
-  <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <section class="content-header">
-      <h1>
-        Correio
-      </h1>
-      <ol class="breadcrumb">
-        <li><a href="index.php"><i class="fa fa-home"></i>Home</a></li>
-        <li class="active">Correio</li>
-        <li class="active">Ler</li>
-      </ol>
-    </section>
-
-    <!-- Main content -->
-    <section class="content container-fluid">
-		<?php
-		if (isset($_GET['flag']) and ($_GET['flag'] == md5("usuario_alterar") or $_GET['flag'] == md5("senha_alterar") or $_GET['flag'] == md5("om_alterar") or $_GET['flag'] == md5("logout") )){
-			include_once('controllers/usuario/usuario_alertas_criar.inc.php');
-		}
-		else {
-			include_once('controllers/usuario/usuario_alertas_destruir.inc.php');
-		}
-		?>
-		<!-- Inicio modalVisualizar-->
-		<?php include_once('views/usuario/view_usuario_perfil.inc.php');?>
-		<!-- Inicio modalEditar -->
-		<?php include_once('views/usuario/form_usuario_alterar.inc.php');?>
-		<!-- inicio alterar_senha -->
-		<?php include_once('views/usuario/form_senha_alterar.inc.php');?>
-		<!-- Inicio modalTrocarUnidade -->
-		<?php include_once('views/usuario/form_unidade_alterar.inc.php');?>
-		<!-- inicio alerta Sessao -->
-		<?php include_once('views/usuario/view_usuario_alerta_sessao.inc.php');?>
-		<!-- inicio alerta FimSessao -->
-		<?php include_once('views/usuario/view_usuario_fim_sessao.inc.php');?>
-		<!-- Inicio modalAlerta-->
-		<?php include_once('views/usuario/view_usuario_alertas.inc.php');?>
-		<?php if(isset($_SESSION['alterar_senha_logout']) or isset($_SESSION['alterar_codom'])){session_destroy();}//termina a sessao se alterar a senha?>
-		<!--------------------------
-		| Your Page Content Here |
-		-------------------------->
-      <div class="row">
-        <div class="col-md-3">
-          <a href="mailbox_write.php" class="btn btn-primary btn-block margin-bottom"><i class="fa fa-pencil"></i> Escrever</a>
-
-          <div class="box box-solid">
-            <div class="box-header with-border">
-              <h3 class="box-title">Pastas</h3>
-            </div>
-            <div class="box-body no-padding">
-              <ul class="nav nav-pills nav-stacked">
-                <li <?php echo $active_i;?>><a href="mailbox_input.php"><i class="fa fa-inbox"></i> Entrada<span class="label label-danger pull-right"><?php echo $qtde_entrada;?></span></a></li>
-                <li <?php echo $active_l;?>><a href="mailbox_read.php"><i class="fa fa-envelope-open-o"></i> Já lidos<span class="label label-primary pull-right"><?php echo $qtde_lidas;?></span></a></li>
-                <li <?php echo $active_s;?>><a href="mailbox_sent.php"><i class="fa fa-send-o"></i> Enviados<span class="label label-success pull-right"><?php echo $qtde_enviadas;?></span></a></li>
-              </ul>
-            </div>
-            <!-- /.box-body -->
-          </div>
-        </div>
-        <!-- /.col -->
-        <div class="col-md-9">
-          <div class="box box-primary">
-            <div class="box-header with-border">
-              <h3 class="box-title">Ler Mensagem</h3>
-            </div>
-            <!-- /.box-header -->
-            <div id="area_print">
-				<div class="box-body no-padding">
-				  <div class="mailbox-read-info">
-					<h3><?php echo $row_msg['assunto'];?></h3>
-					<?php if ($input_sent == 'i' or $input_sent == 'l'){?>
-					<h5>
-						De: <?php echo $remetente;?>
-						<span class="mailbox-read-time pull-right"><?php echo $data;?></span>
-					</h5>
-					<?php }
-					else if ($input_sent == 's'){?>
-					<h5>
-						Para: <?php echo $destinatario;?>
-						<span class="mailbox-read-time pull-right"><?php echo $data;?></span>
-					</h5>
-					<?php } ?>
-				  </div>
-				  <!-- /.mailbox-read-info -->
-
-				  <!-- /.mailbox-controls -->
-				  <div class="mailbox-read-message">
-					<?php echo $row_msg['texto'];?>
-				  </div>
-				  <!-- /.mailbox-read-message -->
+		<div class="content-wrapper">
+			<section class="content-header">
+				<h1>Correio</h1>
+				<ol class="breadcrumb">
+					<li><a href="index.php"><i class="fa fa-home"></i>Home</a></li>
+					<li class="active">Correio</li>
+					<li class="active">Ler</li>
+				</ol>
+			</section>
+			<section class="content container-fluid">
+				<?php
+				if (isset($_GET['flag']) and ($_GET['flag'] == md5("usuario_alterar") or $_GET['flag'] == md5("senha_alterar") or $_GET['flag'] == md5("om_alterar") or $_GET['flag'] == md5("logout") )){
+					include_once('controllers/usuario/usuario_alertas_criar.inc.php');
+				}
+				else {
+					include_once('controllers/usuario/usuario_alertas_destruir.inc.php');
+				}
+				?>
+				<!-- Inicio modalVisualizar-->
+				<?php include_once('views/usuario/view_usuario_perfil.inc.php');?>
+				<!-- Inicio modalEditar -->
+				<?php include_once('views/usuario/form_usuario_alterar.inc.php');?>
+				<!-- inicio alterar_senha -->
+				<?php include_once('views/usuario/form_senha_alterar.inc.php');?>
+				<!-- Inicio modalTrocarUnidade -->
+				<?php include_once('views/usuario/form_unidade_alterar.inc.php');?>
+				<!-- inicio alerta Sessao -->
+				<?php include_once('views/usuario/view_usuario_alerta_sessao.inc.php');?>
+				<!-- inicio alerta FimSessao -->
+				<?php include_once('views/usuario/view_usuario_fim_sessao.inc.php');?>
+				<!-- Inicio modalAlerta-->
+				<?php include_once('views/usuario/view_usuario_alertas.inc.php');?>
+				<?php if(isset($_SESSION['alterar_senha_logout']) or isset($_SESSION['alterar_codom'])){session_destroy();}//termina a sessao se alterar a senha?>
+				<!--------------------------
+				| Your Page Content Here |
+				-------------------------->
+				<div class="row">
+					<div class="col-md-3">
+						<a href="mailbox_write.php" class="btn btn-primary btn-block margin-bottom"><i class="fa fa-pencil"></i> Escrever</a>
+						<div class="box box-solid">
+							<div class="box-header with-border">
+								<h3 class="box-title">Pastas</h3>
+							</div>
+							<div class="box-body no-padding">
+								<ul class="nav nav-pills nav-stacked">
+									<li <?php echo $active_i;?>><a href="mailbox_input.php"><i class="fa fa-inbox"></i> Entrada<span class="label label-danger pull-right"><?php echo $qtde_entrada;?></span></a></li>
+									<li <?php echo $active_l;?>><a href="mailbox_read.php"><i class="fa fa-envelope-open-o"></i> Já lidos<span class="label label-primary pull-right"><?php echo $qtde_lidas;?></span></a></li>
+									<li <?php echo $active_s;?>><a href="mailbox_sent.php"><i class="fa fa-send-o"></i> Enviados<span class="label label-success pull-right"><?php echo $qtde_enviadas;?></span></a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-9">
+						<div class="box box-primary">
+							<div class="box-header with-border">
+							  <h3 class="box-title">Ler Mensagem</h3>
+							</div>
+							<div id="area_print">
+								<div class="box-body no-padding">
+									<div class="mailbox-read-info">
+										<h3><?php echo $row_msg['assunto'];?></h3>
+										<?php
+										if ($input_sent == 'i' or $input_sent == 'l'){?>
+											<h5>De: <?php echo $remetente;?><span class="mailbox-read-time pull-right"><?php echo $data;?></span></h5>
+										<?php
+										}
+										else if ($input_sent == 's'){?>
+											<h5>Para: <?php echo $destinatario;?><span class="mailbox-read-time pull-right"><?php echo $data;?></span></h5>
+										<?php
+										}
+										?>
+									</div>
+									<div class="mailbox-read-message">
+										<?php echo $row_msg['texto'];?>
+									</div>
+								</div>
+							</div>
+							<div class="box-footer">
+								<div class="pull-right">
+									<?php
+									if($input_sent == 'i' or $input_sent == 'l'){?>
+										<button type="submit" class="btn btn-default" form="formResponder"><i class="fa fa-reply"></i> Responder</button>
+									<?php
+									}
+									?>
+									<button type="submit" class="btn btn-default" form="formEncaminhar"><i class="fa fa-share"></i> Encaminhar</button>
+								</div>
+								<?php
+								if($input_sent == 'i'){?>
+									<a href="controllers/correio/correio_mover.php?flag=<?php echo $id_correio;?>" class="btn btn-default"><i class="fa fa-envelope-open-o"></i> Mover para Já lidos</a>
+								<?php
+								}
+								?>
+								<a class="btn btn-default"
+								data-toggle="confirmation"
+								data-placement="left"
+								data-btn-ok-label="Continuar"
+								data-btn-ok-icon="glyphicon glyphicon-share-alt"
+								data-btn-ok-class="btn-success"
+								data-btn-cancel-label="Parar"
+								data-btn-cancel-icon="glyphicon glyphicon-ban-circle"
+								data-btn-cancel-class="btn-danger"
+								data-title="Confirma exclusão da mensagem?"
+								data-content="" href="controllers/correio/correio_excluir.php?flag=<?php echo $id_correio;?>&flag0=<?php echo $input_sent;?>">
+								<i class="fa fa-trash-o"></i> Excluir
+								</a>
+								<button id="btnPrint" class="btn btn-default"><i class="fa fa-print"></i> Imprimir</button>
+								<form name="formResponder" id="formResponder" method="POST" action="mailbox_write.php">
+									<input type="hidden" name="flag" value="resp" />
+									<input type="hidden" name="assunto" value="<?php echo 'RE: '.$row_msg['assunto'];?>" />
+									<input type="hidden" name="texto" value="<?php echo $row_msg['texto'];?>" />
+									<input type="hidden" name="destinatario" value="<?php echo $remetente;?>" />
+									<input type="hidden" name="cpf_destinatario" value="<?php echo $row_msg['remetente'];?>" />
+								</form>
+								<form name="formEncaminhar" id="formEncaminhar" method="POST" action="mailbox_write.php">
+									<input type="hidden" name="flag" value="enc" />
+									<input type="hidden" name="assunto" value="<?php echo 'ENC: '.$row_msg['assunto'];?>" />
+									<input type="hidden" name="texto" value="<?php echo $row_msg['texto'];?>" />
+								</form>
+							</div>
+						</div>
+					</div>
 				</div>
-			</div>
-            <!-- /.box-body -->
-            <div class="box-footer">
-            </div>
-            <!-- /.box-footer -->
-            <div class="box-footer">
-              <div class="pull-right">
-
-                <?php if($input_sent == 'i' or $input_sent == 'l'){?>
-					<button type="submit" class="btn btn-default" form="formResponder"><i class="fa fa-reply"></i> Responder</button>
-				<?php } ?>
-                <button type="submit" class="btn btn-default" form="formEncaminhar"><i class="fa fa-share"></i> Encaminhar</button>
-              </div>
-              <?php if($input_sent == 'i'){?>
-              <a href="controllers/correio/correio_mover.php?flag=<?php echo $id_correio;?>" class="btn btn-default"><i class="fa fa-envelope-open-o"></i> Mover para Já lidos</a>
-              <?php } ?>
-            <a class="btn btn-default"
-				data-toggle="confirmation"
-				data-placement="left"
-				data-btn-ok-label="Continuar"
-				data-btn-ok-icon="glyphicon glyphicon-share-alt"
-				data-btn-ok-class="btn-success"
-				data-btn-cancel-label="Parar"
-				data-btn-cancel-icon="glyphicon glyphicon-ban-circle"
-				data-btn-cancel-class="btn-danger"
-				data-title="Confirma exclusão da mensagem?"
-				data-content="" href="controllers/correio/correio_excluir.php?flag=<?php echo $id_correio;?>&flag0=<?php echo $input_sent;?>">
-				<i class="fa fa-trash-o"></i> Excluir
-			</a>
-                    <button id="btnPrint" class="btn btn-default"><i class="fa fa-print"></i> Imprimir</button>
-
-				<form name="formResponder" id="formResponder" method="POST" action="mailbox_write.php">
-					<input type="hidden" name="flag" value="resp" />
-					<input type="hidden" name="assunto" value="<?php echo 'RE: '.$row_msg['assunto'];?>" />
-					<input type="hidden" name="texto" value="<?php echo $row_msg['texto'];?>" />
-					<input type="hidden" name="destinatario" value="<?php echo $remetente;?>" />
-					<input type="hidden" name="cpf_destinatario" value="<?php echo $row_msg['remetente'];?>" />
-				</form>
-				<form name="formEncaminhar" id="formEncaminhar" method="POST" action="mailbox_write.php">
-					<input type="hidden" name="flag" value="enc" />
-					<input type="hidden" name="assunto" value="<?php echo 'ENC: '.$row_msg['assunto'];?>" />
-					<input type="hidden" name="texto" value="<?php echo $row_msg['texto'];?>" />
-				</form>
-
-            </div>
-
-
-            <!-- /.box-footer -->
-          </div>
-          <!-- /. box -->
-        </div>
-        <!-- /.col -->
-      </div>
-      <!-- /.row -->
-    </section>
-    <!-- /.content -->
-  </div>
-<!-- /.content-wrapper -->
-  <!-- Main Footer -->
+			</section>
+		</div>
 		<?php include_once('componentes/internos/php/rodape.inc.php');?>
-
-  <!-- Control Sidebar -->
 		<aside class="control-sidebar control-sidebar-dark">
-			<!-- Create the tabs -->
 			<ul class="nav nav-tabs nav-justified control-sidebar-tabs">
 				<li class="active"><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i></a></li>
 				<li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gear"></i></a></li>
 			</ul>
-			<!-- Tab panes -->
 			<div class="tab-content">
-				<!-- Home tab content -->
 				<div class="tab-pane active" id="control-sidebar-home-tab">
 					<h3 class="control-sidebar-heading">Recent Activity</h3>
 					<ul class="control-sidebar-menu">
@@ -307,13 +252,8 @@ if(isset($_GET['flag'])){
 							</a>
 						</li>
 					</ul>
-					<!-- /.control-sidebar-menu -->
 				</div>
-				<!-- /.tab-pane -->
-				<!-- Stats tab content -->
 				<div class="tab-pane" id="control-sidebar-stats-tab">Stats Tab Content</div>
-				<!-- /.tab-pane -->
-				<!-- Settings tab content -->
 				<div class="tab-pane" id="control-sidebar-settings-tab">
 					<form method="post">
 						<h3 class="control-sidebar-heading">Perfil do Usuário</h3>
@@ -355,29 +295,26 @@ if(isset($_GET['flag'])){
 							O usuário poderá visualizar e/ou alterar as informações do seu perfil clicando nos links acima.
 							</p>
 						</div>
-					<!-- /.form-group -->
 					</form>
 				</div>
-				<!-- /.tab-pane -->
 			</div>
 		</aside>
-		<!-- /.control-sidebar -->
-		<!-- Add the sidebar's background. This div must be placed immediately after the control sidebar -->
 		<div class="control-sidebar-bg"></div>
-</div>
-
-<script src="componentes/externos/bower_components/jquery/dist/jquery.min.js"></script>
+	</div>
+	<script src="componentes/externos/bower_components/jquery/dist/jquery.min.js"></script>
 	<script src="componentes/externos/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 	<script src="componentes/externos/bower_components/bootstrap/dist/js/bootstrapValidator.min.js"></script>
 	<script src="componentes/externos/bower_components/bootstrap-confirmation/bootstrap-confirmation.min.js"></script>
 	<script src="componentes/externos/dist/js/adminlte.min.js"></script>
 	<script src="controllers/usuario/senha_alterar.js"></script>
 	<script src="componentes/internos/js/status_sessao.js"></script>
+	<script src="componentes/internos/js/status_menu_top.js"></script>
 	<script src="componentes/externos/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.js"></script>
 	<script src="componentes/externos/plugins/bootstrap-chosen/bootstrap-chosen.js"></script>
 	<script src="componentes/externos/bower_components/bootstrap-fileinput/js/fileinput.js" type="text/javascript"></script>
 	<script src="componentes/externos/bower_components/bootstrap-fileinput/js/locales/pt-BR.js" type="text/javascript"></script>
-	<script type="text/javascript">
+	<script>
+		//exibe o modal editar perfil
 		$('#modalEditar').on('show.bs.modal', function (event) {
 			var button = $(event.relatedTarget) // Button that triggered the modal
 			var cpf = button.data('cpf') // Extract info from data-* attributes no script view_usuario_status.inc.php
@@ -415,7 +352,8 @@ if(isset($_GET['flag'])){
 			 })
 		 })
 	</script>
-	<script type="text/javascript">
+	<script>
+		//exibe modal alterar unidade
 		$('#modalTrocarUnidade').on('show.bs.modal', function (event) {
 			var button = $(event.relatedTarget)
 			var unidade = button.data('unidade')
@@ -425,6 +363,7 @@ if(isset($_GET['flag'])){
 		})
 	</script>
 	<script>
+		//verifica os dados ao confirmar alteracao de unidade
 		$('[data-toggle="confirmation"]').confirmation({
 			onConfirm: function() {
 				$('#form_altera_om').bootstrapValidator({
@@ -454,11 +393,13 @@ if(isset($_GET['flag'])){
 		});
 	</script>
 	<script>
+		//exibe os titles ao passar o mouse
 		$(document).ready(function(){
 			$('[data-tooltip="tooltip"]').tooltip();
 		});
 	</script>
 	<script>
+		//exibe a imagem do avatar
 		var btnCust = '';
 		$("#avatar-1").fileinput({
 			overwriteInitial: true,
@@ -478,7 +419,8 @@ if(isset($_GET['flag'])){
 		});
 	</script>
 	<script>
-		function chamarPhpAjax() {//chama o script que avisa ao usuario_alterar.php que o avatar será excluído
+		//chama o script que avisa ao usuario_alterar.php que o avatar será excluído
+		function chamarPhpAjax() {
 		   $.ajax({
 			  url:'controllers/usuario/usuario_excluir_avatar.php',
 			  complete: function (response) {
@@ -489,6 +431,7 @@ if(isset($_GET['flag'])){
 		}
 	</script>
 	<script>
+		//editar imagem do avatar
 		var btnCust = '<button  class="btn btn-secondary" title="Excluir imagem" ' +
 			'onclick="return chamarPhpAjax();">' +
 			'<i class="fa fa-trash"> </i>' +
@@ -510,6 +453,7 @@ if(isset($_GET['flag'])){
 	<?php
 	if ($msg <> ""){?>
 		<script>
+			//exibe o modal de alertas
 			$(document).ready(function(){
 				$('#modalAlerta').modal('show');
 			});
@@ -517,17 +461,17 @@ if(isset($_GET['flag'])){
 	<?php
 	}
 	?>
-	<!-- Page Script -->
 	<script>
-	  $(function () {
-		//Add text editor
-		$("#compose-textarea").wysihtml5();
-	  });
+		//exibe text editor
+		$(function () {
+			$("#compose-textarea").wysihtml5();
+		});
 	</script>
 	<script>
+		//imprimir email
 		document.getElementById('btnPrint').onclick = function() {
-			var conteudo = document.getElementById('area_print').innerHTML,
-				tela_impressao = window.open('','','width=0, height=0, top=50, left=50');
+			var conteudo = document.getElementById('area_print').innerHTML;
+			var	tela_impressao = window.open('','','width=0, height=0, top=50, left=50');
 			tela_impressao.document.write(conteudo);
 			tela_impressao.window.print();
 			tela_impressao.window.close();

@@ -15,212 +15,168 @@ $con_destinatario = $mysqli->query($sql_destinatario);
 if(isset($_POST['cpf_destinatario'])){
 	$con_destinatario = $mysqli->query("SELECT id_usuario FROM usuarios WHERE cpf = '$_POST[cpf_destinatario]'");
 	$row_destinatario = $con_destinatario->fetch_assoc();
-	}
-
+}
 ?>
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-
-  <title><?php echo TITULO;?></title>
-  <!-- Tell the browser to be responsive to screen width -->
-  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-
-  <link rel="stylesheet" href="componentes/externos/bower_components/bootstrap/dist/css/bootstrap.min.css">
-  <link rel="stylesheet" href="componentes/externos/bower_components/font-awesome/css/font-awesome.min.css">
-  <link rel="stylesheet" href="componentes/externos/bower_components/Ionicons/css/ionicons.min.css">
-  <link rel="stylesheet" href="componentes/externos/dist/css/AdminLTE.css">
-  <link rel="stylesheet" href="componentes/externos/bower_components/bootstrap-fileinput/css/fileinput.min.css">
-  <link rel="stylesheet" href="componentes/externos/dist/css/skins/skin-blue.css">
-  <link rel="stylesheet" href="componentes/internos/css/siaudi.css">
-  <link rel="stylesheet" href="componentes/externos/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.css">
-  <link rel="stylesheet" href="componentes/externos/plugins/bootstrap-chosen/bootstrap-chosen.css">
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title><?php echo TITULO;?></title>
+	<!-- Tell the browser to be responsive to screen width -->
+	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+	<link rel="stylesheet" href="componentes/externos/bower_components/bootstrap/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" href="componentes/externos/bower_components/font-awesome/css/font-awesome.min.css">
+	<link rel="stylesheet" href="componentes/externos/bower_components/Ionicons/css/ionicons.min.css">
+	<link rel="stylesheet" href="componentes/externos/dist/css/AdminLTE.css">
+	<link rel="stylesheet" href="componentes/externos/bower_components/bootstrap-fileinput/css/fileinput.min.css">
+	<link rel="stylesheet" href="componentes/externos/dist/css/skins/skin-blue.css">
+	<link rel="stylesheet" href="componentes/internos/css/siaudi.css">
+	<link rel="stylesheet" href="componentes/externos/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.css">
+	<link rel="stylesheet" href="componentes/externos/plugins/bootstrap-chosen/bootstrap-chosen.css">
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 	<?php include_once('componentes/internos/php/cabecalho.inc.php');?>
 	<div class="wrapper">
-<!-- Main Header -->
 		<header class="main-header">
-			<!-- Logo -->
 			<a href="index.php" class="logo">
-				<!-- mini logo for sidebar mini 50x50 pixels -->
 				<span class="logo-mini"><b>...</b></span>
-				<!-- logo for regular state and mobile devices -->
 				<span class="logo-lg barra-top"><b>SIAUD</b>-EB</span>
 			</a>
-			<!-- Header Navbar -->
-			<nav class="navbar navbar-static-top" role="navigation">
+			<nav id="menu_top" class="navbar navbar-static-top" role="navigation">
 				<?php include_once ('views/menu/menu_top.inc.php');?>
 			</nav>
 		</header>
-  <!-- Left side column. contains the logo and sidebar -->
 		<aside class="main-sidebar">
-			<!-- sidebar: style can be found in sidebar.less -->
 			<section class="sidebar">
-				<!-- Sidebar user panel (optional) -->
-				<div class="user-panel">
-					<div class="pull-left image">
-						<img src="views/avatar/<?php echo $avatar_usuario;?>" class="img-circle" alt="User Image">
-					</div>
-					<div id="status_sessao" class="pull-left info">
-						<p><?php echo $posto_usuario . " " . $nome_guerra_usuario;?></p>
-						<!-- Status-->
-						<a href="#"><i class="fa fa-circle text-success"></i> Online</a>
-					</div>
-				</div>
-				<!-- search form (Optional) -->
-				<!-- /.search form -->
-				<!-- Sidebar Menu -->
 				<?php
 				$active_correio = 'class="active"';
 				include_once('views/menu/menu_left.inc.php');?>
-				<!-- /.sidebar-menu -->
 			</section>
-			<!-- /.sidebar -->
 		</aside>
+		<div class="content-wrapper">
+			<section class="content-header">
+				<h1>Correio</h1>
+				<ol class="breadcrumb">
+					<li><a href="index.php"><i class="fa fa-home"></i>Home</a></li>
+					<li class="active">Correio</li>
+					<li class="active">Escrever</li>
+				</ol>
+			</section>
+			<section class="content container-fluid">
+				<?php
+				if (isset($_GET['flag']) and ($_GET['flag'] == md5("usuario_alterar") or $_GET['flag'] == md5("senha_alterar") or $_GET['flag'] == md5("om_alterar") or $_GET['flag'] == md5("logout") )){
+					include_once('controllers/usuario/usuario_alertas_criar.inc.php');
+				}
+				else {
+					include_once('controllers/usuario/usuario_alertas_destruir.inc.php');
+				}
+				?>
+				<!-- Inicio modalVisualizar-->
+				<?php include_once('views/usuario/view_usuario_perfil.inc.php');?>
+				<!-- Inicio modalEditar -->
+				<?php include_once('views/usuario/form_usuario_alterar.inc.php');?>
+				<!-- inicio alterar_senha -->
+				<?php include_once('views/usuario/form_senha_alterar.inc.php');?>
+				<!-- Inicio modalTrocarUnidade -->
+				<?php include_once('views/usuario/form_unidade_alterar.inc.php');?>
+				<!-- inicio alerta Sessao -->
+				<?php include_once('views/usuario/view_usuario_alerta_sessao.inc.php');?>
+				<!-- inicio alerta FimSessao -->
+				<?php include_once('views/usuario/view_usuario_fim_sessao.inc.php');?>
+				<!-- Inicio modalAlerta-->
+				<?php include_once('views/usuario/view_usuario_alertas.inc.php');?>
+				<?php if(isset($_SESSION['alterar_senha_logout']) or isset($_SESSION['alterar_codom'])){session_destroy();}//termina a sessao se alterar a senha?>
+				<!--------------------------
+				| Your Page Content Here |
+				-------------------------->
+				<div class="row">
+					<div class="col-md-3">
+						<a href="mailbox.html" class="btn btn-primary btn-block margin-bottom disabled"><i class="fa fa-pencil"></i> Escrever</a>
+						<div class="box box-solid">
+							<div class="box-header with-border">
+								<h3 class="box-title">Pastas</h3>
+							</div>
+							<div class="box-body no-padding">
+								<ul class="nav nav-pills nav-stacked">
+									<li><a href="mailbox_input.php"><i class="fa fa-inbox"></i> Entrada<span class="label label-danger pull-right"><?php echo $qtde_entrada;?></span></a></li>
+									<li><a href="mailbox_read.php"><i class="fa fa-envelope-open-o"></i> Já lidas<span class="label label-primary pull-right"><?php echo $qtde_lidas;?></span></a></li>
+									<li><a href="mailbox_sent.php"><i class="fa fa-send-o"></i> Enviadas<span class="label label-success pull-right"><?php echo $qtde_enviadas;?></span></a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-9">
+						<div class="box box-primary">
+							<div class="box-header with-border">
+								<?php
+								if(isset($_POST['flag'] ) and $_POST['flag'] == 'resp'){?>
+									<h3 class="box-title">Responder Mensagem</h3>
+								<?php
+								}
+								else if (isset($_POST['flag'] ) and $_POST['flag'] == 'enc'){?>
+									<h3 class="box-title">Encaminhar Mensagem</h3>
+								<?php
+								}
+								else {?>
+									<h3 class="box-title">Nova Mensagem</h3>
 
-  <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <section class="content-header">
-      <h1>
-        Correio
-      </h1>
-      <ol class="breadcrumb">
-        <li><a href="index.php"><i class="fa fa-home"></i>Home</a></li>
-        <li class="active">Correio</li>
-        <li class="active">Escrever</li>
-      </ol>
-    </section>
-
-    <!-- Main content -->
-    <section class="content container-fluid">
-		<?php
-		if (isset($_GET['flag']) and ($_GET['flag'] == md5("usuario_alterar") or $_GET['flag'] == md5("senha_alterar") or $_GET['flag'] == md5("om_alterar") or $_GET['flag'] == md5("logout") )){
-			include_once('controllers/usuario/usuario_alertas_criar.inc.php');
-		}
-		else {
-			include_once('controllers/usuario/usuario_alertas_destruir.inc.php');
-		}
-		?>
-		<!-- Inicio modalVisualizar-->
-		<?php include_once('views/usuario/view_usuario_perfil.inc.php');?>
-		<!-- Inicio modalEditar -->
-		<?php include_once('views/usuario/form_usuario_alterar.inc.php');?>
-		<!-- inicio alterar_senha -->
-		<?php include_once('views/usuario/form_senha_alterar.inc.php');?>
-		<!-- Inicio modalTrocarUnidade -->
-		<?php include_once('views/usuario/form_unidade_alterar.inc.php');?>
-		<!-- inicio alerta Sessao -->
-		<?php include_once('views/usuario/view_usuario_alerta_sessao.inc.php');?>
-		<!-- inicio alerta FimSessao -->
-		<?php include_once('views/usuario/view_usuario_fim_sessao.inc.php');?>
-		<!-- Inicio modalAlerta-->
-		<?php include_once('views/usuario/view_usuario_alertas.inc.php');?>
-		<?php if(isset($_SESSION['alterar_senha_logout']) or isset($_SESSION['alterar_codom'])){session_destroy();}//termina a sessao se alterar a senha?>
-		<!--------------------------
-		| Your Page Content Here |
-		-------------------------->
-      <div class="row">
-        <div class="col-md-3">
-          <a href="mailbox.html" class="btn btn-primary btn-block margin-bottom disabled"><i class="fa fa-pencil"></i> Escrever</a>
-
-          <div class="box box-solid">
-            <div class="box-header with-border">
-              <h3 class="box-title">Pastas</h3>
-            </div>
-            <div class="box-body no-padding">
-              <ul class="nav nav-pills nav-stacked">
-                <li><a href="mailbox_input.php"><i class="fa fa-inbox"></i> Entrada<span class="label label-danger pull-right"><?php echo $qtde_entrada;?></span></a></li>
-                <li><a href="mailbox_read.php"><i class="fa fa-envelope-open-o"></i> Já lidas<span class="label label-primary pull-right"><?php echo $qtde_lidas;?></span></a></li>
-                <li><a href="mailbox_sent.php"><i class="fa fa-send-o"></i> Enviadas<span class="label label-success pull-right"><?php echo $qtde_enviadas;?></span></a></li>
-              </ul>
-            </div>
-            <!-- /.box-body -->
-          </div>
-        </div>
-        <!-- /.col -->
-        <div class="col-md-9">
-          <div class="box box-primary">
-            <div class="box-header with-border">
-				<?php if(isset($_POST['flag'] ) and $_POST['flag'] == 'resp'){?>
-              <h3 class="box-title">Responder Mensagem</h3>
-              <?php }
-              else if (isset($_POST['flag'] ) and $_POST['flag'] == 'enc'){?>
-              <h3 class="box-title">Encaminhar Mensagem</h3>
-              <?php }
-              else {?>
-			 <h3 class="box-title">Nova Mensagem</h3>
-
-			<?php	 }?>
-            </div>
-            <!-- /.box-header -->
-            <form name="form_write_msg" method = "POST" action = "controllers/correio/correio_cadastrar.php">
-            <div class="box-body">
-
-              <div class="form-group">
-				  <?php if(isset($_POST['destinatario'])){?>
-					  <input class="form-control" disabled value="<?php echo $_POST['destinatario'];?>">
-					  <input type="hidden" name="destinatario[]" value = "<?php echo $row_destinatario['id_usuario'];?>" />
-					  <?php }
-					  else {?>
-                <select name="destinatario[]" id="destinatario" class="form-control chosen-select" multiple data-placeholder = " Para:" >
-					<?php
-					while($row = $con_destinatario->fetch_assoc()){
-
-						$sql_sigla = "select sigla from cciex_om where codom = '$row[codom]' limit 1";
-						$con_sigla = $mysqli1->query($sql_sigla);
-						$row_sigla = $con_sigla->fetch_assoc();?>
-
-						<option value="<?php echo $row['id_usuario'];?>"><?php echo $row['posto'] . " " . $row['nome_guerra'] . " - " . $row_sigla['sigla'];?></option>
-						<?php } ?>
-			    </select>
-			    <?php } ?>
-              </div>
-              <div class="form-group">
-                <input name="assunto" class="form-control" placeholder="Assunto:" value="<?php echo $_POST['assunto'];?>">
-              </div>
-              <div class="form-group">
-                    <textarea name="texto" id="compose-textarea" class="form-control" style="height: 300px"><?php echo $_POST['texto'];?>
-                    </textarea>
-              </div>
-            </div>
-			<!-- Hidden input -->
-			<input name="flag" type="hidden" />
-            <!-- /.box-body -->
-            <div class="box-footer">
-              <div class="pull-right">
-                <button type="submit" class="btn btn-success"><i class="fa fa-envelope-o"></i> Enviar</button>
-                <a href="mailbox_input.php" class="btn btn-danger"><i class="fa fa-trash"></i>  Cancelar</a>
-              </div>
-            </div>
-            <!-- /.box-footer -->
-          </div>
-          <!-- /. box -->
-          </form>
-        </div>
-        <!-- /.col -->
-      </div>
-      <!-- /.row -->
-    </section>
-    <!-- /.content -->
-  </div>
-  <!-- /.content-wrapper -->
-  <!-- Main Footer -->
+								<?php
+								}
+								?>
+							</div>
+							<form name="form_write_msg" method = "POST" action = "controllers/correio/correio_cadastrar.php">
+								<div class="box-body">
+									<div class="form-group">
+										<?php
+										if(isset($_POST['destinatario'])){?>
+											<input class="form-control" disabled value="<?php echo $_POST['destinatario'];?>">
+											<input type="hidden" name="destinatario[]" value = "<?php echo $row_destinatario['id_usuario'];?>" />
+										<?php
+										}
+										else {?>
+											<select name="destinatario[]" id="destinatario" class="form-control chosen-select" multiple data-placeholder = " Para:">
+												<?php
+												while($row = $con_destinatario->fetch_assoc()){
+													$sql_sigla = "select sigla from cciex_om where codom = '$row[codom]' limit 1";
+													$con_sigla = $mysqli1->query($sql_sigla);
+													$row_sigla = $con_sigla->fetch_assoc();?>
+													<option value="<?php echo $row['id_usuario'];?>"><?php echo $row['posto'] . " " . $row['nome_guerra'] . " - " . $row_sigla['sigla'];?></option>
+												<?php
+												}
+												?>
+											</select>
+										<?php
+										}
+										?>
+									</div>
+									<div class="form-group">
+										<input name="assunto" class="form-control" placeholder="Assunto:" value="<?php echo $_POST['assunto'];?>">
+									</div>
+									<div class="form-group">
+										<textarea name="texto" id="compose-textarea" class="form-control" style="height: 300px"><?php echo $_POST['texto'];?></textarea>
+									</div>
+								</div>
+								<input name="flag" type="hidden" />
+								<div class="box-footer">
+									<div class="pull-right">
+										<button type="submit" class="btn btn-success"><i class="fa fa-envelope-o"></i> Enviar</button>
+										<a href="mailbox_input.php" class="btn btn-danger"><i class="fa fa-trash"></i>  Cancelar</a>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</section>
+		</div>
 		<?php include_once('componentes/internos/php/rodape.inc.php');?>
-
-  <!-- Control Sidebar -->
 		<aside class="control-sidebar control-sidebar-dark">
-			<!-- Create the tabs -->
 			<ul class="nav nav-tabs nav-justified control-sidebar-tabs">
 				<li class="active"><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i></a></li>
 				<li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gear"></i></a></li>
 			</ul>
-			<!-- Tab panes -->
 			<div class="tab-content">
-				<!-- Home tab content -->
 				<div class="tab-pane active" id="control-sidebar-home-tab">
 					<h3 class="control-sidebar-heading">Recent Activity</h3>
 					<ul class="control-sidebar-menu">
@@ -250,13 +206,8 @@ if(isset($_POST['cpf_destinatario'])){
 							</a>
 						</li>
 					</ul>
-					<!-- /.control-sidebar-menu -->
 				</div>
-				<!-- /.tab-pane -->
-				<!-- Stats tab content -->
 				<div class="tab-pane" id="control-sidebar-stats-tab">Stats Tab Content</div>
-				<!-- /.tab-pane -->
-				<!-- Settings tab content -->
 				<div class="tab-pane" id="control-sidebar-settings-tab">
 					<form method="post">
 						<h3 class="control-sidebar-heading">Perfil do Usuário</h3>
@@ -298,17 +249,12 @@ if(isset($_POST['cpf_destinatario'])){
 							O usuário poderá visualizar e/ou alterar as informações do seu perfil clicando nos links acima.
 							</p>
 						</div>
-					<!-- /.form-group -->
 					</form>
 				</div>
-				<!-- /.tab-pane -->
 			</div>
 		</aside>
-		<!-- /.control-sidebar -->
-		<!-- Add the sidebar's background. This div must be placed immediately after the control sidebar -->
 		<div class="control-sidebar-bg"></div>
-</div>
-	<!-- ./wrapper -->
+	</div>
 	<script src="componentes/externos/bower_components/jquery/dist/jquery.min.js"></script>
 	<script src="componentes/externos/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 	<script src="componentes/externos/bower_components/bootstrap/dist/js/bootstrapValidator.min.js"></script>
@@ -316,11 +262,13 @@ if(isset($_POST['cpf_destinatario'])){
 	<script src="componentes/externos/dist/js/adminlte.min.js"></script>
 	<script src="controllers/usuario/senha_alterar.js"></script>
 	<script src="componentes/internos/js/status_sessao.js"></script>
+	<script src="componentes/internos/js/status_menu_top.js"></script>
 	<script src="componentes/externos/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.js"></script>
 	<script src="componentes/externos/plugins/bootstrap-chosen/bootstrap-chosen.js"></script>
 	<script src="componentes/externos/bower_components/bootstrap-fileinput/js/fileinput.js" type="text/javascript"></script>
 	<script src="componentes/externos/bower_components/bootstrap-fileinput/js/locales/pt-BR.js" type="text/javascript"></script>
-	<script type="text/javascript">
+	<script>
+		//exibe o modal editar perfil
 		$('#modalEditar').on('show.bs.modal', function (event) {
 			var button = $(event.relatedTarget) // Button that triggered the modal
 			var cpf = button.data('cpf') // Extract info from data-* attributes no script view_usuario_status.inc.php
@@ -358,7 +306,8 @@ if(isset($_POST['cpf_destinatario'])){
 			 })
 		 })
 	</script>
-	<script type="text/javascript">
+	<script>
+		//exibe modal alterar unidade
 		$('#modalTrocarUnidade').on('show.bs.modal', function (event) {
 			var button = $(event.relatedTarget)
 			var unidade = button.data('unidade')
@@ -368,6 +317,7 @@ if(isset($_POST['cpf_destinatario'])){
 		})
 	</script>
 	<script>
+		//verifica os dados ao confirmar alteracao de unidade
 		$('[data-toggle="confirmation"]').confirmation({
 			onConfirm: function() {
 				$('#form_altera_om').bootstrapValidator({
@@ -397,11 +347,13 @@ if(isset($_POST['cpf_destinatario'])){
 		});
 	</script>
 	<script>
+		//exibe os titles ao passar o mouse
 		$(document).ready(function(){
 			$('[data-tooltip="tooltip"]').tooltip();
 		});
 	</script>
 	<script>
+		//exibe a imagem do avatar
 		var btnCust = '';
 		$("#avatar-1").fileinput({
 			overwriteInitial: true,
@@ -421,7 +373,8 @@ if(isset($_POST['cpf_destinatario'])){
 		});
 	</script>
 	<script>
-		function chamarPhpAjax() {//chama o script que avisa ao usuario_alterar.php que o avatar será excluído
+		//chama o script que avisa ao usuario_alterar.php que o avatar será excluído
+		function chamarPhpAjax() {
 		   $.ajax({
 			  url:'controllers/usuario/usuario_excluir_avatar.php',
 			  complete: function (response) {
@@ -432,6 +385,7 @@ if(isset($_POST['cpf_destinatario'])){
 		}
 	</script>
 	<script>
+		//editar imagem do avatar
 		var btnCust = '<button  class="btn btn-secondary" title="Excluir imagem" ' +
 			'onclick="return chamarPhpAjax();">' +
 			'<i class="fa fa-trash"> </i>' +
@@ -453,6 +407,7 @@ if(isset($_POST['cpf_destinatario'])){
 	<?php
 	if ($msg <> ""){?>
 		<script>
+			//exibe o modal de alertas
 			$(document).ready(function(){
 				$('#modalAlerta').modal('show');
 			});
@@ -460,16 +415,16 @@ if(isset($_POST['cpf_destinatario'])){
 	<?php
 	}
 	?>
-<!-- Page Script -->
-<script>
-  $(function () {
-    //Add text editor
-    $("#compose-textarea").wysihtml5();
-  });
-</script>
-<script>
-      var config = {'.chosen-select': {}}
+	<script>
+		//exibe text editor
+	  $(function () {
+		$("#compose-textarea").wysihtml5();
+	  });
+	</script>
+	<script>
+		//chosen select
+		var config = {'.chosen-select': {}}
 		for (var selector in config) {$(selector).chosen(config[selector]);}
-</script>
+	</script>
 </body>
 </html>
