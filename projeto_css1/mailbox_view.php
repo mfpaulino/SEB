@@ -4,7 +4,9 @@
 * ler email
 * **********************************************************************************************************/
 $inc = "sim";
-$pagina_lock = md5('mailbox_view').'_'.strtr(end(explode('/', $_SERVER['REQUEST_URI'])),'', true);
+//$pagina = md5('mailbox_view').'_'.strtr(end(explode('/', $_SERVER['REQUEST_URI'])),'', true);
+
+$pagina = strtr(end(explode('/', $_SERVER['PHP_SELF'])),'?', true);
 
 include_once('config.inc.php');
 include_once(PATH . '/controllers/autenticacao/autentica.inc.php');
@@ -12,9 +14,9 @@ include_once(PATH . '/controllers/autenticacao/autentica.inc.php');
 if(isset($_GET['flag'])){
 	$id_correio = $_GET['flag'];
 	$input_sent = $_GET['flag0'];
-	$destinatario = $_GET['flag1'];
+	$de_para = $_GET['flag1'];
 
-	if($input_sent == "i" or $input_sent == "l"){
+	if($input_sent == "i" or $input_sent == "l"){//cx entrada ou ja_lidos
 
 		$sql_msg = "SELECT ce.id_correio, ce.assunto, ce.texto, ce.remetente, ce.data, p.posto, u.nome_guerra, u.codom FROM correio_enviados ce, correio_recebidos cr, postos p, usuarios u WHERE ce.id_correio = cr.id_correio and p.id_posto = u.id_posto and ce.remetente = u.cpf  and ce.id_correio = '$id_correio'";
 		$con_msg = $mysqli->query($sql_msg);
@@ -23,10 +25,8 @@ if(isset($_GET['flag'])){
 		$sql_sigla = "SELECT sigla FROM cciex_om WHERE codom = $row_msg[codom]";
 		$con_sigla = $mysqli1->query($sql_sigla);
 		$row_sigla = $con_sigla->fetch_assoc();
-
-		$remetente = $row_msg['posto']." ".$row_msg['nome_guerra']." - ".$row_sigla['sigla'];
 	}
-	else{
+	else{//cx enviados
 		$sql_msg = "SELECT id_correio, assunto, texto, data FROM correio_enviados WHERE id_correio = '$id_correio'";
 		$con_msg = $mysqli->query($sql_msg);
 		$row_msg = $con_msg->fetch_assoc();
@@ -152,16 +152,20 @@ if(isset($_GET['flag'])){
 								<div class="box-body no-padding">
 									<div class="mailbox-read-info">
 										<h3><?php echo $row_msg['assunto'];?></h3>
-										<?php
-										if ($input_sent == 'i' or $input_sent == 'l'){?>
-											<h5>De: <?php echo $remetente;?><span class="mailbox-read-time pull-right"><?php echo $data;?></span></h5>
-										<?php
-										}
-										else if ($input_sent == 's'){?>
-											<h5>Para: <?php echo $destinatario;?><span class="mailbox-read-time pull-right"><?php echo $data;?></span></h5>
-										<?php
-										}
-										?>
+										<h5>
+											<?php
+											if ($input_sent == 'i' or $input_sent == 'l'){?>
+												De:
+											<?php
+											}
+											else if ($input_sent == 's'){?>
+												Para:
+											<?php
+											}
+											echo $de_para;
+											?>
+											<span class="mailbox-read-time pull-right"><?php echo $data;?></span>
+										</h5>
 									</div>
 									<div class="mailbox-read-message">
 										<?php echo $row_msg['texto'];?>
@@ -202,7 +206,7 @@ if(isset($_GET['flag'])){
 									<input type="hidden" name="flag" value="resp" />
 									<input type="hidden" name="assunto" value="<?php echo 'RE: '.$row_msg['assunto'];?>" />
 									<input type="hidden" name="texto" value="<?php echo $row_msg['texto'];?>" />
-									<input type="hidden" name="destinatario" value="<?php echo $remetente;?>" />
+									<input type="hidden" name="destinatario" value="<?php echo $de_para;?>" />
 									<input type="hidden" name="cpf_destinatario" value="<?php echo $row_msg['remetente'];?>" />
 								</form>
 								<form name="formEncaminhar" id="formEncaminhar" method="POST" action="mailbox_write.php">

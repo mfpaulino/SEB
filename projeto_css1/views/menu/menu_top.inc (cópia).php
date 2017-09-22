@@ -1,6 +1,6 @@
 <?php
 if ($inc == "sim"){
-	$con_qtde_correio = $mysqli->query("SELECT COUNT(id) AS qtde_msg FROM correio_recebidos WHERE lida = 'nao' AND destinatario = '$id_usuario'");
+	$con_qtde_correio = $mysqli->query("SELECT COUNT(id) AS qtde_msg FROM correio_recebidos WHERE lida = 'nao' AND pasta = 'entrada' AND destinatario = '$id_usuario'");
 	$row_qtde_correio = $con_qtde_correio->fetch_assoc();
 
 	$con_ultimo_correio = $mysqli->query("SELECT ce.id_correio, ce.assunto, ce.data, cr.lida, p.posto, u.nome_guerra, u.codom, u.avatar FROM correio_enviados ce, correio_recebidos cr, postos p, usuarios u WHERE cr.destinatario = '$id_usuario' and cr.lida = 'nao' and ce.id_correio = cr.id_correio and ce.remetente = u.cpf and p.id_posto = u.id_posto  ORDER BY ce.data desc");
@@ -40,38 +40,40 @@ if ($inc == "sim"){
 			<!-- Messages: style can be found in dropdown.less-->
 			<li class="dropdown messages-menu">
 				<!-- Menu toggle button -->
-				<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-envelope"></i><span class="label label-default"><div id="correio1"><?php echo $row_qtde_correio['qtde_msg'];?></div></span></a>
-				<ul class="dropdown-menu">
-					<li class="header">
-						<span><b>Você tem <span id="correio2"><?php echo $row_qtde_correio['qtde_msg'];?></span> novas mensagens de correio</b></span>
-					<li>
-					<li>
-						<!-- inner menu: contains the messages -->
-						<ul class="menu">
-							<!-- start message -->
-							<li>
-								<a href="#">
-									<div id="correio3" class="pull-left">
-										<!-- User Image -->
-										<img src="views/avatar/<?php echo $row_ultimo_correio['avatar'];?>" class="img-circle" alt="User Image">
-									</div>
-									<!-- Message title and timestamp -->
-									<h4>
-										<?php echo $remetente;?>
-										<br />
-										<?php echo "(".$row_sigla_ultimo_correio['sigla'].")";?>
-									</h4>
-									<!-- The message -->
-									<p><?php echo $assunto;?>
-									<br /><small><i class="fa fa-clock"></i>&nbsp;&nbsp;<?php echo $data;?></small></p>
-								</a>
-							</li>
-							<!-- end message -->
-						</ul>
-						<!-- /.menu -->
-					</li>
-					<li class="footer"><a href="#">Ver Todas as Mensagens</a></li>
-				</ul>
+				<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-envelope"></i><span class="label label-default"><?php echo $row_qtde_correio['qtde_msg'];?></span></a>
+				<?php if($row_qtde_correio['qtde_msg'] > 0){?>
+					<ul class="dropdown-menu">
+						<li class="header">
+							<span><b>Você tem <?php echo $row_qtde_correio['qtde_msg'];?> novas mensagens de correio</b></span>
+						<li>
+						<li>
+							<!-- inner menu: contains the messages -->
+							<ul class="menu">
+								<!-- start message -->
+								<li>
+									<a href="#">
+										<div class="pull-left">
+											<!-- User Image -->
+											<img src="views/avatar/<?php echo $row_ultimo_correio['avatar'];?>" class="img-circle" alt="User Image">
+										</div>
+										<!-- Message title and timestamp -->
+										<h4>
+											<?php echo $remetente;?>
+											<br />
+											<?php echo "(".$row_sigla_ultimo_correio['sigla'].")";?>
+										</h4>
+										<!-- The message -->
+										<p><?php echo $assunto;?>
+										<br /><small><i class="fa fa-clock"></i>&nbsp;&nbsp;<?php echo $data;?></small></p>
+									</a>
+								</li>
+								<!-- end message -->
+							</ul>
+							<!-- /.menu -->
+						</li>
+						<li class="footer"><a href="mailbox_input.php">Ver Todas as Mensagens</a></li>
+					</ul>
+				<?php } ?>
 			</li>
 			<!-- /.messages-menu -->
 			<!-- Notifications Menu -->
