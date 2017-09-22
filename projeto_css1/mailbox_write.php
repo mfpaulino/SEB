@@ -4,7 +4,7 @@
 * escrever email
 * **********************************************************************************************************/
 $inc = "sim";
-$pagina = strtr(end(explode('/', $_SERVER['PHP_SELF'])),'?', true);
+$pagina = md5(strtr(end(explode('/', $_SERVER['PHP_SELF'])),'?', true));
 
 include_once('config.inc.php');
 include_once(PATH . '/controllers/autenticacao/autentica.inc.php');
@@ -43,8 +43,11 @@ if(isset($_POST['cpf_destinatario'])){
 				<span class="logo-mini"><b>...</b></span>
 				<span class="logo-lg barra-top"><b>SIAUD</b>-EB</span>
 			</a>
-			<nav id="menu_top" class="navbar navbar-static-top" role="navigation">
-				<?php include_once ('views/menu/menu_top.inc.php');?>
+			<nav class="navbar navbar-static-top" role="navigation">
+				<?php include ('views/menu/menu_top.inc.php');?>
+				<span id="status_msg">
+					<?php include ('views/menu/menu_top_msg.inc.php');?>
+				</span>
 			</nav>
 		</header>
 		<aside class="main-sidebar">
@@ -125,7 +128,7 @@ if(isset($_POST['cpf_destinatario'])){
 								}
 								?>
 							</div>
-							<form name="form_write_msg" method = "POST" action = "controllers/correio/correio_cadastrar.php">
+							<form name="form_correio_cadastrar" method = "POST" action = "controllers/correio/correio_cadastrar.php">
 								<div class="box-body">
 									<div class="form-group">
 										<?php
@@ -261,6 +264,7 @@ if(isset($_POST['cpf_destinatario'])){
 	<script src="componentes/externos/bower_components/bootstrap-confirmation/bootstrap-confirmation.min.js"></script>
 	<script src="componentes/externos/dist/js/adminlte.min.js"></script>
 	<script src="controllers/usuario/senha_alterar.js"></script>
+	<script src="controllers/correio/correio_cadastrar.js"></script>
 	<script src="componentes/internos/js/status_sessao.js"></script>
 	<script src="componentes/internos/js/status_menu_top.js"></script>
 	<script src="componentes/externos/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.js"></script>

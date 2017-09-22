@@ -16,6 +16,11 @@ include_once('config.inc.php');
 
 		$pagina_lock = str_replace('lockscreen.php?flag=','',strtr(end(explode('/', $_SERVER['REQUEST_URI'])),'', true));
 
+
+	if(strpos($pagina_lock,'mailbox_view') === false){
+		$pagina_lock = md5($pagina_lock);
+	}
+
 		$_SESSION['acesso'] = "lock";
 
 		include_once(PATH . '/controllers/autenticacao/perfil.inc.php');
@@ -49,6 +54,7 @@ include_once('config.inc.php');
 				</div>
 				<!-- User name -->
 				<div class="lockscreen-name"><?php echo $posto_usuario . " " . $nome_guerra_usuario;?></div>
+				<p></p>
 				<!-- START LOCK SCREEN ITEM -->
 				<div class="lockscreen-item">
 					<!-- lockscreen image -->

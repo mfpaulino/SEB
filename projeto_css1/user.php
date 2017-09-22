@@ -68,8 +68,11 @@ include_once(PATH . '/controllers/autenticacao/autentica.inc.php');//autentica e
 				<span class="logo-mini"><b>...</b></span>
 				<span class="logo-lg barra-top"><b>SIAUD</b>-EB</span>
 			</a>
-			<nav id="menu_top" class="navbar navbar-static-top" role="navigation">
-				<?php include_once ('views/menu/menu_top.inc.php');?>
+			<nav class="navbar navbar-static-top" role="navigation">
+				<?php include ('views/menu/menu_top.inc.php');?>
+				<span id="status_msg">
+					<?php include ('views/menu/menu_top_msg.inc.php');?>
+				</span>
 			</nav>
 		</header>
 		<aside class="main-sidebar">

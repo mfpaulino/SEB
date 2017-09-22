@@ -3,10 +3,10 @@ $(document).ready(function(){
 	// Requisicao AJAX
 	var requisicao = function(){
 		$.ajax({
-			url: "status_menu_top.inc.php"
+			url: "status_menu_top_msg.inc.php"
 		}).done(function(resultado){
 			// Exibe o resultado no elemento com ID status_sessao
-			$("#menu_top").html(resultado);
+			$("#status_msg").html(resultado);
 		});
 	};
 
