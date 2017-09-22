@@ -14938,7 +14938,7 @@ function program17(depth0,data) {
       bold: 'Negrito',
       italic: 'Itálico',
       underline: 'Sublinhado',
-      small: 'Pequeno'
+      small: 'Small'
     },
     lists: {
       unordered: 'Unordered list',
