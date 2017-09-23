@@ -54,7 +54,7 @@ include_once('config.inc.php');
 				</div>
 				<!-- User name -->
 				<div class="lockscreen-name"><?php echo $posto_usuario . " " . $nome_guerra_usuario;?></div>
-				<p></p>
+				<p>&nbsp;</p>
 				<!-- START LOCK SCREEN ITEM -->
 				<div class="lockscreen-item">
 					<!-- lockscreen image -->

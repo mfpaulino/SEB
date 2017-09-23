@@ -149,9 +149,6 @@ $proximo = $pag +1;
               <div class="mailbox-controls">
                 <button  class="btn btn-default btn-sm checkbox-toggle"><i class="fa fa-square-o"></i>
                 </button>
-                <div class="btn-group">
-                  <button  class="btn btn-default btn-sm" title="Excluir"><i class="fa fa-trash-o"></i></button>
-                </div>
                 <a href="<?php echo $pagina;?>"  class="btn btn-default btn-sm" title="Atualizar"><i class="fa fa-refresh"></i></a>
                 <div class="pull-right">
                   <?php echo $pag."-".$total_pag."/".$total_msg;?>
@@ -221,9 +218,6 @@ $proximo = $pag +1;
 				  <div class="mailbox-controls">
 					<button  class="btn btn-default btn-sm checkbox-toggle"><i class="fa fa-square-o"></i>
 					</button>
-					<div class="btn-group">
-					  <button  class="btn btn-default btn-sm" title="Excluir"><i class="fa fa-trash-o"></i></button>
-					</div>
 					 <a href="<?php echo $pagina;?>"  class="btn btn-default btn-sm" title="Atualizar"><i class="fa fa-refresh"></i></a>
 					<div class="pull-right">
 					  <?php echo $pag."-".$total_pag."/".$total_msg;?>
