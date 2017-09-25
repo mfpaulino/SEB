@@ -128,7 +128,7 @@ if(isset($_POST['cpf_destinatario'])){
 								}
 								?>
 							</div>
-							<form name="form_correio_cadastrar" method = "POST" action = "controllers/correio/correio_cadastrar.php">
+							<form name="form_correio_cadastrar" id="form_correio_cadastrar" method = "POST" action = "controllers/correio/correio_cadastrar.php">
 								<div class="box-body">
 									<div class="form-group">
 										<?php
