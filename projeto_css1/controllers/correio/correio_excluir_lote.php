@@ -13,32 +13,36 @@ $inc = "sim";
 
 include_once('../../config.inc.php');
 
-if (isset($_GET['flag'])){
+if (isset($_POST['flag'])){
 
-	if($_GET['flag0'] == "i"){
-		$pagina = "mailbox_input.php";
-	}
-	else if ($_GET['flag0'] == "s"){
-		$pagina = "mailbox_sent.php";
-	}
-	else if ($_GET['flag0'] == "l"){
-		$pagina = "mailbox_read.php";
+	foreach($_POST['lote'] as $lote){
+		//$lista_msg = $lista_msg . $lote . ";";
 	}
 
 	require_once(PATH . '/controllers/autenticacao/autentica.inc.php');
 
-	$id_correio = $_GET['flag'];
+	//insere uma linha para cadas destinatario na tabela de correio_recebidos
+			foreach($_POST['destinatario'] as $destinatario){
+				$mysqli->query("INSERT INTO correio_recebidos (id_correio, destinatario) VALUES ('$row_correio[id_correio]', '$destinatario')");
+			}
 
-	if($_GET['flag0'] == "i" or $_GET['flag0'] == "l"){
+	if($_GET['flag'] == "i" or $_GET['flag'] == "l"){
 
-		$con_del = $mysqli->query("DELETE FROM correio_recebidos WHERE id_correio = '$id_correio' AND destinatario = '$id_usuario'");
+		foreach($_POST['lote'] as $id_correio){
 
-		$teste_del = $mysqli->query("SELECT id FROM correio_recebidos WHERE id_correio = '$id_correio' AND destinatario = '$id_usuario'");
+			$con_del = $mysqli->query("DELETE FROM correio_recebidos WHERE id_correio = '$id_correio' AND destinatario = '$id_usuario'");
+
+			$teste_del = $mysqli->query("SELECT id FROM correio_recebidos WHERE id_correio = '$id_correio' AND destinatario = '$id_usuario'");
+		}
 	}
 	else {
-		$con_del = $mysqli->query("UPDATE correio_enviados SET excluida = 'sim' WHERE id_correio = '$id_correio'");
 
-		$teste_del = $mysqli->query("SELECT id_correio FROM correio_enviados WHERE id_correio = '$id_correio' AND excluida = 'nao'");
+		foreach($_POST['lote'] as $id_correio){
+
+			$con_del = $mysqli->query("UPDATE correio_enviados SET excluida = 'sim' WHERE id_correio = '$id_correio'");
+
+			$teste_del = $mysqli->query("SELECT id_correio FROM correio_enviados WHERE id_correio = '$id_correio' AND excluida = 'nao'");
+		}
 	}
 
 	if($teste_del->num_rows == 0){

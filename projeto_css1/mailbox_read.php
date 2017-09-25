@@ -204,7 +204,12 @@ $proximo = $pag +1;
 										$remetente = $row_ja_lidos['posto']." ". $row_ja_lidos['nome_guerra']." - ".$row_sigla['sigla'];
 										echo "
 										<tr>
-										<td><form name='form_excluir_lote' method='post' action='controllers/correio/correio_excluir_lote.php'><input name='lote[]' type='checkbox' value='$row_ja_lidos[id_correio]'></form></td>
+										<td>
+											<form name='form_excluir_lote' id='form_excluir_lote' method='post' action='controllers/correio/correio_excluir_lote.php'>
+												<input name='lote[]' type='checkbox' value='$row_ja_lidos[id_correio]'>
+												<input type='hidden' name='flag' value='l' />
+											</form>
+										</td>
 										<td class='mailbox-name'><a href='mailbox_view.php?flag=$row_ja_lidos[id_correio]&flag0=l&flag1=$remetente'>$remetente</a></td>
 										<td class='mailbox-subject'>$b$row_ja_lidos[assunto]$b1</td>
 										<td class='mailbox-date'>$data</td>
@@ -220,7 +225,7 @@ $proximo = $pag +1;
 									<div class="mailbox-controls">
 										<button  class="btn btn-default btn-sm checkbox-toggle"><i class="fa fa-square-o"></i></button>
 										<div class="btn-group">
-											<button  class="btn btn-default btn-sm" title="Excluir"><i class="fa fa-trash-o"></i></button>
+											<button  form="form_excluir_lote" class="btn btn-default btn-sm" title="Excluir"><i class="fa fa-trash-o"></i></button>
 										</div>
 										<div class="pull-right">
 											<?php echo $pag."-".$total_pag."/".$total_msg;?>
