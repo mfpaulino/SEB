@@ -18,23 +18,23 @@ if (isset($_POST['flag'])){
 	require_once(PATH . '/controllers/autenticacao/autentica.inc.php');
 	$pagina = $_POST['pagina'];
 
-	if($_POST['id_correio'] != ""){
+	if($_POST['lote'] == 'sim'){
 
 		if($_POST['input_sent'] == "i" or $_POST['input_sent'] == "l"){
+			echo "ok";
+
 			//deleta uma linha para cada id_correio na tabela de correio_recebidos
-			foreach($_POST['id_correio'] as $id_correio){
+			$id_correio = $_POST['id_correio'];
 
-				echo $id_correio;
-				//$con_del = $mysqli->query("DELETE FROM correio_recebidos WHERE id_correio = '$id_correio[$i]' AND destinatario = '$id_usuario'");
+				$con_del = $mysqli->query("DELETE FROM correio_recebidos WHERE id_correio = '$id_correio' AND destinatario = '$id_usuario'");
 
-				//$teste_del = $mysqli->query("SELECT id FROM correio_recebidos WHERE id_correio = '$id_correio[$i]' AND destinatario = '$id_usuario'");
-			}
-
-
+				$teste_del = $mysqli->query("SELECT id FROM correio_recebidos WHERE id_correio = '$id_correio' AND destinatario = '$id_usuario'");
+			//}
 		}
 		else {
+			//echo "erro";
 
-			//foreach($_POST['id_correio'] as $id_correio){
+			//foreach($_POST['lote'] as $id_correio){
 
 				$con_del = $mysqli->query("UPDATE correio_enviados SET excluida = 'sim' WHERE id_correio = '$id_correio'");
 
@@ -55,9 +55,7 @@ if (isset($_POST['flag'])){
 
 		$flag = md5("correio_excluir");
 	}
-
-//else {echo "erro";}
-	//header(sprintf("Location:../../".$pagina."?flag=$flag"));
+	header(sprintf("Location:../../".$pagina."?flag=$flag"));
 }
 else {
 	include_once(PATH . '/controllers/autenticacao/'.ACESSO_NEGADO);
