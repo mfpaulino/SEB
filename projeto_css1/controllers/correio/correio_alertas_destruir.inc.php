@@ -8,5 +8,6 @@ unset($_SESSION['correio_mover_sucesso']);
 unset($_SESSION['correio_mover_erro']);
 unset($_SESSION['correio_excluir_sucesso']);
 unset($_SESSION['correio_excluir_erro']);
+unset($_SESSION['correio_valida_check']);
 
 ?>

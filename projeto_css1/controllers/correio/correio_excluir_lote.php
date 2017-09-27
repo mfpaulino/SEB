@@ -20,19 +20,18 @@ if (isset($_POST['flag'])){
 
 	if($_POST['id_correio'] != ""){
 
-		if($_POST['input_sent'] == "i" or $_POST['input_sent'] == "l"){
+		if($_POST['input_sent'] == "l"){
 
 			//deleta uma linha para cada id_correio na tabela de correio_recebidos
 			foreach($_POST['id_correio'] as $id_correio){
-				echo $id_correio;
-				//$con_del = $mysqli->query("DELETE FROM correio_recebidos WHERE id_correio = '$id_correio' AND destinatario = '$id_usuario'");
+				$con_del = $mysqli->query("DELETE FROM correio_recebidos WHERE id_correio = '$id_correio' AND destinatario = '$id_usuario'");
 
-				//$teste_del = $mysqli->query("SELECT id FROM correio_recebidos WHERE id_correio = '$id_correio' AND destinatario = '$id_usuario'");
+				$teste_del = $mysqli->query("SELECT id FROM correio_recebidos WHERE id_correio = '$id_correio' AND destinatario = '$id_usuario'");
 			}
 
 
 		}
-		else {
+		else if($_POST['input_sent'] == "s"){
 			//oculta uma linha para cada id_correio na tabela de correio_enviados
 			foreach($_POST['id_correio'] as $id_correio){
 				$con_del = $mysqli->query("UPDATE correio_enviados SET excluida = 'sim' WHERE id_correio = '$id_correio'");
@@ -51,9 +50,12 @@ if (isset($_POST['flag'])){
 			$_SESSION['correio_excluir_erro'] = "ERRO C-03: exclusão falhou, tente novamente!<br />Em caso de persistir o erro, entrar em contato com o suporte técnico.";
 			$_SESSION['botao'] = "danger";
 		}
-
-		$flag = md5("correio_excluir");
 	}
+	else{
+		$_SESSION['botao'] = "danger";
+		$_SESSION['correio_valida_check'] = "ERRO C-04: nenhuma mensagem foi selecionada!";
+	}
+	$flag = md5("correio_excluir");
 	header(sprintf("Location:../../".$pagina."?flag=$flag"));
 }
 else {

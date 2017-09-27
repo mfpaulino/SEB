@@ -33,7 +33,7 @@ if(isset($_POST['cpf_destinatario'])){
 	<link rel="stylesheet" href="componentes/externos/dist/css/skins/skin-blue.css">
 	<link rel="stylesheet" href="componentes/internos/css/siaudi.css">
 	<link rel="stylesheet" href="componentes/externos/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.css">
-	<link rel="stylesheet" href="componentes/externos/plugins/bootstrap-chosen/bootstrap-chosen.css">
+	<link rel="stylesheet" href="componentes/externos/plugins/bootstrap-multiselect/dist/css/bootstrap-multiselect.css" type="text/css">
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 	<?php include_once('componentes/internos/php/cabecalho.inc.php');?>
@@ -138,7 +138,7 @@ if(isset($_POST['cpf_destinatario'])){
 										<?php
 										}
 										else {?>
-											<select name="destinatario[]" id="destinatario" class="form-control chosen-select" multiple data-placeholder = " Para:">
+											<select name="destinatario[]" class="form-control"  id="example-getting-started" multiple="multiple" data-placeholder = " Para:">
 												<?php
 												while($row = $con_destinatario->fetch_assoc()){
 													$sql_sigla = "select sigla from cciex_om where codom = '$row[codom]' limit 1";
@@ -157,7 +157,7 @@ if(isset($_POST['cpf_destinatario'])){
 										<input name="assunto" class="form-control" placeholder="Assunto:" value="<?php echo $_POST['assunto'];?>">
 									</div>
 									<div class="form-group">
-										<textarea name="texto" id="compose-textarea" class="form-control" style="height: 300px"><?php echo $_POST['texto'];?></textarea>
+										<textarea name="texto"  class="form-control" style="height: 300px"><?php echo $_POST['texto'];?></textarea>
 									</div>
 								</div>
 								<input name="flag" type="hidden" />
@@ -268,9 +268,9 @@ if(isset($_POST['cpf_destinatario'])){
 	<script src="componentes/internos/js/status_sessao.js"></script>
 	<script src="componentes/internos/js/status_menu_top.js"></script>
 	<script src="componentes/externos/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.js"></script>
-	<script src="componentes/externos/plugins/bootstrap-chosen/bootstrap-chosen.js"></script>
 	<script src="componentes/externos/bower_components/bootstrap-fileinput/js/fileinput.js" type="text/javascript"></script>
 	<script src="componentes/externos/bower_components/bootstrap-fileinput/js/locales/pt-BR.js" type="text/javascript"></script>
+	<script type="text/javascript" src="componentes/externos/plugins/bootstrap-multiselect/dist/js/bootstrap-multiselect.js"></script>
 	<script>
 		//exibe o modal editar perfil
 		$('#modalEditar').on('show.bs.modal', function (event) {
@@ -324,7 +324,7 @@ if(isset($_POST['cpf_destinatario'])){
 		//verifica os dados ao confirmar alteracao de unidade
 		$('[data-toggle="confirmation"]').confirmation({
 			onConfirm: function() {
-				$('#form_altera_om').bootstrapValidator({
+				$('#form_altera_unidade').bootstrapValidator({
 					feedbackIcons: {
 						valid: 'glyphicon glyphicon-ok',
 						invalid: 'glyphicon glyphicon-remove',
@@ -425,10 +425,15 @@ if(isset($_POST['cpf_destinatario'])){
 		$("#compose-textarea").wysihtml5();
 	  });
 	</script>
-	<script>
-		//chosen select
-		var config = {'.chosen-select': {}}
-		for (var selector in config) {$(selector).chosen(config[selector]);}
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$('#example-getting-started').multiselect({
+				inheritClass: true,
+				includeSelectAllOption: true,
+				enableFiltering: true,
+				selectAllJustVisible: true //ao clicar em todos, seleciona todos os visiveis pelo filtro. Se false, seleciona todos independente do filtro
+			});
+		});
 	</script>
 </body>
 </html>

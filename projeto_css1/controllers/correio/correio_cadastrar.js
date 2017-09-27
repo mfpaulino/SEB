@@ -6,17 +6,17 @@ $(document).ready(function() {
 			validating: 'glyphicon glyphicon-refresh'
 		},
 		fields: {
-			destinatario: {
+			'destinatario[]': {
 				validators: {
 					notEmpty: {
-						message:'Preenchimento obrigatório'
+						message: 'Selecione o(s) destinatário(s)'
 					}
 				}
 			},
 			texto: {
 				validators: {
 					notEmpty: {
-						message: 'Preenchimento obrigatório'
+						message: 'Digite um texto para a mensagem'
 					}
 				}
 			}

@@ -267,7 +267,7 @@ include_once(PATH . '/controllers/autenticacao/autentica.inc.php');//autentica e
 		//verifica os dados ao confirmar alteracao de unidade
 		$('[data-toggle="confirmation"]').confirmation({
 			onConfirm: function() {
-				$('#form_altera_om').bootstrapValidator({
+				$('#form_altera_unidade').bootstrapValidator({
 					feedbackIcons: {
 						valid: 'glyphicon glyphicon-ok',
 						invalid: 'glyphicon glyphicon-remove',

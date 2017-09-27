@@ -37,10 +37,12 @@ if ($inc == "sim"){
 
 			$msg0 = $_SESSION['correio_excluir_sucesso'];
 			$msg1 = $_SESSION['correio_excluir_erro'];
+			$msg2 = $_SESSION['correio_valida_check'];
 		}
 		else {
 			unset($_SESSION['correio_excluir_sucesso']);
 			unset($_SESSION['correio_excluir_erro']);
+			unset($_SESSION['correio_valida_check']);
 		}
 
 		$msg_correio="exibir";

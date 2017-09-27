@@ -146,9 +146,7 @@ $proximo = $pag +1;
 								if ($total_msg > 0) {?>
 									<div class="mailbox-controls">
 										<button  class="btn btn-default btn-sm checkbox-toggle" title="Selecionar todas"><i class="fa fa-square-o"></i></button>
-										<div class="btn-group">
-											<button  type="submit" form="form_excluir_lote" class="btn btn-default btn-sm" title="Excluir mensagens selecionadas"><i class="fa fa-trash-o"></i></button>
-										</div>
+										<button  type="submit" form="form_excluir_lote" class="btn btn-default btn-sm" data-toggle="confirmation" data-placement="top" data-btn-ok-label="Continuar" data-btn-ok-icon="glyphicon glyphicon-share-alt" data-btn-ok-class="btn-success" data-btn-cancel-label="Parar" data-btn-cancel-icon="glyphicon glyphicon-ban-circle" data-btn-cancel-class="btn-danger" data-title="Confirma exclusão?" data-content=""> <i class="fa fa-trash-o"></i></button>
 										<div class="pull-right">
 										<?php echo $pag."-".$total_pag."/".$total_msg;?>
 											<div class="btn-group">
@@ -225,9 +223,7 @@ $proximo = $pag +1;
 								<?php if ($total_msg > 0) {?>
 									<div class="mailbox-controls">
 										<button  class="btn btn-default btn-sm checkbox-toggle" title="Selecionar todas"><i class="fa fa-square-o"></i></button>
-										<div class="btn-group">
-											<button  form="form_excluir_lote" class="btn btn-default btn-sm" title="Excluir mensagens selecionadas"><i class="fa fa-trash-o"></i></button>
-										</div>
+										<button  type="submit" form="form_excluir_lote" class="btn btn-default btn-sm" data-toggle="confirmation" data-placement="bottom" data-btn-ok-label="Continuar" data-btn-ok-icon="glyphicon glyphicon-share-alt" data-btn-ok-class="btn-success" data-btn-cancel-label="Parar" data-btn-cancel-icon="glyphicon glyphicon-ban-circle" data-btn-cancel-class="btn-danger" data-title="Confirma exclusão?" data-content=""> <i class="fa fa-trash-o"></i></button>
 										<div class="pull-right">
 											<?php echo $pag."-".$total_pag."/".$total_msg;?>
 											<div class="btn-group">
@@ -402,7 +398,7 @@ $proximo = $pag +1;
 		//verifica os dados ao confirmar alteracao de unidade
 		$('[data-toggle="confirmation"]').confirmation({
 			onConfirm: function() {
-				$('#form_altera_om').bootstrapValidator({
+				$('#form_altera_unidade').bootstrapValidator({
 					feedbackIcons: {
 						valid: 'glyphicon glyphicon-ok',
 						invalid: 'glyphicon glyphicon-remove',
@@ -488,7 +484,7 @@ $proximo = $pag +1;
 	</script>
 	<script>
 		$(function () {
-			//Enable check and uncheck all functionality
+			//seleciona todos checkbox, habilita/desabilita o botao de exclusao
 			$(".checkbox-toggle").click(function () {
 				var clicks = $(this).data('clicks');
 				if (clicks) {
