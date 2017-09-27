@@ -53,7 +53,6 @@ $proximo = $pag +1;
 	<link rel="stylesheet" href="componentes/externos/bower_components/bootstrap-fileinput/css/fileinput.min.css">
 	<link rel="stylesheet" href="componentes/externos/dist/css/skins/skin-blue.css">
 	<link rel="stylesheet" href="componentes/internos/css/siaudi.css">
-	<link rel="stylesheet" href="componentes/externos/bower_components/iCheck/flat/blue.css">
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 	<?php include_once('componentes/internos/php/cabecalho.inc.php');?>
@@ -146,7 +145,7 @@ $proximo = $pag +1;
 								<?php
 								if ($total_msg > 0) {?>
 									<div class="mailbox-controls">
-										<button  class="btn btn-default btn-sm checkbox-toggle" id="todos" onclick="marcardesmarcar();" title="Selecionar todas"><i class="fa fa-square-o"></i></button>
+										<button  class="btn btn-default btn-sm checkbox-toggle" title="Selecionar todas"><i class="fa fa-square-o"></i></button>
 										<div class="btn-group">
 											<button  type="submit" form="form_excluir_lote" class="btn btn-default btn-sm" title="Excluir mensagens selecionadas"><i class="fa fa-trash-o"></i></button>
 										</div>
@@ -206,7 +205,7 @@ $proximo = $pag +1;
 										echo "
 										<tr>
 										<td>
-											<input type='checkbox' class='marcar form-check-input' name='id_correio[]' id='id_correio' value = '$row_ja_lidos[id_correio]' />
+											<input type='checkbox' name='id_correio[]' id='id_correio' value = '$row_ja_lidos[id_correio]' />
 											<input type='hidden' name='input_sent' value='l' />
 											<input type='hidden' name='pagina' value='$pagina' />
 											<input type='hidden' name='flag' />
@@ -225,7 +224,7 @@ $proximo = $pag +1;
 							<div class="box-footer no-padding">
 								<?php if ($total_msg > 0) {?>
 									<div class="mailbox-controls">
-										<button  class="btn btn-default btn-sm checkbox-toggle" id="todos" onclick="marcardesmarcar();" title="Selecionar todas"><i class="fa fa-square-o"></i></button>
+										<button  class="btn btn-default btn-sm checkbox-toggle" title="Selecionar todas"><i class="fa fa-square-o"></i></button>
 										<div class="btn-group">
 											<button  form="form_excluir_lote" class="btn btn-default btn-sm" title="Excluir mensagens selecionadas"><i class="fa fa-trash-o"></i></button>
 										</div>
@@ -486,43 +485,25 @@ $proximo = $pag +1;
 			layoutTemplates: {main2: '{preview} ' +  btnCust },
 			allowedFileExtensions: ["jpg", "png", "gif"]
 		});
-	</script><!--
+	</script>
 	<script>
 		$(function () {
-			//Enable iCheck plugin for checkboxes
-			//iCheck for checkbox and radio inputs
-			$('.mailbox-messages input[type="checkbox"]').iCheck({
-				checkboxClass: 'icheckbox_flat-blue'
-			});
-
 			//Enable check and uncheck all functionality
 			$(".checkbox-toggle").click(function () {
 				var clicks = $(this).data('clicks');
 				if (clicks) {
 					//Uncheck all checkboxes
 					$(".mailbox-messages input[type='checkbox']").iCheck("uncheck");
-					$(".fa", this).removeClass("fa-check-square-o").addClass('fa-square-o');
+					$(".fa", ".checkbox-toggle").removeClass("fa-check-square-o").addClass('fa-square-o');
 				}
 				else {
 					//Check all checkboxes
 					$(".mailbox-messages input[type='checkbox']").iCheck("check");
-					$(".fa", this).removeClass("fa-square-o").addClass('fa-check-square-o');
+					$(".fa", ".checkbox-toggle").removeClass("fa-square-o").addClass('fa-check-square-o');
 				}
 				$(this).data("clicks", !clicks);
 			});
 		});
-	</script>-->
-	<script>
-		function marcardesmarcar() {
-			$('.marcar').each(function () {
-				if (this.checked) {
-					$(this).attr("checked", false);
-				}
-				else {
-					$(this).attr("checked", true);
-				}
-			});
-		}
 	</script>
 	<?php
 	if ($msg <> ""){?>

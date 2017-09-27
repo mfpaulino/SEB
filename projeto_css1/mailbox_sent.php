@@ -60,7 +60,6 @@ $proximo = $pag +1;
 	<link rel="stylesheet" href="componentes/externos/bower_components/bootstrap-fileinput/css/fileinput.min.css">
 	<link rel="stylesheet" href="componentes/externos/dist/css/skins/skin-blue.css">
 	<link rel="stylesheet" href="componentes/internos/css/siaudi.css">
-	<link rel="stylesheet" href="componentes/externos/bower_components/iCheck/flat/blue.css">
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 	<?php include_once('componentes/internos/php/cabecalho.inc.php');?>
@@ -153,9 +152,9 @@ $proximo = $pag +1;
 						<?php
 						if ($total_msg > 0) {?>
 							<div class="mailbox-controls">
-								<button  class="btn btn-default btn-sm checkbox-toggle"><i class="fa fa-square-o"></i></button>
-								<div class="btn-group">
-									<button  class="btn btn-default btn-sm" title="Excluir"><i class="fa fa-trash-o"></i></button>
+								<button  class="btn btn-default btn-sm checkbox-toggle" title="Selecionar todas"><i class="fa fa-square-o"></i></button>
+										<div class="btn-group">
+											<button  type="submit" form="form_excluir_lote" class="btn btn-default btn-sm" title="Excluir mensagens selecionadas"><i class="fa fa-trash-o"></i></button>
 								</div>
 								<div class="pull-right">
 									<?php echo $pag."-".$total_pag."/".$total_msg;?>
@@ -191,6 +190,7 @@ $proximo = $pag +1;
 						<div class="table-responsive mailbox-messages">
 							<table class="table table-hover table-striped">
 							<tbody>
+								<form name='form_excluir_lote' id='form_excluir_lote' method='post' action='controllers/correio/correio_excluir_lote.php'>
 								<?php
 								while($row_enviados = $con_limite->fetch_assoc()){
 
@@ -222,7 +222,12 @@ $proximo = $pag +1;
 									}
 									echo "
 									<tr>
-									<td><input type='checkbox'></td>
+									<td>
+										<input type='checkbox' name='id_correio[]' id='id_correio' value = '$row_enviados[id_correio]' />
+										<input type='hidden' name='input_sent' value='s' />
+										<input type='hidden' name='pagina' value='$pagina' />
+										<input type='hidden' name='flag' />
+									</td>
 									<td class='mailbox-name'><a href='mailbox_view.php?flag=$row_enviados[id_correio]&flag0=s&flag1=$destinatario'>$destinatario</a></td>
 									<td class='mailbox-subject'>$row_enviados[assunto]</td>
 									<td class='mailbox-date'>$data</td>
@@ -230,6 +235,7 @@ $proximo = $pag +1;
 									;
 								}
 								?>
+								</form>
 							</tbody>
 							</table>
 						</div>
@@ -238,10 +244,10 @@ $proximo = $pag +1;
 						<?php
 						if ($total_msg > 0) {?>
 							<div class="mailbox-controls">
-								<button  class="btn btn-default btn-sm checkbox-toggle"><i class="fa fa-square-o"></i></button>
-								<div class="btn-group">
-									<button  class="btn btn-default btn-sm" title="Excluir"><i class="fa fa-trash-o"></i></button>
-								</div>
+								<button  class="btn btn-default btn-sm checkbox-toggle" title="Selecionar todas"><i class="fa fa-square-o"></i></button>
+									<div class="btn-group">
+										<button  form="form_excluir_lote" class="btn btn-default btn-sm" title="Excluir mensagens selecionadas"><i class="fa fa-trash-o"></i></button>
+									</div>
 								<div class="pull-right">
 									<?php echo $pag."-".$total_pag."/".$total_msg;?>
 									<div class="btn-group">
@@ -511,24 +517,18 @@ $proximo = $pag +1;
 	</script>
 	<script>
 		$(function () {
-			//Enable iCheck plugin for checkboxes
-			//iCheck for checkbox and radio inputs
-			$('.mailbox-messages input[type="checkbox"]').iCheck({
-				checkboxClass: 'icheckbox_flat-blue'
-			});
-
 			//Enable check and uncheck all functionality
 			$(".checkbox-toggle").click(function () {
 				var clicks = $(this).data('clicks');
 				if (clicks) {
 					//Uncheck all checkboxes
 					$(".mailbox-messages input[type='checkbox']").iCheck("uncheck");
-					$(".fa", this).removeClass("fa-check-square-o").addClass('fa-square-o');
+					$(".fa", ".checkbox-toggle").removeClass("fa-check-square-o").addClass('fa-square-o');
 				}
 				else {
 					//Check all checkboxes
 					$(".mailbox-messages input[type='checkbox']").iCheck("check");
-					$(".fa", this).removeClass("fa-square-o").addClass('fa-check-square-o');
+					$(".fa", ".checkbox-toggle").removeClass("fa-square-o").addClass('fa-check-square-o');
 				}
 				$(this).data("clicks", !clicks);
 			});

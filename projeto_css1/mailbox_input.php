@@ -52,7 +52,6 @@ $proximo = $pag +1;
 	<link rel="stylesheet" href="componentes/externos/bower_components/bootstrap-fileinput/css/fileinput.min.css">
 	<link rel="stylesheet" href="componentes/externos/dist/css/skins/skin-blue.css">
 	<link rel="stylesheet" href="componentes/internos/css/siaudi.css">
-	<link rel="stylesheet" href="componentes/externos/bower_components/iCheck/flat/blue.css">
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 	<?php include_once('componentes/internos/php/cabecalho.inc.php');?>
@@ -147,8 +146,6 @@ $proximo = $pag +1;
             <div class="box-body no-padding">
 			<?php if ($total_msg > 0) {?>
               <div class="mailbox-controls">
-                <button  class="btn btn-default btn-sm checkbox-toggle"><i class="fa fa-square-o"></i>
-                </button>
                 <a href="<?php echo $pagina;?>"  class="btn btn-default btn-sm" title="Atualizar"><i class="fa fa-refresh"></i></a>
                 <div class="pull-right">
                   <?php echo $pag."-".$total_pag."/".$total_msg;?>
@@ -201,7 +198,7 @@ $proximo = $pag +1;
 						$remetente = $row_recebidos['posto']." ". $row_recebidos['nome_guerra']." - ".$row_sigla['sigla'];
 						echo "
 						<tr>
-						<td><input  type='checkbox'></td>
+						<td></td>
 						<td class='mailbox-name'><a href='mailbox_view.php?flag=$row_recebidos[id_correio]&flag0=i&flag1=$remetente'>$remetente</a></td>
 						<td class='mailbox-subject'>$b$row_recebidos[assunto]$b1</td>
 						<td class='mailbox-date'>$data</td>
@@ -216,8 +213,6 @@ $proximo = $pag +1;
             <div class="box-footer no-padding">
 			<?php if ($total_msg > 0) {?>
 				  <div class="mailbox-controls">
-					<button  class="btn btn-default btn-sm checkbox-toggle"><i class="fa fa-square-o"></i>
-					</button>
 					 <a href="<?php echo $pagina;?>"  class="btn btn-default btn-sm" title="Atualizar"><i class="fa fa-refresh"></i></a>
 					<div class="pull-right">
 					  <?php echo $pag."-".$total_pag."/".$total_msg;?>
@@ -340,7 +335,6 @@ $proximo = $pag +1;
 	<script src="componentes/internos/js/status_menu_top.js"></script>
 	<script src="componentes/externos/bower_components/bootstrap-fileinput/js/fileinput.js" type="text/javascript"></script>
 	<script src="componentes/externos/bower_components/bootstrap-fileinput/js/locales/pt-BR.js" type="text/javascript"></script>
-	<script src="componentes/externos/bower_components/iCheck/icheck.min.js"></script>
 	<script>
 		//exibe o modal editar perfil
 		$('#modalEditar').on('show.bs.modal', function (event) {
@@ -476,31 +470,6 @@ $proximo = $pag +1;
 			defaultPreviewContent: '<img src="views/avatar/<?php echo $avatar_usuario;?>" alt="Sua Foto" style="width:160px"><h6 class="text-muted">clique para alterar<br />(Tam máx: 1500Kb)</h6>',
 			layoutTemplates: {main2: '{preview} ' +  btnCust },
 			allowedFileExtensions: ["jpg", "png", "gif"]
-		});
-	</script>
-	<script>
-		$(function () {
-			//Enable iCheck plugin for checkboxes
-			//iCheck for checkbox and radio inputs
-			$('.mailbox-messages input[type="checkbox"]').iCheck({
-				checkboxClass: 'icheckbox_flat-blue'
-			});
-
-			//Enable check and uncheck all functionality
-			$(".checkbox-toggle").click(function () {
-				var clicks = $(this).data('clicks');
-				if (clicks) {
-					//Uncheck all checkboxes
-					$(".mailbox-messages input[type='checkbox']").iCheck("uncheck");
-					$(".fa", this).removeClass("fa-check-square-o").addClass('fa-square-o');
-				}
-				else {
-					//Check all checkboxes
-					$(".mailbox-messages input[type='checkbox']").iCheck("check");
-					$(".fa", this).removeClass("fa-square-o").addClass('fa-check-square-o');
-				}
-				$(this).data("clicks", !clicks);
-			});
 		});
 	</script>
 	<?php
