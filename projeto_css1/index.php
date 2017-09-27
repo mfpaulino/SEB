@@ -35,14 +35,14 @@ else if ($_SESSION['acesso'] == "lock"){
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title><?php echo TITULO;?></title>
 	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-	<link rel="stylesheet" href="componentes/externos/bower_components/bootstrap/dist/css/bootstrap.css">
-	<link rel="stylesheet" href="componentes/externos/bower_components/bootstrap/dist/css/bootstrapValidator.min.css" />
-	<link rel="stylesheet" href="componentes/externos/bower_components/font-awesome/css/font-awesome.min.css">
-	<link rel="stylesheet" href="componentes/externos/bower_components/Ionicons/css/ionicons.min.css">
-	<link rel="stylesheet" href="componentes/externos/dist/css/AdminLTE.css">
-	<link rel="stylesheet" href="componentes/externos/dist/css/skins/skin-green.css">
+	<link rel="stylesheet" href="componentes/externos/bootstrap/dist/css/bootstrap.css">
+	<link rel="stylesheet" href="componentes/externos/bootstrap/plugins/bootstrap-validator/css/bootstrapValidator.min.css" />
+	<link rel="stylesheet" href="componentes/externos/bootstrap/plugins/bootstrap-fileinput/css/fileinput.min.css">
+	<link rel="stylesheet" href="componentes/externos/bootstrap/plugins/font-awesome/css/font-awesome.min.css">
+	<link rel="stylesheet" href="componentes/externos/bootstrap/plugins/Ionicons/css/ionicons.min.css">
+	<link rel="stylesheet" href="componentes/externos/template/css/AdminLTE.css">
+	<link rel="stylesheet" href="componentes/externos/template/css/skins/skin-green.css">
 	<link rel="stylesheet" href="componentes/internos/css/siaudi.css">
-	<link rel="stylesheet" href="componentes/externos/bower_components/bootstrap-fileinput/css/fileinput.min.css">
 	<style>
 		.main-header .navbar{
 			margin-left: 0px;
@@ -86,16 +86,15 @@ else if ($_SESSION['acesso'] == "lock"){
 		<?php include_once('views/usuario/form_usuario_cadastrar.inc.php');?>
 	</div>
 	<?php //include_once('componentes/internos/php/rodape.inc.php');?>
-	<script src="componentes/externos/bower_components/jquery/dist/jquery.min.js"></script>
-	<script src="componentes/externos/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-	<script src="componentes/externos/bower_components/bootstrap/dist/js/bootstrapValidator.min.js"></script>
-	<script src="componentes/externos/dist/js/adminlte.min.js"></script>
+	<script src="componentes/externos/jquery/dist/jquery.min.js"></script>
+	<script src="componentes/externos/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script src="componentes/externos/bootstrap/plugins/bootstrap-validator/js/bootstrapValidator.min.js"></script>
+    <script src="componentes/externos/bootstrap/plugins/bootstrap-fileinput/js/fileinput.js" type="text/javascript"></script>
+	<script src="componentes/externos/template/js/adminlte.min.js"></script>
 	<script src="componentes/internos/js/auto_tab.js"></script>
-	<script src="controllers/usuario/usuario_cadastrar.js"></script>
-	<script src="controllers/usuario/senha_recuperar.js"></script>
-	<script src="controllers/autenticacao/login.js"></script>
-    <script src="componentes/externos/bower_components/bootstrap-fileinput/js/fileinput.js" type="text/javascript"></script>
-    <script src="componentes/externos/bower_components/bootstrap-fileinput/js/locales/pt-BR.js" type="text/javascript"></script>
+	<script src="componentes/internos/js/usuario_cadastrar.js"></script>
+	<script src="componentes/internos/js/senha_recuperar.js"></script>
+	<script src="componentes/internos/js/login.js"></script>
 	<script>
 		<!-- Redimensona o tamanho padrao do modal. Está no siaudi.css-->
 		$(".modal-wide").on("show.bs.modal", function() {

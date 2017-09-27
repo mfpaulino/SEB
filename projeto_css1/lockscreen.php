@@ -41,10 +41,10 @@ include_once('config.inc.php');
 			<title>SIAUD-BLOQUEIO</title>
 			<!-- Tell the browser to be responsive to screen width -->
 			<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-			<link rel="stylesheet" href="componentes/externos/bower_components/bootstrap/dist/css/bootstrap.min.css">
-			<link rel="stylesheet" href="componentes/externos/bower_components/font-awesome/css/font-awesome.min.css">
-			<link rel="stylesheet" href="componentes/externos/bower_components/Ionicons/css/ionicons.min.css">
-			<link rel="stylesheet" href="componentes/externos/dist/css/AdminLTE.css">
+			<link rel="stylesheet" href="componentes/externos/bootstrap/dist/css/bootstrap.min.css">
+			<link rel="stylesheet" href="componentes/externos/bootstrap/plugins/font-awesome/css/font-awesome.min.css">
+			<link rel="stylesheet" href="componentes/externos/bootstrap/plugins/Ionicons/css/ionicons.min.css">
+			<link rel="stylesheet" href="componentes/externos/template/css/AdminLTE.css">
 		</head>
 		<body class="hold-transition lockscreen">
 			<!-- Automatic element centering -->
@@ -90,8 +90,8 @@ include_once('config.inc.php');
 				</div>
 			</div>
 			<!-- /.center -->
-			<script src="componentes/externos/bower_components/jquery/dist/jquery.min.js"></script>
-			<script src="componentes/externos/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+			<script src="componentes/externos/jquery/dist/jquery.min.js"></script>
+			<script src="componentes/externos/bootstrap/dist/js/bootstrap.min.js"></script>
 			<?php
 			if ($msg <> ""){?>
 				<script>
