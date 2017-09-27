@@ -138,7 +138,7 @@ if(isset($_POST['cpf_destinatario'])){
 										<?php
 										}
 										else {?>
-											<select name="destinatario[]" class="form-control"  id="example-getting-started" multiple="multiple" data-placeholder = " Para:">
+											<select name="destinatario[]" id="destinatario" class="form-control" multiple="multiple" data-placeholder = " Para:">
 												<?php
 												while($row = $con_destinatario->fetch_assoc()){
 													$sql_sigla = "select sigla from cciex_om where codom = '$row[codom]' limit 1";
@@ -163,8 +163,8 @@ if(isset($_POST['cpf_destinatario'])){
 								<input name="flag" type="hidden" />
 								<div class="box-footer">
 									<div class="pull-right">
-										<button type="submit" class="btn btn-success"><i class="fa fa-envelope-o"></i> Enviar</button>
-										<a href="mailbox_input.php" class="btn btn-danger"><i class="fa fa-trash"></i>  Cancelar</a>
+										<button type="submit" class="btn btn-success"><i class="fa fa-send-o"></i> Enviar</button>
+										<a href="mailbox_input.php" class="btn btn-danger"><i class="fa fa-close"></i>  Cancelar</a>
 									</div>
 								</div>
 							</form>
@@ -427,7 +427,7 @@ if(isset($_POST['cpf_destinatario'])){
 	</script>
 	<script type="text/javascript">
 		$(document).ready(function() {
-			$('#example-getting-started').multiselect({
+			$('#destinatario').multiselect({
 				inheritClass: true,
 				includeSelectAllOption: true,
 				enableFiltering: true,
