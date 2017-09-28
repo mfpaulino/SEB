@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(document).ready(function () {
 	$('#form_correio_cadastrar').bootstrapValidator({
 		feedbackIcons: {
 			valid: 'glyphicon glyphicon-ok',
@@ -14,12 +14,23 @@ $(document).ready(function() {
 				}
 			},
 			texto: {
+				//group: '.lnbrd',
 				validators: {
 					notEmpty: {
-						message: 'Digite um texto para a mensagem'
+						message: 'Digite o texto da mensagem'
 					}
 				}
 			}
 		}
-	})
+	});
+	$('.textarea').wysihtml5({
+		events: {
+			load: function () {
+				$('.textarea').addClass('textnothide');
+			},
+			change: function () {
+				$('#form_correio_cadastrar').bootstrapValidator('revalidateField', 'texto');
+			}
+		}
+	});
 });

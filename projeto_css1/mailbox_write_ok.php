@@ -1,42 +1,21 @@
 <?php
 /***********************************************************************************************************
-* local/script name: ./mailbox_read.php
-* caixa já lidos
+* local/script name: ./mailbox_write.php
+* escrever email
 * **********************************************************************************************************/
 $inc = "sim";
-$pagina = strtr(end(explode('/', $_SERVER['PHP_SELF'])),'?', true);
+$pagina = md5(strtr(end(explode('/', $_SERVER['PHP_SELF'])),'?', true));
 
 include_once('config.inc.php');
 include_once(PATH . '/controllers/autenticacao/autentica.inc.php');
 
-$sql = "SELECT ce.id_correio, ce.assunto, ce.texto, ce.data, cr.lida, p.posto, u.nome_guerra, u.codom FROM correio_enviados ce, correio_recebidos cr, postos p, usuarios u WHERE cr.destinatario = '$id_usuario' and pasta = 'ja_lidos' and ce.id_correio = cr.id_correio and ce.remetente = u.cpf and p.id_posto = u.id_posto  ORDER BY ce.data desc";
-$con_ja_lidos = $mysqli->query($sql);
+$sql_destinatario = "SELECT id_usuario, nome_guerra, p.posto, codom from usuarios, postos p where usuarios.cpf <> '$cpf' and usuarios.status = 'habilitado' and usuarios.id_posto = p.id_posto order by p.id_posto, codom";
+$con_destinatario = $mysqli->query($sql_destinatario);
 
-/** paginacao **/
-$total_reg = "10";//registros por pagina
-
-$pag = $_GET['pagina'];
-if (!$pag) {
-	$pag = "1";
+if(isset($_POST['cpf_destinatario'])){
+	$con_destinatario = $mysqli->query("SELECT id_usuario FROM usuarios WHERE cpf = '$_POST[cpf_destinatario]'");
+	$row_destinatario = $con_destinatario->fetch_assoc();
 }
-else {
-	$pag = $pag;
-}
-
-$inicio = $pag - 1;
-$inicio = $inicio * $total_reg;
-
-$con_limite = $mysqli->query("$sql LIMIT $inicio,$total_reg");
-$con_todos =  $mysqli->query($sql);
-
-$total_msg = $con_todos->num_rows; // verifica o número total de registros
-$total_pag = ceil($total_msg / $total_reg); // calcula e arredonda pra cima o número total de páginas
-
-// agora vamos criar os botões "Anterior e próximo"
-$anterior = $pag -1;
-$proximo = $pag +1;
-
-/** fim paginacao**/
 ?>
 <!DOCTYPE html>
 <html>
@@ -49,6 +28,8 @@ $proximo = $pag +1;
 	<link rel="stylesheet" href="componentes/externos/bootstrap/dist/css/bootstrap.min.css">
 	<link rel="stylesheet" href="componentes/externos/bootstrap/plugins/font-awesome/css/font-awesome.min.css">
 	<link rel="stylesheet" href="componentes/externos/bootstrap/plugins/Ionicons/css/ionicons.min.css">
+	<link rel="stylesheet" href="componentes/externos/bootstrap/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.css">
+	<link rel="stylesheet" href="componentes/externos/bootstrap/plugins/bootstrap-multiselect/dist/css/bootstrap-multiselect.css" type="text/css">
 	<link rel="stylesheet" href="componentes/externos/bootstrap/plugins/bootstrap-fileinput/css/fileinput.min.css">
 	<link rel="stylesheet" href="componentes/externos/template/css/AdminLTE.css">
 	<link rel="stylesheet" href="componentes/externos/template/css/skins/skin-blue.css">
@@ -82,7 +63,7 @@ $proximo = $pag +1;
 				<ol class="breadcrumb">
 					<li><a href="index.php"><i class="fa fa-home"></i>Home</a></li>
 					<li class="active">Correio</li>
-					<li class="active">Já Lidos</li>
+					<li class="active">Escrever</li>
 				</ol>
 			</section>
 			<section class="content container-fluid">
@@ -93,15 +74,7 @@ $proximo = $pag +1;
 				else {
 					include_once('controllers/usuario/usuario_alertas_destruir.inc.php');
 				}
-				if (isset($_GET['flag']) and $_GET['flag'] == md5("correio_excluir")){
-					include_once('controllers/correio/correio_alertas_criar.inc.php');
-				}
-				else {
-					include_once('controllers/correio/correio_alertas_destruir.inc.php');
-				}
 				?>
-				<!-- Inicio modalAlertaCorreio-->
-				<?php include_once('views/correio/view_correio_alertas.inc.php');?>
 				<!-- Inicio modalVisualizar-->
 				<?php include_once('views/usuario/view_usuario_perfil.inc.php');?>
 				<!-- Inicio modalEditar -->
@@ -122,7 +95,7 @@ $proximo = $pag +1;
 				-------------------------->
 				<div class="row">
 					<div class="col-md-3">
-						<a href="mailbox_write.php" class="btn btn-primary btn-block margin-bottom" title="Nova Mensagem"><i class="fa fa-pencil"></i> Escrever</a>
+						<a href="mailbox.html" class="btn btn-primary btn-block margin-bottom disabled"><i class="fa fa-pencil"></i> Escrever</a>
 						<div class="box box-solid">
 							<div class="box-header with-border">
 								<h3 class="box-title">Pastas</h3>
@@ -130,8 +103,8 @@ $proximo = $pag +1;
 							<div class="box-body no-padding">
 								<ul class="nav nav-pills nav-stacked">
 									<li><a href="mailbox_input.php"><i class="fa fa-inbox"></i> Entrada<span class="label label-danger pull-right"><?php echo $qtde_entrada;?></span></a></li>
-									<li class="active disabled"><a href="mailbox_read.php"><i class="fa fa-envelope-open-o"></i> Já lidos<span class="label label-primary pull-right"><?php echo $qtde_lidas;?></span></a></li>
-									<li><a href="mailbox_sent.php"><i class="fa fa-send-o"></i> Enviados<span class="label label-success pull-right"><?php echo $qtde_enviadas;?></span></a></li>
+									<li><a href="mailbox_read.php"><i class="fa fa-envelope-open-o"></i> Já lidas<span class="label label-primary pull-right"><?php echo $qtde_lidas;?></span></a></li>
+									<li><a href="mailbox_sent.php"><i class="fa fa-send-o"></i> Enviadas<span class="label label-success pull-right"><?php echo $qtde_enviadas;?></span></a></li>
 								</ul>
 							</div>
 						</div>
@@ -139,111 +112,62 @@ $proximo = $pag +1;
 					<div class="col-md-9">
 						<div class="box box-primary">
 							<div class="box-header with-border">
-								<h3 class="box-title">Já Lidos</h3>
-							</div>
-							<div class="box-body no-padding">
 								<?php
-								if ($total_msg > 0) {?>
-									<div class="mailbox-controls">
-										<button  class="btn btn-default btn-sm checkbox-toggle" title="Selecionar todas"><i class="fa fa-square-o"></i></button>
-										<button  type="submit" form="form_excluir_lote" class="btn btn-default btn-sm" data-toggle="confirmation" data-placement="top" data-btn-ok-label="Continuar" data-btn-ok-icon="glyphicon glyphicon-share-alt" data-btn-ok-class="btn-success" data-btn-cancel-label="Parar" data-btn-cancel-icon="glyphicon glyphicon-ban-circle" data-btn-cancel-class="btn-danger" data-title="Confirma exclusão?" data-content=""> <i class="fa fa-trash-o"></i></button>
-										<div class="pull-right">
-										<?php echo $pag."-".$total_pag."/".$total_msg;?>
-											<div class="btn-group">
-												<?php
-												if ($pag == 1) {?>
-													<button class="btn btn-default btn-sm disabled"><i class="fa fa-chevron-left"></i></button>
-												<?php
-												}
-												if ($pag > 1) {?>
-													<a href="?pagina=<?php echo $anterior;?>"  class="btn btn-default btn-sm" title="Página anterior"><i class="fa fa-chevron-left"></i></a>
-												<?php
-												}
-												if ($pag < $total_pag) {?>
-													<a href="?pagina=<?php echo $proximo;?>"  class="btn btn-default btn-sm" title="Próxima página"><i class="fa fa-chevron-right"></i></a>
-												<?php
-												}
-												if ($pag == $total_pag) {?>
-													<button class="btn btn-default btn-sm disabled"><i class="fa fa-chevron-right"></i></button>
-												<?php
-												}
-												?>
-										</div>
-									</div>
+								if(isset($_POST['flag'] ) and $_POST['flag'] == 'resp'){?>
+									<h3 class="box-title">Responder Mensagem</h3>
+								<?php
+								}
+								else if (isset($_POST['flag'] ) and $_POST['flag'] == 'enc'){?>
+									<h3 class="box-title">Encaminhar Mensagem</h3>
+								<?php
+								}
+								else {?>
+									<h3 class="box-title">Nova Mensagem</h3>
+
 								<?php
 								}
 								?>
-								<div class="table-responsive mailbox-messages">
-									<table class="table table-hover table-striped">
-									<tbody>
-									<form name='form_excluir_lote' id='form_excluir_lote' method='post' action='controllers/correio/correio_excluir_lote.php'>
-									<?php
-									while($row_ja_lidos = $con_limite->fetch_assoc()){
-
-										if ($row_ja_lidos['lida'] == 'nao'){
-											$b="<b>";
-											$b1="</b>";
-										}
-
-										$sql_sigla = "SELECT sigla FROM cciex_om WHERE codom = '$row_ja_lidos[codom]' limit 1";
-										$con_sigla = $mysqli1->query($sql_sigla);
-										$row_sigla = $con_sigla->fetch_assoc();
-
-										if(date('d/m/Y') - 1 == date('d/m/Y', strtotime($row_ja_lidos['data']))){
-											$data = "Ontem " . date('H:i',strtotime($row_ja_lidos['data']));
-										}
-										else if(date('d/m/Y') == date('d/m/Y', strtotime($row_ja_lidos['data']))){
-											$data = "Hoje " . date('H:i',strtotime($row_ja_lidos['data']));
-										}
-										else{
-											$data = date('d/m/Y H:i', strtotime($row_ja_lidos['data']));
-										}
-
-										$remetente = $row_ja_lidos['posto']." ". $row_ja_lidos['nome_guerra']." - ".$row_sigla['sigla'];
-										echo "
-										<tr>
-										<td>
-											<input type='checkbox' name='id_correio[]' id='id_correio' value = '$row_ja_lidos[id_correio]' />
-											<input type='hidden' name='input_sent' value='l' />
-											<input type='hidden' name='pagina' value='$pagina' />
-											<input type='hidden' name='flag' />
-										</td>
-										<td class='mailbox-name'><a href='mailbox_view.php?flag=$row_ja_lidos[id_correio]&flag0=l&flag1=$remetente'>$remetente</a></td>
-										<td class='mailbox-subject'>$b$row_ja_lidos[assunto]$b1</td>
-										<td class='mailbox-date'>$data</td>
-										</tr>";
-									}
-									?>
-									</form>
-									</tbody>
-									</table>
-								</div>
 							</div>
-							<div class="box-footer no-padding">
-								<?php if ($total_msg > 0) {?>
-									<div class="mailbox-controls">
-										<button  class="btn btn-default btn-sm checkbox-toggle" title="Selecionar todas"><i class="fa fa-square-o"></i></button>
-										<button  type="submit" form="form_excluir_lote" class="btn btn-default btn-sm" data-toggle="confirmation" data-placement="bottom" data-btn-ok-label="Continuar" data-btn-ok-icon="glyphicon glyphicon-share-alt" data-btn-ok-class="btn-success" data-btn-cancel-label="Parar" data-btn-cancel-icon="glyphicon glyphicon-ban-circle" data-btn-cancel-class="btn-danger" data-title="Confirma exclusão?" data-content=""> <i class="fa fa-trash-o"></i></button>
-										<div class="pull-right">
-											<?php echo $pag."-".$total_pag."/".$total_msg;?>
-											<div class="btn-group">
-												<?php if ($pag == 1) {?>
-													<button class="btn btn-default btn-sm disabled"><i class="fa fa-chevron-left"></i></button>
-												<?php }
-												if ($pag > 1) {?>
-													<a href="?pagina=<?php echo $anterior;?>"  class="btn btn-default btn-sm" title="Página anterior"><i class="fa fa-chevron-left"></i></a>
-												<?php }
-												if ($pag < $total_pag) {?>
-													<a href="?pagina=<?php echo $proximo;?>"  class="btn btn-default btn-sm" title="Próxima página"><i class="fa fa-chevron-right"></i></a>
-												<?php }
-												if ($pag == $total_pag) {?>
-													<button class="btn btn-default btn-sm disabled"><i class="fa fa-chevron-right"></i></button>
-												<?php } ?>
-											</div>
-										</div>
+							<form name="form_correio_cadastrar" id="form_correio_cadastrar" method = "POST" action = "controllers/correio/correio_cadastrar.php">
+								<div class="box-body">
+									<div class="form-group">
+										<?php
+										if(isset($_POST['destinatario'])){?>
+											<input class="form-control" disabled value="<?php echo $_POST['destinatario'];?>">
+											<input type="hidden" name="destinatario[]" value = "<?php echo $row_destinatario['id_usuario'];?>" />
+										<?php
+										}
+										else {?>
+											<select name="destinatario[]" id="destinatario" class="form-control" multiple="multiple" data-placeholder = " Para:">
+												<?php
+												while($row = $con_destinatario->fetch_assoc()){
+													$sql_sigla = "select sigla from cciex_om where codom = '$row[codom]' limit 1";
+													$con_sigla = $mysqli1->query($sql_sigla);
+													$row_sigla = $con_sigla->fetch_assoc();?>
+													<option value="<?php echo $row['id_usuario'];?>"><?php echo $row['posto'] . " " . $row['nome_guerra'] . " - " . $row_sigla['sigla'];?></option>
+												<?php
+												}
+												?>
+											</select>
+										<?php
+										}
+										?>
 									</div>
-								<?php } ?>
-							</div>
+									<div class="form-group">
+										<input name="assunto" class="form-control" placeholder="Assunto:" value="<?php echo $_POST['assunto'];?>">
+									</div>
+									<div class="form-group">
+										<textarea name="texto" id="edit-texto" class="form-control" style="height: 300px"><?php echo $_POST['texto'];?></textarea>
+									</div>
+								</div>
+								<input name="flag" type="hidden" />
+								<div class="box-footer">
+									<div class="pull-right">
+										<button type="submit" class="btn btn-success"><i class="fa fa-send-o"></i> Enviar</button>
+										<a href="mailbox_input.php" class="btn btn-danger"><i class="fa fa-close"></i>  Cancelar</a>
+									</div>
+								</div>
+							</form>
 						</div>
 					</div>
 				</div>
@@ -338,11 +262,13 @@ $proximo = $pag +1;
 	<script src="componentes/externos/bootstrap/dist/js/bootstrap.min.js"></script>
 	<script src="componentes/externos/bootstrap/plugins/bootstrap-validator/js/bootstrapValidator.min.js"></script>
 	<script src="componentes/externos/bootstrap/plugins/bootstrap-confirmation/bootstrap-confirmation.min.js"></script>
-	<script src="componentes/externos/bootstrap/plugins/bootstrap-fileinput/js/fileinput.js" type="text/javascript"></script>
-	<script src="componentes/externos/bootstrap/plugins/iCheck/icheck.min.js"></script>
+	<script src="componentes/externos/bootstrap/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.js"></script>
+	<script src="componentes/externos/bootstrap/plugins/bootstrap-fileinput/js/fileinput.js"></script>
+	<script src="componentes/externos/bootstrap/plugins/bootstrap-multiselect/dist/js/bootstrap-multiselect.js"></script>
 	<script src="componentes/externos/template/js/adminlte.min.js"></script>
 	<script src="componentes/internos/js/senha_alterar.js"></script>
 	<script src="componentes/internos/js/usuario_alterar.js"></script>
+	<script src="componentes/internos/js/correio_cadastrar.js"></script>
 	<script src="componentes/internos/js/status_sessao.js"></script>
 	<script src="componentes/internos/js/status_menu_top.js"></script>
 	<script>
@@ -482,25 +408,6 @@ $proximo = $pag +1;
 			allowedFileExtensions: ["jpg", "png", "gif"]
 		});
 	</script>
-	<script>
-		$(function () {
-			//seleciona todos checkbox, habilita/desabilita o botao de exclusao
-			$(".checkbox-toggle").click(function () {
-				var clicks = $(this).data('clicks');
-				if (clicks) {
-					//Uncheck all checkboxes
-					$(".mailbox-messages input[type='checkbox']").iCheck("uncheck");
-					$(".fa", ".checkbox-toggle").removeClass("fa-check-square-o").addClass('fa-square-o');
-				}
-				else {
-					//Check all checkboxes
-					$(".mailbox-messages input[type='checkbox']").iCheck("check");
-					$(".fa", ".checkbox-toggle").removeClass("fa-square-o").addClass('fa-check-square-o');
-				}
-				$(this).data("clicks", !clicks);
-			});
-		});
-	</script>
 	<?php
 	if ($msg <> ""){?>
 		<script>
@@ -511,15 +418,22 @@ $proximo = $pag +1;
 		</script>
 	<?php
 	}
-	if ($msg_correio <> ""){?>
-		<script>
-			//exibe o modal de alertas correio
-			$(document).ready(function(){
-				$('#modalAlertaCorreio').modal('show');
-			});
-		</script>
-	<?php
-	}
 	?>
+	<script>
+		//exibe text editor
+	  $(function () {
+		$("#edit-texto").wysihtml5();
+	  });
+	</script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$('#destinatario').multiselect({
+				inheritClass: true,
+				includeSelectAllOption: true,
+				enableFiltering: true,
+				selectAllJustVisible: true //ao clicar em todos, seleciona todos os visiveis pelo filtro. Se false, seleciona todos independente do filtro
+			});
+		});
+	</script>
 </body>
 </html>

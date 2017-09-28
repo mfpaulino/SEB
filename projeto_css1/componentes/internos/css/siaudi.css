@@ -92,3 +92,10 @@
   overflow-y: auto;
 }
 /* fim modal*/
+/* validacao editor texto*/
+.textnothide {
+    display: block !important;
+    position: absolute;
+    z-index: -1;
+}
+/*fim validacao editor texto*/

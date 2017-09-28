@@ -25,15 +25,15 @@ if(isset($_POST['cpf_destinatario'])){
 	<title><?php echo TITULO;?></title>
 	<!-- Tell the browser to be responsive to screen width -->
 	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-	<link rel="stylesheet" href="componentes/externos/bower_components/bootstrap/dist/css/bootstrap.min.css">
-	<link rel="stylesheet" href="componentes/externos/bower_components/font-awesome/css/font-awesome.min.css">
-	<link rel="stylesheet" href="componentes/externos/bower_components/Ionicons/css/ionicons.min.css">
-	<link rel="stylesheet" href="componentes/externos/dist/css/AdminLTE.css">
-	<link rel="stylesheet" href="componentes/externos/bower_components/bootstrap-fileinput/css/fileinput.min.css">
-	<link rel="stylesheet" href="componentes/externos/dist/css/skins/skin-blue.css">
+	<link rel="stylesheet" href="componentes/externos/bootstrap/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" href="componentes/externos/bootstrap/plugins/font-awesome/css/font-awesome.min.css">
+	<link rel="stylesheet" href="componentes/externos/bootstrap/plugins/Ionicons/css/ionicons.min.css">
+	<link rel="stylesheet" href="componentes/externos/bootstrap/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.css">
+	<link rel="stylesheet" href="componentes/externos/bootstrap/plugins/bootstrap-multiselect/dist/css/bootstrap-multiselect.css" type="text/css">
+	<link rel="stylesheet" href="componentes/externos/bootstrap/plugins/bootstrap-fileinput/css/fileinput.min.css">
+	<link rel="stylesheet" href="componentes/externos/template/css/AdminLTE.css">
+	<link rel="stylesheet" href="componentes/externos/template/css/skins/skin-blue.css">
 	<link rel="stylesheet" href="componentes/internos/css/siaudi.css">
-	<link rel="stylesheet" href="componentes/externos/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.css">
-	<link rel="stylesheet" href="componentes/externos/plugins/bootstrap-multiselect/dist/css/bootstrap-multiselect.css" type="text/css">
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 	<?php include_once('componentes/internos/php/cabecalho.inc.php');?>
@@ -154,10 +154,12 @@ if(isset($_POST['cpf_destinatario'])){
 										?>
 									</div>
 									<div class="form-group">
-										<input name="assunto" class="form-control" placeholder="Assunto:" value="<?php echo $_POST['assunto'];?>">
+										<input name="assunto" class="form-control" placeholder="Assunto:" value="<?php echo $_POST['assunto'];?>" autofocus />
 									</div>
 									<div class="form-group">
-										<textarea name="texto"  class="form-control" style="height: 300px"><?php echo $_POST['texto'];?></textarea>
+										 <div class="lnbrd">
+											<textarea name="texto" id="texto" placeholder="Digite a mensagem..." class="textarea form-control" style="height: 300px"><?php echo $_POST['texto'];?></textarea>
+										</div>
 									</div>
 								</div>
 								<input name="flag" type="hidden" />
@@ -258,19 +260,19 @@ if(isset($_POST['cpf_destinatario'])){
 		</aside>
 		<div class="control-sidebar-bg"></div>
 	</div>
-	<script src="componentes/externos/bower_components/jquery/dist/jquery.min.js"></script>
-	<script src="componentes/externos/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-	<script src="componentes/externos/bower_components/bootstrap/dist/js/bootstrapValidator.min.js"></script>
-	<script src="componentes/externos/bower_components/bootstrap-confirmation/bootstrap-confirmation.min.js"></script>
-	<script src="componentes/externos/dist/js/adminlte.min.js"></script>
-	<script src="controllers/usuario/senha_alterar.js"></script>
-	<script src="controllers/correio/correio_cadastrar.js"></script>
+	<script src="componentes/externos/jquery/dist/jquery.min.js"></script>
+	<script src="componentes/externos/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script src="componentes/externos/bootstrap/plugins/bootstrap-validator/js/bootstrapValidator.min.js"></script>
+	<script src="componentes/externos/bootstrap/plugins/bootstrap-confirmation/bootstrap-confirmation.min.js"></script>
+	<script src="componentes/externos/bootstrap/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.js"></script>
+	<script src="componentes/externos/bootstrap/plugins/bootstrap-fileinput/js/fileinput.js"></script>
+	<script src="componentes/externos/bootstrap/plugins/bootstrap-multiselect/dist/js/bootstrap-multiselect.js"></script>
+	<script src="componentes/externos/template/js/adminlte.min.js"></script>
+	<script src="componentes/internos/js/senha_alterar.js"></script>
+	<script src="componentes/internos/js/usuario_alterar.js"></script>
+	<script src="componentes/internos/js/correio_cadastrar.js"></script>
 	<script src="componentes/internos/js/status_sessao.js"></script>
 	<script src="componentes/internos/js/status_menu_top.js"></script>
-	<script src="componentes/externos/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.js"></script>
-	<script src="componentes/externos/bower_components/bootstrap-fileinput/js/fileinput.js" type="text/javascript"></script>
-	<script src="componentes/externos/bower_components/bootstrap-fileinput/js/locales/pt-BR.js" type="text/javascript"></script>
-	<script type="text/javascript" src="componentes/externos/plugins/bootstrap-multiselect/dist/js/bootstrap-multiselect.js"></script>
 	<script>
 		//exibe o modal editar perfil
 		$('#modalEditar').on('show.bs.modal', function (event) {
@@ -419,12 +421,13 @@ if(isset($_POST['cpf_destinatario'])){
 	<?php
 	}
 	?>
-	<script>
+	<!--<script>
 		//exibe text editor
 	  $(function () {
-		$("#compose-textarea").wysihtml5();
+		$("#edit-texto").wysihtml5();
 	  });
-	</script>
+	</script>-->
+
 	<script type="text/javascript">
 		$(document).ready(function() {
 			$('#destinatario').multiselect({
