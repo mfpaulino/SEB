@@ -4,15 +4,32 @@
 * ler email
 * **********************************************************************************************************/
 $inc = "sim";
-$pagina = md5('mailbox_view').'_'.strtr(end(explode('/', $_SERVER['REQUEST_URI'])),'', true);
+//$pagina = md5('mailbox_view').'_'.strtr(end(explode('/', $_SERVER['REQUEST_URI'])),'', true);
+$pagina = strtr(end(explode('/', $_SERVER['REQUEST_URI'])),'', true);
+//$pagina= str_replace('mailbox_view.php','',strtr(end(explode('/', $_SERVER['REQUEST_URI'])),'', true));
+//$pagina = strtr(end(explode('/', $_SERVER['PHP_SELF'])),'?', true);
 
 include_once('config.inc.php');
 include_once(PATH . '/controllers/autenticacao/autentica.inc.php');
 
 if(isset($_GET['flag'])){
+
 	$id_correio = $_GET['flag'];
 	$input_sent = $_GET['flag0'];
-	$de_para = $_GET['flag1'];
+
+	if(strpos($_GET['flag1'],'?flag=') !== false){//se flag1=destiatario?flag=md5(usuario_alterar) veio da tela de editar perfil do usuario
+
+		$de_para_tmp = str_replace('?flag=', '&flag=', $_GET['flag1']);//trocando o ?flag por &flag
+		$de_para_tmp = explode('&flag=', $de_para_tmp);//divide o flag1 em duas partes
+		$de_para = $de_para_tmp[0];//pega a parte do destinatario
+
+		$pagina = "mailbox_view.php?flag=".$id_correio."&flag0=".$input_sent."&flag1=".$de_para;
+
+		$_GET['flag'] = $de_para_tmp[1];//md5('usuario_alterar') para a tela de alertas
+	}
+	else{
+		$de_para = $_GET['flag1'];
+	}
 
 	if($input_sent == "i" or $input_sent == "l"){//cx entrada ou ja_lidos
 
@@ -42,17 +59,6 @@ if(isset($_GET['flag'])){
 	else if($input_sent == 'l'){
 		$active_l = "class = active";
 	}
-
-	if(date('d/m/Y') - 1 == date('d/m/Y', strtotime($row_msg['data']))){
-		$data = "Ontem " . date('H:i',strtotime($row_msg['data']));
-	}
-	else if(date('d/m/Y') == date('d/m/Y', strtotime($row_msg['data']))){
-		$data = "Hoje " . date('H:i',strtotime($row_msg['data']));
-	}
-	else{
-		$data = date('d/m/Y H:i', strtotime($row_msg['data']));
-	}
-
 ?>
 <head>
 	<meta charset="utf-8">
@@ -165,7 +171,20 @@ if(isset($_GET['flag'])){
 											}
 											echo $de_para;
 											?>
-											<span class="mailbox-read-time pull-right"><?php echo $data;?></span>
+											<span class="mailbox-read-time pull-right">
+												<?php
+												if(date('d/m/Y') - 1 == date('d/m/Y', strtotime($row_msg['data']))){
+													$data = "Ontem " . date('H:i',strtotime($row_msg['data']));
+												}
+												else if(date('d/m/Y') == date('d/m/Y', strtotime($row_msg['data']))){
+													$data = "Hoje " . date('H:i',strtotime($row_msg['data']));
+												}
+												else{
+													$data = date('d/m/Y H:i', strtotime($row_msg['data']));
+												}
+												echo $data;
+												?>
+											</span>
 										</h5>
 									</div>
 									<div class="mailbox-read-message">

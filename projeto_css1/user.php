@@ -8,11 +8,16 @@
 * Inclui o form de alterar Unidade                                                                         *
 * Exibe na tela alertas diversos vindos do script 'controllers/usuario/usuario_alertas_criar.inc.php'      *
 * **********************************************************************************************************/
+$inc = "sim";
+$pagina = strtr(end(explode('/', $_SERVER['PHP_SELF'])),'?', true);
 
-$pagina_lock = str_replace('user.php?flag='.md5('mailbox_view').'_','',strtr(end(explode('/', $_SERVER['REQUEST_URI'])),'', true));
+include_once('config.inc.php');
+include_once(PATH . '/controllers/autenticacao/autentica.inc.php');//autentica e gera todos os dados de usuario
+
+$pagina_lock = str_replace('user.php?flag='.md5(date('d-m-Y')),'',strtr(end(explode('/', $_SERVER['REQUEST_URI'])),'', true));
 
 /*** redirecionamento ao sair da tela de bloqueio **/
-if(isset($_GET['flag'])){
+if(isset($_GET['flag'])){//vem da tela de bloqueio
 
 	switch ($_GET['flag']){
 
@@ -31,18 +36,16 @@ if(isset($_GET['flag'])){
 		case md5("mailbox_write.php"):
 		  header("Location:mailbox_write.php");
 		  break;
+
+		case md5(PAGINA_INICIAL):
+		  header("Location:".PAGINA_INICIAL);
+		  break;
 	}
-	if(strpos($_GET['flag'],'view') !== false){
+	if(strpos($_GET['flag'],'mailbox_view') !== false){
 		header("Location:".$pagina_lock);
 	}
 }
 /*** fim redirecionamento **/
-
-$inc = "sim";
-$pagina = strtr(end(explode('/', $_SERVER['PHP_SELF'])),'?', true);
-
-include_once('config.inc.php');
-include_once(PATH . '/controllers/autenticacao/autentica.inc.php');//autentica e gera todos os dados de usuario
 ?>
 <!DOCTYPE html>
 <html>

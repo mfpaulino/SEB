@@ -21,7 +21,7 @@ $(document).ready(function() {
 					stringLength: {
 						min: 8,
 						max: 20,
-						message: 'Mínimo de 8 caracteres'
+						message: 'Mínimo de 8 e máximo de 20 caracteres'
 					},
 					different: {
 						field: 'cpf',

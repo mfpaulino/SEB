@@ -4,7 +4,8 @@
 * escrever email
 * **********************************************************************************************************/
 $inc = "sim";
-$pagina = md5(strtr(end(explode('/', $_SERVER['PHP_SELF'])),'?', true));
+//$pagina = md5(strtr(end(explode('/', $_SERVER['PHP_SELF'])),'?', true));
+$pagina = strtr(end(explode('/', $_SERVER['PHP_SELF'])),'?', true);
 
 include_once('config.inc.php');
 include_once(PATH . '/controllers/autenticacao/autentica.inc.php');
@@ -28,6 +29,7 @@ if(isset($_POST['cpf_destinatario'])){
 	<link rel="stylesheet" href="componentes/externos/bootstrap/dist/css/bootstrap.min.css">
 	<link rel="stylesheet" href="componentes/externos/bootstrap/plugins/font-awesome/css/font-awesome.min.css">
 	<link rel="stylesheet" href="componentes/externos/bootstrap/plugins/Ionicons/css/ionicons.min.css">
+	<link rel="stylesheet" href="componentes/externos/bootstrap/plugins/bootstrap-validator/css/bootstrapValidator.min.css">
 	<link rel="stylesheet" href="componentes/externos/bootstrap/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.css">
 	<link rel="stylesheet" href="componentes/externos/bootstrap/plugins/bootstrap-multiselect/dist/css/bootstrap-multiselect.css" type="text/css">
 	<link rel="stylesheet" href="componentes/externos/bootstrap/plugins/bootstrap-fileinput/css/fileinput.min.css">

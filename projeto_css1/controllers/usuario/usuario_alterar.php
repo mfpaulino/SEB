@@ -203,7 +203,7 @@ if(isset($_POST['flag'])){
 		$_SESSION['botao'] = "danger";
 	}
 	$flag = md5("usuario_alterar");
-	header(sprintf("Location:../../".$pagina."?flag=$flag"));
+	header("Location:../../".$pagina."?flag=$flag");
 }
 else {
 	include_once(PATH . '/controllers/autenticacao/'.ACESSO_NEGADO);

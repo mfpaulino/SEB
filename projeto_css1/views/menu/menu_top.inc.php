@@ -1,5 +1,11 @@
 <?php
 if ($inc == "sim"){
+	if (strpos($pagina,'mailbox_view') === false){//qualquer script <> mailbox_view
+		$pagina_lock = md5($pagina);//será usado no redirecionamento da PAGINA_INICIAL (user.php)
+	}
+	else{
+		$pagina_lock = md5(date('d-m-Y')).$pagina;//será usado no redirecionamento da PAGINA_INICIAL (user.php)
+	}
 	?>
 	<!-- Sidebar toggle button-->
 	<a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button"><span class="sr-only">Toggle navigation</span></a>
@@ -28,7 +34,7 @@ if ($inc == "sim"){
 					<!-- Menu Body-->
 					<li class="user-body">
 						<div class="pull-left">
-							<a href="<?php echo PAGINA_BLOQUEIO.'?flag='.($pagina);?>"><button type="button" class="btn btn-warning btn-flat">Bloquear tela</button></a>
+							<a href="<?php echo PAGINA_BLOQUEIO.'?flag='.($pagina_lock);?>"><button type="button" class="btn btn-warning btn-flat">Bloquear tela</button></a>
 						</div>
 						<div class="pull-right">
 							<?php $flag = md5("logout");?>
