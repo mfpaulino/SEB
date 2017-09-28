@@ -4,7 +4,6 @@
 * escrever email
 * **********************************************************************************************************/
 $inc = "sim";
-//$pagina = md5(strtr(end(explode('/', $_SERVER['PHP_SELF'])),'?', true));
 $pagina = strtr(end(explode('/', $_SERVER['PHP_SELF'])),'?', true);
 
 include_once('config.inc.php');
@@ -159,9 +158,7 @@ if(isset($_POST['cpf_destinatario'])){
 										<input name="assunto" class="form-control" placeholder="Assunto:" value="<?php echo $_POST['assunto'];?>" autofocus />
 									</div>
 									<div class="form-group">
-										 <div class="lnbrd">
-											<textarea name="texto" id="texto" placeholder="Digite a mensagem..." class="textarea form-control" style="height: 300px"><?php echo $_POST['texto'];?></textarea>
-										</div>
+										<textarea name="texto" id="texto" placeholder="Digite a mensagem..." class="textarea form-control" style="height: 300px"><?php echo $_POST['texto'];?></textarea>
 									</div>
 								</div>
 								<input name="flag" type="hidden" />

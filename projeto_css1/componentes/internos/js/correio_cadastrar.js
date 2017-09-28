@@ -14,7 +14,6 @@ $(document).ready(function () {
 				}
 			},
 			texto: {
-				//group: '.lnbrd',
 				validators: {
 					notEmpty: {
 						message: 'Digite o texto da mensagem'
