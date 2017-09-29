@@ -75,24 +75,21 @@ if(isset($_POST['cpf_destinatario'])){
 				else {
 					include_once('controllers/usuario/usuario_alertas_destruir.inc.php');
 				}
+
+				include_once('views/usuario/view_usuario_perfil.inc.php');
+				include_once('views/usuario/form_usuario_alterar.inc.php');
+				include_once('views/usuario/form_senha_alterar.inc.php');
+				include_once('views/usuario/form_unidade_alterar.inc.php');
+				include_once('views/usuario/view_usuario_alerta_sessao.inc.php');
+				include_once('views/usuario/view_usuario_fim_sessao.inc.php');
+				include_once('views/usuario/view_usuario_alertas.inc.php');
+
+				if(isset($_SESSION['alterar_senha_logout']) or isset($_SESSION['alterar_codom'])){
+					session_destroy();
+				}
 				?>
-				<!-- Inicio modalVisualizar-->
-				<?php include_once('views/usuario/view_usuario_perfil.inc.php');?>
-				<!-- Inicio modalEditar -->
-				<?php include_once('views/usuario/form_usuario_alterar.inc.php');?>
-				<!-- inicio alterar_senha -->
-				<?php include_once('views/usuario/form_senha_alterar.inc.php');?>
-				<!-- Inicio modalTrocarUnidade -->
-				<?php include_once('views/usuario/form_unidade_alterar.inc.php');?>
-				<!-- inicio alerta Sessao -->
-				<?php include_once('views/usuario/view_usuario_alerta_sessao.inc.php');?>
-				<!-- inicio alerta FimSessao -->
-				<?php include_once('views/usuario/view_usuario_fim_sessao.inc.php');?>
-				<!-- Inicio modalAlerta-->
-				<?php include_once('views/usuario/view_usuario_alertas.inc.php');?>
-				<?php if(isset($_SESSION['alterar_senha_logout']) or isset($_SESSION['alterar_codom'])){session_destroy();}//termina a sessao se alterar a senha?>
-				<!--------------------------
-				| Your Page Content Here |
+				<!-------------------------
+				| Inicio Conteúdo         |
 				-------------------------->
 				<div class="row">
 					<div class="col-md-3">
@@ -172,92 +169,16 @@ if(isset($_POST['cpf_destinatario'])){
 						</div>
 					</div>
 				</div>
+				<!-------------------------
+				| Final Conteúdo          |
+				-------------------------->
 			</section>
 		</div>
-		<?php include_once('componentes/internos/php/rodape.inc.php');?>
 		<aside class="control-sidebar control-sidebar-dark">
-			<ul class="nav nav-tabs nav-justified control-sidebar-tabs">
-				<li class="active"><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i></a></li>
-				<li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gear"></i></a></li>
-			</ul>
-			<div class="tab-content">
-				<div class="tab-pane active" id="control-sidebar-home-tab">
-					<h3 class="control-sidebar-heading">Recent Activity</h3>
-					<ul class="control-sidebar-menu">
-						<li>
-							<a href="javascript:;">
-								<i class="menu-icon fa fa-birthday-cake bg-red"></i>
-								<div class="menu-info">
-									<h4 class="control-sidebar-subheading">Langdon's Birthday</h4>
-									<p>Will be 23 on April 24th</p>
-								</div>
-							</a>
-						</li>
-					</ul>
-					<h3 class="control-sidebar-heading">Tasks Progress</h3>
-					<ul class="control-sidebar-menu">
-						<li>
-							<a href="javascript:;">
-								<h4 class="control-sidebar-subheading">
-									Custom Template Design
-									<span class="pull-right-container">
-										<span class="label label-danger pull-right">70%</span>
-									</span>
-								</h4>
-								<div class="progress progress-xxs">
-									<div class="progress-bar progress-bar-danger" style="width: 70%"></div>
-								</div>
-							</a>
-						</li>
-					</ul>
-				</div>
-				<div class="tab-pane" id="control-sidebar-stats-tab">Stats Tab Content</div>
-				<div class="tab-pane" id="control-sidebar-settings-tab">
-					<form method="post">
-						<h3 class="control-sidebar-heading">Perfil do Usuário</h3>
-						<div class="form-group">
-							<label class="control-sidebar-subheading">
-								<a href="#" data-tooltip="tooltip" title="Exibir Perfil" data-toggle="modal" data-target="#modalVisualizar<?php echo $cpf; ?>">Exibir</a>
-							</label>
-							<label class="control-sidebar-subheading">
-								<a href="#" data-toggle="modal" data-target="#modalEditar"
-								data-tooltip="tooltip" title="Editar Perfil"
-								data-toggle="modal"
-								data-target="#modalEditar"
-								data-cpf="<?php echo $cpf; ?>"
-								data-rg="<?php echo $rg_usuario; ?>"
-								data-id_posto="<?php echo $id_posto_usuario; ?>"
-								data-posto="<?php echo $posto_usuario; ?>"
-								data-nome_guerra="<?php echo $nome_guerra_usuario; ?>"
-								data-nome="<?php echo $nome_usuario; ?>"
-								data-email="<?php echo $email_usuario; ?>"
-								data-ritex="<?php echo $ritex_usuario; ?>"
-								data-celular="<?php echo $celular_usuario; ?>"
-								data-id_perfil="<?php echo $id_perfil_usuario; ?>"
-								data-perfil="<?php echo $perfil_usuario; ?>"
-								data-unidade="<?php echo $sigla_usuario; ?>"
-								data-avatar="<?php echo 'views/avatar/'.$avatar_usuario; ?>">
-								Editar
-								</a>
-							</label>
-							<label class="control-sidebar-subheading">
-								<a href="#" data-tooltip="tooltip" title="O usuário deverá realizar novo login após alteração da senha!" data-toggle="modal" data-target="#modalTrocarSenha">Alterar senha</a>
-							</label>
-							<label class="control-sidebar-subheading">
-								<a href="#" data-tooltip="tooltip" title="O usuário será desabilitado na Unidade atual e ficará aguardando habilitação na nova Unidade!" data-toggle="modal" data-target="#modalTrocarUnidade" data-unidade="<?php echo $sigla_usuario; ?>">
-								Alterar Unidade
-								</a>
-							</label>
-							<br />
-							<p>
-							O usuário poderá visualizar e/ou alterar as informações do seu perfil clicando nos links acima.
-							</p>
-						</div>
-					</form>
-				</div>
-			</div>
+			<?php include_once('views/menu/menu_right.inc.php');?>
 		</aside>
 		<div class="control-sidebar-bg"></div>
+		<?php include_once('componentes/internos/php/rodape.inc.php');?>
 	</div>
 	<script src="componentes/externos/jquery/dist/jquery.min.js"></script>
 	<script src="componentes/externos/bootstrap/dist/js/bootstrap.min.js"></script>

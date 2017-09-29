@@ -1,3 +1,5 @@
+<?php
+if ($inc == "sim"){?>
 <div class="user-panel">
 	<div class="pull-left image">
 		<img src="views/avatar/<?php echo $avatar_usuario;?>" class="img-circle" alt="User Image">
@@ -31,3 +33,9 @@
 		</ul>
 	</li>
 </u>
+<?php
+}
+else {
+	include_once('../../controllers/autenticacao/acesso_negado.php');//exibe msg de ACESSO NEGADO
+}
+?>

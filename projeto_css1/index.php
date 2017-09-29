@@ -71,24 +71,21 @@ else if ($_SESSION['acesso'] == "lock"){
 		</div>
 	</div>
 	<?php
-
 	if(isset($_GET['flag']) and ($_GET['flag'] == md5('usuario_cadastrar') or  $_GET['flag'] == md5('senha_alterar') or  $_GET['flag'] == md5('senha_recuperar') or $_GET['flag'] == md5('usuario_acessar') or $_GET['flag'] == md5('logout') or $_GET['flag'] == md5('acesso_indevido'))){
 		include_once('controllers/usuario/usuario_alertas_criar.inc.php');
 	}
 	else {
 		include_once('controllers/usuario/usuario_alertas_destruir.inc.php');
 	}
+
+	include_once('views/usuario/form_senha_recuperar.inc.php');
+	include_once('views/usuario/form_usuario_cadastrar.inc.php');
+	include_once('views/usuario/view_usuario_alertas.inc.php');
+
+	if(isset($_SESSION['alterar_senha_logout'])){
+		session_destroy();//termina a sessao se alterar a senha
+	}
 	?>
-	<!--inicio modalAlerta -->
-	<?php include_once('views/usuario/view_usuario_alertas.inc.php');?>
-	<?php if(isset($_SESSION['alterar_senha_logout'])){session_destroy();}//termina a sessao se alterar a senha?>
-	<div class="container">
-		<!--alterarModal-->
-		<?php include_once('views/usuario/form_senha_recuperar.inc.php');?>
-		<!--cadastroModal-->
-		<?php include_once('views/usuario/form_usuario_cadastrar.inc.php');?>
-	</div>
-	<?php //include_once('componentes/internos/php/rodape.inc.php');?>
 	<script src="componentes/externos/jquery/dist/jquery.min.js"></script>
 	<script src="componentes/externos/bootstrap/dist/js/bootstrap.min.js"></script>
 	<script src="componentes/externos/bootstrap/plugins/bootstrap-validator/js/bootstrapValidator.min.js"></script>
@@ -101,8 +98,8 @@ else if ($_SESSION['acesso'] == "lock"){
 	<script>
 		<!-- Redimensona o tamanho padrao do modal. Está no siaudi.css-->
 		$(".modal-wide").on("show.bs.modal", function() {
-		  var height = $(window).height() - 200;
-		  $(this).find(".modal-body").css("max-height", height);
+			var height = $(window).height() - 200;
+			$(this).find(".modal-body").css("max-height", height);
 		});
 	</script>
 	<script>
@@ -141,8 +138,7 @@ else if ($_SESSION['acesso'] == "lock"){
 				$('#modalTrocarSenha').modal('show');
 			});
 		</script>
-	<?php } ?>
-	<?php
+	<?php }
 	if ($msg <> ""){?>
 		<script>
 			$(document).ready(function(){

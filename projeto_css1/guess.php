@@ -66,14 +66,12 @@ switch ($status_usuario){
 					</div>
 					<div id="status_sessao" class="pull-left info">
 						<p><?php echo $posto_usuario . " " . $nome_guerra_usuario;?></p>
-						<!-- Status-->
 						<a href="#"><i class="fa fa-circle text-success"></i> Online</a>
 					</div>
 				</div>
 				<ul class="sidebar-menu" data-widget="tree">
 					<li class="active"><a href="#"><i class="fa fa-home"></i>Home</a></li>
 					<li><a href="#"><i class="fa fa-book"></i> Guia do Usuário</a></li>
-					<!--<li><a href="#" data-toggle="modal" data-target="#modalTrocarSenha"><i class="fa fa-lock"></i> <span>Alterar senha</span></a></li>-->
 					<?php $flag = md5("logout");?>
 					<li><a href="controllers/autenticacao/logout.php?flag=<?php echo $flag;?>"><i class="fa fa-sign-out"></i> <span>Sair</span></a></li>
 				</ul>
@@ -96,23 +94,19 @@ switch ($status_usuario){
 						else {
 							 include_once('controllers/usuario/usuario_alertas_destruir.inc.php');
 						}
-						?>
-						<!-- Inicio modalVisualizar-->
-						<?php include_once('views/usuario/view_usuario_perfil.inc.php');?>
-						<!-- Inicio modalEditar -->
-						<?php include_once('views/usuario/form_usuario_alterar.inc.php');?>
-						<!-- Inicio modalTrocarUnidade -->
-						<?php include_once('views/usuario/form_unidade_alterar.inc.php');?>
-						<!-- inicio modalTrocarSenha -->
-						<?php include_once('views/usuario/form_senha_alterar.inc.php'); ?>
-						<!-- inicio alerta Sessao -->
-						<?php include_once('views/usuario/view_usuario_alerta_sessao.inc.php');?>
-						<!-- inicio alerta FimSessao -->
-						<?php include_once('views/usuario/view_usuario_fim_sessao.inc.php');?>
-						<!-- Inicio modalAlerta-->
-						<?php include_once('views/usuario/view_usuario_alertas.inc.php');?>
-						<?php if(isset($_SESSION['alterar_senha_logout'])){session_destroy();}//termina a sessao se alterar a senha?>
 
+						include_once('views/usuario/view_usuario_perfil.inc.php');
+						include_once('views/usuario/form_usuario_alterar.inc.php');
+						include_once('views/usuario/form_unidade_alterar.inc.php');
+						include_once('views/usuario/form_senha_alterar.inc.php');
+						include_once('views/usuario/view_usuario_alerta_sessao.inc.php');
+						include_once('views/usuario/view_usuario_fim_sessao.inc.php');
+						include_once('views/usuario/view_usuario_alertas.inc.php');
+
+						if(isset($_SESSION['alterar_senha_logout'])){
+							session_destroy();//termina a sessao se alterar a senha
+						}
+						?>
 						<small><span id="contador"></span></small>
 					</div>
 				</div>

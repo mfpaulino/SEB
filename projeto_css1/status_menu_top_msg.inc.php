@@ -61,13 +61,12 @@ else {
 								Você tem
 								<?php echo $qtde_msg;
 								if($qtde_msg == 1){
-									echo ' nova mensagem';
+									echo ' novo correio';
 								}
 								else{
-									echo ' novas mensagens';
+									echo ' novos correios';
 								}
 								?>
-								 de correio
 							</b>
 						</span>
 					<li>
@@ -89,7 +88,7 @@ else {
 							</li>
 						</ul>
 					</li>
-					<li class="footer"><a href="mailbox_input.php">Ver Todas as Mensagens</a></li>
+					<li class="footer"><a href="mailbox_input.php">Ver todos os correios</a></li>
 				</ul>
 			<?php } ?>
 		</li>
