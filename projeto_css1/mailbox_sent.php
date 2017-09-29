@@ -146,14 +146,14 @@ $proximo = $pag +1;
 				<div class="col-md-9">
 					<div class="box box-primary">
 						<div class="box-header with-border">
-							<h3 class="box-title">Enviados</h3>
+							<h3 class="box-title">Enviados</h3><!-- data-toggle="confirmation-" data-placement="top" data-btn-ok-label="Continuar" data-btn-ok-icon="glyphicon glyphicon-share-alt" data-btn-ok-class="btn-success" data-btn-cancel-label="Parar" data-btn-cancel-icon="glyphicon glyphicon-ban-circle" data-btn-cancel-class="btn-danger" data-title="Confirma exclusão?" data-content="" -->
 						</div>
 						<div class="box-body no-padding">
 						<?php
 						if ($total_msg > 0) {?>
 							<div class="mailbox-controls">
 								<button  class="btn btn-default btn-sm checkbox-toggle" title="Selecionar todas"><i class="fa fa-square-o"></i></button>
-								<button  type="submit" form="form_excluir_lote" class="btn btn-default btn-sm" data-toggle="confirmation" data-placement="top" data-btn-ok-label="Continuar" data-btn-ok-icon="glyphicon glyphicon-share-alt" data-btn-ok-class="btn-success" data-btn-cancel-label="Parar" data-btn-cancel-icon="glyphicon glyphicon-ban-circle" data-btn-cancel-class="btn-danger" data-title="Confirma exclusão?" data-content=""> <i class="fa fa-trash-o"></i></button>
+								<button  type="submit" form="form_excluir_lote" class="btn btn-default btn-sm" > <i class="fa fa-trash-o"></i></button>
 								<div class="pull-right">
 									<?php echo $pag."-".$total_pag."/".$total_msg;?>
 									<div class="btn-group">
@@ -222,7 +222,7 @@ $proximo = $pag +1;
 									echo "
 									<tr>
 									<td>
-										<input type='checkbox' name='id_correio[]' id='id_correio' value = '$row_enviados[id_correio]' />
+										<input type='checkbox' name='id_correio[]' value = '$row_enviados[id_correio]' />
 										<input type='hidden' name='input_sent' value='s' />
 										<input type='hidden' name='pagina' value='$pagina' />
 										<input type='hidden' name='flag' />

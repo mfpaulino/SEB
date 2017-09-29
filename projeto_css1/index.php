@@ -47,6 +47,9 @@ else if ($_SESSION['acesso'] == "lock"){
 		.main-header .navbar{
 			margin-left: 0px;
 		}
+		.has-error .help-block{
+			background-color:#ffffff;
+		}
 	</style>
 </head>
 <body class="skin-green login-page">
