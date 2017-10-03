@@ -198,7 +198,6 @@ $proximo = $pag +1;
 								<tbody>
 									<form name='form_excluir_lote' id='form_excluir_lote' method='post' action='controllers/correio/correio_excluir_lote.php'>
 									<?php
-									//$j = 0;
 									while($row_enviados = $con_limite->fetch_assoc()){
 
 										if(date('d/m/Y') - 1 == date('d/m/Y', strtotime($row_enviados['data']))){
@@ -213,11 +212,13 @@ $proximo = $pag +1;
 
 										$qtde = substr_count($row_enviados['destinatario'], ";");
 										$lista_destinatario = explode(";", $row_enviados['destinatario']);
+
 										$destinatario = "";
+										$lidos = "";
 
 										for($i = 0; $i < $qtde; $i++){
 
-											$sql_destinatario = "SELECT id_usuario, codom, nome_guerra, p.posto, codom from usuarios, postos p where usuarios.id_usuario = '$lista_destinatario[$i]' and usuarios.id_posto = p.id_posto order by p.id_posto";
+											$sql_destinatario = "SELECT id_usuario, codom, nome_guerra, p.posto from usuarios, postos p where usuarios.id_usuario = '$lista_destinatario[$i]' and usuarios.id_posto = p.id_posto order by p.id_posto";
 											$con_destinatario = $mysqli->query($sql_destinatario);
 											$row_destinatario = $con_destinatario->fetch_assoc();
 
@@ -226,6 +227,27 @@ $proximo = $pag +1;
 											$row_sigla = $con_sigla->fetch_assoc();
 
 											$destinatario = $destinatario . "[".$row_destinatario['posto']." ". $row_destinatario['nome_guerra']." - ".$row_sigla['sigla']."] ";
+
+											/**** exibe um tooltip sobre o destinatario, informando quem já leu o correio*****/
+											$sql_lidos = "SELECT id_usuario, r.destinatario, codom, nome_guerra, p.posto, r.lida FROM correio_recebidos r, correio_enviados e, usuarios u, postos p where r.id_correio = '$row_enviados[id_correio]' and r.lida = 'nao' and u.id_usuario = r.destinatario and r.destinatario = '$lista_destinatario[$i]' and u.id_posto = p.id_posto  order by p.id_posto";
+											$con_lidos = $mysqli->query($sql_lidos);
+											$row_lidos = $con_lidos->fetch_assoc();
+
+											$qtde_lidos = $con_lidos->num_rows;
+
+											$sql_sigla_lidos = "SELECT sigla FROM cciex_om WHERE codom = '$row_lidos[codom]' limit 1";
+											$con_sigla_lidos = $mysqli1->query($sql_sigla_lidos);
+											$row_sigla_lidos = $con_sigla_lidos->fetch_assoc();
+
+											if($qtde_lidos == 0){
+												$lidos = "";
+												$aviso_leitura = "Este correio foi lido por todos os destinatários.";
+											}
+											else {
+												$lidos = $lidos . "[".$row_lidos['posto']." ". $row_lidos['nome_guerra']." - ".$row_sigla_lidos['sigla']."] ";
+												$aviso_leitura = "Quem ainda não leu: ".$lidos;
+											}
+											/***/
 										}
 										echo "
 										<tr>
@@ -235,12 +257,12 @@ $proximo = $pag +1;
 											<input type='hidden' name='pagina' value='$pagina' />
 											<input type='hidden' name='flag' />
 										</td>
-										<td class='mailbox-name'><a href='mailbox_view.php?flag=$row_enviados[id_correio]&flag0=s&flag1=$destinatario'>$destinatario</a></td>
+										<td class='mailbox-name'><a href='mailbox_view.php?flag=$row_enviados[id_correio]&flag0=s&flag1=$destinatario' title='$aviso_leitura'>$destinatario</a></td>
 										<td class='mailbox-subject'>$row_enviados[assunto]</td>
+										<td class='mailbox-subject'>$lidos</td>
 										<td class='mailbox-date'>$data</td>
 										</tr>"
 										;
-										//$j++;
 									}
 									?>
 									</form>

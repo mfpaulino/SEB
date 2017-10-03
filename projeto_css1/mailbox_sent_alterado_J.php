@@ -213,13 +213,11 @@ $proximo = $pag +1;
 
 										$qtde = substr_count($row_enviados['destinatario'], ";");
 										$lista_destinatario = explode(";", $row_enviados['destinatario']);
-
 										$destinatario = "";
-										$lidos = "";
 
 										for($i = 0; $i < $qtde; $i++){
 
-											$sql_destinatario = "SELECT id_usuario, codom, nome_guerra, p.posto from usuarios, postos p where usuarios.id_usuario = '$lista_destinatario[$i]' and usuarios.id_posto = p.id_posto order by p.id_posto";
+											$sql_destinatario = "SELECT id_usuario, codom, nome_guerra, p.posto, codom from usuarios, postos p where usuarios.id_usuario = '$lista_destinatario[$i]' and usuarios.id_posto = p.id_posto order by p.id_posto";
 											$con_destinatario = $mysqli->query($sql_destinatario);
 											$row_destinatario = $con_destinatario->fetch_assoc();
 
@@ -228,30 +226,6 @@ $proximo = $pag +1;
 											$row_sigla = $con_sigla->fetch_assoc();
 
 											$destinatario = $destinatario . "[".$row_destinatario['posto']." ". $row_destinatario['nome_guerra']." - ".$row_sigla['sigla']."] ";
-
-
-											/***/
-											//$sql_lidos = "SELECT r.destinatario, codom, nome_guerra, p.posto, r.lida FROM correio_recebidos r, correio_enviados e, usuarios u, postos p where r.id_correio = e.id_correio and r.lida = 'nao' and u.id_usuario = r.destinatario and r.destinatario = '$lista_destinatario[$i]' and u.id_posto = p.id_posto  order by p.id_posto";
-
-											$sql_lidos = "SELECT r.destinatario, r.lida FROM correio_recebidos r, correio_enviados e where  r.lida = 'sim' ";
-
-
-											$con_lidos = $mysqli->query($sql_lidos);
-											$row_lidos = $con_lidos->fetch_assoc();
-
-											$sql_sigla_lidos = "SELECT sigla FROM cciex_om WHERE codom = '$row_lidos[codom]' limit 1";
-											$con_sigla_lidos = $mysqli1->query($sql_sigla_lidos);
-											$row_sigla_lidos = $con_sigla_lidos->fetch_assoc();
-
-
-
-											//$lidos = $lidos . "[".$row_lidos['posto']." ". $row_lidos['nome_guerra']." - ".$row_sigla_lidos['sigla']."] ";
-											$lidos = $lidos . "[".$lista_destinatario[$i]."]" . "[".$row_lidos['lida']."]";
-											/***/
-
-
-
-
 										}
 										echo "
 										<tr>
@@ -262,8 +236,7 @@ $proximo = $pag +1;
 											<input type='hidden' name='flag' />
 										</td>
 										<td class='mailbox-name'><a href='mailbox_view.php?flag=$row_enviados[id_correio]&flag0=s&flag1=$destinatario'>$destinatario</a></td>
-										<td class='mailbox-name'>$lidos</td>
-										<!--<td class='mailbox-subject'>$row_enviados[assunto]</td>-->
+										<td class='mailbox-subject'>$row_enviados[assunto]</td>
 										<td class='mailbox-date'>$data</td>
 										</tr>"
 										;
