@@ -198,7 +198,7 @@ $proximo = $pag +1;
 								<tbody>
 									<form name='form_excluir_lote' id='form_excluir_lote' method='post' action='controllers/correio/correio_excluir_lote.php'>
 									<?php
-									//$j = 0;
+									$j = 0;
 									while($row_enviados = $con_limite->fetch_assoc()){
 
 										if(date('d/m/Y') - 1 == date('d/m/Y', strtotime($row_enviados['data']))){
@@ -240,7 +240,7 @@ $proximo = $pag +1;
 										<td class='mailbox-date'>$data</td>
 										</tr>"
 										;
-										//$j++;
+										$j++;
 									}
 									?>
 									</form>
