@@ -52,13 +52,13 @@ else {
 <div class="navbar-custom-menu">
 	<ul class="nav navbar-nav">
 		<li class="dropdown messages-menu">
-			<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-envelope"></i><span class="label label-default"><?php echo $qtde_msg;?></span></a>
+			<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-envelope" title="Novos correios"></i><span class="label label-default"><?php echo $qtde_msg;?></span></a>
 			<?php if($qtde_msg > 0){?>
 				<ul class="dropdown-menu">
 					<li class="header">
 						<span>
 							<b>
-								Você tem
+								Há
 								<?php echo $qtde_msg;
 								if($qtde_msg == 1){
 									echo ' novo correio';
@@ -83,7 +83,7 @@ else {
 										<?php echo "(".$row_sigla_ultimo_correio['sigla'].")";?>
 									</h4>
 									<p><?php echo $assunto;?>
-									<br /><small><i class="fa fa-clock"></i>&nbsp;&nbsp;<?php echo $data;?></small></p>
+									<br /><small>&nbsp;&nbsp;<?php echo $data;?></small></p>
 								</a>
 							</li>
 						</ul>
@@ -93,7 +93,7 @@ else {
 			<?php } ?>
 		</li>
 		<li class="dropdown notifications-menu">
-			<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-warning"></i><span class="label label-warning">10</span></a>
+			<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-warning" title="Novos alertas"></i><span class="label label-warning">10</span></a>
 			<ul class="dropdown-menu">
 				<li class="header">You have 10 notifications</li>
 				<li>
@@ -109,7 +109,7 @@ else {
 			</ul>
 		</li>
 		<li class="dropdown tasks-menu">
-			<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell"></i><span class="label label-danger">9</span></a>
+			<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell" title="Novos avisos"></i><span class="label label-danger">9</span></a>
 			<ul class="dropdown-menu">
 				<li class="header">You have 9 tasks</li>
 				<li>

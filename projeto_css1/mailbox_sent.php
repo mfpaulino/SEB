@@ -214,6 +214,7 @@ $proximo = $pag +1;
 										$lista_destinatario = explode(";", $row_enviados['destinatario']);
 
 										$destinatario = "";
+										$qtde_lidos = 0;
 										$lidos = "";
 
 										for($i = 0; $i < $qtde; $i++){
@@ -228,12 +229,12 @@ $proximo = $pag +1;
 
 											$destinatario = $destinatario . "[".$row_destinatario['posto']." ". $row_destinatario['nome_guerra']." - ".$row_sigla['sigla']."] ";
 
-											/**** exibe um tooltip sobre o destinatario, informando quem já leu o correio*****/
-											$sql_lidos = "SELECT id_usuario, r.destinatario, codom, nome_guerra, p.posto, r.lida FROM correio_recebidos r, correio_enviados e, usuarios u, postos p where r.id_correio = '$row_enviados[id_correio]' and r.lida = 'nao' and u.id_usuario = r.destinatario and r.destinatario = '$lista_destinatario[$i]' and u.id_posto = p.id_posto  order by p.id_posto";
+											/**** exibe um tooltip mouseover no destinatario, informando quem já leu o correio*****/
+											$sql_lidos = "SELECT u.id_usuario, r.destinatario, u.codom, u.nome_guerra, p.posto, r.lida FROM correio_recebidos r, correio_enviados e, usuarios u, postos p where r.id_correio = '$row_enviados[id_correio]' and r.lida = 'nao' and u.id_usuario = r.destinatario and r.destinatario = '$lista_destinatario[$i]' and u.id_posto = p.id_posto";
 											$con_lidos = $mysqli->query($sql_lidos);
 											$row_lidos = $con_lidos->fetch_assoc();
 
-											$qtde_lidos = $con_lidos->num_rows;
+											$qtde_lidos = $qtde_lidos + $con_lidos->num_rows;
 
 											$sql_sigla_lidos = "SELECT sigla FROM cciex_om WHERE codom = '$row_lidos[codom]' limit 1";
 											$con_sigla_lidos = $mysqli1->query($sql_sigla_lidos);
@@ -241,14 +242,17 @@ $proximo = $pag +1;
 
 											if($qtde_lidos == 0){
 												$lidos = "";
+												$fa_icon = "fa fa-check-circle text-success";
 												$aviso_leitura = "Este correio foi lido por todos os destinatários.";
 											}
 											else {
-												$lidos = $lidos . "[".$row_lidos['posto']." ". $row_lidos['nome_guerra']." - ".$row_sigla_lidos['sigla']."] ";
+												$lidos = str_replace("[  - ]","",$lidos . "[".$row_lidos['posto']." ". $row_lidos['nome_guerra']." - ".$row_sigla_lidos['sigla']."] ");
+												$fa_icon="fa fa-info-circle text-danger";
 												$aviso_leitura = "Quem ainda não leu: ".$lidos;
 											}
-											/***/
+											/**********************************/
 										}
+										//$lidos = str_replace("[  - ]","",$lidos);
 										echo "
 										<tr>
 										<td>
@@ -257,9 +261,9 @@ $proximo = $pag +1;
 											<input type='hidden' name='pagina' value='$pagina' />
 											<input type='hidden' name='flag' />
 										</td>
-										<td class='mailbox-name'><a href='mailbox_view.php?flag=$row_enviados[id_correio]&flag0=s&flag1=$destinatario' title='$aviso_leitura'>$destinatario</a></td>
+										<td><a href='mailbox_view.php?flag=$row_enviados[id_correio]&flag0=s&flag1=$destinatario' title='$aviso_leitura'><i class='$fa_icon'></i></a></td>
+										<td class='mailbox-name'><a href='mailbox_view.php?flag=$row_enviados[id_correio]&flag0=s&flag1=$destinatario' title='$aviso_leitura' >$destinatario</a></td>
 										<td class='mailbox-subject'>$row_enviados[assunto]</td>
-										<td class='mailbox-subject'>$lidos</td>
 										<td class='mailbox-date'>$data</td>
 										</tr>"
 										;

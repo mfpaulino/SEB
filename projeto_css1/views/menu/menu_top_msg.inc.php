@@ -41,7 +41,7 @@ if ($inc == "sim"){
 						<li class="header">
 							<span>
 								<b>
-									Você tem
+									Há
 									<?php echo $row_qtde_correio['qtde_msg'];
 									if($row_qtde_correio['qtde_msg'] == 1){
 										echo ' novo correio';
@@ -66,7 +66,7 @@ if ($inc == "sim"){
 											<?php echo "(".$row_sigla_ultimo_correio['sigla'].")";?>
 										</h4>
 										<p><?php echo $assunto;?>
-										<br /><small><i class="fa fa-clock"></i>&nbsp;&nbsp;<?php echo $data;?></small></p>
+										<br /><small>&nbsp;&nbsp;<?php echo $data;?></small></p>
 									</a>
 								</li>
 							</ul>

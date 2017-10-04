@@ -21,7 +21,7 @@ if ($tempo_inatividade >= (TEMPO_MAX_INATIVIDADE)){
 	?>
 	<a href="#"><i class="fa fa-circle text-danger"></i> Offline</a>
 	<p></p>
-	<p><a href="index.php"><span style="color:#ffffff;"><u>Logar novamente</u></span></a></p>
+	<p><a href="index.php"><span style="color:#ffffff;">Logar novamente</span></a></p>
 	<?php
 	if($_SESSION['contador_sessao'] == 1){?>
 	<script>
