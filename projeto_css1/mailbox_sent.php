@@ -149,7 +149,7 @@ $proximo = $pag +1;
 							if ($total_msg > 0) {?>
 								<div class="mailbox-controls">
 									<button  class="btn btn-default btn-sm checkbox-toggle" title="Selecionar todas"><i class="fa fa-square-o"></i></button>
-									<button type="submit" form="form_excluir_lote" class="btn btn-default btn-sm"
+									<button type="submit" form="form_excluir_lote"  class="btn btn-default btn-sm"
 										data-toggle="confirmation"
 										data-placement="top"
 										data-btn-ok-label="Continuar"
