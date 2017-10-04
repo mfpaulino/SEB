@@ -242,29 +242,40 @@ $proximo = $pag +1;
 
 											if($qtde_lidos == 0){
 												$lidos = "";
-												$fa_icon = "fa fa-check-circle text-success";
+												$fa_icon = "fa fa-star text-success-";
+												$cor = "style=color:green;'";
 												$aviso_leitura = "Este correio foi lido por todos os destinatários.";
 											}
 											else {
 												$lidos = str_replace("[  - ]","",$lidos . "[".$row_lidos['posto']." ". $row_lidos['nome_guerra']." - ".$row_sigla_lidos['sigla']."] ");
-												$fa_icon="fa fa-info-circle text-danger";
+												$fa_icon="fa fa-star text-danger-";
+												$cor = "style=color:orange;'";
 												$aviso_leitura = "Quem ainda não leu: ".$lidos;
 											}
 											/**********************************/
 										}
-										//$lidos = str_replace("[  - ]","",$lidos);
 										echo "
 										<tr>
-										<td>
-											<input type='checkbox' name='id_correio[]' value = '$row_enviados[id_correio]' />
-											<input type='hidden' name='input_sent' value='s' />
-											<input type='hidden' name='pagina' value='$pagina' />
-											<input type='hidden' name='flag' />
-										</td>
-										<td><a href='mailbox_view.php?flag=$row_enviados[id_correio]&flag0=s&flag1=$destinatario' title='$aviso_leitura'><i class='$fa_icon'></i></a></td>
-										<td class='mailbox-name'><a href='mailbox_view.php?flag=$row_enviados[id_correio]&flag0=s&flag1=$destinatario' title='$aviso_leitura' >$destinatario</a></td>
-										<td class='mailbox-subject'>$row_enviados[assunto]</td>
-										<td class='mailbox-date'>$data</td>
+											<td>
+												<input type='checkbox' name='id_correio[]' value = '$row_enviados[id_correio]' />
+												<input type='hidden' name='input_sent' value='s' />
+												<input type='hidden' name='pagina' value='$pagina' />
+												<input type='hidden' name='flag' />
+											</td>
+											<td>
+												<a href='mailbox_view.php?flag=$row_enviados[id_correio]&flag0=s&flag1=$destinatario' title='$aviso_leitura'>
+													<i class='$fa_icon' $cor></i>
+												</a>
+											</td>
+											<td class='mailbox-name'>
+												<a href='mailbox_view.php?flag=$row_enviados[id_correio]&flag0=s&flag1=$destinatario' title='$aviso_leitura' >$destinatario</a>
+											</td>
+											<td class='mailbox-subject'>
+												<a href='mailbox_view.php?flag=$row_enviados[id_correio]&flag0=s&flag1=$destinatario' title='$aviso_leitura' >$row_enviados[assunto]</a>
+											</td>
+											<td class='mailbox-date'>
+												<a href='mailbox_view.php?flag=$row_enviados[id_correio]&flag0=s&flag1=$destinatario' title='$aviso_leitura' >$data</a>
+											</td>
 										</tr>"
 										;
 									}

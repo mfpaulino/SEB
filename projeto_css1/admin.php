@@ -1,41 +1,51 @@
 <?php
 /***********************************************************************************************************
-* local/script name: ./mailbox_input.php
-* caixa de entrada
+* local/script name: ./index_user.php                                                                      *
+* Primeira tela de usuario logado e liberado                                                               *
+* Inclui o form de alterar senha                                                                           *
+* Inclui o form de visualizar dados                                                                        *
+* Inclui o form de alterar dados                                                                           *
+* Inclui o form de alterar Unidade                                                                         *
+* Exibe na tela alertas diversos vindos do script 'controllers/usuario/usuario_alertas_criar.inc.php'      *
 * **********************************************************************************************************/
 $inc = "sim";
 $pagina = strtr(end(explode('/', $_SERVER['PHP_SELF'])),'?', true);
 
 include_once('config.inc.php');
-include_once(PATH . '/controllers/autenticacao/autentica.inc.php');
+include_once(PATH . '/controllers/autenticacao/autentica.inc.php');//autentica e gera todos os dados de usuario
 
-$sql = "SELECT ce.id_correio, ce.assunto, ce.texto, ce.data, cr.lida, p.posto, u.nome_guerra, u.codom FROM correio_enviados ce, correio_recebidos cr, postos p, usuarios u WHERE cr.destinatario = '$id_usuario' and cr.pasta = 'entrada' and ce.id_correio = cr.id_correio and ce.remetente = u.cpf and p.id_posto = u.id_posto  ORDER BY ce.data desc";
+$pagina_lock = str_replace('user.php?flag='.md5(date('d-m-Y')),'',strtr(end(explode('/', $_SERVER['REQUEST_URI'])),'', true));
 
-/** paginacao **/
-$total_reg = "10";//registros por pagina
+/*** redirecionamento ao sair da tela de bloqueio **/
+if(isset($_GET['flag'])){//vem da tela de bloqueio
 
-$pag = $_GET['pagina'];
-if (!$pag) {
-	$pag = "1";
+	switch ($_GET['flag']){
+
+		case md5("mailbox_input.php"):
+		  header("Location:mailbox_input.php");
+		  break;
+
+		case md5("mailbox_sent.php"):
+		  header("Location:mailbox_sent.php");
+		  break;
+
+		case md5("mailbox_read.php"):
+		  header("Location:mailbox_read.php");
+		  break;
+
+		case md5("mailbox_write.php"):
+		  header("Location:mailbox_write.php");
+		  break;
+
+		case md5(PAGINA_INICIAL):
+		  header("Location:".PAGINA_INICIAL);
+		  break;
+	}
+	if(strpos($_GET['flag'],'mailbox_view') !== false){
+		header("Location:".$pagina_lock);
+	}
 }
-else {
-	$pag = $pag;
-}
-
-$inicio = $pag - 1;
-$inicio = $inicio * $total_reg;
-
-$con_limite = $mysqli->query("$sql LIMIT $inicio,$total_reg");
-$con_todos =  $mysqli->query($sql);
-
-$total_msg = $con_todos->num_rows; // verifica o número total de registros
-$total_pag = ceil($total_msg / $total_reg); // calcula e arredonda pra cima o número total de páginas
-
-// agora vamos criar os botões "Anterior e próximo"
-$anterior = $pag -1;
-$proximo = $pag +1;
-
-/** fim paginacao**/
+/*** fim redirecionamento **/
 ?>
 <!DOCTYPE html>
 <html>
@@ -46,6 +56,7 @@ $proximo = $pag +1;
 	<!-- Tell the browser to be responsive to screen width -->
 	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 	<link rel="stylesheet" href="componentes/externos/bootstrap/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" href="componentes/externos/bootstrap/plugins/bootstrap-validator/css/bootstrapValidator.min-.css">
 	<link rel="stylesheet" href="componentes/externos/bootstrap/plugins/font-awesome/css/font-awesome.min.css">
 	<link rel="stylesheet" href="componentes/externos/bootstrap/plugins/Ionicons/css/ionicons.min.css">
 	<link rel="stylesheet" href="componentes/externos/bootstrap/plugins/bootstrap-fileinput/css/fileinput.min.css">
@@ -71,17 +82,16 @@ $proximo = $pag +1;
 		<aside class="main-sidebar">
 			<section class="sidebar">
 				<?php
-				$active_correio = 'class="active"';
+				$active_admin = 'class="active"';
 				include_once('views/menu/menu_left.inc.php');?>
 			</section>
 		</aside>
 		<div class="content-wrapper">
 			<section class="content-header">
-				<h1>Correio</h1>
+				<h1><small></small></h1>
 				<ol class="breadcrumb">
-					<li><a href="index.php"><i class="fa fa-home"></i>Home</a></li>
-					<li class="active">Correio</li>
-					<li class="active">Entrada</li>
+					<li class="active"><i class="fa fa-home"></i> Home</li>
+					<li></li>
 				</ol>
 			</section>
 			<section class="content container-fluid">
@@ -92,14 +102,7 @@ $proximo = $pag +1;
 				else {
 					include_once('controllers/usuario/usuario_alertas_destruir.inc.php');
 				}
-				if (isset($_GET['flag']) and ($_GET['flag'] == md5("correio_mover") or $_GET['flag'] == md5("correio_excluir") )){
-					include_once('controllers/correio/correio_alertas_criar.inc.php');
-				}
-				else {
-					include_once('controllers/correio/correio_alertas_destruir.inc.php');
-				}
 
-				include_once('views/correio/view_correio_alertas.inc.php');
 				include_once('views/usuario/view_usuario_perfil.inc.php');
 				include_once('views/usuario/form_usuario_alterar.inc.php');
 				include_once('views/usuario/form_senha_alterar.inc.php');
@@ -112,140 +115,7 @@ $proximo = $pag +1;
 					session_destroy();
 				}
 				?>
-				<!------------------------
-				| Your Page Content Here |
-				-------------------------->
-				<div class="row">
-					<div class="col-md-3">
-						<a href="mailbox_write.php" class="btn btn-primary btn-block margin-bottom" title="Nova Mensagem"><i class="fa fa-pencil"></i> Escrever</a>
-						<div class="box box-solid">
-							<div class="box-header with-border">
-								<h3 class="box-title">Pastas</h3>
-							</div>
-							<div class="box-body no-padding">
-								<ul class="nav nav-pills nav-stacked">
-									<li class="active disabled"><a href="mailbox_input.php"><i class="fa fa-inbox"></i> Entrada<span class="label label-danger pull-right"><?php echo $qtde_entrada;?></span></a></li>
-									<li><a href="mailbox_read.php"><i class="fa fa-envelope-open-o"></i> Já lidos<span class="label label-primary pull-right"><?php echo $qtde_lidas;?></span></a></li>
-									<li><a href="mailbox_sent.php"><i class="fa fa-send-o"></i> Enviados<span class="label label-success pull-right"><?php echo $qtde_enviadas;?></span></a></li>
-								</ul>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-9">
-						<div class="box box-primary">
-							<div class="box-header with-border">
-								<h3 class="box-title">Entrada</h3>
-							</div>
-							<div class="box-body no-padding">
-								<?php if ($total_msg > 0) {?>
-									<div class="mailbox-controls">
-										<a href="<?php echo $pagina;?>"  class="btn btn-default btn-sm" title="Atualizar"><i class="fa fa-refresh"></i></a>
-										<div class="pull-right">
-											<?php echo $pag."-".$total_pag."/".$total_msg;?>
-											<div class="btn-group">
-												<?php if ($pag == 1) {?>
-													<button class="btn btn-default btn-sm disabled"><i class="fa fa-chevron-left"></i></button>
-												<?php }
-												if ($pag > 1) {?>
-													<a href="?pagina=<?php echo $anterior;?>"  class="btn btn-default btn-sm" title="Página anterior"><i class="fa fa-chevron-left"></i></a>
-												<?php }
-												if ($pag < $total_pag) {?>
-													<a href="?pagina=<?php echo $proximo;?>"  class="btn btn-default btn-sm" title="Próxima página"><i class="fa fa-chevron-right"></i></a>
-												<?php }
-												if ($pag == $total_pag) {?>
-													<button class="btn btn-default btn-sm disabled"><i class="fa fa-chevron-right"></i></button>
-												<?php } ?>
-											</div>
-										</div>
-									</div>
-								<?php } ?>
-								<div class="table-responsive mailbox-messages">
-									<table class="table table-hover table-striped">
-									<tbody>
-										<?php
-										while($row_recebidos = $con_limite->fetch_assoc()){
-
-											if ($row_recebidos['lida'] == 'nao'){
-												$b="<b>";
-												$b1="</b>";
-												$fa_icon = "fa fa-star text-danger-";
-												$cor = "style=color:orange;'";
-												$aviso_leitura = "Correio ainda não lido";
-											}
-											else{
-												$b="";
-												$b1="";
-												$fa_icon = "fa fa-star text-success-";
-												$cor = "style=color:green;'";
-												$aviso_leitura = "Correio já lido";
-											}
-
-											$sql_sigla = "SELECT sigla FROM cciex_om WHERE codom = '$row_recebidos[codom]' limit 1";
-											$con_sigla = $mysqli1->query($sql_sigla);
-											$row_sigla = $con_sigla->fetch_assoc();
-
-											if(date('d/m/Y') - 1 == date('d/m/Y', strtotime($row_recebidos['data']))){
-												$data = "Ontem " . date('H:i',strtotime($row_recebidos['data']));
-											}
-											else if(date('d/m/Y') == date('d/m/Y', strtotime($row_recebidos['data']))){
-												$data = "Hoje " . date('H:i',strtotime($row_recebidos['data']));
-											}
-											else{
-												$data = date('d/m/Y H:i', strtotime($row_recebidos['data']));
-											}
-
-											$remetente = $row_recebidos['posto']." ". $row_recebidos['nome_guerra']." - ".$row_sigla['sigla'];
-											echo "
-											<tr>
-												<td></td>
-												<td>
-													<a href='mailbox_view.php?flag=$row_recebidos[id_correio]&flag0=i&flag1=$remetente' title='$aviso_leitura'>
-														<i class='$fa_icon' $cor ></i>
-													</a></td>
-												<td class='mailbox-name'>
-													<a href='mailbox_view.php?flag=$row_recebidos[id_correio]&flag0=i&flag1=$remetente' title='$aviso_leitura'>$remetente</a>
-												</td>
-												<td class='mailbox-subject'>
-													<a href='mailbox_view.php?flag=$row_recebidos[id_correio]&flag0=i&flag1=$remetente' title='$aviso_leitura'>$b$row_recebidos[assunto]$b1</a>
-												</td>
-												<td class='mailbox-date'>
-													<a href='mailbox_view.php?flag=$row_recebidos[id_correio]&flag0=i&flag1=$remetente' title='$aviso_leitura'>$data </a>
-												</td>
-											</tr>"
-											;
-										}
-										?>
-									</tbody>
-									</table>
-								</div>
-							</div>
-							<div class="box-footer no-padding">
-								<?php if ($total_msg > 0) {?>
-									<div class="mailbox-controls">
-										<a href="<?php echo $pagina;?>"  class="btn btn-default btn-sm" title="Atualizar"><i class="fa fa-refresh"></i></a>
-										<div class="pull-right">
-											<?php echo $pag."-".$total_pag."/".$total_msg;?>
-											<div class="btn-group">
-												<?php if ($pag == 1) {?>
-													<button class="btn btn-default btn-sm disabled"><i class="fa fa-chevron-left"></i></button>
-												<?php }
-												if ($pag > 1) {?>
-													<a href="?pagina=<?php echo $anterior;?>"  class="btn btn-default btn-sm" title="Página anterior"><i class="fa fa-chevron-left"></i></a>
-												<?php }
-												if ($pag < $total_pag) {?>
-													<a href="?pagina=<?php echo $proximo;?>"  class="btn btn-default btn-sm" title="Próxima página"><i class="fa fa-chevron-right"></i></a>
-												<?php }
-												if ($pag == $total_pag) {?>
-													<button class="btn btn-default btn-sm disabled"><i class="fa fa-chevron-right"></i></button>
-												<?php } ?>
-											</div>
-										</div>
-									</div>
-								<?php } ?>
-							</div>
-						</div>
-					</div>
-				</div>
+				<!-- conteudo aqui -->
 			</section>
 		</div>
 		<aside class="control-sidebar control-sidebar-dark">
@@ -260,10 +130,10 @@ $proximo = $pag +1;
 	<script src="componentes/externos/bootstrap/plugins/bootstrap-confirmation/bootstrap-confirmation.min.js"></script>
 	<script src="componentes/externos/bootstrap/plugins/bootstrap-fileinput/js/fileinput.js" type="text/javascript"></script>
 	<script src="componentes/externos/template/js/adminlte.min.js"></script>
-	<script src="componentes/internos/js/senha_alterar.js"></script>
-	<script src="componentes/internos/js/usuario_alterar.js"></script>
 	<script src="componentes/internos/js/status_sessao.js"></script>
 	<script src="componentes/internos/js/status_menu_top.js"></script>
+	<script src="componentes/internos/js/senha_alterar.js"></script>
+	<script src="componentes/internos/js/usuario_alterar.js"></script>
 	<script>
 		//exibe o modal editar perfil
 		$('#modalEditar').on('show.bs.modal', function (event) {
@@ -383,7 +253,7 @@ $proximo = $pag +1;
 	</script>
 	<script>
 		//editar imagem do avatar
-		var btnCust = '<button  class="btn btn-secondary" title="Excluir imagem" ' +
+		var btnCust = '<button type="button" class="btn btn-secondary" title="Excluir imagem" ' +
 			'onclick="return chamarPhpAjax();">' +
 			'<i class="fa fa-trash"> </i>' +
 			'</button>';
@@ -407,15 +277,6 @@ $proximo = $pag +1;
 			//exibe o modal de alertas
 			$(document).ready(function(){
 				$('#modalAlerta').modal('show');
-			});
-		</script>
-	<?php
-	}
-	if ($msg_correio <> ""){?>
-		<script>
-			//exibe o modal de alertas correio
-			$(document).ready(function(){
-				$('#modalAlertaCorreio').modal('show');
 			});
 		</script>
 	<?php

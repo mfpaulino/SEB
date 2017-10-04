@@ -187,11 +187,6 @@ $proximo = $pag +1;
 									<?php
 									while($row_ja_lidos = $con_limite->fetch_assoc()){
 
-										if ($row_ja_lidos['lida'] == 'nao'){
-											$b="<b>";
-											$b1="</b>";
-										}
-
 										$sql_sigla = "SELECT sigla FROM cciex_om WHERE codom = '$row_ja_lidos[codom]' limit 1";
 										$con_sigla = $mysqli1->query($sql_sigla);
 										$row_sigla = $con_sigla->fetch_assoc();
@@ -215,9 +210,9 @@ $proximo = $pag +1;
 											<input type='hidden' name='pagina' value='$pagina' />
 											<input type='hidden' name='flag' />
 										</td>
-										<td class='mailbox-name'><a href='mailbox_view.php?flag=$row_ja_lidos[id_correio]&flag0=l&flag1=$remetente'>$remetente</a></td>
-										<td class='mailbox-subject'>$b$row_ja_lidos[assunto]$b1</td>
-										<td class='mailbox-date'>$data</td>
+											<td class='mailbox-name'><a href='mailbox_view.php?flag=$row_ja_lidos[id_correio]&flag0=l&flag1=$remetente'>$remetente</a></td>
+											<td class='mailbox-subject'><a href='mailbox_view.php?flag=$row_ja_lidos[id_correio]&flag0=l&flag1=$remetente'>$row_ja_lidos[assunto]</a></td>
+											<td class='mailbox-date'><a href='mailbox_view.php?flag=$row_ja_lidos[id_correio]&flag0=l&flag1=$remetente'>$data</a></td>
 										</tr>";
 									}
 									?>
