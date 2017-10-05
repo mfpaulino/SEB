@@ -82,7 +82,7 @@ if(isset($_GET['flag'])){//vem da tela de bloqueio
 		<aside class="main-sidebar">
 			<section class="sidebar">
 				<?php
-				$active_admin = 'class="active"';
+				$active_home = 'class="active"';
 				include_once('views/menu/menu_left.inc.php');?>
 			</section>
 		</aside>
@@ -116,130 +116,6 @@ if(isset($_GET['flag'])){//vem da tela de bloqueio
 				}
 				?>
 				<!-- conteudo aqui -->
-				<div class="row">
-					<div class="col-md-6">
-						<div class="box box-solid bg-green-gradient collapsed-box">
-							<div class="box-header">
-								<i class="fa fa-globe"></i>
-								<h3 class="box-title">Localidades</h3>
-								<div class="pull-right box-tools">
-									<div class="btn-group">
-										<button type="button" class="btn btn-success btn-sm dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bars"></i></button>
-										<ul class="dropdown-menu pull-right" role="menu">
-											<li><a href="#">Incluir Localidade</a></li>
-											<li class="divider"></li>
-											<li><a href="#">Imprimir</a></li>
-										</ul>
-									</div>
-									<button type="button" class="btn btn-success btn-sm" data-widget="collapse"><i class="fa fa-plus"></i></button>
-									<button type="button" class="btn btn-success btn-sm" data-widget="remove"><i class="fa fa-times"></i></button>
-								</div>
-							</div>
-							<div class="box-body no-padding" style="display:none;">
-								<div id="calendar" style="width: 100%"></div>
-							</div>
-							<div class="box-footer text-black">
-								<div class="row">
-									<div class="col-sm-12">
-										formulário aqui
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-6">
-						<div class="box box-solid bg-red-gradient collapsed-box">
-							<div class="box-header">
-								<i class="fa fa-money"></i>
-								<h3 class="box-title">Valor Diárias</h3>
-								<div class="pull-right box-tools">
-									<div class="btn-group">
-										<button type="button" class="btn btn-danger btn-sm dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bars"></i></button>
-										<ul class="dropdown-menu pull-right" role="menu">
-											<li><a href="#">Incluir Diária</a></li>
-											<li class="divider"></li>
-											<li><a href="#">Imprimir</a></li>
-										</ul>
-									</div>
-									<button type="button" class="btn btn-danger btn-sm" data-widget="collapse"><i class="fa fa-plus"></i></button>
-									<button type="button" class="btn btn-danger btn-sm" data-widget="remove"><i class="fa fa-times"></i></button>
-								</div>
-							</div>
-							<div class="box-body no-padding" style="display:none;">
-								<div id="calendar" style="width: 100%"></div>
-							</div>
-							<div class="box-footer text-black">
-								<div class="row">
-									<div class="col-sm-12">
-										formulário aqui
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div><div class="row">
-					<div class="col-md-6">
-						<div class="box box-solid bg-teal-gradient collapsed-box">
-							<div class="box-header">
-								<i class="fa fa-globe"></i>
-								<h3 class="box-title">Localidades</h3>
-								<div class="pull-right box-tools">
-									<div class="btn-group">
-										<button type="button" class="btn bg-teal btn-sm dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bars"></i></button>
-										<ul class="dropdown-menu pull-right" role="menu">
-											<li><a href="#">Incluir Localidade</a></li>
-											<li class="divider"></li>
-											<li><a href="#">Imprimir</a></li>
-										</ul>
-									</div>
-									<button type="button" class="btn bg-teal btn-sm" data-widget="collapse"><i class="fa fa-plus"></i></button>
-									<button type="button" class="btn bg-teal btn-sm" data-widget="remove"><i class="fa fa-times"></i></button>
-								</div>
-							</div>
-							<div class="box-body no-padding" style="display:none;">
-								<div id="calendar" style="width: 100%"></div>
-							</div>
-							<div class="box-footer text-black">
-								<div class="row">
-									<div class="col-sm-12">
-										formulário aqui
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-6">
-						<div class="box box-solid bg-blue-gradient collapsed-box">
-							<div class="box-header">
-								<i class="fa fa-money"></i>
-								<h3 class="box-title">Valor Diárias</h3>
-								<div class="pull-right box-tools">
-									<div class="btn-group">
-										<button type="button" class="btn bg-blue btn-sm dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bars"></i></button>
-										<ul class="dropdown-menu pull-right" role="menu">
-											<li><a href="#">Incluir Diária</a></li>
-											<li class="divider"></li>
-											<li><a href="#">Imprimir</a></li>
-										</ul>
-									</div>
-									<button type="button" class="btn bg-blue btn-sm" data-widget="collapse"><i class="fa fa-plus"></i></button>
-									<button type="button" class="btn bg-blue btn-sm" data-widget="remove"><i class="fa fa-times"></i></button>
-								</div>
-							</div>
-							<div class="box-body no-padding" style="display:none;">
-								<div id="calendar" style="width: 100%"></div>
-							</div>
-							<div class="box-footer text-black">
-								<div class="row">
-									<div class="col-sm-12">
-										formulário aqui
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<!-- fim conteudo -->
 			</section>
 		</div>
 		<aside class="control-sidebar control-sidebar-dark">

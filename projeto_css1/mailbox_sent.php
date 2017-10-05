@@ -166,7 +166,7 @@ $proximo = $pag +1;
 									&nbsp;&nbsp;&nbsp;<b>Legenda:</b>&nbsp;
 									<i class="fa fa-check-circle text-success"></i> Foi lido por todos os destinatários
 									&nbsp;
-									<i class="fa fa-info-circle text-danger"></i> Ainda não foi lido por todos os destinatários (Passe o mouse para mais informações)
+									<i class="fa fa-info-circle text-danger"></i> Ainda não foi lido por todos os destinatários (Passe o mouse sobre o ícone para mais informações)
 									<div class="pull-right">
 										<?php echo $pag."-".$total_pag."/".$total_msg;?>
 										<div class="btn-group">
@@ -316,7 +316,7 @@ $proximo = $pag +1;
 									&nbsp;&nbsp;&nbsp;<b>Legenda:</b>&nbsp;
 									<i class="fa fa-check-circle text-success"></i> Foi lido por todos os destinatários
 									&nbsp;
-									<i class="fa fa-info-circle text-danger"></i> Ainda não foi lido por todos os destinatários (Passe o mouse para mais informações)
+									<i class="fa fa-info-circle text-danger"></i> Ainda não foi lido por todos os destinatários (Passe o mouse sobre o ícone para mais informações)
 									<div class="pull-right">
 										<?php echo $pag."-".$total_pag."/".$total_msg;?>
 										<div class="btn-group">
