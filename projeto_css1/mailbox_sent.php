@@ -160,8 +160,13 @@ $proximo = $pag +1;
 										data-btn-cancel-class="btn-danger"
 										data-title="Confirma exclusão?"
 										data-content="">
-										<i class="fa fa-trash-o"></i>
+										<i class="fa fa-trash"></i>
 									</button>
+									<a href="<?php echo $pagina;?>"  class="btn btn-default btn-sm" title="Atualizar"><i class="fa fa-refresh"></i></a>
+									&nbsp;&nbsp;&nbsp;<b>Legenda:</b>&nbsp;
+									<i class="fa fa-check-circle text-success"></i> Foi lido por todos os destinatários
+									&nbsp;
+									<i class="fa fa-info-circle text-danger"></i> Ainda não foi lido por todos os destinatários (Passe o mouse para mais informações)
 									<div class="pull-right">
 										<?php echo $pag."-".$total_pag."/".$total_msg;?>
 										<div class="btn-group">
@@ -242,14 +247,18 @@ $proximo = $pag +1;
 
 											if($qtde_lidos == 0){
 												$lidos = "";
-												$fa_icon = "fa fa-star text-success-";
-												$cor = "style=color:green;'";
+												$fa_icon = "fa fa-check-circle text-success";
+												$b="";
+												$b1="";
+												//$cor = "style=color:green;'";
 												$aviso_leitura = "Este correio foi lido por todos os destinatários.";
 											}
 											else {
 												$lidos = str_replace("[  - ]","",$lidos . "[".$row_lidos['posto']." ". $row_lidos['nome_guerra']." - ".$row_sigla_lidos['sigla']."] ");
-												$fa_icon="fa fa-star text-danger-";
-												$cor = "style=color:orange;'";
+												$fa_icon="fa fa-info-circle text-danger";
+												$b="<b>";
+												$b1="</b>";
+												//$cor = "style=color:orange;'";
 												$aviso_leitura = "Quem ainda não leu: ".$lidos;
 											}
 											/**********************************/
@@ -301,8 +310,13 @@ $proximo = $pag +1;
 										data-btn-cancel-class="btn-danger"
 										data-title="Confirma exclusão?"
 										data-content="">
-										<i class="fa fa-trash-o"></i>
+										<i class="fa fa-trash"></i>
 									</button>
+									<a href="<?php echo $pagina;?>"  class="btn btn-default btn-sm" title="Atualizar"><i class="fa fa-refresh"></i></a>
+									&nbsp;&nbsp;&nbsp;<b>Legenda:</b>&nbsp;
+									<i class="fa fa-check-circle text-success"></i> Foi lido por todos os destinatários
+									&nbsp;
+									<i class="fa fa-info-circle text-danger"></i> Ainda não foi lido por todos os destinatários (Passe o mouse para mais informações)
 									<div class="pull-right">
 										<?php echo $pag."-".$total_pag."/".$total_msg;?>
 										<div class="btn-group">

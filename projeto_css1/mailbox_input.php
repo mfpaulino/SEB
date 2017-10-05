@@ -168,15 +168,15 @@ $proximo = $pag +1;
 											if ($row_recebidos['lida'] == 'nao'){
 												$b="<b>";
 												$b1="</b>";
-												$fa_icon = "fa fa-star text-danger-";
-												$cor = "style=color:orange;'";
+												$fa_icon = "fa fa-envelope text-primary";
+												//$cor = "style=color:blue;'";
 												$aviso_leitura = "Correio ainda não lido";
 											}
 											else{
 												$b="";
 												$b1="";
-												$fa_icon = "fa fa-star text-success-";
-												$cor = "style=color:green;'";
+												$fa_icon = "fa fa-envelope-open-o text-primary";
+												//$cor = "style=color:green;'";
 												$aviso_leitura = "Correio já lido";
 											}
 
@@ -203,13 +203,13 @@ $proximo = $pag +1;
 														<i class='$fa_icon' $cor ></i>
 													</a></td>
 												<td class='mailbox-name'>
-													<a href='mailbox_view.php?flag=$row_recebidos[id_correio]&flag0=i&flag1=$remetente' title='$aviso_leitura'>$remetente</a>
+													<a href='mailbox_view.php?flag=$row_recebidos[id_correio]&flag0=i&flag1=$remetente' title='$aviso_leitura'>$b$remetente$b1</a>
 												</td>
 												<td class='mailbox-subject'>
 													<a href='mailbox_view.php?flag=$row_recebidos[id_correio]&flag0=i&flag1=$remetente' title='$aviso_leitura'>$b$row_recebidos[assunto]$b1</a>
 												</td>
 												<td class='mailbox-date'>
-													<a href='mailbox_view.php?flag=$row_recebidos[id_correio]&flag0=i&flag1=$remetente' title='$aviso_leitura'>$data </a>
+													<a href='mailbox_view.php?flag=$row_recebidos[id_correio]&flag0=i&flag1=$remetente' title='$aviso_leitura'>$b$data$b1</a>
 												</td>
 											</tr>"
 											;

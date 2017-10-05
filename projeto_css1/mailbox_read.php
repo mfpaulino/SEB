@@ -153,7 +153,7 @@ $proximo = $pag +1;
 											data-btn-cancel-class="btn-danger"
 											data-title="Confirma exclusão?"
 											data-content="">
-											<i class="fa fa-trash-o"></i>
+											<i class="fa fa-trash"></i>
 										</button>
 										<div class="pull-right">
 											<?php echo $pag."-".$total_pag."/".$total_msg;?>
@@ -236,7 +236,7 @@ $proximo = $pag +1;
 											data-btn-cancel-class="btn-danger"
 											data-title="Confirma exclusão?"
 											data-content="">
-											<i class="fa fa-trash-o"></i>
+											<i class="fa fa-trash"></i>
 										</button>
 										<div class="pull-right">
 											<?php echo $pag."-".$total_pag."/".$total_msg;?>
