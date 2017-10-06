@@ -362,8 +362,10 @@ if(isset($_GET['flag'])){//vem da tela de bloqueio
 							</div>
 						</div>
 					</div>
-					<?php include_once("views/admin/view_localidade.inc.php");?>
+				</div>
+				<div class="row">
 					<?php include_once("views/admin/form_localidade_cadastrar.inc.php");?>
+					<?php include_once("views/admin/view_localidade.inc.php");?>
 				</div>
 				<!-- fim conteudo -->
 			</section>
