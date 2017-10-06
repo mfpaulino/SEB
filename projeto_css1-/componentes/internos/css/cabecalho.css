@@ -1,0 +1,40 @@
+#header {
+	background: #111111;/*#069 para o caso de retirar o gradiente*/
+}
+#header-imagem {
+	background: url(../img/quartel.gif) no-repeat center right;
+	height: 98px;/*97px*/
+	position: relative;
+}
+.header-mascara {
+	background: url(../img/header-mask.png) repeat top right;
+ 	height: 98px;/*97px*/
+	border-bottom:1px solid #cccccc;
+}
+#header-logo{
+	background: url(../img/logo.gif) no-repeat;
+	margin: 0;
+	width: 65px;
+	height:90px;
+	top:4px;/*4*/
+	left:19px;
+	position:absolute;
+	z-index:20;
+}
+.header-txt1 {
+	color: #ffffff;
+	font-weight:bold;
+	text-transform: uppercase;
+	font-size:26px;/*22*/
+	bottom: 55px;
+	margin-left: 100px;
+	position: absolute;
+}
+.header-txt2 {
+	color: #ffffff;
+	font-weight:bold;
+	font-size: 22px;/*18*/
+	bottom: 30px;/*36*/
+	margin-left: 105px;
+	position: absolute
+}

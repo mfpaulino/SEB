@@ -1,5 +1,5 @@
 <div class="col-md-6">
-	<div class="box box-solid bg-grey collapsed-box">
+	<div class="box box-solid bg-blue collapsed-box">
 		<div class="box-header">
 			<i class="fa fa-globe"></i>
 			<h3 class="box-title">grey</h3>
@@ -7,7 +7,8 @@
 				<div class="btn-group">
 					<button type="button" class="btn bg-yellow btn-sm dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bars"></i></button>
 					<ul class="dropdown-menu pull-right" role="menu">
-						<li><a href="#" data-tooltip="tooltip" data-toggle="modal" data-target="#modalCadastrarLocalidade<?php echo $cpf; ?>">Incluir Localidade</a></li>
+						<li><a href="#" data-toggle="modal" data-target="#modalAlterarLocalidade">Alterar Localidade</a></li>
+						<li><a href="#" data-toggle="modal" data-target="#modalCadastrarLocalidade">Incluir Localidade</a></li>
 						<li class="divider"></li>
 						<li><a href="#">Imprimir</a></li>
 					</ul>
@@ -28,3 +29,4 @@
 	</div>
 </div>
 <?php include_once("form_localidade_cadastrar.inc.php");?>
+<?php include_once("form_localidade_alterar.inc.php");?>

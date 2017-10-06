@@ -16,7 +16,7 @@ if(isset($_POST['codom'])){
 
 	$unidade = ($unidade == 'cciex' or $unidade == 'icfex') ? $unidade : 'unidades';
 
-	$sql_perfis = "SELECT perfis FROM perfis_unidade WHERE unidade = '$unidade'";
+	$sql_perfis = "SELECT perfis FROM adm_perfis_unidade WHERE unidade = '$unidade'";
 	$con_perfis = $mysqli->query($sql_perfis);
 
 	$row_perfis = $con_perfis->fetch_assoc();
@@ -26,7 +26,7 @@ if(isset($_POST['codom'])){
 	$perfis  = "'".$perfis."'";//coloca um ' no inicio e fim da string
 	$perfis = str_replace(",","','",$perfis);//substitui a virgula por "','".
 
-	$sql_perfil = "SELECT * FROM perfis WHERE perfil in (".$perfis.") ORDER BY perfil";
+	$sql_perfil = "SELECT * FROM adm_perfis WHERE perfil in (".$perfis.") ORDER BY perfil";
 	$con_perfil= $mysqli->query($sql_perfil);
 
 	$num_rows_perfil = $con_perfil->num_rows;

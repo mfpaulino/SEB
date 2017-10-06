@@ -209,7 +209,7 @@ if(isset($_GET['flag'])){//vem da tela de bloqueio
 							</div>
 						</div>
 					</div>
-					<div class="col-md-6">
+					<div class="col-md-8">
 						<div class="box box-solid bg-purple collapsed-box">
 							<div class="box-header">
 								<i class="fa fa-money"></i>
@@ -241,7 +241,7 @@ if(isset($_GET['flag'])){//vem da tela de bloqueio
 					</div>
 				</div>
 				<div class="row">
-					<div class="col-md-6">
+					<div class="col-md-1">
 						<div class="box box-solid bg-grey collapsed-box">
 							<div class="box-header">
 								<i class="fa fa-globe"></i>
@@ -270,7 +270,7 @@ if(isset($_GET['flag'])){//vem da tela de bloqueio
 							</div>
 						</div>
 					</div>
-					<div class="col-md-6">
+					<div class="col-md-4">
 						<div class="box box-solid bg-aqua collapsed-box">
 							<div class="box-header">
 								<i class="fa fa-money"></i>
@@ -302,11 +302,11 @@ if(isset($_GET['flag'])){//vem da tela de bloqueio
 					</div>
 				</div>
 				<div class="row">
-					<div class="col-md-6">
+					<div class="col-md-2">
 						<div class="box box-solid bg-navy collapsed-box">
 							<div class="box-header">
 								<i class="fa fa-globe"></i>
-								<h3 class="box-title">Localidades</h3>
+								<h3 class="box-title">Localidades--</h3>
 								<div class="pull-right box-tools">
 									<div class="btn-group">
 										<button type="button" class="btn bg-navy btn-sm dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bars"></i></button>
@@ -332,11 +332,13 @@ if(isset($_GET['flag'])){//vem da tela de bloqueio
 							</div>
 						</div>
 					</div>
-					<div class="col-md-6">
+				</div>
+				<div class="row">
+					<div class="col-xs-12">
 						<div class="box box-solid bg-black collapsed-box">
 							<div class="box-header">
 								<i class="fa fa-money"></i>
-								<h3 class="box-title">Valor Diárias</h3>
+								<h3 class="box-title">Valor Diárias--</h3>
 								<div class="pull-right box-tools">
 									<div class="btn-group">
 										<button type="button" class="btn bg-light-blue btn-sm dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bars"></i></button>
@@ -355,7 +357,7 @@ if(isset($_GET['flag'])){//vem da tela de bloqueio
 							</div>
 							<div class="box-footer text-black">
 								<div class="row">
-									<div class="col-sm-12">
+									<div class="col-sm-6">
 										formulário aqui
 									</div>
 								</div>
@@ -364,7 +366,7 @@ if(isset($_GET['flag'])){//vem da tela de bloqueio
 					</div>
 				</div>
 				<div class="row">
-					<?php include_once("views/admin/view_localidade.inc.php");?>
+					<?php include_once('views/admin/view_localidade.inc.php');?>
 				</div>
 				<!-- fim conteudo -->
 			</section>
@@ -385,6 +387,7 @@ if(isset($_GET['flag'])){//vem da tela de bloqueio
 	<script src="componentes/internos/js/status_menu_top.js"></script>
 	<script src="componentes/internos/js/senha_alterar.js"></script>
 	<script src="componentes/internos/js/usuario_alterar.js"></script>
+	<script src="componentes/internos/js/admin/localidade.js"></script>
 	<script>
 		//exibe o modal editar perfil
 		$('#modalEditar').on('show.bs.modal', function (event) {
