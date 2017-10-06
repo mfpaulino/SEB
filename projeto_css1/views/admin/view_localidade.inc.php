@@ -1,8 +1,8 @@
-<div class="col-md-6">
+<div class="col-md-3">
 	<div class="box box-solid bg-blue collapsed-box">
 		<div class="box-header">
 			<i class="fa fa-globe"></i>
-			<h3 class="box-title">grey</h3>
+			<h3 class="box-title">Localidades</h3>
 			<div class="pull-right box-tools">
 				<div class="btn-group">
 					<button type="button" class="btn bg-yellow btn-sm dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bars"></i></button>
@@ -22,7 +22,7 @@
 		<div class="box-footer text-black">
 			<div class="row">
 				<div class="col-sm-12">
-					formulário aqui
+					<?php include_once('views/admin/form_localidade_list.inc.php');?>
 				</div>
 			</div>
 		</div>
