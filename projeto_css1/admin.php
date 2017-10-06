@@ -118,7 +118,7 @@ if(isset($_GET['flag'])){//vem da tela de bloqueio
 				<!-- conteudo aqui -->
 				<div class="row">
 					<div class="col-md-6">
-						<div class="box box-solid bg-green-gradient collapsed-box">
+						<div class="box box-solid bg-olive collapsed-box">
 							<div class="box-header">
 								<i class="fa fa-globe"></i>
 								<h3 class="box-title">Localidades</h3>
@@ -148,7 +148,7 @@ if(isset($_GET['flag'])){//vem da tela de bloqueio
 						</div>
 					</div>
 					<div class="col-md-6">
-						<div class="box box-solid bg-red-gradient collapsed-box">
+						<div class="box box-solid bg-fuchsia collapsed-box">
 							<div class="box-header">
 								<i class="fa fa-money"></i>
 								<h3 class="box-title">Valor Diárias</h3>
@@ -180,7 +180,7 @@ if(isset($_GET['flag'])){//vem da tela de bloqueio
 				</div>
 				<div class="row">
 					<div class="col-md-6">
-						<div class="box box-solid bg-teal-gradient collapsed-box">
+						<div class="box box-solid bg-orange collapsed-box">
 							<div class="box-header">
 								<i class="fa fa-globe"></i>
 								<h3 class="box-title">Localidades</h3>
@@ -210,7 +210,7 @@ if(isset($_GET['flag'])){//vem da tela de bloqueio
 						</div>
 					</div>
 					<div class="col-md-6">
-						<div class="box box-solid bg-blue-gradient collapsed-box">
+						<div class="box box-solid bg-purple collapsed-box">
 							<div class="box-header">
 								<i class="fa fa-money"></i>
 								<h3 class="box-title">Valor Diárias</h3>
@@ -242,21 +242,82 @@ if(isset($_GET['flag'])){//vem da tela de bloqueio
 				</div>
 				<div class="row">
 					<div class="col-md-6">
-						<div class="box box-solid bg-olive-gradient collapsed-box">
+						<div class="box box-solid bg-grey collapsed-box">
 							<div class="box-header">
 								<i class="fa fa-globe"></i>
-								<h3 class="box-title">Localidades</h3>
+								<h3 class="box-title">grey</h3>
 								<div class="pull-right box-tools">
 									<div class="btn-group">
-										<button type="button" class="btn bg-olive btn-sm dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bars"></i></button>
+										<button type="button" class="btn bg-yellow btn-sm dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bars"></i></button>
 										<ul class="dropdown-menu pull-right" role="menu">
 											<li><a href="#">Incluir Localidade</a></li>
 											<li class="divider"></li>
 											<li><a href="#">Imprimir</a></li>
 										</ul>
 									</div>
-									<button type="button" class="btn bg-olive btn-sm" data-widget="collapse"><i class="fa fa-plus"></i></button>
-									<button type="button" class="btn bg-olive btn-sm" data-widget="remove"><i class="fa fa-times"></i></button>
+									<button type="button" class="btn bg-yellow btn-sm" data-widget="collapse"><i class="fa fa-plus"></i></button>
+									<button type="button" class="btn bg-yellow btn-sm" data-widget="remove"><i class="fa fa-times"></i></button>
+								</div>
+							</div>
+							<div class="box-body no-padding" style="display:none;">
+							</div>
+							<div class="box-footer text-black">
+								<div class="row">
+									<div class="col-sm-12">
+										formulário aqui
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="box box-solid bg-aqua collapsed-box">
+							<div class="box-header">
+								<i class="fa fa-money"></i>
+								<h3 class="box-title">aqua</h3>
+								<div class="pull-right box-tools">
+									<div class="btn-group">
+										<button type="button" class="btn bg-light-blue btn-sm dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bars"></i></button>
+										<ul class="dropdown-menu pull-right" role="menu">
+											<li><a href="#">Incluir Diária</a></li>
+											<li class="divider"></li>
+											<li><a href="#">Imprimir</a></li>
+										</ul>
+									</div>
+									<button type="button" class="btn bg-light-blue btn-sm" data-widget="collapse"><i class="fa fa-plus"></i></button>
+									<button type="button" class="btn bg-light-blue btn-sm" data-widget="remove"><i class="fa fa-times"></i></button>
+								</div>
+							</div>
+							<div class="box-body no-padding" style="display:none;">
+								<div id="calendar" style="width: 100%"></div>
+							</div>
+							<div class="box-footer text-black">
+								<div class="row">
+									<div class="col-sm-12">
+										formulário aqui
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-6">
+						<div class="box box-solid bg-navy collapsed-box">
+							<div class="box-header">
+								<i class="fa fa-globe"></i>
+								<h3 class="box-title">Localidades</h3>
+								<div class="pull-right box-tools">
+									<div class="btn-group">
+										<button type="button" class="btn bg-navy btn-sm dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bars"></i></button>
+										<ul class="dropdown-menu pull-right" role="menu">
+											<li><a href="#">Incluir Localidade</a></li>
+											<li class="divider"></li>
+											<li><a href="#">Imprimir</a></li>
+										</ul>
+									</div>
+									<button type="button" class="btn bg-navy btn-sm" data-widget="collapse"><i class="fa fa-plus"></i></button>
+									<button type="button" class="btn bg-navy btn-sm" data-widget="remove"><i class="fa fa-times"></i></button>
 								</div>
 							</div>
 							<div class="box-body no-padding" style="display:none;">
@@ -272,7 +333,7 @@ if(isset($_GET['flag'])){//vem da tela de bloqueio
 						</div>
 					</div>
 					<div class="col-md-6">
-						<div class="box box-solid bg-light-blue-gradient collapsed-box">
+						<div class="box box-solid bg-black collapsed-box">
 							<div class="box-header">
 								<i class="fa fa-money"></i>
 								<h3 class="box-title">Valor Diárias</h3>
@@ -301,6 +362,8 @@ if(isset($_GET['flag'])){//vem da tela de bloqueio
 							</div>
 						</div>
 					</div>
+					<?php include_once("views/admin/view_localidade.inc.php");?>
+					<?php include_once("views/admin/form_localidade_cadastrar.inc.php");?>
 				</div>
 				<!-- fim conteudo -->
 			</section>
