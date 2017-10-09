@@ -46,6 +46,7 @@ if(isset($_GET['flag'])){//vem da tela de bloqueio
 	}
 }
 /*** fim redirecionamento **/
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -99,8 +100,12 @@ if(isset($_GET['flag'])){//vem da tela de bloqueio
 				if (isset($_GET['flag']) and ($_GET['flag'] == md5("usuario_alterar") or $_GET['flag'] == md5("senha_alterar") or $_GET['flag'] == md5("om_alterar") or $_GET['flag'] == md5("logout") )){
 					include_once('controllers/usuario/usuario_alertas_criar.inc.php');
 				}
+				else if (isset($_GET['flag']) and ($_GET['flag'] == md5("localidade_cadastrar") or $_GET['flag'] == md5("localidade_alterar"))){
+					include_once('controllers/admin/admin_alertas_criar.inc.php');
+				}
 				else {
 					include_once('controllers/usuario/usuario_alertas_destruir.inc.php');
+					include_once('controllers/admin/admin_alertas_destruir.inc.php');
 				}
 
 				include_once('views/usuario/view_usuario_perfil.inc.php');
@@ -110,6 +115,7 @@ if(isset($_GET['flag'])){//vem da tela de bloqueio
 				include_once('views/usuario/view_usuario_alerta_sessao.inc.php');
 				include_once('views/usuario/view_usuario_fim_sessao.inc.php');
 				include_once('views/usuario/view_usuario_alertas.inc.php');
+				include_once('views/admin/view_admin_alertas.inc.php');
 
 				if(isset($_SESSION['alterar_senha_logout']) or isset($_SESSION['alterar_codom'])){
 					session_destroy();
@@ -179,194 +185,9 @@ if(isset($_GET['flag'])){//vem da tela de bloqueio
 					</div>
 				</div>
 				<div class="row">
-					<div class="col-md-6">
-						<div class="box box-solid bg-orange collapsed-box">
-							<div class="box-header">
-								<i class="fa fa-globe"></i>
-								<h3 class="box-title">Localidades</h3>
-								<div class="pull-right box-tools">
-									<div class="btn-group">
-										<button type="button" class="btn bg-teal btn-sm dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bars"></i></button>
-										<ul class="dropdown-menu pull-right" role="menu">
-											<li><a href="#">Incluir Localidade</a></li>
-											<li class="divider"></li>
-											<li><a href="#">Imprimir</a></li>
-										</ul>
-									</div>
-									<button type="button" class="btn bg-teal btn-sm" data-widget="collapse"><i class="fa fa-plus"></i></button>
-									<button type="button" class="btn bg-teal btn-sm" data-widget="remove"><i class="fa fa-times"></i></button>
-								</div>
-							</div>
-							<div class="box-body no-padding" style="display:none;">
-								<div id="calendar" style="width: 100%"></div>
-							</div>
-							<div class="box-footer text-black">
-								<div class="row">
-									<div class="col-sm-12">
-										formulário aqui
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-8">
-						<div class="box box-solid bg-purple collapsed-box">
-							<div class="box-header">
-								<i class="fa fa-money"></i>
-								<h3 class="box-title">Valor Diárias</h3>
-								<div class="pull-right box-tools">
-									<div class="btn-group">
-										<button type="button" class="btn bg-blue btn-sm dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bars"></i></button>
-										<ul class="dropdown-menu pull-right" role="menu">
-											<li><a href="#">Incluir Diária</a></li>
-											<li class="divider"></li>
-											<li><a href="#">Imprimir</a></li>
-										</ul>
-									</div>
-									<button type="button" class="btn bg-blue btn-sm" data-widget="collapse"><i class="fa fa-plus"></i></button>
-									<button type="button" class="btn bg-blue btn-sm" data-widget="remove"><i class="fa fa-times"></i></button>
-								</div>
-							</div>
-							<div class="box-body no-padding" style="display:none;">
-								<div id="calendar" style="width: 100%"></div>
-							</div>
-							<div class="box-footer text-black">
-								<div class="row">
-									<div class="col-sm-12">
-										formulário aqui
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-md-1">
-						<div class="box box-solid bg-grey collapsed-box">
-							<div class="box-header">
-								<i class="fa fa-globe"></i>
-								<h3 class="box-title">grey</h3>
-								<div class="pull-right box-tools">
-									<div class="btn-group">
-										<button type="button" class="btn bg-yellow btn-sm dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bars"></i></button>
-										<ul class="dropdown-menu pull-right" role="menu">
-											<li><a href="#">Incluir Localidade</a></li>
-											<li class="divider"></li>
-											<li><a href="#">Imprimir</a></li>
-										</ul>
-									</div>
-									<button type="button" class="btn bg-yellow btn-sm" data-widget="collapse"><i class="fa fa-plus"></i></button>
-									<button type="button" class="btn bg-yellow btn-sm" data-widget="remove"><i class="fa fa-times"></i></button>
-								</div>
-							</div>
-							<div class="box-body no-padding" style="display:none;">
-							</div>
-							<div class="box-footer text-black">
-								<div class="row">
-									<div class="col-sm-12">
-										formulário aqui
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-4">
-						<div class="box box-solid bg-aqua collapsed-box">
-							<div class="box-header">
-								<i class="fa fa-money"></i>
-								<h3 class="box-title">aqua</h3>
-								<div class="pull-right box-tools">
-									<div class="btn-group">
-										<button type="button" class="btn bg-light-blue btn-sm dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bars"></i></button>
-										<ul class="dropdown-menu pull-right" role="menu">
-											<li><a href="#">Incluir Diária</a></li>
-											<li class="divider"></li>
-											<li><a href="#">Imprimir</a></li>
-										</ul>
-									</div>
-									<button type="button" class="btn bg-light-blue btn-sm" data-widget="collapse"><i class="fa fa-plus"></i></button>
-									<button type="button" class="btn bg-light-blue btn-sm" data-widget="remove"><i class="fa fa-times"></i></button>
-								</div>
-							</div>
-							<div class="box-body no-padding" style="display:none;">
-								<div id="calendar" style="width: 100%"></div>
-							</div>
-							<div class="box-footer text-black">
-								<div class="row">
-									<div class="col-sm-12">
-										formulário aqui
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-md-2">
-						<div class="box box-solid bg-navy collapsed-box">
-							<div class="box-header">
-								<i class="fa fa-globe"></i>
-								<h3 class="box-title">Localidades--</h3>
-								<div class="pull-right box-tools">
-									<div class="btn-group">
-										<button type="button" class="btn bg-navy btn-sm dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bars"></i></button>
-										<ul class="dropdown-menu pull-right" role="menu">
-											<li><a href="#">Incluir Localidade</a></li>
-											<li class="divider"></li>
-											<li><a href="#">Imprimir</a></li>
-										</ul>
-									</div>
-									<button type="button" class="btn bg-navy btn-sm" data-widget="collapse"><i class="fa fa-plus"></i></button>
-									<button type="button" class="btn bg-navy btn-sm" data-widget="remove"><i class="fa fa-times"></i></button>
-								</div>
-							</div>
-							<div class="box-body no-padding" style="display:none;">
-								<div id="calendar" style="width: 100%"></div>
-							</div>
-							<div class="box-footer text-black">
-								<div class="row">
-									<div class="col-sm-12">
-										formulário aqui
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-xs-12">
-						<div class="box box-solid bg-black collapsed-box">
-							<div class="box-header">
-								<i class="fa fa-money"></i>
-								<h3 class="box-title">Valor Diárias--</h3>
-								<div class="pull-right box-tools">
-									<div class="btn-group">
-										<button type="button" class="btn bg-light-blue btn-sm dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bars"></i></button>
-										<ul class="dropdown-menu pull-right" role="menu">
-											<li><a href="#">Incluir Diária</a></li>
-											<li class="divider"></li>
-											<li><a href="#">Imprimir</a></li>
-										</ul>
-									</div>
-									<button type="button" class="btn bg-light-blue btn-sm" data-widget="collapse"><i class="fa fa-plus"></i></button>
-									<button type="button" class="btn bg-light-blue btn-sm" data-widget="remove"><i class="fa fa-times"></i></button>
-								</div>
-							</div>
-							<div class="box-body no-padding" style="display:none;">
-								<div id="calendar" style="width: 100%"></div>
-							</div>
-							<div class="box-footer text-black">
-								<div class="row">
-									<div class="col-sm-6">
-										formulário aqui
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="row">
 					<?php include_once('views/admin/view_localidade.inc.php');?>
+					<?php include_once('views/admin/form_localidade_cadastrar.inc.php');?>
+					<?php include_once('views/admin/form_localidade_alterar.inc.php');?>
 				</div>
 				<!-- fim conteudo -->
 			</section>
@@ -389,7 +210,7 @@ if(isset($_GET['flag'])){//vem da tela de bloqueio
 	<script src="componentes/internos/js/usuario_alterar.js"></script>
 	<script src="componentes/internos/js/admin/localidade.js"></script>
 	<script>
-		//exibe o modal editar perfil
+		//Informa os valores dos campos ao modal editar perfil
 		$('#modalEditar').on('show.bs.modal', function (event) {
 			var button = $(event.relatedTarget) // Button that triggered the modal
 			var cpf = button.data('cpf') // Extract info from data-* attributes no script view_usuario_status.inc.php
@@ -524,6 +345,36 @@ if(isset($_GET['flag'])){//vem da tela de bloqueio
 			layoutTemplates: {main2: '{preview} ' +  btnCust },
 			allowedFileExtensions: ["jpg", "png", "gif"]
 		});
+	</script>
+	<script>
+		//Só libera os botoes do form localidade ao selecionar a localidade
+		$(function(){
+			$('#btnAlteraLocalidade').hide();
+			$('#btnExcluiLocalidade').hide();
+			$('#localidade').change(function(){
+				if($('#localidade').val() != ""){
+				   $('#btnAlteraLocalidade').show();
+				   $('#btnExcluiLocalidade').show();
+				}
+				else{
+					$('#btnAlteraLocalidade').hide();
+					$('#btnExcluiLocalidade').hide();
+				}
+			});
+		});
+	</script>
+	<script>
+		//Informa os valores dos campos ao modal alterar localidade
+		$('#modalAlterarLocalidade').on('show.bs.modal', function (event) {
+			var localidade = $('#localidade').val().split('|');
+			var id_localidade = localidade[0]
+			var descricao = localidade[1]
+			var modal = $(this)
+
+			modal.find('#id_localidade').val(id_localidade)
+			modal.find('#descricao').val(descricao)
+			modal.find('#descricao_atual').val(localidade)
+		})
 	</script>
 	<?php
 	if ($msg <> ""){?>

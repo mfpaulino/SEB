@@ -9,6 +9,8 @@
 					<div class="form-group">
 						<label for="descricao" class="control-label">*Descrição:</label>
 						<input class="form-control" type="text" name="descricao"  id="descricao"  autofocus  placeholder="" />
+						<!--Hidden input -->
+						<input  type="hidden" name="flag" />
 					</div>
 					<div class="modal-footer">
 						<button type="submit" class="btn btn-success">Enviar</button>

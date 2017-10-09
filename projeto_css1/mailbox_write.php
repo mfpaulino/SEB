@@ -341,13 +341,6 @@ if(isset($_POST['cpf_destinatario'])){
 	<?php
 	}
 	?>
-	<!--<script>
-		//exibe text editor
-	  $(function () {
-		$("#edit-texto").wysihtml5();
-	  });
-	</script>-->
-
 	<script type="text/javascript">
 		$(document).ready(function() {
 			$('#destinatario').multiselect({
