@@ -287,16 +287,16 @@ include_once(PATH . '/controllers/autenticacao/autentica.inc.php');//autentica e
 	<script>
 		//Só libera os botoes do form localidade ao selecionar a localidade
 		$(function(){
-			$('#btnAlteraLocalidade').hide();
-			$('#btnExcluiLocalidade').hide();
+			$('#btnAlteraLocalidade').attr('disabled', 'disabled');
+			$('#btnExcluiLocalidade').attr('disabled', 'disabled');
 			$('#localidade').change(function(){
 				if($('#localidade').val() != ""){
-				   $('#btnAlteraLocalidade').show();
-				   $('#btnExcluiLocalidade').show();
+				   $('#btnAlteraLocalidade').removeAttr('disabled');
+				   $('#btnExcluiLocalidade').removeAttr('disabled');
 				}
 				else{
-					$('#btnAlteraLocalidade').hide();
-					$('#btnExcluiLocalidade').hide();
+					$('#btnAlteraLocalidade').attr('disabled', 'disabled');
+					$('#btnExcluiLocalidade').attr('disabled', 'disabled');
 				}
 			});
 		});
