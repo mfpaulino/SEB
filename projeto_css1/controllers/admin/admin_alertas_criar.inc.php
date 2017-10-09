@@ -39,6 +39,15 @@ if ($inc == "sim"){
 			unset($_SESSION['alterar_nada']);
 			unset($_SESSION['alterar_lista_erro_validacao']);
 		}
+		if($flag == md5("localidade_excluir")){
+
+			$msg0 = $_SESSION['localidade_excluir_sucesso'];
+			$msg1 = $_SESSION['localidade_excluir_erro'];
+		}
+		else{
+			unset($_SESSION['localidade_excluir_sucesso']);
+			unset($_SESSION['localidade_excluir_erro']);
+		}
 
 		$msg="sim";
 	}

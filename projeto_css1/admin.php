@@ -14,39 +14,6 @@ $pagina = strtr(end(explode('/', $_SERVER['PHP_SELF'])),'?', true);
 include_once('config.inc.php');
 include_once(PATH . '/controllers/autenticacao/autentica.inc.php');//autentica e gera todos os dados de usuario
 
-$pagina_lock = str_replace('user.php?flag='.md5(date('d-m-Y')),'',strtr(end(explode('/', $_SERVER['REQUEST_URI'])),'', true));
-
-/*** redirecionamento ao sair da tela de bloqueio **/
-if(isset($_GET['flag'])){//vem da tela de bloqueio
-
-	switch ($_GET['flag']){
-
-		case md5("mailbox_input.php"):
-		  header("Location:mailbox_input.php");
-		  break;
-
-		case md5("mailbox_sent.php"):
-		  header("Location:mailbox_sent.php");
-		  break;
-
-		case md5("mailbox_read.php"):
-		  header("Location:mailbox_read.php");
-		  break;
-
-		case md5("mailbox_write.php"):
-		  header("Location:mailbox_write.php");
-		  break;
-
-		case md5(PAGINA_INICIAL):
-		  header("Location:".PAGINA_INICIAL);
-		  break;
-	}
-	if(strpos($_GET['flag'],'mailbox_view') !== false){
-		header("Location:".$pagina_lock);
-	}
-}
-/*** fim redirecionamento **/
-
 ?>
 <!DOCTYPE html>
 <html>
@@ -96,11 +63,12 @@ if(isset($_GET['flag'])){//vem da tela de bloqueio
 				</ol>
 			</section>
 			<section class="content container-fluid">
+
 				<?php
 				if (isset($_GET['flag']) and ($_GET['flag'] == md5("usuario_alterar") or $_GET['flag'] == md5("senha_alterar") or $_GET['flag'] == md5("om_alterar") or $_GET['flag'] == md5("logout") )){
 					include_once('controllers/usuario/usuario_alertas_criar.inc.php');
 				}
-				else if (isset($_GET['flag']) and ($_GET['flag'] == md5("localidade_cadastrar") or $_GET['flag'] == md5("localidade_alterar"))){
+				else if (isset($_GET['flag']) and ($_GET['flag'] == md5("localidade_cadastrar") or $_GET['flag'] == md5("localidade_alterar") or $_GET['flag'] == md5("localidade_excluir"))){
 					include_once('controllers/admin/admin_alertas_criar.inc.php');
 				}
 				else {
@@ -116,6 +84,8 @@ if(isset($_GET['flag'])){//vem da tela de bloqueio
 				include_once('views/usuario/view_usuario_fim_sessao.inc.php');
 				include_once('views/usuario/view_usuario_alertas.inc.php');
 				include_once('views/admin/view_admin_alertas.inc.php');
+				include_once('views/admin/view_localidade_relacao.inc.php');
+
 
 				if(isset($_SESSION['alterar_senha_logout']) or isset($_SESSION['alterar_codom'])){
 					session_destroy();
@@ -123,16 +93,19 @@ if(isset($_GET['flag'])){//vem da tela de bloqueio
 				?>
 				<!-- conteudo aqui -->
 				<div class="row">
+					<?php include_once('views/admin/view_localidade.inc.php');?>
+					<?php include_once('views/admin/form_localidade_cadastrar.inc.php');?>
+					<?php include_once('views/admin/form_localidade_alterar.inc.php');?>
 					<div class="col-md-6">
 						<div class="box box-solid bg-olive collapsed-box">
 							<div class="box-header">
-								<i class="fa fa-globe"></i>
-								<h3 class="box-title">Localidades</h3>
+								<i class="fa fa-money"></i>
+								<h3 class="box-title">Diárias</h3>
 								<div class="pull-right box-tools">
 									<div class="btn-group">
 										<button type="button" class="btn btn-success btn-sm dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bars"></i></button>
 										<ul class="dropdown-menu pull-right" role="menu">
-											<li><a href="#">Incluir Localidade</a></li>
+											<li><a href="#">Incluir Diária</a></li>
 											<li class="divider"></li>
 											<li><a href="#">Imprimir</a></li>
 										</ul>
@@ -153,41 +126,6 @@ if(isset($_GET['flag'])){//vem da tela de bloqueio
 							</div>
 						</div>
 					</div>
-					<div class="col-md-6">
-						<div class="box box-solid bg-fuchsia collapsed-box">
-							<div class="box-header">
-								<i class="fa fa-money"></i>
-								<h3 class="box-title">Valor Diárias</h3>
-								<div class="pull-right box-tools">
-									<div class="btn-group">
-										<button type="button" class="btn btn-danger btn-sm dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bars"></i></button>
-										<ul class="dropdown-menu pull-right" role="menu">
-											<li><a href="#">Incluir Diária</a></li>
-											<li class="divider"></li>
-											<li><a href="#">Imprimir</a></li>
-										</ul>
-									</div>
-									<button type="button" class="btn btn-danger btn-sm" data-widget="collapse"><i class="fa fa-plus"></i></button>
-									<button type="button" class="btn btn-danger btn-sm" data-widget="remove"><i class="fa fa-times"></i></button>
-								</div>
-							</div>
-							<div class="box-body no-padding" style="display:none;">
-								<div id="calendar" style="width: 100%"></div>
-							</div>
-							<div class="box-footer text-black">
-								<div class="row">
-									<div class="col-sm-12">
-										formulário aqui
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="row">
-					<?php include_once('views/admin/view_localidade.inc.php');?>
-					<?php include_once('views/admin/form_localidade_cadastrar.inc.php');?>
-					<?php include_once('views/admin/form_localidade_alterar.inc.php');?>
 				</div>
 				<!-- fim conteudo -->
 			</section>
@@ -375,6 +313,16 @@ if(isset($_GET['flag'])){//vem da tela de bloqueio
 			modal.find('#descricao').val(descricao)
 			modal.find('#descricao_atual').val(localidade)
 		})
+	</script>
+	<script>
+		//imprimir email
+		document.getElementById('btnPrint').onclick = function() {
+			var conteudo = document.getElementById('area_print').innerHTML;
+			var	tela_impressao = window.open('','','width=0, height=0, top=50, left=50');
+			tela_impressao.document.write(conteudo);
+			tela_impressao.window.print();
+			tela_impressao.window.close();
+		};
 	</script>
 	<?php
 	if ($msg <> ""){?>

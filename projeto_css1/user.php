@@ -37,6 +37,10 @@ if(isset($_GET['flag'])){//vem da tela de bloqueio
 		  header("Location:mailbox_write.php");
 		  break;
 
+		case md5("admin.php"):
+		  header("Location:admin.php");
+		  break;
+
 		case md5(PAGINA_INICIAL):
 		  header("Location:".PAGINA_INICIAL);
 		  break;

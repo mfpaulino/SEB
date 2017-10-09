@@ -11,4 +11,8 @@ unset($_SESSION['alterar_erro_validacao']);
 unset($_SESSION['alterar_localidade']);
 unset($_SESSION['alterar_nada']);
 unset($_SESSION['alterar_lista_erro_validacao']);
+
+//localidade excluir
+unset($_SESSION['localidade_excluir_sucesso']);
+unset($_SESSION['localidade_excluir_erro']);
 ?>
