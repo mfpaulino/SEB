@@ -13,7 +13,7 @@ $inc = "sim";
 
 include_once('../../config.inc.php');
 
-if (isset($_POST['flag'])){
+if (isset($_POST['flag']) and isset($_SESSION['cpf'])){
 
 	require_once(PATH . '/controllers/autenticacao/autentica.inc.php');
 	$pagina = $_POST['pagina'];

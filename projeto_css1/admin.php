@@ -84,8 +84,6 @@ include_once(PATH . '/controllers/autenticacao/autentica.inc.php');//autentica e
 				include_once('views/usuario/view_usuario_fim_sessao.inc.php');
 				include_once('views/usuario/view_usuario_alertas.inc.php');
 				include_once('views/admin/view_admin_alertas.inc.php');
-				include_once('views/admin/view_localidade_relacao.inc.php');
-
 
 				if(isset($_SESSION['alterar_senha_logout']) or isset($_SESSION['alterar_codom'])){
 					session_destroy();
@@ -93,38 +91,17 @@ include_once(PATH . '/controllers/autenticacao/autentica.inc.php');//autentica e
 				?>
 				<!-- conteudo aqui -->
 				<div class="row">
-					<?php include_once('views/admin/view_localidade.inc.php');?>
-					<?php include_once('views/admin/form_localidade_cadastrar.inc.php');?>
-					<?php include_once('views/admin/form_localidade_alterar.inc.php');?>
-					<div class="col-md-6">
-						<div class="box box-solid bg-olive collapsed-box">
-							<div class="box-header">
-								<i class="fa fa-money"></i>
-								<h3 class="box-title">Diárias</h3>
-								<div class="pull-right box-tools">
-									<div class="btn-group">
-										<button type="button" class="btn btn-success btn-sm dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bars"></i></button>
-										<ul class="dropdown-menu pull-right" role="menu">
-											<li><a href="#">Incluir Diária</a></li>
-											<li class="divider"></li>
-											<li><a href="#">Imprimir</a></li>
-										</ul>
-									</div>
-									<button type="button" class="btn btn-success btn-sm" data-widget="collapse"><i class="fa fa-plus"></i></button>
-									<button type="button" class="btn btn-success btn-sm" data-widget="remove"><i class="fa fa-times"></i></button>
-								</div>
-							</div>
-							<div class="box-body no-padding" style="display:none;">
-								<div id="calendar" style="width: 100%"></div>
-							</div>
-							<div class="box-footer text-black">
-								<div class="row">
-									<div class="col-sm-12">
-										formulário aqui
-									</div>
-								</div>
-							</div>
-						</div>
+					<div class="col-md-3">
+						<?php include_once('views/admin/view_localidade.inc.php');?>
+						<?php include_once('views/admin/form_localidade_cadastrar.inc.php');?>
+						<?php include_once('views/admin/form_localidade_alterar.inc.php');?>
+						<?php include_once('views/admin/view_localidade_relacao.inc.php');?>
+					</div>
+					<div class="col-md-3">
+						<?php include_once('views/admin/view_diaria.inc.php');?>
+						<?php include_once('views/admin/form_diaria_cadastrar.inc.php');?>
+						<?php //include_once('views/admin/form_diaria_alterar.inc.php');?>
+						<?php //include_once('views/admin/view_localidade_relacao.inc.php');?>
 					</div>
 				</div>
 				<!-- fim conteudo -->

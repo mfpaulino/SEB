@@ -1,19 +1,21 @@
 <?php
+session_start();
+
 $inc = "sim";
 include_once('../../config.inc.php');
 
-if(isset($_POST['flag'])){
+if(isset($_POST['flag']) and isset($_SESSION['cpf'])){
+
 	$pagina 	 = $_POST['flag1'];
 
 	if ($pagina == PAGINA_VISITANTE ){
-
 		require_once(PATH . '/controllers/autenticacao/autentica_visite.inc.php');
 	}
 	else{
-
 		require_once(PATH . '/controllers/autenticacao/autentica.inc.php');
 	}
 
+	require_once(PATH . '/controllers/autenticacao/perfil.inc.php');
 	require_once(PATH . '/componentes/internos/php/validaForm.class.php');
 	require_once(PATH . '/componentes/internos/php/funcoes.inc.php');
 

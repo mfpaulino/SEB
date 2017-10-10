@@ -14,7 +14,6 @@ else {
 
 	$agora = date("Y-m-d H:i:s");
 	$tempo_inatividade = (strtotime($agora)-strtotime($ultimoAcesso));
-	//$_SESSION['tempo_inatividade'] = $tempo_inatividade;
 
 	if($tempo_inatividade >= TEMPO_MAX_INATIVIDADE){ // TEMPO_SESSAO vem de constantes.inc.php
 		session_destroy();

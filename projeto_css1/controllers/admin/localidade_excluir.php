@@ -1,9 +1,11 @@
 <?php
 //altera_usuario.php
+session_start();
+
 $inc = "sim";
 require_once('../../config.inc.php');
 
-if(isset($_POST['flag']) and $_POST['flag'] == md5("localidade_excluir")){
+if(isset($_POST['flag']) and $_POST['flag'] == md5("localidade_excluir") and isset($_SESSION['cpf'])){
 
 	$id_localidade = $_POST['localidade'];
 

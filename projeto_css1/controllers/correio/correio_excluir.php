@@ -13,7 +13,7 @@ $inc = "sim";
 
 include_once('../../config.inc.php');
 
-if (isset($_GET['flag'])){
+if (isset($_GET['flag']) and isset($_SESSION['cpf'])){
 
 	if($_GET['flag0'] == "i"){
 		$pagina = "mailbox_input.php";

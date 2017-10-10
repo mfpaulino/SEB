@@ -12,12 +12,15 @@
 * Em caso de tudo certo, grava no BD
 * Ao final de tudo, redireciona para o admin.php
 * *************************************************************/
+
 session_start();
 
 $inc = "sim";
 include_once('../../config.inc.php');
 
-if (isset($_POST['flag'])){
+if (isset($_POST['flag']) and isset($_SESSION['cpf'])){
+
+	require_once(PATH . '/controllers/autenticacao/autentica.inc.php');
 
 	require_once(PATH . '/componentes/internos/php/validaForm.class.php');
 	require_once(PATH . '/componentes/internos/php/funcoes.inc.php');

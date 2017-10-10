@@ -3,7 +3,7 @@
 $inc = "sim";
 require_once('../../config.inc.php');
 
-if(isset($_GET['flag']) and $_GET['flag'] == md5("usuario_excluir")){
+if(isset($_GET['flag']) and $_GET['flag'] == md5("usuario_excluir") and isset($_SESSION['cpf'])){
 
 	$pagina = $_GET['flag1'].".php";
 
