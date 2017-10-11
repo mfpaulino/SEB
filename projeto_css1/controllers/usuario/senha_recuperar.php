@@ -15,7 +15,7 @@ session_start();
 $inc = "sim";
 include_once('../../config.inc.php');
 
-if(isset($_POST['flag']) and isset($_SESSION['cpf'])){
+if(isset($_POST['flag'])){
 
 	include_once(PATH .'/componentes/internos/php/senha.inc.php');
 	include_once(PATH .'/componentes/internos/php/bcript.inc.php');

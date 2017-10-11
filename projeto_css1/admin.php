@@ -68,7 +68,7 @@ include_once(PATH . '/controllers/autenticacao/autentica.inc.php');//autentica e
 				if (isset($_GET['flag']) and ($_GET['flag'] == md5("usuario_alterar") or $_GET['flag'] == md5("senha_alterar") or $_GET['flag'] == md5("om_alterar") or $_GET['flag'] == md5("logout") )){
 					include_once('controllers/usuario/usuario_alertas_criar.inc.php');
 				}
-				else if (isset($_GET['flag']) and ($_GET['flag'] == md5("localidade_cadastrar") or $_GET['flag'] == md5("localidade_alterar") or $_GET['flag'] == md5("localidade_excluir"))){
+				else if (isset($_GET['flag']) and ($_GET['flag'] == md5("categoria_cadastrar") or $_GET['flag'] == md5("categoria_alterar") or $_GET['flag'] == md5("categoria_excluir"))){
 					include_once('controllers/admin/admin_alertas_criar.inc.php');
 				}
 				else {
@@ -92,16 +92,16 @@ include_once(PATH . '/controllers/autenticacao/autentica.inc.php');//autentica e
 				<!-- conteudo aqui -->
 				<div class="row">
 					<div class="col-md-3">
-						<?php include_once('views/admin/view_localidade.inc.php');?>
-						<?php include_once('views/admin/form_localidade_cadastrar.inc.php');?>
-						<?php include_once('views/admin/form_localidade_alterar.inc.php');?>
-						<?php include_once('views/admin/view_localidade_relacao.inc.php');?>
+						<?php include_once('views/admin/view_categoria.inc.php');?>
+						<?php include_once('views/admin/form_categoria_cadastrar.inc.php');?>
+						<?php include_once('views/admin/form_categoria_alterar.inc.php');?>
+						<?php include_once('views/admin/view_categoria_relacao.inc.php');?>
 					</div>
 					<div class="col-md-3">
 						<?php include_once('views/admin/view_diaria.inc.php');?>
 						<?php include_once('views/admin/form_diaria_cadastrar.inc.php');?>
 						<?php //include_once('views/admin/form_diaria_alterar.inc.php');?>
-						<?php //include_once('views/admin/view_localidade_relacao.inc.php');?>
+						<?php include_once('views/admin/view_categoria_relacao.inc.php');?>
 					</div>
 				</div>
 				<!-- fim conteudo -->
@@ -123,7 +123,7 @@ include_once(PATH . '/controllers/autenticacao/autentica.inc.php');//autentica e
 	<script src="componentes/internos/js/status_menu_top.js"></script>
 	<script src="componentes/internos/js/senha_alterar.js"></script>
 	<script src="componentes/internos/js/usuario_alterar.js"></script>
-	<script src="componentes/internos/js/admin/localidade.js"></script>
+	<script src="componentes/internos/js/admin/categoria.js"></script>
 	<script>
 		//Informa os valores dos campos ao modal editar perfil
 		$('#modalEditar').on('show.bs.modal', function (event) {
@@ -262,33 +262,36 @@ include_once(PATH . '/controllers/autenticacao/autentica.inc.php');//autentica e
 		});
 	</script>
 	<script>
-		//Só libera os botoes do form localidade ao selecionar a localidade
+		//Só libera os botoes do form categoria ao selecionar a categoria
 		$(function(){
-			$('#btnAlteraLocalidade').attr('disabled', 'disabled');
-			$('#btnExcluiLocalidade').attr('disabled', 'disabled');
-			$('#localidade').change(function(){
-				if($('#localidade').val() != ""){
-				   $('#btnAlteraLocalidade').removeAttr('disabled');
-				   $('#btnExcluiLocalidade').removeAttr('disabled');
+			$('#btnAlteraCategoria').attr('disabled', 'disabled');
+			$('#btnExcluiCategoria').attr('disabled', 'disabled');
+			$('#categoria').change(function(){
+				if($('#categoria').val() != ""){
+				   $('#btnAlteraCategoria').removeAttr('disabled');
+				   $('#btnExcluiCategoria').removeAttr('disabled');
 				}
 				else{
-					$('#btnAlteraLocalidade').attr('disabled', 'disabled');
-					$('#btnExcluiLocalidade').attr('disabled', 'disabled');
+					$('#btnAlteraCategoria').attr('disabled', 'disabled');
+					$('#btnExcluiCategoria').attr('disabled', 'disabled');
 				}
 			});
 		});
 	</script>
 	<script>
-		//Informa os valores dos campos ao modal alterar localidade
-		$('#modalAlterarLocalidade').on('show.bs.modal', function (event) {
-			var localidade = $('#localidade').val().split('|');
-			var id_localidade = localidade[0]
-			var descricao = localidade[1]
+		//Informa os valores dos campos ao modal alterar categoria
+		$('#modalAlterarCategoria').on('show.bs.modal', function (event) {
+			var array_categoria = $('#categoria').val().split('|');
+			var id_categoria = array_categoria[0]
+			var categoria = array_categoria[1]
+			var localidade = array_categoria[2]
 			var modal = $(this)
 
-			modal.find('#id_localidade').val(id_localidade)
-			modal.find('#descricao').val(descricao)
-			modal.find('#descricao_atual').val(localidade)
+			modal.find('#id_categoria').val(id_categoria)
+			modal.find('#categoria').val(categoria)
+			modal.find('#categoria_atual').val(categoria)
+			modal.find('#localidade').val(localidade)
+			modal.find('#localidade_atual').val(localidade)
 		})
 	</script>
 	<script>

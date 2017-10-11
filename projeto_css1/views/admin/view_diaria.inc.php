@@ -22,19 +22,19 @@
 			<div class="col-sm-12">
 				<form class="form-horizontal" method="POST" action="controllers/admin/diaria_excluir.php">
 					<div class="box-body">
-						<?php include_once('listas/admin/select_alterar_localidade.inc.php');?>
-						<input type="hidden" name="flag" value="<?php echo md5('localidade_excluir');?>" />
+						<?php include_once('listas/admin/select_alterar_categoria.inc.php');?>
+						<input type="hidden" name="flag" value="<?php echo md5('categoria_excluir');?>" />
 					</div>
 					<div class="box-footer pull-right">
-						<!--botao Alterar localidade-->
+						<!--botao Alterar categoria-->
 						<button id="btnAlteraDiaria" type="button" class="btn btn-xs btn-warning"
 							data-tooltip="tooltip" title=""
 							data-toggle="modal"
 							data-target="#modalAlterarDiaria"
-							data-localidade="">
+							data-categoria="">
 							<i class="fa fa-pencil"></i> Alterar
 						</button>
-						<!--botao Excluir localidade-->
+						<!--botao Excluir categoria-->
 						<button id="btnExcluiDiaria" type="submit" class="btn btn-xs btn-danger" data-toggle="confirmation"
 							data-placement="left"
 							data-btn-ok-label="Continuar"

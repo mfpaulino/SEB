@@ -14,7 +14,7 @@ $inc = "sim";
 
 include_once('../../config.inc.php');
 
-if (isset($_GET['flag'])and isset($_SESSION['cpf'])){
+if (isset($_GET['flag']) and isset($_SESSION['cpf'])){
 
 	require_once(PATH . '/controllers/autenticacao/autentica.inc.php');
 

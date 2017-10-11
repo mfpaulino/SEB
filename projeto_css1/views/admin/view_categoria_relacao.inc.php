@@ -1,28 +1,29 @@
 <?php
-$sql = "SELECT descricao FROM adm_localidades ORDER BY descricao";
+$sql = "SELECT * FROM adm_categorias ORDER BY categoria";
 $con_lista = $mysqli->query($sql);
 $qtde = $con_lista->num_rows;
 ?>
-<div class="modal fade" id="modalExibirLocalidade" role="dialog">
+<div class="modal fade" id="modalExibirCategoria" role="dialog">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header fundo">
 				<button type="button" class="close" data-dismiss="modal">&times;</button>
-				<h4 class="modal-title">Localidades Cadastradas</h4>
+				<h4 class="modal-title">Categorias Cadastradas</h4>
 			</div>
 			<div class="modal-body">
 				<div class="box">
 					<div id="area_print" class="box-body no-padding ">
 						<table class="table table-striped">
 							<?php
-							$i = 1;
+							//$i = 1;
 							while($row = $con_lista->fetch_assoc()){?>
 								<tr>
-									<td><?php echo $i.".";?></td>
-									<td><?php echo $row['descricao'];?></td>
+									<td><?php //echo $i.".";?></td>
+									<td><?php echo $row['categoria'];?>:</td>
+									<td><?php echo $row['localidades'];?></td>
 								</tr>
 								<?php
-								$i++;
+								//$i++;
 							} ?>
 						</table>
 					</div>

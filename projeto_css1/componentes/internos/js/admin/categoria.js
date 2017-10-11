@@ -1,12 +1,19 @@
 $(document).ready(function() {
-	$('#form_localidade_cadastrar').bootstrapValidator({
+	$('#form_categoria_cadastrar').bootstrapValidator({
 		feedbackIcons: {
 			valid: 'glyphicon glyphicon-ok',
 			invalid: 'glyphicon glyphicon-remove',
 			validating: 'glyphicon glyphicon-refresh'
 		},
 		fields: {
-			descricao: {
+			categoria: {
+				validators: {
+					notEmpty: {
+						message:'Preenchimento obrigatório'
+					}
+				}
+			},
+			localidade: {
 				validators: {
 					notEmpty: {
 						message:'Preenchimento obrigatório'
@@ -15,14 +22,21 @@ $(document).ready(function() {
 			}
 		}
 	})
-	$('#form_localidade_alterar').bootstrapValidator({
+	$('#form_categoria_alterar').bootstrapValidator({
 		feedbackIcons: {
 			valid: 'glyphicon glyphicon-ok',
 			invalid: 'glyphicon glyphicon-remove',
 			validating: 'glyphicon glyphicon-refresh'
 		},
 		fields: {
-			descricao: {
+			categoria: {
+				validators: {
+					notEmpty: {
+						message:'Preenchimento obrigatório'
+					}
+				}
+			},
+			localidade: {
 				validators: {
 					notEmpty: {
 						message:'Preenchimento obrigatório'
