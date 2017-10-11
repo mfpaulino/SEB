@@ -119,11 +119,13 @@ include_once(PATH . '/controllers/autenticacao/autentica.inc.php');//autentica e
 	<script src="componentes/externos/bootstrap/plugins/bootstrap-confirmation/bootstrap-confirmation.min.js"></script>
 	<script src="componentes/externos/bootstrap/plugins/bootstrap-fileinput/js/fileinput.js" type="text/javascript"></script>
 	<script src="componentes/externos/template/js/adminlte.min.js"></script>
+	<script src="componentes/externos/jquery/plugins/maskMoney/dist/jquery.maskMoney.min.js"></script>
 	<script src="componentes/internos/js/status_sessao.js"></script>
 	<script src="componentes/internos/js/status_menu_top.js"></script>
 	<script src="componentes/internos/js/senha_alterar.js"></script>
 	<script src="componentes/internos/js/usuario_alterar.js"></script>
 	<script src="componentes/internos/js/admin/categoria.js"></script>
+	<script src="componentes/internos/js/admin/diaria.js"></script>
 	<script>
 		//Informa os valores dos campos ao modal editar perfil
 		$('#modalEditar').on('show.bs.modal', function (event) {
@@ -303,6 +305,9 @@ include_once(PATH . '/controllers/autenticacao/autentica.inc.php');//autentica e
 			tela_impressao.window.print();
 			tela_impressao.window.close();
 		};
+	</script>
+	<script>
+		$("#valor").maskMoney({allowNegative: false, thousands:'.', decimal:',', affixesStay: false});
 	</script>
 	<?php
 	if ($msg <> ""){?>

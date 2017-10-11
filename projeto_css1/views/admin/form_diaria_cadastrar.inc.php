@@ -15,7 +15,7 @@
 						<?php include('listas/select_posto.inc.php');?>
 					</div>
 					<div class="form-group">
-						<label for="valor">*Valor:</label>
+						<label for="valor">*Valor (R$):</label>
 						<input type="text" class="form-control" name="valor" id="valor" />
 					</div>
 					<div class="form-group">
