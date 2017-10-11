@@ -6,7 +6,7 @@ $sql = "SELECT postos.* FROM postos ORDER BY postos.id_posto";
 $con_postos = $mysqli->query($sql);
 ?>
 <select class="form-control" name="posto" id="posto">
-	<option value = "">Selecione...</option>
+	<option value = "">Selecione o Posto/Grad...</option>
 	<?php
 	while ($row_postos = $con_postos->fetch_assoc()){
 	?>

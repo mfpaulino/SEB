@@ -22,7 +22,7 @@
 			<div class="col-sm-12">
 				<form class="form-horizontal" method="POST" action="controllers/admin/categoria_excluir.php">
 					<div class="box-body">
-						<?php include_once('listas/admin/select_alterar_categoria.inc.php');?>
+						<?php include('listas/admin/select_alterar_categoria.inc.php');?>
 						<input type="hidden" name="flag" value="<?php echo md5('categoria_excluir');?>" />
 					</div>
 					<div class="box-footer pull-right">
