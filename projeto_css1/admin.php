@@ -68,7 +68,7 @@ include_once(PATH . '/controllers/autenticacao/autentica.inc.php');//autentica e
 				if (isset($_GET['flag']) and ($_GET['flag'] == md5("usuario_alterar") or $_GET['flag'] == md5("senha_alterar") or $_GET['flag'] == md5("om_alterar") or $_GET['flag'] == md5("logout") )){
 					include_once('controllers/usuario/usuario_alertas_criar.inc.php');
 				}
-				else if (isset($_GET['flag']) and ($_GET['flag'] == md5("categoria_cadastrar") or $_GET['flag'] == md5("categoria_alterar") or $_GET['flag'] == md5("categoria_excluir"))){
+				else if (isset($_GET['flag']) and ($_GET['flag'] == md5("categoria_cadastrar") or $_GET['flag'] == md5("categoria_alterar") or $_GET['flag'] == md5("categoria_excluir") or $_GET['flag'] == md5("diaria_cadastrar") or $_GET['flag'] == md5("diaria_alterar") or $_GET['flag'] == md5("diaria_excluir"))){
 					include_once('controllers/admin/admin_alertas_criar.inc.php');
 				}
 				else {
@@ -82,6 +82,7 @@ include_once(PATH . '/controllers/autenticacao/autentica.inc.php');//autentica e
 				include_once('views/usuario/form_unidade_alterar.inc.php');
 				include_once('views/usuario/view_usuario_alerta_sessao.inc.php');
 				include_once('views/usuario/view_usuario_fim_sessao.inc.php');
+
 				include_once('views/usuario/view_usuario_alertas.inc.php');
 				include_once('views/admin/view_admin_alertas.inc.php');
 
@@ -100,8 +101,8 @@ include_once(PATH . '/controllers/autenticacao/autentica.inc.php');//autentica e
 					<div class="col-md-3">
 						<?php include_once('views/admin/view_diaria.inc.php');?>
 						<?php include_once('views/admin/form_diaria_cadastrar.inc.php');?>
-						<?php //include_once('views/admin/form_diaria_alterar.inc.php');?>
-						<?php include_once('views/admin/view_categoria_relacao.inc.php');?>
+						<?php include_once('views/admin/form_diaria_alterar.inc.php');?>
+						<?php //include_once('views/admin/view_categoria_relacao.inc.php');?>
 					</div>
 				</div>
 				<!-- fim conteudo -->
@@ -297,6 +298,23 @@ include_once(PATH . '/controllers/autenticacao/autentica.inc.php');//autentica e
 		})
 	</script>
 	<script>
+		//Informa os valores dos campos ao modal alterar diária
+		$('#modalAlterarDiaria').on('show.bs.modal', function (event) {
+			var array_diaria = $('#diaria').val().split('|');
+			var id_diaria = array_diaria[0]
+			var categoria = array_diaria[1]
+			var posto = array_diaria[2]
+			var valor = array_diaria[3]
+			var modal = $(this)
+
+			modal.find('#id_diaria').val(id_diaria)
+			modal.find('#categoria').val(categoria)
+			modal.find('#posto').val(posto)
+			modal.find('#valor_altera').val(valor)
+			modal.find('#valor_atual').val(valor)
+		})
+	</script>
+	<script>
 		//imprimir email
 		document.getElementById('btnPrint').onclick = function() {
 			var conteudo = document.getElementById('area_print').innerHTML;
@@ -307,7 +325,8 @@ include_once(PATH . '/controllers/autenticacao/autentica.inc.php');//autentica e
 		};
 	</script>
 	<script>
-		$("#valor").maskMoney({allowNegative: false, thousands:'.', decimal:',', affixesStay: false});
+		$("#valor").maskMoney({allowNegative: false, thousands:'.', decimal:',', affixesStay: false});//form cadastrar diaria
+		$("#valor_altera").maskMoney({allowNegative: false, thousands:'.', decimal:',', affixesStay: false});//form alterar diaria
 	</script>
 	<?php
 	if ($msg <> ""){?>

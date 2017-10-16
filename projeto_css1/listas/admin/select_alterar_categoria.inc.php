@@ -1,5 +1,5 @@
 <?php
-//select_categoria.inc.php
+//select_alterar_categoria.inc.php
 include_once ('componentes/internos/php/conexao.inc.php');
 
 $sql = "SELECT * FROM adm_categorias ORDER BY categoria";

@@ -41,13 +41,13 @@ if(isset($_POST['flag']) and isset($_SESSION['cpf'])){
 			}
 		}
 		if($altera == "nao"){
-			$_SESSION['alterar_nada'] = "AVISO: nenhuma alteração foi realizada!";
+			$_SESSION['alterar_nada_categoria'] = "AVISO: nenhuma alteração foi realizada!";
 			$_SESSION['botao'] = "warning";
 		}
 	}
 	else {
-		$_SESSION['alterar_erro_validacao'] = "ERRO A-004: dados inconsistentes, preencha novamente o formulário!";
-		$_SESSION['alterar_lista_erro_validacao'] = $validar->get_errors(); //Captura os erros de todos os campos
+		$_SESSION['alterar_erro_validacao_categoria'] = "ERRO A-004: dados inconsistentes, preencha novamente o formulário!";
+		$_SESSION['alterar_lista_erro_validacao_categoria'] = $validar->get_errors(); //Captura os erros de todos os campos
 		$_SESSION['botao'] = "danger";
 	}
 	$flag = md5("categoria_alterar");
