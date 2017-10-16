@@ -48,7 +48,7 @@ if (isset($_POST['flag']) and isset($_SESSION['cpf'])){
 		}
 		if($busca_localidade->num_rows > 0){
 
-			$_SESSION['localidade_duplicada'] = "ERRO A-003: Localidade(s) já cadastrada(s)!";
+			$_SESSION['localidade_duplicada'] = "ERRO A-002: Localidade(s) já cadastrada(s)!";
 			$_SESSION['botao'] = "danger";
 
 			$validacao = false;
@@ -66,14 +66,14 @@ if (isset($_POST['flag']) and isset($_SESSION['cpf'])){
 			}
 			else{
 
-				$_SESSION['erro_cadastro_categoria'] = "ERRO A-002: cadastro não realizado, tente novamente!<br />Em caso de persistir o erro, entrar em contato com o suporte técnico.";
+				$_SESSION['erro_cadastro_categoria'] = "ERRO A-003: cadastro não realizado, tente novamente!<br />Em caso de persistir o erro, entrar em contato com o suporte técnico.";
 				$_SESSION['botao'] = "danger";
 			}
 
 		}
 	}
 	else {
-		$_SESSION['erro_validacao_cadastrar_categoria'] = "ERRO A-003: dados inconsistentes, preencha novamente o formulário!";
+		$_SESSION['erro_validacao_cadastrar_categoria'] = "ERRO A-004: dados inconsistentes, preencha novamente o formulário!";
 		$_SESSION['botao'] = "danger";
 
 		$_SESSION['lista_erro_validacao_cadastrar_categoria'] = $validar->get_errors(); //Captura os erros de todos os campos

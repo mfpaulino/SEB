@@ -46,7 +46,7 @@ if(isset($_POST['flag']) and isset($_SESSION['cpf'])){
 		}
 	}
 	else {
-		$_SESSION['alterar_erro_validacao_diaria'] = "ERRO A-004: dados inconsistentes, preencha novamente o formulário!";
+		$_SESSION['alterar_erro_validacao_diaria'] = "ERRO A-010: dados inconsistentes, preencha novamente o formulário!";
 		$_SESSION['alterar_lista_erro_validacao_diaria'] = $validar->get_errors(); //Captura os erros de todos os campos
 		$_SESSION['botao'] = "danger";
 	}

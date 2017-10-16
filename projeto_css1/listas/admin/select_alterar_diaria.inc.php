@@ -10,7 +10,7 @@ $con_diaria = $mysqli->query($sql);
 	<?php
 	while ($row_diaria = $con_diaria->fetch_assoc()){
 	?>
-		<option value = "<?php echo $row_diaria['id_diaria'].'|'.$row_diaria['categoria'].' ('.$row_diaria['localidades'].')'.'|'.$row_diaria['posto'].'|'.number_format($row_diaria['valor'], 2, ',', '.');?>"><?php echo $row_diaria['posto'].' (Categoria '.$row_diaria['categoria'].') --> R$'.number_format($row_diaria['valor'], 2, ',', '.');?></option>
+		<option value = "<?php echo $row_diaria['id_diaria'].'|'.$row_diaria['categoria'].' ('.$row_diaria['localidades'].')'.'|'.$row_diaria['posto'].'|'.number_format($row_diaria['valor'], 2, ',', '.');?>"><?php echo $row_diaria['posto'].' (Categoria '.$row_diaria['categoria'].') = R$'.number_format($row_diaria['valor'], 2, ',', '.');?></option>
 	<?php
 	 }
 	 ?>

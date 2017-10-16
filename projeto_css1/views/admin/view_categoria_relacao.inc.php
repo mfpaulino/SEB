@@ -12,25 +12,26 @@ $qtde = $con_lista->num_rows;
 			</div>
 			<div class="modal-body">
 				<div class="box">
-					<div id="area_print" class="box-body no-padding ">
+					<div id="area_printCategoria" class="box-body no-padding ">
 						<table class="table table-striped">
+							<tr class="text-bold">
+								<td class="text-center">Categoria</td>
+								<td>Localidades</td>
+							</tr>
 							<?php
-							//$i = 1;
 							while($row = $con_lista->fetch_assoc()){?>
 								<tr>
-									<td><?php //echo $i.".";?></td>
-									<td><?php echo $row['categoria'];?>:</td>
+									<td class="text-center"><?php echo $row['categoria'];?></td>
 									<td><?php echo $row['localidades'];?></td>
 								</tr>
 								<?php
-								//$i++;
 							} ?>
 						</table>
 					</div>
 				</div>
 			</div>
 			<div class="modal-footer">
-				<button id="btnPrint" class="btn btn-default"><i class="fa fa-print"></i> Imprimir</button>
+				<button id="btnPrintCategoria" class="btn btn-default"><i class="fa fa-print"></i> Imprimir</button>
 			</div>
 		</div>
 	</div>

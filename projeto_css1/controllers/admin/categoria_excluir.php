@@ -20,7 +20,7 @@ if(isset($_POST['flag']) and $_POST['flag'] == md5("categoria_excluir") and isse
 		$_SESSION['botao'] = "success";
 	}
 	else{
-		$_SESSION['categoria_excluir_erro'] = "ERRO A-005: categoria não excluída. Por favor, tente novamente!";
+		$_SESSION['categoria_excluir_erro'] = "ERRO A-006: categoria não excluída. Por favor, tente novamente!";
 		$_SESSION['botao'] = "danger";
 	}
 	$flag = md5("categoria_excluir");

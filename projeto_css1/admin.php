@@ -102,7 +102,7 @@ include_once(PATH . '/controllers/autenticacao/autentica.inc.php');//autentica e
 						<?php include_once('views/admin/view_diaria.inc.php');?>
 						<?php include_once('views/admin/form_diaria_cadastrar.inc.php');?>
 						<?php include_once('views/admin/form_diaria_alterar.inc.php');?>
-						<?php //include_once('views/admin/view_categoria_relacao.inc.php');?>
+						<?php include_once('views/admin/view_diaria_relacao.inc.php');?>
 					</div>
 				</div>
 				<!-- fim conteudo -->
@@ -315,9 +315,19 @@ include_once(PATH . '/controllers/autenticacao/autentica.inc.php');//autentica e
 		})
 	</script>
 	<script>
-		//imprimir email
-		document.getElementById('btnPrint').onclick = function() {
-			var conteudo = document.getElementById('area_print').innerHTML;
+		//imprimir lista categoria
+		document.getElementById('btnPrintCategoria').onclick = function() {
+			var conteudo = document.getElementById('area_printCategoria').innerHTML;
+			var	tela_impressao = window.open('','','width=0, height=0, top=50, left=50');
+			tela_impressao.document.write(conteudo);
+			tela_impressao.window.print();
+			tela_impressao.window.close();
+		};
+	</script>
+	<script>
+		//imprimir lista diaria
+		document.getElementById('btnPrintDiaria').onclick = function() {
+			var conteudo = document.getElementById('area_printDiaria').innerHTML;
 			var	tela_impressao = window.open('','','width=0, height=0, top=50, left=50');
 			tela_impressao.document.write(conteudo);
 			tela_impressao.window.print();
