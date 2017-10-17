@@ -193,144 +193,17 @@ if(isset($_POST['cpf_destinatario'])){
 	<script src="componentes/internos/js/correio_cadastrar.js"></script>
 	<script src="componentes/internos/js/status_sessao.js"></script>
 	<script src="componentes/internos/js/status_menu_top.js"></script>
-	<script>
-		//exibe o modal editar perfil
-		$('#modalEditar').on('show.bs.modal', function (event) {
-			var button = $(event.relatedTarget) // Button that triggered the modal
-			var cpf = button.data('cpf') // Extract info from data-* attributes no script view_usuario_status.inc.php
-			var rg = button.data('rg')
-			var nome_guerra = button.data('nome_guerra')
-			var nome = button.data('nome')
-			var id_posto = button.data('id_posto')
-			var posto = button.data('posto')
-			var email = button.data('email')
-			var ritex = button.data('ritex')
-			var celular = button.data('celular')
-			var unidade = button.data('unidade')
-			var id_perfil = button.data('id_perfil')
-			var perfil = button.data('perfil')
-			var modal = $(this)
-
-			modal.find('.modal-title').text('Editar Perfil')
-			modal.find('#cpf').val(cpf)
-			modal.find('#rg').val(rg)
-			modal.find('#email').val(email)
-			modal.find('#ritex').val(ritex)
-			modal.find('#celular').val(celular)
-			modal.find('#posto').val(id_posto)
-			modal.find('#nome_guerra').val(nome_guerra)
-			modal.find('#nome').val(nome)
-			modal.find('#perfil').val(id_perfil)
-		})
-	</script>
-	<script>
-		//script para receber a selecao da unidade de controle interno e atualizar o 2º select
-		$(document).ready(function(){
-			$("select[name=unidade_ci]").change(function(){
-				$("select[name=codom]").html('<option value="">Carregando...</option>');
-				$.post("listas/select_unidade_usuario.inc.php", {unidade_ci:$(this).val()},function(valor){$("select[name=codom]").html(valor);})
-			 })
-		 })
-	</script>
-	<script>
-		//exibe modal alterar unidade
-		$('#modalTrocarUnidade').on('show.bs.modal', function (event) {
-			var button = $(event.relatedTarget)
-			var unidade = button.data('unidade')
-			var modal = $(this)
-			modal.find('.modal-title').text('Unidade atual: ' + unidade )
-			modal.find('#unidade').val(unidade)
-		})
-	</script>
-	<script>
-		//verifica os dados ao confirmar alteracao de unidade
-		$('[data-toggle="confirmation"]').confirmation({
-			onConfirm: function() {
-				$('#form_altera_unidade').bootstrapValidator({
-					feedbackIcons: {
-						valid: 'glyphicon glyphicon-ok',
-						invalid: 'glyphicon glyphicon-remove',
-						validating: 'glyphicon glyphicon-refresh'
-					},
-					fields: {
-						unidade_ci: {
-							validators: {
-								notEmpty: {
-									message:'preenchimento obrigatório'
-								}
-							}
-						},
-						codom: {
-							validators: {
-								notEmpty: {
-									message:'preenchimento obrigatório'
-								}
-							}
-						}
-					}
-				})
-			}
-		});
-	</script>
+	<script src="componentes/internos/js/modal_editar_perfil.js"></script>
+	<script src="componentes/internos/js/modal_editar_unidade.js"></script>
 	<script>
 		//exibe os titles ao passar o mouse
 		$(document).ready(function(){
 			$('[data-tooltip="tooltip"]').tooltip();
 		});
 	</script>
-	<script>
-		//exibe a imagem do avatar
-		var btnCust = '';
-		$("#avatar-1").fileinput({
-			overwriteInitial: true,
-			maxFileSize: 1500,
-			showClose: false,
-			showCaption: false,
-			showBrowse: false,
-			browseOnZoneClick: false,
-			removeLabel: '',
-			removeIcon: '',
-			removeTitle: '',
-			elErrorContainer: '',
-			msgErrorClass: '',
-			defaultPreviewContent: '<img src="views/avatar/<?php echo $avatar_usuario;?>" style="width:160px">',
-			layoutTemplates: {main2: '{preview}'},
-			allowedFileExtensions: ["jpg", "png", "gif"]
-		});
-	</script>
-	<script>
-		//chama o script que avisa ao usuario_alterar.php que o avatar será excluído
-		function chamarPhpAjax() {
-		   $.ajax({
-			  url:'controllers/usuario/usuario_excluir_avatar.php',
-			  complete: function (response) {
-				 alert('Confirme no botão enviar!');
-			  }
-		  });
-		  return false;
-		}
-	</script>
-	<script>
-		//editar imagem do avatar
-		var btnCust = '<button  class="btn btn-secondary" title="Excluir imagem" ' +
-			'onclick="return chamarPhpAjax();">' +
-			'<i class="fa fa-trash"> </i>' +
-			'</button>';
-		$("#avatar").fileinput({
-			overwriteInitial: true,
-			maxFileSize: 1500,
-			showClose: false,
-			showCaption: false,
-			showBrowse: false,
-			browseOnZoneClick: true,
-			elErrorContainer: '#kv-avatar-errors-2',
-			msgErrorClass: 'alert alert-block alert-danger',
-			defaultPreviewContent: '<img src="views/avatar/<?php echo $avatar_usuario;?>" alt="Sua Foto" style="width:160px"><h6 class="text-muted">clique para alterar<br />(Tam máx: 1500Kb)</h6>',
-			layoutTemplates: {main2: '{preview} ' +  btnCust },
-			allowedFileExtensions: ["jpg", "png", "gif"]
-		});
-	</script>
 	<?php
+	include_once('componentes/internos/php/avatar.php');
+
 	if ($msg <> ""){?>
 		<script>
 			//exibe o modal de alertas

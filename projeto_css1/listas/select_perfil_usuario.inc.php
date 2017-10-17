@@ -22,7 +22,7 @@ $con_perfil= $mysqli->query($sql_perfil);
 
 $num_rows_perfil = $con_perfil->num_rows;
 ?>
-<select class="form-control" name="perfil" id="perfil" <?php if ($status_usuario <> "recebido") {echo "disabled";}?>>
+<select class="form-control" name="perfil" id="perfil">
 	<option value = "">Selecione...</option>
 	<?php
 

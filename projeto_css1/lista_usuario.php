@@ -36,5 +36,9 @@ $status = $rows['status'];
 	<script src="componentes/externos/dist/js/adminlte.min.js"></script>
 	<script src="controllers/usuario/usuario_alterar.js"></script>
 	<script src="controllers/usuario/senha_alterar.js"></script>
+	<script src="componentes/internos/js/modal_editar_perfil.js"></script>
+	<script src="componentes/internos/js/modal_editar_unidade.js"></script>
+	<?php
+	include_once('componentes/internos/php/avatar.php');?>
 </body>
 </html>
