@@ -105,6 +105,13 @@ include_once(PATH . '/controllers/autenticacao/autentica.inc.php');//autentica e
 						<?php include_once('views/admin/view_diaria_relacao.inc.php');?>
 					</div>
 				</div>
+				<div class="row">
+					<div class="col-md-6">
+						<?php include('views/admin/user/view_user_lista.inc.php'); ?>
+						<?php include('views/admin/user/view_user_perfil.inc.php'); ?>
+						<?php// include('views/admin/user/view_user_perfil.inc.php'); ?>
+					</div>
+				</div>
 				<!-- fim conteudo -->
 			</section>
 		</div>
