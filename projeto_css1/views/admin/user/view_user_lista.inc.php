@@ -16,33 +16,33 @@ $mysqli->close();
 
 		$user_codom =  $rows['codom'];
 
-		$sql = "select sigla, denominacao from cciex_om where codom = '$user_codom'";
+		$sql = "select sigla, denominacao from cciex_om where codom = $user_codom";
 		$con_om = $mysqli1->query($sql);
 		$row_om = $con_om->fetch_assoc();
-
-		$user_sigla = $row_om['sigla'];
-
-		$user_cpf = $rows['cpf'];
-		$user_rg = $rows['rg'];
-		$user_nome_guerra = $rows['nome_guerra'];
-		$user_nome = $rows['nome'];
-		$user_email = $rows['email'];
-		$user_ritex = $rows['ritex'];
-		$user_celular = $rows['celular'];
-		$user_posto = $rows['posto'];
-		$user_perfil = $rows['perfil'];
-		$user_status = $rows['status'];
+		session_start();
+		$_SESSION['user_sigla'] = $row_om['sigla'];//parei aki
 		?>
 		<tr>
-			<td><?php echo "$user_posto $user_nome_guerra"; ?></td>
-			<td><?php echo $user_perfil; ?></td>
-			<td><?php echo $user_status; ?></td>
+			<td><?php echo $rows['posto'] ." ". $rows['nome_guerra']; ?></td>
+			<td><?php echo $rows['perfil']; ?></td>
+			<td><?php echo $rows['status']; ?></td>
 			<td class="text-center">
 				<!--botao Visualizar-->
 				<button type="button" class="btn btn-xs btn-primary"
-					data-tooltip="tooltip" title="Exibir Perfil"
+					data-tooltip="tooltip" title=""
 					data-toggle="modal"
-					data-target="#modalUserVisualizar<?php echo $user_cpf; ?>">
+					data-target="#modalUserPerfil"
+					data-cpf="<?php echo $rows['cpf'];?>"
+					data-rg="<?php echo $rows['rg'];?>"
+					data-nome="<?php echo $rows['nome'];?>"
+					data-email="<?php echo $rows['email'];?>"
+					data-ritex="<?php echo $rows['ritex'];?>"
+					data-celular="<?php echo $rows['celular'];?>"
+					data-usuario="<?php echo $rows['posto'].' '.$rows['nome_guerra'];?>"
+					data-id_perfil="<?php echo $rows['id_perfil'];?>"
+					data-unidade="<?php echo $_SESSION['user_sigla'];?>"
+					data-avatar="<?php echo "views/avatar/".$rows['avatar'];?>"
+					>
 					<i class="fa fa-search"></i>
 				</button>
 			</td>

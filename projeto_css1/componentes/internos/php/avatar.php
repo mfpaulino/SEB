@@ -1,6 +1,6 @@
 //jquery para o avatar
 <script>
-	//exibe a imagem do avatar
+	//exibe a imagem do avatar no view_usuario_perfil.inc.php
 	var btnCust = '';
 	$("#avatar-1").fileinput({
 		overwriteInitial: true,
@@ -32,7 +32,7 @@
 	}
 </script>
 <script>
-	//editar imagem do avatar
+	//editar imagem do avatar no form_usuario_alterar.inc.php
 	var btnCust = '<button type="button" class="btn btn-secondary" title="Excluir imagem" ' +
 		'onclick="return chamarPhpAjax();">' +
 		'<i class="fa fa-trash"> </i>' +

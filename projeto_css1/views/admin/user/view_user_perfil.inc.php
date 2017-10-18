@@ -1,4 +1,4 @@
-<div class="modal fade modal-wide" id="modalUserVisualizar<?php echo $user_cpf; ?>" tabindex="-1" role="dialog" aria-labelledby="modalUserVisualizarLabel">
+<div class="modal fade modal-wide" id="modalUserVisualizar" tabindex="-1" role="dialog" aria-labelledby="modalUserVisualizarLabel">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
 			<div class="modal-header fundo">
@@ -18,7 +18,7 @@
 							<div class="col-sm-6">
 								<div class="form-group">
 									<label for="cpf">CPF</label>
-									<input value="<?php echo $user_cpf;?>" class="form-control" disabled>
+									<input name="cpf" id="cpf" class="form-control" disabled>
 								</div>
 							</div>
 							<!-- RG input-->

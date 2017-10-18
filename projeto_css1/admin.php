@@ -108,8 +108,7 @@ include_once(PATH . '/controllers/autenticacao/autentica.inc.php');//autentica e
 				<div class="row">
 					<div class="col-md-6">
 						<?php include('views/admin/user/view_user_lista.inc.php'); ?>
-						<?php include('views/admin/user/view_user_perfil.inc.php'); ?>
-						<?php// include('views/admin/user/view_user_perfil.inc.php'); ?>
+						<?php include('views/admin/user/form_user_perfil.inc.php'); ?>
 					</div>
 				</div>
 				<!-- fim conteudo -->
@@ -136,6 +135,7 @@ include_once(PATH . '/controllers/autenticacao/autentica.inc.php');//autentica e
 	<script src="componentes/internos/js/modal_editar_unidade.js"></script>
 	<script src="componentes/internos/js/admin/modal_adm_categoria.js"></script>
 	<script src="componentes/internos/js/admin/modal_adm_diaria.js"></script>
+	<script src="componentes/internos/js/admin/modal_adm_perfil.js"></script>
 	<script src="componentes/internos/js/admin/categoria.js"></script>
 	<script src="componentes/internos/js/admin/diaria.js"></script>
 	<script>
