@@ -73,8 +73,12 @@
 							<div class="col-sm-12">
 								<div class="form-group">
 									<label for="perfil">Perfil*</label>
-									<?php include_once('listas/admin/select_alterar_user_perfil.inc.php');?>
+									<?php //include_once('listas/admin/select_alterar_user_perfil.inc.php');?>
 								</div>
+								<div class="fetched-data">
+          <!-- Vai abrir aqui o conteudo do arquivo anexo -->
+          uuu
+        </div>
 							</div>
 						</div>
 						<input name="flag" type="hidden" />

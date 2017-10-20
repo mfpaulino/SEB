@@ -13,19 +13,16 @@ $mysqli->close();
 		</tr>
 	<?php
 	while ($rows =  $con_usuarios->fetch_assoc()){
-
 		$user_codom =  $rows['codom'];
 
 		$sql = "select sigla, denominacao from cciex_om where codom = $user_codom";
 		$con_om = $mysqli1->query($sql);
 		$row_om = $con_om->fetch_assoc();
-		session_start();
-		$_SESSION['user_sigla'] = $row_om['sigla'];//parei aki
 		?>
 		<tr>
 			<td><?php echo $rows['posto'] ." ". $rows['nome_guerra']; ?></td>
 			<td><?php echo $rows['perfil']; ?></td>
-			<td><?php echo $rows['status']; ?></td>
+			<td><?php echo $rows['status'];?></td>
 			<td class="text-center">
 				<!--botao Visualizar-->
 				<button type="button" class="btn btn-xs btn-primary"
@@ -40,8 +37,9 @@ $mysqli->close();
 					data-celular="<?php echo $rows['celular'];?>"
 					data-usuario="<?php echo $rows['posto'].' '.$rows['nome_guerra'];?>"
 					data-id_perfil="<?php echo $rows['id_perfil'];?>"
-					data-unidade="<?php echo $_SESSION['user_sigla'];?>"
+					data-unidade="<?php echo $row_om['sigla'];?>"
 					data-avatar="<?php echo "views/avatar/".$rows['avatar'];?>"
+					data-doc=<?php echo $row_om['sigla'];?>"
 					>
 					<i class="fa fa-search"></i>
 				</button>

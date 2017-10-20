@@ -27,7 +27,19 @@ $('#modalUserPerfil').on('show.bs.modal', function (event) {
 	
 	
 	
+	var vNome = button.data('unidade');
+
+	  // criando as variáveis
+	  var vUrl = "listas/admin/select_alterar_user_perfil.inc.php";
+	  var vData = { nome:vNome };
+
+  	$.post(
+   		vUrl, //Required URL of the page on server
+   		vData
+  	);
 	
 	
+	
+			
 })
 

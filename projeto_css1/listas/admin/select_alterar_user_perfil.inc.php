@@ -2,10 +2,8 @@
 //select_alterar_user_perfil.inc.php
 
 include ('componentes/internos/php/conexao.inc.php');
-session_start();
-//user_sigla = $_SESSION['user_sigla'];
-
-$unidade = strtolower(substr($_SESSION['user_sigla'], -5));//pega os 5 ultimos caracteres da sigla
+$user_sigla = $_POST['user_sigla'];
+$unidade = strtolower(substr($user_sigla, -5));//pega os 5 ultimos caracteres da sigla
 
 $unidade = ($unidade == 'cciex' or $unidade == 'icfex') ? $unidade : 'unidades';
 
@@ -25,7 +23,7 @@ $con_user_perfil= $mysqli->query($sql_user_perfil);
 $num_rows_user_perfil = $con_user_perfil->num_rows;
 ?>
 <select class="form-control" name="perfil" id="perfil">
-	<option value = ""><?php echo $_SESSION['user_sigla'];?></option>
+	<option value=""><?php echo $user_sigla.$unidade;?></option>
 	<?php
 
 	if($num_rows_user_perfil == 0){
