@@ -29,6 +29,7 @@ $mysqli->close();
 					data-tooltip="tooltip" title=""
 					data-toggle="modal"
 					data-target="#modalUserPerfil"
+					data-id_usuario="<?php echo $rows['id_usuario'];?>"
 					data-cpf="<?php echo $rows['cpf'];?>"
 					data-rg="<?php echo $rows['rg'];?>"
 					data-nome="<?php echo $rows['nome'];?>"
@@ -37,11 +38,75 @@ $mysqli->close();
 					data-celular="<?php echo $rows['celular'];?>"
 					data-usuario="<?php echo $rows['posto'].' '.$rows['nome_guerra'];?>"
 					data-id_perfil="<?php echo $rows['id_perfil'];?>"
+					data-perfil="<?php echo $rows['perfil'];?>"
 					data-unidade="<?php echo $row_om['sigla'];?>"
 					data-avatar="<?php echo "views/avatar/".$rows['avatar'];?>"
 					data-doc=<?php echo $row_om['sigla'];?>"
 					>
-					<i class="fa fa-search"></i>
+					<i class="fa fa-search"> Perfil</i>
+				</button>
+				<!--botao Visualizar-->
+				<button type="button" class="btn btn-xs btn-primary"
+					data-tooltip="tooltip" title=""
+					data-toggle="modal"
+					data-target="#modalUserPerfil"
+					data-id_usuario="<?php echo $rows['id_usuario'];?>"
+					data-cpf="<?php echo $rows['cpf'];?>"
+					data-rg="<?php echo $rows['rg'];?>"
+					data-nome="<?php echo $rows['nome'];?>"
+					data-email="<?php echo $rows['email'];?>"
+					data-ritex="<?php echo $rows['ritex'];?>"
+					data-celular="<?php echo $rows['celular'];?>"
+					data-usuario="<?php echo $rows['posto'].' '.$rows['nome_guerra'];?>"
+					data-id_perfil="<?php echo $rows['id_perfil'];?>"
+					data-perfil="<?php echo $rows['perfil'];?>"
+					data-unidade="<?php echo $row_om['sigla'];?>"
+					data-avatar="<?php echo "views/avatar/".$rows['avatar'];?>"
+					data-doc=<?php echo $row_om['sigla'];?>"
+					>
+					<i class="fa fa-trash"></i>
+				</button>
+				<!--botao Visualizar-->
+				<button type="button" class="btn btn-xs btn-primary"
+					data-tooltip="tooltip" title=""
+					data-toggle="modal"
+					data-target="#modalUserPerfil"
+					data-id_usuario="<?php echo $rows['id_usuario'];?>"
+					data-cpf="<?php echo $rows['cpf'];?>"
+					data-rg="<?php echo $rows['rg'];?>"
+					data-nome="<?php echo $rows['nome'];?>"
+					data-email="<?php echo $rows['email'];?>"
+					data-ritex="<?php echo $rows['ritex'];?>"
+					data-celular="<?php echo $rows['celular'];?>"
+					data-usuario="<?php echo $rows['posto'].' '.$rows['nome_guerra'];?>"
+					data-id_perfil="<?php echo $rows['id_perfil'];?>"
+					data-perfil="<?php echo $rows['perfil'];?>"
+					data-unidade="<?php echo $row_om['sigla'];?>"
+					data-avatar="<?php echo "views/avatar/".$rows['avatar'];?>"
+					data-doc=<?php echo $row_om['sigla'];?>"
+					>
+					<i class="fa fa-key"> Senha</i>
+				</button>
+				<!--botao Visualizar-->
+				<button type="button" class="btn btn-xs btn-primary"
+					data-tooltip="tooltip" title=""
+					data-toggle="modal"
+					data-target="#modalUserPerfil"
+					data-id_usuario="<?php echo $rows['id_usuario'];?>"
+					data-cpf="<?php echo $rows['cpf'];?>"
+					data-rg="<?php echo $rows['rg'];?>"
+					data-nome="<?php echo $rows['nome'];?>"
+					data-email="<?php echo $rows['email'];?>"
+					data-ritex="<?php echo $rows['ritex'];?>"
+					data-celular="<?php echo $rows['celular'];?>"
+					data-usuario="<?php echo $rows['posto'].' '.$rows['nome_guerra'];?>"
+					data-id_perfil="<?php echo $rows['id_perfil'];?>"
+					data-perfil="<?php echo $rows['perfil'];?>"
+					data-unidade="<?php echo $row_om['sigla'];?>"
+					data-avatar="<?php echo "views/avatar/".$rows['avatar'];?>"
+					data-doc=<?php echo $row_om['sigla'];?>"
+					>
+					<i class="fa fa-key"> Senha</i>
 				</button>
 			</td>
 		</tr>

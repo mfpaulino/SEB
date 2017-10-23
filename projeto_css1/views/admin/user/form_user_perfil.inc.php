@@ -71,17 +71,15 @@
 						</div>
 						<div class="row">
 							<div class="col-sm-12">
-								<div class="form-group">
-									<label for="perfil">Perfil*</label>
-									<?php //include_once('listas/admin/select_alterar_user_perfil.inc.php');?>
+								<label for="perfil">Perfil*</label>
+								<div id="div_perfil" class="form-group">
+									<!-- select vem do componentes/internos/js/admin/modal_adm_perfil.js"> -->
 								</div>
-								<div class="fetched-data">
-          <!-- Vai abrir aqui o conteudo do arquivo anexo -->
-          uuu
-        </div>
 							</div>
 						</div>
-						<input name="flag" type="hidden" />
+						<input type="hidden" name="perfil_atual"   id="perfil_atual" />
+						<input type="hidden" name="id_usuario"   id="id_usuario" />
+						<input type="hidden" name="flag" />
 						<input type="hidden" name="flag1" value="<?php echo $pagina;?>" />
 						<div class="modal-footer">
 							<button type="submit" class="btn btn-success">Enviar</button>

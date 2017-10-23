@@ -80,6 +80,19 @@ if ($inc == "sim"){
 			unset($_SESSION['alterar_lista_erro_validacao_diaria']);
 		}
 
+		if($flag == md5("user_alterar")){
+			$msg0 = $_SESSION['alterar_erro_validacao_user'];
+			$msg1 = $_SESSION['alterar_user'];
+			$msg2 = $_SESSION['alterar_nada_user'];
+			$lista_erro_validacao = $_SESSION['alterar_lista_erro_validacao_user'];
+		}
+		else {
+			unset($_SESSION['alterar_erro_validacao_user']);
+			unset($_SESSION['alterar_user']);
+			unset($_SESSION['alterar_nada_user']);
+			unset($_SESSION['alterar_lista_erro_validacao_user']);
+		}
+
 		if($flag == md5("diaria_excluir")){
 
 			$msg0 = $_SESSION['diaria_excluir_sucesso'];
