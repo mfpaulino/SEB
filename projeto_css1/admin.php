@@ -108,6 +108,7 @@ include_once(PATH . '/controllers/autenticacao/autentica.inc.php');//autentica e
 				<div class="row">
 					<div class="col-md-6">
 						<?php include('views/admin/user/view_user_lista.inc.php'); ?>
+						<?php include('views/admin/user/view_pedido_cadastro_lista.inc.php'); ?>
 						<?php include('views/admin/user/form_user_perfil.inc.php'); ?>
 					</div>
 				</div>

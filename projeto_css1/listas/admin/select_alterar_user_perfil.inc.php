@@ -1,7 +1,7 @@
 <?php
 //select_alterar_user_perfil.inc.php
-
 include_once ('../../componentes/internos/php/conexao.inc.php');
+
 $user_sigla = $_POST['user_sigla'];
 $user_id_perfil = $_POST['user_id_perfil'];
 $user_perfil = $_POST['user_perfil'];

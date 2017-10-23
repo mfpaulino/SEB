@@ -26,18 +26,5 @@ $('#modalEditar').on('show.bs.modal', function (event) {
 	modal.find('#nome_guerra').val(nome_guerra)
 	modal.find('#nome').val(nome)
 	modal.find('#perfil').val(perfil)
-	
-	$.ajax({
-      		type : 'post', 
-      		url : 'listas/admin/select_alterar_user_perfil.inc.php', 
-      		data :  'user_sigla=' + user_sigla, 
-      		success : function(data){
-       		 $('.fetched-data').html(data);
-       		 alert(data);
-     		 } 
-   	 });
-	
-	
-	
 })
 
