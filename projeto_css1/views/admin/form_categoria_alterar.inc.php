@@ -18,7 +18,7 @@
 						<input type="hidden" name="categoria_atual"   id="categoria_atual" />
 						<input type="hidden" name="localidade_atual"  id="localidade_atual" />
 						<input type="hidden" name="id_categoria"      id="id_categoria" />
-						<input type="hidden" name="flag" />
+						<input type="hidden" name="flag" value="alterar" />
 					</div>
 					<div class="modal-footer">
 						<button type="submit" class="btn btn-success">Enviar</button>

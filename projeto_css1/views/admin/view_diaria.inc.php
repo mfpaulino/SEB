@@ -20,10 +20,10 @@
 	<div class="box-footer text-black">
 		<div class="row">
 			<div class="col-sm-12">
-				<form class="form-horizontal" method="POST" action="controllers/admin/diaria_excluir.php">
+				<form class="form-horizontal" method="POST" action="controllers/admin/diaria/diaria_alterar.php">
 					<div class="box-body">
 						<?php include_once('listas/admin/select_alterar_diaria.inc.php');?>
-						<input type="hidden" name="flag" value="<?php echo md5('diaria_excluir');?>" />
+						<input type="hidden" name="flag" value="excluir" />
 					</div>
 					<div class="box-footer pull-right">
 						<!--botao Alterar categoria-->

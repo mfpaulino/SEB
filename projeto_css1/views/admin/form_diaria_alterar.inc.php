@@ -21,7 +21,7 @@
 					<div class="form-group">
 						<input type="hidden" name="valor_atual"   id="valor_atual" />
 						<input type="hidden" name="id_diaria"      id="id_diaria" />
-						<input type="hidden" name="flag" />
+						<input type="hidden" name="flag" value="alterar" />
 					</div>
 					<div class="modal-footer">
 						<button type="submit" class="btn btn-success">Enviar</button>

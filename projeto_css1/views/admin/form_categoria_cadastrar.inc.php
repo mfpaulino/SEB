@@ -5,7 +5,7 @@
 				<h4 class="modal-title">Cadastrar Categoria</h4>
 			</div>
 			<div class="modal-body">
-				<form name="form_categoria_cadastrar" id="form_categoria_cadastrar" action="controllers/admin/categoria_cadastrar.php" method="POST">
+				<form name="form_categoria_cadastrar" id="form_categoria_cadastrar" action="controllers/admin/categoria/categoria_cadastrar.php" method="POST">
 					<div class="form-group">
 						<label for="categoria" class="control-label">*Categoria:</label>
 						<input class="form-control" type="text" name="categoria"  id="categoria"  autofocus  placeholder="" />

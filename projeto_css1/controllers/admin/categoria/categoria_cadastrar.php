@@ -1,9 +1,9 @@
 <?php
 /**************************************************************
-* Local/nome do script: admin/diaria_cadastrar.php
+* Local/nome do script: admin/categoria_cadastrar.php
 * Só executa se for chamado pelo formulario, senão chama o script de "acesso negado"
 * primeiramente destroi as variaveis de sessao de alertas de usuario
-* Recebe todos os dados do formulario de cadastro de diaria
+* Recebe todos os dados do formulario de cadastro de usuario
 * Trata os valores recebidos com o método mysqli: mysqli_real_escape_string
 * Usa a classe validaForm para fazer a validação dos dados
 * Consulta o BD em busca da categoria para evitar duplicidade
@@ -16,7 +16,7 @@
 session_start();
 
 $inc = "sim";
-include_once('../../config.inc.php');
+include_once('../../../config.inc.php');
 
 if (isset($_POST['flag']) and isset($_SESSION['cpf'])){
 
@@ -26,23 +26,29 @@ if (isset($_POST['flag']) and isset($_SESSION['cpf'])){
 	require_once(PATH . '/componentes/internos/php/funcoes.inc.php');
 
 	$categoria	 = isset($_POST['categoria']) ? mysqli_real_escape_string($mysqli, $_POST['categoria']) : "";
-	$posto  = isset($_POST['posto']) ? mysqli_real_escape_string($mysqli, $_POST['posto']) : "";
-	$valor  = isset($_POST['valor']) ? mysqli_real_escape_string($mysqli, $_POST['valor']) : "";
-	$valor = str_replace(",",".",str_replace(".","",$valor));
+	$localidade  = isset($_POST['localidade']) ? mysqli_real_escape_string($mysqli, $_POST['localidade']) : "";
 
 	$validar = new validaForm();
 
 	$validar->set('Categoria', 	 $categoria)->is_required()
-			->set('Posto/grad', $posto)->is_required()
-			->set('Valor', $valor)->is_required()->is_num()->is_positive();
+			->set('Localidades', $localidade)->is_required();
 
 	if ($validar->validate()){
 
-		$busca_diaria = $mysqli->query("SELECT id_diaria FROM adm_diarias WHERE id_categoria = '$categoria' and id_posto = '$posto'");
+		$busca_categoria = $mysqli->query("SELECT id_categoria FROM adm_categorias WHERE categoria = '$categoria'");
+		$busca_localidade = $mysqli->query("SELECT id_categoria FROM adm_categorias WHERE localidades = '$localidade'");
 
-		if($busca_diaria->num_rows > 0){
 
-			$_SESSION['diaria_duplicada'] = "ERRO A-007: diária já cadastrada!";
+		if($busca_categoria->num_rows > 0){
+
+			$_SESSION['categoria_duplicada'] = "ERRO A-001: Categoria já cadastrada!";
+			$_SESSION['botao'] = "danger";
+
+			$validacao = false;
+		}
+		if($busca_localidade->num_rows > 0){
+
+			$_SESSION['localidade_duplicada'] = "ERRO A-002: Localidade(s) já cadastrada(s)!";
 			$_SESSION['botao'] = "danger";
 
 			$validacao = false;
@@ -51,28 +57,28 @@ if (isset($_POST['flag']) and isset($_SESSION['cpf'])){
 
 			//$dt_cad = date('Y-m-d');
 
-			$resultado = $mysqli->query("INSERT INTO adm_diarias (id_posto, id_categoria, valor) VALUES ('$posto','$categoria','$valor')");
+			$resultado = $mysqli->query("INSERT INTO adm_categorias (categoria, localidades) VALUES ('$categoria', '$localidade')");
 
 			if($resultado){
 
-				$_SESSION['sucesso_cadastro_diaria'] = "Cadastro realizado com sucesso!";
+				$_SESSION['sucesso_cadastro_categoria'] = "Cadastro realizado com sucesso!";
 				$_SESSION['botao'] = "success";
 			}
 			else{
 
-				$_SESSION['erro_cadastro_diaria'] = "ERRO A-008: cadastro não realizado, tente novamente!<br />Em caso de persistir o erro, entrar em contato com o suporte técnico.";
+				$_SESSION['erro_cadastro_categoria'] = "ERRO A-003: cadastro não realizado, tente novamente!<br />Em caso de persistir o erro, entrar em contato com o suporte técnico.";
 				$_SESSION['botao'] = "danger";
 			}
 
 		}
 	}
 	else {
-		$_SESSION['erro_validacao_cadastrar_diaria'] = "ERRO A-009: dados inconsistentes, preencha novamente o formulário!";
+		$_SESSION['erro_validacao_cadastrar_categoria'] = "ERRO A-004: dados inconsistentes, preencha novamente o formulário!";
 		$_SESSION['botao'] = "danger";
 
-		$_SESSION['lista_erro_validacao_cadastrar_diaria'] = $validar->get_errors(); //Captura os erros de todos os campos
+		$_SESSION['lista_erro_validacao_cadastrar_categoria'] = $validar->get_errors(); //Captura os erros de todos os campos
 	}
-	$flag = md5("diaria_cadastrar");
+	$flag = md5("categoria_cadastrar");
 	header(sprintf("Location:../../admin.php?flag=$flag"));
 }
 else {

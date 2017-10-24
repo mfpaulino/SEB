@@ -77,10 +77,9 @@
 								</div>
 							</div>
 						</div>
+						<input type="hidden" name="flag" value="alterar" />
 						<input type="hidden" name="perfil_atual"   id="perfil_atual" />
 						<input type="hidden" name="id_usuario"   id="id_usuario" />
-						<input type="hidden" name="flag" />
-						<input type="hidden" name="flag1" value="<?php echo $pagina;?>" />
 						<div class="modal-footer">
 							<button type="submit" class="btn btn-success">Enviar</button>
 							<button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>

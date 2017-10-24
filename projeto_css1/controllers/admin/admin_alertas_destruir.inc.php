@@ -31,12 +31,4 @@ unset($_SESSION['alterar_erro_validacao_user']);
 unset($_SESSION['alterar_user']);
 unset($_SESSION['alterar_nada_user']);
 unset($_SESSION['alterar_lista_erro_validacao_user']);
-
-//categoria excluir
-unset($_SESSION['categoria_excluir_sucesso']);
-unset($_SESSION['categoria_excluir_erro']);
-
-//diaria excluir
-unset($_SESSION['diaria_excluir_sucesso']);
-unset($_SESSION['diaria_excluir_erro']);
 ?>

@@ -5,7 +5,7 @@
 				<h4 class="modal-title">Cadastrar Diária</h4>
 			</div>
 			<div class="modal-body">
-				<form name="form_diaria_cadastrar" id="form_diaria_cadastrar" action="controllers/admin/diaria_cadastrar.php" method="POST">
+				<form name="form_diaria_cadastrar" id="form_diaria_cadastrar" action="controllers/admin/diaria/diaria_cadastrar.php" method="POST">
 					<div class="form-group">
 						<label for="posto" class="control-label">*Posto/Grad:</label>
 						<?php include('listas/select_posto.inc.php');?>

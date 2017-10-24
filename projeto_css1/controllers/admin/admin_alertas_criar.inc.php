@@ -41,16 +41,6 @@ if ($inc == "sim"){
 			unset($_SESSION['alterar_lista_erro_validacao_categoria']);
 		}
 
-		if($flag == md5("categoria_excluir")){
-
-			$msg0 = $_SESSION['categoria_excluir_sucesso'];
-			$msg1 = $_SESSION['categoria_excluir_erro'];
-		}
-		else{
-			unset($_SESSION['categoria_excluir_sucesso']);
-			unset($_SESSION['categoria_excluir_erro']);
-		}
-
 		if($flag == md5("diaria_cadastrar")){
 
 			$msg0 = $_SESSION['erro_validacao_cadastrar_diaria'];
@@ -91,16 +81,6 @@ if ($inc == "sim"){
 			unset($_SESSION['alterar_user']);
 			unset($_SESSION['alterar_nada_user']);
 			unset($_SESSION['alterar_lista_erro_validacao_user']);
-		}
-
-		if($flag == md5("diaria_excluir")){
-
-			$msg0 = $_SESSION['diaria_excluir_sucesso'];
-			$msg1 = $_SESSION['diaria_excluir_erro'];
-		}
-		else{
-			unset($_SESSION['diaria_excluir_sucesso']);
-			unset($_SESSION['diaria_excluir_erro']);
 		}
 
 		$msg="sim";

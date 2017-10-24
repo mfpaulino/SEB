@@ -1,3 +1,19 @@
+//Só libera os botoes do form diaria ao selecionar a diaria
+$(function(){
+	$('#btnAlteraDiaria').attr('disabled', 'disabled');
+	$('#btnExcluiDiaria').attr('disabled', 'disabled');
+	$('#diaria').change(function(){
+		if($('#diaria').val() != ""){
+		   $('#btnAlteraDiaria').removeAttr('disabled');
+		   $('#btnExcluiDiaria').removeAttr('disabled');
+		}
+		else{
+			$('#btnAlteraDiaria').attr('disabled', 'disabled');
+			$('#btnExcluiDiaria').attr('disabled', 'disabled');
+		}
+	});
+});
+
 //Informa os valores dos campos ao modal alterar diária
 $('#modalAlterarDiaria').on('show.bs.modal', function (event) {
 	var array_diaria = $('#diaria').val().split('|');
