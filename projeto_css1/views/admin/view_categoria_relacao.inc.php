@@ -2,6 +2,10 @@
 $sql = "SELECT * FROM adm_categorias ORDER BY categoria";
 $con_lista = $mysqli->query($sql);
 $qtde = $con_lista->num_rows;
+
+if($qtde == 0){
+	$atributo_categoria="disabled";
+}
 ?>
 <div class="modal fade" id="modalExibirCategoria" role="dialog">
 	<div class="modal-dialog">
@@ -31,7 +35,7 @@ $qtde = $con_lista->num_rows;
 				</div>
 			</div>
 			<div class="modal-footer">
-				<button id="btnPrintCategoria" class="btn btn-default"><i class="fa fa-print"></i> Imprimir</button>
+				<button id="btnPrintCategoria" class="btn btn-default" <?php echo $atributo_categoria;?> ><i class="fa fa-print"></i> Imprimir</button>
 			</div>
 		</div>
 	</div>

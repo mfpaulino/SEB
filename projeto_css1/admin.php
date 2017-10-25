@@ -10,6 +10,7 @@
 * **********************************************************************************************************/
 $inc = "sim";
 $pagina = strtr(end(explode('/', $_SERVER['PHP_SELF'])),'?', true);
+//$pagina = "index.php";
 
 include_once('config.inc.php');
 include_once(PATH . '/controllers/autenticacao/autentica.inc.php');//autentica e gera todos os dados de usuario
@@ -107,9 +108,11 @@ include_once(PATH . '/controllers/autenticacao/autentica.inc.php');//autentica e
 				</div>
 				<div class="row">
 					<div class="col-md-6">
-						<?php include('views/admin/user/view_user_lista.inc.php'); ?>
-						<?php include('views/admin/user/view_pedido_cadastro_lista.inc.php'); ?>
-						<?php include('views/admin/user/form_user_perfil.inc.php'); ?>
+						<?php include_once('views/admin/user/view_user_lista.inc.php'); ?>
+						<?php include_once('views/admin/user/view_pedido_cadastro_lista.inc.php'); ?>
+						<?php include_once('views/admin/user/form_user_perfil.inc.php'); ?>
+						<?php include_once('views/admin/user/view_user_relacao.inc.php');?>
+						<?php include_once('views/admin/user/view_pedido_cadastro_relacao.inc.php');?>
 					</div>
 				</div>
 				<!-- fim conteudo -->
@@ -134,11 +137,11 @@ include_once(PATH . '/controllers/autenticacao/autentica.inc.php');//autentica e
 	<script src="componentes/internos/js/usuario_alterar.js"></script>
 	<script src="componentes/internos/js/modal_editar_perfil.js"></script>
 	<script src="componentes/internos/js/modal_editar_unidade.js"></script>
-	<script src="componentes/internos/js/admin/modal_adm_categoria.js"></script>
-	<script src="componentes/internos/js/admin/modal_adm_diaria.js"></script>
-	<script src="componentes/internos/js/admin/modal_adm_perfil.js"></script>
-	<script src="componentes/internos/js/admin/categoria.js"></script>
-	<script src="componentes/internos/js/admin/diaria.js"></script>
+	<script src="componentes/internos/js/admin/view_categoria.js"></script>
+	<script src="componentes/internos/js/admin/view_diaria.js"></script>
+	<script src="componentes/internos/js/admin/view_user.js"></script>
+	<script src="componentes/internos/js/admin/form_categoria.js"></script>
+	<script src="componentes/internos/js/admin/form_diaria.js"></script>
 	<script>
 		//exibe os titles ao passar o mouse
 		$(document).ready(function(){

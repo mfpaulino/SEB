@@ -17,7 +17,7 @@
 	</div>
 	<div class="box-body no-padding" style="display:none;">
 	</div>
-	<div class="box-footer text-black">
+	<div class="box-footer text-black" style="border:1px solid black;">
 		<div class="row">
 			<div class="col-sm-12">
 				<form class="form-horizontal" method="POST" action="controllers/admin/categoria/categoria_alterar.php">

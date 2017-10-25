@@ -72,7 +72,7 @@ if(isset($_POST['flag']) and isset($_SESSION['cpf'])){
 		}
 	}
 	$flag = md5("categoria_alterar");
-	header("Location:../../admin.php?flag=$flag");
+	header("Location:../../../admin.php?flag=$flag");
 }
 else {
 	include_once(PATH . '/controllers/autenticacao/'.ACESSO_NEGADO);

@@ -5,7 +5,7 @@
 				<h4 class="modal-title">Editar Categoria</h4>
 			</div>
 			<div class="modal-body">
-				<form name="form_categoria_alterar" id="form_categoria_alterar" action="controllers/admin/categoria_alterar.php" method="POST">
+				<form name="form_categoria_alterar" id="form_categoria_alterar" action="controllers/admin/categoria/categoria_alterar.php" method="POST">
 					<div class="form-group">
 						<label for="categoria" class="control-label">*Categoria:</label>
 						<input class="form-control" type="text" name="categoria"  id="categoria" autofocus  placeholder="" />

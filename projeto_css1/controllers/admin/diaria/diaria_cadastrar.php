@@ -73,7 +73,7 @@ if (isset($_POST['flag']) and isset($_SESSION['cpf'])){
 		$_SESSION['lista_erro_validacao_cadastrar_diaria'] = $validar->get_errors(); //Captura os erros de todos os campos
 	}
 	$flag = md5("diaria_cadastrar");
-	header(sprintf("Location:../../admin.php?flag=$flag"));
+	header(sprintf("Location:../../../admin.php?flag=$flag"));
 }
 else {
 	include_once(PATH . '/controllers/autenticacao/'.ACESSO_NEGADO);

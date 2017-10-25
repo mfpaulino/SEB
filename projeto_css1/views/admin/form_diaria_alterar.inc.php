@@ -5,7 +5,7 @@
 				<h4 class="modal-title">Alterar Diária</h4>
 			</div>
 			<div class="modal-body">
-				<form name="form_diaria_alterar" id="form_diaria_alterar" action="controllers/admin/diaria_alterar.php" method="POST">
+				<form name="form_diaria_alterar" id="form_diaria_alterar" action="controllers/admin/diaria/diaria_alterar.php" method="POST">
 					<div class="form-group">
 						<label for="posto" class="control-label">Posto/grad:</label>
 						<input class="form-control" type="text" name="posto"  id="posto" disabled />
