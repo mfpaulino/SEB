@@ -16,12 +16,12 @@ include_once('config.inc.php');
 include_once(PATH . '/controllers/autenticacao/autentica_visite.inc.php');
 
 switch ($status_usuario){
-	case ('recebido'):
+	case ('Recebido'):
 		$status = "Aguardando liberação de acesso";
 		break;
 
-	case('desabilitado'):
-		$status = "Usuário está desabilitado";
+	case('Desabilitado'):
+		$status = "Usuário desabilitado";
 		break;
 }
 ?>

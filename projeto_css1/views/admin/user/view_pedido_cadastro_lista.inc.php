@@ -85,7 +85,9 @@ $con_usuarios = $mysqli->query($sql);
 					<td class="text-center">
 						<!--botao Perfil-->
 						<button type="button" class="btn btn-xs btn-primary"
-							data-tooltip="tooltip" title="Exibir Perfil"
+							data-tooltip="tooltip"
+							data-title="Exibir Perfil"
+							data-placement="left"
 							data-toggle="modal"
 							data-target="#modalUserPerfil"
 							data-id_usuario="<?php echo $rows['id_usuario'];?>"
@@ -105,11 +107,16 @@ $con_usuarios = $mysqli->query($sql);
 							<i class="fa fa-search"></i>
 						</button>
 						<!--botao Habilitar-->
-						<button form="formHabilitar" type="submit" <?php echo $btn_status_h;?> class="btn btn-xs btn-primary" data-tooltip="tooltip" title="<?php echo $tooltip_h;?>">
+						<button form="formHabilitar<?php echo $rows['id_usuario'];?>" type="submit" <?php echo $btn_status_h;?> class="btn btn-xs btn-primary"
+							data-tooltip="tooltip"
+							data-title="<?php echo $tooltip_h;?>"
+							data-placement="left"
+							>
 							<i class="fa fa-check"></i>
 						</button>
 						<!--botao Excluir-->
-						<button form="formExcluir" type="submit" <?php echo $btn_status_e;?> class="btn btn-xs btn-primary"
+						<button form="formExcluir<?php echo $rows['id_usuario'];?>" type="submit" <?php echo $btn_status_e;?> class="btn btn-xs btn-primary"
+							data-tooltip="tooltip"
 							data-toggle="confirmation"
 							data-placement="left"
 							data-btn-ok-label="Continuar"
@@ -118,17 +125,18 @@ $con_usuarios = $mysqli->query($sql);
 							data-btn-cancel-label="Parar"
 							data-btn-cancel-icon="glyphicon glyphicon-ban-circle"
 							data-btn-cancel-class="btn-danger"
-							data-title="Confirma exclusão do usuário?"
-							data-content="">
+							data-title="Excluir Usuário"
+							data-content="Confirma?">
 							<i class="fa fa-trash"></i>
 						</button>
-						<form id="formHabilitar" action="controllers/admin/user/user_alterar.php" method = "POST">
+						<form id="formHabilitar<?php echo $rows['id_usuario'];?>" action="controllers/admin/user/user_alterar.php" method = "POST">
 							<input type="hidden" name="flag" value="habilitar" />
 							<input type="hidden" name="id_usuario" value="<?php echo $rows['id_usuario'];?>" />
 						</form>
-						<form id="formExcluir" action="controllers/admin/user/user_alterar.php" method = "POST">
+						<form id="formExcluir<?php echo $rows['id_usuario'];?>" action="controllers/admin/user/user_alterar.php" method = "POST">
 							<input type="hidden" name="flag" value="excluir" />
 							<input type="hidden" name="id_usuario" value="<?php echo $rows['id_usuario'];?>" />
+							<input type="hidden" name="cpf" value="<?php echo $rows['cpf'];?>" />
 						</form>
 					</td>
 				</tr>

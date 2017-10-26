@@ -94,6 +94,7 @@ else if ($_SESSION['acesso'] == "lock"){
 	<script src="componentes/internos/js/auto_tab.js"></script>
 	<script src="componentes/internos/js/usuario_cadastrar.js"></script>
 	<script src="componentes/internos/js/senha_recuperar.js"></script>
+	<script src="componentes/internos/js/senha_alterar.js"></script>
 	<script src="componentes/internos/js/login.js"></script>
 	<script>
 		<!-- Redimensona o tamanho padrao do modal. Está no siaudi.css-->

@@ -1,5 +1,5 @@
 <?php
-$sql = "SELECT id_usuario, cpf, rg, nome_guerra, nome, email, ritex, celular, avatar, dt_cad, usuarios.id_posto, p.posto, codom, usuarios.id_perfil, pe.perfil, ultimo_acesso, acesso_anterior, status from usuarios, postos p, adm_perfis pe where usuarios.id_posto = p.id_posto and usuarios.id_perfil = pe.id_perfil and cpf <> '$cpf' order by usuarios.id_posto";
+$sql = "SELECT id_usuario, cpf, rg, nome_guerra, nome, email, ritex, celular, avatar, dt_cad, usuarios.id_posto, p.posto, codom, usuarios.id_perfil, pe.perfil, ultimo_acesso, acesso_anterior, status from usuarios, postos p, adm_perfis pe where usuarios.id_posto = p.id_posto and usuarios.id_perfil = pe.id_perfil and cpf <> '$cpf' and usuarios.status <> 'recebido' order by usuarios.id_posto";
 $con_usuarios = $mysqli->query($sql);
 ?>
 <div class="box box-solid bg-olive collapsed-box">
@@ -35,6 +35,19 @@ $con_usuarios = $mysqli->query($sql);
 		$con_om = $mysqli1->query($sql);
 		$row_om = $con_om->fetch_assoc();
 
+		/** verifica se o usuário está habilitado ou desabilitado **/
+		if($rows['status'] == "Habilitado"){
+			$fa = "fa-remove";
+			$acao = "desabilitar";
+			$title = "Desabilitar Usuário";
+		}
+		else if ($rows['status'] == "Desabilitado"){
+			$fa = "fa-check";
+			$acao = "habilitar";
+			$title = "Habilitar Usuário";
+		}
+
+		/****/
 
 		/*** verifica se o usuário possui alguma entrada na tabela de logs ****/
 		$user_cpf = $rows['cpf'];
@@ -57,7 +70,9 @@ $con_usuarios = $mysqli->query($sql);
 			<td class="text-center">
 				<!--botao Visualizar-->
 				<button type="button" class="btn btn-xs btn-primary"
-					data-tooltip="tooltip" title="Exibir Perfil"
+					data-tooltip="tooltip"
+					data-title="Exibir Perfil"
+					data-placement="left"
 					data-toggle="modal"
 					data-target="#modalUserPerfil"
 					data-id_usuario="<?php echo $rows['id_usuario'];?>"
@@ -77,7 +92,8 @@ $con_usuarios = $mysqli->query($sql);
 					<i class="fa fa-search"></i>
 				</button>
 				<!--botao ResetarSenha-->
-				<button form="formSenha" type="submit" class="btn btn-xs btn-primary"
+				<button id="btnSenha" form="formSenha<?php echo $rows['id_usuario'];?>" type="submit" class="btn btn-xs btn-primary"
+					data-tooltip="tooltip"
 					data-toggle="confirmation"
 					data-placement="left"
 					data-btn-ok-label="Continuar"
@@ -86,12 +102,28 @@ $con_usuarios = $mysqli->query($sql);
 					data-btn-cancel-label="Parar"
 					data-btn-cancel-icon="glyphicon glyphicon-ban-circle"
 					data-btn-cancel-class="btn-danger"
-					data-title="Confirma redefinir senha do usuário?"
-					data-content="Nova senha será igual ao CPF">
-					<i class="fa fa-key" ></i>
+					data-title="Redefinir Senha"
+					data-content="Confirma Redefinir Senha?">
+					<i class="fa fa-lock" ></i>
 				</button>
+				<!--botao Desabilitar-->
+				<button form="formMudaStatus<?php echo $rows['id_usuario'];?>" type="submit" class="btn btn-xs btn-primary"
+					data-tooltip="tooltip"
+					data-toggle="confirmation"
+					data-placement="left"
+					data-btn-ok-label="Continuar"
+					data-btn-ok-icon="glyphicon glyphicon-share-alt"
+					data-btn-ok-class="btn-success"
+					data-btn-cancel-label="Parar"
+					data-btn-cancel-icon="glyphicon glyphicon-ban-circle"
+					data-btn-cancel-class="btn-danger"
+					data-title="<?php echo $title;?>"
+					data-content="Confirma?">
+					<i class="fa <?php echo $fa;?>"></i>
+				</button
 				<!--botao Excluir-->
-				<button form="formExcluir" type="submit" <?php echo $btn_status_e;?> class="btn btn-xs btn-primary"
+				<button form="formExcluir<?php echo $rows['id_usuario'];?>" type="submit" <?php echo $btn_status_e;?> class="btn btn-xs btn-primary"
+					data-tooltip="tooltip"
 					data-toggle="confirmation"
 					data-placement="left"
 					data-btn-ok-label="Continuar"
@@ -100,18 +132,23 @@ $con_usuarios = $mysqli->query($sql);
 					data-btn-cancel-label="Parar"
 					data-btn-cancel-icon="glyphicon glyphicon-ban-circle"
 					data-btn-cancel-class="btn-danger"
-					data-title="Confirma exclusão do usuário?"
-					data-content="">
-					<i class="fa fa-trash" ></i>
+					data-title="Excluir Usuário"
+					data-content="Confirma?">
+					<i class="fa fa-trash"></i>
 				</button>
-				<form id="formSenha" action="controllers/admin/user/user_alterar.php" method="POST">
-					<input type="hidden" name="id_usuario"  value = "<?php echo $rows['id_usuario']; ?>" />
-					<input type="hidden" name="cpf"  value = "<?php echo $rows['cpf']; ?>" />
-					<input type="hidden" name = "flag" value="resetar_senha"/>
+				<form id="formSenha<?php echo $rows['id_usuario'];?>" action="controllers/admin/user/user_alterar.php" method = "POST">
+					<input type="hidden" name="id_usuario" value= "<?php echo $rows['id_usuario'];?>" />
+					<input type="hidden" name="cpf" value="<?php echo $rows['cpf'];?>" />
+					<input type="hidden" name = "flag" value="resetar_senha" />
 				</form>
-				<form id="formExcluir" action="controllers/admin/user/user_alterar.php" method = "POST">
-					<input type="hidden" name="flag" value="excluir" />
+				<form id="formMudaStatus<?php echo $rows['id_usuario'];?>" action="controllers/admin/user/user_alterar.php" method = "POST">
 					<input type="hidden" name="id_usuario" value="<?php echo $rows['id_usuario'];?>" />
+					<input type="hidden" name="flag" value="<?php echo $acao;?>" />
+				</form>
+				<form id="formExcluir<?php echo $rows['id_usuario'];?>" action="controllers/admin/user/user_alterar.php" method = "POST">
+					<input type="hidden" name="id_usuario" value="<?php echo $rows['id_usuario'];?>" />
+					<input type="hidden" name="cpf" value="<?php echo $rows['cpf'];?>" />
+					<input type="hidden" name="flag" value="excluir" />
 				</form>
 			</td>
 		</tr>

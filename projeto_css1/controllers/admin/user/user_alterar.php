@@ -15,6 +15,7 @@ if(isset($_POST['flag']) and isset($_SESSION['cpf'])){
 
 	$acao = $_POST['flag'];
 	$id_usuario = $_POST['id_usuario'];//tipo hidden
+	$cpf = $_POST['cpf'];
 
 	$_SESSION['botao'] = "success";
 
@@ -53,7 +54,7 @@ if(isset($_POST['flag']) and isset($_SESSION['cpf'])){
 		}
 	}
 	else if($acao == "habilitar"){
-		$con_habilita = $mysqli->prepare("UPDATE usuarios SET status = 'habilitado' WHERE id_usuario = ?");
+		$con_habilita = $mysqli->prepare("UPDATE usuarios SET status = 'Habilitado' WHERE id_usuario = ?");
 		$con_habilita->bind_param('i', $id_usuario);
 		$resultado = $con_habilita->execute();
 
@@ -66,7 +67,6 @@ if(isset($_POST['flag']) and isset($_SESSION['cpf'])){
 		}
 	}
 	else if ($acao == "resetar_senha"){
-		$cpf = $_POST['cpf'];
 		$nova_senha = Bcrypt::hash($cpf);
 
 		$con_nova_senha = $mysqli->prepare("UPDATE usuarios SET senha = ? WHERE id_usuario ='$id_usuario'");
@@ -85,12 +85,31 @@ if(isset($_POST['flag']) and isset($_SESSION['cpf'])){
 			$_SESSION['botao'] = "danger";
 		}
 	}
+	else if($acao == "desabilitar"){
+		$con_desabilita = $mysqli->prepare("UPDATE usuarios SET status = 'Desabilitado' WHERE id_usuario = ?");
+		$con_desabilita->bind_param('i', $id_usuario);
+		$resultado = $con_desabilita->execute();
+
+		if($resultado){
+			$_SESSION['alterar_user'] = "O usuário foi desabilitado com sucesso!";
+		}
+		else{
+			$_SESSION['alterar_nada_user'] = "ERRO A-012: não foi possível desabilitar o usuário, tente novamente!";
+			$_SESSION['botao'] = "danger";
+		}
+	}
 	else if($acao == "excluir"){
 
 		$con_del   = $mysqli->query("DELETE FROM usuarios WHERE id_usuario = '$id_usuario'");
 		$con_teste = $mysqli->query("SELECT id_usuario FROM usuarios WHERE id_usuario = '$id_usuario'");
 
 		if($con_teste->num_rows == 0){
+
+			$dir = PATH . '/views/avatar/'; //Diretório para uploads
+			unlink($dir.$cpf.'.jpg');//apaga os arquivos de imagem do usuario
+			unlink($dir.$cpf.'.gif');
+			unlink($dir.$cpf.'.png');
+
 			$_SESSION['alterar_user'] = "O usuário foi excluído com sucesso!";
 		}
 		else {
