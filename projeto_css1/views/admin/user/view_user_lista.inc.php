@@ -83,11 +83,10 @@ $con_usuarios = $mysqli->query($sql);
 					data-ritex="<?php echo $rows['ritex'];?>"
 					data-celular="<?php echo $rows['celular'];?>"
 					data-usuario="<?php echo $rows['posto'].' '.$rows['nome_guerra'];?>"
-					data-id_perfil="<?php echo $rows['id_perfil'];?>"
 					data-perfil="<?php echo $rows['perfil'];?>"
+					data-id_perfil="<?php echo $rows['id_perfil'];?>"
 					data-unidade="<?php echo $row_om['sigla'];?>"
 					data-avatar="<?php echo "views/avatar/".$rows['avatar'];?>"
-					data-doc=<?php echo $row_om['sigla'];?>"
 					>
 					<i class="fa fa-search"></i>
 				</button>
@@ -103,7 +102,7 @@ $con_usuarios = $mysqli->query($sql);
 					data-btn-cancel-icon="glyphicon glyphicon-ban-circle"
 					data-btn-cancel-class="btn-danger"
 					data-title="Redefinir Senha"
-					data-content="Confirma Redefinir Senha?">
+					data-content="Confirma?">
 					<i class="fa fa-lock" ></i>
 				</button>
 				<!--botao Desabilitar-->
@@ -138,7 +137,6 @@ $con_usuarios = $mysqli->query($sql);
 				</button>
 				<form id="formSenha<?php echo $rows['id_usuario'];?>" action="controllers/admin/user/user_alterar.php" method = "POST">
 					<input type="hidden" name="id_usuario" value= "<?php echo $rows['id_usuario'];?>" />
-					<input type="hidden" name="cpf" value="<?php echo $rows['cpf'];?>" />
 					<input type="hidden" name = "flag" value="resetar_senha" />
 				</form>
 				<form id="formMudaStatus<?php echo $rows['id_usuario'];?>" action="controllers/admin/user/user_alterar.php" method = "POST">
@@ -147,7 +145,6 @@ $con_usuarios = $mysqli->query($sql);
 				</form>
 				<form id="formExcluir<?php echo $rows['id_usuario'];?>" action="controllers/admin/user/user_alterar.php" method = "POST">
 					<input type="hidden" name="id_usuario" value="<?php echo $rows['id_usuario'];?>" />
-					<input type="hidden" name="cpf" value="<?php echo $rows['cpf'];?>" />
 					<input type="hidden" name="flag" value="excluir" />
 				</form>
 			</td>

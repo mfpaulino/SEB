@@ -1,6 +1,6 @@
 <div class="box box-solid bg-olive collapsed-box">
 	<div class="box-header">
-		<i class="fa fa-money"></i>
+		<i class="fa fa-usd"></i>
 		<h3 class="box-title">Diárias</h3>
 		<div class="pull-right box-tools">
 			<div class="btn-group">

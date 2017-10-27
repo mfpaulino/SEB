@@ -24,7 +24,6 @@ $('#modalUserPerfil').on('show.bs.modal', function (event) {
 	modal.find('#celular').val(celular)
 	modal.find('#usuario').val(usuario)
 	modal.find('#nome').val(nome)
-	modal.find('#perfil_atual').val(id_perfil)
 	modal.find('#perfil').val(perfil)
 	modal.find('#unidade').val(unidade)
 	modal.find('#avatar').attr('src',avatar)

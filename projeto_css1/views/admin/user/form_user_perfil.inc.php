@@ -73,12 +73,11 @@
 							<div class="col-sm-12">
 								<label for="perfil">Perfil*</label>
 								<div id="div_perfil" class="form-group">
-									<!-- select vem do componentes/internos/js/admin/modal_adm_perfil.js"> -->
+									<!-- select vem do componentes/internos/js/admin/view_user.js"> -->
 								</div>
 							</div>
 						</div>
 						<input type="hidden" name="flag" value="alterar" />
-						<input type="hidden" name="perfil_atual"   id="perfil_atual" />
 						<input type="hidden" name="id_usuario"   id="id_usuario" />
 						<div class="modal-footer">
 							<button type="submit" class="btn btn-success">Enviar</button>
