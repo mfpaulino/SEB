@@ -94,16 +94,16 @@ include_once(PATH . '/controllers/autenticacao/autentica.inc.php');//autentica e
 				<!-- conteudo aqui -->
 				<div class="row">
 					<div class="col-md-3">
-						<?php include_once('views/admin/view_categoria.inc.php');?>
-						<?php include_once('views/admin/form_categoria_cadastrar.inc.php');?>
-						<?php include_once('views/admin/form_categoria_alterar.inc.php');?>
-						<?php include_once('views/admin/view_categoria_relacao.inc.php');?>
+						<?php include_once('views/admin/categoria/view_categoria.inc.php');?>
+						<?php include_once('views/admin/categoria/form_categoria_cadastrar.inc.php');?>
+						<?php include_once('views/admin/categoria/form_categoria_alterar.inc.php');?>
+						<?php include_once('views/admin/categoria/view_categoria_relacao.inc.php');?>
 					</div>
 					<div class="col-md-3">
-						<?php include_once('views/admin/view_diaria.inc.php');?>
-						<?php include_once('views/admin/form_diaria_cadastrar.inc.php');?>
-						<?php include_once('views/admin/form_diaria_alterar.inc.php');?>
-						<?php include_once('views/admin/view_diaria_relacao.inc.php');?>
+						<?php include_once('views/admin/diaria/view_diaria.inc.php');?>
+						<?php include_once('views/admin/diaria/form_diaria_cadastrar.inc.php');?>
+						<?php include_once('views/admin/diaria/form_diaria_alterar.inc.php');?>
+						<?php include_once('views/admin/diaria/view_diaria_relacao.inc.php');?>
 					</div>
 				</div>
 				<div class="row">
@@ -124,6 +124,7 @@ include_once(PATH . '/controllers/autenticacao/autentica.inc.php');//autentica e
 		<div class="control-sidebar-bg"></div>
 		<?php include_once('componentes/internos/php/rodape.inc.php');?>
 	</div>
+	<!-- js padroes-->
 	<script src="componentes/externos/jquery/dist/jquery.min.js"></script>
 	<script src="componentes/externos/bootstrap/dist/js/bootstrap.min.js"></script>
 	<script src="componentes/externos/bootstrap/plugins/bootstrap-validator/js/bootstrapValidator.min.js"></script>
@@ -137,6 +138,7 @@ include_once(PATH . '/controllers/autenticacao/autentica.inc.php');//autentica e
 	<script src="componentes/internos/js/usuario_alterar.js"></script>
 	<script src="componentes/internos/js/modal_editar_perfil.js"></script>
 	<script src="componentes/internos/js/modal_editar_unidade.js"></script>
+	<!-- js admin -->
 	<script src="componentes/internos/js/admin/view_categoria.js"></script>
 	<script src="componentes/internos/js/admin/view_diaria.js"></script>
 	<script src="componentes/internos/js/admin/view_user.js"></script>
