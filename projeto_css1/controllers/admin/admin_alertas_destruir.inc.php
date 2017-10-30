@@ -14,6 +14,13 @@ unset($_SESSION['erro_cadastro_diaria']);
 unset($_SESSION['erro_validacao_cadastrar_diaria']);
 unset($_SESSION['lista_erro_validacao_cadastrar_diaria']);
 
+//area_cadastrar
+unset($_SESSION['area_duplicada']);
+unset($_SESSION['sucesso_cadastro_area']);
+unset($_SESSION['erro_cadastro_area_']);
+unset($_SESSION['erro_validacao_cadastrar_area']);
+unset($_SESSION['lista_erro_validacao_cadastrar_area']);
+
 //categoria_alterar
 unset($_SESSION['alterar_erro_validacao_categoria']);
 unset($_SESSION['alterar_categoria']);
@@ -31,4 +38,5 @@ unset($_SESSION['alterar_erro_validacao_user']);
 unset($_SESSION['alterar_user']);
 unset($_SESSION['alterar_nada_user']);
 unset($_SESSION['alterar_lista_erro_validacao_user']);
+
 ?>

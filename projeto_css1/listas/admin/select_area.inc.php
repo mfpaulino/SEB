@@ -2,7 +2,7 @@
 //select_area.inc.php
 include_once ('componentes/internos/php/conexao.inc.php');
 
-$sql = "SELECT id_area, area FROM adm_areas WHERE status = 'sim' ORDER BY area";
+$sql = "SELECT id_area, area FROM adm_areas ORDER BY area";
 $con_area = $mysqli->query($sql);
 ?>
 <select class="form-control" name="area" id="area">

@@ -142,7 +142,7 @@ if(isset($_POST['flag']) and isset($_SESSION['cpf'])){
 			$_SESSION['alterar_user'] = "O usuário foi desabilitado com sucesso!";
 		}
 		else{
-			$_SESSION['alterar_nada_user'] = "ERRO A-012: não foi possível desabilitar o usuário, tente novamente!";
+			$_SESSION['alterar_nada_user'] = "ERRO A-015: não foi possível desabilitar o usuário, tente novamente!";
 			$_SESSION['botao'] = "danger";
 		}
 	}

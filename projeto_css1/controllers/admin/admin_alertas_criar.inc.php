@@ -83,6 +83,22 @@ if ($inc == "sim"){
 			unset($_SESSION['alterar_lista_erro_validacao_user']);
 		}
 
+		if($flag == md5("area_cadastrar")){
+
+			$msg0 = $_SESSION['erro_validacao_cadastrar_area'];
+			$msg1 = $_SESSION['sucesso_cadastro_area'];
+			$msg2 = $_SESSION['area_duplicada'];
+			$msg4 = $_SESSION['erro_cadastro_area'];
+			$lista_erro_validacao = $_SESSION['lista_erro_validacao_cadastrar_area'];
+		}
+		else {
+			unset($_SESSION['erro_validacao_cadastrar_area']);
+			unset($_SESSION['sucesso_cadastro_area']);
+			unset($_SESSION['area_duplicada']);
+			unset($_SESSION['erro_cadastro_area']);
+			unset($_SESSION['lista_erro_validacao_cadastrar_area']);
+		}
+
 		$msg="sim";
 	}
 }
