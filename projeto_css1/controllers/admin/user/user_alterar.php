@@ -32,6 +32,7 @@ if(isset($_POST['flag']) and isset($_SESSION['cpf'])){
 
 	$usuario = $row_usuario['posto'] . " " . $row_usuario['nome_guerra'];
 	$perfil = $row_usuario['perfil'];
+	$cpf = $row_usuario['cpf'];
 	$unidade = $row_om['sigla'];
 
 	/*** fim dados do usuario ***/

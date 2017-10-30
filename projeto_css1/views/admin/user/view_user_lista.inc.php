@@ -37,12 +37,12 @@ $con_usuarios = $mysqli->query($sql);
 
 		/** verifica se o usuário está habilitado ou desabilitado **/
 		if($rows['status'] == "Habilitado"){
-			$fa = "fa-remove";
+			$fa = "fa-lock";
 			$acao = "desabilitar";
 			$title = "Desabilitar Usuário";
 		}
 		else if ($rows['status'] == "Desabilitado"){
-			$fa = "fa-check";
+			$fa = "fa-unlock";
 			$acao = "habilitar";
 			$title = "Habilitar Usuário";
 		}
@@ -103,7 +103,7 @@ $con_usuarios = $mysqli->query($sql);
 					data-btn-cancel-class="btn-danger"
 					data-title="Redefinir Senha"
 					data-content="Confirma?">
-					<i class="fa fa-lock" ></i>
+					<i class="fa fa-key" ></i>
 				</button>
 				<!--botao Desabilitar-->
 				<button form="formMudaStatus<?php echo $rows['id_usuario'];?>" type="submit" class="btn btn-xs btn-primary"
