@@ -94,16 +94,16 @@ include_once(PATH . '/controllers/autenticacao/autentica.inc.php');//autentica e
 				<!-- conteudo aqui -->
 				<div class="row">
 					<div class="col-md-3">
-						<?php include_once('views/admin/view_categoria.inc.php');?>
-						<?php include_once('views/admin/form_categoria_cadastrar.inc.php');?>
-						<?php include_once('views/admin/form_categoria_alterar.inc.php');?>
-						<?php include_once('views/admin/view_categoria_relacao.inc.php');?>
+						<?php include_once('views/admin/categoria/view_categoria.inc.php');?>
+						<?php include_once('views/admin/categoria/form_categoria_cadastrar.inc.php');?>
+						<?php include_once('views/admin/categoria/form_categoria_alterar.inc.php');?>
+						<?php include_once('views/admin/categoria/view_categoria_relacao.inc.php');?>
 					</div>
 					<div class="col-md-3">
-						<?php include_once('views/admin/view_diaria.inc.php');?>
-						<?php include_once('views/admin/form_diaria_cadastrar.inc.php');?>
-						<?php include_once('views/admin/form_diaria_alterar.inc.php');?>
-						<?php include_once('views/admin/view_diaria_relacao.inc.php');?>
+						<?php include_once('views/admin/diaria/view_diaria.inc.php');?>
+						<?php include_once('views/admin/diaria/form_diaria_cadastrar.inc.php');?>
+						<?php include_once('views/admin/diaria/form_diaria_alterar.inc.php');?>
+						<?php include_once('views/admin/diaria/view_diaria_relacao.inc.php');?>
 					</div>
 				</div>
 				<div class="row">
