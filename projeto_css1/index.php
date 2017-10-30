@@ -94,6 +94,7 @@ else if ($_SESSION['acesso'] == "lock"){
 	<script src="componentes/internos/js/auto_tab.js"></script>
 	<script src="componentes/internos/js/usuario_cadastrar.js"></script>
 	<script src="componentes/internos/js/senha_recuperar.js"></script>
+	<script src="componentes/internos/js/senha_alterar.js"></script>
 	<script src="componentes/internos/js/login.js"></script>
 	<script>
 		<!-- Redimensona o tamanho padrao do modal. Está no siaudi.css-->
@@ -103,7 +104,16 @@ else if ($_SESSION['acesso'] == "lock"){
 		});
 	</script>
 	<script>
-		//script para receber a selecao da unidade de controle interno e atualizar o 2º select
+		//script para receber a selecao da unidade de controle interno e atualizar o 2º select(unidade usuario)
+		$(document).ready(function(){
+			$("select[name=unidade_ci]").change(function(){
+				$("select[name=codom]").html('<option value="">Carregando...</option>');
+				$.post("listas/select_unidade.inc.php", {unidade_ci:$(this).val()},function(valor){$("select[name=codom]").html(valor);})
+			 })
+		 })
+	</script>
+	<script>
+		//script para receber a selecao da unidade do usuario e atualizar o 3º select(perfil usuario)
 		$(document).ready(function(){
 			$("select[name=codom]").change(function(){
 				$("select[name=perfil]").html('<option value="">Carregando...</option>');

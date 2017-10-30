@@ -14,10 +14,10 @@
 session_start();
 
 $inc = "sim";
+include_once('../../config.inc.php');
 
-		include_once('../../config.inc.php');
+if (isset($_POST['flag']) and isset($_SESSION['cpf'])){
 
-if (isset($_POST['flag'])){
 	require_once(PATH . '/controllers/autenticacao/autentica.inc.php');
 	require_once(PATH . '/componentes/internos/php/validaForm.class.php');
 

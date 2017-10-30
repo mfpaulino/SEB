@@ -1,3 +1,18 @@
+<?php
+/*** verifica se o usuário possui alguma entrada na tabela de logs ***
+ * caso sim, desabilita o botao excluiir ***/
+
+$sql_user_log = "SELECT id_log FROM logs WHERE cpf = '$cpf'";
+$resultado = $mysqli->query($sql_user_log);
+
+if($resultado->num_rows > 0){
+	$btn_status = "disabled";
+}
+else {
+	$btn_status = "";
+}
+/****/
+?>
 <table class="table">
 	<thead>
 		<tr>
@@ -54,24 +69,23 @@
 					data-target="#modalTrocarSenha">
 					<i class="fa fa-pencil"></i> Senha
 				</button>
-				<?php if ($status_usuario == "recebido"){?>
-					<!--botao Excluir cadastro-->
-					<?php $flag = md5("usuario_excluir");?>
-					<a href="controllers/usuario/usuario_excluir.php?flag=<?php echo $flag; ?>&flag1=<?php echo str_replace('.php','',$pagina);?>" data-tooltip="tooltip" title="Excluir Cadastro" >
-						<button type="button" class="btn btn-xs btn-danger" data-toggle="confirmation"
-							data-placement="left"
-							data-btn-ok-label="Continuar"
-							data-btn-ok-icon="glyphicon glyphicon-share-alt"
-							data-btn-ok-class="btn-success"
-							data-btn-cancel-label="Parar"
-							data-btn-cancel-icon="glyphicon glyphicon-ban-circle"
-							data-btn-cancel-class="btn-danger"
-							data-title="Confirma exclusão do cadastro?"
-							data-content="">
-							<i class="fa fa-trash"></i> Perfil
-						</button>
-					</a>
-				<?php } ?>
+				<!--botao Excluir cadastro-->
+				<button form="formExcluir" type="submit" <?php echo $btn_status;?> class="btn btn-xs btn-danger" data-toggle="confirmation"
+					data-placement="left"
+					data-btn-ok-label="Continuar"
+					data-btn-ok-icon="glyphicon glyphicon-share-alt"
+					data-btn-ok-class="btn-success"
+					data-btn-cancel-label="Parar"
+					data-btn-cancel-icon="glyphicon glyphicon-ban-circle"
+					data-btn-cancel-class="btn-danger"
+					data-tooltip="tooltip"
+					data-title="Exclusão de cadastro"
+					data-content="Confirma?">
+					<i class="fa fa-trash"></i> Perfil
+				</button>
+				<form id="formExcluir" action="controllers/usuario/usuario_excluir.php" method = "POST">
+					<input type="hidden" name="flag" />
+				</form>
 			</td>
 		</tr>
 	</tbody>

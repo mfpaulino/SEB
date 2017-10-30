@@ -45,9 +45,10 @@ unset($_SESSION['alterar_senha_erro_validacao_lista']);
 unset($_SESSION['logout']);
 
 //usuario_excluir
+/*
 unset($_SESSION['usuario_excluir_sucesso']);
 unset($_SESSION['usuario_excluir_erro']);
-
+*/
 //unset($_SESSION['botao']);
 
 ?>

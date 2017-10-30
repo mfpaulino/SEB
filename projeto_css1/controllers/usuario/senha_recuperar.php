@@ -14,12 +14,13 @@ session_start();
 
 $inc = "sim";
 include_once('../../config.inc.php');
-include_once(PATH .'/componentes/internos/php/senha.inc.php');
-include_once(PATH .'/componentes/internos/php/bcript.inc.php');
-include_once(PATH .'/componentes/externos/PHPMailer/class.phpmailer.php');
-include_once(PATH .'/componentes/internos/php/email.inc.php');
 
 if(isset($_POST['flag'])){
+
+	include_once(PATH .'/componentes/internos/php/senha.inc.php');
+	include_once(PATH .'/componentes/internos/php/bcript.inc.php');
+	include_once(PATH .'/componentes/externos/PHPMailer/class.phpmailer.php');
+	include_once(PATH .'/componentes/internos/php/email.inc.php');
 
 	$pagina = $_POST['flag1'];
 
@@ -73,7 +74,7 @@ if(isset($_POST['flag'])){
 	$mysqli->close();
 
 	$flag = md5("senha_recuperar");
-	header(sprintf("Location:../../".$pagina."?flag=$flag"));
+	header("Location:../../".$pagina."?flag=$flag");
 }
 else {
 	include_once(PATH .'/controllers/autenticacao/'.ACESSO_NEGADO);

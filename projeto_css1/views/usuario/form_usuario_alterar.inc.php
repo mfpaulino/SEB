@@ -80,10 +80,18 @@
 						<div class="row">
 							<!-- Text input-->
 							<div class="col-sm-12">
-								<div class="form-group">
-									<label for="posto">Perfil*</label>
-									<?php include_once('listas/select_perfil_usuario.inc.php');?>
-								</div>
+								<?php if ($status_usuario <> "recebido") {?>
+									<div class="form-group">
+										<label for="perfil">Perfil</label>
+										<input type="text" name="perfil" id="perfil" class="form-control" disabled />
+									</div>
+								<?php }
+									else { ?>
+										<div class="form-group">
+											<label for="perfil">Perfil*</label>
+											<?php include_once('listas/select_perfil_usuario.inc.php');?>
+										</div>
+								<?php } ?>
 							</div>
 						</div>
 						<!-- Hidden input -->

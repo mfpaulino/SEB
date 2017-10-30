@@ -10,12 +10,12 @@ session_start();
 $inc = "sim";
 include_once('../../config.inc.php');
 
-if(isset($_POST['flag'])){
+if(isset($_POST['flag']) and isset($_SESSION['cpf'])){
 
 	include_once(PATH . '/componentes/internos/php/bcript.inc.php');//arquivo para criptografia
 	include_once(PATH . '/componentes/internos/php/validaForm.class.php'); //classe para validacao de dados
+	include_once(PATH . '/controllers/autenticacao/perfil.inc.php');
 
-	$cpf 		 = $_SESSION['cpf'];
 	$pagina 	 = $_POST['flag1'];
 
 	if ($pagina == PAGINA_VISITANTE ){

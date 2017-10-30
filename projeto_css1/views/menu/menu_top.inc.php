@@ -7,7 +7,7 @@ if ($inc == "sim"){
 		$pagina_lock = md5(date('d-m-Y')).$pagina;//será usado no redirecionamento da PAGINA_INICIAL (user.php)
 	}
 	?>
-	<a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button" title="Ocultar/expandir menu"><span class="sr-only">Toggle navigation</span></a>
+	<a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button" title="Encolher/Expandir Menu"><span class="sr-only">Toggle navigation</span></a>
 	<div class="navbar-custom-menu">
 		<ul class="nav navbar-nav">
 			<li class="dropdown user user-menu">

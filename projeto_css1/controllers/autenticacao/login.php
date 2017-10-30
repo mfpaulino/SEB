@@ -39,7 +39,7 @@ if(isset($_POST['flag'])){
 		$sql_contador = "UPDATE usuarios SET qtde_acessos = (qtde_acessos + 1), acesso_anterior = ultimo_acesso, ultimo_acesso = NOW() WHERE cpf = '$cpf'";
 		$con_contador = $mysqli->query($sql_contador); //contador de acessos por usuario
 
-		if($row_login['status'] == "habilitado"){
+		if($row_login['status'] == "Habilitado"){
 			$_SESSION['acesso'] = "liberado";
 		}
 		else {
