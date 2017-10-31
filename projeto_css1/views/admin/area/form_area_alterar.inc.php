@@ -11,7 +11,7 @@
 						<input class="form-control" type="text" name="area"  id="area" autofocus  placeholder="" />
 					</div>
 					<div class="form-group">
-						<input type="hidden" name="area_atual"   id="categoria_atual" />
+						<input type="hidden" name="area_atual"   id="area_atual" />
 						<input type="hidden" name="id_area"      id="id_area" />
 						<input type="hidden" name="flag" value="alterar" />
 					</div>

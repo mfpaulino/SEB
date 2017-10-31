@@ -99,6 +99,35 @@ if ($inc == "sim"){
 			unset($_SESSION['lista_erro_validacao_cadastrar_area']);
 		}
 
+		if($flag == md5("area_alterar")){
+			$msg0 = $_SESSION['alterar_erro_validacao_area'];
+			$msg1 = $_SESSION['alterar_area'];
+			$msg2 = $_SESSION['alterar_nada_area'];
+			$lista_erro_validacao = $_SESSION['alterar_lista_erro_validacao_area'];
+		}
+		else {
+			unset($_SESSION['alterar_erro_validacao_area']);
+			unset($_SESSION['alterar_area']);
+			unset($_SESSION['alterar_nada_area']);
+			unset($_SESSION['alterar_lista_erro_validacao_area']);
+		}
+
+		if($flag == md5("subarea_cadastrar")){
+
+			$msg0 = $_SESSION['erro_validacao_cadastrar_subarea'];
+			$msg1 = $_SESSION['sucesso_cadastro_subarea'];
+			$msg2 = $_SESSION['subarea_duplicada'];
+			$msg4 = $_SESSION['erro_cadastro_subarea'];
+			$lista_erro_validacao = $_SESSION['lista_erro_validacao_cadastrar_subarea'];
+		}
+		else {
+			unset($_SESSION['erro_validacao_cadastrar_subarea']);
+			unset($_SESSION['sucesso_cadastro_subarea']);
+			unset($_SESSION['subarea_duplicada']);
+			unset($_SESSION['erro_cadastro_subarea']);
+			unset($_SESSION['lista_erro_validacao_cadastrar_subarea']);
+		}
+
 		$msg="sim";
 	}
 }

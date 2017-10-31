@@ -40,6 +40,12 @@ if(isset($_POST['flag']) and isset($_SESSION['cpf'])){
 				$resultado = $con_categoria->execute();
 
 				if($resultado){
+
+					/** log **/
+					$log = "Alterou a categoria <u>" . $categoria . "</u>. De: (".$localidade_atual.") Para: (".$localidade.")";
+					$con_log = $mysqli->query("INSERT INTO logs SET cpf = '$cpf', codom = '$codom_usuario', acao = '$log', tabela = 'adm_categorias'");
+					/** fim log **/
+
 					$_SESSION['alterar_categoria'] = "A Categoria foi alterada com sucesso!";
 					$altera = "sim";
 				}

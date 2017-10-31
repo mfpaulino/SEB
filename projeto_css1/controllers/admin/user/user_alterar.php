@@ -36,6 +36,7 @@ if(isset($_POST['flag']) and isset($_SESSION['cpf'])){
 	$unidade = $row_om['sigla'];
 
 	/*** fim dados do usuario ***/
+	$data = date('Y-m-d H:i:s');
 
 	if($acao == "alterar"){
 
@@ -81,7 +82,7 @@ if(isset($_POST['flag']) and isset($_SESSION['cpf'])){
 		}
 	}
 	else if($acao == "habilitar"){
-		$con_habilita = $mysqli->prepare("UPDATE usuarios SET status = 'Habilitado' WHERE id_usuario = ?");
+		$con_habilita = $mysqli->prepare("UPDATE usuarios SET status = 'Habilitado', user_habilita = '$id_usuario', data_habilita = '$data' WHERE id_usuario = ?");
 		$con_habilita->bind_param('i', $id_usuario);
 		$resultado = $con_habilita->execute();
 

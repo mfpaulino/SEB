@@ -17,9 +17,16 @@ unset($_SESSION['lista_erro_validacao_cadastrar_diaria']);
 //area_cadastrar
 unset($_SESSION['area_duplicada']);
 unset($_SESSION['sucesso_cadastro_area']);
-unset($_SESSION['erro_cadastro_area_']);
+unset($_SESSION['erro_cadastro_area']);
 unset($_SESSION['erro_validacao_cadastrar_area']);
 unset($_SESSION['lista_erro_validacao_cadastrar_area']);
+
+//subarea_cadastrar
+unset($_SESSION['subarea_duplicada']);
+unset($_SESSION['sucesso_cadastro_subarea']);
+unset($_SESSION['erro_cadastro_subarea']);
+unset($_SESSION['erro_validacao_cadastrar_subarea']);
+unset($_SESSION['lista_erro_validacao_cadastrar_subarea']);
 
 //categoria_alterar
 unset($_SESSION['alterar_erro_validacao_categoria']);
@@ -32,6 +39,12 @@ unset($_SESSION['alterar_erro_validacao_diaria']);
 unset($_SESSION['alterar_diaria']);
 unset($_SESSION['alterar_nada_diaria']);
 unset($_SESSION['alterar_lista_erro_validacao_diaria']);
+
+//area_alterar
+unset($_SESSION['alterar_erro_validacao_area']);
+unset($_SESSION['alterar_area']);
+unset($_SESSION['alterar_nada_area']);
+unset($_SESSION['alterar_lista_erro_validacao_area']);
 
 //user_alterar
 unset($_SESSION['alterar_erro_validacao_user']);

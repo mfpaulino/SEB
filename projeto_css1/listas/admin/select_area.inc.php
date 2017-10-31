@@ -12,7 +12,7 @@ $con_area = $mysqli->query($sql);
 	?>
 		<option value = "<?php echo $row_area['id_area'].'|'.$row_area['area'];?>"><?php echo $row_area['area'];?></option>
 	<?php
-	 }
-	 ?>
+	}
+	?>
 </select>
 

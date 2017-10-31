@@ -55,11 +55,14 @@ if (isset($_POST['flag']) and isset($_SESSION['cpf'])){
 		}
 		if($validacao !== false){
 
-			//$dt_cad = date('Y-m-d');
-
 			$resultado = $mysqli->query("INSERT INTO adm_categorias (categoria, localidades) VALUES ('$categoria', '$localidade')");
 
 			if($resultado){
+
+				/** log **/
+				$log = "Cadastrou a categoria <u>" . $categoria . "</u>(".$localidade.").";
+				$con_log = $mysqli->query("INSERT INTO logs SET cpf = '$cpf', codom = '$codom_usuario', acao = '$log', tabela = 'adm_categorias'");
+				/** fim log **/
 
 				$_SESSION['sucesso_cadastro_categoria'] = "Cadastro realizado com sucesso!";
 				$_SESSION['botao'] = "success";

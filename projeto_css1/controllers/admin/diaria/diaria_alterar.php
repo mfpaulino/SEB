@@ -40,6 +40,15 @@ if(isset($_POST['flag']) and isset($_SESSION['cpf'])){
 				$resultado = $con_diaria->execute();
 
 				if($resultado){
+
+					$con_resultado = $mysqli->query("SELECT posto, categoria FROM adm_diarias ad, adm_categorias ac, postos p WHERE id_diaria = '$id_diaria' and ad.id_categoria = ac.id_categoria and ad.id_posto = p.id_posto");
+					$row_resultado = $con_resultado->fetch_assoc();
+
+					/** log **/
+					$log = "Alterou o valor da diária (" . $row_resultado['posto'] . " x " . $row_resultado['categoria'] . ") de R$" . $valor_atual . " para R$" . $valor . ".";
+					$con_log = $mysqli->query("INSERT INTO logs SET cpf = '$cpf', codom = '$codom_usuario', acao = '$log', tabela = 'adm_diarias'");
+					/** fim log **/
+
 					$_SESSION['alterar_diaria'] = "A Diária foi alterada com sucesso!";
 					$altera = "sim";
 				}

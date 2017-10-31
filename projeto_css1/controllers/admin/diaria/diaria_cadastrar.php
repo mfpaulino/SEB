@@ -55,6 +55,17 @@ if (isset($_POST['flag']) and isset($_SESSION['cpf'])){
 
 			if($resultado){
 
+				$con_categoria = $mysqli->query("SELECT categoria FROM adm_categorias WHERE id_categoria = '$categoria'");
+				$row_categoria = $con_categoria->fetch_assoc();
+
+				$con_posto = $mysqli->query("SELECT posto FROM postos WHERE id_posto = '$posto'");
+				$row_posto = $con_posto->fetch_assoc();
+
+				/** log **/
+				$log = "Cadastrou a diária (" . $row_posto['posto'] . " x " . $row_categoria['categoria'] . " = R$" . $valor . ").";
+				$con_log = $mysqli->query("INSERT INTO logs SET cpf = '$cpf', codom = '$codom_usuario', acao = '$log', tabela = 'adm_diarias'");
+				/** fim log **/
+
 				$_SESSION['sucesso_cadastro_diaria'] = "Cadastro realizado com sucesso!";
 				$_SESSION['botao'] = "success";
 			}

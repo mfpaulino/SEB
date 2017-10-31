@@ -5,7 +5,7 @@
 				<h4 class="modal-title">Cadastrar Área</h4>
 			</div>
 			<div class="modal-body">
-				<form name="form_categoria_cadastrar" id="form_categoria_cadastrar" action="controllers/admin/area/area_cadastrar.php" method="POST">
+				<form name="form_area_cadastrar" id="form_area_cadastrar" action="controllers/admin/area/area_cadastrar.php" method="POST">
 					<div class="form-group">
 						<label for="area" class="control-label">*Área:</label>
 						<input class="form-control" type="text" name="area"  id="area"  autofocus  placeholder="" />

@@ -69,7 +69,7 @@ include_once(PATH . '/controllers/autenticacao/autentica.inc.php');//autentica e
 				if (isset($_GET['flag']) and ($_GET['flag'] == md5("usuario_alterar") or $_GET['flag'] == md5("senha_alterar") or $_GET['flag'] == md5("om_alterar") or $_GET['flag'] == md5("logout") )){
 					include_once('controllers/usuario/usuario_alertas_criar.inc.php');
 				}
-				else if (isset($_GET['flag']) and ($_GET['flag'] == md5("categoria_cadastrar") or $_GET['flag'] == md5("categoria_alterar") or $_GET['flag'] == md5("categoria_excluir") or $_GET['flag'] == md5("diaria_cadastrar") or $_GET['flag'] == md5("diaria_alterar") or $_GET['flag'] == md5("diaria_excluir") or $_GET['flag'] == md5("user_alterar") or $_GET['flag'] == md5("area_cadastrar"))){
+				else if (isset($_GET['flag']) and ($_GET['flag'] == md5("categoria_cadastrar") or $_GET['flag'] == md5("categoria_alterar") or $_GET['flag'] == md5("categoria_excluir") or $_GET['flag'] == md5("diaria_cadastrar") or $_GET['flag'] == md5("diaria_alterar") or $_GET['flag'] == md5("diaria_excluir") or $_GET['flag'] == md5("user_alterar") or $_GET['flag'] == md5("area_cadastrar") or $_GET['flag'] == md5("area_alterar") or $_GET['flag'] == md5("subarea_cadastrar") or $_GET['flag'] == md5("subarea_alterar"))){
 					include_once('controllers/admin/admin_alertas_criar.inc.php');
 				}
 				else {
@@ -123,10 +123,10 @@ include_once(PATH . '/controllers/autenticacao/autentica.inc.php');//autentica e
 						<?php include_once('views/admin/area/view_area_relacao.inc.php');?>
 					</div>
 					<div class="col-md-3">
-						<?php //include_once('views/admin/diaria/view_diaria.inc.php');?>
-						<?php //include_once('views/admin/diaria/form_diaria_cadastrar.inc.php');?>
-						<?php //include_once('views/admin/diaria/form_diaria_alterar.inc.php');?>
-						<?php //include_once('views/admin/diaria/view_diaria_relacao.inc.php');?>
+						<?php include_once('views/admin/subarea/view_subarea.inc.php');?>
+						<?php include_once('views/admin/subarea/form_subarea_cadastrar.inc.php');?>
+						<?php include_once('views/admin/subarea/form_subarea_alterar.inc.php');?>
+						<?php include_once('views/admin/subarea/view_subarea_relacao.inc.php');?>
 					</div>
 				</div>
 				<!-- fim conteudo -->
@@ -154,9 +154,23 @@ include_once(PATH . '/controllers/autenticacao/autentica.inc.php');//autentica e
 	<script src="componentes/internos/js/admin/view_categoria.js"></script>
 	<script src="componentes/internos/js/admin/view_diaria.js"></script>
 	<script src="componentes/internos/js/admin/view_user.js"></script>
+	<script src="componentes/internos/js/admin/view_area.js"></script>
+	<script src="componentes/internos/js/admin/view_subarea.js"></script>
 	<script src="componentes/internos/js/admin/form_categoria.js"></script>
 	<script src="componentes/internos/js/admin/form_diaria.js"></script>
 	<script src="componentes/internos/js/admin/form_area.js"></script>
+	<script src="componentes/internos/js/admin/form_subarea.js"></script>
+
+	<script>
+		//script para receber a selecao da Área e atualizar o 2º select(Subárea)
+		$(document).ready(function(){
+			$("select[name=area]").change(function(){
+				$("select[name=subarea]").html('<option value="">Carregando...</option>');
+				$.post("listas/admin/select_subarea.inc.php", {area:$(this).val()},function(valor){$("select[name=subarea]").html(valor);})
+			 })
+		 })
+	</script>
+
 	<script>
 		//exibe os titles ao passar o mouse
 		$(document).ready(function(){
