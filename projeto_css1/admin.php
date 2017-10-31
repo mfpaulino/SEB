@@ -160,17 +160,6 @@ include_once(PATH . '/controllers/autenticacao/autentica.inc.php');//autentica e
 	<script src="componentes/internos/js/admin/form_diaria.js"></script>
 	<script src="componentes/internos/js/admin/form_area.js"></script>
 	<script src="componentes/internos/js/admin/form_subarea.js"></script>
-
-	<script>
-		//script para receber a selecao da Área e atualizar o 2º select(Subárea)
-		$(document).ready(function(){
-			$("select[name=area]").change(function(){
-				$("select[name=subarea]").html('<option value="">Carregando...</option>');
-				$.post("listas/admin/select_subarea.inc.php", {area:$(this).val()},function(valor){$("select[name=subarea]").html(valor);})
-			 })
-		 })
-	</script>
-
 	<script>
 		//exibe os titles ao passar o mouse
 		$(document).ready(function(){

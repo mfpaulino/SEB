@@ -1,8 +1,16 @@
+//script para receber a selecao da Área e atualizar o 2º select(Subárea)
+$(document).ready(function(){
+	$("select[name=area]").change(function(){
+		$("select[name=subarea]").html('<option value="">Carregando...</option>');
+		$.post("listas/admin/select_subarea.inc.php", {area:$(this).val()},function(valor){$("select[name=subarea]").html(valor);})
+	})
+})
+
 //Só libera os botoes do form area ao selecionar a area
 $(function(){
 	$('#btnAlteraSubarea').attr('disabled', 'disabled');
 	$('#btnExcluiSubarea').attr('disabled', 'disabled');
-	$('#area').change(function(){
+	$('#subarea').change(function(){
 		if($('#subarea').val() != ""){
 		   $('#btnAlteraSubarea').removeAttr('disabled');
 		   $('#btnExcluiSubarea').removeAttr('disabled');
