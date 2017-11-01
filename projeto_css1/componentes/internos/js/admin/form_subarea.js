@@ -29,6 +29,13 @@ $(document).ready(function() {
 			validating: 'glyphicon glyphicon-refresh'
 		},
 		fields: {
+			area: {
+				validators: {
+					notEmpty: {
+						message:'Preenchimento obrigatório'
+					}
+				}
+			},
 			subarea: {
 				validators: {
 					notEmpty: {

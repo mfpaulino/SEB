@@ -127,6 +127,7 @@ include_once(PATH . '/controllers/autenticacao/autentica.inc.php');//autentica e
 						<?php include_once('views/admin/subarea/form_subarea_cadastrar.inc.php');?>
 						<?php include_once('views/admin/subarea/form_subarea_alterar.inc.php');?>
 						<?php include_once('views/admin/subarea/view_subarea_relacao.inc.php');?>
+						<?php include_once('views/admin/subarea/view_subarea_relacao1.inc.php');?>
 					</div>
 				</div>
 				<!-- fim conteudo -->

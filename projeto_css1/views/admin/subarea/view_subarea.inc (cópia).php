@@ -8,7 +8,7 @@
 				<ul class="dropdown-menu pull-right" role="menu">
 					<li><a href="#" data-toggle="modal" data-target="#modalCadastrarSubarea">Cadastrar Subárea</a></li>
 					<li class="divider"></li>
-					<li><a href="#" data-toggle="modal" data-target="#modalListarSubarea">Exibir Lista</a></li>
+					<li><a href="#" data-toggle="modal" data-target="#modalExibirSubarea">Exibir Lista</a></li>
 				</ul>
 			</div>
 			<button type="button" title="Expandir/Encolher" class="btn bg-olive btn-sm" data-widget="collapse"><i class="fa fa-plus"></i></button>
