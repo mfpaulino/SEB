@@ -7,10 +7,10 @@
 			<div class="modal-body">
 				<div class="box-body">
 					<label for="area" >Área*</label>
-					<?php include('listas/admin/select_area.inc.php');?>
+					<?php include('listas/admin/select_area_lista_subarea.inc.php');?>
 				</div>
 				<div class="modal-footer">
-					<!--botao Exibir subarea-->
+					<!--botao Listar subareas-->
 					<button id="btnExibeSubarea" type="button" class="btn btn-success"
 						data-tooltip="tooltip" title=""
 						data-toggle="modal"

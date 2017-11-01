@@ -128,6 +128,19 @@ if ($inc == "sim"){
 			unset($_SESSION['lista_erro_validacao_cadastrar_subarea']);
 		}
 
+		if($flag == md5("subarea_alterar")){
+			$msg0 = $_SESSION['alterar_erro_validacao_subarea'];
+			$msg1 = $_SESSION['alterar_subarea'];
+			$msg2 = $_SESSION['alterar_nada_subarea'];
+			$lista_erro_validacao = $_SESSION['alterar_lista_erro_validacao_subarea'];
+		}
+		else {
+			unset($_SESSION['alterar_erro_validacao_subarea']);
+			unset($_SESSION['alterar_subarea']);
+			unset($_SESSION['alterar_nada_subarea']);
+			unset($_SESSION['alterar_lista_erro_validacao_subarea']);
+		}
+
 		$msg="sim";
 	}
 }

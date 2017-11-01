@@ -16,7 +16,7 @@ if($qtde == 0){
 			</div>
 			<div class="modal-body">
 				<div class="box">
-					<div id="area_printArea" class="box-body no-padding ">
+					<div id="area_printArea" class="box-body no-padding">
 						<table class="table table-striped">
 							<tr class="text-bold">
 								<td>Descrição</td>

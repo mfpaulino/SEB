@@ -23,7 +23,7 @@
 				<form class="form-horizontal" method="POST" action="controllers/admin/subarea/subarea_alterar.php">
 					<div class="box-body">
 						<label for="area" >Área*</label>
-						<?php include('listas/admin/select_area.inc.php');?>
+						<?php include('listas/admin/select_area_com_subarea.inc.php');?>
 					</div>
 					<div class="box-body">
 						<label for="subarea" >Subárea*</label>

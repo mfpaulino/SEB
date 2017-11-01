@@ -54,7 +54,7 @@ if(isset($_POST['flag']) and isset($_SESSION['cpf'])){
 			}
 		}
 		else {
-			$_SESSION['alterar_erro_validacao_subarea'] = "ERRO A-019: dados inconsistentes, preencha novamente o formulário!";
+			$_SESSION['alterar_erro_validacao_subarea'] = "ERRO A-024: dados inconsistentes, preencha novamente o formulário!";
 			$_SESSION['alterar_lista_erro_validacao_subarea'] = $validar->get_errors(); //Captura os erros de todos os campos
 			$_SESSION['botao'] = "danger";
 		}
@@ -62,24 +62,22 @@ if(isset($_POST['flag']) and isset($_SESSION['cpf'])){
 	else if($acao == "excluir"){
 
 		$subarea = explode("|", $_POST['subarea']);//valor recebido do select_subarea
-		$id_subarea = $subarea[0];
-		$subarea = $subarea[1];
-		$area = $subarea[2];
+		$area = explode("|", $_POST['area']);//valor recebido do select_area
 
-		$con_del   = $mysqli->query("DELETE FROM adm_subareas WHERE id_subarea = '$id_subarea'");
-		$con_teste = $mysqli->query("SELECT id_subarea FROM adm_subareas WHERE id_subarea = '$id_subarea'");
+		$con_del   = $mysqli->query("DELETE FROM adm_subareas WHERE id_subarea = '$subarea[0]'");
+		$con_teste = $mysqli->query("SELECT id_subarea FROM adm_subareas WHERE id_subarea = '$subarea[0]'");
 
 		if($con_teste->num_rows == 0){
 
 			/** log **/
-			$log = "Excluiu a Subarea <u>" . $subarea . "</u> da Área <u>".$area."</u>.";
+			$log = "Excluiu a Subarea <u>" . $subarea[1] . "</u> da Área <u>".$area[1]."</u>.";
 			$con_log = $mysqli->query("INSERT INTO logs SET cpf = '$cpf', codom = '$codom_usuario', acao = '$log', tabela = 'adm_subareas'");
 			/** fim log **/
 
 			$_SESSION['alterar_subarea'] = "Subárea excluída com sucesso!";
 		}
 		else{
-			$_SESSION['alterar_nada_subarea'] = "ERRO A-020: área não excluída. Por favor, tente novamente!";
+			$_SESSION['alterar_nada_subarea'] = "ERRO A-025: área não excluída. Por favor, tente novamente!";
 			$_SESSION['botao'] = "danger";
 		}
 	}

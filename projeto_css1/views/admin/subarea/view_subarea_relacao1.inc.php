@@ -8,20 +8,7 @@
 			<div class="modal-body">
 				<div class="box">
 					<div id="area_printSubarea" class="box-body no-padding ">
-						<table class="table table-striped">
-							<tr class="text-bold">
-								<td>Área:</td>
-							</tr>
-							<tr>
-								<td>&nbsp;</td>
-							</tr>
-							<tr class="text-bold">
-								<td>Subáreas:</td>
-							</tr>
-							<div id="lista_subarea">
-								<?php include_once('controllers/admin/subarea/subarea_listar.inc.php');?>
-							</div>
-						</table>
+						<div id="lista_subarea"></div>
 					</div>
 				</div>
 			</div>

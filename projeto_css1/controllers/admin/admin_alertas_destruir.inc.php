@@ -46,6 +46,12 @@ unset($_SESSION['alterar_area']);
 unset($_SESSION['alterar_nada_area']);
 unset($_SESSION['alterar_lista_erro_validacao_area']);
 
+//subarea_alterar
+unset($_SESSION['alterar_erro_validacao_subarea']);
+unset($_SESSION['alterar_subarea']);
+unset($_SESSION['alterar_nada_subarea']);
+unset($_SESSION['alterar_lista_erro_validacao_subarea']);
+
 //user_alterar
 unset($_SESSION['alterar_erro_validacao_user']);
 unset($_SESSION['alterar_user']);
