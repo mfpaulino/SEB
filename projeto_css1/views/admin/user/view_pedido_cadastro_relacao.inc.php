@@ -18,10 +18,10 @@ if($qtde == 0){
 				<div class="box">
 					<div id="area_printPedidoCadastro" class="box-body no-padding ">
 						<table class="table table-striped">
-							<tr class="text-bold">
-								<td>Usuário</td>
-								<td>Perfil</td>
-								<td>Unidade</td>
+							<tr>
+								<td><b>Usuário</b></td>
+								<td><b>Perfil</b></td>
+								<td><b>Unidade</b></td>
 							</tr>
 							<?php
 							while ($rows =  $con_usuarios->fetch_assoc()){

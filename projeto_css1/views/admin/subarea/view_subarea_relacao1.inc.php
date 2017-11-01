@@ -8,7 +8,7 @@
 			<div class="modal-body">
 				<div class="box">
 					<div id="area_printSubarea" class="box-body no-padding ">
-						<div id="lista_subarea"></div>
+						<div id="lista_subarea"><!--conteudo vem do script componentes/internos/js/admin/view_subarea.js--></div>
 					</div>
 				</div>
 			</div>

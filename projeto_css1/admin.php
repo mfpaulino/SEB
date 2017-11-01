@@ -155,12 +155,12 @@ include_once(PATH . '/controllers/autenticacao/autentica.inc.php');//autentica e
 	<script src="componentes/internos/js/admin/view_categoria.js"></script>
 	<script src="componentes/internos/js/admin/view_diaria.js"></script>
 	<script src="componentes/internos/js/admin/view_user.js"></script>
-	<script src="componentes/internos/js/admin/view_area-.js"></script>
+	<script src="componentes/internos/js/admin/view_area.js"></script>
 	<script src="componentes/internos/js/admin/view_subarea.js"></script>
 	<script src="componentes/internos/js/admin/form_categoria.js"></script>
 	<script src="componentes/internos/js/admin/form_diaria.js"></script>
-	<script src="componentes/internos/js/admin/form_area---.js"></script>
-	<script src="componentes/internos/js/admin/form_subarea-.js"></script>
+	<script src="componentes/internos/js/admin/form_area.js"></script>
+	<script src="componentes/internos/js/admin/form_subarea.js"></script>
 	<script>
 		//exibe os titles ao passar o mouse
 		$(document).ready(function(){

@@ -18,9 +18,9 @@ if($qtde == 0){
 				<div class="box">
 					<div id="area_printCategoria" class="box-body no-padding ">
 						<table class="table table-striped">
-							<tr class="text-bold">
-								<td class="text-center">Categoria</td>
-								<td>Localidades</td>
+							<tr>
+								<td class="text-center"><b>Categoria</b></td>
+								<td><b>Localidades</b></td>
 							</tr>
 							<?php
 							while($row = $con_lista->fetch_assoc()){?>

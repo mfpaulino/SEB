@@ -18,8 +18,8 @@ if($qtde == 0){
 				<div class="box">
 					<div id="area_printArea" class="box-body no-padding">
 						<table class="table table-striped">
-							<tr class="text-bold">
-								<td>Descrição</td>
+							<tr>
+								<td><b>Descrição</b></td>
 							</tr>
 							<?php
 							while($row = $con_lista->fetch_assoc()){?>

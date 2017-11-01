@@ -18,10 +18,10 @@ if($qtde == 0){
 				<div class="box">
 					<div id="area_printDiaria" class="box-body no-padding ">
 						<table class="table table-striped">
-							<tr class="text-bold">
-								<td>Posto/grad</td>
-								<td>Categoria</td>
-								<td>Valor</td>
+							<tr>
+								<td><b>Posto/grad</b></td>
+								<td><b>Categoria</b></td>
+								<td><b>Valor</b></td>
 							</tr>
 							<?php
 							while($row = $con_lista->fetch_assoc()){?>
