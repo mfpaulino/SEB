@@ -6,7 +6,7 @@ $sql = "SELECT id_area, area FROM adm_areas WHERE id_area in (SELECT id_area FRO
 $con_area = $mysqli->query($sql);
 ?>
 <select class="form-control" name="area" id="area">
-	<option value = "">Selecione a Área...</option>
+	<option value = "">Selecione a Área/Processo...</option>
 	<?php
 	while ($row_area = $con_area->fetch_assoc()){
 	?>

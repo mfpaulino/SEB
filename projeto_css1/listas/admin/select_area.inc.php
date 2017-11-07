@@ -6,7 +6,7 @@ $sql = "SELECT id_area, area FROM adm_areas ORDER BY area";
 $con_area = $mysqli->query($sql);
 ?>
 <select class="form-control" name="area" id="area">
-	<option value = "">Selecione a Área...</option>
+	<option value = "">Selecione a Área/Processo...</option>
 	<?php
 	while ($row_area = $con_area->fetch_assoc()){
 	?>

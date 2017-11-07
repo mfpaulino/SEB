@@ -12,14 +12,14 @@ if($qtde == 0){
 		<div class="modal-content">
 			<div class="modal-header fundo">
 				<button type="button" class="close" data-dismiss="modal">&times;</button>
-				<h4 class="modal-title">Áreas Cadastradas</h4>
+				<h4 class="modal-title">Áreas/Processos Cadastrados</h4>
 			</div>
 			<div class="modal-body">
 				<div class="box">
 					<div id="area_printArea" class="box-body no-padding">
 						<table class="table table-striped">
 							<tr>
-								<td><b>Descrição</b></td>
+								<td><b>Áreas/Processos:</b></td>
 							</tr>
 							<?php
 							while($row = $con_lista->fetch_assoc()){?>

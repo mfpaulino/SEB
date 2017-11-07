@@ -15,10 +15,10 @@ if($qtde == 0){
 ?>
 <table class="table table-striped">
 	<tr>
-		<td><b>Área: </b><?php echo $area;?></td>
+		<td><b>Área/Processo: </b><?php echo $area;?></td>
 	</tr>
 	<tr>
-		<td><b>Subáreas:</b></td>
+		<td><b>Subáreas/Subprocessos:</b></td>
 	</tr>
 	<?php
 	$i = 1;

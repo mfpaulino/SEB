@@ -3,7 +3,7 @@
 		<div class="modal-content">
 			<div class="modal-header fundo">
 				<button type="button" class="close" data-dismiss="modal">&times;</button>
-				<h4 class="modal-title">Subáreas Cadastradas</h4>
+				<h4 class="modal-title">Subáreas/Subprocessos Cadastrados</h4>
 			</div>
 			<div class="modal-body">
 				<div class="box">

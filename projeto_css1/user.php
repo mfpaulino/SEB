@@ -86,7 +86,7 @@ if(isset($_GET['flag'])){//vem da tela de bloqueio
 		<aside class="main-sidebar">
 			<section class="sidebar">
 				<?php
-				$active_home = 'class="active"';
+				$active_home = 'active';
 				include_once('views/menu/menu_left.inc.php');?>
 			</section>
 		</aside>

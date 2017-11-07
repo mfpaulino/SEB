@@ -12,7 +12,7 @@ if ($inc == "sim"){?>
 </div>
 <ul class="sidebar-menu" data-widget="tree">
 	<li <?php echo $active_home;?>><a href="index.php"><i class="fa fa-home"></i> <span>Home</span></a></li>
-	<li <?php echo $active_admin;?>><a href="#"><i class="fa fa-gears"></i> <span>Administração</span></a></li>
+	<li <?php echo $active_admin;?>><a href="admin.php"><i class="fa fa-gears"></i> <span>Administração</span></a></li>
 	<li <?php echo $active_correio;?>>
 		<a href="mailbox_input.php">
 			<i class="fa fa-envelope"></i> <span>Correio</span>

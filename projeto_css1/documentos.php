@@ -1,8 +1,6 @@
 <?php
 /***********************************************************************************************************
-* local/script name: ./admin.php
-* tela para administração do sistema                                                                     *
-* Exibe na tela alertas diversos vindos do script 'controllers/admin/admin_alertas_criar.inc.php'      *
+* local/script name: ./template.php                                                                        *
 * **********************************************************************************************************/
 $inc = "sim";
 $pagina = strtr(end(explode('/', $_SERVER['PHP_SELF'])),'?', true);
@@ -46,7 +44,8 @@ include_once(PATH . '/controllers/autenticacao/autentica.inc.php');//autentica e
 		<aside class="main-sidebar">
 			<section class="sidebar">
 				<?php
-				$active_admin = 'active';
+				$active_auditoria = 'active';
+				$active_documentos = 'active';
 				include_once('views/menu/menu_left.inc.php');?>
 			</section>
 		</aside>
@@ -63,13 +62,13 @@ include_once(PATH . '/controllers/autenticacao/autentica.inc.php');//autentica e
 				<?php
 				if (isset($_GET['flag']) and ($_GET['flag'] == md5("usuario_alterar") or $_GET['flag'] == md5("senha_alterar") or $_GET['flag'] == md5("om_alterar") or $_GET['flag'] == md5("logout") )){
 					include_once('controllers/usuario/usuario_alertas_criar.inc.php');
-				}
+				}/*
 				else if (isset($_GET['flag']) and ($_GET['flag'] == md5("categoria_cadastrar") or $_GET['flag'] == md5("categoria_alterar") or $_GET['flag'] == md5("categoria_excluir") or $_GET['flag'] == md5("diaria_cadastrar") or $_GET['flag'] == md5("diaria_alterar") or $_GET['flag'] == md5("diaria_excluir") or $_GET['flag'] == md5("user_alterar") or $_GET['flag'] == md5("area_cadastrar") or $_GET['flag'] == md5("area_alterar") or $_GET['flag'] == md5("subarea_cadastrar") or $_GET['flag'] == md5("subarea_alterar"))){
 					include_once('controllers/admin/admin_alertas_criar.inc.php');
-				}
+				}*/
 				else {
 					include_once('controllers/usuario/usuario_alertas_destruir.inc.php');
-					include_once('controllers/admin/admin_alertas_destruir.inc.php');
+					//include_once('controllers/admin/admin_alertas_destruir.inc.php');
 				}
 
 				include_once('views/usuario/view_usuario_perfil.inc.php');
@@ -89,40 +88,77 @@ include_once(PATH . '/controllers/autenticacao/autentica.inc.php');//autentica e
 				<!-- conteudo aqui -->
 				<div class="row">
 					<div class="col-md-6">
-						<?php include_once('views/admin/user/view_user_lista.inc.php'); ?>
-						<?php include_once('views/admin/user/view_pedido_cadastro_lista.inc.php'); ?>
-						<?php include_once('views/admin/user/form_user_perfil.inc.php'); ?>
-						<?php include_once('views/admin/user/view_user_relacao.inc.php');?>
-						<?php include_once('views/admin/user/view_pedido_cadastro_relacao.inc.php');?>
+						<?php include_once('views/auditoria/documentos/nt_aud/view_nt_aud.inc.php'); ?>
+						<?php //include_once('views/admin/user/view_pedido_cadastro_lista.inc.php'); ?>
+						<?php //include_once('views/admin/user/form_user_perfil.inc.php'); ?>
+						<?php //include_once('views/admin/user/view_user_relacao.inc.php');?>
+						<?php //include_once('views/admin/user/view_pedido_cadastro_relacao.inc.php');?>
+					</div>
+					<div class="col-md-6">
+						<?php include_once('views/auditoria/documentos/parecer/view_parecer.inc.php'); ?>
+						<?php //include_once('views/admin/categoria/form_categoria_cadastrar.inc.php');?>
+						<?php //include_once('views/admin/categoria/form_categoria_alterar.inc.php');?>
+						<?php //include_once('views/admin/categoria/view_categoria_relacao.inc.php');?>
 					</div>
 				</div>
 				<div class="row">
-					<div class="col-md-3">
-						<?php include_once('views/admin/categoria/view_categoria.inc.php');?>
-						<?php include_once('views/admin/categoria/form_categoria_cadastrar.inc.php');?>
-						<?php include_once('views/admin/categoria/form_categoria_alterar.inc.php');?>
-						<?php include_once('views/admin/categoria/view_categoria_relacao.inc.php');?>
+					<div class="col-md-6">
+						<?php include_once('views/auditoria/documentos/sol_aud/view_sol_aud.inc.php');?>
+						<?php //include_once('views/admin/area/form_area_cadastrar.inc.php');?>
+						<?php //include_once('views/admin/area/form_area_alterar.inc.php');?>
+						<?php //include_once('views/admin/area/view_area_relacao.inc.php');?>
 					</div>
-					<div class="col-md-3">
-						<?php include_once('views/admin/diaria/view_diaria.inc.php');?>
-						<?php include_once('views/admin/diaria/form_diaria_cadastrar.inc.php');?>
-						<?php include_once('views/admin/diaria/form_diaria_alterar.inc.php');?>
-						<?php include_once('views/admin/diaria/view_diaria_relacao.inc.php');?>
+					<div class="col-md-6">
+						<?php include_once('views/auditoria/documentos/mtz_reci/view_mtz_reci.inc.php');?>
+						<?php //include_once('views/admin/subarea/form_subarea_cadastrar.inc.php');?>
+						<?php //include_once('views/admin/subarea/form_subarea_alterar.inc.php');?>
+						<?php //include_once('views/admin/subarea/view_subarea_relacao.inc.php');?>
+						<?php //include_once('views/admin/subarea/view_subarea_relacao1.inc.php');?>
 					</div>
 				</div>
 				<div class="row">
-					<div class="col-md-3">
-						<?php include_once('views/admin/area/view_area.inc.php');?>
-						<?php include_once('views/admin/area/form_area_cadastrar.inc.php');?>
-						<?php include_once('views/admin/area/form_area_alterar.inc.php');?>
-						<?php include_once('views/admin/area/view_area_relacao.inc.php');?>
+					<div class="col-md-6">
+						<?php include_once('views/auditoria/documentos/mtz_resp/view_mtz_resp.inc.php');?>
+						<?php //include_once('views/admin/area/form_area_cadastrar.inc.php');?>
+						<?php //include_once('views/admin/area/form_area_alterar.inc.php');?>
+						<?php //include_once('views/admin/area/view_area_relacao.inc.php');?>
 					</div>
-					<div class="col-md-3">
-						<?php include_once('views/admin/subarea/view_subarea.inc.php');?>
-						<?php include_once('views/admin/subarea/form_subarea_cadastrar.inc.php');?>
-						<?php include_once('views/admin/subarea/form_subarea_alterar.inc.php');?>
-						<?php include_once('views/admin/subarea/view_subarea_relacao.inc.php');?>
-						<?php include_once('views/admin/subarea/view_subarea_relacao1.inc.php');?>
+					<div class="col-md-6">
+						<?php include_once('views/auditoria/documentos/stakeholder/view_stakeholder.inc.php');?>
+						<?php //include_once('views/admin/subarea/form_subarea_cadastrar.inc.php');?>
+						<?php //include_once('views/admin/subarea/form_subarea_alterar.inc.php');?>
+						<?php //include_once('views/admin/subarea/view_subarea_relacao.inc.php');?>
+						<?php //include_once('views/admin/subarea/view_subarea_relacao1.inc.php');?>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-6">
+						<?php include_once('views/auditoria/documentos/mtz_resp/view_mtz_resp.inc.php');?>
+						<?php //include_once('views/admin/area/form_area_cadastrar.inc.php');?>
+						<?php //include_once('views/admin/area/form_area_alterar.inc.php');?>
+						<?php //include_once('views/admin/area/view_area_relacao.inc.php');?>
+					</div>
+					<div class="col-md-6">
+						<?php include_once('views/auditoria/documentos/stakeholder/view_stakeholder.inc.php');?>
+						<?php //include_once('views/admin/subarea/form_subarea_cadastrar.inc.php');?>
+						<?php //include_once('views/admin/subarea/form_subarea_alterar.inc.php');?>
+						<?php //include_once('views/admin/subarea/view_subarea_relacao.inc.php');?>
+						<?php //include_once('views/admin/subarea/view_subarea_relacao1.inc.php');?>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-6">
+						<?php include_once('views/auditoria/documentos/cert_aud/view_cert_aud.inc.php');?>
+						<?php //include_once('views/admin/area/form_area_cadastrar.inc.php');?>
+						<?php //include_once('views/admin/area/form_area_alterar.inc.php');?>
+						<?php //include_once('views/admin/area/view_area_relacao.inc.php');?>
+					</div>
+					<div class="col-md-6">
+						<?php include_once('views/auditoria/documentos/mtz_swot/view_mtz_swot.inc.php');?>
+						<?php //include_once('views/admin/subarea/form_subarea_cadastrar.inc.php');?>
+						<?php //include_once('views/admin/subarea/form_subarea_alterar.inc.php');?>
+						<?php //include_once('views/admin/subarea/view_subarea_relacao.inc.php');?>
+						<?php //include_once('views/admin/subarea/view_subarea_relacao1.inc.php');?>
 					</div>
 				</div>
 				<!-- fim conteudo -->
@@ -147,15 +183,6 @@ include_once(PATH . '/controllers/autenticacao/autentica.inc.php');//autentica e
 	<script src="componentes/internos/js/usuario_alterar.js"></script>
 	<script src="componentes/internos/js/modal_editar_perfil.js"></script>
 	<script src="componentes/internos/js/modal_editar_unidade.js"></script>
-	<script src="componentes/internos/js/admin/view_categoria.js"></script>
-	<script src="componentes/internos/js/admin/view_diaria.js"></script>
-	<script src="componentes/internos/js/admin/view_user.js"></script>
-	<script src="componentes/internos/js/admin/view_area.js"></script>
-	<script src="componentes/internos/js/admin/view_subarea.js"></script>
-	<script src="componentes/internos/js/admin/form_categoria.js"></script>
-	<script src="componentes/internos/js/admin/form_diaria.js"></script>
-	<script src="componentes/internos/js/admin/form_area.js"></script>
-	<script src="componentes/internos/js/admin/form_subarea.js"></script>
 	<script>
 		//exibe os titles ao passar o mouse
 		$(document).ready(function(){

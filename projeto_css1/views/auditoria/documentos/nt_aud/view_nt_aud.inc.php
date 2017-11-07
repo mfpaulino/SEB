@@ -1,18 +1,18 @@
-<div class="box box-solid bg-yellow collapsed-box">
+<div class="box box-solid bg-green collapsed-box">
 	<div class="box-header">
-		<i class="fa fa-bars"></i>
-		<h3 class="box-title">Áreas/Processos</h3>
+		<i class="fa fa-file-text"></i>
+		<h3 class="box-title">Nota de Auditoria</h3>
 		<div class="pull-right box-tools">
 			<div class="btn-group">
-				<button type="button" title="Exibir Menu" class="btn bg-yellow-gradient btn-sm dropdown-toggle" data-toggle="dropdown"><i class="fa fa-caret-down fa-lg"></i></button>
+				<button type="button" title="Exibir Menu" class="btn bg-green-gradient btn-sm dropdown-toggle" data-toggle="dropdown"><i class="fa fa-caret-down fa-lg"></i></button>
 				<ul class="dropdown-menu pull-right" role="menu">
-					<li><a href="#" data-toggle="modal" data-target="#modalCadastrarArea">Cadastrar Área/Processo</a></li>
+					<li><a href="#" data-toggle="modal" data-target="#modalCadastrarArea">Cadastrar Nota de Auditoria</a></li>
 					<li class="divider"></li>
 					<li><a href="#" data-toggle="modal" data-target="#modalExibirArea">Exibir Lista</a></li>
 				</ul>
 			</div>
-			<button type="button" title="Expandir/Encolher" class="btn bg-yellow-gradient btn-sm" data-widget="collapse"><i class="fa fa-plus"></i></button>
-			<button type="button" title="Ocultar" class="btn bg-yellow-gradient btn-sm" data-widget="remove"><i class="fa fa-times"></i></button>
+			<button type="button" title="Expandir/Encolher" class="btn bg-green-gradient btn-sm" data-widget="collapse"><i class="fa fa-plus"></i></button>
+			<button type="button" title="Ocultar" class="btn bg-green-gradient btn-sm" data-widget="remove"><i class="fa fa-times"></i></button>
 		</div>
 	</div>
 	<div class="box-body no-padding" style="display:none;">

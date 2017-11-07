@@ -14,10 +14,10 @@ if(isset($_POST['area'])){
 	$num_rows_subarea = $con_subarea->num_rows;
 
 	if($num_rows_subarea == 0){
-	   echo  '<option value="">Aguardando a seleção da Área...</option>';
+	   echo  '<option value="">Aguardando a seleção da Área/Processo...</option>';
 	}
 	else {
-		echo '<option value="">Selecione a Subárea...</option>';
+		echo '<option value="">Selecione a Subárea/Subprocesso...</option>';
 		while($rows_subarea = $con_subarea->fetch_assoc()){
 			echo '<option value="' . $rows_subarea['id_subarea'] .'|'.$rows_subarea['subarea'].'|'.$area[1].'">' . htmlentities($rows_subarea['subarea']) . '</option>';
 		}

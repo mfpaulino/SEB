@@ -2,7 +2,7 @@
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header fundo">
-				<h4 class="modal-title">Editar Área</h4>
+				<h4 class="modal-title">Editar Área/Processo</h4>
 			</div>
 			<div class="modal-body">
 				<form name="form_area_alterar" id="form_area_alterar" action="controllers/admin/area/area_alterar.php" method="POST">

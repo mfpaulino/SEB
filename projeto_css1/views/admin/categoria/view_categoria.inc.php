@@ -1,18 +1,18 @@
-<div class="box box-solid bg-olive collapsed-box">
+<div class="box box-solid bg-blue collapsed-box">
 	<div class="box-header">
 		<i class="fa fa-map-marker"></i>
 		<h3 class="box-title">Categorias</h3>
 		<div class="pull-right box-tools">
 			<div class="btn-group">
-				<button type="button" title="Exibir Menu" class="btn bg-olive btn-sm dropdown-toggle" data-toggle="dropdown"><i class="fa fa-caret-down fa-lg"></i></button>
+				<button type="button" title="Exibir Menu" class="btn bg-blue-gradient btn-sm dropdown-toggle" data-toggle="dropdown"><i class="fa fa-caret-down fa-lg"></i></button>
 				<ul class="dropdown-menu pull-right" role="menu">
 					<li><a href="#" data-toggle="modal" data-target="#modalCadastrarCategoria">Cadastrar Categoria</a></li>
 					<li class="divider"></li>
 					<li><a href="#" data-toggle="modal" data-target="#modalExibirCategoria">Exibir Lista</a></li>
 				</ul>
 			</div>
-			<button type="button" title="Expandir/Encolher" class="btn bg-olive btn-sm" data-widget="collapse"><i class="fa fa-plus"></i></button>
-			<button type="button" title="Ocultar" class="btn bg-olive btn-sm" data-widget="remove"><i class="fa fa-times"></i></button>
+			<button type="button" title="Expandir/Encolher" class="btn bg-blue-gradient btn-sm" data-widget="collapse"><i class="fa fa-plus"></i></button>
+			<button type="button" title="Ocultar" class="btn bg-blue-gradient btn-sm" data-widget="remove"><i class="fa fa-times"></i></button>
 		</div>
 	</div>
 	<div class="box-body no-padding" style="display:none;">

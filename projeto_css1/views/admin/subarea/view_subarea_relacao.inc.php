@@ -2,11 +2,11 @@
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header fundo">
-				<h4 class="modal-title">Listar Subáreas</h4>
+				<h4 class="modal-title">Listar Subáreas/Subprocessos</h4>
 			</div>
 			<div class="modal-body">
 				<div class="box-body">
-					<label for="area" >Área*</label>
+					<label for="area" >Área/Processo*</label>
 					<?php include('listas/admin/select_area_lista_subarea.inc.php');?>
 				</div>
 				<div class="modal-footer">
