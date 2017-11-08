@@ -23,6 +23,7 @@ include_once(PATH . '/controllers/autenticacao/autentica.inc.php');//autentica e
 	<link rel="stylesheet" href="componentes/externos/bootstrap/plugins/bootstrap-validator/css/bootstrapValidator.min-.css">
 	<link rel="stylesheet" href="componentes/externos/bootstrap/plugins/font-awesome/css/font-awesome.min.css">
 	<link rel="stylesheet" href="componentes/externos/bootstrap/plugins/Ionicons/css/ionicons.min.css">
+	<link rel="stylesheet" href="componentes/externos/bootstrap/plugins/bootstrap-multiselect/dist/css/bootstrap-multiselect.css">
 	<link rel="stylesheet" href="componentes/externos/bootstrap/plugins/bootstrap-fileinput/css/fileinput.min.css">
 	<link rel="stylesheet" href="componentes/externos/template/css/AdminLTE.css">
 	<link rel="stylesheet" href="componentes/externos/template/css/skins/skin-blue.css">
@@ -115,6 +116,7 @@ include_once(PATH . '/controllers/autenticacao/autentica.inc.php');//autentica e
 						<?php include_once('views/admin/area/view_area.inc.php');?>
 						<?php include_once('views/admin/area/form_area_cadastrar.inc.php');?>
 						<?php include_once('views/admin/area/form_area_alterar.inc.php');?>
+						<?php include_once('views/admin/area/form_area_vincular.inc.php');?>
 						<?php include_once('views/admin/area/view_area_relacao.inc.php');?>
 					</div>
 					<div class="col-md-3">
@@ -122,7 +124,7 @@ include_once(PATH . '/controllers/autenticacao/autentica.inc.php');//autentica e
 						<?php include_once('views/admin/subarea/form_subarea_cadastrar.inc.php');?>
 						<?php include_once('views/admin/subarea/form_subarea_alterar.inc.php');?>
 						<?php include_once('views/admin/subarea/view_subarea_relacao.inc.php');?>
-						<?php include_once('views/admin/subarea/view_subarea_relacao1.inc.php');?>
+						<?php //include_once('views/admin/subarea/view_subarea_relacao1.inc.php');?>
 					</div>
 				</div>
 				<!-- fim conteudo -->
@@ -139,6 +141,7 @@ include_once(PATH . '/controllers/autenticacao/autentica.inc.php');//autentica e
 	<script src="componentes/externos/bootstrap/plugins/bootstrap-validator/js/bootstrapValidator.min.js"></script>
 	<script src="componentes/externos/bootstrap/plugins/bootstrap-confirmation/bootstrap-confirmation.min.js"></script>
 	<script src="componentes/externos/bootstrap/plugins/bootstrap-fileinput/js/fileinput.js" type="text/javascript"></script>
+	<script src="componentes/externos/bootstrap/plugins/bootstrap-multiselect/dist/js/bootstrap-multiselect.js"></script>
 	<script src="componentes/externos/template/js/adminlte.min.js"></script>
 	<script src="componentes/externos/jquery/plugins/maskMoney/dist/jquery.maskMoney.min.js"></script>
 	<script src="componentes/internos/js/status_sessao.js"></script>

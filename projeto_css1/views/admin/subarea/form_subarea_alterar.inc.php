@@ -7,17 +7,12 @@
 			<div class="modal-body">
 				<form name="form_subarea_alterar" id="form_subarea_alterar" action="controllers/admin/subarea/subarea_alterar.php" method="POST">
 					<div class="form-group">
-						<label for="area" class="control-label">Área/Processo:</label>
-						<input class="form-control" type="text" id="area_exibe" disabled  />
-					</div>
-					<div class="form-group">
 						<label for="subarea" class="control-label">*Subárea:</label>
 						<input class="form-control" type="text" name="subarea"  id="subarea" autofocus  placeholder="" />
 					</div>
 					<div class="form-group">
 						<input type="hidden" name="subarea_atual"   id="subarea_atual" />
 						<input type="hidden" name="id_subarea"      id="id_subarea" />
-						<input type="hidden" name="area_envia"      id="area_envia" />
 						<input type="hidden" name="flag" value="alterar" />
 					</div>
 					<div class="modal-footer">

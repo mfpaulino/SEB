@@ -22,8 +22,14 @@
 			<div class="col-sm-12">
 				<form class="form-horizontal" method="POST" action="controllers/admin/subarea/subarea_alterar.php">
 					<div class="box-body">
+						<label for="area" >Área/Processo*</label>
+						<?php include('listas/admin/select_area_com_subarea.inc.php');?>
+					</div>
+					<div class="box-body">
 						<label for="subarea" >Subárea/Subprocesso*</label>
-						<?php include_once('listas/admin/select_subarea_adm.inc.php');?>
+						<select class="form-control" name="subarea" id="subarea">
+							<option value="">Aguardando a seleção da Área/Processo...</option>
+						</select>
 					</div>
 					<div class="box-footer pull-right">
 						<!--botao Alterar subarea-->

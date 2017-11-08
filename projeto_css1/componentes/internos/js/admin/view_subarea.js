@@ -76,23 +76,20 @@ $('#modalExibirSubarea').on('show.bs.modal', function (event) {
 
 	var array_area = $('#lista_area').val().split('|');
 	var id_area = array_area[0];
-	var area = array_area[1];
-	//var modal = $(this);
-	
-	//modal.find('#area').val(area);	
+	var area = array_area[1];	
 
 	//envia o valor da area, cria a lista de subareas baseada na area selecionada e insere no modal
-   	$.ajax({
-   		url: 'controllers/admin/subarea/subarea_listar.inc.php',
-   		type: "POST",
-   		data: {
-   			id_area: id_area,
-   			area: area
-   		},
-   		success: function (res) {
-	   		$('#lista_subarea').html(res);//insere a lista de subareas no modal
-   		}
-	});
+   	//$.ajax({
+   		//url: 'controllers/admin/subarea/subarea_listar.inc.php',
+   		//type: "POST",
+   		//data: {
+   			//id_area: id_area,
+   			//area: area
+   		//},
+   		//success: function (res) {
+	   		//$('#lista_subarea').html(res);//insere a lista de subareas no modal
+   		//}
+	//});
 
 })
 

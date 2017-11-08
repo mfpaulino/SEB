@@ -7,6 +7,11 @@
 			<div class="modal-body">
 				<form name="form_subarea_cadastrar" id="form_subarea_cadastrar" action="controllers/admin/subarea/subarea_cadastrar.php" method="POST">
 					<div class="form-group">
+						<label for="area" class="control-label">*Área/Processo:</label>
+						<?php include('listas/admin/select_area.inc.php');?>
+						<input type="hidden" name="flag" value="excluir" />
+					</div>
+					<div class="form-group">
 						<label for="subarea" class="control-label">*Subárea/Subprocesso:</label>
 						<input class="form-control" type="text" name="subarea"  id="subarea"  autofocus  placeholder="" />
 					</div>

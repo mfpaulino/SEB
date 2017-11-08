@@ -18,16 +18,16 @@ if($qtde == 0){
 				<div class="box">
 					<div id="area_printArea" class="box-body no-padding">
 						<table class="table table-striped">
-							<tr>
-								<td><b>Áreas/Processos:</b></td>
-							</tr>
 							<?php
+							$i = 1;
 							while($row = $con_lista->fetch_assoc()){?>
 								<tr>
-									<td><?php echo $row['area'];?></td>
+									<td><?php echo "<b>".$i . " -</b> " . $row['area'];?></td>
 								</tr>
 								<?php
-							} ?>
+							$i++;
+							}
+							?>
 						</table>
 					</div>
 				</div>

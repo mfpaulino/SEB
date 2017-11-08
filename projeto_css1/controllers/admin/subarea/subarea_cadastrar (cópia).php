@@ -25,17 +25,20 @@ if (isset($_POST['flag']) and isset($_SESSION['cpf'])){
 	require_once(PATH . '/componentes/internos/php/validaForm.class.php');
 	require_once(PATH . '/componentes/internos/php/funcoes.inc.php');
 
+	$area = isset($_POST['area']) ? $_POST['area'] : "";
 	$subarea = isset($_POST['subarea']) ? $_POST['subarea'] : "";
 
+	$area = explode("|", $area);
 	$id_area = $area[0];
 
 	$validar = new validaForm();
 
-	$validar->set('Subárea', $subarea)->is_required();
+	$validar->set('Área', $area)->is_required()
+			->set('Subárea', $subarea)->is_required();
 
 	if ($validar->validate()){
 
-		$busca_subarea = $mysqli->query("SELECT id_subarea FROM adm_subareas WHERE subarea = '$subarea'");
+		$busca_subarea = $mysqli->query("SELECT id_subarea FROM adm_subareas WHERE subarea = '$subarea' and id_area = '$id_area'");
 
 
 		if($busca_subarea->num_rows > 0){
@@ -47,12 +50,12 @@ if (isset($_POST['flag']) and isset($_SESSION['cpf'])){
 		}
 		if($validacao !== false){
 
-			$resultado = $mysqli->query("INSERT INTO adm_subareas (subarea) VALUES ('$subarea')");
+			$resultado = $mysqli->query("INSERT INTO adm_subareas (subarea, id_area) VALUES ('$subarea','$id_area')");
 
 			if($resultado){
 
 				/** log **/
-				$log = "Cadastrou a Subárea <u>" . $subarea . "</u>.";
+				$log = "Cadastrou a Subárea <u>" . $subarea . "</u> para a Área <u>".$area[1]."</u>.";
 				$con_log = $mysqli->query("INSERT INTO logs SET cpf = '$cpf', codom = '$codom_usuario', acao = '$log', tabela = 'adm_subareas'");
 				/** fim log **/
 

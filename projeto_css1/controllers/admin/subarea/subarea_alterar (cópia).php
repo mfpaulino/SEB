@@ -22,6 +22,7 @@ if(isset($_POST['flag']) and isset($_SESSION['cpf'])){
 
 		$subarea_atual 	= $_POST['subarea_atual'];//tipo hidden
 		$id_subarea 	= $_POST['id_subarea'];//tipo hidden
+		$area 			= $_POST['area_envia'];//campo disabled
 
 		$validar = new validaForm();
 
@@ -39,7 +40,7 @@ if(isset($_POST['flag']) and isset($_SESSION['cpf'])){
 				if($resultado){
 
 					/** log **/
-					$log = "Alterou a Subárea \"<u>" . $subarea_atual . "</u>\" para <u>" . $subarea . "</u>.";
+					$log = "Alterou a Subárea \"<u>" . $subarea_atual . "</u>\" para <u>" . $subarea . "</u> da Área <u>".$area."</u>.";
 					$con_log = $mysqli->query("INSERT INTO logs SET cpf = '$cpf', codom = '$codom_usuario', acao = '$log', tabela = 'adm_subareas'");
 					/** fim log **/
 
@@ -61,6 +62,7 @@ if(isset($_POST['flag']) and isset($_SESSION['cpf'])){
 	else if($acao == "excluir"){
 
 		$subarea = explode("|", $_POST['subarea']);//valor recebido do select_subarea
+		$area = explode("|", $_POST['area']);//valor recebido do select_area
 
 		$con_del   = $mysqli->query("DELETE FROM adm_subareas WHERE id_subarea = '$subarea[0]'");
 		$con_teste = $mysqli->query("SELECT id_subarea FROM adm_subareas WHERE id_subarea = '$subarea[0]'");
@@ -68,7 +70,7 @@ if(isset($_POST['flag']) and isset($_SESSION['cpf'])){
 		if($con_teste->num_rows == 0){
 
 			/** log **/
-			$log = "Excluiu a Subarea <u>" . $subarea[1] . "</u>.";
+			$log = "Excluiu a Subarea <u>" . $subarea[1] . "</u> da Área <u>".$area[1]."</u>.";
 			$con_log = $mysqli->query("INSERT INTO logs SET cpf = '$cpf', codom = '$codom_usuario', acao = '$log', tabela = 'adm_subareas'");
 			/** fim log **/
 
