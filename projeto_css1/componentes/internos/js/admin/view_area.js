@@ -32,25 +32,28 @@ $('#modalAlterarArea').on('show.bs.modal', function (event) {
 //Informa os valores dos campos ao modal vincular área
 $('#modalVincularArea').on('show.bs.modal', function (event) {
 	var array_area = $('#area').val().split('|');
-	var id_area = array_area[0]
-	var area = array_area[1]
-	var modal = $(this)
+	var id_area = array_area[0];
+	var area = array_area[1];
+	var modal = $(this);
 
-	modal.find('#id_area').val(id_area)
-	modal.find('#area').val(area)
+	modal.find('#id_area').val(id_area);
+	modal.find('#area').val(area);
 		
+	
+	//$.ajax({
+		//url: 'controllers/admin/area/listar_subarea_vinc.inc.php', 
+		//data:{'id_area': 'zzz'},
+		//type: 'POST',
+		//success: function(data){
+		       // $('#lista_subarea').html(data);
+		//}
+	//});
+	$.post("controllers/admin/area/listar_subarea_vinc.inc.php", {id_area: 'id_area'}, function(res){
+   	/*a div mostrar que estava com display none agora será exibida, pois nela estará os dados do dados.php*/
+  	 //$("#mostrar").fadeIn(2000).html(mostrar)       
 
-	//envia o valor da area, para a lista de subareas, para marcar os checkbox
-   	$.ajax({
-   		url: 'controllers/admin/area/listar_subarea_vinc.inc.php',
-   		type: "POST",
-   		data: {
-   			id_area: id_area
-   		},
-   		success: function (res) {
-	   		$('#lista_subarea').html(res);//insere a lista de subareas no modal
-   		}
-	});
+       });
+	
 })
 
 $('#subarea').multiselect({
@@ -59,6 +62,7 @@ $('#subarea').multiselect({
 	nSelectedText: 'selecionadas',
 	allSelectedText: 'Todas foram selecionadas',
 	selectAllText: ' Selecionar todas',
+	buttonWidth: '100%',
 	inheritClass: true,
 	includeSelectAllOption: true,
 	enableFiltering: true,
