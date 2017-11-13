@@ -82,7 +82,7 @@ $con_usuarios = $mysqli->query($sql);
 					<td><?php echo $rows['posto'] ." ". $rows['nome_guerra']; ?></td>
 					<td><?php echo $rows['perfil']; ?></td>
 					<td><?php echo $row_om['sigla'];?></td>
-					<td class="text-center">
+					<td width="13%" class="text-center">
 						<!--botao Perfil-->
 						<button type="button" class="btn btn-xs btn-primary"
 							data-tooltip="tooltip"

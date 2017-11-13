@@ -37,22 +37,23 @@ $('#modalVincularArea').on('show.bs.modal', function (event) {
 	var modal = $(this);
 
 	modal.find('#id_area').val(id_area);
-	modal.find('#area').val(area);
-		
+	modal.find('#area').val(area);	
 	
 	//$.ajax({
-		//url: 'controllers/admin/area/listar_subarea_vinc.inc.php', 
-		//data:{'id_area': 'zzz'},
-		//type: 'POST',
-		//success: function(data){
-		       // $('#lista_subarea').html(data);
-		//}
+   		//url: 'controllers/admin/area/listar_subarea_vinc.inc.php',
+   		//type: "POST",
+   		//data: {
+   			//'id_area': id_area
+   		//},
+   		//success: function (res) {
+	   	//	$('#listar_subarea').html(res);//insere a lista de subareas no modal
+   		//},
+   		//dataType:html
 	//});
-	$.post("controllers/admin/area/listar_subarea_vinc.inc.php", {id_area: 'id_area'}, function(res){
-   	/*a div mostrar que estava com display none agora será exibida, pois nela estará os dados do dados.php*/
-  	 //$("#mostrar").fadeIn(2000).html(mostrar)       
-
-       });
+	$.post('controllers/admin/area/listar_subarea_vinc.inc.php',{id_area:id_area},function (res) {
+	   	$('#listar_subarea').html(res);//insere a lista de subareas no modal
+   	})	
+	
 	
 })
 
@@ -72,9 +73,10 @@ $('#subarea').multiselect({
 //imprimir lista area
 document.getElementById('btnPrintArea').onclick = function() {
 	var conteudo = document.getElementById('area_printArea').innerHTML;
-	var	tela_impressao = window.open('','','width=0, height=0, top=50, left=50');
+	var tela_impressao = window.open('','','width=0, height=0, top=50, left=50');
 	tela_impressao.document.write(conteudo);
 	tela_impressao.window.print();
 	tela_impressao.window.close();
 };
+
 

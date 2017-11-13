@@ -67,7 +67,7 @@ $con_usuarios = $mysqli->query($sql);
 			<td><?php echo $rows['posto'] ." ". $rows['nome_guerra']; ?></td>
 			<td><?php echo $rows['perfil']; ?></td>
 			<td><?php echo $rows['status'];?></td>
-			<td class="text-center">
+			<td width="16%" class="text-center">
 				<!--botao Visualizar-->
 				<button type="button" class="btn btn-xs btn-primary"
 					data-tooltip="tooltip"

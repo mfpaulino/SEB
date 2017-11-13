@@ -1,8 +1,6 @@
 <?php
-//$id_area = $_POST['id_area'];
-include_once('controllers/admin/area/listar_subarea_vinc.inc.php');
-$sql = "SELECT id_subarea, subarea FROM adm_subareas ORDER BY subarea";
-$con_lista = $mysqli->query($sql);
+//$sql = "SELECT id_subarea, subarea FROM adm_subareas ORDER BY subarea";
+//$con_lista = $mysqli->query($sql);
 ?>
 <div class="modal fade" data-backdrop="static" id="modalVincularArea" role="dialog">
 	<div class="modal-dialog modal-lg">
@@ -14,22 +12,9 @@ $con_lista = $mysqli->query($sql);
 				<form name="form_area_vincular" id="form_area_vincular" action="controllers/admin/area/area_vincular.php" method="POST">
 					<div class="form-group">
 						<label for="area" class="control-label">Área:</label>
-						<textarea class="form-control" type="text" name="area" id="area" disabled placeholder="" ></textarea>
+						<textarea class="form-control" style="resize:vertical;" name="area" id="area"  type="text" disabled placeholder="" ></textarea>
 					</div>
-					<div id="lista_subarea"><!--conteudo vem do script componentes/internos/js/admin/view_area.js--></div>
-					<div class="form-group">
-						<label for="subarea" class="control-label">Subáreas:<?php echo $id_area;?></label>
-						<br />
-						<select class="form-control" name="subarea[]" id="subarea"  multiple="multiple" data-placeholder = "Selecionar Subáreas/Subprocessos:">
-							<?php
-							$i = 1;
-							while($row = $con_lista->fetch_assoc()){?>
-								<option value="<?php echo $row['id_subarea'];?>"><?php echo "<b>".$i . "- </b>".$row['subarea'];?></option>
-							<?php
-							$i++;
-							}
-							?>
-						</select>
+					<div id="listar_subarea" class="form-group">
 					</div>
 					<div class="form-group">
 						<input type="hidden" name="id_area" id="id_area" />

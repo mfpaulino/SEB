@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title><?php echo TITULO;?></title>
+	<!-- Tell the browser to be responsive to screen width -->
+	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+	<link rel="stylesheet" href="componentes/externos/bootstrap/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" href="componentes/externos/bootstrap/plugins/bootstrap-validator/css/bootstrapValidator.min-.css">
+	<link rel="stylesheet" href="componentes/externos/bootstrap/plugins/font-awesome/css/font-awesome.min.css">
+	<link rel="stylesheet" href="componentes/externos/bootstrap/plugins/Ionicons/css/ionicons.min.css">
+	<link rel="stylesheet" href="componentes/externos/bootstrap/plugins/bootstrap-multiselect/dist/css/bootstrap-multiselect.css">
+	<link rel="stylesheet" href="componentes/externos/bootstrap/plugins/bootstrap-checkbox/bootstrap-switch/dist/css/bootstrap3/bootstrap-switch.min.css">
+	<link rel="stylesheet" href="componentes/externos/bootstrap/plugins/bootstrap-fileinput/css/fileinput.min.css">
+	<link rel="stylesheet" href="componentes/externos/template/css/AdminLTE.css">
+	<link rel="stylesheet" href="componentes/externos/template/css/skins/skin-blue.css">
+	<link rel="stylesheet" href="componentes/internos/css/siaudi.css">
+	</head>
+	<body>
+		<main id="content" role="main">
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-6 col-lg-4">
+						<h2 class="h4">State</h2>
+						<p><input id="switch-state" name="switch-state" data-off-color="danger" type="checkbox" checked="checked"></p>
+
+					</div>
+				</div>
+			</div>
+		</main>
+	<script src="componentes/externos/jquery/dist/jquery.min.js"></script>
+	<script src="componentes/externos/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script src="componentes/externos/bootstrap/plugins/bootstrap-validator/js/bootstrapValidator.min.js"></script>
+	<script src="componentes/externos/bootstrap/plugins/bootstrap-confirmation/bootstrap-confirmation.min.js"></script>
+	<script src="componentes/externos/bootstrap/plugins/bootstrap-fileinput/js/fileinput.js"></script>
+	<script src="componentes/externos/bootstrap/plugins/bootstrap-multiselect/dist/js/bootstrap-multiselect.js"></script>
+	<script src="componentes/externos/bootstrap/plugins/bootstrap-checkbox/bootstrap-switch/dist/js/bootstrap-switch.min.js"></script>
+	<script src="componentes/externos/template/js/adminlte.min.js"></script>
+	<script src="componentes/externos/jquery/plugins/maskMoney/dist/jquery.maskMoney.min.js"></script>
+	<script src="componentes/internos/js/status_sessao.js"></script>
+	<script src="componentes/internos/js/status_menu_top.js"></script>
+	<script src="componentes/internos/js/senha_alterar.js"></script>
+	<script src="componentes/internos/js/usuario_alterar.js"></script>
+	<script src="componentes/internos/js/modal_editar_perfil.js"></script>
+	<script src="componentes/internos/js/modal_editar_unidade.js"></script>
+	<script src="componentes/internos/js/admin/view_categoria.js"></script>
+	<script src="componentes/internos/js/admin/view_diaria.js"></script>
+	<script src="componentes/internos/js/admin/view_user.js"></script>
+	<script src="componentes/internos/js/admin/view_area.js"></script>
+	<script src="componentes/internos/js/admin/view_subarea.js"></script>
+	<script src="componentes/internos/js/admin/form_categoria.js"></script>
+	<script src="componentes/internos/js/admin/form_diaria.js"></script>
+	<script src="componentes/internos/js/admin/form_area.js"></script>
+	<script src="componentes/internos/js/admin/form_subarea.js"></script>
+	<script>
+		$("[name='switch-state']").bootstrapSwitch();
+	</script>
+	</body>
+</html>
