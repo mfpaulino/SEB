@@ -39,36 +39,10 @@ $('#modalVincularArea').on('show.bs.modal', function (event) {
 	modal.find('#id_area').val(id_area);
 	modal.find('#area').val(area);	
 	
-	//$.ajax({
-   		//url: 'controllers/admin/area/listar_subarea_vinc.inc.php',
-   		//type: "POST",
-   		//data: {
-   			//'id_area': id_area
-   		//},
-   		//success: function (res) {
-	   	//	$('#listar_subarea').html(res);//insere a lista de subareas no modal
-   		//},
-   		//dataType:html
-	//});
 	$.post('controllers/admin/area/listar_subarea_vinc.inc.php',{id_area:id_area},function (res) {
 	   	$('#listar_subarea').html(res);//insere a lista de subareas no modal
    	})	
-	
-	
 })
-
-$('#subarea').multiselect({
-	numberDisplayed: 3,
-	nonSelectedText: 'Nenhuma selecionada',
-	nSelectedText: 'selecionadas',
-	allSelectedText: 'Todas foram selecionadas',
-	selectAllText: ' Selecionar todas',
-	buttonWidth: '100%',
-	inheritClass: true,
-	includeSelectAllOption: true,
-	enableFiltering: true,
-	selectAllJustVisible: true //ao clicar em todos, seleciona todos os visiveis pelo filtro. Se false, seleciona todos independente do filtro
-});
 
 //imprimir lista area
 document.getElementById('btnPrintArea').onclick = function() {

@@ -19,7 +19,11 @@ unset($_SESSION['area_duplicada']);
 unset($_SESSION['sucesso_cadastro_area']);
 unset($_SESSION['erro_cadastro_area']);
 unset($_SESSION['erro_validacao_cadastrar_area']);
-unset($_SESSION['lista_erro_validacao_cadastrar_area']);
+unset($_SESSION['lista_erro_validacao_cadastrar_area']);//area_cadastrar
+unset($_SESSION['area_duplicada']);
+
+//area_vincular
+unset($_SESSION['area_vincular']);
 
 //subarea_cadastrar
 unset($_SESSION['subarea_duplicada']);

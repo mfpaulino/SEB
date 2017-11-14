@@ -18,7 +18,7 @@
 					</div>
 					<div class="form-group">
 						<input type="hidden" name="id_area" id="id_area" />
-						<input type="hidden" name="flag" value="vincular" />
+						<input type="hidden" name="flag" />
 					</div>
 					<div class="modal-footer">
 						<button type="submit" class="btn btn-success">Enviar</button>

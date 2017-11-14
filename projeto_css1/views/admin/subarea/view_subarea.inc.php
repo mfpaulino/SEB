@@ -46,6 +46,13 @@
 							data-content="">
 							<i class="fa fa-trash"></i> Excluir
 						</button>
+						<!--botao Vincular Area-->
+						<button id="btnVinculaSubarea" type="button" class="btn btn-xs btn-primary"
+							data-tooltip="tooltip" title=""
+							data-toggle="modal"
+							data-target="#modalVincularSubarea">
+							<i class="fa fa-share-alt"></i> Vincular Área
+						</button>
 					</div>
 					<input type="hidden" name="flag" value="excluir" />
 				</form>

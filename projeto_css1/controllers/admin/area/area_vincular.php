@@ -2,14 +2,6 @@
 /**************************************************************
 * Local/nome do script: admin/area/area_vincular.php
 * Só executa se for chamado pelo formulario, senão chama o script de "acesso negado"
-* primeiramente destroi as variaveis de sessao de alertas de usuario
-* Recebe todos os dados do formulario de cadastro de area
-* Trata os valores recebidos com o método mysqli: mysqli_real_escape_string
-* Usa a classe validaForm para fazer a validação dos dados
-* Consulta o BD em busca da area para evitar duplicidade
-* Em caso de erros, cria variaveis de sessão com mensagens de alertas que serão utilizadas
-* pelo script admin/alertas.inc.php(incluido pelo admin.php)
-* Em caso de tudo certo, grava no BD
 * Ao final de tudo, redireciona para o admin.php
 * *************************************************************/
 
@@ -22,62 +14,36 @@ if (isset($_POST['flag']) and isset($_SESSION['cpf'])){
 
 	require_once(PATH . '/controllers/autenticacao/autentica.inc.php');
 
-	//require_once(PATH . '/componentes/internos/php/validaForm.class.php');
-	//require_once(PATH . '/componentes/internos/php/funcoes.inc.php');
+	$id_area = $_POST['id_area'];
 
-	//$area	 = isset($_POST['id_area']) ? mysqli_real_escape_string($mysqli, $_POST['id_area']) : "";
+	$busca_subarea = $mysqli->query("SELECT id_subarea FROM adm_subareas");
+	$qtde = $busca_subarea->num_rows;//apenas para calcular a quantidade de subareas
 
-	//$validar = new validaForm();
+	$id_subarea = "";
 
-	//$validar->set('Área', $area)->is_required();
-
-	//if ($validar->validate()){
-
-		$busca_subarea = $mysqli->query("SELECT id_subarea FROM adm_subareas");
-		$qtde = $busca_subarea->num_rows;
-		for($i = 1; $i <= $qtde; $i++){
-			$id_subarea = $_POST[$i];
-			echo $id_subarea;
+	for($i = 1; $i <= $qtde; $i++){
+		if($_POST[$i] <> ""){
+			$id_subarea = $id_subarea.$_POST[$i].",";//concatena os id_subarea com ",".
 		}
+	}
 
-/*
-		if($busca_subarea->num_rows > 0){
+	$id_subarea = substr($id_subarea, 0, -1);//elimina a ultima ",".
+	$id_subarea = explode(",",$id_subarea);//cria um array separando pelas ",".
+	$id_subarea_vinc = serialize($id_subarea);//cria uma string com o array serializado
 
-			$_SESSION['area_duplicada'] = "ERRO A-016: Área já cadastrada!";
-			$_SESSION['botao'] = "danger";
+	$con_vinc = $mysqli->query("UPDATE adm_areas SET id_subarea_vinc = '$id_subarea_vinc' where id_area = '$id_area'");//atualiza a lista de subareas vinculadas
 
-			$validacao = false;
-		}
-		if($validacao !== false){
+	if ($mysqli->affected_rows <> 0 ){
+		$_SESSION['area_vincular'] = "Alteração de vinculação realizada com sucesso!";
+		$_SESSION['botao'] = "success";
+	}
+	else{
+		$_SESSION['area_vincular'] = "Nenhuma alteração foi realizada!";
+		$_SESSION['botao'] = "warning";
 
-			$resultado = $mysqli->query("INSERT INTO adm_areas (area) VALUES ('$area')");
-
-			if($resultado){
-
-				/** log **/
-	//			$log = "Cadastrou a Área <u>" . $area . "</u>.";
-		//		$con_log = $mysqli->query("INSERT INTO logs SET cpf = '$cpf', codom = '$codom_usuario', acao = '$log', tabela = 'adm_areas'");
-				/** fim log **/
-
-	//			$_SESSION['sucesso_cadastro_area'] = "Cadastro realizado com sucesso!";
-		//		$_SESSION['botao'] = "success";
-	//		}
-	//		else{
-
-	//			$_SESSION['erro_cadastro_area'] = "ERRO A-017: cadastro não realizado, tente novamente!<br />Em caso de persistir o erro, entrar em contato com o suporte técnico.";
-	//			$_SESSION['botao'] = "danger";
-	//		}
-
-//		}
-	//}
-	//else {
-		//$_SESSION['erro_validacao_cadastrar_area'] = "ERRO A-018: dados inconsistentes, preencha novamente o formulário!";
-		//$_SESSION['botao'] = "danger";
-
-		//$_SESSION['lista_erro_validacao_cadastrar_area'] = $validar->get_errors(); //Captura os erros de todos os campos
-	//}
-	$flag = md5("area_cadastrar");
-	//header(sprintf("Location:../../../admin.php?flag=$flag"));
+	}
+	$flag = md5("area_vincular");
+	header(sprintf("Location:../../../admin.php?flag=$flag"));
 }
 else {
 	include_once(PATH . '/controllers/autenticacao/'.ACESSO_NEGADO);

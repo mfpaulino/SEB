@@ -23,7 +23,7 @@ include_once(PATH . '/controllers/autenticacao/autentica.inc.php');//autentica e
 	<link rel="stylesheet" href="componentes/externos/bootstrap/plugins/bootstrap-validator/css/bootstrapValidator.min-.css">
 	<link rel="stylesheet" href="componentes/externos/bootstrap/plugins/font-awesome/css/font-awesome.min.css">
 	<link rel="stylesheet" href="componentes/externos/bootstrap/plugins/Ionicons/css/ionicons.min.css">
-	<link rel="stylesheet" href="componentes/externos/bootstrap/plugins/bootstrap-multiselect/dist/css/bootstrap-multiselect.css">
+	<link rel="stylesheet" href="componentes/externos/bootstrap/plugins/bootstrap-select/dist/css/bootstrap-select.css">
 	<link rel="stylesheet" href="componentes/externos/bootstrap/plugins/bootstrap-switch/dist/css/bootstrap3/bootstrap-switch.min.css">
 	<link rel="stylesheet" href="componentes/externos/bootstrap/plugins/bootstrap-fileinput/css/fileinput.min.css">
 	<link rel="stylesheet" href="componentes/externos/template/css/AdminLTE.css">
@@ -66,7 +66,7 @@ include_once(PATH . '/controllers/autenticacao/autentica.inc.php');//autentica e
 				if (isset($_GET['flag']) and ($_GET['flag'] == md5("usuario_alterar") or $_GET['flag'] == md5("senha_alterar") or $_GET['flag'] == md5("om_alterar") or $_GET['flag'] == md5("logout") )){
 					include_once('controllers/usuario/usuario_alertas_criar.inc.php');
 				}
-				else if (isset($_GET['flag']) and ($_GET['flag'] == md5("categoria_cadastrar") or $_GET['flag'] == md5("categoria_alterar") or $_GET['flag'] == md5("categoria_excluir") or $_GET['flag'] == md5("diaria_cadastrar") or $_GET['flag'] == md5("diaria_alterar") or $_GET['flag'] == md5("diaria_excluir") or $_GET['flag'] == md5("user_alterar") or $_GET['flag'] == md5("area_cadastrar") or $_GET['flag'] == md5("area_alterar") or $_GET['flag'] == md5("subarea_cadastrar") or $_GET['flag'] == md5("subarea_alterar"))){
+				else if (isset($_GET['flag']) and ($_GET['flag'] == md5("categoria_cadastrar") or $_GET['flag'] == md5("categoria_alterar") or $_GET['flag'] == md5("categoria_excluir") or $_GET['flag'] == md5("diaria_cadastrar") or $_GET['flag'] == md5("diaria_alterar") or $_GET['flag'] == md5("diaria_excluir") or $_GET['flag'] == md5("user_alterar") or $_GET['flag'] == md5("area_cadastrar") or $_GET['flag'] == md5("area_alterar") or $_GET['flag'] == md5("area_vincular") or $_GET['flag'] == md5("subarea_cadastrar") or $_GET['flag'] == md5("subarea_alterar"))){
 					include_once('controllers/admin/admin_alertas_criar.inc.php');
 				}
 				else {
@@ -124,8 +124,8 @@ include_once(PATH . '/controllers/autenticacao/autentica.inc.php');//autentica e
 						<?php include_once('views/admin/subarea/view_subarea.inc.php');?>
 						<?php include_once('views/admin/subarea/form_subarea_cadastrar.inc.php');?>
 						<?php include_once('views/admin/subarea/form_subarea_alterar.inc.php');?>
+						<?php include_once('views/admin/subarea/form_subarea_vincular.inc.php');?>
 						<?php include_once('views/admin/subarea/view_subarea_relacao.inc.php');?>
-						<?php //include_once('views/admin/subarea/view_subarea_relacao1.inc.php');?>
 					</div>
 
 
@@ -146,7 +146,7 @@ include_once(PATH . '/controllers/autenticacao/autentica.inc.php');//autentica e
 	<script src="componentes/externos/bootstrap/plugins/bootstrap-validator/js/bootstrapValidator.min.js"></script>
 	<script src="componentes/externos/bootstrap/plugins/bootstrap-confirmation/bootstrap-confirmation.min.js"></script>
 	<script src="componentes/externos/bootstrap/plugins/bootstrap-fileinput/js/fileinput.js"></script>
-	<script src="componentes/externos/bootstrap/plugins/bootstrap-multiselect/dist/js/bootstrap-multiselect.js"></script>
+	<script src="componentes/externos/bootstrap/plugins/bootstrap-select/dist/js/bootstrap-select.js"></script>
 	<script src="componentes/externos/bootstrap/plugins/bootstrap-switch/dist/js/bootstrap-switch.js"></script>
 	<script src="componentes/externos/template/js/adminlte.min.js"></script>
 	<script src="componentes/externos/jquery/plugins/maskMoney/dist/jquery.maskMoney.min.js"></script>

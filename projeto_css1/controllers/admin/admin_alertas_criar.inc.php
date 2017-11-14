@@ -99,6 +99,14 @@ if ($inc == "sim"){
 			unset($_SESSION['lista_erro_validacao_cadastrar_area']);
 		}
 
+		if($flag == md5("area_vincular")){
+
+			$msg0 = $_SESSION['area_vincular'];
+		}
+		else {
+			unset($_SESSION['area_vincular']);
+		}
+
 		if($flag == md5("area_alterar")){
 			$msg0 = $_SESSION['alterar_erro_validacao_area'];
 			$msg1 = $_SESSION['alterar_area'];

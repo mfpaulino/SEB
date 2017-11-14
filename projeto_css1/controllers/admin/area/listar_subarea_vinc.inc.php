@@ -3,42 +3,50 @@ $inc="sim";
 include_once('../../../config.inc.php');
 
 $id_area = $_POST['id_area'];
-$sql = "select IF (id_subarea in(select id_subarea from adm_areas_subareas where id_area = '$id_area'),'sim', 'nao') as vinculada, id_subarea, subarea from adm_subareas";
-$con_area = $mysqli->query($sql);
-$qtde = $con_area->num_rows;
+
+$sql = "SELECT id_subarea_vinc FROM adm_areas WHERE id_area = '$id_area'";
+$con_area = $mysqli->query($sql);//listo os ids das subareas vinculadas
+
+$row_area = $con_area->fetch_array();
+$lista_id_subarea = unserialize($row_area[0]);//coloco os ids em um array
+
+$sql = "SELECT id_subarea, subarea FROM adm_subareas ORDER BY subarea";
+$con_subarea = $mysqli->query($sql); //listo as subareas cadastradas no sistema
 ?>
-<table class="table table-striped">
+<table class="table table-striped table-hover">
 	<tr>
 		<td><label>Subáreas:</label></td>
 		<td width="15%"><label>Vinculação:</label></td>
 	</tr>
 <?php
-$i = 1;
-while($row = $con_area->fetch_assoc()){
-	if ($row['vinculada'] == 'sim'){
-		$checked="checked";
+$i = 1;//apenas para criar um nr de ordem para a lista
+while($row_subarea = $con_subarea->fetch_assoc()){
+	$checked="";
+	if($row_area[0] <> ""){//para evitar que a função in_array seja executada para um array vazio
+		if (in_array($row_subarea['id_subarea'], $lista_id_subarea)) {
+			$checked="checked";
+		}
 	}
-	else{
-		$checked="";
-	}
-?>
+	?>
 	<tr>
-		<td><?php echo $row['subarea'];?></td>
+		<td><?php echo "<b>".$i."-</b> ".$row_subarea['subarea'];?></td>
 		<td width="15%">
-			<input name="<?php echo $i;?>" type="checkbox" value="<?php echo $row['id_subarea'];?>" <?php echo $checked;?> />
+			<input name="<?php echo $i;?>" type="checkbox" value="<?php echo $row_subarea['id_subarea'];?>" <?php echo $checked;?> />
 		</td>
 	</tr>
-<?php
-$i++;
+	<?php
+	$i++;
 }
 ?>
 </table>
 <?php
-echo '
-<script>';
+/***estiliza os checkbox***/
+$qtde = $con_subarea->num_rows;
+echo '<script>';
 for ($i = 1; $i <= $qtde; $i++){
 	echo '$("[name=\''.$i.'\']").bootstrapSwitch();';
 }
 echo '
 </script>';
+/***************************/
 ?>
