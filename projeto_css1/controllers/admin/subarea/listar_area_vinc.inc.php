@@ -4,12 +4,6 @@ include_once('../../../config.inc.php');
 
 $id_subarea = $_POST['id_subarea'];
 
-//$sql = "SELECT id_area_vinc FROM adm_subareas WHERE id_subarea = '$id_subarea'";
-//$con_subarea = $mysqli->query($sql);//listo os ids das areas vinculadas
-
-//$row_subarea = $con_subarea->fetch_array();
-//$lista_id_area = unserialize($row_subarea[0]);//coloco os ids em um array
-
 $sql = "SELECT id_area, area FROM adm_areas ORDER BY area";
 $con_area = $mysqli->query($sql); //listo as areas cadastradas no sistema
 ?>

@@ -27,9 +27,14 @@ if (isset($_POST['flag']) and isset($_SESSION['cpf'])){
 		}
 	}
 
-	$id_subarea = substr($id_subarea, 0, -1);//elimina a ultima ",".
-	$id_subarea = explode(",",$id_subarea);//cria um array separando pelas ",".
-	$id_subarea_vinc = serialize($id_subarea);//cria uma string com o array serializado
+	if($id_subarea <> ""){
+		$id_subarea = substr($id_subarea, 0, -1);//elimina a ultima ",".
+		$id_subarea = explode(",",$id_subarea);//cria um array separando pelas ",".
+		$id_subarea_vinc = serialize($id_subarea);//cria uma string com o array serializado
+	}
+	else{
+		$id_subarea_vinc = "";
+	}
 
 	$con_vinc = $mysqli->query("UPDATE adm_areas SET id_subarea_vinc = '$id_subarea_vinc' where id_area = '$id_area'");//atualiza a lista de subareas vinculadas
 
