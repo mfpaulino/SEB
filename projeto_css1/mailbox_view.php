@@ -69,6 +69,7 @@ if(isset($_GET['flag'])){
 	<link rel="stylesheet" href="componentes/externos/bootstrap/plugins/font-awesome/css/font-awesome.min.css">
 	<link rel="stylesheet" href="componentes/externos/bootstrap/plugins/Ionicons/css/ionicons.min.css">
 	<link rel="stylesheet" href="componentes/externos/bootstrap/plugins/bootstrap-fileinput/css/fileinput.min.css">
+	<link rel="stylesheet" href="componentes/externos/bootstrap/plugins/bootstrap-select/dist/css/bootstrap-select.css">
 	<link rel="stylesheet" href="componentes/externos/template/css/AdminLTE.css">
 	<link rel="stylesheet" href="componentes/externos/template/css/skins/skin-blue.css">
 	<link rel="stylesheet" href="componentes/internos/css/siaudi.css">
@@ -247,7 +248,8 @@ if(isset($_GET['flag'])){
 	<script src="componentes/externos/bootstrap/dist/js/bootstrap.min.js"></script>
 	<script src="componentes/externos/bootstrap/plugins/bootstrap-validator/js/bootstrapValidator.min.js"></script>
 	<script src="componentes/externos/bootstrap/plugins/bootstrap-confirmation/bootstrap-confirmation.min.js"></script>
-	<script src="componentes/externos/bootstrap/plugins/bootstrap-fileinput/js/fileinput.js" type="text/javascript"></script>
+	<script src="componentes/externos/bootstrap/plugins/bootstrap-fileinput/js/fileinput.js"></script>
+	<script src="componentes/externos/bootstrap/plugins/bootstrap-select/dist/js/bootstrap-select.js"></script>
 	<script src="componentes/externos/template/js/adminlte.min.js"></script>
 	<script src="componentes/internos/js/senha_alterar.js"></script>
 	<script src="componentes/internos/js/usuario_alterar.js"></script>
