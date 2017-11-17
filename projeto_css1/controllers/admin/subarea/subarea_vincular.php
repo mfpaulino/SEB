@@ -14,7 +14,7 @@ if (isset($_POST['flag']) and isset($_SESSION['cpf'])){
 
 	require_once(PATH . '/controllers/autenticacao/autentica.inc.php');
 
-
+	$altera = "";
 	$id_subarea = $_POST['id_subarea'];
 
 	/******** montando o array com as areas que possuem essa subarea vinculada **************************************/
@@ -40,9 +40,7 @@ if (isset($_POST['flag']) and isset($_SESSION['cpf'])){
 	$lista_area_nova = substr($lista_area_nova, 0, -1); //elimino a ultima "," da string.
 	$lista_area_nova = explode(",", $lista_area_nova); //crio o array
 
-	/*************************** fim ***************************************************************/
-
-	/**** verifico se os arrays são diferentes *********/
+	/********* verifico se os arrays são diferentes criando listas com as diferenças *************************/
 
 	$lista_areas_sim = array_diff($lista_area_nova, $lista_area_atual); //lista as areas incluidas com os indices originais Ex (1=>'2', 3=>'6')
 	$lista_areas_sim1  = array(); //cria novos indices para a lista (0=>'2', 1=>'6')
@@ -56,83 +54,68 @@ if (isset($_POST['flag']) and isset($_SESSION['cpf'])){
 		$lista_areas_nao1[] = $r;
 	}
 
-	$qtde_sim = count($lista_areas_sim1);//lista com os indices iniciando em 0
-	$qtde_nao = count($lista_areas_nao1);//lista com os indices iniciando em 0
+	$qtde_sim = count($lista_areas_sim1); //conta os check marcados
+	$qtde_nao = count($lista_areas_nao1); //conta os checks desmarcados
+
+	/********************************* fim ***************************************************************/
 
 	for($i = 0; $i < $qtde_sim; $i++){
+		//busca as subareas vinculadas para cada area marcada com sim
 		$con_id_subarea_atual = $mysqli->query("SELECT id_subarea_vinc FROM adm_areas WHERE id_area = '$lista_areas_sim1[$i]' AND id_subarea_vinc <> ''");
-		if($con_id_subarea_atual->num_rows <> 0){
-			$row_subarea_atual = $con_id_subarea_atual->fetch_array();
-			$lista_subarea_atual = unserialize($row_subarea_atual[0]);
-			$lista_subarea_nova = array_push($lista_subarea_atual, $id_subarea);
+
+		if($con_id_subarea_atual->num_rows <> 0){//se já houver alguma subarea vinculada:
+
+			$row_subarea_atual = $con_id_subarea_atual->fetch_array(); //busca a lista ainda serializada (como uma string) olhar na tabela adm_areas, campo id_subarea_vinc
+
+			$lista_subarea_atual = unserialize($row_subarea_atual[0]); // transforma a string num array
+
+			array_push($lista_subarea_atual, $id_subarea); //insere nesse array o id da subarea
+
+			$lista_subarea_nova = serialize($lista_subarea_atual); //transforma novamente em string para salvar no banco
 		}
 		else{
-			$lista_subarea_nova = serialize(array(0 => $id_subarea));
+			$lista_subarea_nova = serialize(array($id_subarea)); //caso nao haja nenhuma subarea vinculada para a area marcada, insere o id_subarea no formato serializado
 		}
-		//$con_update_lista = $mysqli->query("UPDATE adm_areas SET id_subarea_vinc = '$lista_subarea_nova' WHERE id_area = '$lista_areas_sim1[$i]'");
-			//echo "UPDATE adm_areas SET id_subarea_vinc = '$lista_subarea_nova' WHERE id_area = '$lista_areas_sim1[$i]'"."<br />";
-			//echo "SELECT id_subarea_vinc FROM adm_areas WHERE id_area = '$lista_areas_sim1[$i]'";
-echo "<br />";
-echo $row_subarea_atual[0];
-echo "<br />";
-echo $lista_subarea_nova;
-echo "<br />";
-print_r($lista_subarea_atual);
-echo "<br />";
-print_r($lista_subarea_nova);
-echo "<br />";
-	}
-	/**excluir do array**/
-	//$key = array_search('item 2', $input);
-//if($key!==false){
-//unset($input[$key]);
-//}
-/**inserir no array **/
-//array_push($frutas, 'melancia', 'pera');
+		//atualiza o campo id_subarea_vinc da tabela adm_areas
+		$con_update_lista = $mysqli->query("UPDATE adm_areas SET id_subarea_vinc = '$lista_subarea_nova' WHERE id_area = '$lista_areas_sim1[$i]'");
 
-echo "atual: ";
-print_r($lista_area_atual);
-echo "<br />";
-echo "nova: ";
-print_r($lista_area_nova);
-echo "<br />";
-echo "sim: ";
-print_r($lista_areas_sim1);
-echo "<br />";
-echo "nao: ";
-print_r($lista_areas_nao1);
-echo "<br />";
-$var = array( 0 => 19, 1 => 16);
-$var1 = 2;
-array_push($var,$var1);
-print_r($var);
-$var2 = serialize($var);
-echo "<br />";
-echo $var2;
-
-	/*
-	$qtde = $busca_area->num_rows;//apenas para calcular a quantidade de areas
-
-	$id_area = "";
-
-	for($i = 1; $i <= $qtde; $i++){
-		if($_POST[$i] <> ""){
-			$id_subarea = $id_subarea.$_POST[$i].",";//concatena os id_subarea com ",".
+		if ($mysqli->affected_rows <> 0 ){
+			$altera = "sim";
 		}
 	}
 
-	if($id_subarea <> ""){
-		$id_subarea = substr($id_subarea, 0, -1);//elimina a ultima ",".
-		$id_subarea = explode(",",$id_subarea);//cria um array separando pelas ",".
-		$id_subarea_vinc = serialize($id_subarea);//cria uma string com o array serializado
-	}
-	else{
-		$id_subarea_vinc = "";
+	for($i = 0; $i < $qtde_nao; $i++){
+		//busca as subareas vinculadas para cada area marcada com nao
+		$con_id_subarea_atual = $mysqli->query("SELECT id_subarea_vinc FROM adm_areas WHERE id_area = '$lista_areas_nao1[$i]' AND id_subarea_vinc <> ''");
+
+		if($con_id_subarea_atual->num_rows <> 0){ //se já houver alguma subarea vinculada:
+
+			$row_subarea_atual = $con_id_subarea_atual->fetch_array(); //busca a lista ainda serializada (como uma string) olhar na tabela adm_areas, campo id_subarea_vinc
+
+			$lista_subarea_atual = unserialize($row_subarea_atual[0]); // transforma a string num array
+
+			$key  = array_search($id_subarea, $lista_subarea_atual); //procura o id_subarea no array
+
+			if($key !== false){
+				unset($lista_subarea_atual[$key]); //exclui o id_subarea
+			}
+
+			if(count($lista_subarea_atual) <> 0){
+				$lista_subarea_nova = serialize($lista_subarea_atual); //se ainda houver sobrado algum id_subarea para a area marcada, cria a string serializada
+			}
+			else {
+				$lista_subarea_nova = "";
+			}
+		}
+		//atualiza o campo id_subarea_vinc da tabela adm_areas
+		$con_update_lista = $mysqli->query("UPDATE adm_areas SET id_subarea_vinc = '$lista_subarea_nova' WHERE id_area = '$lista_areas_nao1[$i]'");
+
+		if ($mysqli->affected_rows <> 0 ){
+			$altera = "sim";
+		}
 	}
 
-	$con_vinc = $mysqli->query("UPDATE adm_areas SET id_subarea_vinc = '$id_subarea_vinc' where id_area = '$id_area'");//atualiza a lista de subareas vinculadas
-
-	if ($mysqli->affected_rows <> 0 ){
+	if ($altera == "sim"){
 		$_SESSION['area_vincular'] = "Alteração de vinculação realizada com sucesso!";
 		$_SESSION['botao'] = "success";
 	}
@@ -143,7 +126,6 @@ echo $var2;
 	}
 	$flag = md5("area_vincular");
 	header(sprintf("Location:../../../admin.php?flag=$flag"));
-	*/
 }
 else {
 	include_once(PATH . '/controllers/autenticacao/'.ACESSO_NEGADO);
