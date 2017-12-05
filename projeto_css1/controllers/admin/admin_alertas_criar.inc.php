@@ -136,6 +136,14 @@ if ($inc == "sim"){
 			unset($_SESSION['lista_erro_validacao_cadastrar_subarea']);
 		}
 
+		if($flag == md5("subarea_vincular")){
+
+			$msg0 = $_SESSION['subarea_vincular'];
+		}
+		else {
+			unset($_SESSION['subarea_vincular']);
+		}
+
 		if($flag == md5("subarea_alterar")){
 			$msg0 = $_SESSION['alterar_erro_validacao_subarea'];
 			$msg1 = $_SESSION['alterar_subarea'];
@@ -147,6 +155,43 @@ if ($inc == "sim"){
 			unset($_SESSION['alterar_subarea']);
 			unset($_SESSION['alterar_nada_subarea']);
 			unset($_SESSION['alterar_lista_erro_validacao_subarea']);
+		}
+
+		if($flag == md5("questao_cadastrar")){
+
+			$msg0 = $_SESSION['erro_validacao_cadastrar_questao'];
+			$msg1 = $_SESSION['sucesso_cadastro_questao'];
+			$msg2 = $_SESSION['questao_duplicada'];
+			$msg4 = $_SESSION['erro_cadastro_questao'];
+			$lista_erro_validacao = $_SESSION['lista_erro_validacao_cadastrar_questao'];
+		}
+		else {
+			unset($_SESSION['erro_validacao_cadastrar_questao']);
+			unset($_SESSION['sucesso_cadastro_questao']);
+			unset($_SESSION['questao_duplicada']);
+			unset($_SESSION['erro_cadastro_questao']);
+			unset($_SESSION['lista_erro_validacao_cadastrar_questao']);
+		}
+
+		if($flag == md5("questao_vincular")){
+
+			$msg0 = $_SESSION['questao_vincular'];
+		}
+		else {
+			unset($_SESSION['questao_vincular']);
+		}
+
+		if($flag == md5("questao_alterar")){
+			$msg0 = $_SESSION['alterar_erro_validacao_questao'];
+			$msg1 = $_SESSION['alterar_questao'];
+			$msg2 = $_SESSION['alterar_nada_questao'];
+			$lista_erro_validacao = $_SESSION['alterar_lista_erro_validacao_questao'];
+		}
+		else {
+			unset($_SESSION['alterar_erro_validacao_questao']);
+			unset($_SESSION['alterar_questao']);
+			unset($_SESSION['alterar_nada_questao']);
+			unset($_SESSION['alterar_lista_erro_validacao_questao']);
 		}
 
 		$msg="sim";

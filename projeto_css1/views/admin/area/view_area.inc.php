@@ -46,10 +46,10 @@
 							<i class="fa fa-trash"></i> Excluir
 						</button>
 						<!--botao Vincular Subarea-->
-						<button id="btnVinculaArea" type="button" class="btn btn-xs btn-primary"
+						<button id="btnAreaVinculaSubarea" type="button" class="btn btn-xs btn-primary"
 							data-tooltip="tooltip" title=""
 							data-toggle="modal"
-							data-target="#modalVincularArea">
+							data-target="#modalAreaVincularSubarea">
 							<i class="fa fa-share-alt"></i> Vincular Subárea
 						</button>
 					</div>

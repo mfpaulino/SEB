@@ -1,6 +1,6 @@
 <?php
 /**************************************************************
-* Local/nome do script: admin/area/area_vincular.php
+* Local/nome do script: admin/area/area_vincular_subarea.php
 * Só executa se for chamado pelo formulario, senão chama o script de "acesso negado"
 * Ao final de tudo, redireciona para o admin.php
 * *************************************************************/

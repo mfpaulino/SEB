@@ -66,7 +66,7 @@ include_once(PATH . '/controllers/autenticacao/autentica.inc.php');//autentica e
 				if (isset($_GET['flag']) and ($_GET['flag'] == md5("usuario_alterar") or $_GET['flag'] == md5("senha_alterar") or $_GET['flag'] == md5("om_alterar") or $_GET['flag'] == md5("logout") )){
 					include_once('controllers/usuario/usuario_alertas_criar.inc.php');
 				}
-				else if (isset($_GET['flag']) and ($_GET['flag'] == md5("categoria_cadastrar") or $_GET['flag'] == md5("categoria_alterar") or $_GET['flag'] == md5("categoria_excluir") or $_GET['flag'] == md5("diaria_cadastrar") or $_GET['flag'] == md5("diaria_alterar") or $_GET['flag'] == md5("diaria_excluir") or $_GET['flag'] == md5("user_alterar") or $_GET['flag'] == md5("area_cadastrar") or $_GET['flag'] == md5("area_alterar") or $_GET['flag'] == md5("area_vincular") or $_GET['flag'] == md5("subarea_cadastrar") or $_GET['flag'] == md5("subarea_alterar"))){
+				else if (isset($_GET['flag']) and ($_GET['flag'] == md5("categoria_cadastrar") or $_GET['flag'] == md5("categoria_alterar") or $_GET['flag'] == md5("categoria_excluir") or $_GET['flag'] == md5("diaria_cadastrar") or $_GET['flag'] == md5("diaria_alterar") or $_GET['flag'] == md5("diaria_excluir") or $_GET['flag'] == md5("user_alterar") or $_GET['flag'] == md5("area_cadastrar") or $_GET['flag'] == md5("area_alterar") or $_GET['flag'] == md5("area_vincular") or $_GET['flag'] == md5("subarea_cadastrar") or $_GET['flag'] == md5("subarea_alterar") or $_GET['flag'] == md5("subarea_vincular") or $_GET['flag'] == md5("questao_cadastrar") or $_GET['flag'] == md5("questao_alterar") or $_GET['flag'] == md5("questao_vincular"))){
 					include_once('controllers/admin/admin_alertas_criar.inc.php');
 				}
 				else {
@@ -92,9 +92,11 @@ include_once(PATH . '/controllers/autenticacao/autentica.inc.php');//autentica e
 				<div class="row">
 					<div class="col-md-6">
 						<?php include_once('views/admin/user/view_user_lista.inc.php'); ?>
-						<?php include_once('views/admin/user/view_pedido_cadastro_lista.inc.php'); ?>
 						<?php include_once('views/admin/user/form_user_perfil.inc.php'); ?>
 						<?php include_once('views/admin/user/view_user_relacao.inc.php');?>
+					</div>
+					<div class="col-md-6">
+						<?php include_once('views/admin/user/view_pedido_cadastro_lista.inc.php'); ?>
 						<?php include_once('views/admin/user/view_pedido_cadastro_relacao.inc.php');?>
 					</div>
 				</div>
@@ -117,20 +119,26 @@ include_once(PATH . '/controllers/autenticacao/autentica.inc.php');//autentica e
 						<?php include_once('views/admin/area/view_area.inc.php');?>
 						<?php include_once('views/admin/area/form_area_cadastrar.inc.php');?>
 						<?php include_once('views/admin/area/form_area_alterar.inc.php');?>
-						<?php include_once('views/admin/area/form_area_vincular.inc.php');?>
+						<?php include_once('views/admin/area/form_area_vincular_subarea.inc.php');?>
 						<?php include_once('views/admin/area/view_area_relacao.inc.php');?>
 					</div>
 					<div class="col-md-3">
 						<?php include_once('views/admin/subarea/view_subarea.inc.php');?>
 						<?php include_once('views/admin/subarea/form_subarea_cadastrar.inc.php');?>
 						<?php include_once('views/admin/subarea/form_subarea_alterar.inc.php');?>
-						<?php include_once('views/admin/subarea/form_subarea_vincular.inc.php');?>
+						<?php include_once('views/admin/subarea/form_subarea_vincular_area.inc.php');?>
+						<?php include_once('views/admin/subarea/form_subarea_vincular_questao.inc.php');?>
 						<?php include_once('views/admin/subarea/view_subarea_relacao.inc.php');?>
 					</div>
-
-
-
-
+				</div>
+				<div class="row">
+					<div class="col-md-3">
+						<?php include_once('views/admin/questao/view_questao.inc.php');?>
+						<?php include_once('views/admin/questao/form_questao_cadastrar.inc.php');?>
+						<?php include_once('views/admin/questao/form_questao_alterar.inc.php');?>
+						<?php include_once('views/admin/questao/form_questao_vincular_subarea.inc.php');?>
+						<?php include_once('views/admin/questao/view_questao_relacao.inc.php');?>
+					</div>
 				</div>
 				<!-- fim conteudo -->
 			</section>
@@ -161,10 +169,12 @@ include_once(PATH . '/controllers/autenticacao/autentica.inc.php');//autentica e
 	<script src="componentes/internos/js/admin/view_user.js"></script>
 	<script src="componentes/internos/js/admin/view_area.js"></script>
 	<script src="componentes/internos/js/admin/view_subarea.js"></script>
+	<script src="componentes/internos/js/admin/view_questao.js"></script>
 	<script src="componentes/internos/js/admin/form_categoria.js"></script>
 	<script src="componentes/internos/js/admin/form_diaria.js"></script>
 	<script src="componentes/internos/js/admin/form_area.js"></script>
 	<script src="componentes/internos/js/admin/form_subarea.js"></script>
+	<script src="componentes/internos/js/admin/form_questao.js"></script>
 	<script>
     </script>
 	<script>

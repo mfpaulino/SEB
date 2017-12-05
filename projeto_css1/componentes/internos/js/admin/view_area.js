@@ -1,17 +1,17 @@
 //Só libera os botoes do form area ao selecionar a area
 $(function(){
 	$('#btnAlteraArea').attr('disabled', 'disabled');
-	$('#btnVinculaArea').attr('disabled', 'disabled');
+	$('#btnAreaVinculaSubarea').attr('disabled', 'disabled');
 	$('#btnExcluiArea').attr('disabled', 'disabled');
 	$('#area').change(function(){
 		if($('#area').val() != ""){
 		   $('#btnAlteraArea').removeAttr('disabled');
-		   $('#btnVinculaArea').removeAttr('disabled');
+		   $('#btnAreaVinculaSubarea').removeAttr('disabled');
 		   $('#btnExcluiArea').removeAttr('disabled');
 		}
 		else{
 			$('#btnAlteraArea').attr('disabled', 'disabled');
-			$('#btnVinculaArea').attr('disabled', 'disabled');
+			$('#btnAreaVinculaSubarea').attr('disabled', 'disabled');
 			$('#btnExcluiArea').attr('disabled', 'disabled');
 		}
 	});
@@ -29,8 +29,8 @@ $('#modalAlterarArea').on('show.bs.modal', function (event) {
 	modal.find('#area_atual').val(area)
 })
 
-//Informa os valores dos campos ao modal vincular área
-$('#modalVincularArea').on('show.bs.modal', function (event) {
+//Informa os valores dos campos ao modal AreaVincularSubarea
+$('#modalAreaVincularSubarea').on('show.bs.modal', function (event) {
 	var array_area = $('#area').val().split('|');
 	var id_area = array_area[0];
 	var area = array_area[1];
@@ -40,7 +40,7 @@ $('#modalVincularArea').on('show.bs.modal', function (event) {
 	modal.find('#area').val(area);	
 	
 	$.post('controllers/admin/area/listar_subarea_vinc.inc.php',{id_area:id_area},function (res) {
-	   	$('#listar_subarea').html(res);//insere a lista de subareas no modal
+	   	$('#area_listar_subarea').html(res);//insere a lista de subareas no modal
    	})	
 })
 

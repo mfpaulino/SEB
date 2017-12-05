@@ -9,7 +9,7 @@ $con_area = $mysqli->query($sql); //listo as areas cadastradas no sistema
 ?>
 <table class="table table-striped table-hover">
 	<tr>
-		<td><label>Áreas:</label></td>
+		<td><label>Áreas/Processos:</label></td>
 		<td width="15%"><label>Vinculação:</label></td>
 	</tr>
 <?php

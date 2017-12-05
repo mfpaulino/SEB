@@ -1,6 +1,6 @@
 <?php
 /**************************************************************
-* Local/nome do script: admin/subarea_cadastrar.php
+* Local/nome do script: admin/questao/questao_cadastrar.php
 * Só executa se for chamado pelo formulario, senão chama o script de "acesso negado"
 * primeiramente destroi as variaveis de sessao de alertas de usuario
 * Recebe todos os dados do formulario de cadastro de area
@@ -25,58 +25,53 @@ if (isset($_POST['flag']) and isset($_SESSION['cpf'])){
 	require_once(PATH . '/componentes/internos/php/validaForm.class.php');
 	require_once(PATH . '/componentes/internos/php/funcoes.inc.php');
 
-	$area = isset($_POST['area']) ? $_POST['area'] : "";
-	$subarea = isset($_POST['subarea']) ? $_POST['subarea'] : "";
-
-	$area = explode("|", $area);
-	$id_area = $area[0];
+	$questao	 = isset($_POST['questao']) ? mysqli_real_escape_string($mysqli, $_POST['questao']) : "";
 
 	$validar = new validaForm();
 
-	$validar->set('Área', $area)->is_required()
-			->set('Subárea', $subarea)->is_required();
+	$validar->set('Questão', $questao)->is_required();
 
 	if ($validar->validate()){
 
-		$busca_subarea = $mysqli->query("SELECT id_subarea FROM adm_subareas WHERE subarea = '$subarea' and id_area = '$id_area'");
+		$busca_questao = $mysqli->query("SELECT id_questao FROM adm_questoes WHERE questao = '$questao'");
 
 
-		if($busca_subarea->num_rows > 0){
+		if($busca_questao->num_rows > 0){
 
-			$_SESSION['subarea_duplicada'] = "ERRO A-021: Subárea já cadastrada!";
+			$_SESSION['questao_duplicada'] = "ERRO A-016: Questão já cadastrada!";
 			$_SESSION['botao'] = "danger";
 
 			$validacao = false;
 		}
 		if($validacao !== false){
 
-			$resultado = $mysqli->query("INSERT INTO adm_subareas (subarea, id_area) VALUES ('$subarea','$id_area')");
+			$resultado = $mysqli->query("INSERT INTO adm_questoes (questao) VALUES ('$questao')");
 
 			if($resultado){
 
 				/** log **/
-				$log = "Cadastrou a Subárea <u>" . $subarea . "</u> para a Área <u>".$area[1]."</u>.";
-				$con_log = $mysqli->query("INSERT INTO logs SET cpf = '$cpf', codom = '$codom_usuario', acao = '$log', tabela = 'adm_subareas'");
+				$log = "Cadastrou a Questão <u>" . $questao . "</u>.";
+				$con_log = $mysqli->query("INSERT INTO logs SET cpf = '$cpf', codom = '$codom_usuario', acao = '$log', tabela = 'adm_questoes'");
 				/** fim log **/
 
-				$_SESSION['sucesso_cadastro_subarea'] = "Cadastro realizado com sucesso!";
+				$_SESSION['sucesso_cadastro_questao'] = "Cadastro realizado com sucesso!";
 				$_SESSION['botao'] = "success";
 			}
 			else{
 
-				$_SESSION['erro_cadastro_subarea'] = "ERRO A-022: cadastro não realizado, tente novamente!<br />Em caso de persistir o erro, entrar em contato com o suporte técnico.";
+				$_SESSION['erro_cadastro_questao'] = "ERRO A-017: cadastro não realizado, tente novamente!<br />Em caso de persistir o erro, entrar em contato com o suporte técnico.";
 				$_SESSION['botao'] = "danger";
 			}
 
 		}
 	}
 	else {
-		$_SESSION['erro_validacao_cadastrar_subarea'] = "ERRO A-023: dados inconsistentes, preencha novamente o formulário!";
+		$_SESSION['erro_validacao_cadastrar_questao'] = "ERRO A-018: dados inconsistentes, preencha novamente o formulário!";
 		$_SESSION['botao'] = "danger";
 
-		$_SESSION['lista_erro_validacao_cadastrar_subarea'] = $validar->get_errors(); //Captura os erros de todos os campos
+		$_SESSION['lista_erro_validacao_cadastrar_questao'] = $validar->get_errors(); //Captura os erros de todos os campos
 	}
-	$flag = md5("subarea_cadastrar");
+	$flag = md5("questao_cadastrar");
 	header(sprintf("Location:../../../admin.php?flag=$flag"));
 }
 else {

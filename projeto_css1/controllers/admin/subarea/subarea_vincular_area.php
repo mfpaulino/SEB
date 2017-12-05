@@ -1,6 +1,6 @@
 <?php
 /**************************************************************
-* Local/nome do script: admin/subarea/subarea_vincular.php
+* Local/nome do script: admin/subarea/subarea_vincular_area.php
 * Só executa se for chamado pelo formulario, senão chama o script de "acesso negado"
 * Ao final de tudo, redireciona para o admin.php
 * *************************************************************/
@@ -116,15 +116,15 @@ if (isset($_POST['flag']) and isset($_SESSION['cpf'])){
 	}
 
 	if ($altera == "sim"){
-		$_SESSION['area_vincular'] = "Alteração de vinculação realizada com sucesso!";
+		$_SESSION['subarea_vincular'] = "Alteração de vinculação realizada com sucesso!";
 		$_SESSION['botao'] = "success";
 	}
 	else{
-		$_SESSION['area_vincular'] = "Nenhuma alteração foi realizada!";
+		$_SESSION['subarea_vincular'] = "Nenhuma alteração foi realizada!";
 		$_SESSION['botao'] = "warning";
 
 	}
-	$flag = md5("area_vincular");
+	$flag = md5("subarea_vincular");
 	header(sprintf("Location:../../../admin.php?flag=$flag"));
 }
 else {

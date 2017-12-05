@@ -6,7 +6,7 @@ $con_usuarios = $mysqli->query($sql);
 <div class="box box-solid bg-green collapsed-box">
 	<div class="box-header">
 		<i class="fa fa-user"></i>
-		<h3 class="box-title">Usuários (Pedidos de Cadastro)</h3>
+		<h3 class="box-title">Usuários (Solicitações)</h3>
 		<div class="pull-right box-tools">
 			<div class="btn-group">
 				<button type="button" title="Exibir Menu" class="btn bg-green-gradient btn-sm dropdown-toggle" data-toggle="dropdown"><i class="fa fa-caret-down fa-lg"></i></button>

@@ -1,4 +1,6 @@
+<?
 //jquery para o avatar
+?>
 <script>
 	//exibe a imagem do avatar no view_usuario_perfil.inc.php
 	var btnCust = '';

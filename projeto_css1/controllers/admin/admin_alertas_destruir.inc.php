@@ -32,6 +32,20 @@ unset($_SESSION['erro_cadastro_subarea']);
 unset($_SESSION['erro_validacao_cadastrar_subarea']);
 unset($_SESSION['lista_erro_validacao_cadastrar_subarea']);
 
+//subarea_vincular
+unset($_SESSION['subarea_vincular']);
+
+//questao_cadastrar
+unset($_SESSION['questao_duplicada']);
+unset($_SESSION['sucesso_cadastro_questao']);
+unset($_SESSION['erro_cadastro_questao']);
+unset($_SESSION['erro_validacao_cadastrar_questao']);
+unset($_SESSION['lista_erro_validacao_cadastrar_questao']);//questao_cadastrar
+unset($_SESSION['questao_duplicada']);
+
+//questao_vincular
+unset($_SESSION['questao_vincular']);
+
 //categoria_alterar
 unset($_SESSION['alterar_erro_validacao_categoria']);
 unset($_SESSION['alterar_categoria']);
@@ -55,6 +69,12 @@ unset($_SESSION['alterar_erro_validacao_subarea']);
 unset($_SESSION['alterar_subarea']);
 unset($_SESSION['alterar_nada_subarea']);
 unset($_SESSION['alterar_lista_erro_validacao_subarea']);
+
+//questao_alterar
+unset($_SESSION['alterar_erro_validacao_questao']);
+unset($_SESSION['alterar_questao']);
+unset($_SESSION['alterar_nada_questao']);
+unset($_SESSION['alterar_lista_erro_validacao_questao']);
 
 //user_alterar
 unset($_SESSION['alterar_erro_validacao_user']);

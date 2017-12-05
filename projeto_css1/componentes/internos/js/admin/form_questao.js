@@ -1,12 +1,12 @@
 $(document).ready(function() {
-	$('#form_area_cadastrar').bootstrapValidator({
+	$('#form_questao_cadastrar').bootstrapValidator({
 		feedbackIcons: {
 			valid: 'glyphicon glyphicon-ok',
 			invalid: 'glyphicon glyphicon-remove',
 			validating: 'glyphicon glyphicon-refresh'
 		},
 		fields: {
-			area: {
+			questao: {
 				validators: {
 					notEmpty: {
 						message:'Preenchimento obrigatório'
@@ -15,14 +15,14 @@ $(document).ready(function() {
 			}
 		}
 	})
-	$('#form_area_alterar').bootstrapValidator({
+	$('#form_questao_alterar').bootstrapValidator({
 		feedbackIcons: {
 			valid: 'glyphicon glyphicon-ok',
 			invalid: 'glyphicon glyphicon-remove',
 			validating: 'glyphicon glyphicon-refresh'
 		},
 		fields: {
-			area: {
+			questao: {
 				validators: {
 					notEmpty: {
 						message:'Preenchimento obrigatório'

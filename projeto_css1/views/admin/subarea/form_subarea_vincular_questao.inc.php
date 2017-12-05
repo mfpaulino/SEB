@@ -1,16 +1,16 @@
-<div class="modal fade" data-backdrop="static" id="modalVincularSubarea" role="dialog">
+<div class="modal fade" data-backdrop="static" id="modalSubareaVincularQuestao" role="dialog">
 	<div class="modal-dialog modal-lg">
 		<div class="modal-content">
 			<div class="modal-header fundo">
-				<h4 class="modal-title">Vincular Subárea/Subprocesso</h4>
+				<h4 class="modal-title">Vincular Questão</h4>
 			</div>
 			<div class="modal-body">
-				<form name="form_subarea_vincular" id="form_subarea_vincular" action="controllers/admin/subarea/subarea_vincular.php" method="POST">
+				<form name="form_subarea_vincular_questao" id="form_subarea_vincular_questao" action="controllers/admin/subarea/subarea_vincular_questao.php" method="POST">
 					<div class="form-group">
-						<label for="subarea" class="control-label">Subárea:</label>
+						<label for="subarea" class="control-label">Subárea/Subprocesso:</label>
 						<textarea class="form-control" style="resize:vertical;" name="subarea" id="subarea"  type="text" disabled placeholder="" ></textarea>
 					</div>
-					<div id="listar_area" class="form-group">
+					<div id="subarea_listar_questao" class="form-group">
 					</div>
 					<div class="form-group">
 						<input type="hidden" name="id_subarea" id="id_subarea" />
