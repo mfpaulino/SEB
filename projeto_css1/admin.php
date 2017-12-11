@@ -66,7 +66,7 @@ include_once(PATH . '/controllers/autenticacao/autentica.inc.php');//autentica e
 				if (isset($_GET['flag']) and ($_GET['flag'] == md5("usuario_alterar") or $_GET['flag'] == md5("senha_alterar") or $_GET['flag'] == md5("om_alterar") or $_GET['flag'] == md5("logout") )){
 					include_once('controllers/usuario/usuario_alertas_criar.inc.php');
 				}
-				else if (isset($_GET['flag']) and ($_GET['flag'] == md5("categoria_cadastrar") or $_GET['flag'] == md5("categoria_alterar") or $_GET['flag'] == md5("categoria_excluir") or $_GET['flag'] == md5("diaria_cadastrar") or $_GET['flag'] == md5("diaria_alterar") or $_GET['flag'] == md5("diaria_excluir") or $_GET['flag'] == md5("user_alterar") or $_GET['flag'] == md5("area_cadastrar") or $_GET['flag'] == md5("area_alterar") or $_GET['flag'] == md5("area_vincular") or $_GET['flag'] == md5("subarea_cadastrar") or $_GET['flag'] == md5("subarea_alterar") or $_GET['flag'] == md5("subarea_vincular") or $_GET['flag'] == md5("questao_cadastrar") or $_GET['flag'] == md5("questao_alterar") or $_GET['flag'] == md5("questao_vincular"))){
+				else if (isset($_GET['flag']) and ($_GET['flag'] == md5("categoria_cadastrar") or $_GET['flag'] == md5("categoria_alterar") or $_GET['flag'] == md5("categoria_excluir") or $_GET['flag'] == md5("diaria_cadastrar") or $_GET['flag'] == md5("diaria_alterar") or $_GET['flag'] == md5("diaria_excluir") or $_GET['flag'] == md5("user_alterar") or $_GET['flag'] == md5("area_cadastrar") or $_GET['flag'] == md5("area_alterar") or $_GET['flag'] == md5("area_vincular") or $_GET['flag'] == md5("subarea_cadastrar") or $_GET['flag'] == md5("subarea_alterar") or $_GET['flag'] == md5("subarea_vincular") or $_GET['flag'] == md5("questao_cadastrar") or $_GET['flag'] == md5("questao_alterar") or $_GET['flag'] == md5("questao_vincular") or $_GET['flag'] == md5("info_req_cadastrar") or $_GET['flag'] == md5("info_req_alterar") or $_GET['flag'] == md5("info_req_vincular") or $_GET['flag'] == md5("poss_achado_cadastrar") or $_GET['flag'] == md5("poss_achado_alterar") or $_GET['flag'] == md5("poss_achado_vincular") or $_GET['flag'] == md5("proc_ana_cadastrar") or $_GET['flag'] == md5("proc_ana_alterar") or $_GET['flag'] == md5("proc_ana_vincular") or $_GET['flag'] == md5("proc_coleta_cadastrar") or $_GET['flag'] == md5("proc_coleta_alterar") or $_GET['flag'] == md5("proc_coleta_vincular") )){
 					include_once('controllers/admin/admin_alertas_criar.inc.php');
 				}
 				else {
@@ -130,14 +130,42 @@ include_once(PATH . '/controllers/autenticacao/autentica.inc.php');//autentica e
 						<?php include_once('views/admin/subarea/form_subarea_vincular_questao.inc.php');?>
 						<?php include_once('views/admin/subarea/view_subarea_relacao.inc.php');?>
 					</div>
-				</div>
-				<div class="row">
 					<div class="col-md-3">
 						<?php include_once('views/admin/questao/view_questao.inc.php');?>
 						<?php include_once('views/admin/questao/form_questao_cadastrar.inc.php');?>
 						<?php include_once('views/admin/questao/form_questao_alterar.inc.php');?>
 						<?php include_once('views/admin/questao/form_questao_vincular_subarea.inc.php');?>
 						<?php include_once('views/admin/questao/view_questao_relacao.inc.php');?>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-3">
+						<?php include_once('views/admin/info_req/view_info_req.inc.php');?>
+						<?php include_once('views/admin/info_req/form_info_req_cadastrar.inc.php');?>
+						<?php include_once('views/admin/info_req/form_info_req_alterar.inc.php');?>
+						<?php include_once('views/admin/info_req/form_info_req_vincular_questao.inc.php');?>
+						<?php include_once('views/admin/info_req/view_info_req_relacao.inc.php');?>
+					</div>
+					<div class="col-md-3">
+						<?php include_once('views/admin/poss_achado/view_poss_achado.inc.php');?>
+						<?php include_once('views/admin/poss_achado/form_poss_achado_cadastrar.inc.php');?>
+						<?php include_once('views/admin/poss_achado/form_poss_achado_alterar.inc.php');?>
+						<?php include_once('views/admin/poss_achado/form_poss_achado_vincular_questao.inc.php');?>
+						<?php include_once('views/admin/poss_achado/view_poss_achado_relacao.inc.php');?>
+					</div>
+					<div class="col-md-3">
+						<?php include_once('views/admin/proc_ana/view_proc_ana.inc.php');?>
+						<?php include_once('views/admin/proc_ana/form_proc_ana_cadastrar.inc.php');?>
+						<?php include_once('views/admin/proc_ana/form_proc_ana_alterar.inc.php');?>
+						<?php include_once('views/admin/proc_ana/form_proc_ana_vincular_questao.inc.php');?>
+						<?php include_once('views/admin/proc_ana/view_proc_ana_relacao.inc.php');?>
+					</div>
+					<div class="col-md-3">
+						<?php include_once('views/admin/proc_coleta/view_proc_coleta.inc.php');?>
+						<?php include_once('views/admin/proc_coleta/form_proc_coleta_cadastrar.inc.php');?>
+						<?php include_once('views/admin/proc_coleta/form_proc_coleta_alterar.inc.php');?>
+						<?php include_once('views/admin/proc_coleta/form_proc_coleta_vincular_questao.inc.php');?>
+						<?php include_once('views/admin/proc_coleta/view_proc_coleta_relacao.inc.php');?>
 					</div>
 				</div>
 				<!-- fim conteudo -->
@@ -170,11 +198,19 @@ include_once(PATH . '/controllers/autenticacao/autentica.inc.php');//autentica e
 	<script src="componentes/internos/js/admin/view_area.js"></script>
 	<script src="componentes/internos/js/admin/view_subarea.js"></script>
 	<script src="componentes/internos/js/admin/view_questao.js"></script>
+	<script src="componentes/internos/js/admin/view_info_req.js"></script>
+	<script src="componentes/internos/js/admin/view_poss_achado.js"></script>
+	<script src="componentes/internos/js/admin/view_proc_ana.js"></script>
+	<script src="componentes/internos/js/admin/view_proc_coleta.js"></script>
 	<script src="componentes/internos/js/admin/form_categoria.js"></script>
 	<script src="componentes/internos/js/admin/form_diaria.js"></script>
 	<script src="componentes/internos/js/admin/form_area.js"></script>
 	<script src="componentes/internos/js/admin/form_subarea.js"></script>
 	<script src="componentes/internos/js/admin/form_questao.js"></script>
+	<script src="componentes/internos/js/admin/form_info_req.js"></script>
+	<script src="componentes/internos/js/admin/form_poss_achado.js"></script>
+	<script src="componentes/internos/js/admin/form_proc_ana.js"></script>
+	<script src="componentes/internos/js/admin/form_proc_coleta.js"></script>
 	<script>
     </script>
 	<script>

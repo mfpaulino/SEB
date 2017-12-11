@@ -194,6 +194,155 @@ if ($inc == "sim"){
 			unset($_SESSION['alterar_lista_erro_validacao_questao']);
 		}
 
+		if($flag == md5("info_req_cadastrar")){
+
+			$msg0 = $_SESSION['erro_validacao_cadastrar_info_req'];
+			$msg1 = $_SESSION['sucesso_cadastro_info_req'];
+			$msg2 = $_SESSION['info_req_duplicada'];
+			$msg4 = $_SESSION['erro_cadastro_info_req'];
+			$lista_erro_validacao = $_SESSION['lista_erro_validacao_cadastrar_info_req'];
+		}
+		else {
+			unset($_SESSION['erro_validacao_cadastrar_info_req']);
+			unset($_SESSION['sucesso_cadastro_info_req']);
+			unset($_SESSION['info_req_duplicada']);
+			unset($_SESSION['erro_cadastro_info_req']);
+			unset($_SESSION['lista_erro_validacao_cadastrar_info_req']);
+		}
+
+		if($flag == md5("info_req_vincular")){
+
+			$msg0 = $_SESSION['info_req_vincular'];
+		}
+		else {
+			unset($_SESSION['info_req_vincular']);
+		}
+
+		if($flag == md5("info_req_alterar")){
+			$msg0 = $_SESSION['alterar_erro_validacao_info_req'];
+			$msg1 = $_SESSION['alterar_info_req'];
+			$msg2 = $_SESSION['alterar_nada_info_req'];
+			$lista_erro_validacao = $_SESSION['alterar_lista_erro_validacao_info_req'];
+		}
+		else {
+			unset($_SESSION['alterar_erro_validacao_info_req']);
+			unset($_SESSION['alterar_info_req']);
+			unset($_SESSION['alterar_nada_info_req']);
+			unset($_SESSION['alterar_lista_erro_validacao_info_req']);
+		}
+
+		if($flag == md5("poss_achado_cadastrar")){
+
+			$msg0 = $_SESSION['erro_validacao_cadastrar_poss_achado'];
+			$msg1 = $_SESSION['sucesso_cadastro_poss_achado'];
+			$msg2 = $_SESSION['poss_achado_duplicada'];
+			$msg4 = $_SESSION['erro_cadastro_poss_achado'];
+			$lista_erro_validacao = $_SESSION['lista_erro_validacao_cadastrar_poss_achado'];
+		}
+		else {
+			unset($_SESSION['erro_validacao_cadastrar_poss_achado']);
+			unset($_SESSION['sucesso_cadastro_poss_achado']);
+			unset($_SESSION['poss_achado_duplicada']);
+			unset($_SESSION['erro_cadastro_poss_achado']);
+			unset($_SESSION['lista_erro_validacao_cadastrar_poss_achado']);
+		}
+
+		if($flag == md5("poss_achado_vincular")){
+
+			$msg0 = $_SESSION['poss_achado_vincular'];
+		}
+		else {
+			unset($_SESSION['poss_achado_vincular']);
+		}
+
+		if($flag == md5("poss_achado_alterar")){
+			$msg0 = $_SESSION['alterar_erro_validacao_poss_achado'];
+			$msg1 = $_SESSION['alterar_poss_achado'];
+			$msg2 = $_SESSION['alterar_nada_poss_achado'];
+			$lista_erro_validacao = $_SESSION['alterar_lista_erro_validacao_poss_achado'];
+		}
+		else {
+			unset($_SESSION['alterar_erro_validacao_poss_achado']);
+			unset($_SESSION['alterar_poss_achado']);
+			unset($_SESSION['alterar_nada_poss_achado']);
+			unset($_SESSION['alterar_lista_erro_validacao_poss_achado']);
+		}
+
+		if($flag == md5("proc_ana_cadastrar")){
+
+			$msg0 = $_SESSION['erro_validacao_cadastrar_proc_ana'];
+			$msg1 = $_SESSION['sucesso_cadastro_proc_ana'];
+			$msg2 = $_SESSION['proc_ana_duplicada'];
+			$msg4 = $_SESSION['erro_cadastro_proc_ana'];
+			$lista_erro_validacao = $_SESSION['lista_erro_validacao_cadastrar_proc_ana'];
+		}
+		else {
+			unset($_SESSION['erro_validacao_cadastrar_proc_ana']);
+			unset($_SESSION['sucesso_cadastro_proc_ana']);
+			unset($_SESSION['proc_ana_duplicada']);
+			unset($_SESSION['erro_cadastro_proc_ana']);
+			unset($_SESSION['lista_erro_validacao_cadastrar_proc_ana']);
+		}
+
+		if($flag == md5("proc_ana_vincular")){
+
+			$msg0 = $_SESSION['proc_ana_vincular'];
+		}
+		else {
+			unset($_SESSION['proc_ana_vincular']);
+		}
+
+		if($flag == md5("proc_ana_alterar")){
+			$msg0 = $_SESSION['alterar_erro_validacao_proc_ana'];
+			$msg1 = $_SESSION['alterar_proc_ana'];
+			$msg2 = $_SESSION['alterar_nada_proc_ana'];
+			$lista_erro_validacao = $_SESSION['alterar_lista_erro_validacao_proc_ana'];
+		}
+		else {
+			unset($_SESSION['alterar_erro_validacao_proc_ana']);
+			unset($_SESSION['alterar_proc_ana']);
+			unset($_SESSION['alterar_nada_proc_ana']);
+			unset($_SESSION['alterar_lista_erro_validacao_proc_ana']);
+		}
+
+		if($flag == md5("proc_coleta_cadastrar")){
+
+			$msg0 = $_SESSION['erro_validacao_cadastrar_proc_coleta'];
+			$msg1 = $_SESSION['sucesso_cadastro_proc_coleta'];
+			$msg2 = $_SESSION['proc_coleta_duplicada'];
+			$msg4 = $_SESSION['erro_cadastro_proc_coleta'];
+			$lista_erro_validacao = $_SESSION['lista_erro_validacao_cadastrar_proc_coleta'];
+		}
+		else {
+			unset($_SESSION['erro_validacao_cadastrar_proc_coleta']);
+			unset($_SESSION['sucesso_cadastro_proc_coleta']);
+			unset($_SESSION['proc_coleta_duplicada']);
+			unset($_SESSION['erro_cadastro_proc_coleta']);
+			unset($_SESSION['lista_erro_validacao_cadastrar_proc_coleta']);
+		}
+
+		if($flag == md5("proc_coleta_vincular")){
+
+			$msg0 = $_SESSION['proc_coleta_vincular'];
+		}
+		else {
+			unset($_SESSION['proc_coleta_vincular']);
+		}
+
+		if($flag == md5("proc_coleta_alterar")){
+			$msg0 = $_SESSION['alterar_erro_validacao_proc_coleta'];
+			$msg1 = $_SESSION['alterar_proc_coleta'];
+			$msg2 = $_SESSION['alterar_nada_proc_coleta'];
+			$lista_erro_validacao = $_SESSION['alterar_lista_erro_validacao_proc_coleta'];
+		}
+		else {
+			unset($_SESSION['alterar_erro_validacao_proc_coleta']);
+			unset($_SESSION['alterar_proc_coleta']);
+			unset($_SESSION['alterar_nada_proc_coleta']);
+			unset($_SESSION['alterar_lista_erro_validacao_proc_coleta']);
+		}
+
+
 		$msg="sim";
 	}
 }
