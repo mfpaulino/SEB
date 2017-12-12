@@ -66,7 +66,7 @@ include_once(PATH . '/controllers/autenticacao/autentica.inc.php');//autentica e
 				if (isset($_GET['flag']) and ($_GET['flag'] == md5("usuario_alterar") or $_GET['flag'] == md5("senha_alterar") or $_GET['flag'] == md5("om_alterar") or $_GET['flag'] == md5("logout") )){
 					include_once('controllers/usuario/usuario_alertas_criar.inc.php');
 				}
-				else if (isset($_GET['flag']) and ($_GET['flag'] == md5("categoria_cadastrar") or $_GET['flag'] == md5("categoria_alterar") or $_GET['flag'] == md5("categoria_excluir") or $_GET['flag'] == md5("diaria_cadastrar") or $_GET['flag'] == md5("diaria_alterar") or $_GET['flag'] == md5("diaria_excluir") or $_GET['flag'] == md5("user_alterar") or $_GET['flag'] == md5("area_cadastrar") or $_GET['flag'] == md5("area_alterar") or $_GET['flag'] == md5("area_vincular") or $_GET['flag'] == md5("subarea_cadastrar") or $_GET['flag'] == md5("subarea_alterar") or $_GET['flag'] == md5("subarea_vincular") or $_GET['flag'] == md5("questao_cadastrar") or $_GET['flag'] == md5("questao_alterar") or $_GET['flag'] == md5("questao_vincular") or $_GET['flag'] == md5("info_req_cadastrar") or $_GET['flag'] == md5("info_req_alterar") or $_GET['flag'] == md5("info_req_vincular") or $_GET['flag'] == md5("poss_achado_cadastrar") or $_GET['flag'] == md5("poss_achado_alterar") or $_GET['flag'] == md5("poss_achado_vincular") or $_GET['flag'] == md5("proc_ana_cadastrar") or $_GET['flag'] == md5("proc_ana_alterar") or $_GET['flag'] == md5("proc_ana_vincular") or $_GET['flag'] == md5("proc_coleta_cadastrar") or $_GET['flag'] == md5("proc_coleta_alterar") or $_GET['flag'] == md5("proc_coleta_vincular") )){
+				else if (isset($_GET['flag']) and ($_GET['flag'] == md5("categoria_cadastrar") or $_GET['flag'] == md5("categoria_alterar") or $_GET['flag'] == md5("categoria_excluir") or $_GET['flag'] == md5("diaria_cadastrar") or $_GET['flag'] == md5("diaria_alterar") or $_GET['flag'] == md5("diaria_excluir") or $_GET['flag'] == md5("user_alterar") or $_GET['flag'] == md5("area_cadastrar") or $_GET['flag'] == md5("area_alterar") or $_GET['flag'] == md5("area_vincular") or $_GET['flag'] == md5("subarea_cadastrar") or $_GET['flag'] == md5("subarea_alterar") or $_GET['flag'] == md5("subarea_vincular") or $_GET['flag'] == md5("questao_cadastrar") or $_GET['flag'] == md5("questao_alterar") or $_GET['flag'] == md5("questao_vincular") or $_GET['flag'] == md5("info_req_cadastrar") or $_GET['flag'] == md5("info_req_alterar") or $_GET['flag'] == md5("info_req_vincular") or $_GET['flag'] == md5("poss_achado_cadastrar") or $_GET['flag'] == md5("poss_achado_alterar") or $_GET['flag'] == md5("poss_achado_vincular") or $_GET['flag'] == md5("proc_ana_cadastrar") or $_GET['flag'] == md5("proc_ana_alterar") or $_GET['flag'] == md5("proc_ana_vincular") or $_GET['flag'] == md5("proc_coleta_cadastrar") or $_GET['flag'] == md5("proc_coleta_alterar") or $_GET['flag'] == md5("proc_coleta_vincular") or $_GET['flag'] == md5("fonte_info_cadastrar") or $_GET['flag'] == md5("fonte_info_alterar") )){
 					include_once('controllers/admin/admin_alertas_criar.inc.php');
 				}
 				else {
@@ -90,23 +90,27 @@ include_once(PATH . '/controllers/autenticacao/autentica.inc.php');//autentica e
 				?>
 				<!-- conteudo aqui -->
 				<div class="row">
+					<!-- usuarios cadastrados -->
 					<div class="col-md-6">
 						<?php include_once('views/admin/user/view_user_lista.inc.php'); ?>
 						<?php include_once('views/admin/user/form_user_perfil.inc.php'); ?>
 						<?php include_once('views/admin/user/view_user_relacao.inc.php');?>
 					</div>
+					<!-- pedidos de cadastro de usuarios -->
 					<div class="col-md-6">
 						<?php include_once('views/admin/user/view_pedido_cadastro_lista.inc.php'); ?>
 						<?php include_once('views/admin/user/view_pedido_cadastro_relacao.inc.php');?>
 					</div>
 				</div>
 				<div class="row">
+					<!-- categoria/localidades para diarias -->
 					<div class="col-md-3">
 						<?php include_once('views/admin/categoria/view_categoria.inc.php');?>
 						<?php include_once('views/admin/categoria/form_categoria_cadastrar.inc.php');?>
 						<?php include_once('views/admin/categoria/form_categoria_alterar.inc.php');?>
 						<?php include_once('views/admin/categoria/view_categoria_relacao.inc.php');?>
 					</div>
+					<!-- diarias -->
 					<div class="col-md-3">
 						<?php include_once('views/admin/diaria/view_diaria.inc.php');?>
 						<?php include_once('views/admin/diaria/form_diaria_cadastrar.inc.php');?>
@@ -115,6 +119,7 @@ include_once(PATH . '/controllers/autenticacao/autentica.inc.php');//autentica e
 					</div>
 				</div>
 				<div class="row">
+					<!-- areas/processos -->
 					<div class="col-md-3">
 						<?php include_once('views/admin/area/view_area.inc.php');?>
 						<?php include_once('views/admin/area/form_area_cadastrar.inc.php');?>
@@ -122,6 +127,7 @@ include_once(PATH . '/controllers/autenticacao/autentica.inc.php');//autentica e
 						<?php include_once('views/admin/area/form_area_vincular_subarea.inc.php');?>
 						<?php include_once('views/admin/area/view_area_relacao.inc.php');?>
 					</div>
+					<!-- subareas/subprocessos -->
 					<div class="col-md-3">
 						<?php include_once('views/admin/subarea/view_subarea.inc.php');?>
 						<?php include_once('views/admin/subarea/form_subarea_cadastrar.inc.php');?>
@@ -130,15 +136,28 @@ include_once(PATH . '/controllers/autenticacao/autentica.inc.php');//autentica e
 						<?php include_once('views/admin/subarea/form_subarea_vincular_questao.inc.php');?>
 						<?php include_once('views/admin/subarea/view_subarea_relacao.inc.php');?>
 					</div>
+					<!-- questoes de auditoria -->
 					<div class="col-md-3">
 						<?php include_once('views/admin/questao/view_questao.inc.php');?>
 						<?php include_once('views/admin/questao/form_questao_cadastrar.inc.php');?>
 						<?php include_once('views/admin/questao/form_questao_alterar.inc.php');?>
 						<?php include_once('views/admin/questao/form_questao_vincular_subarea.inc.php');?>
+						<?php include_once('views/admin/questao/form_questao_vincular_info_req.inc.php');?>
+						<?php include_once('views/admin/questao/form_questao_vincular_poss_achado.inc.php');?>
+						<?php include_once('views/admin/questao/form_questao_vincular_proc_ana.inc.php');?>
+						<?php include_once('views/admin/questao/form_questao_vincular_proc_coleta.inc.php');?>
 						<?php include_once('views/admin/questao/view_questao_relacao.inc.php');?>
+					</div>
+					<!-- fontes de informação -->
+					<div class="col-md-3">
+						<?php include_once('views/admin/fonte_info/view_fonte_info.inc.php');?>
+						<?php include_once('views/admin/fonte_info/form_fonte_info_cadastrar.inc.php');?>
+						<?php include_once('views/admin/fonte_info/form_fonte_info_alterar.inc.php');?>
+						<?php include_once('views/admin/fonte_info/view_fonte_info_relacao.inc.php');?>
 					</div>
 				</div>
 				<div class="row">
+					<!-- informações requeridas -->
 					<div class="col-md-3">
 						<?php include_once('views/admin/info_req/view_info_req.inc.php');?>
 						<?php include_once('views/admin/info_req/form_info_req_cadastrar.inc.php');?>
@@ -146,6 +165,7 @@ include_once(PATH . '/controllers/autenticacao/autentica.inc.php');//autentica e
 						<?php include_once('views/admin/info_req/form_info_req_vincular_questao.inc.php');?>
 						<?php include_once('views/admin/info_req/view_info_req_relacao.inc.php');?>
 					</div>
+					<!-- possíveis achados -->
 					<div class="col-md-3">
 						<?php include_once('views/admin/poss_achado/view_poss_achado.inc.php');?>
 						<?php include_once('views/admin/poss_achado/form_poss_achado_cadastrar.inc.php');?>
@@ -153,6 +173,7 @@ include_once(PATH . '/controllers/autenticacao/autentica.inc.php');//autentica e
 						<?php include_once('views/admin/poss_achado/form_poss_achado_vincular_questao.inc.php');?>
 						<?php include_once('views/admin/poss_achado/view_poss_achado_relacao.inc.php');?>
 					</div>
+					<!-- procedimentos de análise de dados -->
 					<div class="col-md-3">
 						<?php include_once('views/admin/proc_ana/view_proc_ana.inc.php');?>
 						<?php include_once('views/admin/proc_ana/form_proc_ana_cadastrar.inc.php');?>
@@ -160,6 +181,7 @@ include_once(PATH . '/controllers/autenticacao/autentica.inc.php');//autentica e
 						<?php include_once('views/admin/proc_ana/form_proc_ana_vincular_questao.inc.php');?>
 						<?php include_once('views/admin/proc_ana/view_proc_ana_relacao.inc.php');?>
 					</div>
+					<!-- procedimento de coleta de dados -->
 					<div class="col-md-3">
 						<?php include_once('views/admin/proc_coleta/view_proc_coleta.inc.php');?>
 						<?php include_once('views/admin/proc_coleta/form_proc_coleta_cadastrar.inc.php');?>
@@ -202,6 +224,7 @@ include_once(PATH . '/controllers/autenticacao/autentica.inc.php');//autentica e
 	<script src="componentes/internos/js/admin/view_poss_achado.js"></script>
 	<script src="componentes/internos/js/admin/view_proc_ana.js"></script>
 	<script src="componentes/internos/js/admin/view_proc_coleta.js"></script>
+	<script src="componentes/internos/js/admin/view_fonte_info.js"></script>
 	<script src="componentes/internos/js/admin/form_categoria.js"></script>
 	<script src="componentes/internos/js/admin/form_diaria.js"></script>
 	<script src="componentes/internos/js/admin/form_area.js"></script>
@@ -211,6 +234,7 @@ include_once(PATH . '/controllers/autenticacao/autentica.inc.php');//autentica e
 	<script src="componentes/internos/js/admin/form_poss_achado.js"></script>
 	<script src="componentes/internos/js/admin/form_proc_ana.js"></script>
 	<script src="componentes/internos/js/admin/form_proc_coleta.js"></script>
+	<script src="componentes/internos/js/admin/form_fonte_info.js"></script>
 	<script>
     </script>
 	<script>

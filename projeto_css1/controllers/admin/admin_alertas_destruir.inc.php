@@ -67,13 +67,21 @@ unset($_SESSION['erro_validacao_cadastrar_proc_ana']);
 unset($_SESSION['lista_erro_validacao_cadastrar_proc_ana']);
 unset($_SESSION['proc_ana_duplicada']);
 
-//proc_coleta_coleta
+//proc_coleta_cadastrar
 unset($_SESSION['proc_coleta_duplicada']);
 unset($_SESSION['sucesso_cadastro_proc_coleta']);
 unset($_SESSION['erro_cadastro_proc_coleta']);
 unset($_SESSION['erro_validacao_cadastrar_proc_coleta']);
 unset($_SESSION['lista_erro_validacao_cadastrar_proc_coleta']);
 unset($_SESSION['proc_coleta_duplicada']);
+
+//fonte_info_cadastrar
+unset($_SESSION['fonte_info_duplicada']);
+unset($_SESSION['sucesso_cadastro_fonte_info']);
+unset($_SESSION['erro_cadastro_fonte_info']);
+unset($_SESSION['erro_validacao_cadastrar_fonte_info']);
+unset($_SESSION['lista_erro_validacao_cadastrar_fonte_info']);
+unset($_SESSION['fonte_info_duplicada']);
 
 //questao_vincular
 unset($_SESSION['questao_vincular']);
@@ -143,6 +151,12 @@ unset($_SESSION['alterar_erro_validacao_proc_coleta']);
 unset($_SESSION['alterar_proc_coleta']);
 unset($_SESSION['alterar_nada_proc_coleta']);
 unset($_SESSION['alterar_lista_erro_validacao_proc_coleta']);
+
+//fonte_info_alterar
+unset($_SESSION['alterar_erro_validacao_fonte_info']);
+unset($_SESSION['alterar_fonte_info']);
+unset($_SESSION['alterar_nada_fonte_info']);
+unset($_SESSION['alterar_lista_erro_validacao_fonte_info']);
 
 //user_alterar
 unset($_SESSION['alterar_erro_validacao_user']);

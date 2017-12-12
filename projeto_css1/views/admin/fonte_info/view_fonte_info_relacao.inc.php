@@ -1,28 +1,28 @@
 <?php
-$sql = "SELECT proc_coleta FROM adm_proc_coleta ORDER BY proc_coleta";
+$sql = "SELECT fonte_info FROM adm_fontes_informacao ORDER BY fonte_info";
 $con_lista = $mysqli->query($sql);
 $qtde = $con_lista->num_rows;
 
 if($qtde == 0){
-	$atributo_proc_coleta="disabled";
+	$atributo_fonte_info="disabled";
 }
 ?>
-<div class="modal fade" id="modalExibirProcColeta" role="dialog">
+<div class="modal fade" id="modalExibirFonteInfo" role="dialog">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header fundo">
 				<button type="button" class="close" data-dismiss="modal">&times;</button>
-				<h4 class="modal-title">Procedimentos de Coleta Cadastrados</h4>
+				<h4 class="modal-title">Fontes de Informação Cadastradas</h4>
 			</div>
 			<div class="modal-body">
 				<div class="box">
-					<div id="area_printProcColeta" class="box-body no-padding">
+					<div id="area_printFonteInfo" class="box-body no-padding">
 						<table class="table table-striped">
 							<?php
 							$i = 1;
 							while($row = $con_lista->fetch_assoc()){?>
 								<tr>
-									<td><?php echo "<b>".$i . " -</b> " . $row['proc_coleta'];?></td>
+									<td><?php echo "<b>".$i . " -</b> " . $row['fonte_info'];?></td>
 								</tr>
 								<?php
 							$i++;
@@ -33,7 +33,7 @@ if($qtde == 0){
 				</div>
 			</div>
 			<div class="modal-footer">
-				<button id="btnPrintProcColeta" class="btn btn-default" <?php echo $atributo_proc_coleta;?> ><i class="fa fa-print"></i> Imprimir</button>
+				<button id="btnPrintFonteInfo" class="btn btn-default" <?php echo $atributo_fonte_info;?> ><i class="fa fa-print"></i> Imprimir</button>
 			</div>
 		</div>
 	</div>

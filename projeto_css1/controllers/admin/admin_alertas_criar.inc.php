@@ -342,6 +342,34 @@ if ($inc == "sim"){
 			unset($_SESSION['alterar_lista_erro_validacao_proc_coleta']);
 		}
 
+		if($flag == md5("fonte_info_cadastrar")){
+
+			$msg0 = $_SESSION['erro_validacao_cadastrar_fonte_info'];
+			$msg1 = $_SESSION['sucesso_cadastro_fonte_info'];
+			$msg2 = $_SESSION['fonte_info_duplicada'];
+			$msg4 = $_SESSION['erro_cadastro_fonte_info'];
+			$lista_erro_validacao = $_SESSION['lista_erro_validacao_cadastrar_fonte_info'];
+		}
+		else {
+			unset($_SESSION['erro_validacao_cadastrar_fonte_info']);
+			unset($_SESSION['sucesso_cadastro_fonte_info']);
+			unset($_SESSION['fonte_info_duplicada']);
+			unset($_SESSION['erro_cadastro_fonte_info']);
+			unset($_SESSION['lista_erro_validacao_cadastrar_fonte_info']);
+		}
+
+		if($flag == md5("fonte_info_alterar")){
+			$msg0 = $_SESSION['alterar_erro_validacao_fonte_info'];
+			$msg1 = $_SESSION['alterar_fonte_info'];
+			$msg2 = $_SESSION['alterar_nada_fonte_info'];
+			$lista_erro_validacao = $_SESSION['alterar_lista_erro_validacao_fonte_info'];
+		}
+		else {
+			unset($_SESSION['alterar_erro_validacao_fonte_info']);
+			unset($_SESSION['alterar_fonte_info']);
+			unset($_SESSION['alterar_nada_fonte_info']);
+			unset($_SESSION['alterar_lista_erro_validacao_fonte_info']);
+		}
 
 		$msg="sim";
 	}

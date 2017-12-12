@@ -44,7 +44,7 @@ $('#modalProcAnaVincularQuestao').on('show.bs.modal', function (event) {
    	})	
 })
 
-//imprimir lista poss_achado
+//imprimir lista proc_ana
 document.getElementById('btnPrintProcAna').onclick = function() {
 	var conteudo = document.getElementById('area_printProcAna').innerHTML;
 	var tela_impressao = window.open('','','width=0, height=0, top=50, left=50');
