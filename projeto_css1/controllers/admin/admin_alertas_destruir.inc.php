@@ -20,7 +20,6 @@ unset($_SESSION['sucesso_cadastro_area']);
 unset($_SESSION['erro_cadastro_area']);
 unset($_SESSION['erro_validacao_cadastrar_area']);
 unset($_SESSION['lista_erro_validacao_cadastrar_area']);//area_cadastrar
-unset($_SESSION['area_duplicada']);
 
 //area_vincular
 unset($_SESSION['area_vincular']);
@@ -41,7 +40,6 @@ unset($_SESSION['sucesso_cadastro_questao']);
 unset($_SESSION['erro_cadastro_questao']);
 unset($_SESSION['erro_validacao_cadastrar_questao']);
 unset($_SESSION['lista_erro_validacao_cadastrar_questao']);
-unset($_SESSION['questao_duplicada']);
 
 //info_req_cadastrar
 unset($_SESSION['info_req_duplicada']);
@@ -49,7 +47,6 @@ unset($_SESSION['sucesso_cadastro_info_req']);
 unset($_SESSION['erro_cadastro_info_req']);
 unset($_SESSION['erro_validacao_cadastrar_info_req']);
 unset($_SESSION['lista_erro_validacao_cadastrar_info_req']);
-unset($_SESSION['info_req_duplicada']);
 
 //poss_achado_cadastrar
 unset($_SESSION['poss_achado_duplicada']);
@@ -57,7 +54,6 @@ unset($_SESSION['sucesso_cadastro_poss_achado']);
 unset($_SESSION['erro_cadastro_poss_achado']);
 unset($_SESSION['erro_validacao_cadastrar_poss_achado']);
 unset($_SESSION['lista_erro_validacao_cadastrar_poss_achado']);
-unset($_SESSION['poss_achado_duplicada']);
 
 //proc_ana_cadastrar
 unset($_SESSION['proc_ana_duplicada']);
@@ -65,7 +61,6 @@ unset($_SESSION['sucesso_cadastro_proc_ana']);
 unset($_SESSION['erro_cadastro_proc_ana']);
 unset($_SESSION['erro_validacao_cadastrar_proc_ana']);
 unset($_SESSION['lista_erro_validacao_cadastrar_proc_ana']);
-unset($_SESSION['proc_ana_duplicada']);
 
 //proc_coleta_cadastrar
 unset($_SESSION['proc_coleta_duplicada']);
@@ -73,7 +68,6 @@ unset($_SESSION['sucesso_cadastro_proc_coleta']);
 unset($_SESSION['erro_cadastro_proc_coleta']);
 unset($_SESSION['erro_validacao_cadastrar_proc_coleta']);
 unset($_SESSION['lista_erro_validacao_cadastrar_proc_coleta']);
-unset($_SESSION['proc_coleta_duplicada']);
 
 //fonte_info_cadastrar
 unset($_SESSION['fonte_info_duplicada']);
@@ -81,7 +75,13 @@ unset($_SESSION['sucesso_cadastro_fonte_info']);
 unset($_SESSION['erro_cadastro_fonte_info']);
 unset($_SESSION['erro_validacao_cadastrar_fonte_info']);
 unset($_SESSION['lista_erro_validacao_cadastrar_fonte_info']);
-unset($_SESSION['fonte_info_duplicada']);
+
+//aviso_cadastrar
+unset($_SESSION['aviso_duplicada']);
+unset($_SESSION['sucesso_cadastro_aviso']);
+unset($_SESSION['erro_cadastro_aviso']);
+unset($_SESSION['erro_validacao_cadastrar_aviso']);
+unset($_SESSION['lista_erro_validacao_cadastrar_aviso']);
 
 //questao_vincular
 unset($_SESSION['questao_vincular']);
@@ -157,6 +157,13 @@ unset($_SESSION['alterar_erro_validacao_fonte_info']);
 unset($_SESSION['alterar_fonte_info']);
 unset($_SESSION['alterar_nada_fonte_info']);
 unset($_SESSION['alterar_lista_erro_validacao_fonte_info']);
+
+//aviso_alterar
+unset($_SESSION['alterar_erro_validacao_aviso']);
+unset($_SESSION['alterar_aviso']);
+unset($_SESSION['alterar_nada_aviso']);
+unset($_SESSION['alterar_lista_erro_validacao_aviso']);
+
 
 //user_alterar
 unset($_SESSION['alterar_erro_validacao_user']);

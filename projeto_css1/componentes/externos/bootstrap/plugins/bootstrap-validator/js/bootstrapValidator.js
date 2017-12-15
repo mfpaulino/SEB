@@ -5285,7 +5285,7 @@ if (typeof jQuery === 'undefined') {
 }(window.jQuery));
 ;(function($) {
     $.fn.bootstrapValidator.i18n.notEmpty = $.extend($.fn.bootstrapValidator.i18n.notEmpty || {}, {
-        'default': 'Please enter a value'
+        'default': 'Preenchimento obrigatório'
     });
 
     $.fn.bootstrapValidator.validators.notEmpty = {

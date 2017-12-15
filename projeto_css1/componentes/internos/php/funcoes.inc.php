@@ -22,4 +22,37 @@ function formata_nome($nome){
 	return $nome_formatado;
 }
 /**************************************************************************************/
+
+/**************************************************************************************
+* converte datas do formato americano para o brasileiro e vice-versa
+* *************************************************************************************/
+function converter_data($data_ori,$tipo='BR',$hora='false')
+{
+     if ($data_ori <> "")
+     {
+          $data = explode(' ',$data_ori);
+
+		if ($tipo == 'BR')
+          {
+			$resul = explode("-",$data[0]);
+			$resul = $resul[2].'/'.$resul[1].'/'.$resul[0];
+		}
+
+		else if ($tipo == 'EN')
+          {
+			$resul = explode("/",$data[0]);
+			$resul = $resul[2].'-'.$resul[1].'-'.$resul[0];
+		}
+
+		if ($hora=="true")
+          {
+			return $resul.' '.$data[1];
+		}
+		else
+          {
+			return $resul;
+		}
+	}
+}
+/******************************************************************************************/
 ?>

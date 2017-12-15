@@ -20,7 +20,7 @@ include_once(PATH . '/controllers/autenticacao/autentica.inc.php');//autentica e
 	<!-- Tell the browser to be responsive to screen width -->
 	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 	<link rel="stylesheet" href="componentes/externos/bootstrap/dist/css/bootstrap.min.css">
-	<link rel="stylesheet" href="componentes/externos/bootstrap/plugins/bootstrap-validator/css/bootstrapValidator.min-.css">
+    <link rel="stylesheet" href="componentes/externos/bootstrap/plugins/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
 	<link rel="stylesheet" href="componentes/externos/bootstrap/plugins/font-awesome/css/font-awesome.min.css">
 	<link rel="stylesheet" href="componentes/externos/bootstrap/plugins/Ionicons/css/ionicons.min.css">
 	<link rel="stylesheet" href="componentes/externos/bootstrap/plugins/bootstrap-select/dist/css/bootstrap-select.css">
@@ -66,7 +66,7 @@ include_once(PATH . '/controllers/autenticacao/autentica.inc.php');//autentica e
 				if (isset($_GET['flag']) and ($_GET['flag'] == md5("usuario_alterar") or $_GET['flag'] == md5("senha_alterar") or $_GET['flag'] == md5("om_alterar") or $_GET['flag'] == md5("logout") )){
 					include_once('controllers/usuario/usuario_alertas_criar.inc.php');
 				}
-				else if (isset($_GET['flag']) and ($_GET['flag'] == md5("categoria_cadastrar") or $_GET['flag'] == md5("categoria_alterar") or $_GET['flag'] == md5("categoria_excluir") or $_GET['flag'] == md5("diaria_cadastrar") or $_GET['flag'] == md5("diaria_alterar") or $_GET['flag'] == md5("diaria_excluir") or $_GET['flag'] == md5("user_alterar") or $_GET['flag'] == md5("area_cadastrar") or $_GET['flag'] == md5("area_alterar") or $_GET['flag'] == md5("area_vincular") or $_GET['flag'] == md5("subarea_cadastrar") or $_GET['flag'] == md5("subarea_alterar") or $_GET['flag'] == md5("subarea_vincular") or $_GET['flag'] == md5("questao_cadastrar") or $_GET['flag'] == md5("questao_alterar") or $_GET['flag'] == md5("questao_vincular") or $_GET['flag'] == md5("info_req_cadastrar") or $_GET['flag'] == md5("info_req_alterar") or $_GET['flag'] == md5("info_req_vincular") or $_GET['flag'] == md5("poss_achado_cadastrar") or $_GET['flag'] == md5("poss_achado_alterar") or $_GET['flag'] == md5("poss_achado_vincular") or $_GET['flag'] == md5("proc_ana_cadastrar") or $_GET['flag'] == md5("proc_ana_alterar") or $_GET['flag'] == md5("proc_ana_vincular") or $_GET['flag'] == md5("proc_coleta_cadastrar") or $_GET['flag'] == md5("proc_coleta_alterar") or $_GET['flag'] == md5("proc_coleta_vincular") or $_GET['flag'] == md5("fonte_info_cadastrar") or $_GET['flag'] == md5("fonte_info_alterar") )){
+				else if (isset($_GET['flag']) and ($_GET['flag'] == md5("categoria_cadastrar") or $_GET['flag'] == md5("categoria_alterar") or $_GET['flag'] == md5("categoria_excluir") or $_GET['flag'] == md5("diaria_cadastrar") or $_GET['flag'] == md5("diaria_alterar") or $_GET['flag'] == md5("diaria_excluir") or $_GET['flag'] == md5("user_alterar") or $_GET['flag'] == md5("area_cadastrar") or $_GET['flag'] == md5("area_alterar") or $_GET['flag'] == md5("area_vincular") or $_GET['flag'] == md5("subarea_cadastrar") or $_GET['flag'] == md5("subarea_alterar") or $_GET['flag'] == md5("subarea_vincular") or $_GET['flag'] == md5("questao_cadastrar") or $_GET['flag'] == md5("questao_alterar") or $_GET['flag'] == md5("questao_vincular") or $_GET['flag'] == md5("info_req_cadastrar") or $_GET['flag'] == md5("info_req_alterar") or $_GET['flag'] == md5("info_req_vincular") or $_GET['flag'] == md5("poss_achado_cadastrar") or $_GET['flag'] == md5("poss_achado_alterar") or $_GET['flag'] == md5("poss_achado_vincular") or $_GET['flag'] == md5("proc_ana_cadastrar") or $_GET['flag'] == md5("proc_ana_alterar") or $_GET['flag'] == md5("proc_ana_vincular") or $_GET['flag'] == md5("proc_coleta_cadastrar") or $_GET['flag'] == md5("proc_coleta_alterar") or $_GET['flag'] == md5("proc_coleta_vincular") or $_GET['flag'] == md5("fonte_info_cadastrar") or $_GET['flag'] == md5("fonte_info_alterar") or $_GET['flag'] == md5("aviso_cadastrar") or $_GET['flag'] == md5("aviso_alterar") )){
 					include_once('controllers/admin/admin_alertas_criar.inc.php');
 				}
 				else {
@@ -90,19 +90,24 @@ include_once(PATH . '/controllers/autenticacao/autentica.inc.php');//autentica e
 				?>
 				<!-- conteudo aqui -->
 				<div class="row">
+					<!-- pedidos de cadastro de usuarios -->
+					<div class="col-md-6">
+						<?php include_once('views/admin/user/view_pedido_cadastro_lista.inc.php'); ?>
+						<?php include_once('views/admin/user/view_pedido_cadastro_relacao.inc.php');?>
+					</div>
 					<!-- usuarios cadastrados -->
 					<div class="col-md-6">
 						<?php include_once('views/admin/user/view_user_lista.inc.php'); ?>
 						<?php include_once('views/admin/user/form_user_perfil.inc.php'); ?>
 						<?php include_once('views/admin/user/view_user_relacao.inc.php');?>
 					</div>
-					<!-- pedidos de cadastro de usuarios -->
-					<div class="col-md-6">
-						<?php include_once('views/admin/user/view_pedido_cadastro_lista.inc.php'); ?>
-						<?php include_once('views/admin/user/view_pedido_cadastro_relacao.inc.php');?>
-					</div>
 				</div>
 				<div class="row">
+					<!-- avisos administrativos-->
+					<div class="col-md-6">
+						<?php include_once('views/admin/aviso/view_aviso.inc.php'); ?>
+						<?php include_once('views/admin/aviso/form_aviso_cadastrar.inc.php');?>
+					</div>
 					<!-- categoria/localidades para diarias -->
 					<div class="col-md-3">
 						<?php include_once('views/admin/categoria/view_categoria.inc.php');?>
@@ -201,8 +206,11 @@ include_once(PATH . '/controllers/autenticacao/autentica.inc.php');//autentica e
 	</div>
 	<script src="componentes/externos/jquery/dist/jquery.min.js"></script>
 	<script src="componentes/externos/bootstrap/dist/js/bootstrap.min.js"></script>
-	<script src="componentes/externos/bootstrap/plugins/bootstrap-validator/js/bootstrapValidator.min.js"></script>
+	<script src="componentes/externos/bootstrap/plugins/bootstrap-validator/js/bootstrapValidator.js"></script>
 	<script src="componentes/externos/bootstrap/plugins/bootstrap-confirmation/bootstrap-confirmation.min.js"></script>
+	<script src="componentes/externos/bootstrap/plugins/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+	<script src="componentes/externos/bootstrap/plugins/bootstrap-datepicker/dist/locales/bootstrap-datepicker.pt-BR.min.js"></script>
+    <script src="componentes/externos/bootstrap/plugins/jquery-mask/jquery.maskedinput.js"></script>
 	<script src="componentes/externos/bootstrap/plugins/bootstrap-fileinput/js/fileinput.js"></script>
 	<script src="componentes/externos/bootstrap/plugins/bootstrap-select/dist/js/bootstrap-select.js"></script>
 	<script src="componentes/externos/bootstrap/plugins/bootstrap-switch/dist/js/bootstrap-switch.js"></script>
@@ -228,6 +236,7 @@ include_once(PATH . '/controllers/autenticacao/autentica.inc.php');//autentica e
 	<script src="componentes/internos/js/admin/form_categoria.js"></script>
 	<script src="componentes/internos/js/admin/form_diaria.js"></script>
 	<script src="componentes/internos/js/admin/form_area.js"></script>
+	<script src="componentes/internos/js/admin/form_aviso.js"></script>
 	<script src="componentes/internos/js/admin/form_subarea.js"></script>
 	<script src="componentes/internos/js/admin/form_questao.js"></script>
 	<script src="componentes/internos/js/admin/form_info_req.js"></script>
@@ -235,8 +244,6 @@ include_once(PATH . '/controllers/autenticacao/autentica.inc.php');//autentica e
 	<script src="componentes/internos/js/admin/form_proc_ana.js"></script>
 	<script src="componentes/internos/js/admin/form_proc_coleta.js"></script>
 	<script src="componentes/internos/js/admin/form_fonte_info.js"></script>
-	<script>
-    </script>
 	<script>
 		//exibe os titles ao passar o mouse
 		$(document).ready(function(){
