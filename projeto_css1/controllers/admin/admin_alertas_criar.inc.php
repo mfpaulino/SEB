@@ -11,6 +11,22 @@ if ($inc == "sim"){
 		$flag = $_GET['flag'];
 		$botao = $_SESSION['botao'];
 
+		if($flag == md5("aviso_cadastrar")){
+
+			$msg0 = $_SESSION['erro_validacao_cadastrar_aviso'];
+			$msg1 = $_SESSION['sucesso_cadastro_aviso'];
+			$msg2 = $_SESSION['aviso_duplicada'];
+			$msg4 = $_SESSION['erro_cadastro_aviso'];
+			$lista_erro_validacao = $_SESSION['lista_erro_validacao_cadastrar_aviso'];
+		}
+		else {
+			unset($_SESSION['erro_validacao_cadastrar_aviso']);
+			unset($_SESSION['sucesso_cadastro_aviso']);
+			unset($_SESSION['aviso_duplicada']);
+			unset($_SESSION['erro_cadastro_aviso']);
+			unset($_SESSION['lista_erro_validacao_cadastrar_aviso']);
+		}
+
 		if($flag == md5("categoria_cadastrar")){
 
 			$msg0 = $_SESSION['erro_validacao_cadastrar_categoria'];
@@ -26,6 +42,19 @@ if ($inc == "sim"){
 			unset($_SESSION['categoria_duplicada']);
 			unset($_SESSION['erro_cadastro_categoria']);
 			unset($_SESSION['lista_erro_validacao_cadastrar_categoria']);
+		}
+
+		if($flag == md5("aviso_alterar")){
+			$msg0 = $_SESSION['alterar_erro_validacao_aviso'];
+			$msg1 = $_SESSION['alterar_aviso'];
+			$msg2 = $_SESSION['alterar_nada_aviso'];
+			$lista_erro_validacao = $_SESSION['alterar_lista_erro_validacao_aviso'];
+		}
+		else {
+			unset($_SESSION['alterar_erro_validacao_aviso']);
+			unset($_SESSION['alterar_aviso']);
+			unset($_SESSION['alterar_nada_aviso']);
+			unset($_SESSION['alterar_lista_erro_validacao_aviso']);
 		}
 
 		if($flag == md5("categoria_alterar")){

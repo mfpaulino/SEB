@@ -1,4 +1,11 @@
 <?php
+//aviso_cadastrar
+unset($_SESSION['aviso_duplicada']);
+unset($_SESSION['sucesso_cadastro_aviso']);
+unset($_SESSION['erro_cadastro_aviso']);
+unset($_SESSION['erro_validacao_cadastrar_aviso']);
+unset($_SESSION['lista_erro_validacao_cadastrar_aviso']);//area_cadastrar
+
 //categoria_cadastrar
 unset($_SESSION['categoria_duplicada']);
 unset($_SESSION['localidade_duplicada']);
@@ -19,7 +26,7 @@ unset($_SESSION['area_duplicada']);
 unset($_SESSION['sucesso_cadastro_area']);
 unset($_SESSION['erro_cadastro_area']);
 unset($_SESSION['erro_validacao_cadastrar_area']);
-unset($_SESSION['lista_erro_validacao_cadastrar_area']);//area_cadastrar
+unset($_SESSION['lista_erro_validacao_cadastrar_area']);
 
 //area_vincular
 unset($_SESSION['area_vincular']);
@@ -97,6 +104,13 @@ unset($_SESSION['proc_ana_vincular']);
 
 //proc_coleta_vincular
 unset($_SESSION['proc_coleta_vincular']);
+
+
+//aviso_alterar
+unset($_SESSION['alterar_erro_validacao_aviso']);
+unset($_SESSION['alterar_aviso']);
+unset($_SESSION['alterar_nada_aviso']);
+unset($_SESSION['alterar_lista_erro_validacao_aviso']);
 
 //categoria_alterar
 unset($_SESSION['alterar_erro_validacao_categoria']);

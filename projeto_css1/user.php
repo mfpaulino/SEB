@@ -13,6 +13,9 @@ $pagina = strtr(end(explode('/', $_SERVER['PHP_SELF'])),'?', true);
 
 include_once('config.inc.php');
 include_once(PATH . '/controllers/autenticacao/autentica.inc.php');//autentica e gera todos os dados de usuario
+include_once(PATH . '/controllers/admin/aviso/aviso_alterar_status.inc.php');//verifica a validade dos avisos publicados e inativa os vencidos.
+
+include_once(PATH . '/componentes/internos/php/funcoes.inc.php');
 
 $pagina_lock = str_replace('user.php?flag='.md5(date('d-m-Y')),'',strtr(end(explode('/', $_SERVER['REQUEST_URI'])),'', true));
 
@@ -92,13 +95,15 @@ if(isset($_GET['flag'])){//vem da tela de bloqueio
 			</section>
 		</aside>
 		<div class="content-wrapper">
+			<!--
 			<section class="content-header">
-				<h1><small></small></h1>
+				<h1>&nbsp;</h1>
 				<ol class="breadcrumb">
 					<li class="active"><i class="fa fa-home"></i> Home</li>
 					<li></li>
 				</ol>
 			</section>
+			-->
 			<section class="content container-fluid">
 				<?php
 				if (isset($_GET['flag']) and ($_GET['flag'] == md5("usuario_alterar") or $_GET['flag'] == md5("senha_alterar") or $_GET['flag'] == md5("om_alterar") or $_GET['flag'] == md5("logout") )){
@@ -107,6 +112,8 @@ if(isset($_GET['flag'])){//vem da tela de bloqueio
 				else {
 					include_once('controllers/usuario/usuario_alertas_destruir.inc.php');
 				}
+
+				include_once('controllers/admin/aviso/aviso_home.inc.php');
 
 				include_once('views/usuario/view_usuario_perfil.inc.php');
 				include_once('views/usuario/form_usuario_alterar.inc.php');
@@ -125,7 +132,6 @@ if(isset($_GET['flag'])){//vem da tela de bloqueio
 				<div class="row">
 					<?php
 					$total_alertas = 3;
-					$total_avisos = 2;
 
 					if($total_alertas > 0){
 						$status_alertas = "(Quantidade: ". $total_alertas. ")";
@@ -133,8 +139,8 @@ if(isset($_GET['flag'])){//vem da tela de bloqueio
 					else {
 						$status_alertas = "(Nenhum alerta)";
 					}
-					if($total_avisos > 0){
-						$status_avisos = "(Quantidade: ". $total_avisos . ")";
+					if($tot_avisos > 0){
+						$status_avisos = "(Quantidade: ". $tot_avisos . ")";
 					}
 					else {
 						$status_avisos = "(Nenhum aviso)";
@@ -189,23 +195,17 @@ if(isset($_GET['flag'])){//vem da tela de bloqueio
 						<?php } ?>
 					</div>
 					<div class="col-md-6">
-						<?php if($total_avisos > 0){?>
-						<div class="box box-default">
-							<div class="box-body">
-								<div class="alert alert-danger alert-dismissible">
-									<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-									<h4>Título do Aviso!</h4>
-									<h5>(Data/Hora)</h5>
-									Qualquer texto. Qualquer texto. Qualquer texto. Qualquer texto. Qualquer texto. Qualquer texto. Qualquer texto. Qualquer texto. Qualquer texto. Qualquer texto. Qualquer texto. Qualquer texto. Qualquer texto. Qualquer texto.
-								</div>
-								<div class="alert alert-danger alert-dismissible">
-									<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-									<h4>Título do Aviso!</h4>
-									<h5>(Data/Hora)</h5>
-									<p>Qualquer texto. Qualquer texto. Qualquer texto. Qualquer texto. Qualquer texto. Qualquer texto. Qualquer texto. Qualquer texto. Qualquer texto. Qualquer texto. Qualquer texto. Qualquer texto. Qualquer texto. Qualquer texto. Qualquer texto. </p>
+						<?php
+						if($tot_avisos > 0){?>
+							<div class="box box-default">
+								<div class="box-body">
+									<?php
+									while($row_avisos = $con_avisos->fetch_assoc()){
+										include('views/admin/aviso/view_aviso_home.inc.php');
+									}
+									?>
 								</div>
 							</div>
-						</div>
 						<?php } ?>
 					</div>
 				</div>

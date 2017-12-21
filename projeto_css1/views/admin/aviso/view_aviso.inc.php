@@ -12,7 +12,7 @@ $con_avisos = $mysqli->query($sql);
 				<button type="button" title="Exibir Menu" class="btn bg-blue-gradient btn-sm dropdown-toggle" data-toggle="dropdown"><i class="fa fa-caret-down fa-lg"></i></button>
 				<ul class="dropdown-menu pull-right" role="menu">
 					<li><a href="#" data-toggle="modal" data-target="#modalCadastrarAviso">Cadastrar Aviso</a></li>
-					<li><a href="#" data-toggle="modal" data-target="#modalExibirPedidoCadastro">Impressão</a></li>
+					<li><a href="#" data-toggle="modal" data-target="#modalExibirAviso">Impressão</a></li>
 				</ul>
 			</div>
 			<button type="button" title="Expandir/Encolher" class="btn bg-blue-gradient btn-sm" data-widget="collapse"><i class="fa fa-plus"></i></button>
@@ -24,14 +24,15 @@ $con_avisos = $mysqli->query($sql);
 			<table class="table table-striped">
 				<tr class="text-bold">
 					<td>Título</td>
-					<td>Validade</td>
 					<td>Público</td>
+					<td>Validade</td>
 					<td>Status</td>
 					<td class="text-center">Ação</td>
 				</tr>
 			<?php
 			while ($rows =  $con_avisos->fetch_assoc()){
 				$publico = "";
+
 				if ($rows['status'] == 'Ativo'){
 					$icone = "fa fa-window-close";
 					$tooltip = "Desabilitar";
@@ -43,7 +44,29 @@ $con_avisos = $mysqli->query($sql);
 				$pub = unserialize($rows['publico']);
 				$tot_pub = count($pub);
 
+				//para o form alterar
+				if (in_array("CCIEx", $pub)) {
+					$pub_cciex = 'true';
+				}
+				else {
+					$pub_cciex = 'false';
+				}
+				if (in_array("ICFEx", $pub)) {
+					$pub_icfex = 'true';
+				}
+				else {
+					$pub_icfex = 'false';
+				}
+				if (in_array("Unidade", $pub)){
+					$pub_unidades = 'true';
+				}
+				else{
+					$pub_unidades = 'false';
+				}
+				//fim para o form alterar
+
 				for($i = 0; $i < $tot_pub; $i++){
+
 					if($pub[$i] <> NULL){
 						$publico .= $pub[$i].", ";
 					}
@@ -51,24 +74,25 @@ $con_avisos = $mysqli->query($sql);
 				?>
 				<tr>
 					<td><?php echo $rows['titulo']; ?></td>
-					<td><?php echo $rows['dt_validade'];?></td>
 					<td><?php echo "(".substr($publico, 0, -2).")";?></td>
+					<td><?php echo converter_data($rows['dt_validade'], 'BR');?></td>
 					<td><?php echo $rows['status'];?></td>
-					<td width="13%" class="text-center">
+					<td width="16%" class="text-center">
 						<!--botao Aviso-->
 						<button type="button" class="btn btn-xs btn-primary"
 							data-tooltip="tooltip"
 							data-title="Exibir"
 							data-placement="left"
 							data-toggle="modal"
-							data-target="#modalExibirAviso"
+							data-target="#modalAlterarAviso"
 							data-id_aviso="<?php echo $rows['id_aviso'];?>"
 							data-titulo="<?php echo $rows['titulo'];?>"
 							data-texto="<?php echo $rows['texto'];?>"
-							data-titulo="<?php echo $rows['dt_validade'];?>"
-							data-autor="<?php echo $rows['posto'].' '.$rows['nome_guerra'];?>"
-							data-data="<?php echo $rows['dt_aviso'];?>"
-							data-status="<?php echo $rows['status'];?>"
+							data-validade="<?php echo converter_data($rows['dt_validade'], 'BR');?>"
+							data-atualizacao="<?php echo $rows['posto'].' '.$rows['nome_guerra']. ", em ".converter_data($rows['dt_aviso'], 'BR');?>"
+							data-pub_cciex = "<?php echo $pub_cciex;?>"
+							data-pub_icfex = "<?php echo $pub_icfex;?>"
+							data-pub_unidades = "<?php echo $pub_unidades;?>"
 							>
 							<i class="fa fa-search"></i>
 						</button>

@@ -27,23 +27,21 @@ if (isset($_POST['flag']) and isset($_SESSION['cpf'])){
 
 	$titulo	  = isset($_POST['titulo']) ? mysqli_real_escape_string($mysqli, $_POST['titulo']) : "";
 	$texto	  = isset($_POST['texto']) ? mysqli_real_escape_string($mysqli, $_POST['texto']) : "";
+
 	$validade = converter_data($_POST["validade"], 'EN');
 
-	$pub_cciex   = $_POST['pub_cciex'];
-	$pub_icfex   = $_POST['pub_icfex'];
-	$pub_unidade = $_POST['pub_unidade'];
+	$publico = isset($_POST['publico']) ? serialize($_POST['publico']) : "";
 
-	$publico = serialize(array($pub_cciex, $pub_icfex, $pub_unidade));
+	$status   = isset($_POST['status']) ? $_POST['status'] : "Inativo";
 
-	$status      = isset($_POST['status']) ? $_POST['status'] : "Inativo";
-
-	$autor = $cpf;
+	$autor = $cpf;//vem do arquivo de perfil
 
 	$validar = new validaForm();
 
 	$validar->set('Título', $titulo)->is_required()
 			->set('Texto',  $texto)->is_required()
-			->set('Validade',  $validade)->is_required();
+			->set('Validade',  $validade)->is_required()
+			->set('Público-alvo',  $publico)->is_required();
 
 	if ($validar->validate()){
 

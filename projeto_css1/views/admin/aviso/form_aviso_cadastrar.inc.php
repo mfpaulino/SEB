@@ -11,17 +11,17 @@
 						<input class="form-control" type="text" name="titulo"  id="titulo" required autofocus  placeholder="" />
 					</div>
 					<div class="form-group">
-						<label for="texto" class="control-label">*Aviso:</label>
+						<label for="texto" class="control-label">*Texto:</label>
 						<textarea class="form-control" type="text" name="texto"  id="texto" required style="resize: vertical" ></textarea>
 					</div>
 					<div class="form-group">
-						<label>Público alvo:</label><br />
+						<label>*Público alvo:</label><br />
 						<b>CCIEx&nbsp;&nbsp;</b><input name="publico[]" type="checkbox" value="CCIEx" />&nbsp;&nbsp;
 						<b>ICFEx </b></label><input name="publico[]" type="checkbox"  value="ICFEx" />&nbsp;&nbsp;
-						<b>Unidades </b></label><input name="publico[]" type="checkbox"  value="Unidade" />
+						<b>Unidade </b></label><input name="publico[]" type="checkbox"  value="Unidade" />
 					</div>
 					<div class="form-group">
-						<label>Validade:</label>
+						<label>*Validade:</label>
 						<div class="input-group date" id="validade">
 							<div class="input-group-addon">
 								<i class="fa fa-calendar"></i>
@@ -31,7 +31,7 @@
 					</div>
 					<div class="form-group">
 						<label>Habilitar? </label><br />
-						<input name="status" type="checkbox" value="Ativo" />&nbsp;&nbsp;
+						<input name="status" type="checkbox" data-toggle="toggle" data-size="small" data-on="Sim" data-off="Não"  value="Ativo" />&nbsp;&nbsp;
 					</div>
 					<div class="form-group">
 						<!--Hidden input -->

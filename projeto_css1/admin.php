@@ -9,6 +9,7 @@ $pagina = strtr(end(explode('/', $_SERVER['PHP_SELF'])),'?', true);
 
 include_once('config.inc.php');
 include_once(PATH . '/controllers/autenticacao/autentica.inc.php');//autentica e gera todos os dados de usuario
+include_once(PATH . '/componentes/internos/php/funcoes.inc.php');
 
 ?>
 <!DOCTYPE html>
@@ -20,6 +21,7 @@ include_once(PATH . '/controllers/autenticacao/autentica.inc.php');//autentica e
 	<!-- Tell the browser to be responsive to screen width -->
 	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 	<link rel="stylesheet" href="componentes/externos/bootstrap/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" href="componentes/externos/bootstrap/plugins/bootstrap-toggle/css/bootstrap-toggle.min.css">
     <link rel="stylesheet" href="componentes/externos/bootstrap/plugins/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
 	<link rel="stylesheet" href="componentes/externos/bootstrap/plugins/font-awesome/css/font-awesome.min.css">
 	<link rel="stylesheet" href="componentes/externos/bootstrap/plugins/Ionicons/css/ionicons.min.css">
@@ -54,10 +56,10 @@ include_once(PATH . '/controllers/autenticacao/autentica.inc.php');//autentica e
 		</aside>
 		<div class="content-wrapper">
 			<section class="content-header">
-				<h1><small></small></h1>
+				<h1>Administração</h1>
 				<ol class="breadcrumb">
-					<li class="active"><i class="fa fa-home"></i> Home</li>
-					<li></li>
+					<li><a href="index.php"><i class="fa fa-home"></i>Home</a></li>
+					<li class="active">Administração</li>
 				</ol>
 			</section>
 			<section class="content container-fluid">
@@ -107,6 +109,8 @@ include_once(PATH . '/controllers/autenticacao/autentica.inc.php');//autentica e
 					<div class="col-md-6">
 						<?php include_once('views/admin/aviso/view_aviso.inc.php'); ?>
 						<?php include_once('views/admin/aviso/form_aviso_cadastrar.inc.php');?>
+						<?php include_once('views/admin/aviso/form_aviso_alterar.inc.php');?>
+						<?php include_once('views/admin/aviso/view_aviso_relacao.inc.php');?>
 					</div>
 					<!-- categoria/localidades para diarias -->
 					<div class="col-md-3">
@@ -206,6 +210,7 @@ include_once(PATH . '/controllers/autenticacao/autentica.inc.php');//autentica e
 	</div>
 	<script src="componentes/externos/jquery/dist/jquery.min.js"></script>
 	<script src="componentes/externos/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script src="componentes/externos/bootstrap/plugins/bootstrap-toggle/js/bootstrap-toggle.min.js"></script>
 	<script src="componentes/externos/bootstrap/plugins/bootstrap-validator/js/bootstrapValidator.js"></script>
 	<script src="componentes/externos/bootstrap/plugins/bootstrap-confirmation/bootstrap-confirmation.min.js"></script>
 	<script src="componentes/externos/bootstrap/plugins/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
@@ -222,6 +227,7 @@ include_once(PATH . '/controllers/autenticacao/autentica.inc.php');//autentica e
 	<script src="componentes/internos/js/usuario_alterar.js"></script>
 	<script src="componentes/internos/js/modal_editar_perfil.js"></script>
 	<script src="componentes/internos/js/modal_editar_unidade.js"></script>
+	<script src="componentes/internos/js/admin/view_aviso.js"></script>
 	<script src="componentes/internos/js/admin/view_categoria.js"></script>
 	<script src="componentes/internos/js/admin/view_diaria.js"></script>
 	<script src="componentes/internos/js/admin/view_user.js"></script>
@@ -236,7 +242,6 @@ include_once(PATH . '/controllers/autenticacao/autentica.inc.php');//autentica e
 	<script src="componentes/internos/js/admin/form_categoria.js"></script>
 	<script src="componentes/internos/js/admin/form_diaria.js"></script>
 	<script src="componentes/internos/js/admin/form_area.js"></script>
-	<script src="componentes/internos/js/admin/form_aviso.js"></script>
 	<script src="componentes/internos/js/admin/form_subarea.js"></script>
 	<script src="componentes/internos/js/admin/form_questao.js"></script>
 	<script src="componentes/internos/js/admin/form_info_req.js"></script>
