@@ -227,28 +227,18 @@ include_once(PATH . '/componentes/internos/php/funcoes.inc.php');
 	<script src="componentes/internos/js/usuario_alterar.js"></script>
 	<script src="componentes/internos/js/modal_editar_perfil.js"></script>
 	<script src="componentes/internos/js/modal_editar_unidade.js"></script>
-	<script src="componentes/internos/js/admin/view_aviso.js"></script>
-	<script src="componentes/internos/js/admin/view_categoria.js"></script>
-	<script src="componentes/internos/js/admin/view_diaria.js"></script>
-	<script src="componentes/internos/js/admin/view_user.js"></script>
-	<script src="componentes/internos/js/admin/view_area.js"></script>
-	<script src="componentes/internos/js/admin/view_subarea.js"></script>
-	<script src="componentes/internos/js/admin/view_questao.js"></script>
-	<script src="componentes/internos/js/admin/view_info_req.js"></script>
-	<script src="componentes/internos/js/admin/view_poss_achado.js"></script>
-	<script src="componentes/internos/js/admin/view_proc_ana.js"></script>
-	<script src="componentes/internos/js/admin/view_proc_coleta.js"></script>
-	<script src="componentes/internos/js/admin/view_fonte_info.js"></script>
-	<script src="componentes/internos/js/admin/form_categoria.js"></script>
-	<script src="componentes/internos/js/admin/form_diaria.js"></script>
-	<script src="componentes/internos/js/admin/form_area.js"></script>
-	<script src="componentes/internos/js/admin/form_subarea.js"></script>
-	<script src="componentes/internos/js/admin/form_questao.js"></script>
-	<script src="componentes/internos/js/admin/form_info_req.js"></script>
-	<script src="componentes/internos/js/admin/form_poss_achado.js"></script>
-	<script src="componentes/internos/js/admin/form_proc_ana.js"></script>
-	<script src="componentes/internos/js/admin/form_proc_coleta.js"></script>
-	<script src="componentes/internos/js/admin/form_fonte_info.js"></script>
+	<script src="componentes/internos/js/admin/area.js"></script>
+	<script src="componentes/internos/js/admin/aviso.js"></script>
+	<script src="componentes/internos/js/admin/categoria.js"></script>
+	<script src="componentes/internos/js/admin/diaria.js"></script>
+	<script src="componentes/internos/js/admin/fonte_info.js"></script>
+	<script src="componentes/internos/js/admin/info_req.js"></script>
+	<script src="componentes/internos/js/admin/poss_achado.js"></script>
+	<script src="componentes/internos/js/admin/proc_ana.js"></script>
+	<script src="componentes/internos/js/admin/proc_coleta.js"></script>
+	<script src="componentes/internos/js/admin/questao.js"></script>
+	<script src="componentes/internos/js/admin/subarea.js"></script>
+	<script src="componentes/internos/js/admin/user.js"></script>
 	<script>
 		//exibe os titles ao passar o mouse
 		$(document).ready(function(){
