@@ -1,12 +1,13 @@
 <?php
 /***********************************************************************************************************
-* local/script name: ./template.php                                                                        *
+* local/script name: ./documentos.php                                                                        *
 * **********************************************************************************************************/
 $inc = "sim";
 $pagina = strtr(end(explode('/', $_SERVER['PHP_SELF'])),'?', true);
 
 include_once('config.inc.php');
 include_once(PATH . '/controllers/autenticacao/autentica.inc.php');//autentica e gera todos os dados de usuario
+include_once(PATH . '/componentes/internos/php/funcoes.inc.php');
 
 ?>
 <!DOCTYPE html>
@@ -18,7 +19,6 @@ include_once(PATH . '/controllers/autenticacao/autentica.inc.php');//autentica e
 	<!-- Tell the browser to be responsive to screen width -->
 	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 	<link rel="stylesheet" href="componentes/externos/bootstrap/dist/css/bootstrap.min.css">
-	<link rel="stylesheet" href="componentes/externos/bootstrap/plugins/bootstrap-validator/css/bootstrapValidator.min-.css">
 	<link rel="stylesheet" href="componentes/externos/bootstrap/plugins/font-awesome/css/font-awesome.min.css">
 	<link rel="stylesheet" href="componentes/externos/bootstrap/plugins/Ionicons/css/ionicons.min.css">
 	<link rel="stylesheet" href="componentes/externos/bootstrap/plugins/bootstrap-fileinput/css/fileinput.min.css">
@@ -51,10 +51,10 @@ include_once(PATH . '/controllers/autenticacao/autentica.inc.php');//autentica e
 		</aside>
 		<div class="content-wrapper">
 			<section class="content-header">
-				<h1><small></small></h1>
+				<h1>Documentos</h1>
 				<ol class="breadcrumb">
-					<li class="active"><i class="fa fa-home"></i> Home</li>
-					<li></li>
+					<li><a href="index.php"><i class="fa fa-home"></i>Home</a></li>
+					<li class="active">Documentos</li>
 				</ol>
 			</section>
 			<section class="content container-fluid">
@@ -62,13 +62,9 @@ include_once(PATH . '/controllers/autenticacao/autentica.inc.php');//autentica e
 				<?php
 				if (isset($_GET['flag']) and ($_GET['flag'] == md5("usuario_alterar") or $_GET['flag'] == md5("senha_alterar") or $_GET['flag'] == md5("om_alterar") or $_GET['flag'] == md5("logout") )){
 					include_once('controllers/usuario/usuario_alertas_criar.inc.php');
-				}/*
-				else if (isset($_GET['flag']) and ($_GET['flag'] == md5("categoria_cadastrar") or $_GET['flag'] == md5("categoria_alterar") or $_GET['flag'] == md5("categoria_excluir") or $_GET['flag'] == md5("diaria_cadastrar") or $_GET['flag'] == md5("diaria_alterar") or $_GET['flag'] == md5("diaria_excluir") or $_GET['flag'] == md5("user_alterar") or $_GET['flag'] == md5("area_cadastrar") or $_GET['flag'] == md5("area_alterar") or $_GET['flag'] == md5("subarea_cadastrar") or $_GET['flag'] == md5("subarea_alterar"))){
-					include_once('controllers/admin/admin_alertas_criar.inc.php');
-				}*/
+				}
 				else {
 					include_once('controllers/usuario/usuario_alertas_destruir.inc.php');
-					//include_once('controllers/admin/admin_alertas_destruir.inc.php');
 				}
 
 				include_once('views/usuario/view_usuario_perfil.inc.php');
@@ -79,7 +75,6 @@ include_once(PATH . '/controllers/autenticacao/autentica.inc.php');//autentica e
 				include_once('views/usuario/view_usuario_fim_sessao.inc.php');
 
 				include_once('views/usuario/view_usuario_alertas.inc.php');
-				include_once('views/admin/view_admin_alertas.inc.php');
 
 				if(isset($_SESSION['alterar_senha_logout']) or isset($_SESSION['alterar_codom'])){
 					session_destroy();

@@ -28,18 +28,12 @@ unset($_SESSION['erro_cadastro_area']);
 unset($_SESSION['erro_validacao_cadastrar_area']);
 unset($_SESSION['lista_erro_validacao_cadastrar_area']);
 
-//area_vincular
-unset($_SESSION['area_vincular']);
-
 //subarea_cadastrar
 unset($_SESSION['subarea_duplicada']);
 unset($_SESSION['sucesso_cadastro_subarea']);
 unset($_SESSION['erro_cadastro_subarea']);
 unset($_SESSION['erro_validacao_cadastrar_subarea']);
 unset($_SESSION['lista_erro_validacao_cadastrar_subarea']);
-
-//subarea_vincular
-unset($_SESSION['subarea_vincular']);
 
 //questao_cadastrar
 unset($_SESSION['questao_duplicada']);
@@ -83,12 +77,25 @@ unset($_SESSION['erro_cadastro_fonte_info']);
 unset($_SESSION['erro_validacao_cadastrar_fonte_info']);
 unset($_SESSION['lista_erro_validacao_cadastrar_fonte_info']);
 
+//tipo_evento_cadastrar
+unset($_SESSION['tipo_evento_duplicada']);
+unset($_SESSION['sucesso_cadastro_tipo_evento']);
+unset($_SESSION['erro_cadastro_tipo_evento']);
+unset($_SESSION['erro_validacao_cadastrar_tipo_evento']);
+unset($_SESSION['lista_erro_validacao_cadastrar_tipo_evento']);
+
 //aviso_cadastrar
 unset($_SESSION['aviso_duplicada']);
 unset($_SESSION['sucesso_cadastro_aviso']);
 unset($_SESSION['erro_cadastro_aviso']);
 unset($_SESSION['erro_validacao_cadastrar_aviso']);
 unset($_SESSION['lista_erro_validacao_cadastrar_aviso']);
+
+//area_vincular
+unset($_SESSION['area_vincular']);
+
+//subarea_vincular
+unset($_SESSION['subarea_vincular']);
 
 //questao_vincular
 unset($_SESSION['questao_vincular']);
@@ -104,7 +111,6 @@ unset($_SESSION['proc_ana_vincular']);
 
 //proc_coleta_vincular
 unset($_SESSION['proc_coleta_vincular']);
-
 
 //aviso_alterar
 unset($_SESSION['alterar_erro_validacao_aviso']);
@@ -171,6 +177,12 @@ unset($_SESSION['alterar_erro_validacao_fonte_info']);
 unset($_SESSION['alterar_fonte_info']);
 unset($_SESSION['alterar_nada_fonte_info']);
 unset($_SESSION['alterar_lista_erro_validacao_fonte_info']);
+
+//tipo_evento_alterar
+unset($_SESSION['alterar_erro_validacao_tipo_evento']);
+unset($_SESSION['alterar_tipo_evento']);
+unset($_SESSION['alterar_nada_tipo_evento']);
+unset($_SESSION['alterar_lista_erro_validacao_tipo_evento']);
 
 //aviso_alterar
 unset($_SESSION['alterar_erro_validacao_aviso']);

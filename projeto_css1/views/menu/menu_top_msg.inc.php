@@ -1,5 +1,6 @@
 <?php
 if ($inc == "sim"){
+	/****** CORREIO **********************/
 	$con_qtde_correio = $mysqli->query("SELECT COUNT(id) AS qtde_msg FROM correio_recebidos WHERE lida = 'nao' AND pasta = 'entrada' AND destinatario = '$id_usuario'");
 	$row_qtde_correio = $con_qtde_correio->fetch_assoc();
 
@@ -31,11 +32,17 @@ if ($inc == "sim"){
 	else {
 		$assunto =  $row_ultimo_correio['assunto'];
 	}
+	/********** AVISOS ADM *****************************/
+	$con_aviso = $mysqli->query("SELECT id_aviso, titulo, texto, dt_aviso FROM adm_avisos WHERE status = 'Ativo' AND publico like '%$perfil_om%' ORDER BY dt_aviso DESC");
+	$qtde_aviso = $con_aviso->num_rows;
+	$row_aviso = $con_aviso->fetch_assoc();
+
+	/********** ALERTAS DO SISTEMA ********************/
 	?>
 	<div class="navbar-custom-menu">
 		<ul class="nav navbar-nav">
 			<li class="dropdown messages-menu">
-				<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-envelope"></i><span class="label label-default"><?php echo $row_qtde_correio['qtde_msg'];?></span></a>
+				<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-envelope" title="Correios"></i><span class="label label-default"><?php echo $row_qtde_correio['qtde_msg'];?></span></a>
 				<?php if($row_qtde_correio['qtde_msg'] > 0){?>
 					<ul class="dropdown-menu">
 						<li class="header">
@@ -76,7 +83,8 @@ if ($inc == "sim"){
 				<?php } ?>
 			</li>
 			<li class="dropdown notifications-menu">
-				<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-warning"></i><span class="label label-warning">10</span></a>
+				<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-warning" title="Alertas"></i><span class="label label-warning">10</span></a>
+				<!--
 				<ul class="dropdown-menu">
 					<li class="header">You have 10 notifications</li>
 					<li>
@@ -89,28 +97,44 @@ if ($inc == "sim"){
 						</ul>
 					</li>
 					<li class="footer"><a href="#">View all</a></li>
-				</ul>
+				</ul>-->
 			</li>
-			<li class="dropdown tasks-menu">
-				<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell"></i><span class="label label-danger">9</span></a>
-				<ul class="dropdown-menu">
-					<li class="header">You have 9 tasks</li>
+			<li class="dropdown messages-menu">
+				<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell" title="Avisos"></i><span class="label label-danger"><?php echo $qtde_aviso;?></span></a>
+			<?php if($qtde_aviso > 0){?>
+			<ul class="dropdown-menu">
+				<li class="header">
+					<span>
+						<b>
+							Há
+							<?php echo $qtde_aviso;
+							if($qtde_aviso == 1){
+								echo ' Aviso Administrativo.';
+							}
+							else{
+								echo ' Avisos Administrativos.';
+							}
+							?>
+						</b>
+					</span>
+				<li>
 					<li>
 						<ul class="menu">
 							<li>
 								<a href="#">
-									<h3>Design some buttons<small class="pull-right">20%</small></h3>
-									<div class="progress xs">
-										<div class="progress-bar progress-bar-aqua" style="width: 20%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
-											<span class="sr-only">20% Complete</span>
-										</div>
-									</div>
+									<p><b>Aviso mais recente:</b></p>
+									<br />
+									<h4><?php echo $row_aviso['titulo'];?></h4>
+									<p><?php echo nl2br($row_aviso['texto']);?></p>
+									<br />
+									<p><small>(Publicado em <?php echo converter_data($row_aviso['dt_aviso'],'BR', true);?>)</small></p>
 								</a>
 							</li>
 						</ul>
 					</li>
-					<li class="footer"><a href="#">View all tasks</a></li>
-				</ul>
+				<li class="footer"><a href="user.php">Ver todos os avisos</a></li>
+			</ul>
+			<?php } ?>
 			</li>
 		</ul>
 	</div>

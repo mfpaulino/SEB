@@ -104,14 +104,32 @@ if(isset($_POST['flag']) and isset($_SESSION['cpf'])){
 		if($acao == "Habilitar"){
 			$status = "Ativo";
 			$aviso = "habilitado";
+
+			$con_validade = $mysqli->query("SELECT dt_validade FROM adm_avisos WHERE id_aviso = '$id_aviso'");
+			$row_validade = $con_validade->fetch_assoc();
+
+			$dt_atual = strtotime(date("Y-m-d"));
+			$dt_validade = strtotime($row_validade['dt_validade']);
+
+			if($dt_atual > $dt_validade){
+				$validade = date('Y-m-d', strtotime("+10 days"));
+			}
+			else {
+				$validade = $row_validade['dt_validade'];
+			}
+
+			$con_status = $mysqli->prepare("UPDATE adm_avisos SET status = ?, dt_validade = ? WHERE id_aviso = '$id_aviso'");
+			$con_status->bind_param('ss', $status,$validade);
+
 		}
 		else if($acao == "Desabilitar"){
 			$status = "Inativo";
 			$aviso = "desabilitado";
+
+			$con_status = $mysqli->prepare("UPDATE adm_avisos SET status = ? WHERE id_aviso = '$id_aviso'");
+			$con_status->bind_param('s', $status);
 		}
 
-		$con_status = $mysqli->prepare("UPDATE adm_avisos SET status = ? WHERE id_aviso = '$id_aviso'");
-		$con_status->bind_param('s', $status);
 		$resultado = $con_status->execute();
 
 		if($resultado){

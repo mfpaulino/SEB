@@ -8,6 +8,7 @@ $pagina = strtr(end(explode('/', $_SERVER['REQUEST_URI'])),'', true);
 
 include_once('config.inc.php');
 include_once(PATH . '/controllers/autenticacao/autentica.inc.php');
+include_once(PATH . '/componentes/internos/php/funcoes.inc.php');
 
 if(isset($_GET['flag'])){
 

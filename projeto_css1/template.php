@@ -7,6 +7,7 @@ $pagina = strtr(end(explode('/', $_SERVER['PHP_SELF'])),'?', true);
 
 include_once('config.inc.php');
 include_once(PATH . '/controllers/autenticacao/autentica.inc.php');//autentica e gera todos os dados de usuario
+include_once(PATH . '/componentes/internos/php/funcoes.inc.php');
 
 ?>
 <!DOCTYPE html>
@@ -51,10 +52,10 @@ include_once(PATH . '/controllers/autenticacao/autentica.inc.php');//autentica e
 		</aside>
 		<div class="content-wrapper">
 			<section class="content-header">
-				<h1><small></small></h1>
+				<h1>Template</h1>
 				<ol class="breadcrumb">
-					<li class="active"><i class="fa fa-home"></i> Home</li>
-					<li></li>
+					<li><a href="index.php"><i class="fa fa-home"></i>Home</a></li>
+					<li class="active">Template</li>
 				</ol>
 			</section>
 			<section class="content container-fluid">
@@ -62,13 +63,9 @@ include_once(PATH . '/controllers/autenticacao/autentica.inc.php');//autentica e
 				<?php
 				if (isset($_GET['flag']) and ($_GET['flag'] == md5("usuario_alterar") or $_GET['flag'] == md5("senha_alterar") or $_GET['flag'] == md5("om_alterar") or $_GET['flag'] == md5("logout") )){
 					include_once('controllers/usuario/usuario_alertas_criar.inc.php');
-				}/*
-				else if (isset($_GET['flag']) and ($_GET['flag'] == md5("categoria_cadastrar") or $_GET['flag'] == md5("categoria_alterar") or $_GET['flag'] == md5("categoria_excluir") or $_GET['flag'] == md5("diaria_cadastrar") or $_GET['flag'] == md5("diaria_alterar") or $_GET['flag'] == md5("diaria_excluir") or $_GET['flag'] == md5("user_alterar") or $_GET['flag'] == md5("area_cadastrar") or $_GET['flag'] == md5("area_alterar") or $_GET['flag'] == md5("subarea_cadastrar") or $_GET['flag'] == md5("subarea_alterar"))){
-					include_once('controllers/admin/admin_alertas_criar.inc.php');
-				}*/
+				}
 				else {
 					include_once('controllers/usuario/usuario_alertas_destruir.inc.php');
-					//include_once('controllers/admin/admin_alertas_destruir.inc.php');
 				}
 
 				include_once('views/usuario/view_usuario_perfil.inc.php');
@@ -88,42 +85,6 @@ include_once(PATH . '/controllers/autenticacao/autentica.inc.php');//autentica e
 				<!-- conteudo aqui -->
 				<!--
 				<div class="row">
-					<div class="col-md-6">
-						<?php //include_once('views/admin/user/view_user_lista.inc.php'); ?>
-						<?php //include_once('views/admin/user/view_pedido_cadastro_lista.inc.php'); ?>
-						<?php //include_once('views/admin/user/form_user_perfil.inc.php'); ?>
-						<?php //include_once('views/admin/user/view_user_relacao.inc.php');?>
-						<?php //include_once('views/admin/user/view_pedido_cadastro_relacao.inc.php');?>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-md-3">
-						<?php //include_once('views/admin/categoria/view_categoria.inc.php');?>
-						<?php //include_once('views/admin/categoria/form_categoria_cadastrar.inc.php');?>
-						<?php //include_once('views/admin/categoria/form_categoria_alterar.inc.php');?>
-						<?php //include_once('views/admin/categoria/view_categoria_relacao.inc.php');?>
-					</div>
-					<div class="col-md-3">
-						<?php //include_once('views/admin/diaria/view_diaria.inc.php');?>
-						<?php //include_once('views/admin/diaria/form_diaria_cadastrar.inc.php');?>
-						<?php //include_once('views/admin/diaria/form_diaria_alterar.inc.php');?>
-						<?php //include_once('views/admin/diaria/view_diaria_relacao.inc.php');?>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-md-3">
-						<?php //include_once('views/admin/area/view_area.inc.php');?>
-						<?php //include_once('views/admin/area/form_area_cadastrar.inc.php');?>
-						<?php //include_once('views/admin/area/form_area_alterar.inc.php');?>
-						<?php //include_once('views/admin/area/view_area_relacao.inc.php');?>
-					</div>
-					<div class="col-md-3">
-						<?php //include_once('views/admin/subarea/view_subarea.inc.php');?>
-						<?php //include_once('views/admin/subarea/form_subarea_cadastrar.inc.php');?>
-						<?php //include_once('views/admin/subarea/form_subarea_alterar.inc.php');?>
-						<?php //include_once('views/admin/subarea/view_subarea_relacao.inc.php');?>
-						<?php //include_once('views/admin/subarea/view_subarea_relacao1.inc.php');?>
-					</div>
 				</div>-->
 				<!-- fim conteudo -->
 			</section>

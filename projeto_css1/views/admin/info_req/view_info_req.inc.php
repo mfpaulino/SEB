@@ -8,7 +8,7 @@
 				<ul class="dropdown-menu pull-right" role="menu">
 					<li><a href="#" data-toggle="modal" data-target="#modalCadastrarInfoReq">Cadastrar Informação Requerida</a></li>
 					<li class="divider"></li>
-					<li><a href="#" data-toggle="modal" data-target="#modalExibirInfoReq">Exibir Lista</a></li>
+					<li><a href="#" data-toggle="modal" data-target="#modalExibirInfoReq">Listar/Imprimir</a></li>
 				</ul>
 			</div>
 			<button type="button" title="Expandir/Encolher" class="btn bg-teal-gradient btn-sm" data-widget="collapse"><i class="fa fa-plus"></i></button>

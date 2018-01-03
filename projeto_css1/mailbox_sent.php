@@ -8,6 +8,7 @@ $pagina = strtr(end(explode('/', $_SERVER['PHP_SELF'])),'?', true);
 
 include_once('config.inc.php');
 include_once(PATH . '/controllers/autenticacao/autentica.inc.php');
+include_once(PATH . '/componentes/internos/php/funcoes.inc.php');
 
 /**********************************************************************************************
 verifica se tem alguma msg excluida que nao possui correspondente na tabela de recebidos.

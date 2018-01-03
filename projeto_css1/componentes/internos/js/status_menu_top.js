@@ -5,7 +5,7 @@ $(document).ready(function(){
 		$.ajax({
 			url: "status_menu_top_msg.inc.php"
 		}).done(function(resultado){
-			// Exibe o resultado no elemento com ID status_sessao
+			// Exibe o resultado no elemento com ID status_msg
 			$("#status_msg").html(resultado);
 		});
 	};

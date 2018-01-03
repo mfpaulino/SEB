@@ -8,7 +8,7 @@
 				<ul class="dropdown-menu pull-right" role="menu">
 					<li><a href="#" data-toggle="modal" data-target="#modalCadastrarCategoria">Cadastrar Categoria</a></li>
 					<li class="divider"></li>
-					<li><a href="#" data-toggle="modal" data-target="#modalExibirCategoria">Exibir Lista</a></li>
+					<li><a href="#" data-toggle="modal" data-target="#modalExibirCategoria">Listar/Imprimir</a></li>
 				</ul>
 			</div>
 			<button type="button" title="Expandir/Encolher" class="btn bg-blue-gradient btn-sm" data-widget="collapse"><i class="fa fa-plus"></i></button>

@@ -68,14 +68,13 @@ include_once(PATH . '/componentes/internos/php/funcoes.inc.php');
 				if (isset($_GET['flag']) and ($_GET['flag'] == md5("usuario_alterar") or $_GET['flag'] == md5("senha_alterar") or $_GET['flag'] == md5("om_alterar") or $_GET['flag'] == md5("logout") )){
 					include_once('controllers/usuario/usuario_alertas_criar.inc.php');
 				}
-				else if (isset($_GET['flag']) and ($_GET['flag'] == md5("categoria_cadastrar") or $_GET['flag'] == md5("categoria_alterar") or $_GET['flag'] == md5("categoria_excluir") or $_GET['flag'] == md5("diaria_cadastrar") or $_GET['flag'] == md5("diaria_alterar") or $_GET['flag'] == md5("diaria_excluir") or $_GET['flag'] == md5("user_alterar") or $_GET['flag'] == md5("area_cadastrar") or $_GET['flag'] == md5("area_alterar") or $_GET['flag'] == md5("area_vincular") or $_GET['flag'] == md5("subarea_cadastrar") or $_GET['flag'] == md5("subarea_alterar") or $_GET['flag'] == md5("subarea_vincular") or $_GET['flag'] == md5("questao_cadastrar") or $_GET['flag'] == md5("questao_alterar") or $_GET['flag'] == md5("questao_vincular") or $_GET['flag'] == md5("info_req_cadastrar") or $_GET['flag'] == md5("info_req_alterar") or $_GET['flag'] == md5("info_req_vincular") or $_GET['flag'] == md5("poss_achado_cadastrar") or $_GET['flag'] == md5("poss_achado_alterar") or $_GET['flag'] == md5("poss_achado_vincular") or $_GET['flag'] == md5("proc_ana_cadastrar") or $_GET['flag'] == md5("proc_ana_alterar") or $_GET['flag'] == md5("proc_ana_vincular") or $_GET['flag'] == md5("proc_coleta_cadastrar") or $_GET['flag'] == md5("proc_coleta_alterar") or $_GET['flag'] == md5("proc_coleta_vincular") or $_GET['flag'] == md5("fonte_info_cadastrar") or $_GET['flag'] == md5("fonte_info_alterar") or $_GET['flag'] == md5("aviso_cadastrar") or $_GET['flag'] == md5("aviso_alterar") )){
+				else if (isset($_GET['flag']) and ($_GET['flag'] == md5("categoria_cadastrar") or $_GET['flag'] == md5("categoria_alterar") or $_GET['flag'] == md5("categoria_excluir") or $_GET['flag'] == md5("diaria_cadastrar") or $_GET['flag'] == md5("diaria_alterar") or $_GET['flag'] == md5("diaria_excluir") or $_GET['flag'] == md5("user_alterar") or $_GET['flag'] == md5("area_cadastrar") or $_GET['flag'] == md5("area_alterar") or $_GET['flag'] == md5("area_vincular") or $_GET['flag'] == md5("subarea_cadastrar") or $_GET['flag'] == md5("subarea_alterar") or $_GET['flag'] == md5("subarea_vincular") or $_GET['flag'] == md5("questao_cadastrar") or $_GET['flag'] == md5("questao_alterar") or $_GET['flag'] == md5("questao_vincular") or $_GET['flag'] == md5("info_req_cadastrar") or $_GET['flag'] == md5("info_req_alterar") or $_GET['flag'] == md5("info_req_vincular") or $_GET['flag'] == md5("poss_achado_cadastrar") or $_GET['flag'] == md5("poss_achado_alterar") or $_GET['flag'] == md5("poss_achado_vincular") or $_GET['flag'] == md5("proc_ana_cadastrar") or $_GET['flag'] == md5("proc_ana_alterar") or $_GET['flag'] == md5("proc_ana_vincular") or $_GET['flag'] == md5("proc_coleta_cadastrar") or $_GET['flag'] == md5("proc_coleta_alterar") or $_GET['flag'] == md5("proc_coleta_vincular") or $_GET['flag'] == md5("fonte_info_cadastrar") or $_GET['flag'] == md5("fonte_info_alterar") or $_GET['flag'] == md5("tipo_evento_cadastrar") or $_GET['flag'] == md5("tipo_evento_alterar") or $_GET['flag'] == md5("aviso_cadastrar") or $_GET['flag'] == md5("aviso_alterar") )){
 					include_once('controllers/admin/admin_alertas_criar.inc.php');
 				}
 				else {
 					include_once('controllers/usuario/usuario_alertas_destruir.inc.php');
 					include_once('controllers/admin/admin_alertas_destruir.inc.php');
 				}
-
 				include_once('views/usuario/view_usuario_perfil.inc.php');
 				include_once('views/usuario/form_usuario_alterar.inc.php');
 				include_once('views/usuario/form_senha_alterar.inc.php');
@@ -157,13 +156,6 @@ include_once(PATH . '/componentes/internos/php/funcoes.inc.php');
 						<?php include_once('views/admin/questao/form_questao_vincular_proc_coleta.inc.php');?>
 						<?php include_once('views/admin/questao/view_questao_relacao.inc.php');?>
 					</div>
-					<!-- fontes de informação -->
-					<div class="col-md-3">
-						<?php include_once('views/admin/fonte_info/view_fonte_info.inc.php');?>
-						<?php include_once('views/admin/fonte_info/form_fonte_info_cadastrar.inc.php');?>
-						<?php include_once('views/admin/fonte_info/form_fonte_info_alterar.inc.php');?>
-						<?php include_once('views/admin/fonte_info/view_fonte_info_relacao.inc.php');?>
-					</div>
 				</div>
 				<div class="row">
 					<!-- informações requeridas -->
@@ -197,6 +189,22 @@ include_once(PATH . '/componentes/internos/php/funcoes.inc.php');
 						<?php include_once('views/admin/proc_coleta/form_proc_coleta_alterar.inc.php');?>
 						<?php include_once('views/admin/proc_coleta/form_proc_coleta_vincular_questao.inc.php');?>
 						<?php include_once('views/admin/proc_coleta/view_proc_coleta_relacao.inc.php');?>
+					</div>
+				</div>
+				<div class="row">
+					<!-- Tipos de Auditoria -->
+					<div class="col-md-3">
+						<?php include_once('views/admin/tipo_evento/view_tipo_evento.inc.php');?>
+						<?php include_once('views/admin/tipo_evento/form_tipo_evento_cadastrar.inc.php');?>
+						<?php include_once('views/admin/tipo_evento/form_tipo_evento_alterar.inc.php');?>
+						<?php include_once('views/admin/tipo_evento/view_tipo_evento_relacao.inc.php');?>
+					</div>
+					<!-- fontes de informação -->
+					<div class="col-md-3">
+						<?php include_once('views/admin/fonte_info/view_fonte_info.inc.php');?>
+						<?php include_once('views/admin/fonte_info/form_fonte_info_cadastrar.inc.php');?>
+						<?php include_once('views/admin/fonte_info/form_fonte_info_alterar.inc.php');?>
+						<?php include_once('views/admin/fonte_info/view_fonte_info_relacao.inc.php');?>
 					</div>
 				</div>
 				<!-- fim conteudo -->
@@ -238,6 +246,7 @@ include_once(PATH . '/componentes/internos/php/funcoes.inc.php');
 	<script src="componentes/internos/js/admin/proc_coleta.js"></script>
 	<script src="componentes/internos/js/admin/questao.js"></script>
 	<script src="componentes/internos/js/admin/subarea.js"></script>
+	<script src="componentes/internos/js/admin/tipo_evento.js"></script>
 	<script src="componentes/internos/js/admin/user.js"></script>
 	<script>
 		//exibe os titles ao passar o mouse

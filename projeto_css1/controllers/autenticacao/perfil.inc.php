@@ -41,5 +41,16 @@ $row = $con_om->fetch_assoc();
 
 $sigla_usuario = $row['sigla'];
 $denominacao_usuario = $row['denominacao'];
+
+/********* perfil da OM do usuario (cciex, icfex, om) ****/
+if(strpos($row['sigla'],'CCIEx') !== FALSE){
+	$perfil_om = 'CCIEx';
+}
+else if(strpos($row['sigla'],'ICFEx') !== FALSE){
+	$perfil_om = 'ICFEx';
+}
+else {
+	$perfil_om = 'Unidade';
+}
 /**********************************/
 ?>

@@ -12,7 +12,7 @@ $con_avisos = $mysqli->query($sql);
 				<button type="button" title="Exibir Menu" class="btn bg-blue-gradient btn-sm dropdown-toggle" data-toggle="dropdown"><i class="fa fa-caret-down fa-lg"></i></button>
 				<ul class="dropdown-menu pull-right" role="menu">
 					<li><a href="#" data-toggle="modal" data-target="#modalCadastrarAviso">Cadastrar Aviso</a></li>
-					<li><a href="#" data-toggle="modal" data-target="#modalExibirAviso">Impressão</a></li>
+					<li><a href="#" data-toggle="modal" data-target="#modalExibirAviso">Listar/Imprimir</a></li>
 				</ul>
 			</div>
 			<button type="button" title="Expandir/Encolher" class="btn bg-blue-gradient btn-sm" data-widget="collapse"><i class="fa fa-plus"></i></button>

@@ -400,6 +400,35 @@ if ($inc == "sim"){
 			unset($_SESSION['alterar_lista_erro_validacao_fonte_info']);
 		}
 
+		if($flag == md5("tipo_evento_cadastrar")){
+
+			$msg0 = $_SESSION['erro_validacao_cadastrar_tipo_evento'];
+			$msg1 = $_SESSION['sucesso_cadastro_tipo_evento'];
+			$msg2 = $_SESSION['tipo_evento_duplicada'];
+			$msg4 = $_SESSION['erro_cadastro_tipo_evento'];
+			$lista_erro_validacao = $_SESSION['lista_erro_validacao_cadastrar_tipo_evento'];
+		}
+		else {
+			unset($_SESSION['erro_validacao_cadastrar_tipo_evento']);
+			unset($_SESSION['sucesso_cadastro_tipo_evento']);
+			unset($_SESSION['tipo_evento_duplicada']);
+			unset($_SESSION['erro_cadastro_tipo_evento']);
+			unset($_SESSION['lista_erro_validacao_cadastrar_tipo_evento']);
+		}
+
+		if($flag == md5("tipo_evento_alterar")){
+			$msg0 = $_SESSION['alterar_erro_validacao_tipo_evento'];
+			$msg1 = $_SESSION['alterar_tipo_evento'];
+			$msg2 = $_SESSION['alterar_nada_tipo_evento'];
+			$lista_erro_validacao = $_SESSION['alterar_lista_erro_validacao_tipo_evento'];
+		}
+		else {
+			unset($_SESSION['alterar_erro_validacao_tipo_evento']);
+			unset($_SESSION['alterar_tipo_evento']);
+			unset($_SESSION['alterar_nada_tipo_evento']);
+			unset($_SESSION['alterar_lista_erro_validacao_tipo_evento']);
+		}
+
 		if($flag == md5("aviso_cadastrar")){
 
 			$msg0 = $_SESSION['erro_validacao_cadastrar_aviso'];
