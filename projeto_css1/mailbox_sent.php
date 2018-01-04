@@ -110,13 +110,8 @@ $proximo = $pag +1;
 				}
 
 				include_once('views/correio/view_correio_alertas.inc.php');
-				include_once('views/usuario/view_usuario_perfil.inc.php');
-				include_once('views/usuario/form_usuario_alterar.inc.php');
-				include_once('views/usuario/form_senha_alterar.inc.php');
-				include_once('views/usuario/form_unidade_alterar.inc.php');
-				include_once('views/usuario/view_usuario_alerta_sessao.inc.php');
-				include_once('views/usuario/view_usuario_fim_sessao.inc.php');
-				include_once('views/usuario/view_usuario_alertas.inc.php');
+
+				include_once('user_modais.inc.php');//modais do menu à direita
 
 				if(isset($_SESSION['alterar_senha_logout']) or isset($_SESSION['alterar_codom'])){
 					session_destroy();

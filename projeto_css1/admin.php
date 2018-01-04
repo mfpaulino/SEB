@@ -63,7 +63,6 @@ include_once(PATH . '/componentes/internos/php/funcoes.inc.php');
 				</ol>
 			</section>
 			<section class="content container-fluid">
-
 				<?php
 				if (isset($_GET['flag']) and ($_GET['flag'] == md5("usuario_alterar") or $_GET['flag'] == md5("senha_alterar") or $_GET['flag'] == md5("om_alterar") or $_GET['flag'] == md5("logout") )){
 					include_once('controllers/usuario/usuario_alertas_criar.inc.php');
@@ -75,15 +74,10 @@ include_once(PATH . '/componentes/internos/php/funcoes.inc.php');
 					include_once('controllers/usuario/usuario_alertas_destruir.inc.php');
 					include_once('controllers/admin/admin_alertas_destruir.inc.php');
 				}
-				include_once('views/usuario/view_usuario_perfil.inc.php');
-				include_once('views/usuario/form_usuario_alterar.inc.php');
-				include_once('views/usuario/form_senha_alterar.inc.php');
-				include_once('views/usuario/form_unidade_alterar.inc.php');
-				include_once('views/usuario/view_usuario_alerta_sessao.inc.php');
-				include_once('views/usuario/view_usuario_fim_sessao.inc.php');
 
-				include_once('views/usuario/view_usuario_alertas.inc.php');
 				include_once('views/admin/view_admin_alertas.inc.php');
+
+				include_once('user_modais.inc.php');//modais do menu à direita
 
 				if(isset($_SESSION['alterar_senha_logout']) or isset($_SESSION['alterar_codom'])){
 					session_destroy();

@@ -15,6 +15,7 @@ include_once('config.inc.php');
 include_once(PATH . '/controllers/autenticacao/autentica.inc.php');//autentica e gera todos os dados de usuario
 include_once(PATH . '/controllers/admin/aviso/aviso_alterar_status.inc.php');//verifica a validade dos avisos publicados e inativa os vencidos.
 
+				//include_once('includes.inc.php');
 include_once(PATH . '/componentes/internos/php/funcoes.inc.php');
 
 $pagina_lock = str_replace('user.php?flag='.md5(date('d-m-Y')),'',strtr(end(explode('/', $_SERVER['REQUEST_URI'])),'', true));
@@ -113,15 +114,9 @@ if(isset($_GET['flag'])){//vem da tela de bloqueio
 					include_once('controllers/usuario/usuario_alertas_destruir.inc.php');
 				}
 
-				include_once('controllers/admin/aviso/aviso_home.inc.php');
+				include_once('controllers/admin/aviso/aviso_home.inc.php');//lista de avisos
 
-				include_once('views/usuario/view_usuario_perfil.inc.php');
-				include_once('views/usuario/form_usuario_alterar.inc.php');
-				include_once('views/usuario/form_senha_alterar.inc.php');
-				include_once('views/usuario/form_unidade_alterar.inc.php');
-				include_once('views/usuario/view_usuario_alerta_sessao.inc.php');
-				include_once('views/usuario/view_usuario_fim_sessao.inc.php');
-				include_once('views/usuario/view_usuario_alertas.inc.php');
+				include_once('user_modais.inc.php');//modais do menu à direita
 
 				if(isset($_SESSION['alterar_senha_logout']) or isset($_SESSION['alterar_codom'])){
 					session_destroy();

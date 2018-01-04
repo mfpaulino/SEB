@@ -95,13 +95,7 @@ switch ($status_usuario){
 							 include_once('controllers/usuario/usuario_alertas_destruir.inc.php');
 						}
 
-						include_once('views/usuario/view_usuario_perfil.inc.php');
-						include_once('views/usuario/form_usuario_alterar.inc.php');
-						include_once('views/usuario/form_unidade_alterar.inc.php');
-						include_once('views/usuario/form_senha_alterar.inc.php');
-						include_once('views/usuario/view_usuario_alerta_sessao.inc.php');
-						include_once('views/usuario/view_usuario_fim_sessao.inc.php');
-						include_once('views/usuario/view_usuario_alertas.inc.php');
+						include_once('user_modais.inc.php');//modais do menu à direita
 
 						if(isset($_SESSION['alterar_senha_logout'])){
 							session_destroy();//termina a sessao se alterar a senha

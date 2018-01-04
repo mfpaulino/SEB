@@ -39,12 +39,14 @@ if ($inc == "sim"){?>
 		<div class="tab-pane active" id="control-sidebar-settings-tab">
 			<h3 class="control-sidebar-heading">Perfil do Usuário</h3>
 			<div class="form-group">
+				<p>O usuário poderá visualizar e/ou alterar as informações do seu perfil clicando nos links abaixo.</p>
+				<br />
 				<label class="control-sidebar-subheading">
-					<a href="#" data-tooltip="tooltip" title="Exibir Perfil" data-toggle="modal" data-target="#modalVisualizar<?php echo $cpf; ?>">Exibir</a>
+					<a href="#" data-tooltip="tooltip" title="Exibir" data-toggle="modal" data-target="#modalVisualizar<?php echo $cpf; ?>"><i class="fa fa-search"></i> Dados pessoais</a>
 				</label>
 				<label class="control-sidebar-subheading">
 					<a href="#" data-toggle="modal" data-target="#modalEditar"
-					data-tooltip="tooltip" title="Editar Perfil"
+					data-tooltip="tooltip" title="Editar"
 					data-toggle="modal"
 					data-target="#modalEditar"
 					data-cpf="<?php echo $cpf; ?>"
@@ -59,22 +61,21 @@ if ($inc == "sim"){?>
 					data-id_perfil="<?php echo $id_perfil_usuario; ?>"
 					data-perfil="<?php echo $perfil_usuario; ?>"
 					data-unidade="<?php echo $sigla_usuario; ?>">
-
-					Editar
+					<i class="fa fa-pencil-square-o"></i>
+					Dados pessoais
 					</a>
 				</label>
 				<label class="control-sidebar-subheading">
-					<a href="#" data-tooltip="tooltip" title="O usuário deverá realizar novo login após alteração da senha!" data-toggle="modal" data-target="#modalTrocarSenha">Alterar senha</a>
+					<a href="#" data-tooltip="tooltip" title="Alterar (O usuário deverá realizar novo login após alteração da senha!)" data-toggle="modal" data-target="#modalTrocarSenha"><i class="fa fa-pencil-square-o"></i> Senha</a>
 				</label>
 				<label class="control-sidebar-subheading">
-					<a href="#" data-tooltip="tooltip" title="O usuário será desabilitado na Unidade atual e ficará aguardando habilitação na nova Unidade!" data-toggle="modal" data-target="#modalTrocarUnidade" data-unidade="<?php echo $sigla_usuario; ?>">
-					Alterar Unidade
+					<a href="#" data-tooltip="tooltip" title="Alterar (O usuário será desabilitado na Unidade atual e ficará aguardando habilitação na nova Unidade!)" data-toggle="modal" data-target="#modalTrocarUnidade" data-unidade="<?php echo $sigla_usuario; ?>">
+					<i class="fa fa-pencil-square-o"></i> Unidade
 					</a>
 				</label>
-				<br />
-				<p>
-					O usuário poderá visualizar e/ou alterar as informações do seu perfil clicando nos links acima.
-				</p>
+				<label class="control-sidebar-subheading">
+					<a href="#" data-tooltip="tooltip" title="Cadastrar" data-toggle="modal" data-target="#modalHabilitacao"><i class="fa fa-plus-square"></i> Habilitações</a>
+				</label>
 			</div>
 		</div>
 	</div>
