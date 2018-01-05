@@ -1,12 +1,11 @@
 <?php
 /**************************************************************
-* Local/nome do script: usuario/cadastra.php
+* Local/nome do script: usuario/habilitacao_cadastrar.php
 * Só executa se for chamado pelo formulario, senão chama o script de "acesso negado"
 * primeiramente destroi as variaveis de sessao de alertas de usuario
 * Recebe todos os dados do formulario de cadastro de usuario
 * Trata os valores recebidos com o método mysqli: mysqli_real_escape_string
 * Usa a classe validaForm para fazer a validação dos dados
-* Consulta o BD em busca de CPF e email para evitar duplicidade
 * Em caso de erros, cria variaveis de sessão com mensagens de alertas que serão utilizadas
 * pelo script usuario/alertas.inc.php(incluido pelo index.php)
 * Em caso de tudo certo, grava no BD
@@ -23,16 +22,11 @@ if (isset($_POST['flag'])){
 	require_once(PATH . '/componentes/internos/php/validaForm.class.php');
 	require_once(PATH . '/componentes/internos/php/funcoes.inc.php');
 
-	$cpf 		 = isset($_POST['cpf']) ? mysqli_real_escape_string($mysqli, $_POST['cpf']) : "";
-	$senha 		 = isset($_POST['senha'])  ? mysqli_real_escape_string($mysqli, $_POST['senha']) : "";
-	$senha1 	 = isset($_POST['senha1']) ? mysqli_real_escape_string($mysqli, $_POST['senha1']) : "";
-	$rg 		 = isset($_POST['rg']) ? mysqli_real_escape_string($mysqli, $_POST['rg']) : "";
-	$nome_guerra = isset($_POST['nome_guerra']) ? mysqli_real_escape_string($mysqli, formata_nome($_POST['nome_guerra'])) : "";
-	$posto 		 = isset($_POST['posto']) ? mysqli_real_escape_string($mysqli, $_POST['posto']) : "";
-	$nome 		 = isset($_POST['nome']) ? mysqli_real_escape_string($mysqli, formata_nome($_POST['nome'])) : "";
-	$email 		 = isset($_POST['email']) ? mysqli_real_escape_string($mysqli, $_POST['email']) : "";
-	$codom 		 = isset($_POST['codom']) ? mysqli_real_escape_string($mysqli, $_POST['codom']) : "";
-	$perfil		 = isset($_POST['perfil']) ? mysqli_real_escape_string($mysqli, $_POST['perfil']) : "";
+	$area 		   = isset($_POST['area'])  ? mysqli_real_escape_string($mysqli, $_POST['area']) : "";
+	$tipo 	 	   = isset($_POST['tipo']) ? mysqli_real_escape_string($mysqli, $_POST['tipo']) : "";
+	$descricao 	   = isset($_POST['descricao']) ? mysqli_real_escape_string($mysqli, $_POST['descricao']) : "";
+	$carga_horaria = isset($_POST['carga_horaria']) ? mysqli_real_escape_string($mysqli, formata_nome($_POST['carga_horaria'])) : "";
+	$ano_conclusao = isset($_POST['ano_conclusao']) ? mysqli_real_escape_string($mysqli, $_POST['ano_conclusao']) : "";
 
 	$validar = new validaForm();
 
@@ -43,7 +37,7 @@ if (isset($_POST['flag'])){
 			->set('Nome', 			$nome)->is_required()
 			->set('Nome de guerra', $nome_guerra)->is_required()
 			->set('E-mail',			$email)->is_email()
-			//->set('RITEx', 		$ritex)->is_num()
+			//->set('RITEx', 			$ritex)->is_num()
 			//->set('Celular', 		$celular)->is_num()
 			->set('Unidade', 		$codom)->is_required()
 			->set('Perfil', 		$perfil)->is_required();

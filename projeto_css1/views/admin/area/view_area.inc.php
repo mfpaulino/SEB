@@ -20,7 +20,7 @@
 	<div class="box-footer text-black" style="border:1px solid black;">
 		<div class="row">
 			<div class="col-sm-12">
-				<form name="form_area" id="form_area" class="form-horizontal" method="POST" action="controllers/admin/area/area_alterar.php">
+				<form id="form_area" class="form-horizontal" method="POST" action="controllers/admin/area/area_alterar.php">
 					<div class="box-body">
 						<?php include('listas/admin/select_area.inc.php');?>
 					</div>

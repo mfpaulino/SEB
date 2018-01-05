@@ -39,8 +39,8 @@ $(function(){
 	$('#btnAlteraArea').attr('disabled', 'disabled');
 	$('#btnAreaVinculaSubarea').attr('disabled', 'disabled');
 	$('#btnExcluiArea').attr('disabled', 'disabled');
-	$('#area').change(function(){
-		if($('#area').val() != ""){
+	$('#area',$('#form_area')).change(function(){//pega apenas o valor do campo 'area' do form 'form_area' (usei assim, pois o campo 'area' tb é usado em outro form)
+		if($('#area',$('#form_area')).val() != ""){
 		   $('#btnAlteraArea').removeAttr('disabled');
 		   $('#btnAreaVinculaSubarea').removeAttr('disabled');
 		   $('#btnExcluiArea').removeAttr('disabled');

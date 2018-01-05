@@ -16,24 +16,35 @@
 									<?php include_once('listas/admin/select_area.inc.php');?>
 								</div>
 							</div>
-							<!-- RG input-->
+							<!-- input radio-->
 							<div class="col-sm-6">
 								<div class="form-group">
 									<label for="tipo">Tipo de Habilitação*</label>
-									<select class="form-control selectpicker" data-size="10" name="tipo" id="tipo">
-										<option value = "">Selecione o tipo de habilitação...</option>
-										<option value = "Curso">Curso</option>
-										<option value = "Estágio">Estágio</option>
-										<option value = "Experiência">Experiência</option>
-									</select>
+									<!--<div class="radio">
+                                    <label>
+                                        <input type="radio" name="tipo" value="Curso" checked /> Curso
+                                    </label>
+                                    <label>
+                                        <input type="radio" name="tipo" value="Estágio"  /> Estágio
+                                    </label>
+                                    <label>
+                                        <input type="radio" name="tipo" value="Experiência"  /> Experiência
+                                    </label>
+									</div>-->
+                                    <select class="form-control selectpicker" name="tipo" id="tipo" required  />
+										<option value="">Selecione o tipo de habiiltação...</option>
+										<option value="Curso">Curso</option>
+										<option value="Estágio">Estágio</option>
+										<option value="Experiência">Experiência</option>
+                                    </select>
 								</div>
 							</div>
 						</div>
 						<div class="row">
-							<!-- Select input-->
+							<!-- Text area-->
 							<div class="col-sm-12">
 								<div class="form-group">
-									<label for="texto" class="control-label">*Descrição:</label>
+									<label for="descricao" class="control-label">Descrição*</label>
 									<textarea class="form-control" type="text" name="descricao"  id="descricao" required style="resize: vertical" ></textarea>
 								</div>
 							</div>
@@ -41,16 +52,20 @@
 						<div class="row">
 							<!-- Text input-->
 							<div class="col-sm-6">
-								<div class="form-group">
-									<label for="carga_horaria">Carga-horária</label>
-									<input name="carga_horaria" id="carga_horaria" type="text" class="form-control"  />
+								<div id="div_carga_horaria">
+									<div class="form-group">
+										<label for="carga_horaria" id="label_carga_horaria">Carga-horária*</label>
+										<input name="carga_horaria" id="carga_horaria" type="text" required class="form-control"  />
+									</div>
 								</div>
 							</div>
 							<!-- Text input-->
 							<div class="col-sm-6">
-								<div class="form-group">
-									<label for="ano_conclusao">Ano de conclusão</label>
-									<input name="ano_conclusao" id="ano_conclusao" type="text" class="form-control" />
+								<div id="div_ano_conclusao">
+									<div class="form-group">
+										<label for="ano_conclusao" id="label_ano_conclusao">Ano de conclusão*</label>
+										<input name="ano_conclusao" id="ano_conclusao" type="text" required  class="form-control" />
+									</div>
 								</div>
 							</div>
 						</div>
