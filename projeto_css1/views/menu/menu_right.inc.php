@@ -76,6 +76,9 @@ if ($inc == "sim"){?>
 				<label class="control-sidebar-subheading">
 					<a href="#" data-tooltip="tooltip" title="Cadastrar" data-toggle="modal" data-target="#modalHabilitacao"><i class="fa fa-plus-square"></i> Habilitações</a>
 				</label>
+				<label class="control-sidebar-subheading">
+					<a href="user_habilitacao.php" data-tooltip="tooltip" title="Visualizar" ><i class="fa fa-search"></i> Habilitações</a>
+				</label>
 			</div>
 		</div>
 	</div>

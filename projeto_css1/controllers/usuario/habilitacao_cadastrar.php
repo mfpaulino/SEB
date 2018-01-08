@@ -16,96 +16,60 @@ session_start();
 $inc = "sim";
 include_once('../../config.inc.php');
 
-if (isset($_POST['flag'])){
+if (isset($_POST['flag']) and isset($_SESSION['cpf'])){
 
-	require_once(PATH . '/componentes/internos/php/bcript.inc.php');
+	require_once(PATH . '/controllers/autenticacao/autentica.inc.php');
 	require_once(PATH . '/componentes/internos/php/validaForm.class.php');
-	require_once(PATH . '/componentes/internos/php/funcoes.inc.php');
+
+	$pagina 	 = $_POST['flag1'];
 
 	$area 		   = isset($_POST['area'])  ? mysqli_real_escape_string($mysqli, $_POST['area']) : "";
 	$tipo 	 	   = isset($_POST['tipo']) ? mysqli_real_escape_string($mysqli, $_POST['tipo']) : "";
 	$descricao 	   = isset($_POST['descricao']) ? mysqli_real_escape_string($mysqli, $_POST['descricao']) : "";
-	$carga_horaria = isset($_POST['carga_horaria']) ? mysqli_real_escape_string($mysqli, formata_nome($_POST['carga_horaria'])) : "";
+	$carga_horaria = isset($_POST['carga_horaria']) ? mysqli_real_escape_string($mysqli, $_POST['carga_horaria']) : "";
 	$ano_conclusao = isset($_POST['ano_conclusao']) ? mysqli_real_escape_string($mysqli, $_POST['ano_conclusao']) : "";
 
 	$validar = new validaForm();
 
-	$validar->set('CPF', 			$cpf)->is_cpf()
-			->set('Senha', 			$senha)->is_not_equals($cpf, true,"CPF")->min_length(8)->is_equals($senha1, true, "Confirmação da senha")
-			->set('RG', 			$rg)->is_required()->is_num()
-			->set('Posto', 			$posto)->is_required()
-			->set('Nome', 			$nome)->is_required()
-			->set('Nome de guerra', $nome_guerra)->is_required()
-			->set('E-mail',			$email)->is_email()
-			//->set('RITEx', 			$ritex)->is_num()
-			//->set('Celular', 		$celular)->is_num()
-			->set('Unidade', 		$codom)->is_required()
-			->set('Perfil', 		$perfil)->is_required();
+	if($tipo == "Experiência"){
+		$validar->set('Área', 		$area)->is_required()
+			->set('Tipo', 			$tipo)->is_required()
+			->set('Descrição', 		$descricao)->is_required();
+	}
+	else{
+		$ano2 = date('Y');
+		$ano1 = $ano2 - 19;
 
+		$validar->set('Área', 		$area)->is_required()
+			->set('Tipo', 			$tipo)->is_required()
+			->set('Descrição', 		$descricao)->is_required()
+			->set('Carga-horária', 	$carga_horaria)->is_required()
+			->set('Ano de conclusão',  $ano_conclusao)->is_required()->between_values($ano1, $ano2);//aceita cursos dos ultimos 20 anos
+	}
 
 	if ($validar->validate()){
 
-		$busca_cpf = $mysqli->query("SELECT id_usuario FROM usuarios WHERE cpf = '$cpf'");
-
-		if($busca_cpf->num_rows == 1){
-
-			$_SESSION['duplo_cpf'] = "ERRO U-01: CPF já existe!";
-			$_SESSION['botao'] = "danger";
-
-			$validacao = false;
-		}
-
-		$busca_email = $mysqli->query("SELECT id_usuario FROM usuarios WHERE email = '$email'");
-
-		if($busca_email->num_rows == 1){
-
-			$_SESSION['duplo_email'] = "ERRO U-02: e-mail já foi cadastrado para outro usuário!";
-			$_SESSION['botao'] = "danger";
-
-			$validacao = false;
-		}
-
-		if($validacao !== false){
-
-			if ($_FILES['avatar']['name'] <> ''){
-
-			  $ext = strtolower(substr($_FILES['avatar']['name'],-4)); //Pegando extensão do arquivo
-			  $avatar = $cpf . $ext; //Definindo um novo nome para o arquivo
-			  $dir = PATH . '/views/avatar/'; //Diretório para uploads
-
-			  move_uploaded_file($_FILES['avatar']['tmp_name'], $dir.$avatar); //Fazer upload do arquivo
-		    }
-		    else {
-				$avatar = "default_avatar.jpg";
-			}
-
-			$senha_criptografada = Bcrypt::hash($senha);
-
-			$dt_cad = date('Y-m-d');
-
-			$resultado = $mysqli->query("INSERT INTO usuarios (cpf, senha, rg, nome_guerra, nome, email, ritex, celular, avatar, dt_cad, id_posto, codom, id_perfil,status) VALUES ('$cpf', '$senha_criptografada', '$rg', '$nome_guerra', '$nome', '$email', '$ritex', '$celular', '$avatar', '$dt_cad','$posto', '$codom', '$perfil', 'Recebido')");
+			$resultado = $mysqli->query("INSERT INTO usuarios_habilitacao (cpf, id_area, tipo, descricao, carga_horaria, ano_conclusao) VALUES ('$cpf', '$area', '$tipo', '$descricao', '$carga_horaria', '$ano_conclusao')");
 
 			if($resultado){
 
-				$_SESSION['sucesso_cadastro'] = "Cadastro realizado com sucesso!";
+				$_SESSION['sucesso_cadastro_habilitacao'] = "Cadastro realizado com sucesso!";
 				$_SESSION['botao'] = "success";
 			}
 			else{
 
-				$_SESSION['erro_cadastro'] = "ERRO U-03: cadastro não realizado, tente novamente!<br />Em caso de persistir o erro, entrar em contato com o suporte técnico.";
+				$_SESSION['erro_cadastro_habilitacao'] = "ERRO U-03: cadastro não realizado, tente novamente!<br />Em caso de persistir o erro, entrar em contato com o suporte técnico.";
 				$_SESSION['botao'] = "danger";
 			}
-
-		}
 	}
 	else {
-		$_SESSION['erro_validacao_cadastrar'] = "ERRO U-04: dados inconsistentes, preencha novamente o formulário!";
+		$_SESSION['erro_validacao_cadastrar_habilitacao'] = "ERRO U-04: dados inconsistentes, preencha novamente o formulário!";
 		$_SESSION['botao'] = "danger";
 
-		$_SESSION['lista_erro_validacao_cadastrar'] = $validar->get_errors(); //Captura os erros de todos os campos
+		$_SESSION['lista_erro_validacao_cadastrar_habilitacao'] = $validar->get_errors(); //Captura os erros de todos os campos
 	}
-	$flag = md5("usuario_cadastrar");
-	header(sprintf("Location:../../index.php?flag=$flag"));
+	$flag = md5("habilitacao_cadastrar");
+	header(sprintf("Location:../../".$pagina."?flag=$flag"));//redireciona para a pagina que chamou o script
 }
 else {
 	include_once(PATH . '/controllers/autenticacao/'.ACESSO_NEGADO);

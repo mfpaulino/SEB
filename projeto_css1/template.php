@@ -1,6 +1,7 @@
 <?php
 /***********************************************************************************************************
-* local/script name: ./template.php                                                                        *
+* local/script name: ./template.php
+* modelo com os itens obrigatórios para os demais scripts criados                                                                     *
 * **********************************************************************************************************/
 $inc = "sim";
 $pagina = strtr(end(explode('/', $_SERVER['PHP_SELF'])),'?', true);
@@ -61,14 +62,14 @@ include_once(PATH . '/componentes/internos/php/funcoes.inc.php');
 			<section class="content container-fluid">
 
 				<?php
-				if (isset($_GET['flag']) and ($_GET['flag'] == md5("usuario_alterar") or $_GET['flag'] == md5("senha_alterar") or $_GET['flag'] == md5("om_alterar") or $_GET['flag'] == md5("logout") )){
+				if (isset($_GET['flag']) and ($_GET['flag'] == md5("usuario_alterar") or $_GET['flag'] == md5("senha_alterar") or $_GET['flag'] == md5("om_alterar") or $_GET['flag'] == md5("habilitacao_cadastrar") or $_GET['flag'] == md5("habilitacao_alterar") or $_GET['flag'] == md5("logout") )){
 					include_once('controllers/usuario/usuario_alertas_criar.inc.php');
 				}
 				else {
 					include_once('controllers/usuario/usuario_alertas_destruir.inc.php');
 				}
 
-				include_once('include_modais_user.inc.php');
+				include_once('user_modais.inc.php');
 
 				if(isset($_SESSION['alterar_senha_logout']) or isset($_SESSION['alterar_codom'])){
 					session_destroy();
@@ -105,6 +106,7 @@ include_once(PATH . '/componentes/internos/php/funcoes.inc.php');
 	<script src="componentes/internos/js/usuario_alterar.js"></script>
 	<script src="componentes/internos/js/modal_editar_perfil.js"></script>
 	<script src="componentes/internos/js/modal_editar_unidade.js"></script>
+	<script src="componentes/internos/js/habilitacao.js"></script>
 	<script>
 		//exibe os titles ao passar o mouse
 		$(document).ready(function(){

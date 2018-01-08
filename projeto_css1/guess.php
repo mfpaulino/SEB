@@ -119,6 +119,7 @@ switch ($status_usuario){
 	<script src="componentes/internos/js/status_sessao.js"></script>
 	<script src="componentes/internos/js/modal_editar_perfil.js"></script>
 	<script src="componentes/internos/js/modal_editar_unidade.js"></script>
+	<script src="componentes/externos/bootstrap/plugins/bootstrap-select/dist/js/bootstrap-select.js"></script>
 	<script>
 		$(document).ready(function(){
 			$('[data-tooltip="tooltip"]').tooltip();

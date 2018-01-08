@@ -109,6 +109,38 @@ if ($inc == "sim"){
 		else{
 			unset($_SESSION['logout']);
 		}
+
+		if($flag == md5("habilitacao_cadastrar")){
+
+			$msg0 = $_SESSION['erro_validacao_cadastrar_habilitacao'];
+			$msg1 = $_SESSION['sucesso_cadastro_habilitacao'];
+			$msg2 = $_SESSION['erro_cadastro_habilitacao'];
+			$lista_erro_validacao = $_SESSION['lista_erro_validacao_cadastrar_habilitacao'];
+		}
+		else {
+			unset($_SESSION['erro_validacao_cadastrar_habilitacao']);
+			unset($_SESSION['sucesso_cadastro_habilitacao']);
+			unset($_SESSION['erro_cadastro_habilitacao']);
+			unset($_SESSION['lista_erro_validacao_cadastrar_habilitacao']);
+		}
+
+		if($flag == md5("habilitacao_alterar")){
+
+			$msg0 = $_SESSION['alterar_habilitacao'];
+			$msg1 = $_SESSION['excluir_habilitacao'];
+			$msg2 = $_SESSION['alterar_nada_habilitacao'];
+			$msg3 = $_SESSION['alterar_erro_validacao_habilitacao'];
+			$msg4 = $_SESSION['excluir_erro_habilitacao'];
+			$lista_erro_validacao = $_SESSION['alterar_lista_erro_validacao_habilitacao'];
+		}
+		else {
+			unset($_SESSION['alterar_habilitacao']);
+			unset($_SESSION['excluir_habilitacao']);
+			unset($_SESSION['alterar_nada_habilitacao']);
+			unset($_SESSION['alterar_erro_validacao_habilitacao']);
+			unset($_SESSION['excluir_erro_habilitacao']);
+			unset($_SESSION['alterar_lista_erro_validacao_habilitacao']);
+		}
 		/*
 		if($flag == md5("usuario_excluir")){
 

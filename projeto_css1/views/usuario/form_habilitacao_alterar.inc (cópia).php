@@ -1,18 +1,19 @@
-<div class="modal fade modal-wide" data-backdrop="static" id="modalHabilitacao" tabindex="-1" role="dialog" aria-labelledby="modalHabilitacaoLabel">
+<div class="modal fade modal-wide" data-backdrop="static" id="modalAlterarHabilitacao" tabindex="-1" role="dialog" aria-labelledby="modalAlterarHabilitacaoLabel">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
 			<div class="modal-header fundo">
 				<!--<button type="button" class="close" data-dismiss="modal">&times;</button>-->
-				<h4 class="modal-title" id="modalHabilitacaoLabel">Cadastrar Habilitações</h4>
+				<h4 class="modal-title" id="modalAlterarHabilitacaoLabel">Editar Habilitação</h4>
 			</div>
 			<div class="modal-body">
-				<form name="form_habilitacao_cadastrar" id="form_habilitacao_cadastrar" method="POST" action="controllers/usuario/habilitacao_cadastrar.php" enctype="multipart/form-data">
+				<form name="form_habilitacao_alterar" id="form_habilitacao_alterar" method="POST" action="controllers/usuario/habilitacao_alterar.php" enctype="multipart/form-data">
 					<div class="col-sm-12">
 						<div class="row">
 							<!-- Select input-->
 							<div class="col-sm-6">
 								<div class="form-group">
 									<label for="area">Área/Processo*</label>
+									<input type="text" id="area_txt" disabled />
 									<?php include('listas/admin/select_area.inc.php');?>
 								</div>
 							</div>
@@ -20,17 +21,6 @@
 							<div class="col-sm-6">
 								<div class="form-group">
 									<label for="tipo">Tipo de Habilitação*</label>
-									<!--<div class="radio">
-                                    <label>
-                                        <input type="radio" name="tipo" value="Curso" checked /> Curso
-                                    </label>
-                                    <label>
-                                        <input type="radio" name="tipo" value="Estágio"  /> Estágio
-                                    </label>
-                                    <label>
-                                        <input type="radio" name="tipo" value="Experiência"  /> Experiência
-                                    </label>
-									</div>-->
                                     <select class="form-control selectpicker" name="tipo" id="tipo" required  />
 										<option value="">Selecione o tipo de habilitação...</option>
 										<option value="Curso">Curso</option>

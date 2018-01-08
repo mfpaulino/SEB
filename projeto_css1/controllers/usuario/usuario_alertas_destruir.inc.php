@@ -44,6 +44,25 @@ unset($_SESSION['alterar_senha_erro_validacao_lista']);
 //logout
 unset($_SESSION['logout']);
 
+
+//habilitacao_cadastrar
+unset($_SESSION['sucesso_cadastro_habilitacao']);
+unset($_SESSION['erro_cadastro_habilitacao']);
+unset($_SESSION['erro_validacao_cadastrar_habilitacao']);
+unset($_SESSION['lista_erro_validacao_cadastrar_habilitacao']);
+
+//habilitacao_alterar
+unset($_SESSION['alterar_habilitacao']);
+unset($_SESSION['alterar_nada_habilitacao']);
+unset($_SESSION['alterar_erro_validacao_habilitacao']);
+unset($_SESSION['alterar_lista_erro_validacao_habilitacao']);
+
+unset($_SESSION['excluir_habilitacao']);
+unset($_SESSION['excluir_erro_habilitacao']);
+
+
+
+
 //usuario_excluir
 /*
 unset($_SESSION['usuario_excluir_sucesso']);

@@ -107,7 +107,7 @@ if(isset($_GET['flag'])){//vem da tela de bloqueio
 			-->
 			<section class="content container-fluid">
 				<?php
-				if (isset($_GET['flag']) and ($_GET['flag'] == md5("usuario_alterar") or $_GET['flag'] == md5("senha_alterar") or $_GET['flag'] == md5("om_alterar") or $_GET['flag'] == md5("logout") )){
+				if (isset($_GET['flag']) and ($_GET['flag'] == md5("usuario_alterar") or $_GET['flag'] == md5("senha_alterar") or $_GET['flag'] == md5("om_alterar") or $_GET['flag'] == md5("habilitacao_cadastrar") or $_GET['flag'] == md5("habilitacao_alterar") or $_GET['flag'] == md5("logout") )){
 					include_once('controllers/usuario/usuario_alertas_criar.inc.php');
 				}
 				else {
@@ -225,6 +225,7 @@ if(isset($_GET['flag'])){//vem da tela de bloqueio
 	<script src="componentes/internos/js/usuario_alterar.js"></script>
 	<script src="componentes/internos/js/modal_editar_perfil.js"></script>
 	<script src="componentes/internos/js/modal_editar_unidade.js"></script>
+	<script src="componentes/internos/js/habilitacao.js"></script>
 	<script>
 		//exibe os titles ao passar o mouse
 		$(document).ready(function(){

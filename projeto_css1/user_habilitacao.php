@@ -1,6 +1,7 @@
 <?php
 /***********************************************************************************************************
-* local/script name: ./documentos.php                                                                        *
+* local/script name: ./template.php
+* modelo com os itens obrigatórios para os demais scripts criados                                                                     *
 * **********************************************************************************************************/
 $inc = "sim";
 $pagina = strtr(end(explode('/', $_SERVER['PHP_SELF'])),'?', true);
@@ -19,9 +20,11 @@ include_once(PATH . '/componentes/internos/php/funcoes.inc.php');
 	<!-- Tell the browser to be responsive to screen width -->
 	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 	<link rel="stylesheet" href="componentes/externos/bootstrap/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" href="componentes/externos/bootstrap/plugins/bootstrap-validator/css/bootstrapValidator.min-.css">
 	<link rel="stylesheet" href="componentes/externos/bootstrap/plugins/font-awesome/css/font-awesome.min.css">
 	<link rel="stylesheet" href="componentes/externos/bootstrap/plugins/Ionicons/css/ionicons.min.css">
 	<link rel="stylesheet" href="componentes/externos/bootstrap/plugins/bootstrap-fileinput/css/fileinput.min.css">
+	<link rel="stylesheet" href="componentes/externos/bootstrap/plugins/bootstrap-select/dist/css/bootstrap-select.css">
 	<link rel="stylesheet" href="componentes/externos/template/css/AdminLTE.css">
 	<link rel="stylesheet" href="componentes/externos/template/css/skins/skin-blue.css">
 	<link rel="stylesheet" href="componentes/internos/css/siaudi.css">
@@ -44,17 +47,15 @@ include_once(PATH . '/componentes/internos/php/funcoes.inc.php');
 		<aside class="main-sidebar">
 			<section class="sidebar">
 				<?php
-				$active_auditoria = 'active';
-				$active_documentos = 'active';
 				include_once('views/menu/menu_left.inc.php');?>
 			</section>
 		</aside>
 		<div class="content-wrapper">
 			<section class="content-header">
-				<h1>Documentos</h1>
+				<h1>Habilitações</h1>
 				<ol class="breadcrumb">
 					<li><a href="index.php"><i class="fa fa-home"></i>Home</a></li>
-					<li class="active">Documentos</li>
+					<li class="active">Habilitações</li>
 				</ol>
 			</section>
 			<section class="content container-fluid">
@@ -67,87 +68,98 @@ include_once(PATH . '/componentes/internos/php/funcoes.inc.php');
 					include_once('controllers/usuario/usuario_alertas_destruir.inc.php');
 				}
 
-				include_once('user_modais.inc.php');//modais do menu à direita
+				include_once('user_modais.inc.php');
 
 				if(isset($_SESSION['alterar_senha_logout']) or isset($_SESSION['alterar_codom'])){
 					session_destroy();
 				}
+
+				if(isset($_SESSION['alterar_senha_logout']) or isset($_SESSION['alterar_codom'])){
+					session_destroy();
+				}
+
+				$sql = "SELECT h.*, a.area from usuarios_habilitacao h, adm_areas a where h.cpf = '$cpf' and h.id_area = a.id_area order by a.area, h.tipo, h.descricao";
+				$con_habilitacao = $mysqli->query($sql);
 				?>
 				<!-- conteudo aqui -->
 				<div class="row">
-					<div class="col-md-6">
-						<?php include_once('views/auditoria/documentos/nt_aud/view_nt_aud.inc.php'); ?>
-						<?php //include_once('views/admin/user/view_pedido_cadastro_lista.inc.php'); ?>
-						<?php //include_once('views/admin/user/form_user_perfil.inc.php'); ?>
-						<?php //include_once('views/admin/user/view_user_relacao.inc.php');?>
-						<?php //include_once('views/admin/user/view_pedido_cadastro_relacao.inc.php');?>
+					<?php if($con_habilitacao->num_rows <> 0){?>
+					<div class="box-footer text-black">
+						<div class="col-sm-16">
+							<table class="table table-striped">
+								<tr class="text-bold">
+									<td>Área</td>
+									<td>Tipo</td>
+									<td>Descrição</td>
+									<td>Carga-horária</td>
+									<td>Ano conclusão</td>
+									<td class="text-center">Ação</td>
+								</tr>
+							<?php
+							while ($rows =  $con_habilitacao->fetch_assoc()){
+								?>
+								<tr>
+									<td><?php echo $rows['area']; ?></td>
+									<td><?php echo $rows['tipo']; ?></td>
+									<td><?php echo $rows['descricao']; ?></td>
+									<td><?php echo $rows['carga_horaria']; ?></td>
+									<td><?php echo $rows['ano_conclusao']; ?></td>
+									<td width="16%" class="text-center">
+										<!--botao Aviso-->
+										<button type="button" class="btn btn-xs btn-primary"
+											data-tooltip="tooltip"
+											data-title="Editar"
+											data-placement="left"
+											data-toggle="modal"
+											data-target="#modalAlterarHabilitacao"
+											data-id_habilitacao="<?php echo $rows['id_habilitacao'];?>"
+											data-area_txt="<?php echo $rows['area'];?>"
+											data-area="<?php echo $rows['id_area'];?>"
+											data-tipo="<?php echo $rows['tipo'];?>"
+											data-descricao="<?php echo $rows['descricao'];?>"
+											data-carga_horaria="<?php echo $rows['carga_horaria'];?>"
+											data-ano_conclusao="<?php echo $rows['ano_conclusao'];?>"
+											>
+											<i class="fa fa-pencil"></i>
+										</button>
+										<!--botao Excluir-->
+										<button form="formExcluir<?php echo $rows['id_habilitacao'];?>" type="submit" class="btn btn-xs btn-primary"
+											data-tooltip="tooltip"
+											data-toggle="confirmation"
+											data-placement="left"
+											data-btn-ok-label="Continuar"
+											data-btn-ok-icon="glyphicon glyphicon-share-alt"
+											data-btn-ok-class="btn-success"
+											data-btn-cancel-label="Parar"
+											data-btn-cancel-icon="glyphicon glyphicon-ban-circle"
+											data-btn-cancel-class="btn-danger"
+											data-title="Excluir"
+											data-content="Confirma?">
+											<i class="fa fa-trash"></i>
+										</button>
+										<form id="formExcluir<?php echo $rows['id_habilitacao'];?>" action="controllers/usuario/habilitacao_alterar.php" method = "POST">
+											<input type="hidden" name="flag" value="excluir" />
+											<input type="hidden" name="flag1" value="<?php echo $pagina;?>" />
+											<input type="hidden" name="id_habilitacao" value="<?php echo $rows['id_habilitacao'];?>" />
+										</form>
+									</td>
+								</tr>
+							<?php } ?>
+							</table>
+						</div>
 					</div>
-					<div class="col-md-6">
-						<?php include_once('views/auditoria/documentos/parecer/view_parecer.inc.php'); ?>
-						<?php //include_once('views/admin/categoria/form_categoria_cadastrar.inc.php');?>
-						<?php //include_once('views/admin/categoria/form_categoria_alterar.inc.php');?>
-						<?php //include_once('views/admin/categoria/view_categoria_relacao.inc.php');?>
+					<?php }
+					else {?>
+					<div class="col-md-12">
+						<div class="info-box">
+							<span class="info-box-icon bg-yellow"><i class="fa fa-warning"></i></span>
+							<div class="info-box-content">
+								<span class="info-box-number">Nenhuma habilitação cadastrada</span>
+								<span class="info-box-text"><?php echo $status_alertas;?></span>
+							</div>
+						</div>
 					</div>
-				</div>
-				<div class="row">
-					<div class="col-md-6">
-						<?php include_once('views/auditoria/documentos/sol_aud/view_sol_aud.inc.php');?>
-						<?php //include_once('views/admin/area/form_area_cadastrar.inc.php');?>
-						<?php //include_once('views/admin/area/form_area_alterar.inc.php');?>
-						<?php //include_once('views/admin/area/view_area_relacao.inc.php');?>
-					</div>
-					<div class="col-md-6">
-						<?php include_once('views/auditoria/documentos/mtz_reci/view_mtz_reci.inc.php');?>
-						<?php //include_once('views/admin/subarea/form_subarea_cadastrar.inc.php');?>
-						<?php //include_once('views/admin/subarea/form_subarea_alterar.inc.php');?>
-						<?php //include_once('views/admin/subarea/view_subarea_relacao.inc.php');?>
-						<?php //include_once('views/admin/subarea/view_subarea_relacao1.inc.php');?>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-md-6">
-						<?php include_once('views/auditoria/documentos/mtz_resp/view_mtz_resp.inc.php');?>
-						<?php //include_once('views/admin/area/form_area_cadastrar.inc.php');?>
-						<?php //include_once('views/admin/area/form_area_alterar.inc.php');?>
-						<?php //include_once('views/admin/area/view_area_relacao.inc.php');?>
-					</div>
-					<div class="col-md-6">
-						<?php include_once('views/auditoria/documentos/stakeholder/view_stakeholder.inc.php');?>
-						<?php //include_once('views/admin/subarea/form_subarea_cadastrar.inc.php');?>
-						<?php //include_once('views/admin/subarea/form_subarea_alterar.inc.php');?>
-						<?php //include_once('views/admin/subarea/view_subarea_relacao.inc.php');?>
-						<?php //include_once('views/admin/subarea/view_subarea_relacao1.inc.php');?>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-md-6">
-						<?php include_once('views/auditoria/documentos/mtz_resp/view_mtz_resp.inc.php');?>
-						<?php //include_once('views/admin/area/form_area_cadastrar.inc.php');?>
-						<?php //include_once('views/admin/area/form_area_alterar.inc.php');?>
-						<?php //include_once('views/admin/area/view_area_relacao.inc.php');?>
-					</div>
-					<div class="col-md-6">
-						<?php include_once('views/auditoria/documentos/stakeholder/view_stakeholder.inc.php');?>
-						<?php //include_once('views/admin/subarea/form_subarea_cadastrar.inc.php');?>
-						<?php //include_once('views/admin/subarea/form_subarea_alterar.inc.php');?>
-						<?php //include_once('views/admin/subarea/view_subarea_relacao.inc.php');?>
-						<?php //include_once('views/admin/subarea/view_subarea_relacao1.inc.php');?>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-md-6">
-						<?php include_once('views/auditoria/documentos/cert_aud/view_cert_aud.inc.php');?>
-						<?php //include_once('views/admin/area/form_area_cadastrar.inc.php');?>
-						<?php //include_once('views/admin/area/form_area_alterar.inc.php');?>
-						<?php //include_once('views/admin/area/view_area_relacao.inc.php');?>
-					</div>
-					<div class="col-md-6">
-						<?php include_once('views/auditoria/documentos/mtz_swot/view_mtz_swot.inc.php');?>
-						<?php //include_once('views/admin/subarea/form_subarea_cadastrar.inc.php');?>
-						<?php //include_once('views/admin/subarea/form_subarea_alterar.inc.php');?>
-						<?php //include_once('views/admin/subarea/view_subarea_relacao.inc.php');?>
-						<?php //include_once('views/admin/subarea/view_subarea_relacao1.inc.php');?>
-					</div>
+					<?php }?>
 				</div>
 				<!-- fim conteudo -->
 			</section>
@@ -162,7 +174,8 @@ include_once(PATH . '/componentes/internos/php/funcoes.inc.php');
 	<script src="componentes/externos/bootstrap/dist/js/bootstrap.min.js"></script>
 	<script src="componentes/externos/bootstrap/plugins/bootstrap-validator/js/bootstrapValidator.min.js"></script>
 	<script src="componentes/externos/bootstrap/plugins/bootstrap-confirmation/bootstrap-confirmation.min.js"></script>
-	<script src="componentes/externos/bootstrap/plugins/bootstrap-fileinput/js/fileinput.js" type="text/javascript"></script>
+	<script src="componentes/externos/bootstrap/plugins/bootstrap-fileinput/js/fileinput.js"></script>
+	<script src="componentes/externos/bootstrap/plugins/bootstrap-select/dist/js/bootstrap-select-.js"></script>
 	<script src="componentes/externos/template/js/adminlte.min.js"></script>
 	<script src="componentes/externos/jquery/plugins/maskMoney/dist/jquery.maskMoney.min.js"></script>
 	<script src="componentes/internos/js/status_sessao.js"></script>

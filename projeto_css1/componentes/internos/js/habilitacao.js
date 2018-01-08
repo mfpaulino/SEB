@@ -4,7 +4,7 @@ $(document).ready(function() {
 	
 	dataAtual = new Date();
 	fim = dataAtual.getFullYear();
-	inicio = (fim - 20);
+	inicio = (fim - 19);
 	
 	$('#form_habilitacao_cadastrar').bootstrapValidator({
 		feedbackIcons: {
@@ -96,5 +96,26 @@ $(document).ready(function() {
 	}
 
     });
+    
+   	//envia os valores dos campos  para o modal editar perfil
+	$('#modalAlterarHabilitacao').on('show.bs.modal', function (event) {
+		var button = $(event.relatedTarget); // Button that triggered the modal
+		var id_habilitacao = button.data('id_habilitacao'); // Extract info from data-* attributes no script user_habilitacao.php
+		var area = button.data('area');
+		var area_txt = button.data('area_txt');
+		var tipo = button.data('tipo');
+		var descricao = button.data('descricao');
+		var carga_horaria = button.data('carga_horaria');
+		var ano_conclusao = button.data('ano_conclusao');
+		var modal = $(this);
+	
+		modal.find('#id_habilitacao').val(id_habilitacao)
+		modal.find('#area').val(area)
+		modal.find('#area_txt').val(area_txt)
+		modal.find('#tipo').val(tipo)
+		modal.find('#descricao').val(descricao)
+		modal.find('#carga_horaria').val(carga_horaria)
+		modal.find('#ano_conclusao').val(ano_conclusao)
+	})
 
 });
