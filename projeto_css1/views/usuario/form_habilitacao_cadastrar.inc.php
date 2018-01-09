@@ -13,24 +13,13 @@
 							<div class="col-sm-6">
 								<div class="form-group">
 									<label for="area">Área/Processo*</label>
-									<?php include('listas/admin/select_area.inc.php');?>
+									<?php $selectpicker = "selectpicker";include('listas/admin/select_area.inc.php');?>
 								</div>
 							</div>
 							<!-- input radio-->
 							<div class="col-sm-6">
 								<div class="form-group">
 									<label for="tipo">Tipo de Habilitação*</label>
-									<!--<div class="radio">
-                                    <label>
-                                        <input type="radio" name="tipo" value="Curso" checked /> Curso
-                                    </label>
-                                    <label>
-                                        <input type="radio" name="tipo" value="Estágio"  /> Estágio
-                                    </label>
-                                    <label>
-                                        <input type="radio" name="tipo" value="Experiência"  /> Experiência
-                                    </label>
-									</div>-->
                                     <select class="form-control selectpicker" name="tipo" id="tipo" required  />
 										<option value="">Selecione o tipo de habilitação...</option>
 										<option value="Curso">Curso</option>

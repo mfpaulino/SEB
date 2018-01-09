@@ -39,7 +39,7 @@ $(function(){
 	$('#btnAlteraArea').attr('disabled', 'disabled');
 	$('#btnAreaVinculaSubarea').attr('disabled', 'disabled');
 	$('#btnExcluiArea').attr('disabled', 'disabled');
-	$('#area',$('#form_area')).change(function(){//pega apenas o valor do campo 'area' do form 'form_area' (usei assim, pois o campo 'area' tb é usado em outro form)
+	$('#area',$('#form_area')).change(function(){//pega apenas o valor do campo 'area' do form 'form_area' (usei assim, pois o campo 'area' tb é usado em outros forms)
 		if($('#area',$('#form_area')).val() != ""){
 		   $('#btnAlteraArea').removeAttr('disabled');
 		   $('#btnAreaVinculaSubarea').removeAttr('disabled');
@@ -55,7 +55,7 @@ $(function(){
 
 //Informa os valores dos campos ao modal alterar área
 $('#modalAlterarArea').on('show.bs.modal', function (event) {
-	var array_area = $('#area').val().split('|');
+	var array_area = $('#area',$('#form_area')).val().split('|');
 	var id_area = array_area[0]
 	var area = array_area[1]
 	var modal = $(this)
@@ -67,7 +67,7 @@ $('#modalAlterarArea').on('show.bs.modal', function (event) {
 
 //Informa os valores dos campos ao modal AreaVincularSubarea
 $('#modalAreaVincularSubarea').on('show.bs.modal', function (event) {
-	var array_area = $('#area').val().split('|');
+	var array_area = $('#area',$('#form_area')).val().split('|');
 	var id_area = array_area[0];
 	var area = array_area[1];
 	var modal = $(this);

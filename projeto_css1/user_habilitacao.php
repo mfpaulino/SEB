@@ -113,8 +113,8 @@ include_once(PATH . '/componentes/internos/php/funcoes.inc.php');
 											data-toggle="modal"
 											data-target="#modalAlterarHabilitacao"
 											data-id_habilitacao="<?php echo $rows['id_habilitacao'];?>"
-											data-area_txt="<?php echo $rows['area'];?>"
-											data-area="<?php echo $rows['id_area'];?>"
+											data-area="<?php echo $rows['area'];?>"
+											data-id_area="<?php echo $rows['id_area'];?>"
 											data-tipo="<?php echo $rows['tipo'];?>"
 											data-descricao="<?php echo $rows['descricao'];?>"
 											data-carga_horaria="<?php echo $rows['carga_horaria'];?>"
@@ -175,7 +175,7 @@ include_once(PATH . '/componentes/internos/php/funcoes.inc.php');
 	<script src="componentes/externos/bootstrap/plugins/bootstrap-validator/js/bootstrapValidator.min.js"></script>
 	<script src="componentes/externos/bootstrap/plugins/bootstrap-confirmation/bootstrap-confirmation.min.js"></script>
 	<script src="componentes/externos/bootstrap/plugins/bootstrap-fileinput/js/fileinput.js"></script>
-	<script src="componentes/externos/bootstrap/plugins/bootstrap-select/dist/js/bootstrap-select-.js"></script>
+	<script src="componentes/externos/bootstrap/plugins/bootstrap-select/dist/js/bootstrap-select.js"></script>
 	<script src="componentes/externos/template/js/adminlte.min.js"></script>
 	<script src="componentes/externos/jquery/plugins/maskMoney/dist/jquery.maskMoney.min.js"></script>
 	<script src="componentes/internos/js/status_sessao.js"></script>

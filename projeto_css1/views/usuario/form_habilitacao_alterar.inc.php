@@ -13,14 +13,14 @@
 							<div class="col-sm-6">
 								<div class="form-group">
 									<label for="area">Área/Processo*</label>
-									<?php include('listas/select_habilitacao_area.inc.php');?>
+									<?php $selectpicker="";include('listas/admin/select_area.inc.php');?>
 								</div>
 							</div>
 							<!-- input radio-->
 							<div class="col-sm-6">
 								<div class="form-group">
 									<label for="tipo">Tipo de Habilitação*</label>
-                                    <select class="form-control selectpicker" name="tipo" id="tipo" required  />
+                                    <select class="form-control" name="tipo" id="tipo" required  />
 										<option value="">Selecione o tipo de habilitação...</option>
 										<option value="Curso">Curso</option>
 										<option value="Estágio">Estágio</option>
@@ -59,8 +59,14 @@
 							</div>
 						</div>
 						<!-- Hidden input -->
-						<input name="flag" type="hidden" />
+						<input name="flag" type="hidden" value="alterar" />
 						<input type="hidden" name="flag1" value="<?php echo $pagina;?>" />
+						<input type="hidden" name="id_habilitacao" id="id_habilitacao" />
+						<input type="hidden" name="area_atual" id="area_atual" />
+						<input type="hidden" name="tipo_atual" id="tipo_atual" />
+						<input type="hidden" name="descricao_atual" id="descricao_atual" />
+						<input type="hidden" name="carga_horaria_atual" id="carga_horaria_atual" />
+						<input type="hidden" name="ano_conclusao_atual" id="ano_conclusao_atual" />
 						<div class="modal-footer">
 							<button type="submit" class="btn btn-success">Enviar</button>
 							<button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>

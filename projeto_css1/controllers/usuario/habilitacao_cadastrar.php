@@ -32,6 +32,10 @@ if (isset($_POST['flag']) and isset($_SESSION['cpf'])){
 	$validar = new validaForm();
 
 	if($tipo == "Experiência"){
+
+		$carga_horaria = "---";
+		$ano_conclusao = "---";
+
 		$validar->set('Área', 		$area)->is_required()
 			->set('Tipo', 			$tipo)->is_required()
 			->set('Descrição', 		$descricao)->is_required();
@@ -48,6 +52,8 @@ if (isset($_POST['flag']) and isset($_SESSION['cpf'])){
 	}
 
 	if ($validar->validate()){
+			$arr_area = explode('|',$area);//o select arrea retorna o id_area|area
+			$area = $arr_area[0];
 
 			$resultado = $mysqli->query("INSERT INTO usuarios_habilitacao (cpf, id_area, tipo, descricao, carga_horaria, ano_conclusao) VALUES ('$cpf', '$area', '$tipo', '$descricao', '$carga_horaria', '$ano_conclusao')");
 

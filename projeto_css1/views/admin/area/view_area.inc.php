@@ -22,7 +22,7 @@
 			<div class="col-sm-12">
 				<form id="form_area" class="form-horizontal" method="POST" action="controllers/admin/area/area_alterar.php">
 					<div class="box-body">
-						<?php include('listas/admin/select_area.inc.php');?>
+						<?php $selectpicker="selectpicker"; include('listas/admin/select_area.inc.php');?>
 					</div>
 					<div class="box-footer pull-right">
 						<!--botao Alterar area-->

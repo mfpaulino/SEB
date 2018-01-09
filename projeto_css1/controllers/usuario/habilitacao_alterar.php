@@ -18,7 +18,6 @@ if(isset($_POST['flag']) and isset($_SESSION['cpf'])){
 
 	require_once(PATH . '/controllers/autenticacao/autentica.inc.php');
 	require_once(PATH . '/componentes/internos/php/validaForm.class.php');
-	//require_once(PATH . '/componentes/internos/php/funcoes.inc.php');
 
 	if($acao == "alterar"){
 
@@ -28,16 +27,20 @@ if(isset($_POST['flag']) and isset($_SESSION['cpf'])){
 		$carga_horaria = isset($_POST['carga_horaria']) ? mysqli_real_escape_string($mysqli, $_POST['carga_horaria']) : "";
 		$ano_conclusao = isset($_POST['ano_conclusao']) ? mysqli_real_escape_string($mysqli, $_POST['ano_conclusao']) : "";
 
-		$area_atual 	= $_POST['area_atual'];//tipo hidden
-		$tipo_atual		= $_POST['tipo_atual'];//tipo hidden
+		$area_atual 			= $_POST['area_atual'];//tipo hidden
+		$tipo_atual				= $_POST['tipo_atual'];//tipo hidden
 		$descricao_atual		= $_POST['descricao_atual'];//tipo hidden
-		$carga_horaria_atual		= $_POST['carga_horaria_atual'];//tipo hidden
-		$ano_conclusao_atual		= $_POST['ano_conclusao_atual'];//tipo hidden
+		$carga_horaria_atual	= $_POST['carga_horaria_atual'];//tipo hidden
+		$ano_conclusao_atual	= $_POST['ano_conclusao_atual'];//tipo hidden
 
 
 		$validar = new validaForm();
 
 		if($tipo == "Experiência"){
+
+			$carga_horaria = "---";
+			$ano_conclusao = "---";
+
 			$validar->set('Área', 		$area)->is_required()
 				->set('Tipo', 			$tipo)->is_required()
 				->set('Descrição', 		$descricao)->is_required();
@@ -55,6 +58,9 @@ if(isset($_POST['flag']) and isset($_SESSION['cpf'])){
 
 		if ($validar->validate()){
 			$altera = "nao";
+
+			$arr_area = explode('|',$area);//o select arrea retorna o id_area|area
+			$area = $arr_area[0];
 
 			if ($area <> "" and $area <> $area_atual){
 
@@ -77,17 +83,17 @@ if(isset($_POST['flag']) and isset($_SESSION['cpf'])){
 				$resultado = $con_descricao->execute();
 			}
 
-			if ($carga_horaria <> "" and $carga_horariao <> $carga_horaria_atual){
+			if ($carga_horaria <> "" and $carga_horaria <> $carga_horaria_atual){
 
 				$con_carga_horaria = $mysqli->prepare("UPDATE usuarios_habilitacao SET carga_horaria = ? WHERE id_habilitacao ='$id_habilitacao'");
-				$con_carga_horariao->bind_param('s', $carga_horaria);
+				$con_carga_horaria->bind_param('s', $carga_horaria);
 				$resultado = $con_carga_horaria->execute();
 			}
 
 			if ($ano_conclusao <> "" and $ano_conclusao <> $ano_conclusao_atual){
 
 				$con_ano_conclusao = $mysqli->prepare("UPDATE usuarios_habilitacao SET ano_conclusao = ? WHERE id_habilitacao ='$id_habilitacao'");
-				$con_ano_conclusao->bind_param('i', $ano_conclusao);
+				$con_ano_conclusao->bind_param('s', $ano_conclusao);
 				$ano_conclusao = $con_ano_conclusao->execute();
 			}
 
