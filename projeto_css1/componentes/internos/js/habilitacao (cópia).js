@@ -129,6 +129,12 @@ $(document).ready(function() {
 			}
 		}
 	});
+	//parei aki
+	//var teste = $('select[name="tipo"]',$('#form_habilitacao_alterar')).value;
+	//if (teste != "Experiência"){
+	
+	//var bootstrapValidator = $('#form_habilitacao_alterar').data('bootstrapValidator');
+	//bootstrapValidator.enableFieldValidators('ano_conclusao', false );}
 	
 	//oculta os campos carga_horaria e ano_conclusao se o tipo for 'Experiência' $('#area',$('#form_area'))
 	$('select[name="tipo"]',$('#form_habilitacao_alterar')).on('change', function() {
@@ -218,32 +224,5 @@ $(document).ready(function() {
 		modal.find('#descricao_atual').val(descricao)
 		modal.find('#carga_horaria_atual').val(carga_horaria)
 		modal.find('#ano_conclusao_atual').val(ano_conclusao)
-		
-		if(tipo == "Experiência"){
-		
-			// desabilita e esconde o div carga_horaria e o label
-			$('#div_carga_horaria',$('#form_habilitacao_alterar')).find('.form-control').attr('disabled', true);
-			$('#div_carga_horaria',$('#form_habilitacao_alterar')).find('.form-control').hide();
-			$('#div_carga_horaria',$('#form_habilitacao_alterar')).find('.form-control').toggleClass('hide');
-			$("#label_carga_horaria",$('#form_habilitacao_alterar')).toggleClass('hide');
-			$("#label_carga_horaria",$('#form_habilitacao_alterar')).hide();
-
-			// esconde a mensagem e o icone de erro
-			$( "#div_carga_horaria small",$('#form_habilitacao_alterar')).attr('data-bv-result', 'VALID');
-			$( "#div_carga_horaria small",$('#form_habilitacao_alterar')).attr('style', 'display: none;');
-			$( "#div_carga_horaria i",$('#form_habilitacao_alterar')).attr('class', 'form-control-feedback');
-			
-			// desabilita e esconde o div ano_conclusao e o label
-			$('#div_ano_conclusao',$('#form_habilitacao_alterar')).find('.form-control').attr('disabled', true);
-			$('#div_ano_conclusao',$('#form_habilitacao_alterar')).find('.form-control').hide();
-			$('#div_ano_conclusao',$('#form_habilitacao_alterar')).find('.form-control').toggleClass('hide');
-			$("#label_ano_conclusao",$('#form_habilitacao_alterar')).toggleClass('hide');
-			$("#label_ano_conclusao",$('#form_habilitacao_alterar')).hide();
-		
-			// esconde a mensagem e o icone de erro
-			$( "#div_ano_conclusao small",$('#form_habilitacao_alterar')).attr('data-bv-result', 'VALID');
-			$( "#div_ano_conclusao small",$('#form_habilitacao_alterar')).attr('style', 'display: none;');
-			$( "#div_ano_conclusao i",$('#form_habilitacao_alterar')).attr('class', 'form-control-feedback');
-		}
 	});
 });

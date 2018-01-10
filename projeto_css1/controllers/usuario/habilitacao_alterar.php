@@ -113,7 +113,7 @@ if(isset($_POST['flag']) and isset($_SESSION['cpf'])){
 			}
 		}
 		else {
-			$_SESSION['alterar_erro_validacao_habilitacao'] = "ERRO A-019: dados inconsistentes, preencha novamente o formulário!";
+			$_SESSION['alterar_erro_validacao_habilitacao'] = "ERRO U-001: dados inconsistentes, preencha novamente o formulário!";
 			$_SESSION['alterar_lista_erro_validacao_habilitacao'] = $validar->get_errors(); //Captura os erros de todos os campos
 			$_SESSION['botao'] = "danger";
 		}
@@ -133,7 +133,7 @@ if(isset($_POST['flag']) and isset($_SESSION['cpf'])){
 			$_SESSION['excluir_habilitacao'] = "Habilitacao excluída com sucesso!";
 		}
 		else{
-			$_SESSION['excluir_erro_habilitacao'] = "ERRO A-020: habilitação não excluída. Por favor, tente novamente!";
+			$_SESSION['excluir_erro_habilitacao'] = "ERRO U-002: habilitação não excluída. Por favor, tente novamente!";
 			$_SESSION['botao'] = "danger";
 		}
 	}

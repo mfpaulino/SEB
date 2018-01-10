@@ -23,10 +23,10 @@ if(isset($_POST['flag'])){
 	$row_login = $con_login->fetch_assoc();
 
 	if($con_login->num_rows == 0){
-		$_SESSION['acesso_usuario_inexistente'] = "ERRO A-01: usuário não cadastrado!";
+		$_SESSION['acesso_usuario_inexistente'] = "ERRO A-001: usuário não cadastrado!";
 	}
 	else if(!Bcrypt::check($senha, $row_login['senha'])){
-		$_SESSION['senha_errada'] = "ERRO A-02: senha incorreta!";
+		$_SESSION['senha_errada'] = "ERRO A-002: senha incorreta!";
 	}
 	else if($_SESSION['captcha'] <> $captcha and $_POST['flag1'] <> 'lock'){//se for chamado pela tela de lockscreen nao precisa do captcha
 		$_SESSION['erro_captcha'] = "ERRO A-003: código captcha incorreto!";
@@ -34,7 +34,6 @@ if(isset($_POST['flag'])){
 	else{
 		$_SESSION['cpf'] = $cpf;
 		$_SESSION['ultimoAcesso'] = date("d-m-Y H:i:s");
-		//$_SESSION['contador_sessao'] = 0;
 
 		$sql_contador = "UPDATE usuarios SET qtde_acessos = (qtde_acessos + 1), acesso_anterior = ultimo_acesso, ultimo_acesso = NOW() WHERE cpf = '$cpf'";
 		$con_contador = $mysqli->query($sql_contador); //contador de acessos por usuario

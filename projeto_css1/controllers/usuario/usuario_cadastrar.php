@@ -55,7 +55,7 @@ if (isset($_POST['flag'])){
 
 		if($busca_cpf->num_rows == 1){
 
-			$_SESSION['duplo_cpf'] = "ERRO U-01: CPF já existe!";
+			$_SESSION['duplo_cpf'] = "ERRO U-011: CPF já existe!";
 			$_SESSION['botao'] = "danger";
 
 			$validacao = false;
@@ -65,7 +65,7 @@ if (isset($_POST['flag'])){
 
 		if($busca_email->num_rows == 1){
 
-			$_SESSION['duplo_email'] = "ERRO U-02: e-mail já foi cadastrado para outro usuário!";
+			$_SESSION['duplo_email'] = "ERRO U-012: e-mail já foi cadastrado para outro usuário!";
 			$_SESSION['botao'] = "danger";
 
 			$validacao = false;
@@ -98,14 +98,14 @@ if (isset($_POST['flag'])){
 			}
 			else{
 
-				$_SESSION['erro_cadastro'] = "ERRO U-03: cadastro não realizado, tente novamente!<br />Em caso de persistir o erro, entrar em contato com o suporte técnico.";
+				$_SESSION['erro_cadastro'] = "ERRO U-013: cadastro não realizado, tente novamente!<br />Em caso de persistir o erro, entrar em contato com o suporte técnico.";
 				$_SESSION['botao'] = "danger";
 			}
 
 		}
 	}
 	else {
-		$_SESSION['erro_validacao_cadastrar'] = "ERRO U-04: dados inconsistentes, preencha novamente o formulário!";
+		$_SESSION['erro_validacao_cadastrar'] = "ERRO U-014: dados inconsistentes, preencha novamente o formulário!";
 		$_SESSION['botao'] = "danger";
 
 		$_SESSION['lista_erro_validacao_cadastrar'] = $validar->get_errors(); //Captura os erros de todos os campos

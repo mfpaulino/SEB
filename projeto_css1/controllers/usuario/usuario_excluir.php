@@ -25,7 +25,7 @@ if(isset($_POST['flag']) and isset($_SESSION['cpf'])){
 		}
 	}
 	else{
-		$_SESSION['usuario_excluir_erro'] = "ERRO U05: usuário não excluído. Por favor, tente novamente!";
+		$_SESSION['usuario_excluir_erro'] = "ERRO U-015: usuário não excluído. Por favor, tente novamente!";
 		$_SESSION['botao'] = "danger";
 	}
 	header(sprintf("Location:../../guess.php"));

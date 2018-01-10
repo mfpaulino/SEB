@@ -83,83 +83,87 @@ include_once(PATH . '/componentes/internos/php/funcoes.inc.php');
 				?>
 				<!-- conteudo aqui -->
 				<div class="row">
-					<?php if($con_habilitacao->num_rows <> 0){?>
-					<div class="box-footer text-black">
-						<div class="col-sm-16">
-							<table class="table table-striped">
-								<tr class="text-bold">
-									<td>Área</td>
-									<td>Tipo</td>
-									<td>Descrição</td>
-									<td>Carga-horária</td>
-									<td>Ano conclusão</td>
-									<td class="text-center">Ação</td>
-								</tr>
-							<?php
-							while ($rows =  $con_habilitacao->fetch_assoc()){
-								?>
-								<tr>
-									<td><?php echo $rows['area']; ?></td>
-									<td><?php echo $rows['tipo']; ?></td>
-									<td><?php echo $rows['descricao']; ?></td>
-									<td><?php echo $rows['carga_horaria']; ?></td>
-									<td><?php echo $rows['ano_conclusao']; ?></td>
-									<td width="16%" class="text-center">
-										<!--botao Aviso-->
-										<button type="button" class="btn btn-xs btn-primary"
-											data-tooltip="tooltip"
-											data-title="Editar"
-											data-placement="left"
-											data-toggle="modal"
-											data-target="#modalAlterarHabilitacao"
-											data-id_habilitacao="<?php echo $rows['id_habilitacao'];?>"
-											data-area="<?php echo $rows['area'];?>"
-											data-id_area="<?php echo $rows['id_area'];?>"
-											data-tipo="<?php echo $rows['tipo'];?>"
-											data-descricao="<?php echo $rows['descricao'];?>"
-											data-carga_horaria="<?php echo $rows['carga_horaria'];?>"
-											data-ano_conclusao="<?php echo $rows['ano_conclusao'];?>"
-											>
-											<i class="fa fa-pencil"></i>
-										</button>
-										<!--botao Excluir-->
-										<button form="formExcluir<?php echo $rows['id_habilitacao'];?>" type="submit" class="btn btn-xs btn-primary"
-											data-tooltip="tooltip"
-											data-toggle="confirmation"
-											data-placement="left"
-											data-btn-ok-label="Continuar"
-											data-btn-ok-icon="glyphicon glyphicon-share-alt"
-											data-btn-ok-class="btn-success"
-											data-btn-cancel-label="Parar"
-											data-btn-cancel-icon="glyphicon glyphicon-ban-circle"
-											data-btn-cancel-class="btn-danger"
-											data-title="Excluir"
-											data-content="Confirma?">
-											<i class="fa fa-trash"></i>
-										</button>
-										<form id="formExcluir<?php echo $rows['id_habilitacao'];?>" action="controllers/usuario/habilitacao_alterar.php" method = "POST">
-											<input type="hidden" name="flag" value="excluir" />
-											<input type="hidden" name="flag1" value="<?php echo $pagina;?>" />
-											<input type="hidden" name="id_habilitacao" value="<?php echo $rows['id_habilitacao'];?>" />
-										</form>
-									</td>
-								</tr>
-							<?php } ?>
-							</table>
-						</div>
-					</div>
-					<?php }
-					else {?>
 					<div class="col-md-12">
-						<div class="info-box">
-							<span class="info-box-icon bg-yellow"><i class="fa fa-warning"></i></span>
-							<div class="info-box-content">
-								<span class="info-box-number">Nenhuma habilitação cadastrada</span>
-								<span class="info-box-text"><?php echo $status_alertas;?></span>
+						<?php
+						if($con_habilitacao->num_rows <> 0){?>
+							<div class="box box-solid">
+								<!--<div>-->
+									<table border="0" class="table table-hover">
+										<tr class="text-bold text-uppercase bg-light-blue">
+											<td>Área</td>
+											<td>Tipo</td>
+											<td>Descrição</td>
+											<td class="text-center">Carga-horária</td>
+											<td class="text-center text-strong">Conclusão</td>
+											<td class="text-center">Ação</td>
+										</tr>
+									<?php
+									while ($rows =  $con_habilitacao->fetch_assoc()){?>
+										<tr>
+											<td><?php echo $rows['area']; ?></td>
+											<td width="10%"><?php echo $rows['tipo']; ?></td>
+											<td><?php echo $rows['descricao']; ?></td>
+											<td width="10%" class="text-center"><?php echo $rows['carga_horaria']; ?></td>
+											<td width="10%" class="text-center"><?php echo $rows['ano_conclusao']; ?></td>
+											<td width="10%" class="text-center">
+												<!--botao Aviso-->
+												<button type="button" class="btn btn-xs btn-primary"
+													data-tooltip="tooltip"
+													data-title="Editar"
+													data-placement="left"
+													data-toggle="modal"
+													data-target="#modalAlterarHabilitacao"
+													data-id_habilitacao="<?php echo $rows['id_habilitacao'];?>"
+													data-area="<?php echo $rows['area'];?>"
+													data-id_area="<?php echo $rows['id_area'];?>"
+													data-tipo="<?php echo $rows['tipo'];?>"
+													data-descricao="<?php echo $rows['descricao'];?>"
+													data-carga_horaria="<?php echo $rows['carga_horaria'];?>"
+													data-ano_conclusao="<?php echo $rows['ano_conclusao'];?>"
+													>
+													<i class="fa fa-pencil"></i>
+												</button>
+												<!--botao Excluir-->
+												<button form="formExcluir<?php echo $rows['id_habilitacao'];?>" type="submit" class="btn btn-xs btn-primary"
+													data-tooltip="tooltip"
+													data-toggle="confirmation"
+													data-placement="left"
+													data-btn-ok-label="Continuar"
+													data-btn-ok-icon="glyphicon glyphicon-share-alt"
+													data-btn-ok-class="btn-success"
+													data-btn-cancel-label="Parar"
+													data-btn-cancel-icon="glyphicon glyphicon-ban-circle"
+													data-btn-cancel-class="btn-danger"
+													data-title="Excluir"
+													data-content="Confirma?">
+													<i class="fa fa-trash"></i>
+												</button>
+												<form id="formExcluir<?php echo $rows['id_habilitacao'];?>" action="controllers/usuario/habilitacao_alterar.php" method = "POST">
+													<input type="hidden" name="flag" value="excluir" />
+													<input type="hidden" name="flag1" value="<?php echo $pagina;?>" />
+													<input type="hidden" name="id_habilitacao" value="<?php echo $rows['id_habilitacao'];?>" />
+												</form>
+											</td>
+										</tr>
+									<?php
+									}
+									?>
+									</table>
+								<!--</div>-->
 							</div>
-						</div>
+						<?php
+						}
+						else {?>
+							<div class="info-box">
+								<span class="info-box-icon bg-yellow"><i class="fa fa-warning"></i></span>
+								<div class="info-box-content">
+									<span class="info-box-number">Nenhuma habilitação cadastrada</span>
+									<span class="info-box-text"><?php echo $status_alertas;?></span>
+								</div>
+							</div>
+						<?php
+						}?>
 					</div>
-					<?php }?>
 				</div>
 				<!-- fim conteudo -->
 			</section>

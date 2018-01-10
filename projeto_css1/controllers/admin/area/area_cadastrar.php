@@ -38,7 +38,7 @@ if (isset($_POST['flag']) and isset($_SESSION['cpf'])){
 
 		if($busca_area->num_rows > 0){
 
-			$_SESSION['area_duplicada'] = "ERRO A-016: Área já cadastrada!";
+			$_SESSION['area_duplicada'] = "ERRO ADM-003: Área já cadastrada!";
 			$_SESSION['botao'] = "danger";
 
 			$validacao = false;
@@ -59,14 +59,14 @@ if (isset($_POST['flag']) and isset($_SESSION['cpf'])){
 			}
 			else{
 
-				$_SESSION['erro_cadastro_area'] = "ERRO A-017: cadastro não realizado, tente novamente!<br />Em caso de persistir o erro, entrar em contato com o suporte técnico.";
+				$_SESSION['erro_cadastro_area'] = "ERRO ADM-004: cadastro não realizado, tente novamente!<br />Em caso de persistir o erro, entrar em contato com o suporte técnico.";
 				$_SESSION['botao'] = "danger";
 			}
 
 		}
 	}
 	else {
-		$_SESSION['erro_validacao_cadastrar_area'] = "ERRO A-018: dados inconsistentes, preencha novamente o formulário!";
+		$_SESSION['erro_validacao_cadastrar_area'] = "ERRO ADM-005: dados inconsistentes, preencha novamente o formulário!";
 		$_SESSION['botao'] = "danger";
 
 		$_SESSION['lista_erro_validacao_cadastrar_area'] = $validar->get_errors(); //Captura os erros de todos os campos

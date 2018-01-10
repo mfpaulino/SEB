@@ -135,7 +135,7 @@ if(isset($_POST['flag']) and isset($_SESSION['cpf'])){
 			$con = $mysqli->query($sql);
 
 			if ($con->affected_rows <> 0){
-				$_SESSION['alterar_email_erro'] = "ERRO: e-mail já foi cadastrado para outro usuário!";
+				$_SESSION['alterar_email_erro'] = "ERRO U-009: e-mail já foi cadastrado para outro usuário!";
 				$_SESSION['botao'] = "danger";
 				$validacao = false;
 			}
@@ -200,7 +200,7 @@ if(isset($_POST['flag']) and isset($_SESSION['cpf'])){
 		}
 	}
 	else {
-		$_SESSION['alterar_erro_validacao'] = "ERRO: dados inconsistentes, preencha novamente o formulário!";
+		$_SESSION['alterar_erro_validacao'] = "ERRO U-010: dados inconsistentes, preencha novamente o formulário!";
 		$_SESSION['alterar_lista_erro_validacao'] = $validar->get_errors(); //Captura os erros de todos os campos
 		$_SESSION['botao'] = "danger";
 	}

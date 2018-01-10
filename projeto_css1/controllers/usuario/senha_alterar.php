@@ -50,13 +50,13 @@ if(isset($_POST['flag']) and isset($_SESSION['cpf'])){
 			$_SESSION['botao'] = "success";
 		}
 		else{
-			$_SESSION['alterar_senha_erro_bd'] = "ERRO S-01: senha não alterada, tente novamente!";
+			$_SESSION['alterar_senha_erro_bd'] = "ERRO U-005: senha não alterada, tente novamente!";
 			$_SESSION['botao'] = "danger";
 		}
 
 	}
 	else{
-		$_SESSION['alterar_senha_erro_validacao'] = "ERRO S-02: dados inconsistentes, preencha novamente o formulário!";
+		$_SESSION['alterar_senha_erro_validacao'] = "ERRO U-006: dados inconsistentes, preencha novamente o formulário!";
 		$_SESSION['alterar_senha_erro_validacao_lista'] = $validar->get_errors(); //Captura os erros de todos os campos
 		$_SESSION['botao'] = "danger";
 	}

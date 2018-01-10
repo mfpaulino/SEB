@@ -56,7 +56,7 @@ if(isset($_POST['flag']) and isset($_SESSION['cpf'])){
 			}
 		}
 		else {
-			$_SESSION['alterar_erro_validacao_categoria'] = "ERRO A-005: dados inconsistentes, preencha novamente o formulário!";
+			$_SESSION['alterar_erro_validacao_categoria'] = "ERRO ADM-012: dados inconsistentes, preencha novamente o formulário!";
 			$_SESSION['alterar_lista_erro_validacao_categoria'] = $validar->get_errors(); //Captura os erros de todos os campos
 			$_SESSION['botao'] = "danger";
 		}
@@ -73,7 +73,7 @@ if(isset($_POST['flag']) and isset($_SESSION['cpf'])){
 			$_SESSION['alterar_categoria'] = "Categoria excluída com sucesso!";
 		}
 		else{
-			$_SESSION['alterar_nada_categoria'] = "ERRO A-006: categoria não excluída. Por favor, tente novamente!";
+			$_SESSION['alterar_nada_categoria'] = "ERRO ADM-013: categoria não excluída. Por favor, tente novamente!";
 			$_SESSION['botao'] = "danger";
 		}
 	}

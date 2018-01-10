@@ -48,7 +48,7 @@ if (isset($_GET['flag']) and isset($_SESSION['cpf'])){
 	}
 	else{
 
-		$_SESSION['correio_excluir_erro'] = "ERRO C-03: msg não excluída, tente novamente!<br />Em caso de persistir o erro, entrar em contato com o suporte técnico.";
+		$_SESSION['correio_excluir_erro'] = "ERRO C-003: msg não excluída, tente novamente!<br />Em caso de persistir o erro, entrar em contato com o suporte técnico.";
 		$_SESSION['botao'] = "danger";
 	}
 
