@@ -123,7 +123,7 @@ $(document).ready(function() {
 					between: {
 						min: inicio,
 						max: fim,
-						message: 'Apenas os realizados nos últimos 20 anos'
+						message: 'Apenas os realizados nos últimos 40 anos'
 					    }
 				}
 			}

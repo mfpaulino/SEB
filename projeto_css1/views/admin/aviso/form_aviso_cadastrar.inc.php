@@ -16,9 +16,9 @@
 					</div>
 					<div class="form-group">
 						<label>*Público alvo:</label><br />
-						<b>CCIEx&nbsp;&nbsp;</b><input name="publico[]" type="checkbox" value="CCIEx" />&nbsp;&nbsp;
-						<b>ICFEx </b></label><input name="publico[]" type="checkbox"  value="ICFEx" />&nbsp;&nbsp;
-						<b>Unidade </b></label><input name="publico[]" type="checkbox"  value="Unidade" />
+						<b>CCIEx&nbsp;&nbsp;</b><input name="publico[]" type="checkbox" id="checkbox" class="icheckbox" value="CCIEx" />&nbsp;&nbsp;
+						<b>ICFEx </b></label><input name="publico[]" type="checkbox"  id="checkbox" class="icheckbox" value="ICFEx" />&nbsp;&nbsp;
+						<b>Unidade </b></label><input name="publico[]" type="checkbox"  id="checkbox" class="icheckbox" value="Unidade" />
 					</div>
 					<div class="form-group">
 						<label>*Validade:</label>
