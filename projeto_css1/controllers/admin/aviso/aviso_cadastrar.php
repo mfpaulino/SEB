@@ -49,7 +49,7 @@ if (isset($_POST['flag']) and isset($_SESSION['cpf'])){
 
 		if($busca_aviso->num_rows > 0){
 
-			$_SESSION['aviso_duplicada'] = "ERRO ADM-009: Aviso já publicado!";
+			$_SESSION['aviso_duplicada'] = "ERRO 034: Aviso já publicado!";
 			$_SESSION['botao'] = "danger";
 
 			$validacao = false;
@@ -70,14 +70,14 @@ if (isset($_POST['flag']) and isset($_SESSION['cpf'])){
 			}
 			else{echo "erro";
 
-				$_SESSION['erro_cadastro_aviso'] = "ERRO ADM-010: cadastro não realizado, tente novamente!<br />Em caso de persistir o erro, entrar em contato com o suporte técnico.";
+				$_SESSION['erro_cadastro_aviso'] = "ERRO 035: cadastro não realizado, tente novamente!<br />Em caso de persistir o erro, entrar em contato com o suporte técnico.";
 				$_SESSION['botao'] = "danger";
 			}
 
 		}
 	}
 	else {
-		$_SESSION['erro_validacao_cadastrar_aviso'] = "ERRO ADM-011: dados inconsistentes, preencha novamente o formulário!";
+		$_SESSION['erro_validacao_cadastrar_aviso'] = "ERRO 036: dados inconsistentes, preencha novamente o formulário!";
 		$_SESSION['botao'] = "danger";
 
 		$_SESSION['lista_erro_validacao_cadastrar_aviso'] = $validar->get_errors(); //Captura os erros de todos os campos

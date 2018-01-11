@@ -53,7 +53,7 @@ if(isset($_POST['flag']) and isset($_SESSION['cpf'])){
 			}
 		}
 		else {
-			$_SESSION['alterar_erro_validacao_poss_achado'] = "ERRO A-019: dados inconsistentes, preencha novamente o formulário!";
+			$_SESSION['alterar_erro_validacao_poss_achado'] = "ERRO 058: dados inconsistentes, preencha novamente o formulário!";
 			$_SESSION['alterar_lista_erro_validacao_poss_achado'] = $validar->get_errors(); //Captura os erros de todos os campos
 			$_SESSION['botao'] = "danger";
 		}
@@ -77,7 +77,7 @@ if(isset($_POST['flag']) and isset($_SESSION['cpf'])){
 			$_SESSION['alterar_poss_achado'] = "Possível Achado excluído com sucesso!";
 		}
 		else{
-			$_SESSION['alterar_nada_poss_achado'] = "ERRO A-020: possível achado não excluído. Por favor, tente novamente!";
+			$_SESSION['alterar_nada_poss_achado'] = "ERRO 059: possível achado não excluído. Por favor, tente novamente!";
 			$_SESSION['botao'] = "danger";
 		}
 	}

@@ -76,7 +76,7 @@ if(isset($_POST['flag']) and isset($_SESSION['cpf'])){
 			}
 		}
 		else {
-			$_SESSION['alterar_erro_validacao_user'] = "ERRO A-011: dados inconsistentes, preencha novamente o formulário!";
+			$_SESSION['alterar_erro_validacao_user'] = "ERRO 088: dados inconsistentes, preencha novamente o formulário!";
 			$_SESSION['alterar_lista_erro_validacao_user'] = $validar->get_errors(); //Captura os erros de todos os campos
 			$_SESSION['botao'] = "danger";
 		}
@@ -98,7 +98,7 @@ if(isset($_POST['flag']) and isset($_SESSION['cpf'])){
 			$_SESSION['alterar_user'] = "O usuário foi habilitado com sucesso!";
 		}
 		else{
-			$_SESSION['alterar_nada_user'] = "ERRO A-012: não foi possível habilitar o usuário, tente novamente!";
+			$_SESSION['alterar_nada_user'] = "ERRO 089: não foi possível habilitar o usuário, tente novamente!";
 			$_SESSION['botao'] = "danger";
 		}
 	}
@@ -121,7 +121,7 @@ if(isset($_POST['flag']) and isset($_SESSION['cpf'])){
 			$_SESSION['alterar_user'] = 'A senha foi redefinida com sucesso!<br /><br />Avise a(o) <kbd>&nbsp;'.strtoupper($row_usuario['posto'] . " " . $row_usuario['nome_guerra'] ).  '&nbsp;</kbd> que a nova senha é igual ao CPF.';
 		}
 		else{
-			$_SESSION['alterar_nada_user'] = "ERRO A-013: a nova senha não pode ser redefinida!<br />Tente novamente.";
+			$_SESSION['alterar_nada_user'] = "ERRO 090: a nova senha não pode ser redefinida!<br />Tente novamente.";
 			$_SESSION['botao'] = "danger";
 		}
 	}
@@ -143,7 +143,7 @@ if(isset($_POST['flag']) and isset($_SESSION['cpf'])){
 			$_SESSION['alterar_user'] = "O usuário foi desabilitado com sucesso!";
 		}
 		else{
-			$_SESSION['alterar_nada_user'] = "ERRO A-015: não foi possível desabilitar o usuário, tente novamente!";
+			$_SESSION['alterar_nada_user'] = "ERRO 091: não foi possível desabilitar o usuário, tente novamente!";
 			$_SESSION['botao'] = "danger";
 		}
 	}
@@ -169,7 +169,7 @@ if(isset($_POST['flag']) and isset($_SESSION['cpf'])){
 			$_SESSION['alterar_user'] = "O usuário foi excluído com sucesso!";
 		}
 		else {
-			$_SESSION['alterar_nada_user'] = "ERRO A-014: não foi possível excluir o usuário, tente novamente!";
+			$_SESSION['alterar_nada_user'] = "ERRO 092: não foi possível excluir o usuário, tente novamente!";
 			$_SESSION['botao'] = "danger";
 		}
 	}

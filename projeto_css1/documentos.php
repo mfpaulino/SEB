@@ -8,7 +8,6 @@ $pagina = strtr(end(explode('/', $_SERVER['PHP_SELF'])),'?', true);
 include_once('config.inc.php');
 include_once(PATH . '/controllers/autenticacao/autentica.inc.php');//autentica e gera todos os dados de usuario
 include_once(PATH . '/componentes/internos/php/funcoes.inc.php');
-
 ?>
 <!DOCTYPE html>
 <html>
@@ -46,7 +45,8 @@ include_once(PATH . '/componentes/internos/php/funcoes.inc.php');
 				<?php
 				$active_auditoria = 'active';
 				$active_documentos = 'active';
-				include_once('views/menu/menu_left.inc.php');?>
+				include_once('views/menu/menu_left.inc.php');
+				?>
 			</section>
 		</aside>
 		<div class="content-wrapper">
@@ -58,7 +58,6 @@ include_once(PATH . '/componentes/internos/php/funcoes.inc.php');
 				</ol>
 			</section>
 			<section class="content container-fluid">
-
 				<?php
 				if (isset($_GET['flag']) and ($_GET['flag'] == md5("usuario_alterar") or $_GET['flag'] == md5("senha_alterar") or $_GET['flag'] == md5("om_alterar") or $_GET['flag'] == md5("habilitacao_cadastrar") or $_GET['flag'] == md5("habilitacao_alterar") or $_GET['flag'] == md5("logout") )){
 					include_once('controllers/usuario/usuario_alertas_criar.inc.php');

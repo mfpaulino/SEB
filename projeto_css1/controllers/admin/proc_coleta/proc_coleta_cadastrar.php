@@ -38,7 +38,7 @@ if (isset($_POST['flag']) and isset($_SESSION['cpf'])){
 
 		if($busca_proc_coleta->num_rows > 0){
 
-			$_SESSION['proc_coleta_duplicada'] = "ERRO A-016: Procedimento de Análise já cadastrado!";
+			$_SESSION['proc_coleta_duplicada'] = "ERRO 070: Procedimento de Análise já cadastrado!";
 			$_SESSION['botao'] = "danger";
 
 			$validacao = false;
@@ -59,14 +59,14 @@ if (isset($_POST['flag']) and isset($_SESSION['cpf'])){
 			}
 			else{
 
-				$_SESSION['erro_cadastro_proc_coleta'] = "ERRO A-017: cadastro não realizado, tente novamente!<br />Em caso de persistir o erro, entrar em contato com o suporte técnico.";
+				$_SESSION['erro_cadastro_proc_coleta'] = "ERRO 071: cadastro não realizado, tente novamente!<br />Em caso de persistir o erro, entrar em contato com o suporte técnico.";
 				$_SESSION['botao'] = "danger";
 			}
 
 		}
 	}
 	else {
-		$_SESSION['erro_validacao_cadastrar_proc_coleta'] = "ERRO A-018: dados inconsistentes, preencha novamente o formulário!";
+		$_SESSION['erro_validacao_cadastrar_proc_coleta'] = "ERRO 072: dados inconsistentes, preencha novamente o formulário!";
 		$_SESSION['botao'] = "danger";
 
 		$_SESSION['lista_erro_validacao_cadastrar_proc_coleta'] = $validar->get_errors(); //Captura os erros de todos os campos

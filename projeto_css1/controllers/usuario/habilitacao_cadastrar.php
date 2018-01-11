@@ -42,13 +42,13 @@ if (isset($_POST['flag']) and isset($_SESSION['cpf'])){
 	}
 	else{
 		$ano2 = date('Y');
-		$ano1 = $ano2 - 19;
+		$ano1 = $ano2 - 39;
 
 		$validar->set('Área', 		$area)->is_required()
 			->set('Tipo', 			$tipo)->is_required()
 			->set('Descrição', 		$descricao)->is_required()
 			->set('Carga-horária', 	$carga_horaria)->is_required()
-			->set('Ano de conclusão',  $ano_conclusao)->is_required()->between_values($ano1, $ano2);//aceita cursos dos ultimos 20 anos
+			->set('Ano de conclusão',  $ano_conclusao)->is_required()->between_values($ano1, $ano2);//aceita cursos dos ultimos 40 anos
 	}
 
 	if ($validar->validate()){
@@ -64,12 +64,12 @@ if (isset($_POST['flag']) and isset($_SESSION['cpf'])){
 			}
 			else{
 
-				$_SESSION['erro_cadastro_habilitacao'] = "ERRO U-003: cadastro não realizado, tente novamente!<br />Em caso de persistir o erro, entrar em contato com o suporte técnico.";
+				$_SESSION['erro_cadastro_habilitacao'] = "ERRO 013: cadastro não realizado, tente novamente!<br />Em caso de persistir o erro, entrar em contato com o suporte técnico.";
 				$_SESSION['botao'] = "danger";
 			}
 	}
 	else {
-		$_SESSION['erro_validacao_cadastrar_habilitacao'] = "ERRO U-004: dados inconsistentes, preencha novamente o formulário!";
+		$_SESSION['erro_validacao_cadastrar_habilitacao'] = "ERRO 014: dados inconsistentes, preencha novamente o formulário!";
 		$_SESSION['botao'] = "danger";
 
 		$_SESSION['lista_erro_validacao_cadastrar_habilitacao'] = $validar->get_errors(); //Captura os erros de todos os campos

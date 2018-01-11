@@ -10,7 +10,6 @@ $pagina = strtr(end(explode('/', $_SERVER['PHP_SELF'])),'?', true);
 include_once('config.inc.php');
 include_once(PATH . '/controllers/autenticacao/autentica.inc.php');//autentica e gera todos os dados de usuario
 include_once(PATH . '/componentes/internos/php/funcoes.inc.php');
-
 ?>
 <!DOCTYPE html>
 <html>
@@ -51,7 +50,8 @@ include_once(PATH . '/componentes/internos/php/funcoes.inc.php');
 			<section class="sidebar">
 				<?php
 				$active_admin = 'active';
-				include_once('views/menu/menu_left.inc.php');?>
+				include_once('views/menu/menu_left.inc.php');
+				?>
 			</section>
 		</aside>
 		<div class="content-wrapper">
@@ -76,7 +76,6 @@ include_once(PATH . '/componentes/internos/php/funcoes.inc.php');
 				}
 
 				include_once('views/admin/view_admin_alertas.inc.php');
-
 				include_once('user_modais.inc.php');//modais do menu à direita
 
 				if(isset($_SESSION['alterar_senha_logout']) or isset($_SESSION['alterar_codom'])){

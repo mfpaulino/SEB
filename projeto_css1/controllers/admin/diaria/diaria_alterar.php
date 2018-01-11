@@ -59,7 +59,7 @@ if(isset($_POST['flag']) and isset($_SESSION['cpf'])){
 			}
 		}
 		else {
-			$_SESSION['alterar_erro_validacao_diaria'] = "ERRO A-010: dados inconsistentes, preencha novamente o formulário!";
+			$_SESSION['alterar_erro_validacao_diaria'] = "ERRO 043: dados inconsistentes, preencha novamente o formulário!";
 			$_SESSION['alterar_lista_erro_validacao_diaria'] = $validar->get_errors(); //Captura os erros de todos os campos
 			$_SESSION['botao'] = "danger";
 		}
@@ -75,7 +75,7 @@ if(isset($_POST['flag']) and isset($_SESSION['cpf'])){
 			$_SESSION['alterar_diaria'] = "Diária excluída com sucesso!";
 		}
 		else{
-			$_SESSION['alterar_nada_diaria'] = "ERRO A-011: diária não excluída. Por favor, tente novamente!";
+			$_SESSION['alterar_nada_diaria'] = "ERRO 044: diária não excluída. Por favor, tente novamente!";
 			$_SESSION['botao'] = "danger";
 		}
 	}

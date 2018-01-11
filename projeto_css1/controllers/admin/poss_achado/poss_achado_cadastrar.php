@@ -38,7 +38,7 @@ if (isset($_POST['flag']) and isset($_SESSION['cpf'])){
 
 		if($busca_poss_achado->num_rows > 0){
 
-			$_SESSION['poss_achado_duplicada'] = "ERRO A-016: Possível Achado já cadastrado!";
+			$_SESSION['poss_achado_duplicada'] = "ERRO 060: Possível Achado já cadastrado!";
 			$_SESSION['botao'] = "danger";
 
 			$validacao = false;
@@ -59,14 +59,14 @@ if (isset($_POST['flag']) and isset($_SESSION['cpf'])){
 			}
 			else{
 
-				$_SESSION['erro_cadastro_poss_achado'] = "ERRO A-017: cadastro não realizado, tente novamente!<br />Em caso de persistir o erro, entrar em contato com o suporte técnico.";
+				$_SESSION['erro_cadastro_poss_achado'] = "ERRO 061: cadastro não realizado, tente novamente!<br />Em caso de persistir o erro, entrar em contato com o suporte técnico.";
 				$_SESSION['botao'] = "danger";
 			}
 
 		}
 	}
 	else {
-		$_SESSION['erro_validacao_cadastrar_poss_achado'] = "ERRO A-018: dados inconsistentes, preencha novamente o formulário!";
+		$_SESSION['erro_validacao_cadastrar_poss_achado'] = "ERRO 062: dados inconsistentes, preencha novamente o formulário!";
 		$_SESSION['botao'] = "danger";
 
 		$_SESSION['lista_erro_validacao_cadastrar_poss_achado'] = $validar->get_errors(); //Captura os erros de todos os campos

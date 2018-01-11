@@ -40,7 +40,7 @@ if (isset($_POST['flag']) and isset($_SESSION['cpf'])){
 
 		if($busca_subarea->num_rows > 0){
 
-			$_SESSION['subarea_duplicada'] = "ERRO A-021: Subárea já cadastrada!";
+			$_SESSION['subarea_duplicada'] = "ERRO 080: Subárea já cadastrada!";
 			$_SESSION['botao'] = "danger";
 
 			$validacao = false;
@@ -61,14 +61,14 @@ if (isset($_POST['flag']) and isset($_SESSION['cpf'])){
 			}
 			else{
 
-				$_SESSION['erro_cadastro_subarea'] = "ERRO A-022: cadastro não realizado, tente novamente!<br />Em caso de persistir o erro, entrar em contato com o suporte técnico.";
+				$_SESSION['erro_cadastro_subarea'] = "ERRO 081: cadastro não realizado, tente novamente!<br />Em caso de persistir o erro, entrar em contato com o suporte técnico.";
 				$_SESSION['botao'] = "danger";
 			}
 
 		}
 	}
 	else {
-		$_SESSION['erro_validacao_cadastrar_subarea'] = "ERRO A-023: dados inconsistentes, preencha novamente o formulário!";
+		$_SESSION['erro_validacao_cadastrar_subarea'] = "ERRO 082: dados inconsistentes, preencha novamente o formulário!";
 		$_SESSION['botao'] = "danger";
 
 		$_SESSION['lista_erro_validacao_cadastrar_subarea'] = $validar->get_errors(); //Captura os erros de todos os campos

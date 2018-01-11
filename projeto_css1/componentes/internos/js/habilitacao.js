@@ -4,7 +4,7 @@ $(document).ready(function() {
 	
 	dataAtual = new Date();
 	fim = dataAtual.getFullYear();
-	inicio = (fim - 19);
+	inicio = (fim - 39);
 	
 	$('#form_habilitacao_cadastrar').bootstrapValidator({
 		feedbackIcons: {
@@ -28,7 +28,7 @@ $(document).ready(function() {
 					between: {
 						min: inicio,
 						max: fim,
-						message: 'Apenas os realizados nos últimos 20 anos'
+						message: 'Apenas os realizados nos últimos 40 anos'
 					    }
 				}
 			}

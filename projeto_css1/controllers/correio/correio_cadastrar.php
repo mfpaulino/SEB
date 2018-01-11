@@ -60,14 +60,14 @@ if (isset($_POST['flag']) and isset($_SESSION['cpf'])){
 			}
 			else{
 
-				$_SESSION['correio_envio_erro'] = "ERRO C-001: envio não realizado, tente novamente!<br />Em caso de persistir o erro, entrar em contato com o suporte técnico.";
+				$_SESSION['correio_envio_erro'] = "ERRO 005: envio não realizado, tente novamente!<br />Em caso de persistir o erro, entrar em contato com o suporte técnico.";
 				$_SESSION['botao'] = "danger";
 			}
 
 		}
 	}
 	else {
-		$_SESSION['erro_validacao_correio'] = "ERRO C-002: campos deixados em branco, preencha novamente o formulário!";
+		$_SESSION['erro_validacao_correio'] = "ERRO 006: campos deixados em branco, preencha novamente o formulário!";
 		$_SESSION['botao'] = "danger";
 
 		$_SESSION['lista_erro_validacao_correio'] = $validar->get_errors(); //Captura os erros de todos os campos

@@ -53,7 +53,7 @@ if(isset($_POST['flag']) and isset($_SESSION['cpf'])){
 			}
 		}
 		else {
-			$_SESSION['alterar_erro_validacao_area'] = "ERRO ADM-001: dados inconsistentes, preencha novamente o formulário!";
+			$_SESSION['alterar_erro_validacao_area'] = "ERRO 026: dados inconsistentes, preencha novamente o formulário!";
 			$_SESSION['alterar_lista_erro_validacao_area'] = $validar->get_errors(); //Captura os erros de todos os campos
 			$_SESSION['botao'] = "danger";
 		}
@@ -77,7 +77,7 @@ if(isset($_POST['flag']) and isset($_SESSION['cpf'])){
 			$_SESSION['alterar_area'] = "Área excluída com sucesso!";
 		}
 		else{
-			$_SESSION['alterar_nada_area'] = "ERRO ADM-002: área não excluída. Por favor, tente novamente!";
+			$_SESSION['alterar_nada_area'] = "ERRO 027: área não excluída. Por favor, tente novamente!";
 			$_SESSION['botao'] = "danger";
 		}
 	}

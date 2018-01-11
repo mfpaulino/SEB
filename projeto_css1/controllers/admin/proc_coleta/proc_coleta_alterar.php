@@ -53,7 +53,7 @@ if(isset($_POST['flag']) and isset($_SESSION['cpf'])){
 			}
 		}
 		else {
-			$_SESSION['alterar_erro_validacao_proc_coleta'] = "ERRO A-019: dados inconsistentes, preencha novamente o formulário!";
+			$_SESSION['alterar_erro_validacao_proc_coleta'] = "ERRO 068: dados inconsistentes, preencha novamente o formulário!";
 			$_SESSION['alterar_lista_erro_validacao_proc_coleta'] = $validar->get_errors(); //Captura os erros de todos os campos
 			$_SESSION['botao'] = "danger";
 		}
@@ -77,7 +77,7 @@ if(isset($_POST['flag']) and isset($_SESSION['cpf'])){
 			$_SESSION['alterar_proc_coleta'] = "Procedimento de Coleta de Dados excluído com sucesso!";
 		}
 		else{
-			$_SESSION['alterar_nada_proc_coleta'] = "ERRO A-020: procedimento de coleta de dados não excluído. Por favor, tente novamente!";
+			$_SESSION['alterar_nada_proc_coleta'] = "ERRO 069: procedimento de coleta de dados não excluído. Por favor, tente novamente!";
 			$_SESSION['botao'] = "danger";
 		}
 	}

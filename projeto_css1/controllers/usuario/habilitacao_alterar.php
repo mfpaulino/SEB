@@ -47,13 +47,13 @@ if(isset($_POST['flag']) and isset($_SESSION['cpf'])){
 		}
 		else{
 			$ano2 = date('Y');
-			$ano1 = $ano2 - 19;
+			$ano1 = $ano2 - 39;
 
 			$validar->set('Área', 		$area)->is_required()
 				->set('Tipo', 			$tipo)->is_required()
 				->set('Descrição', 		$descricao)->is_required()
 				->set('Carga-horária', 	$carga_horaria)->is_required()
-				->set('Ano de conclusão',  $ano_conclusao)->is_required()->between_values($ano1, $ano2);//aceita cursos dos ultimos 20 anos
+				->set('Ano de conclusão',  $ano_conclusao)->is_required()->between_values($ano1, $ano2);//aceita cursos dos ultimos 40 anos
 		}
 
 		if ($validar->validate()){
@@ -113,7 +113,7 @@ if(isset($_POST['flag']) and isset($_SESSION['cpf'])){
 			}
 		}
 		else {
-			$_SESSION['alterar_erro_validacao_habilitacao'] = "ERRO U-001: dados inconsistentes, preencha novamente o formulário!";
+			$_SESSION['alterar_erro_validacao_habilitacao'] = "ERRO 011: dados inconsistentes, preencha novamente o formulário!";
 			$_SESSION['alterar_lista_erro_validacao_habilitacao'] = $validar->get_errors(); //Captura os erros de todos os campos
 			$_SESSION['botao'] = "danger";
 		}
@@ -133,7 +133,7 @@ if(isset($_POST['flag']) and isset($_SESSION['cpf'])){
 			$_SESSION['excluir_habilitacao'] = "Habilitacao excluída com sucesso!";
 		}
 		else{
-			$_SESSION['excluir_erro_habilitacao'] = "ERRO U-002: habilitação não excluída. Por favor, tente novamente!";
+			$_SESSION['excluir_erro_habilitacao'] = "ERRO 012: habilitação não excluída. Por favor, tente novamente!";
 			$_SESSION['botao'] = "danger";
 		}
 	}

@@ -53,7 +53,7 @@ if(isset($_POST['flag']) and isset($_SESSION['cpf'])){
 			}
 		}
 		else {
-			$_SESSION['alterar_erro_validacao_info_req'] = "ERRO A-019: dados inconsistentes, preencha novamente o formulário!";
+			$_SESSION['alterar_erro_validacao_info_req'] = "ERRO 053: dados inconsistentes, preencha novamente o formulário!";
 			$_SESSION['alterar_lista_erro_validacao_info_req'] = $validar->get_errors(); //Captura os erros de todos os campos
 			$_SESSION['botao'] = "danger";
 		}
@@ -77,7 +77,7 @@ if(isset($_POST['flag']) and isset($_SESSION['cpf'])){
 			$_SESSION['alterar_info_req'] = "Informação Requerida excluída com sucesso!";
 		}
 		else{
-			$_SESSION['alterar_nada_info_req'] = "ERRO A-020: informação requerida não excluída. Por favor, tente novamente!";
+			$_SESSION['alterar_nada_info_req'] = "ERRO 054: informação requerida não excluída. Por favor, tente novamente!";
 			$_SESSION['botao'] = "danger";
 		}
 	}

@@ -25,7 +25,7 @@ if (isset($_SESSION['cpf'])){
 	else {
 		$flag = md5("acesso_indevido");
 
-		$_SESSION['logout'] = "ERRO A-004: usuário desconectado pelo sistema!<br />(Tentativa de acesso indevido!)";
+		$_SESSION['logout'] = "ERRO 004: usuário desconectado pelo sistema!<br />(Tentativa de acesso indevido!)";
 		$_SESSION['botao'] = "danger";
 	}
 	header(sprintf("Location:../../index.php?flag=$flag"));

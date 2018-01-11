@@ -1,6 +1,6 @@
 <?php
 /***********************************************************************************************************
-* local/script name: ./template.php
+* local/script name: ./user_habilitacao.php
 * modelo com os itens obrigatórios para os demais scripts criados                                                                     *
 * **********************************************************************************************************/
 $inc = "sim";

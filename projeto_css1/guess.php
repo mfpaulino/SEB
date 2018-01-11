@@ -1,6 +1,6 @@
 <?php
 /***********************************************************************************************************
-* local/script name: ./index_visite.php                                                                    *
+* local/script name: ./guess.php                                                                    *
 * Primeira tela de usuario logado, mas nao liberado                                                        *
 * Inclui o form de alterar senha                                                                           *
 * Inclui o form de visualizar dados                                                                        *

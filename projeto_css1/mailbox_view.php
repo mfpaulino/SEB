@@ -94,7 +94,8 @@ if(isset($_GET['flag'])){
 			<section class="sidebar">
 				<?php
 				$active_correio = 'class="active"';
-				include_once('views/menu/menu_left.inc.php');?>
+				include_once('views/menu/menu_left.inc.php');
+				?>
 			</section>
 		</aside>
 		<div class="content-wrapper">

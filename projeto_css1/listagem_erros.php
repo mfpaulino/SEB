@@ -3,142 +3,280 @@
 		<td>Erro</td><td>script</td>
 	</tr>
 	<tr>
-		<td>ERRO A-001: usuário não cadastrado!</td><td>login.php</td>
+		<td>001</td><td>login.php</td>
 	</tr>
 	<tr>
-		<td>ERRO A-002: senha incorreta!</td><td>login.php</td>
+		<td>002</td><td>login.php</td>
 	</tr>
 	<tr>
-		<td>ERRO A-003: código captcha incorreto!</td><td>login.php</td>
+		<td>003</td><td>login.php</td>
 	</tr>
 	<tr>
-		<td>ERRO A-004: usuário desconectado pelo sistema!<br />(Tentativa de acesso indevido!)</td><td>logout.php</td>
+		<td>004</td><td>logout.php</td>
 	</tr>
 	<tr>
-		<td>ERRO C-001: envio não realizado, tente novamente!<br />Em caso de persistir o erro, entrar em contato com o suporte técnico.</td><td>correio_cadastrar.php</td>
+		<td>005</td><td>correio_cadastrar.php</td>
 	</tr>
 	<tr>
-		<td>ERRO C-002: campos deixados em branco, preencha novamente o formulário!</td><td>correio_cadastrar.php</td>
+		<td>006</td><td>correio_cadastrar.php</td>
 	</tr>
 	<tr>
-		<td>ERRO C-003: msg não excluída, tente novamente!<br />Em caso de persistir o erro, entrar em contato com o suporte técnico.</td><td>correio_excluir.php</td>
+		<td>007</td><td>correio_excluir.php</td>
 	</tr>
 	<tr>
-		<td>ERRO C-004: exclusão falhou, tente novamente!<br />Em caso de persistir o erro, entrar em contato com o suporte técnico.</td><td>correio_excluir_lote.php</td>
+		<td>008</td><td>correio_excluir_lote.php</td>
 	</tr>
 	<tr>
-		<td>ERRO C-005: nenhuma mensagem foi selecionada!</td><td>correio_excluir_lote.php</td>
+		<td>009</td><td>correio_excluir_lote.php</td>
 	</tr>
 	<tr>
-		<td>ERRO C-006: msg não movida, tente novamente!<br />Em caso de persistir o erro, entrar em contato com o suporte técnico.</td><td>correio_mover.php</td>
+		<td>010</td><td>correio_mover.php</td>
 	</tr>
 	<tr>
-		<td>ERRO U-001: dados inconsistentes, preencha novamente o formulário!</td><td>habilitacao_alterar.php</td>
+		<td>011</td><td>habilitacao_alterar.php</td>
 	</tr>
 	<tr>
-		<td>ERRO U-002: habilitação não excluída. Por favor, tente novamente!</td><td>habilitacao_alterar.php</td>
+		<td>012</td><td>habilitacao_alterar.php</td>
 	</tr>
 	<tr>
-		<td>ERRO U-003: cadastro não realizado, tente novamente!<br />Em caso de persistir o erro, entrar em contato com o suporte técnico.</td><td>habilitacao_cadastrar.php</td>
+		<td>013</td><td>habilitacao_cadastrar.php</td>
 	</tr>
 	<tr>
-		<td>ERRO U-004: dados inconsistentes, preencha novamente o formulário!</td><td>habilitacao_cadastrar.php</td>
+		<td>014</td><td>habilitacao_cadastrar.php</td>
 	</tr>
 	<tr>
-		<td>ERRO U-005: senha não alterada, tente novamente!</td><td>senha_alterar.php</td>
+		<td>015</td><td>senha_alterar.php</td>
 	</tr>
 	<tr>
-		<td>ERRO U-006: dados inconsistentes, preencha novamente o formulário!</td><td>senha_alterar.php</td>
+		<td>016</td><td>senha_alterar.php</td>
 	</tr>
 	<tr>
-		<td>ERRO U-007: usuário não cadastrado!</td><td>senha_recuperar.php</td>
+		<td>017</td><td>senha_recuperar.php</td>
 	</tr>
 	<tr>
-		<td>ERRO U-008: a nova senha não pode ser enviada para o e-mail cadastrado!<br />Peça ao responsável pelo SIAUDI em sua Unidade para redefinir a senha manualmente.</td><td>senha_recuperar.php</td>
+		<td>018</td><td>senha_recuperar.php</td>
 	</tr>
 	<tr>
-		<td>ERRO U-009: e-mail já foi cadastrado para outro usuário!</td><td>usuario_alterar.php</td>
+		<td>019</td><td>usuario_alterar.php</td>
 	</tr>
 	<tr>
-		<td>ERRO ERRO U-010: dados inconsistentes, preencha novamente o formulário!</td><td>usuario_alterar.php</td>
+		<td>020</td><td>usuario_alterar.php</td>
 	</tr>
 	<tr>
-		<td>ERRO U-011: dados inconsistentes, preencha novamente o formulário!</td><td>usuario_cadastrar.php</td>
+		<td>021</td><td>usuario_cadastrar.php</td>
 	</tr>
 	<tr>
-		<td>ERRO U-012: e-mail já foi cadastrado para outro usuário!</td><td>usuario_cadastrar.php</td>
+		<td>022</td><td>usuario_cadastrar.php</td>
 	</tr>
 	<tr>
-		<td>ERRO U-013: cadastro não realizado, tente novamente!<br />Em caso de persistir o erro, entrar em contato com o suporte técnico.</td><td>usuario_cadastrar.php</td>
+		<td>023</td><td>usuario_cadastrar.php</td>
 	</tr>
 	<tr>
-		<td>ERRO U-014: dados inconsistentes, preencha novamente o formulário!</td><td>usuario_cadastrar.php</td>
+		<td>024</td><td>usuario_cadastrar.php</td>
 	</tr>
 	<tr>
-		<td>ERRO U-015: usuário não excluído. Por favor, tente novamente!</td><td>usuario_excluir.php</td>
+		<td>025</td><td>usuario_excluir.php</td>
 	</tr>
 	<tr>
-		<td>ERRO ADM-001: dados inconsistentes, preencha novamente o formulário!</td><td>area_alterar.php</td>
+		<td>026</td><td>area_alterar.php</td>
 	</tr>
 	<tr>
-		<td>ERRO ADM-002: área não excluída. Por favor, tente novamente!</td><td>area_alterar.php</td>
+		<td>027</td><td>area_alterar.php</td>
 	</tr>
 	<tr>
-		<td>ERRO ADM-003: Área já cadastrada!</td><td>area_cadastrar.php</td>
+		<td>028</td><td>area_cadastrar.php</td>
 	</tr>
 	<tr>
-		<td>ERRO ADM-004: cadastro não realizado, tente novamente!<br />Em caso de persistir o erro, entrar em contato com o suporte técnico.</td><td>area_cadastrar.php</td>
+		<td>029</td><td>area_cadastrar.php</td>
 	</tr>
 	<tr>
-		<td>ERRO ADM-005: dados inconsistentes, preencha novamente o formulário!</td><td>area_cadastrar.php</td>
+		<td>030</td><td>area_cadastrar.php</td>
 	</tr>
 	<tr>
-		<td>ERRO ADM-006: dados inconsistentes, preencha novamente o formulário!</td><td>aviso_alterar.php</td>
+		<td>031</td><td>aviso_alterar.php</td>
 	</tr>
 	<tr>
-		<td>ERRO ADM-007: aviso não $aviso. Por favor, tente novamente!</td><td>aviso_alterar.php</td>
+		<td>032</td><td>aviso_alterar.php</td>
 	</tr>
 	<tr>
-		<td>ERRO ADM-008: aviso não excluído. Por favor, tente novamente!</td><td>aviso_alterar.php</td>
+		<td>033</td><td>aviso_alterar.php</td>
 	</tr>
 	<tr>
-		<td>ERRO ADM-009: Aviso já publicado!</td><td>aviso_cadastrar.php</td>
+		<td>034</td><td>aviso_cadastrar.php</td>
 	</tr>
 	<tr>
-		<td>ERRO ADM-010: cadastro não realizado, tente novamente!<br />Em caso de persistir o erro, entrar em contato com o suporte técnico.</td><td>aviso_cadastrar.php</td>
+		<td>035</td><td>aviso_cadastrar.php</td>
 	</tr>
 	<tr>
-		<td>ERRO ADM-011: dados inconsistentes, preencha novamente o formulário!</td><td>aviso_cadastrar.php</td>
+		<td>036</td><td>aviso_cadastrar.php</td>
 	</tr>
 	<tr>
-		<td>ERRO ADM-012: dados inconsistentes, preencha novamente o formulário!</td><td>categoria_alterar.php</td>
+		<td>037</td><td>categoria_alterar.php</td>
 	</tr>
 	<tr>
-		<td>ERRO ADM-013: categoria não excluída. Por favor, tente novamente!</td><td>categoria_alterar.php</td>
+		<td>038</td><td>categoria_alterar.php</td>
 	</tr>
 	<tr>
-		<td>ERRO ADM-014: Categoria já cadastrada!</td><td>categoria_cadastrar.php</td>
+		<td>039</td><td>categoria_cadastrar.php</td>
 	</tr>
 	<tr>
-		<td>ERRO ADM-015: Localidade(s) já cadastrada(s)!</td><td>categoria_cadastrar.php</td>
+		<td>040</td><td>categoria_cadastrar.php</td>
 	</tr>
 	<tr>
-		<td>ERRO ADM-016: cadastro não realizado, tente novamente!<br />Em caso de persistir o erro, entrar em contato com o suporte técnico.</td><td>categoria_cadastrar.php</td>
+		<td>041</td><td>categoria_cadastrar.php</td>
 	</tr>
 	<tr>
-		<td>ERRO ADM-017: dados inconsistentes, preencha novamente o formulário!</td><td>categoria_cadastrar.php</td>
+		<td>042</td><td>categoria_cadastrar.php</td>
 	</tr>
 	<tr>
-		<td>ERRO A-01: usuário não cadastrado!</td><td>area_cadastrar.php</td>
+		<td>043</td><td>diaria_alterar.php</td>
 	</tr>
 	<tr>
-		<td>ERRO A-01: usuário não cadastrado!</td><td>area_cadastrar.php</td>
+		<td>044</td><td>diaria_alterar.php</td>
 	</tr>
 	<tr>
-		<td>ERRO A-01: usuário não cadastrado!</td><td>area_cadastrar.php</td>
+		<td>045</td><td>diaria_cadastrar.php</td>
 	</tr>
 	<tr>
-		<td>ERRO A-01: usuário não cadastrado!</td><td>area_cadastrar.php</td>
+		<td>046</td><td>diaria_cadastrar.php</td>
+	</tr>
+	<tr>
+		<td>047</td><td>diaria_cadastrar.php</td>
+	</tr>
+	<tr>
+		<td>048</td><td>fonte_info_alterar.php</td>
+	</tr>
+	<tr>
+		<td>049</td><td>fonte_info_alterar.php</td>
+	</tr>
+	<tr>
+		<td>050</td><td>fonte_info_cadastrar.php</td>
+	</tr>
+	<tr>
+		<td>051</td><td>fonte_info_cadastrar.php</td>
+	</tr>
+	<tr>
+		<td>052</td><td>fonte_info_cadastrar.php</td>
+	</tr>
+	<tr>
+		<td>053</td><td>info_req_alterar.php</td>
+	</tr>
+	<tr>
+		<td>054</td><td>info_req_alterar.php</td>
+	</tr>
+	<tr>
+		<td>055</td><td>info_req_cadastrar.php</td>
+	</tr>
+	<tr>
+		<td>056</td><td>info_req_cadastrar.php</td>
+	</tr>
+	<tr>
+		<td>057</td><td>info_req_cadastrar.php</td>
+	</tr>
+	<tr>
+		<td>058</td><td>poss_achado_alterar.php</td>
+	</tr>
+	<tr>
+		<td>059</td><td>poss_achado_alterar.php</td>
+	</tr>
+	<tr>
+		<td>060</td><td>poss_achado_cadastrar.php</td>
+	</tr>
+	<tr>
+		<td>061</td><td>poss_achado_cadastrar.php</td>
+	</tr>
+	<tr>
+		<td>062</td><td>poss_achado_cadastrar.php</td>
+	</tr>
+	<tr>
+		<td>063</td><td>proc_ana_alterar.php</td>
+	</tr>
+	<tr>
+		<td>064</td><td>proc_ana_alterar.php</td>
+	</tr>
+	<tr>
+		<td>065</td><td>proc_ana_cadastrar.php</td>
+	</tr>
+	<tr>
+		<td>066</td><td>proc_ana_cadastrar.php</td>
+	</tr>
+	<tr>
+		<td>067</td><td>proc_ana_cadastrar.php</td>
+	</tr>
+	<tr>
+		<td>068</td><td>proc_coleta_alterar.php</td>
+	</tr>
+	<tr>
+		<td>069</td><td>proc_coleta_alterar.php</td>
+	</tr>
+	<tr>
+		<td>070</td><td>proc_coleta_cadastrar.php</td>
+	</tr>
+	<tr>
+		<td>071</td><td>proc_coleta_cadastrar.php</td>
+	</tr>
+	<tr>
+		<td>072</td><td>proc_coleta_cadastrar.php</td>
+	</tr>
+	<tr>
+		<td>073</td><td>questao_alterar.php</td>
+	</tr>
+	<tr>
+		<td>074</td><td>questao_alterar.php</td>
+	</tr>
+	<tr>
+		<td>075</td><td>questao_cadastrar.php</td>
+	</tr>
+	<tr>
+		<td>076</td><td>questao_cadastrar.php</td>
+	</tr>
+	<tr>
+		<td>077</td><td>questao_cadastrar.php</td>
+	</tr>
+	<tr>
+		<td>078</td><td>subarea_alterar.php</td>
+	</tr>
+	<tr>
+		<td>079</td><td>subarea_alterar.php</td>
+	</tr>
+	<tr>
+		<td>080</td><td>subarea_cadastrar.php</td>
+	</tr>
+	<tr>
+		<td>081</td><td>subarea_cadastrar.php</td>
+	</tr>
+	<tr>
+		<td>082</td><td>subarea_cadastrar.php</td>
+	</tr>
+	<tr>
+		<td>083</td><td>subarea_alterar.php</td>
+	</tr>
+	<tr>
+		<td>084</td><td>subarea_alterar.php</td>
+	</tr>
+	<tr>
+		<td>085</td><td>subarea_cadastrar.php</td>
+	</tr>
+	<tr>
+		<td>086</td><td>subarea_cadastrar.php</td>
+	</tr>
+	<tr>
+		<td>087</td><td>subarea_cadastrar.php</td>
+	</tr>
+	<tr>
+		<td>088</td><td>user_alterar.php</td>
+	</tr>
+	<tr>
+		<td>089</td><td>user_alterar.php</td>
+	</tr>
+	<tr>
+		<td>090</td><td>user_alterar.php</td>
+	</tr>
+	<tr>
+		<td>091</td><td>user_alterar.php</td>
+	</tr>
+	<tr>
+		<td>092</td><td>user_alterar.php</td>
 	</tr>
 </table>
 

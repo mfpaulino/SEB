@@ -32,7 +32,7 @@ if(isset($_POST['flag'])){
 	$row_usuario = $con_usuario->fetch_assoc();
 
 	if($con_usuario->num_rows == 0 ){
-		$_SESSION['usuario_inexistente'] = "ERRO U-007: usuário não cadastrado!";
+		$_SESSION['usuario_inexistente'] = "ERRO 017: usuário não cadastrado!";
 		$_SESSION['botao'] = "danger";
 	}
 	else if(!isset($_SESSION['cpf'])){//siginifica que o pedido veio do form_recuperar_senha
@@ -53,7 +53,7 @@ if(isset($_POST['flag'])){
 
 		if (!empty($error)) {
 
-			$_SESSION['senha_nao_enviada'] = "ERRO U-008: a nova senha não pode ser enviada para o e-mail cadastrado!<br />Peça ao responsável pelo SIAUDI em sua Unidade para redefinir a senha manualmente.";
+			$_SESSION['senha_nao_enviada'] = "ERRO 018: a nova senha não pode ser enviada para o e-mail cadastrado!<br />Peça ao responsável pelo SIAUDI em sua Unidade para redefinir a senha manualmente.";
 			$_SESSION['botao'] = "danger";
 		}
 		else {

@@ -1,6 +1,6 @@
 <?php
 /***********************************************************************************************************
-* local/script name: ./index_user.php                                                                      *
+* local/script name: ./user.php                                                                      *
 * Primeira tela de usuario logado e liberado                                                               *
 * Inclui o form de alterar senha                                                                           *
 * Inclui o form de visualizar dados                                                                        *
@@ -14,8 +14,6 @@ $pagina = strtr(end(explode('/', $_SERVER['PHP_SELF'])),'?', true);
 include_once('config.inc.php');
 include_once(PATH . '/controllers/autenticacao/autentica.inc.php');//autentica e gera todos os dados de usuario
 include_once(PATH . '/controllers/admin/aviso/aviso_alterar_status.inc.php');//verifica a validade dos avisos publicados e inativa os vencidos.
-
-				//include_once('includes.inc.php');
 include_once(PATH . '/componentes/internos/php/funcoes.inc.php');
 
 $pagina_lock = str_replace('user.php?flag='.md5(date('d-m-Y')),'',strtr(end(explode('/', $_SERVER['REQUEST_URI'])),'', true));

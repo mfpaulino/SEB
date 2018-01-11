@@ -38,7 +38,7 @@ if (isset($_POST['flag']) and isset($_SESSION['cpf'])){
 
 		if($busca_info_req->num_rows > 0){
 
-			$_SESSION['info_req_duplicada'] = "ERRO A-016: Informação Requerida já cadastrada!";
+			$_SESSION['info_req_duplicada'] = "ERRO 055: Informação Requerida já cadastrada!";
 			$_SESSION['botao'] = "danger";
 
 			$validacao = false;
@@ -59,14 +59,14 @@ if (isset($_POST['flag']) and isset($_SESSION['cpf'])){
 			}
 			else{
 
-				$_SESSION['erro_cadastro_info_req'] = "ERRO A-017: cadastro não realizado, tente novamente!<br />Em caso de persistir o erro, entrar em contato com o suporte técnico.";
+				$_SESSION['erro_cadastro_info_req'] = "ERRO 056: cadastro não realizado, tente novamente!<br />Em caso de persistir o erro, entrar em contato com o suporte técnico.";
 				$_SESSION['botao'] = "danger";
 			}
 
 		}
 	}
 	else {
-		$_SESSION['erro_validacao_cadastrar_info_req'] = "ERRO A-018: dados inconsistentes, preencha novamente o formulário!";
+		$_SESSION['erro_validacao_cadastrar_info_req'] = "ERRO 057: dados inconsistentes, preencha novamente o formulário!";
 		$_SESSION['botao'] = "danger";
 
 		$_SESSION['lista_erro_validacao_cadastrar_info_req'] = $validar->get_errors(); //Captura os erros de todos os campos

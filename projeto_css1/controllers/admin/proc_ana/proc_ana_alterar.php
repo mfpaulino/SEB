@@ -53,7 +53,7 @@ if(isset($_POST['flag']) and isset($_SESSION['cpf'])){
 			}
 		}
 		else {
-			$_SESSION['alterar_erro_validacao_proc_ana'] = "ERRO A-019: dados inconsistentes, preencha novamente o formulário!";
+			$_SESSION['alterar_erro_validacao_proc_ana'] = "ERRO 063: dados inconsistentes, preencha novamente o formulário!";
 			$_SESSION['alterar_lista_erro_validacao_proc_ana'] = $validar->get_errors(); //Captura os erros de todos os campos
 			$_SESSION['botao'] = "danger";
 		}
@@ -77,7 +77,7 @@ if(isset($_POST['flag']) and isset($_SESSION['cpf'])){
 			$_SESSION['alterar_proc_ana'] = "Procedimento de Análise excluído com sucesso!";
 		}
 		else{
-			$_SESSION['alterar_nada_proc_ana'] = "ERRO A-020: procedimento de análise não excluído. Por favor, tente novamente!";
+			$_SESSION['alterar_nada_proc_ana'] = "ERRO 064: procedimento de análise não excluído. Por favor, tente novamente!";
 			$_SESSION['botao'] = "danger";
 		}
 	}

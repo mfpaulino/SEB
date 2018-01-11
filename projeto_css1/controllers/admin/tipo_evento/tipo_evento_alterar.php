@@ -53,7 +53,7 @@ if(isset($_POST['flag']) and isset($_SESSION['cpf'])){
 			}
 		}
 		else {
-			$_SESSION['alterar_erro_validacao_tipo_evento'] = "ERRO A-019: dados inconsistentes, preencha novamente o formulário!";
+			$_SESSION['alterar_erro_validacao_tipo_evento'] = "ERRO 083: dados inconsistentes, preencha novamente o formulário!";
 			$_SESSION['alterar_lista_erro_validacao_tipo_evento'] = $validar->get_errors(); //Captura os erros de todos os campos
 			$_SESSION['botao'] = "danger";
 		}
@@ -77,7 +77,7 @@ if(isset($_POST['flag']) and isset($_SESSION['cpf'])){
 			$_SESSION['alterar_tipo_evento'] = "Tipo de Evento excluído com sucesso!";
 		}
 		else{
-			$_SESSION['alterar_nada_tipo_evento'] = "ERRO A-020: tipo de evento não excluído. Por favor, tente novamente!";
+			$_SESSION['alterar_nada_tipo_evento'] = "ERRO 084: tipo de evento não excluído. Por favor, tente novamente!";
 			$_SESSION['botao'] = "danger";
 		}
 	}

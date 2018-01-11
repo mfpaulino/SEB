@@ -1,9 +1,11 @@
 <?php
+/*************************************************************************************************
+ ./status_menu_top_msg.inc.php
+ As alterações realizadas aqui devem ser replicadas para o script views/menu/menu_top_msg.inc.php
+**************************************************************************************************/
 session_start();
 
 $inc ="sim";
-
-//$pagina = md5('mailbox_view').'_'.strtr(end(explode('/', $_SERVER['REQUEST_URI'])),'', true);
 
 include_once('config.inc.php');
 include_once(PATH . '/controllers/autenticacao/perfil.inc.php');
@@ -117,42 +119,44 @@ $row_aviso = $con_aviso->fetch_assoc();
 			</ul>
 			-->
 		</li>
-			<li class="dropdown messages-menu">
-				<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell" title="Avisos"></i><span class="label label-danger"><?php echo $qtde_aviso;?></span></a>
-			<?php if($qtde_aviso > 0){?>
-			<ul class="dropdown-menu">
-				<li class="header">
-					<span>
-						<b>
-							Há
-							<?php echo $qtde_aviso;
-							if($qtde_aviso == 1){
-								echo ' Aviso Administrativo.';
-							}
-							else{
-								echo ' Avisos Administrativos.';
-							}
-							?>
-						</b>
-					</span>
-				<li>
+		<li class="dropdown messages-menu">
+			<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell" title="Avisos"></i><span class="label label-danger"><?php echo $qtde_aviso;?></span></a>
+			<?php
+			if($qtde_aviso > 0){?>
+				<ul class="dropdown-menu">
+					<li class="header">
+						<span>
+							<b>
+								Há
+								<?php echo $qtde_aviso;
+								if($qtde_aviso == 1){
+									echo ' Aviso Administrativo.';
+								}
+								else{
+									echo ' Avisos Administrativos.';
+								}
+								?>
+							</b>
+						</span>
 					<li>
-						<ul class="menu">
-							<li>
-							<a href="#">
-								<p><b>Aviso mais recente:</b></p>
-								<br />
-								<h4><?php echo $row_aviso['titulo'];?></h4>
-								<p><?php echo nl2br($row_aviso['texto']);?></p>
-								<br />
-								<p><small>(Publicado em <?php echo converter_data($row_aviso['dt_aviso'],'BR', true);?>)</small></p>
-							</a>
-							</li>
-						</ul>
-					</li>
-				<li class="footer"><a href="user.php">Ver todos os avisos</a></li>
-			</ul>
-			<?php } ?>
-			</li>
+						<li>
+							<ul class="menu">
+								<li>
+								<a href="#">
+									<p><b>Aviso mais recente:</b></p>
+									<br />
+									<h4><?php echo $row_aviso['titulo'];?></h4>
+									<p><?php echo nl2br($row_aviso['texto']);?></p>
+									<br />
+									<p><small>(Publicado em <?php echo converter_data($row_aviso['dt_aviso'],'BR', true);?>)</small></p>
+								</a>
+								</li>
+							</ul>
+						</li>
+					<li class="footer"><a href="user.php">Ver todos os avisos</a></li>
+				</ul>
+			<?php
+			} ?>
+		</li>
 	</ul>
 </div>

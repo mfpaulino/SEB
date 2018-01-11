@@ -32,7 +32,7 @@ if (isset($_GET['flag']) and isset($_SESSION['cpf'])){
 	}
 	else{
 
-		$_SESSION['correio_mover_erro'] = "ERRO C-006: msg não movida, tente novamente!<br />Em caso de persistir o erro, entrar em contato com o suporte técnico.";
+		$_SESSION['correio_mover_erro'] = "ERRO 010: msg não movida, tente novamente!<br />Em caso de persistir o erro, entrar em contato com o suporte técnico.";
 		$_SESSION['botao'] = "danger";
 	}
 

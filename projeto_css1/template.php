@@ -48,7 +48,8 @@ include_once(PATH . '/componentes/internos/php/funcoes.inc.php');
 			<section class="sidebar">
 				<?php
 				$active_template = 'active';
-				include_once('views/menu/menu_left.inc.php');?>
+				include_once('views/menu/menu_left.inc.php');
+				?>
 			</section>
 		</aside>
 		<div class="content-wrapper">

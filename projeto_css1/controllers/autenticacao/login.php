@@ -23,13 +23,13 @@ if(isset($_POST['flag'])){
 	$row_login = $con_login->fetch_assoc();
 
 	if($con_login->num_rows == 0){
-		$_SESSION['acesso_usuario_inexistente'] = "ERRO A-001: usuário não cadastrado!";
+		$_SESSION['acesso_usuario_inexistente'] = "ERRO 001: usuário não cadastrado!";
 	}
 	else if(!Bcrypt::check($senha, $row_login['senha'])){
-		$_SESSION['senha_errada'] = "ERRO A-002: senha incorreta!";
+		$_SESSION['senha_errada'] = "ERRO 002: senha incorreta!";
 	}
 	else if($_SESSION['captcha'] <> $captcha and $_POST['flag1'] <> 'lock'){//se for chamado pela tela de lockscreen nao precisa do captcha
-		$_SESSION['erro_captcha'] = "ERRO A-003: código captcha incorreto!";
+		$_SESSION['erro_captcha'] = "ERRO 003: código captcha incorreto!";
 	}
 	else{
 		$_SESSION['cpf'] = $cpf;

@@ -53,7 +53,7 @@ if(isset($_POST['flag']) and isset($_SESSION['cpf'])){
 			}
 		}
 		else {
-			$_SESSION['alterar_erro_validacao_fonte_info'] = "ERRO A-019: dados inconsistentes, preencha novamente o formulário!";
+			$_SESSION['alterar_erro_validacao_fonte_info'] = "ERRO 048: dados inconsistentes, preencha novamente o formulário!";
 			$_SESSION['alterar_lista_erro_validacao_fonte_info'] = $validar->get_errors(); //Captura os erros de todos os campos
 			$_SESSION['botao'] = "danger";
 		}
@@ -77,7 +77,7 @@ if(isset($_POST['flag']) and isset($_SESSION['cpf'])){
 			$_SESSION['alterar_fonte_info'] = "Fonte de Informação excluída com sucesso!";
 		}
 		else{
-			$_SESSION['alterar_nada_fonte_info'] = "ERRO A-020: fonte de informação não excluída. Por favor, tente novamente!";
+			$_SESSION['alterar_nada_fonte_info'] = "ERRO 049: fonte de informação não excluída. Por favor, tente novamente!";
 			$_SESSION['botao'] = "danger";
 		}
 	}
