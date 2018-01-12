@@ -34,7 +34,6 @@ $('#modalUserPerfil').on('show.bs.modal', function (event) {
    		type: "POST",
    		data: {
    			user_sigla:unidade,
-   			user_id_perfil:id_perfil,
    			user_perfil:perfil
    		},
    		success: function (res) {
@@ -46,7 +45,7 @@ $('#modalUserPerfil').on('show.bs.modal', function (event) {
 //imprimir lista user_lista
 document.getElementById('btnPrintUser').onclick = function() {
 	var conteudo = document.getElementById('area_printUser').innerHTML;
-	var	tela_impressao = window.open('','','width=0, height=0, top=50, left=50');
+	var tela_impressao = window.open('','','width=0, height=0, top=50, left=50');
 	tela_impressao.document.write(conteudo);
 	tela_impressao.window.print();
 	tela_impressao.window.close();
@@ -55,7 +54,7 @@ document.getElementById('btnPrintUser').onclick = function() {
 //imprimir user_pedido_cadastro
 document.getElementById('btnPrintPedidoCadastro').onclick = function() {
 	var conteudo = document.getElementById('area_printPedidoCadastro').innerHTML;
-	var	tela_impressao = window.open('','','width=0, height=0, top=50, left=50');
+	var tela_impressao = window.open('','','width=0, height=0, top=50, left=50');
 	tela_impressao.document.write(conteudo);
 	tela_impressao.window.print();
 	tela_impressao.window.close();

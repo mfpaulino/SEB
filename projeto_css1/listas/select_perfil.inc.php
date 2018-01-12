@@ -37,7 +37,7 @@ if(isset($_POST['codom'])){
 	else {
 		echo '<option value="">Selecione o perfil...</option>';
 		while($rows_perfil = $con_perfil->fetch_assoc()){
-			echo '<option value="' . $rows_perfil['id_perfil'] .'">' . $rows_perfil['perfil'] . ' - '. $rows_perfil['descricao'] .'</option>';
+			echo '<option value="' . $rows_perfil['perfil'] .'">' . $rows_perfil['perfil'] . ' - '. $rows_perfil['descricao'] .'</option>';
 		}
 	}
 }

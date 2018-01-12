@@ -5,7 +5,7 @@ $cpf = $_SESSION['cpf'];
 $ultimoAcesso = $_SESSION['ultimoAcesso'];
 
 /* consultando os dados do usuario */
-$sql = "SELECT id_usuario, rg, nome_guerra, nome, email, ritex, celular, avatar, dt_cad, usuarios.id_posto, p.posto, codom, usuarios.id_perfil, pe.perfil, ultimo_acesso, acesso_anterior, status from usuarios, postos p, adm_perfis pe where cpf = '$cpf' and usuarios.id_posto = p.id_posto and usuarios.id_perfil = pe.id_perfil";
+$sql = "SELECT id_usuario, rg, nome_guerra, nome, email, ritex, celular, avatar, dt_cad, usuarios.id_posto, p.posto, codom, perfil, perfil_om, ultimo_acesso, acesso_anterior, status from usuarios, postos p where cpf = '$cpf' and usuarios.id_posto = p.id_posto";
 $con_dados = $mysqli->query($sql);
 $row = $con_dados->fetch_assoc();
 
@@ -19,8 +19,8 @@ $ritex_usuario = $row['ritex'];
 $celular_usuario = $row['celular'];
 $email_usuario = $row['email'];
 $codom_usuario = $row['codom'];
-$id_perfil_usuario = $row['id_perfil'];
 $perfil_usuario = $row['perfil'];
+$perfil_om = $row['perfil_om'];
 $status_usuario = $row['status'];
 $avatar_usuario = $row['avatar'];
 $dt_cad_usuario = date('d/m/Y', strtotime($row['dt_cad']));
@@ -41,16 +41,4 @@ $row = $con_om->fetch_assoc();
 
 $sigla_usuario = $row['sigla'];
 $denominacao_usuario = $row['denominacao'];
-
-/********* perfil da OM do usuario (cciex, icfex, om) ****/
-if(strpos($row['sigla'],'CCIEx') !== FALSE){
-	$perfil_om = 'CCIEx';
-}
-else if(strpos($row['sigla'],'ICFEx') !== FALSE){
-	$perfil_om = 'ICFEx';
-}
-else {
-	$perfil_om = 'Unidade';
-}
-/**********************************/
 ?>

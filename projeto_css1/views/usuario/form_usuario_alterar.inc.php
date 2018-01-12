@@ -80,7 +80,7 @@
 						<div class="row">
 							<!-- Text input-->
 							<div class="col-sm-12">
-								<?php if ($status_usuario <> "recebido") {?>
+								<?php if ($status_usuario <> "Recebido") {?>
 									<div class="form-group">
 										<label for="perfil">Perfil</label>
 										<input type="text" name="perfil" id="perfil" class="form-control" disabled />

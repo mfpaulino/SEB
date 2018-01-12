@@ -48,7 +48,6 @@ else {
 					data-email="<?php echo $email_usuario; ?>"
 					data-ritex="<?php echo $ritex_usuario; ?>"
 					data-celular="<?php echo $celular_usuario; ?>"
-					data-id_perfil="<?php echo $id_perfil_usuario; ?>"
 					data-perfil="<?php echo $perfil_usuario; ?>"
 					data-unidade="<?php echo $sigla_usuario; ?>"
 					data-avatar="<?php echo 'views/avatar/'.$avatar_usuario; ?>">

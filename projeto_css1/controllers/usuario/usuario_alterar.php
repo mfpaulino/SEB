@@ -29,7 +29,7 @@ if(isset($_POST['flag']) and isset($_SESSION['cpf'])){
 	$ritex 		 = isset($_POST['ritex']) ? mysqli_real_escape_string($mysqli, $_POST['ritex']) : $ritex_usuario;
 	$celular 	 = isset($_POST['celular']) ? mysqli_real_escape_string($mysqli, $_POST['celular']) : $celular_usuario;
 	$codom 		 = isset($_POST['codom']) ? mysqli_real_escape_string($mysqli, $_POST['codom']) : $codom_usuario;
-	$id_perfil 	 = isset($_POST['perfil']) ? mysqli_real_escape_string($mysqli, $_POST['perfil']) : $id_perfil_usuario;
+	$perfil 	 = isset($_POST['perfil']) ? mysqli_real_escape_string($mysqli, $_POST['perfil']) : $perfil_usuario;
 
 	$validar = new validaForm();
 
@@ -39,7 +39,7 @@ if(isset($_POST['flag']) and isset($_SESSION['cpf'])){
 			->set('Nome de guerra', $nome_guerra)->is_required()
 			->set('E-mail',			$email)->is_email()
 			->set('Unidade',		$codom)->is_required()
-			->set('Perfil',			$id_perfil)->is_required();
+			->set('Perfil',			$perfil)->is_required();
 			//->set('RITEx',		$ritex)->is_required()->is_num()->min_length(7)->max_length(7)
 			//->set('Celular',		$celular)->is_required()->is_num()->min_length(10)->max_length(11)
 
@@ -171,7 +171,25 @@ if(isset($_POST['flag']) and isset($_SESSION['cpf'])){
 			}
 		}
 		if ($codom <> "" and $codom <> $codom_usuario){
-			$con_update = $mysqli->prepare("UPDATE usuarios SET codom = ?, status = 'recebido' WHERE cpf ='$cpf'");
+
+			/********* perfil da OM do usuario (CCIEx, ICFEx, Unidade) ****/
+
+			$sql = "select sigla from cciex_om where codom = '$codom'";
+			$con_om = $mysqli1->query($sql);
+			$row = $con_om->fetch_assoc();
+
+			if(strpos($row['sigla'],'CCIEx') !== FALSE){
+				$perfil_om = 'CCIEx';
+			}
+			else if(strpos($row['sigla'],'ICFEx') !== FALSE){
+				$perfil_om = 'ICFEx';
+			}
+			else {
+				$perfil_om = 'Unidade';
+			}
+			/**********************************/
+
+			$con_update = $mysqli->prepare("UPDATE usuarios SET codom = ?, perfil_om = '$perfil_om', status = 'Recebido' WHERE cpf ='$cpf'");
 			$con_update->bind_param('s', $codom);
 			$con_update->execute();
 
@@ -184,9 +202,9 @@ if(isset($_POST['flag']) and isset($_SESSION['cpf'])){
 				$altera = "sim";
 			}
 		}
-		if ($id_perfil <> "" and $id_perfil <> $id_perfil_usuario){
-			$con_update = $mysqli->prepare("UPDATE usuarios SET id_perfil = ? WHERE cpf ='$cpf'");
-			$con_update->bind_param('i', $id_perfil);
+		if ($perfil <> "" and $perfil <> $perfil_usuario){
+			$con_update = $mysqli->prepare("UPDATE usuarios SET perfil = ? WHERE cpf ='$cpf'");
+			$con_update->bind_param('s', $perfil);
 			$con_update->execute();
 
 			if($con_update->affected_rows <> 0 ){

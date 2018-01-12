@@ -22,7 +22,7 @@ if(isset($_POST['flag']) and isset($_SESSION['cpf'])){
 
 	/*** dados do usuario ***/
 
-	$sql = "select cpf, postos.posto, nome_guerra, email, usuarios.id_perfil, perfil, codom from usuarios, postos, adm_perfis where id_usuario = '$id_usuario' and usuarios.id_posto = postos.id_posto and adm_perfis.id_perfil = usuarios.id_perfil";
+	$sql = "select cpf, postos.posto, nome_guerra, email, perfil, codom from usuarios, postos where id_usuario = '$id_usuario' and usuarios.id_posto = postos.id_posto";
 	$con_usuario = $mysqli->query($sql);
 	$row_usuario = $con_usuario->fetch_assoc();
 
@@ -31,7 +31,7 @@ if(isset($_POST['flag']) and isset($_SESSION['cpf'])){
 	$row_om = $con_om->fetch_assoc();
 
 	$usuario = $row_usuario['posto'] . " " . $row_usuario['nome_guerra'];
-	$perfil = $row_usuario['perfil'];
+	$perfil_atual = $row_usuario['perfil'];
 	$cpf = $row_usuario['cpf'];
 	$unidade = $row_om['sigla'];
 
@@ -40,29 +40,26 @@ if(isset($_POST['flag']) and isset($_SESSION['cpf'])){
 
 	if($acao == "alterar"){
 
-		$id_perfil 	 = isset($_POST['perfil']) ? mysqli_real_escape_string($mysqli, $_POST['perfil']) : "";
+		$perfil 	 = isset($_POST['perfil']) ? mysqli_real_escape_string($mysqli, $_POST['perfil']) : "";
 
 		$validar = new validaForm();
-		$validar->set('Perfil',			$id_perfil)->is_required();
+		$validar->set('Perfil',			$perfil)->is_required();
 
 		if ($validar->validate()){
 			$altera = "nao";
 
-			if ($id_perfil <> "" and $id_perfil <> $row_usuario['id_perfil']){
+			if ($perfil <> "" and $perfil <> $row_usuario['perfil']){
 
-				$con_perfil = $mysqli->prepare("UPDATE usuarios SET id_perfil = ? WHERE id_usuario = ?");
-				$con_perfil->bind_param('ii', $id_perfil,$id_usuario);
+				$con_perfil = $mysqli->prepare("UPDATE usuarios SET perfil = ? WHERE id_usuario = '$id_usuario'");
+				$con_perfil->bind_param('s', $perfil);
 				$resultado = $con_perfil->execute();
 
 				if($resultado){
 
 					/** log **/
 
-					$con_perfil_novo = $mysqli->query("SELECT perfil FROM adm_perfis WHERE id_perfil = '$id_perfil'");
-					$perfil_novo = $con_perfil_novo->fetch_assoc();
-
-					$log = "Alterou o perfil do(a) " . $usuario . " do(a) " . $unidade . " de <u>" . $perfil . "</u> para <u>" . $perfil_novo['perfil'] . "</u>.";
-					$con_log = $mysqli->query("INSERT INTO logs SET cpf = '$cpf_usuario', codom = '$codom_usuario', acao = '$log'");
+					$log = "Alterou o perfil do(a) " . $usuario . " do(a) " . $unidade . " de <u>" . $perfil_atual . "</u> para <u>" . $perfil . "</u>.";
+					$con_log = $mysqli->query("INSERT INTO logs SET cpf = '$cpf_usuario', codom = '$codom_usuario', acao = '$log', tabela = 'usuarios'");
 
 					/** fim log **/
 
@@ -91,7 +88,7 @@ if(isset($_POST['flag']) and isset($_SESSION['cpf'])){
 			/** log **/
 
 			$log = "Habilitou o(a) " . $usuario . " do(a) " . $unidade . " com o perfil " . $perfil . ".";
-			$con_log = $mysqli->query("INSERT INTO logs SET cpf = '$cpf_usuario', codom = '$codom_usuario', acao = '$log'");
+			$con_log = $mysqli->query("INSERT INTO logs SET cpf = '$cpf_usuario', codom = '$codom_usuario', acao = '$log', tabela = 'usuarios'");
 
 			/** fim log **/
 
@@ -114,7 +111,7 @@ if(isset($_POST['flag']) and isset($_SESSION['cpf'])){
 		/** log **/
 
 		$log = "Redefiniu a senha do(a) " . $usuario . " do(a) " . $unidade . ".";
-		$con_log = $mysqli->query("INSERT INTO logs SET cpf = '$cpf_usuario', codom = '$codom_usuario', acao = '$log'");
+		$con_log = $mysqli->query("INSERT INTO logs SET cpf = '$cpf_usuario', codom = '$codom_usuario', acao = '$log', tabela = 'usuarios'");
 
 		/** fim log **/
 
@@ -136,7 +133,7 @@ if(isset($_POST['flag']) and isset($_SESSION['cpf'])){
 			/** log **/
 
 			$log = "Desabilitou o(a) " . $usuario . " do(a) " . $unidade . ".";
-			$con_log = $mysqli->query("INSERT INTO logs SET cpf = '$cpf_usuario', codom = '$codom_usuario', acao = '$log'");
+			$con_log = $mysqli->query("INSERT INTO logs SET cpf = '$cpf_usuario', codom = '$codom_usuario', acao = '$log', tabela = 'usuarios'");
 
 			/** fim log **/
 
@@ -157,7 +154,7 @@ if(isset($_POST['flag']) and isset($_SESSION['cpf'])){
 			/** log **/
 
 			$log = "Excluiu o(a) " . $usuario . " do(a) " . $unidade . ".";
-			$con_log = $mysqli->query("INSERT INTO logs SET cpf = '$cpf_usuario', codom = '$codom_usuario', acao = '$log'");
+			$con_log = $mysqli->query("INSERT INTO logs SET cpf = '$cpf_usuario', codom = '$codom_usuario', acao = '$log', tabela = 'usuarios'");
 
 			/** fim log **/
 

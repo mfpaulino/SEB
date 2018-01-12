@@ -1,5 +1,5 @@
 <?php
-$sql = "SELECT id_usuario, cpf, rg, nome_guerra, nome, email, ritex, celular, avatar, dt_cad, usuarios.id_posto, p.posto, codom, usuarios.id_perfil, pe.perfil, ultimo_acesso, acesso_anterior, status from usuarios, postos p, adm_perfis pe where usuarios.status = 'recebido' and usuarios.id_posto = p.id_posto and usuarios.id_perfil = pe.id_perfil order by usuarios.id_posto";
+$sql = "SELECT id_usuario, cpf, rg, nome_guerra, nome, email, ritex, celular, avatar, dt_cad, usuarios.id_posto, p.posto, codom, perfil, perfil_om, ultimo_acesso, acesso_anterior, status from usuarios, postos p where usuarios.status = 'recebido' and usuarios.id_posto = p.id_posto order by usuarios.id_posto";
 $con_usuarios = $mysqli->query($sql);
 $qtde = $con_usuarios->num_rows;
 

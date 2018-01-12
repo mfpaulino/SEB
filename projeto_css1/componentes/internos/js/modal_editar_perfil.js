@@ -11,7 +11,6 @@ $('#modalEditar').on('show.bs.modal', function (event) {
 	var ritex = button.data('ritex');
 	var celular = button.data('celular');
 	var unidade = button.data('unidade');
-	var id_perfil = button.data('id_perfil');
 	var perfil = button.data('perfil');
 	var user_sigla = button.data('doc');
 	var modal = $(this);

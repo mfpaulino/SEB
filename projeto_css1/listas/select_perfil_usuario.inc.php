@@ -23,14 +23,14 @@ $con_perfil= $mysqli->query($sql_perfil);
 $num_rows_perfil = $con_perfil->num_rows;
 ?>
 <select class="form-control" name="perfil" id="perfil">
-	<option value = "">Selecione...</option>
+	<!--<option value = "">Selecione...</option>-->
 	<?php
 
 	if($num_rows_perfil == 0){
 	}
 	else {
 		while($rows_perfil = $con_perfil->fetch_assoc()){
-			echo '<option value="' . $rows_perfil['id_perfil'] .'">' . $rows_perfil['perfil'] . ' - '. $rows_perfil['descricao'] .'</option>';
+			echo '<option value="' . $rows_perfil['perfil'] .'">' . $rows_perfil['perfil'] . ' - '. $rows_perfil['descricao'] .'</option>';
 		}
 	}
 	?>

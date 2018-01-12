@@ -73,7 +73,7 @@
 							<div class="col-sm-12">
 								<label for="perfil">Perfil*</label>
 								<div id="div_perfil" class="form-group">
-									<!-- select vem do componentes/internos/js/admin/view_user.js"> -->
+									<!-- select vem do componentes/internos/js/admin/user.js"> -->
 								</div>
 							</div>
 						</div>

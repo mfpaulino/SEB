@@ -89,7 +89,24 @@ if (isset($_POST['flag'])){
 
 			$dt_cad = date('Y-m-d');
 
-			$resultado = $mysqli->query("INSERT INTO usuarios (cpf, senha, rg, nome_guerra, nome, email, ritex, celular, avatar, dt_cad, id_posto, codom, id_perfil,status) VALUES ('$cpf', '$senha_criptografada', '$rg', '$nome_guerra', '$nome', '$email', '$ritex', '$celular', '$avatar', '$dt_cad','$posto', '$codom', '$perfil', 'Recebido')");
+			/********* perfil da OM do usuario (CCIEx, ICFEx, Unidade) ****/
+
+			$sql = "select sigla from cciex_om where codom = '$codom'";
+			$con_om = $mysqli1->query($sql);
+			$row = $con_om->fetch_assoc();
+
+			if(strpos($row['sigla'],'CCIEx') !== FALSE){
+				$perfil_om = 'CCIEx';
+			}
+			else if(strpos($row['sigla'],'ICFEx') !== FALSE){
+				$perfil_om = 'ICFEx';
+			}
+			else {
+				$perfil_om = 'Unidade';
+			}
+			/**********************************/
+
+			$resultado = $mysqli->query("INSERT INTO usuarios (cpf, senha, rg, nome_guerra, nome, email, ritex, celular, avatar, dt_cad, id_posto, codom, perfil, perfil_om, status) VALUES ('$cpf', '$senha_criptografada', '$rg', '$nome_guerra', '$nome', '$email', '$ritex', '$celular', '$avatar', '$dt_cad','$posto', '$codom', '$perfil', '$perfil_om', 'Recebido')");
 
 			if($resultado){
 
