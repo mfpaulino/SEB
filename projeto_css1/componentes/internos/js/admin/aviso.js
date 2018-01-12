@@ -43,7 +43,7 @@ $(document).ready(function() {
         });
         
         $("#validade").mask("99/99/9999",{placeholder:" "}); //deveria criar uma mascara, mas está impedindo a digitação. Deixei pois impede que o usuario exclua a data
-
+	
 });
 
 //envia os valores dos campos  para o modal alterar aviso
@@ -67,6 +67,12 @@ $('#modalAlterarAviso').on('show.bs.modal', function (event) {
 	modal.find('#pub_cciex').attr('checked', pub_cciex)
 	modal.find('#pub_icfex').attr('checked', pub_icfex)
 	modal.find('#pub_unidades').attr('checked', pub_unidades)
+	
+	//personalisando os checkbox
+	modal.find('input[type="checkbox"].icheck').iCheck({
+		checkboxClass: 'icheckbox_square-blue'
+	})
+	
 });
 //calendario do modal alterar aviso     
 $("#validade_altera").datepicker({

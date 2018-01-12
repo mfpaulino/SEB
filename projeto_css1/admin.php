@@ -27,7 +27,7 @@ include_once(PATH . '/componentes/internos/php/funcoes.inc.php');
 	<link rel="stylesheet" href="componentes/externos/bootstrap/plugins/bootstrap-select/dist/css/bootstrap-select.css">
 	<link rel="stylesheet" href="componentes/externos/bootstrap/plugins/bootstrap-switch/dist/css/bootstrap3/bootstrap-switch.min.css">
 	<link rel="stylesheet" href="componentes/externos/bootstrap/plugins/bootstrap-fileinput/css/fileinput.min.css">
-	<link rel="stylesheet" href="componentes/externos/bootstrap/plugins/iCheck/square/blue.css">
+	<link rel="stylesheet" href="componentes/externos/bootstrap/plugins/iCheck/all.css">
 	<link rel="stylesheet" href="componentes/externos/template/css/AdminLTE.css">
 	<link rel="stylesheet" href="componentes/externos/template/css/skins/skin-blue.css">
 	<link rel="stylesheet" href="componentes/internos/css/siaudi.css">
@@ -221,6 +221,7 @@ include_once(PATH . '/componentes/internos/php/funcoes.inc.php');
 	<script src="componentes/externos/bootstrap/plugins/bootstrap-fileinput/js/fileinput.js"></script>
 	<script src="componentes/externos/bootstrap/plugins/bootstrap-select/dist/js/bootstrap-select.js"></script>
 	<script src="componentes/externos/bootstrap/plugins/bootstrap-switch/dist/js/bootstrap-switch.js"></script>
+	<script src="componentes/externos/bootstrap/plugins/iCheck/icheck.min.js"></script>
 	<script src="componentes/externos/template/js/adminlte.min.js"></script>
 	<script src="componentes/externos/jquery/plugins/maskMoney/dist/jquery.maskMoney.min.js"></script>
 	<script src="componentes/internos/js/status_sessao.js"></script>
@@ -248,6 +249,12 @@ include_once(PATH . '/componentes/internos/php/funcoes.inc.php');
 		$(document).ready(function(){
 			$('[data-tooltip="tooltip"]').tooltip();
 		});
+	</script>
+	<script>
+		//personalisando os checkbox
+		$('input[type="checkbox"].icheck').iCheck({
+			checkboxClass: 'icheckbox_square-blue'
+		})
 	</script>
 	<?php
 	include_once('componentes/internos/php/avatar.php');

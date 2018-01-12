@@ -15,6 +15,13 @@
 						<textarea class="form-control" type="text" name="texto"  id="texto" required style="resize: vertical" ></textarea>
 					</div>
 					<div class="form-group">
+						<label>*Público alvo:</label>
+						<br />
+						<input name="publico[]" type="checkbox" id="pub_cciex"    class="icheck" value="CCIEx"   /> CCIEx <br />
+						<input name="publico[]" type="checkbox" id="pub_icfex"    class="icheck" value="ICFEx"   /> ICFEx <br />
+						<input name="publico[]" type="checkbox" id="pub_unidades" class="icheck" value="Unidade" /> Unidade
+					</div>
+					<div class="form-group">
 						<label>*Validade:</label>
 						<div class="input-group date" id="validade_altera">
 							<div class="input-group-addon">
@@ -22,12 +29,6 @@
 							</div>
 							<input type="text" class="form-control pull-right" name="validade"  required />
 						</div>
-					</div>
-					<div class="form-group">
-						<label>*Público alvo:</label><br />
-						<b>CCIEx&nbsp;&nbsp;</b><input name="publico[]" type="checkbox" id="pub_cciex" value="CCIEx" />&nbsp;&nbsp;
-						<b>ICFEx </b></label><input name="publico[]" type="checkbox"  id="pub_icfex" value="ICFEx" />&nbsp;&nbsp;
-						<b>Unidade </b></label><input name="publico[]" type="checkbox"  id="pub_unidades" value="Unidade" />
 					</div>
 					<div class="form-group">
 						<label class="control-label">Última atualização:</label>
