@@ -17,9 +17,9 @@
 					<div class="form-group">
 						<label>*Público alvo:</label>
 						<br />
-						<input name="publico[]" type="checkbox" id="pub_cciex"    class="icheck" value="CCIEx"   /> CCIEx <br />
-						<input name="publico[]" type="checkbox" id="pub_icfex"    class="icheck" value="ICFEx"   /> ICFEx <br />
-						<input name="publico[]" type="checkbox" id="pub_unidades" class="icheck" value="Unidade" /> Unidade
+						&nbsp;&nbsp;&nbsp;<input name="publico[]" type="checkbox" id="pub_cciex"    class="icheck" value="CCIEx"   /> CCIEx <br />
+						&nbsp;&nbsp;&nbsp;<input name="publico[]" type="checkbox" id="pub_icfex"    class="icheck" value="ICFEx"   /> ICFEx <br />
+						&nbsp;&nbsp;&nbsp;<input name="publico[]" type="checkbox" id="pub_unidades" class="icheck" value="Unidade" /> Unidade
 					</div>
 					<div class="form-group">
 						<label>*Validade:</label>

@@ -6,14 +6,13 @@ $('#modalEditar').on('show.bs.modal', function (event) {
 	var nome_guerra = button.data('nome_guerra');
 	var nome = button.data('nome');
 	var id_posto = button.data('id_posto');
-	//var posto = button.data('posto');
+	var posto = button.data('posto');
 	var email = button.data('email');
 	var ritex = button.data('ritex');
 	var celular = button.data('celular');
-	//var unidade = button.data('unidade');
-	//var id_perfil = button.data('id_perfil');
+	var unidade = button.data('unidade');
 	var perfil = button.data('perfil');
-	//var user_sigla = button.data('doc');
+	var user_sigla = button.data('doc');
 	var modal = $(this);
 
 	modal.find('.modal-title').text('Editar Perfil')

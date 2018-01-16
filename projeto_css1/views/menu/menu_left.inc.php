@@ -54,6 +54,11 @@ if ($inc == "sim"){?>
 			<i class="fa fa-envelope"></i> <span>Correio</span>
 		</a>
 	</li>
+	<li <?php echo $active_teste;?>>
+		<a href="teste.php">
+			<i class="fa fa-file-text"></i> <span>Teste</span>
+		</a>
+	</li>
 </u>
 <?php
 }

@@ -1,5 +1,5 @@
 <?php
-$sql = "SELECT id_usuario, cpf, rg, nome_guerra, nome, email, ritex, celular, avatar, dt_cad, usuarios.id_posto, p.posto, codom, perfil, perfil_om, ultimo_acesso, acesso_anterior, status from usuarios, postos p where usuarios.status = 'recebido' and perfil_om = '$perfil_om' and usuarios.id_posto = p.id_posto order by usuarios.id_posto";
+$sql = "SELECT id_usuario, cpf, rg, nome_guerra, nome, email, ritex, celular, avatar, dt_cad, usuarios.id_posto, p.posto, codom, usuarios.id_perfil, pe.perfil, ultimo_acesso, acesso_anterior, status from usuarios, postos p, adm_perfis pe where usuarios.status = 'Recebido' and usuarios.id_posto = p.id_posto and usuarios.id_perfil = pe.id_perfil and perfil_om = '$perfil_om' order by usuarios.id_posto";
 $con_usuarios = $mysqli->query($sql);
 
 ?>
@@ -37,8 +37,8 @@ $con_usuarios = $mysqli->query($sql);
 
 				/*** verifica se o perfil atual do usuario é válido para sua unidade atual(ele pode ter trocado de unidade)***/
 
-				$unidade = strtolower(substr($row_om['sigla'], -5));//pega os 5 ultimos caracteres da sigla
-				$unidade = ($unidade == 'cciex' or $unidade == 'icfex') ? $unidade : 'unidades';
+				$unidade = substr($row_om['sigla'], -5);//pega os 5 ultimos caracteres da sigla
+				$unidade = ($unidade == 'CCIEx' or $unidade == 'ICFEx') ? $unidade : 'Unidade';
 
 				$sql_user_perfis = "SELECT perfis FROM adm_perfis_unidade WHERE unidade = '$unidade'";
 				$con_user_perfis = $mysqli->query($sql_user_perfis);//verifica os perfis possiveis para a unidade do usuario
@@ -102,7 +102,6 @@ $con_usuarios = $mysqli->query($sql);
 							data-perfil="<?php echo $rows['perfil'];?>"
 							data-unidade="<?php echo $row_om['sigla'];?>"
 							data-avatar="<?php echo "views/avatar/".$rows['avatar'];?>"
-							data-doc=<?php echo $row_om['sigla'];?>"
 							>
 							<i class="fa fa-search"></i>
 						</button>

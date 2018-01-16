@@ -9,7 +9,6 @@ $('#modalUserPerfil').on('show.bs.modal', function (event) {
 	var email = button.data('email')
 	var ritex = button.data('ritex')
 	var celular = button.data('celular')
-	var id_perfil = button.data('id_perfil')
 	var perfil = button.data('perfil')
 	var unidade = button.data('unidade')
 	var avatar = button.data('avatar')
@@ -34,7 +33,6 @@ $('#modalUserPerfil').on('show.bs.modal', function (event) {
    		type: "POST",
    		data: {
    			user_sigla:unidade,
-   			user_id_perfil:id_perfil,
    			user_perfil:perfil
    		},
    		success: function (res) {

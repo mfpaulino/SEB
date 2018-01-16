@@ -17,24 +17,6 @@ $(document).ready(function() {
 		}
 	})
 	
-	$('#form_aviso_alterar').bootstrapValidator({
-		feedbackIcons: {
-			valid: 'glyphicon glyphicon-ok',
-			invalid: 'glyphicon glyphicon-remove',
-			validating: 'glyphicon glyphicon-refresh'
-		},
-		fields: {
-			'publico[]': {
-				validators: {
-					notEmpty: {
-						message:'Preenchimento obrigatório'
-					}
-				}
-				    
-			}
-		}
-	})	
-	
 	//calendario form cadastrar
         $('#validade').datepicker({
 		startDate: "date",//desabilita datas anteriores que a data atual
@@ -43,7 +25,6 @@ $(document).ready(function() {
         });
         
         $("#validade").mask("99/99/9999",{placeholder:" "}); //deveria criar uma mascara, mas está impedindo a digitação. Deixei pois impede que o usuario exclua a data
-	
 });
 
 //envia os valores dos campos  para o modal alterar aviso
@@ -73,16 +54,35 @@ $('#modalAlterarAviso').on('show.bs.modal', function (event) {
 		checkboxClass: 'icheckbox_square-blue'
 	})
 	
-});
-//calendario do modal alterar aviso     
-$("#validade_altera").datepicker({
-	startDate: "date",//desabilita datas anteriores que a data atual
-	autoclose: true, //fecha o calendário ao selecionar a data
-	language: 'pt-BR'
-	}).on('show.bs.modal', function(event) {event.stopPropagation(); //impede que o datapicker reset os valores passados ao modal   
-});
+	//validacao dos campos no modal
+	$('#form_aviso_alterar').bootstrapValidator({
+		feedbackIcons: {
+			valid: 'glyphicon glyphicon-ok',
+			invalid: 'glyphicon glyphicon-remove',
+			validating: 'glyphicon glyphicon-refresh'
+		},
+		fields: {
+			'publico[]': {
+				validators: {
+					notEmpty: {
+						message:'Preenchimento obrigatório'
+					}
+				}
+				    
+			}
+		}
+	})
+	
+	//calendario do modal alterar aviso     
+	$("#validade_altera").datepicker({
+		startDate: "date",//desabilita datas anteriores que a data atual
+		autoclose: true, //fecha o calendário ao selecionar a data
+		language: 'pt-BR'
+		}).on('show.bs.modal', function(event) {event.stopPropagation(); //impede que o datapicker reset os valores passados ao modal   
+	});
 
-$("#validade_altera").mask("99/99/9999",{placeholder:" "}); //deveria criar uma mascara, mas está impedindo a digitação. Deixei pois impede que o usuario exclua a data
+	$("#validade_altera").mask("99/99/9999",{placeholder:" "}); //deveria criar uma mascara, mas está impedindo a digitação. Deixei pois impede que o usuario exclua a data	
+});
 
 //imprimir lista avisos
 document.getElementById('btnPrintAviso').onclick = function() {

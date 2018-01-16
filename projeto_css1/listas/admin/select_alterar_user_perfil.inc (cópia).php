@@ -2,12 +2,11 @@
 //select_alterar_user_perfil.inc.php
 include_once ('../../componentes/internos/php/conexao.inc.php');
 
-$user_sigla = $_POST['user_sigla'];//vem do adm/user.js
-$user_id_perfil = $_POST['user_id_perfil'];//vem do adm/user.js
-$user_perfil = $_POST['user_perfil'];//vem do adm/user.js
+$user_sigla = $_POST['user_sigla'];//vem do modal_adm_perfil.js
+$user_perfil = $_POST['user_perfil'];//vem do modal_adm_perfil.js
 
 $unidade = substr($user_sigla, -5);//pega os 5 ultimos caracteres da sigla
-$unidade = ($unidade == 'CCIEx' or $unidade == 'ICFEx') ? $unidade : 'Unidade';
+$unidade = ($unidade == 'CCIEx' or $unidade == 'ICFEx') ? $unidade : 'unidade';
 
 $sql_user_perfis = "SELECT perfis FROM adm_perfis_unidade WHERE unidade = '$unidade'";
 $con_user_perfis = $mysqli->query($sql_user_perfis);//verifica os perfis possiveis para a unidade do usuario
@@ -30,14 +29,14 @@ if ($pos === false){
 }
 ?>
 <select class="form-control" name="perfil" id="perfil">
-	<option value="<?php echo $user_id_perfil;?>"><?php echo $user_perfil.$var;?></option>
+	<option value="<?php echo $user_perfil;?>"><?php echo $user_perfil.$var;?></option>
 	<?php
 
 	if($num_rows_user_perfil == 0){
 	}
 	else {
 		while($rows_user_perfil = $con_user_perfil->fetch_assoc()){
-			echo '<option value="' . $rows_user_perfil['id_perfil'] .'">' . $rows_user_perfil['perfil'] . ' - '. $rows_user_perfil['descricao'] .'</option>';
+			echo '<option value="' . $rows_user_perfil['perfil'] .'">' . $rows_user_perfil['perfil'] . ' - '. $rows_user_perfil['descricao'] .'</option>';
 		}
 	}
 	?>

@@ -3,9 +3,9 @@
 
 include_once ('componentes/internos/php/conexao.inc.php');
 
-$unidade = strtolower(substr($sigla_usuario, -5));//pega os 5 ultimos caracteres da sigla
+$unidade = substr($sigla_usuario, -5);//pega os 5 ultimos caracteres da sigla
 
-$unidade = ($unidade == 'cciex' or $unidade == 'icfex') ? $unidade : 'unidades';
+$unidade = ($unidade == 'CCIEx' or $unidade == 'ICFEx') ? $unidade : 'Unidade';
 
 $sql_perfis = "SELECT perfis FROM adm_perfis_unidade WHERE unidade = '$unidade'";
 $con_perfis = $mysqli->query($sql_perfis);
@@ -23,14 +23,14 @@ $con_perfil= $mysqli->query($sql_perfil);
 $num_rows_perfil = $con_perfil->num_rows;
 ?>
 <select class="form-control" name="perfil" id="perfil">
-	<!--<option value = "">Selecione...</option>-->
+	<option value = "">Selecione...</option>
 	<?php
 
 	if($num_rows_perfil == 0){
 	}
 	else {
 		while($rows_perfil = $con_perfil->fetch_assoc()){
-			echo '<option value="' . $rows_perfil['perfil'] .'">' . $rows_perfil['perfil'] . ' - '. $rows_perfil['descricao'] .'</option>';
+			echo '<option value="' . $rows_perfil['id_perfil'] .'">' . $rows_perfil['perfil'] . ' - '. $rows_perfil['descricao'] .'</option>';
 		}
 	}
 	?>

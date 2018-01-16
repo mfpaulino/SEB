@@ -12,9 +12,9 @@ if(isset($_POST['codom'])){
 	$con_unidade = $mysqli1->query($sql_unidade);
 
 	$row_unidade = $con_unidade->fetch_assoc();
-	$unidade = strtolower(substr($row_unidade['sigla'], -5));//pega os 5 ultimos caracteres da sigla
+	$unidade = substr($row_unidade['sigla'], -5);//pega os 5 ultimos caracteres da sigla
 
-	$unidade = ($unidade == 'cciex' or $unidade == 'icfex') ? $unidade : 'unidades';
+	$unidade = ($unidade == 'CCIEx' or $unidade == 'ICFEx') ? $unidade : 'Unidade';
 
 	$sql_perfis = "SELECT perfis FROM adm_perfis_unidade WHERE unidade = '$unidade'";
 	$con_perfis = $mysqli->query($sql_perfis);
@@ -37,7 +37,7 @@ if(isset($_POST['codom'])){
 	else {
 		echo '<option value="">Selecione o perfil...</option>';
 		while($rows_perfil = $con_perfil->fetch_assoc()){
-			echo '<option value="' . $rows_perfil['perfil'] .'">' . $rows_perfil['perfil'] . ' - '. $rows_perfil['descricao'] .'</option>';
+			echo '<option value="' . $rows_perfil['id_perfil'] .'">' . $rows_perfil['perfil'] . ' - '. $rows_perfil['descricao'] .'</option>';
 		}
 	}
 }
