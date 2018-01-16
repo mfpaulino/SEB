@@ -42,14 +42,13 @@ else {
 					data-cpf="<?php echo $cpf; ?>"
 					data-rg="<?php echo $rg_usuario; ?>"
 					data-id_posto="<?php echo $id_posto_usuario; ?>"
-					data-posto="<?php echo $posto_usuario; ?>"
 					data-nome_guerra="<?php echo $nome_guerra_usuario; ?>"
 					data-nome="<?php echo $nome_usuario; ?>"
 					data-email="<?php echo $email_usuario; ?>"
 					data-ritex="<?php echo $ritex_usuario; ?>"
 					data-celular="<?php echo $celular_usuario; ?>"
+					data-id_perfil="<?php echo $id_perfil_usuario; ?>"
 					data-perfil="<?php echo $perfil_usuario; ?>"
-					data-unidade="<?php echo $sigla_usuario; ?>"
 					data-avatar="<?php echo 'views/avatar/'.$avatar_usuario; ?>">
 					<i class="fa fa-pencil"></i> Perfil
 				</button>

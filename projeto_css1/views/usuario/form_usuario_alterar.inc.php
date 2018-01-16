@@ -83,7 +83,7 @@
 								<?php if ($status_usuario <> "Recebido") {?>
 									<div class="form-group">
 										<label for="perfil">Perfil</label>
-										<input type="text" name="perfil" id="perfil" class="form-control" disabled />
+										<input type="text" name="perfil_txt" id="perfil_txt" class="form-control" disabled />
 									</div>
 								<?php }
 									else { ?>
