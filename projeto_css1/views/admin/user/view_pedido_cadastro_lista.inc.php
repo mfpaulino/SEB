@@ -1,12 +1,17 @@
 <?php
-$sql = "SELECT id_usuario, cpf, rg, nome_guerra, nome, email, ritex, celular, avatar, dt_cad, usuarios.id_posto, p.posto, codom, usuarios.id_perfil, pe.perfil, ultimo_acesso, acesso_anterior, status from usuarios, postos p, adm_perfis pe where usuarios.status = 'Recebido' and usuarios.id_posto = p.id_posto and usuarios.id_perfil = pe.id_perfil and perfil_om = '$perfil_om' order by usuarios.id_posto";
+//$lista_perfis_admin vem do script perfil.inc.php
+
+$sql = "SELECT id_usuario, cpf, rg, nome_guerra, nome, email, ritex, celular, avatar, dt_cad, usuarios.id_posto, p.posto, codom, usuarios.id_perfil, pe.perfil, ultimo_acesso, acesso_anterior, status from usuarios, postos p, adm_perfis pe, adm_perfis_administra pa where usuarios.status = 'Recebido' and usuarios.id_posto = p.id_posto and usuarios.id_perfil = pe.id_perfil and pa.id_perfil_admin in ($lista_perfis_admin) and (pa.id_perfil = usuarios.id_perfil and pa.id_perfil_om = usuarios.id_perfil_om) order by  usuarios.id_perfil_om, usuarios.codom, usuarios.id_posto";
+
 $con_usuarios = $mysqli->query($sql);
+
+
 
 ?>
 <div class="box box-solid bg-green collapsed-box">
 	<div class="box-header">
 		<i class="fa fa-user"></i>
-		<h3 class="box-title">Usuários (Solicitações)</h3>
+		<h3 class="box-title">Usuários (Pedido Cadastro)</h3>
 		<div class="pull-right box-tools">
 			<div class="btn-group">
 				<button type="button" title="Exibir Menu" class="btn bg-green-gradient btn-sm dropdown-toggle" data-toggle="dropdown"><i class="fa fa-caret-down fa-lg"></i></button>
@@ -22,9 +27,9 @@ $con_usuarios = $mysqli->query($sql);
 		<div class="col-sm-12">
 			<table class="table table-striped">
 				<tr class="text-bold">
+					<td>Unidade</td>
 					<td>Usuário</td>
 					<td>Perfil</td>
-					<td>Unidade</td>
 					<td class="text-center">Ação</td>
 				</tr>
 			<?php
@@ -79,9 +84,9 @@ $con_usuarios = $mysqli->query($sql);
 				/****/
 				?>
 				<tr>
+					<td><?php echo $row_om['sigla'];?></td>
 					<td><?php echo $rows['posto'] ." ". $rows['nome_guerra']; ?></td>
 					<td><?php echo $rows['perfil']; ?></td>
-					<td><?php echo $row_om['sigla'];?></td>
 					<td width="13%" class="text-center">
 						<!--botao Perfil-->
 						<button type="button" class="btn btn-xs btn-primary"

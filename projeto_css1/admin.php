@@ -68,7 +68,7 @@ include_once(PATH . '/componentes/internos/php/funcoes.inc.php');
 				if (isset($_GET['flag']) and ($_GET['flag'] == md5("usuario_alterar") or $_GET['flag'] == md5("senha_alterar") or $_GET['flag'] == md5("om_alterar") or $_GET['flag'] == md5("habilitacao_cadastrar") or $_GET['flag'] == md5("habilitacao_alterar") or $_GET['flag'] == md5("logout") )){
 					include_once('controllers/usuario/usuario_alertas_criar.inc.php');
 				}
-				else if (isset($_GET['flag']) and ($_GET['flag'] == md5("categoria_cadastrar") or $_GET['flag'] == md5("categoria_alterar") or $_GET['flag'] == md5("categoria_excluir") or $_GET['flag'] == md5("diaria_cadastrar") or $_GET['flag'] == md5("diaria_alterar") or $_GET['flag'] == md5("diaria_excluir") or $_GET['flag'] == md5("user_alterar") or $_GET['flag'] == md5("area_cadastrar") or $_GET['flag'] == md5("area_alterar") or $_GET['flag'] == md5("area_vincular") or $_GET['flag'] == md5("subarea_cadastrar") or $_GET['flag'] == md5("subarea_alterar") or $_GET['flag'] == md5("subarea_vincular") or $_GET['flag'] == md5("questao_cadastrar") or $_GET['flag'] == md5("questao_alterar") or $_GET['flag'] == md5("questao_vincular") or $_GET['flag'] == md5("info_req_cadastrar") or $_GET['flag'] == md5("info_req_alterar") or $_GET['flag'] == md5("info_req_vincular") or $_GET['flag'] == md5("poss_achado_cadastrar") or $_GET['flag'] == md5("poss_achado_alterar") or $_GET['flag'] == md5("poss_achado_vincular") or $_GET['flag'] == md5("proc_ana_cadastrar") or $_GET['flag'] == md5("proc_ana_alterar") or $_GET['flag'] == md5("proc_ana_vincular") or $_GET['flag'] == md5("proc_coleta_cadastrar") or $_GET['flag'] == md5("proc_coleta_alterar") or $_GET['flag'] == md5("proc_coleta_vincular") or $_GET['flag'] == md5("fonte_info_cadastrar") or $_GET['flag'] == md5("fonte_info_alterar") or $_GET['flag'] == md5("tipo_evento_cadastrar") or $_GET['flag'] == md5("tipo_evento_alterar") or $_GET['flag'] == md5("aviso_cadastrar") or $_GET['flag'] == md5("aviso_alterar") )){
+				else if (isset($_GET['flag']) and ($_GET['flag'] == md5("categoria_cadastrar") or $_GET['flag'] == md5("categoria_alterar") or $_GET['flag'] == md5("categoria_excluir") or $_GET['flag'] == md5("diaria_cadastrar") or $_GET['flag'] == md5("diaria_alterar") or $_GET['flag'] == md5("diaria_excluir") or $_GET['flag'] == md5("user_alterar") or $_GET['flag'] == md5("area_cadastrar") or $_GET['flag'] == md5("area_alterar") or $_GET['flag'] == md5("area_vincular") or $_GET['flag'] == md5("subarea_cadastrar") or $_GET['flag'] == md5("subarea_alterar") or $_GET['flag'] == md5("subarea_vincular") or $_GET['flag'] == md5("questao_cadastrar") or $_GET['flag'] == md5("questao_alterar") or $_GET['flag'] == md5("questao_vincular") or $_GET['flag'] == md5("info_req_cadastrar") or $_GET['flag'] == md5("info_req_alterar") or $_GET['flag'] == md5("info_req_vincular") or $_GET['flag'] == md5("poss_achado_cadastrar") or $_GET['flag'] == md5("poss_achado_alterar") or $_GET['flag'] == md5("poss_achado_vincular") or $_GET['flag'] == md5("proc_ana_cadastrar") or $_GET['flag'] == md5("proc_ana_alterar") or $_GET['flag'] == md5("proc_ana_vincular") or $_GET['flag'] == md5("proc_coleta_cadastrar") or $_GET['flag'] == md5("proc_coleta_alterar") or $_GET['flag'] == md5("proc_coleta_vincular") or $_GET['flag'] == md5("fonte_info_cadastrar") or $_GET['flag'] == md5("fonte_info_alterar") or $_GET['flag'] == md5("tipo_evento_cadastrar") or $_GET['flag'] == md5("tipo_evento_alterar") or $_GET['flag'] == md5("aviso_cadastrar") or $_GET['flag'] == md5("aviso_alterar") or $_GET['flag'] == md5("perfil_administrar") )){
 					include_once('controllers/admin/admin_alertas_criar.inc.php');
 				}
 				else {
@@ -105,6 +105,13 @@ include_once(PATH . '/componentes/internos/php/funcoes.inc.php');
 						<?php include_once('views/admin/aviso/form_aviso_alterar.inc.php');?>
 						<?php include_once('views/admin/aviso/view_aviso_relacao.inc.php');?>
 					</div>
+					<!-- adiministra perfis -->
+					<div class="col-md-3">
+						<?php include_once('views/admin/perfil/view_perfis_administra.inc.php');?>
+						<?php include_once('views/admin/perfil/form_perfis_administra.inc.php');?>
+					</div>
+				</div>
+				<div class="row">
 					<!-- categoria/localidades para diarias -->
 					<div class="col-md-3">
 						<?php include_once('views/admin/categoria/view_categoria.inc.php');?>
@@ -244,17 +251,12 @@ include_once(PATH . '/componentes/internos/php/funcoes.inc.php');
 	<script src="componentes/internos/js/admin/subarea.js"></script>
 	<script src="componentes/internos/js/admin/tipo_evento.js"></script>
 	<script src="componentes/internos/js/admin/user.js"></script>
+	<script src="componentes/internos/js/admin/perfil_administra.js"></script>
 	<script>
 		//exibe os titles ao passar o mouse
 		$(document).ready(function(){
 			$('[data-tooltip="tooltip"]').tooltip();
 		});
-	</script>
-	<script>
-		//personalisando os checkbox
-		$('input[type="checkbox"].icheck').iCheck({
-			checkboxClass: 'icheckbox_square-blue'
-		})
 	</script>
 	<?php
 	include_once('componentes/internos/php/avatar.php');

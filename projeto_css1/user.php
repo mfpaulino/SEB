@@ -121,87 +121,15 @@ if(isset($_GET['flag'])){//vem da tela de bloqueio
 				}
 				?>
 				<!-- conteudo aqui -->
-				<!-- -->
 				<div class="row">
-					<?php
-					$total_alertas = 3;
-
-					if($total_alertas > 0){
-						$status_alertas = "(Quantidade: ". $total_alertas. ")";
-					}
-					else {
-						$status_alertas = "(Nenhum alerta)";
-					}
-					if($tot_avisos > 0){
-						$status_avisos = "(Quantidade: ". $tot_avisos . ")";
-					}
-					else {
-						$status_avisos = "(Nenhum aviso)";
-					}
-					?>
-					<div class="col-md-6 col-sm-6 col-xs-12">
-						<div class="info-box">
-							<span class="info-box-icon bg-yellow"><i class="fa fa-warning"></i></span>
-							<div class="info-box-content">
-								<span class="info-box-number">Alertas do Sistema</span>
-								<span class="info-box-text"><?php echo $status_alertas;?></span>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-6 col-sm-6 col-xs-12">
-						<div class="info-box">
-							<span class="info-box-icon bg-red"><i class="fa fa-bell"></i></span>
-							<div class="info-box-content">
-								<span class="info-box-number">Avisos Administrativos</span>
-								<span class="info-box-text"><?php echo $status_avisos;?></span>
-							</div>
-						</div>
-					</div>
-				</div>
-				<!-- -->
-				<!-- -->
-				<div class="row">
-					<div class="col-md-6">
-						<?php if($total_alertas > 0){?>
-						<div class="box box-default">
-							<div class="box-body">
-								<div class="alert alert-warning alert-dismissible">
-									<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-									<h4>Título do Alerta!</h4>
-									<h5>(Data/Hora)</h5>
-									<p>Qualquer texto. Qualquer texto. Qualquer texto. Qualquer texto. Qualquer texto. Qualquer texto. Qualquer texto. Qualquer texto. Qualquer texto. Qualquer texto. Qualquer texto. Qualquer texto. Qualquer texto.</p>
-								</div>
-								<div class="alert alert-warning alert-dismissible">
-									<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-									<h4>Título do Alerta!</h4>
-									<h5>(Data/Hora)</h5>
-									Qualquer texto. Qualquer texto. Qualquer texto. Qualquer texto. Qualquer texto. Qualquer texto. Qualquer texto. Qualquer texto. Qualquer texto. Qualquer texto. Qualquer texto. Qualquer texto. Qualquer texto.
-								</div>
-								<div class="alert alert-warning alert-dismissible">
-									<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-									<h4>Título do Alerta!</h4>
-									<h5>(Data/Hora)</h5>
-									Qualquer texto. Qualquer texto. Qualquer texto. Qualquer texto. Qualquer texto. Qualquer texto. Qualquer texto. Qualquer texto. Qualquer texto. Qualquer texto. Qualquer texto. Qualquer texto. Qualquer texto.
-								</div>
-							</div>
-						</div>
-						<?php } ?>
-					</div>
-					<div class="col-md-6">
+					<div class="col-md-12">
 						<?php
-						if($tot_avisos > 0){?>
-							<div class="box box-default">
-								<div class="box-body">
-									<?php
-									while($row_avisos = $con_avisos->fetch_assoc()){
-										include('views/admin/aviso/view_aviso_home.inc.php');
-									}
-									?>
-								</div>
-							</div>
-						<?php } ?>
+						include('views/admin/alerta/view_alerta_home.inc.php');
+						include('views/admin/aviso/view_aviso_home.inc.php');
+						?>
 					</div>
 				</div>
+				<!-- -->
 			</section>
 		</div>
 		<aside class="control-sidebar control-sidebar-dark">

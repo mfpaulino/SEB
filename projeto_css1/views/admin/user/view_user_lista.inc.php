@@ -1,5 +1,7 @@
 <?php
-$sql = "SELECT id_usuario, cpf, rg, nome_guerra, nome, email, ritex, celular, avatar, dt_cad, usuarios.id_posto, p.posto, codom, usuarios.id_perfil, pe.perfil, ultimo_acesso, acesso_anterior, status from usuarios, postos p, adm_perfis pe where usuarios.id_posto = p.id_posto and usuarios.id_perfil = pe.id_perfil and cpf <> '$cpf' and usuarios.status <> 'Recebido' and perfil_om = '$perfil_om' order by usuarios.id_posto";
+//$lista_perfis_admin vem do script perfil.inc.php
+
+$sql = "SELECT id_usuario, cpf, rg, nome_guerra, nome, email, ritex, celular, avatar, dt_cad, usuarios.id_posto, p.posto, codom, usuarios.id_perfil, pe.perfil, ultimo_acesso, acesso_anterior, status from usuarios, postos p, adm_perfis pe, adm_perfis_administra pa where usuarios.id_posto = p.id_posto and usuarios.id_perfil = pe.id_perfil and cpf <> '$cpf' and usuarios.status <> 'Recebido' and pa.id_perfil_admin in ($lista_perfis_admin) and (pa.id_perfil = usuarios.id_perfil and pa.id_perfil_om = usuarios.id_perfil_om) order by usuarios.id_perfil_om, usuarios.codom, usuarios.id_posto";
 
 $con_usuarios = $mysqli->query($sql);
 ?>
@@ -23,6 +25,8 @@ $con_usuarios = $mysqli->query($sql);
 		<div class="col-sm-12">
 	<table class="table table-striped">
 		<tr class="text-bold">
+
+			<td>Unidade</td>
 			<td>Usuário</td>
 			<td>Perfil</td>
 			<td>Status</td>
@@ -65,6 +69,7 @@ $con_usuarios = $mysqli->query($sql);
 		/****/
 		?>
 		<tr>
+			<td><?php echo $row_om['sigla'];?></td>
 			<td><?php echo $rows['posto'] ." ". $rows['nome_guerra']; ?></td>
 			<td><?php echo $rows['perfil']; ?></td>
 			<td><?php echo $rows['status'];?></td>

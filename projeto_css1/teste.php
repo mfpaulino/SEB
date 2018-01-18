@@ -26,6 +26,7 @@ include_once(PATH . '/componentes/internos/php/funcoes.inc.php');
 	<link rel="stylesheet" href="componentes/externos/bootstrap/plugins/bootstrap-fileinput/css/fileinput.min.css">
 	<link rel="stylesheet" href="componentes/externos/bootstrap/plugins/bootstrap-select/dist/css/bootstrap-select.css">
 	<link rel="stylesheet" href="componentes/externos/template/css/AdminLTE.css">
+	<link rel="stylesheet" href="componentes/externos/bootstrap/plugins/iCheck/all.css">
 	<link rel="stylesheet" href="componentes/externos/template/css/skins/skin-blue.css">
 	<link rel="stylesheet" href="componentes/internos/css/siaudi.css">
 </head>
@@ -84,8 +85,27 @@ include_once(PATH . '/componentes/internos/php/funcoes.inc.php');
 
 				<div class="row">
 					<?php
-					//$sql = "select * from adm_perfis_unidade order by unidade";
-//con = $mysqli->
+					$qtde_alerta = 0;
+					$sql = "SELECT count(id_usuario) as pedidos_cadastro, MAX(usuarios.data_cad) as data_cad from usuarios, adm_perfis_administra pa where usuarios.status = 'Recebido' and pa.id_perfil_admin in ($lista_perfis_admin) and (pa.id_perfil = usuarios.id_perfil and pa.id_perfil_om = usuarios.id_perfil_om)";
+					$con = $mysqli->query($sql);
+					$rows = $con->fetch_assoc();
+					if ($rows['pedidos_cadastro'] > 0){
+						$qtde_alerta++;
+						?>
+						<div class="col-md-6">
+							<div class="box box-default">
+								<div class="box-body">
+									<div class="alert alert-warning alert-dismissible">
+										<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+										<h4>Cadastro de Usuário</h4>
+										<p>Há <?php echo $rows['pedidos_cadastro'];?> pedido(s) de novo(s) usuário(s) pendente(s)!</p>
+										<i><small>(Pedido mais recente: <?php echo converter_data($rows['data_cad'],'BR',true);?>)</small></i>
+									</div>
+								</div>
+							</div>
+						</div>
+						<?php
+					}
 					?>
 				</div>
 				<!-- fim conteudo -->
@@ -104,6 +124,7 @@ include_once(PATH . '/componentes/internos/php/funcoes.inc.php');
 	<script src="componentes/externos/bootstrap/plugins/bootstrap-fileinput/js/fileinput.js"></script>
 	<script src="componentes/externos/bootstrap/plugins/bootstrap-select/dist/js/bootstrap-select.js"></script>
 	<script src="componentes/externos/template/js/adminlte.min.js"></script>
+	<script src="componentes/externos/bootstrap/plugins/iCheck/icheck.min.js"></script>
 	<script src="componentes/externos/jquery/plugins/maskMoney/dist/jquery.maskMoney.min.js"></script>
 	<script src="componentes/internos/js/status_sessao.js"></script>
 	<script src="componentes/internos/js/status_menu_top.js"></script>
@@ -112,6 +133,13 @@ include_once(PATH . '/componentes/internos/php/funcoes.inc.php');
 	<script src="componentes/internos/js/modal_editar_perfil.js"></script>
 	<script src="componentes/internos/js/modal_editar_unidade.js"></script>
 	<script src="componentes/internos/js/habilitacao.js"></script>
+
+	<script>
+		//personalisando os checkbox
+	$('input[type="checkbox"].icheck').iCheck({
+		checkboxClass: 'icheckbox_square-blue'
+	})
+	</script>
 	<script>
 		//exibe os titles ao passar o mouse
 		$(document).ready(function(){

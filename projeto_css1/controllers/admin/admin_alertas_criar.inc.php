@@ -112,6 +112,14 @@ if ($inc == "sim"){
 			unset($_SESSION['alterar_lista_erro_validacao_user']);
 		}
 
+		if($flag == md5("perfil_administrar")){
+
+			$msg0 = $_SESSION['perfil_administrar'];
+		}
+		else {
+			unset($_SESSION['perfil_administrar']);
+		}
+
 		if($flag == md5("area_cadastrar")){
 
 			$msg0 = $_SESSION['erro_validacao_cadastrar_area'];

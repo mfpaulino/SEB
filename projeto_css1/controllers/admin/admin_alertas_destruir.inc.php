@@ -91,6 +91,9 @@ unset($_SESSION['erro_cadastro_aviso']);
 unset($_SESSION['erro_validacao_cadastrar_aviso']);
 unset($_SESSION['lista_erro_validacao_cadastrar_aviso']);
 
+//perfil_administrar
+unset($_SESSION['perfil_administrar']);
+
 //area_vincular
 unset($_SESSION['area_vincular']);
 
