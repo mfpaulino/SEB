@@ -1,4 +1,6 @@
 <?php
+include_once(PATH.'/controllers/admin/aviso/aviso_home.inc.php');
+
 if($tot_avisos > 0){
 	$status_avisos = "(Quantidade: ". $tot_avisos . ")";
 }
@@ -23,7 +25,7 @@ else {
 			<?php
 			if($tot_avisos > 0){?>
 				<?php
-				while($row_avisos = $con_avisos->fetch_assoc()){?>
+				while($row_avisos = $con_avisos_home->fetch_assoc()){?>
 					<div class="alert alert-danger alert-dismissible">
 						<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
 						<h4><?php echo $row_avisos['titulo'];?></h4>

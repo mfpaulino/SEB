@@ -112,8 +112,6 @@ if(isset($_GET['flag'])){//vem da tela de bloqueio
 					include_once('controllers/usuario/usuario_alertas_destruir.inc.php');
 				}
 
-				include_once('controllers/admin/aviso/aviso_home.inc.php');//lista de avisos
-
 				include_once('user_modais.inc.php');//modais do menu à direita
 
 				if(isset($_SESSION['alterar_senha_logout']) or isset($_SESSION['alterar_codom'])){
