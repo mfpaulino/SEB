@@ -23,7 +23,7 @@ if(isset($_POST['flag']) and isset($_SESSION['cpf'])){
 		$texto = isset($_POST['texto']) ? $_POST['texto'] : "";
 		$validade = isset($_POST['validade']) ? converter_data($_POST['validade'], 'EN') : "";
 
-		$publico = isset($_POST['publico']) ? serialize($_POST['publico']) : "";
+		$publico = isset($_POST['publico_alt']) ? serialize($_POST['publico_alt']) : "";
 
 		$autor = $cpf; //vem do arquivo de perfil(variavel de sessao - usuario logado)
 

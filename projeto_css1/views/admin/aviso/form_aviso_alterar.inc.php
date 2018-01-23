@@ -14,13 +14,7 @@
 						<label for="texto" class="control-label">*Texto:</label>
 						<textarea class="form-control" type="text" name="texto"  id="texto" required style="resize: vertical" ></textarea>
 					</div>
-					<div class="form-group">
-						<label>*Público alvo:</label>
-						<br />
-						&nbsp;&nbsp;&nbsp;<input name="publico[]" type="checkbox" id="pub_cciex"    class="icheck" value="CCIEx"   /> CCIEx <br />
-						&nbsp;&nbsp;&nbsp;<input name="publico[]" type="checkbox" id="pub_icfex"    class="icheck" value="ICFEx"   /> ICFEx <br />
-						&nbsp;&nbsp;&nbsp;<input name="publico[]" type="checkbox" id="pub_unidades" class="icheck" value="Unidade" /> Unidade
-					</div>
+					<div id="listar_publico"></div>
 					<div class="form-group">
 						<label>*Validade:</label>
 						<div class="input-group date" id="validade_altera">

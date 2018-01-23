@@ -6,7 +6,7 @@ $(document).ready(function() {
 			validating: 'glyphicon glyphicon-refresh'
 		},
 		fields: {
-			'publico_cad[]': {
+			'publico[]': {
 				validators: {
 					notEmpty: {
 						message:'Preenchimento obrigatório'
@@ -16,16 +16,6 @@ $(document).ready(function() {
 			}
 		}
 	})
-	
-   	//personalisando os checkbox
-	$('input[name="publico_cad[]"].icheck').iCheck({
-		checkboxClass: 'icheckbox_square-blue'
-	})
-       
-        // revalidando apos click
-        .on('ifChanged', function(e) {
-                $('#form_aviso_cadastrar').bootstrapValidator('revalidateField', 'publico_cad[]');
-        });
 	
 	//calendario form cadastrar
         $('#validade').datepicker({
@@ -45,6 +35,9 @@ $('#modalAlterarAviso').on('show.bs.modal', function (event) {
 	var texto = button.data('texto')
 	var validade = button.data('validade')
 	var atualizacao = button.data('atualizacao')
+	var pub_cciex = button.data('pub_cciex')
+	var pub_icfex = button.data('pub_icfex')
+	var pub_unidades = button.data('pub_unidades')
 	var modal = $(this)
 	
 	modal.find('#id_aviso').val(id_aviso)
@@ -52,41 +45,33 @@ $('#modalAlterarAviso').on('show.bs.modal', function (event) {
 	modal.find('#texto').val(texto)
 	modal.find('[name=validade]').val(validade)
 	modal.find('#atualizacao').val(atualizacao) 
-	modal.find('#id_aviso').val(id_aviso);
+	modal.find('#pub_cciex').attr('checked', pub_cciex)
+	modal.find('#pub_icfex').attr('checked', pub_icfex)
+	modal.find('#pub_unidades').attr('checked', pub_unidades)
 	
-	$.post('controllers/admin/aviso/aviso_listar_publico_alt.inc.php',{id_aviso:id_aviso},function (res) {
-		
-	   	$('#listar_publico').html(res);//insere a lista de perfis no modal
-		//validacao dos campos no modal
-		
-		$('#form_aviso_alterar').bootstrapValidator({
-			feedbackIcons: {
-				valid: 'glyphicon glyphicon-ok',
-				invalid: 'glyphicon glyphicon-remove',
-				validating: 'glyphicon glyphicon-refresh'
-			},
-			fields: {
-				'publico_alt[]': {
-					validators: {
-						notEmpty: {
-							message:'Preenchimento obrigatório'
-						}
+	//personalisando os checkbox
+	modal.find('input[type="checkbox"].icheck').iCheck({
+		checkboxClass: 'icheckbox_square-blue'
+	})
+	
+	//validacao dos campos no modal
+	$('#form_aviso_alterar').bootstrapValidator({
+		feedbackIcons: {
+			valid: 'glyphicon glyphicon-ok',
+			invalid: 'glyphicon glyphicon-remove',
+			validating: 'glyphicon glyphicon-refresh'
+		},
+		fields: {
+			'publico[]': {
+				validators: {
+					notEmpty: {
+						message:'Preenchimento obrigatório'
 					}
-					    
 				}
+				    
 			}
-		})
-		
-		//personalisando os checkbox
-		$('input[name="publico_alt[]"]').iCheck({
-			checkboxClass: 'icheckbox_square-blue'
-		})
-	       
-		// revalidando apos click no checkbox
-		$('input[name="publico_alt[]"]').on('ifChanged', function(e) {
-		   $('#form_aviso_alterar').bootstrapValidator('revalidateField', 'publico_alt[]');
-		});
-   	})
+		}
+	})
 	
 	//calendario do modal alterar aviso     
 	$("#validade_altera").datepicker({
@@ -107,3 +92,5 @@ document.getElementById('btnPrintAviso').onclick = function() {
 	tela_impressao.window.print();
 	tela_impressao.window.close();
 };
+
+

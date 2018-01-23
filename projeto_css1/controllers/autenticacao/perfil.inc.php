@@ -51,11 +51,77 @@ else {
 $id_perfil_admin = $rows_admin['id_perfil_admin'];
 
 /*********** dados OM do usuario ***********************/
-$sql = "select sigla, denominacao from cciex_om where codom = '$codom_usuario'";
+$sql = "select sigla, denominacao, icfex from cciex_om where codom = '$codom_usuario'";
 $con_om = $mysqli1->query($sql);
 
 $row = $con_om->fetch_assoc();
 
 $sigla_usuario = $row['sigla'];
 $denominacao_usuario = $row['denominacao'];
+
+switch ($row['sigla']) {
+    case 'CCIEx':
+		$nr_ci = 0;//nr icfex da tabela de om, no caso da om ser o CCIEx ou alguma ICFEx
+        break;
+    case '1ª ICFEx':
+		$nr_ci = 1;
+        break;
+    case '2ª ICFEx':
+		$nr_ci= 2;
+        break;
+    case '3ª ICFEx':
+		$nr_ci = 3;
+        break;
+    case '4ª ICFEx':
+		$nr_ci = 4;
+        break;
+    case '5ª ICFEx':
+		$nr_ci = 5;
+        break;
+    case '6ª ICFEx':
+		$nr_ci = 6;
+        break;
+    case '7ª ICFEx':
+		$nr_ci = 7;
+        break;
+    case '8ª ICFEx':
+		$nr_ci = 8;
+        break;
+    case '9ª ICFEx':
+		$nr_ci = 9;
+        break;
+    case '10ª ICFEx':
+		$nr_ci = 10;
+        break;
+    case '11ª ICFEx':
+		$nr_ci = 11;
+        break;
+    case '12ª ICFEx':
+		$nr_ci = 12;
+        break;
+   default:
+		$nr_ci = '';
+		break;
+}
+
+/************************** lista os codom se o usuario logado for do CCIEx ou ICFEx *********************************/
+$sql_codom = "SELECT codom FROM cciex_om WHERE icfex = $nr_ci";
+$con_codom = $mysqli1->query($sql_codom);
+
+if($con_codom){
+	while($row_codom = $con_codom->fetch_assoc()){
+		$lista_codom = $lista_codom . $row_codom['codom'] . ',';
+	}
+	$lista_codom = substr($lista_codom, 0, -1);//elimina a ultima ",".
+}
+/**************************** criterio para selecioar apenas os codom que o usuario tem permissao de enxergar **************/
+if($id_perfil_om == 3){//Unidade
+	$condicao_codom = " AND codom = $codom_usuario";
+}
+else if($id_perfil_om == 2){//ICFEx
+	$condicao_codom = "AND (codom = $codom_usuario or codom in ($lista_codom))";
+}
+else if($id_perfil_om == 1){//CCIEx
+	$condicao_codom = "";
+}
 ?>

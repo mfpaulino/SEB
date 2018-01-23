@@ -17,9 +17,10 @@
 					<div class="form-group">
 						<label>*Público alvo:</label>
 						<br />
-						<input name="publico[]" type="checkbox"  class="icheck" value="CCIEx"   /> CCIEx<br />
-						<input name="publico[]" type="checkbox"  class="icheck" value="ICFEx"   /> ICFEx<br />
-						<input name="publico[]" type="checkbox"  class="icheck" value="Unidade" /> Unidade<br />
+						<?php
+						$inclui_config = "nao";//para nao dar erro de caminho no script abaixo em relacao à inclusao do config.inc.php
+						include_once(PATH.'/controllers/admin/aviso/aviso_listar_publico_cad.inc.php');
+						?>
 					</div>
 					<div class="form-group">
 						<label>*Validade:</label>
@@ -32,7 +33,7 @@
 					</div>
 					<div class="form-group">
 						<label>Habilitar? </label><br />
-						<input name="status" type="checkbox" data-toggle="toggle" data-size="small" data-on="Sim" data-off="Não"  value="Ativo" />&nbsp;&nbsp;
+						<input name="status" type="checkbox" data-toggle="toggle" data-size="small" data-on="Sim" data-off="Não"  value="Ativo"   />&nbsp;&nbsp;
 					</div>
 					<div class="form-group">
 						<!--Hidden input -->

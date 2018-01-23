@@ -30,7 +30,7 @@ if (isset($_POST['flag']) and isset($_SESSION['cpf'])){
 
 	$validade = converter_data($_POST["validade"], 'EN');
 
-	$publico = isset($_POST['publico']) ? serialize($_POST['publico']) : "";
+	$publico = isset($_POST['publico_cad']) ? serialize($_POST['publico_cad']) : "";
 
 	$status   = isset($_POST['status']) ? $_POST['status'] : "Inativo";
 

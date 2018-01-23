@@ -4,14 +4,21 @@
 session_start();
 if ($inc == "sim"){
 
-	$sql = "SELECT count(id_usuario) as pedidos_cadastro, MAX(usuarios.data_cad) as data_cad from usuarios, adm_perfis_administra pa where usuarios.status = 'Recebido' and pa.id_perfil_admin in ($lista_perfis_admin) and (pa.id_perfil = usuarios.id_perfil and pa.id_perfil_om = usuarios.id_perfil_om)";
+	//$lista_perfis_admin: vem do script perfil.inc.php
+	//$condicao_codom: vem do script perfil.inc.php
+
+	$sql = "SELECT count(id_usuario) as pedidos_cadastro, MAX(usuarios.data_cad) as data_cad from usuarios, adm_perfis_administra pa where usuarios.status = 'Recebido' and pa.id_perfil_admin in ($lista_perfis_admin) and (pa.id_perfil = usuarios.id_perfil and pa.id_perfil_om = usuarios.id_perfil_om) $condicao_codom";
 	$con = $mysqli->query($sql);
-	$rows = $con->fetch_assoc();
 
 	$tot_alertas = 0;
 
-	if ($rows['pedidos_cadastro'] > 0){
-		$tot_alertas++;
+	if($con){
+
+		$rows = $con->fetch_assoc();
+
+		if ($rows['pedidos_cadastro'] > 0){
+				$tot_alertas++;
+		}
 	}
 
 	if($tot_alertas > 0){

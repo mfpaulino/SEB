@@ -24,14 +24,12 @@ $con_avisos = $mysqli->query($sql);
 			<table class="table table-striped">
 				<tr class="text-bold">
 					<td>Título</td>
-					<td>Público</td>
 					<td>Validade</td>
 					<td>Status</td>
 					<td class="text-center">Ação</td>
 				</tr>
 			<?php
 			while ($rows =  $con_avisos->fetch_assoc()){
-				$publico = "";
 
 				if ($rows['status'] == 'Ativo'){
 					$icone = "fa fa-window-close";
@@ -41,40 +39,9 @@ $con_avisos = $mysqli->query($sql);
 					$icone = "fa fa-check";
 					$tooltip = "Habilitar";
 				}
-				$pub = unserialize($rows['publico']);
-				$tot_pub = count($pub);
-
-				//para o form alterar
-				if (in_array("CCIEx", $pub)) {
-					$pub_cciex = 'true';
-				}
-				else {
-					$pub_cciex = 'false';
-				}
-				if (in_array("ICFEx", $pub)) {
-					$pub_icfex = 'true';
-				}
-				else {
-					$pub_icfex = 'false';
-				}
-				if (in_array("Unidade", $pub)){
-					$pub_unidades = 'true';
-				}
-				else{
-					$pub_unidades = 'false';
-				}
-				//fim para o form alterar
-
-				for($i = 0; $i < $tot_pub; $i++){
-
-					if($pub[$i] <> NULL){
-						$publico .= $pub[$i].", ";
-					}
-				}
 				?>
 				<tr>
 					<td><?php echo $rows['titulo']; ?></td>
-					<td><?php echo "(".substr($publico, 0, -2).")";?></td>
 					<td><?php echo converter_data($rows['dt_validade'], 'BR');?></td>
 					<td><?php echo $rows['status'];?></td>
 					<td width="16%" class="text-center">
@@ -90,9 +57,6 @@ $con_avisos = $mysqli->query($sql);
 							data-texto="<?php echo $rows['texto'];?>"
 							data-validade="<?php echo converter_data($rows['dt_validade'], 'BR');?>"
 							data-atualizacao="<?php echo $rows['posto'].' '.$rows['nome_guerra']. ", em ".converter_data($rows['dt_aviso'], 'BR');?>"
-							data-pub_cciex = "<?php echo $pub_cciex;?>"
-							data-pub_icfex = "<?php echo $pub_icfex;?>"
-							data-pub_unidades = "<?php echo $pub_unidades;?>"
 							>
 							<i class="fa fa-search"></i>
 						</button>

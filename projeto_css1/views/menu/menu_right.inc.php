@@ -79,6 +79,9 @@ if ($inc == "sim"){?>
 				<label class="control-sidebar-subheading">
 					<a href="user_habilitacao.php" data-tooltip="tooltip" title="Visualizar" ><i class="fa fa-search"></i> Habilitações</a>
 				</label>
+					<br />
+					<p>Administradores:</p>
+					<?php include_once(PATH.'/views/usuario/usuario_lista_admin.inc.php');?>
 			</div>
 		</div>
 	</div>
