@@ -26,7 +26,7 @@ if(isset($_POST['flag'])){
 
 	$cpf = isset($_POST['cpf']) ? mysqli_real_escape_string($mysqli, $_POST['cpf']) : "";
 
-	$sql = "select cpf, postos.posto, nome_guerra, email, id_perfil, id_perfil_om from usuarios, postos where cpf = '$cpf' and usuarios.id_posto = postos.id_posto";
+	$sql = "select cpf, postos.posto, nome_guerra, email from usuarios, postos where cpf = '$cpf' and usuarios.id_posto = postos.id_posto";
 	$con_usuario = $mysqli->query($sql);
 
 	$row_usuario = $con_usuario->fetch_assoc();
@@ -51,35 +51,13 @@ if(isset($_POST['flag'])){
 
 		smtpmailer($row_usuario['email'], "siaudi@cciex.eb.mil.br", "SIAUDI",  "SIAUDI - ENVIO DE NOVA SENHA", $msg);
 
-		/*************************************************** lista os usuarios admin que serao exibidos nas msg *************************/
-		$id_perfil = $row_usuario['id_perfil'];
-		$id_perfil_om = $row_usuario['id_perfil_om'];
-
-		$sql = "SELECT id_perfil_admin FROM adm_perfis_administra WHERE id_perfil = '$id_perfil' AND id_perfil_om = '$id_perfil_om'";
-		$con = $mysqli->query($sql);
-		$row = $con->fetch_assoc();
-		$id_perfil_admin = $row['id_perfil_admin'];
-
-		include_once('usuario_lista_admin.inc.php');
-
-		$lista_admin = "";
-		while($row_admin = $con_admin->fetch_assoc()){
-			$codom = $row_admin['codom'];
-			$sql = "select sigla from cciex_om where codom = '$codom'";
-			$con = $mysqli1->query($sql);
-			$row_om = $con->fetch_assoc();
-			$lista_admin = $lista_admin . $row_admin['posto'].' '.$row_admin['nome_guerra'].' ('.$row_om['sigla'].'), ';
-		}
-		/******************************************************************************************************************************/
-
 		if (!empty($error)) {
 
-			$_SESSION['senha_nao_enviada'] = "ERRO 018: a nova senha não pode ser enviada para o e-mail cadastrado!<br />Peça a um dos seguintes usuários: $lista_admin para redefinir a senha manualmente.";
+			$_SESSION['senha_nao_enviada'] = "ERRO 018: a nova senha não pode ser enviada para o e-mail cadastrado!<br />Peça ao responsável pelo SIAUDI em sua Unidade para redefinir a senha manualmente.";
 			$_SESSION['botao'] = "danger";
 		}
 		else {
-
-			$_SESSION['senha_enviada'] = "A nova senha foi enviada para o e-mail <kbd>".strtoupper($row_usuario['email']).  "</kbd>.<br />Em caso de não recebimento, peça a um dos seguintes usuários: $lista_admin para redefinir a senha manualmente.";
+			$_SESSION['senha_enviada'] = 'A nova senha foi enviada para o e-mail <kbd>'.strtoupper($row_usuario['email']).  '</kbd>.<br />Em caso de não recebimento, peça ao responsável pelo SIAUDI em sua Unidade para redefinir a senha manualmente.';
 			$_SESSION['botao'] = "success";
 		}
 	}

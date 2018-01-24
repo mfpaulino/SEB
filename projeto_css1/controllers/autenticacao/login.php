@@ -13,9 +13,9 @@ if(isset($_POST['flag'])){
 	require_once(PATH .'/componentes/internos/php/bcript.inc.php');
 
 	$pagina_lock  = isset($_POST['flag']) ? $_POST['flag']: "";
-	$cpf 	 = isset($_POST['cpf']) ? $_POST['cpf']: "";
-	$senha 	 = isset($_POST['senha']) ? $_POST['senha']: "";
-	$captcha = isset($_POST['captcha']) ? $_POST['captcha']: "";
+	$cpf 	 = isset($_POST['cpf']) ? mysqli_real_escape_string($mysqli, $_POST['cpf']): "";
+	$senha 	 = isset($_POST['senha']) ? mysqli_real_escape_string($mysqli, $_POST['senha']): "";
+	$captcha = isset($_POST['captcha']) ? mysqli_real_escape_string($mysqli, $_POST['captcha']): "";
 
 	$sql = "select * from usuarios where cpf = '$cpf'";
 	$con_login = $mysqli->query($sql);
