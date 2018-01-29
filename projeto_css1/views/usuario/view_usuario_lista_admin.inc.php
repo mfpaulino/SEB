@@ -6,7 +6,7 @@ if ($inc == "sim"){
 			<!--<h3 class="control-sidebar-heading">Administradores</h3>-->
 			<div class="form-group">
 				<br />
-				<p>A redefinição de senha poderá ser solicitada aos seguintes usuários:</p>
+				<p>A redefinição de senha e alteração do perfil poderão ser solicitadas aos seguintes usuários:</p>
 				<br />
 				<?php while($row_admin = $con_admin->fetch_assoc()){
 					$codom = $row_admin['codom'];

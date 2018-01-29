@@ -77,6 +77,22 @@
 								</div>
 							</div>
 						</div>
+						<div class="row">
+							<!-- Text input-->
+							<div class="col-sm-6">
+								<div class="form-group">
+									<label for="user_habilita">Responsável Habilitação</label>
+									<input value="<?php echo $user_habilita_usuario;?>" class="form-control" disabled>
+								</div>
+							</div>
+							<!-- Text input-->
+							<div class="col-sm-6">
+								<div class="form-group">
+									<label for="data_habilita">Data Habilitação</label>
+									<input value="<?php echo $data_habilita_usuario;?>" class="form-control" disabled>
+								</div>
+							</div>
+						</div>
 					</div>
 				</form>
 			</div>

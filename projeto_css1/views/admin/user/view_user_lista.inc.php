@@ -2,7 +2,7 @@
 //$lista_perfis_admin: vem do script perfil.inc.php
 //$condicao_codom: vem do script perfil.inc.php
 
-$sql = "SELECT id_usuario, cpf, rg, nome_guerra, nome, email, ritex, celular, avatar, dt_cad, usuarios.id_posto, p.posto, codom, usuarios.id_perfil, pe.perfil, ultimo_acesso, acesso_anterior, status from usuarios, postos p, adm_perfis pe, adm_perfis_administra pa where usuarios.id_posto = p.id_posto and usuarios.id_perfil = pe.id_perfil and cpf <> '$cpf' and usuarios.status <> 'Recebido' and pa.id_perfil_admin in ($lista_perfis_admin) and (pa.id_perfil = usuarios.id_perfil and pa.id_perfil_om = usuarios.id_perfil_om) $condicao_codom order by usuarios.id_perfil_om, usuarios.codom, usuarios.id_posto";
+$sql = "SELECT id_usuario, cpf, rg, nome_guerra, nome, email, ritex, celular, avatar, dt_cad, usuarios.id_posto, p.posto, codom, usuarios.id_perfil, pe.perfil, ultimo_acesso, acesso_anterior, status, user_habilita, data_habilita from usuarios, postos p, adm_perfis pe, adm_perfis_administra pa where usuarios.id_posto = p.id_posto and usuarios.id_perfil = pe.id_perfil and cpf <> '$cpf' and usuarios.status <> 'Recebido' and pa.id_perfil_admin in ($lista_perfis_admin) and (pa.id_perfil = usuarios.id_perfil and pa.id_perfil_om = usuarios.id_perfil_om) $condicao_codom order by usuarios.id_perfil_om, usuarios.codom, usuarios.id_posto";
 
 $con_usuarios = $mysqli->query($sql);
 ?>
@@ -53,7 +53,19 @@ $con_usuarios = $mysqli->query($sql);
 			$title = "Habilitar Usuário";
 		}
 
-		/****/
+		/*** verifica usuario que habilitou o usuario selecionado ***/
+		$user_habilita = $rows['user_habilita'];
+
+		$sql = "SELECT p.posto, u.nome_guerra, u.codom FROM postos p, usuarios u WHERE u.id_usuario = '$user_habilita' and p.id_posto = u.id_posto";
+		$con_habilita = $mysqli->query($sql);
+		$row_habilita = $con_habilita->fetch_assoc();
+
+		$codom_habilita = $row_habilita['codom'];
+		$sql = "SELECT sigla FROM cciex_om WHERE codom = '$codom_habilita'";
+		$con_habilita_om = $mysqli1->query($sql);
+		$row_habilita_om = $con_habilita_om->fetch_assoc();
+
+		$user_habilita_usuario = $row_habilita['posto'] . ' ' . $row_habilita['nome_guerra'] . ' ('.$row_habilita_om['sigla'].')';
 
 		/*** verifica se o usuário possui alguma entrada na tabela de logs ****/
 		$user_cpf = $rows['cpf'];
@@ -92,6 +104,8 @@ $con_usuarios = $mysqli->query($sql);
 					data-usuario="<?php echo $rows['posto'].' '.$rows['nome_guerra'];?>"
 					data-perfil="<?php echo $rows['perfil'];?>"
 					data-id_perfil="<?php echo $rows['id_perfil'];?>"
+					data-user_habilita="<?php echo $user_habilita_usuario;?>"
+					data-data_habilita="<?php echo date('d/m/Y H:i:s', strtotime($rows['data_habilita']));?>"
 					data-unidade="<?php echo $row_om['sigla'];?>"
 					data-avatar="<?php echo "views/avatar/".$rows['avatar'];?>"
 					>

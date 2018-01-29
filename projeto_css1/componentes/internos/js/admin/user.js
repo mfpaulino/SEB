@@ -11,6 +11,8 @@ $('#modalUserPerfil').on('show.bs.modal', function (event) {
 	var celular = button.data('celular')
 	var id_perfil = button.data('id_perfil')
 	var perfil = button.data('perfil')
+	var user_habilita = button.data('user_habilita')
+	var data_habilita = button.data('data_habilita')
 	var unidade = button.data('unidade')
 	var avatar = button.data('avatar')
 	var modal = $(this)
@@ -25,6 +27,8 @@ $('#modalUserPerfil').on('show.bs.modal', function (event) {
 	modal.find('#usuario').val(usuario)
 	modal.find('#nome').val(nome)
 	modal.find('#perfil').val(perfil)
+	modal.find('#user_habilita').val(user_habilita)
+	modal.find('#data_habilita').val(data_habilita)
 	modal.find('#unidade').val(unidade)
 	modal.find('#avatar').attr('src',avatar)
 	

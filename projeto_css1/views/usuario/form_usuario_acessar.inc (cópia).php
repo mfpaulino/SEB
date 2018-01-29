@@ -11,8 +11,8 @@
 			<input class="form-control" type="password" name="senha" placeholder="Senha" />
 			<i class="glyphicon glyphicon-lock form-control-feedback"></i>
 		</div>
-		<div class="form-group has-feedback" style="text-align: center;">
-			<img width="100%" height="35px" src="componentes/internos/php/captcha.php?flag=<?php echo md5($inc);?>" alt="Código captcha">
+		<div class="form-group has-feedback">
+			<img width="100%" height="50px" src="componentes/internos/php/captcha.php?flag=<?php echo md5($inc);?>" alt="Código captcha">
 		</div>
 		<div class="form-group has-feedback">
 			<input class="form-control" type="text" name="captcha" placeholder="Código exibido acima" />

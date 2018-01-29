@@ -5,7 +5,7 @@ $cpf = $_SESSION['cpf'];
 $ultimoAcesso = $_SESSION['ultimoAcesso'];
 
 /* consultando os dados do usuario */
-$sql = "SELECT id_usuario, rg, nome_guerra, nome, email, ritex, celular, avatar, dt_cad, usuarios.id_posto, p.posto, codom, usuarios.id_perfil, pe.perfil, usuarios.id_perfil_om, pu.unidade as perfil_om, ultimo_acesso, acesso_anterior, status from usuarios, postos p, adm_perfis pe, adm_perfis_unidade pu where cpf = '$cpf' and usuarios.id_posto = p.id_posto and usuarios.id_perfil = pe.id_perfil and usuarios.id_perfil_om = pu.id_perfil_om";
+$sql = "SELECT id_usuario, rg, nome_guerra, nome, email, ritex, celular, avatar, dt_cad, usuarios.id_posto, p.posto, codom, usuarios.id_perfil, pe.perfil, usuarios.id_perfil_om, pu.unidade as perfil_om, ultimo_acesso, acesso_anterior, status, user_habilita, data_habilita from usuarios, postos p, adm_perfis pe, adm_perfis_unidade pu where cpf = '$cpf' and usuarios.id_posto = p.id_posto and usuarios.id_perfil = pe.id_perfil and usuarios.id_perfil_om = pu.id_perfil_om";
 $con_dados = $mysqli->query($sql);
 $row = $con_dados->fetch_assoc();
 
@@ -28,6 +28,20 @@ $avatar_usuario = $row['avatar'];
 $dt_cad_usuario = date('d/m/Y', strtotime($row['dt_cad']));
 $ultimo_acesso_usuario = date('d/m/Y H:i:s', strtotime($row['ultimo_acesso']));
 $acesso_anterior_usuario = date('d/m/Y H:i:s', strtotime($row['acesso_anterior']));
+
+/*** responsavel pela habilitação ***/
+$user_habilita = $row['user_habilita'];
+$sql = "SELECT p.posto, u.nome_guerra, u.codom FROM postos p, usuarios u WHERE u.id_usuario = '$user_habilita' and p.id_posto = u.id_posto";
+$con_habilita = $mysqli->query($sql);
+$row_habilita = $con_habilita->fetch_assoc();
+
+$codom_habilita = $row_habilita['codom'];
+$sql = "SELECT sigla FROM cciex_om WHERE codom = '$codom_habilita'";
+$con_om = $mysqli1->query($sql);
+$row_om = $con_om->fetch_assoc();
+
+$user_habilita_usuario = $row_habilita['posto'] . ' ' . $row_habilita['nome_guerra']. ' ('.$row_om['sigla'].')';
+$data_habilita_usuario = date('d/m/Y H:i:s', strtotime($row['data_habilita']));
 
 /*** usado no menu esquerdo **/
 $usuario = $posto_usuario . " " . $nome_guerra_usuario;

@@ -17,6 +17,8 @@ if(isset($_POST['flag']) and isset($_SESSION['cpf'])){
 	include_once(PATH . '/componentes/internos/php/funcoes.inc.php');
 	include_once(PATH . '/componentes/internos/php/bcript.inc.php');
 
+	$usuario_admin = $id_usuario;//vem do perfil.inc.php
+
 	$acao = $_POST['flag'];
 	$id_usuario = $_POST['id_usuario'];
 
@@ -82,7 +84,7 @@ if(isset($_POST['flag']) and isset($_SESSION['cpf'])){
 		}
 	}
 	else if($acao == "habilitar"){
-		$con_habilita = $mysqli->prepare("UPDATE usuarios SET status = 'Habilitado', user_habilita = '$id_usuario', data_habilita = '$data' WHERE id_usuario = ?");
+		$con_habilita = $mysqli->prepare("UPDATE usuarios SET status = 'Habilitado', user_habilita = '$usuario_admin', data_habilita = '$data' WHERE id_usuario = ?");
 		$con_habilita->bind_param('i', $id_usuario);
 		$resultado = $con_habilita->execute();
 

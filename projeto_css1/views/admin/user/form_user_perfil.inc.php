@@ -77,6 +77,22 @@
 								</div>
 							</div>
 						</div>
+						<div class="row">
+							<!-- Text input-->
+							<div class="col-sm-6">
+								<div class="form-group">
+									<label for="user_habilita">Responsável Habilitação</label>
+									<input name="user_habilita" id="user_habilita" type="text" class="form-control" disabled>
+								</div>
+							</div>
+							<!-- Text input-->
+							<div class="col-sm-6">
+								<div class="form-group">
+									<label for="data_habilita">Data Habilitação</label>
+									<input name="data_habilita" id="data_habilita" type="text" class="form-control" disabled>
+								</div>
+							</div>
+						</div>
 						<input type="hidden" name="flag" value="alterar" />
 						<input type="hidden" name="id_usuario"   id="id_usuario" />
 						<div class="modal-footer">

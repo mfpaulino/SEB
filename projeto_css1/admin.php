@@ -110,6 +110,11 @@ include_once(PATH . '/componentes/internos/php/funcoes.inc.php');
 						<?php include_once('views/admin/perfil/view_perfis_administra.inc.php');?>
 						<?php include_once('views/admin/perfil/form_perfis_administra.inc.php');?>
 					</div>
+					<!-- adiministra permissoes -->
+					<div class="col-md-3">
+						<?php include_once('views/admin/permissao/view_permissoes_administra.inc.php');?>
+						<?php include_once('views/admin/permissao/form_permissoes_administra.inc.php');?>
+					</div>
 				</div>
 				<div class="row">
 					<!-- categoria/localidades para diarias -->
@@ -252,6 +257,7 @@ include_once(PATH . '/componentes/internos/php/funcoes.inc.php');
 	<script src="componentes/internos/js/admin/tipo_evento.js"></script>
 	<script src="componentes/internos/js/admin/user.js"></script>
 	<script src="componentes/internos/js/admin/perfil_administra.js"></script>
+	<script src="componentes/internos/js/admin/permissao_administra.js"></script>
 	<script>
 		//exibe os titles ao passar o mouse
 		$(document).ready(function(){
