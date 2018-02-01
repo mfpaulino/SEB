@@ -1,6 +1,6 @@
 <?php
 /**************************************************************
-* Local/nome do script: admin/permissao/permissoes_administra.php
+* Local/nome do script: admin/permissao/permissoes_administra0.php
 * Só executa se for chamado pelo formulario, senão chama o script de "acesso negado"
 * Ao final de tudo, redireciona para o admin.php
 * *************************************************************/
@@ -19,12 +19,11 @@ if (isset($_POST['flag']) and isset($_SESSION['cpf'])){
 	$busca_perfis = $mysqli->query("SELECT id_perfil_admin FROM adm_perfis_administra");
 	$qtde = $busca_perfis->num_rows;//apenas para calcular a quantidade de perfis
 
-	$id_perfis = "";
+	$id_perfis = "1,";//garante o perfil CCIEx-Administrador sempre estará na lista para todas as permissões
 
 	for($i = 1; $i <= $qtde; $i++){
 
-		if($_POST[$i] <> ""){
-
+		if($_POST[$i] <> "" and $_POST[$i] <> "1"){//Como eu já trago o perfil 1 com padrao, nao deixo gravar novamente
 			$id_perfis = $id_perfis.$_POST[$i].",";//concatena os id_perfis com ",".
 		}
 	}

@@ -1,7 +1,7 @@
 //envia os valores dos campos  para o modal editar perfil
 $('#modalUserPerfil').on('show.bs.modal', function (event) {
 	var button = $(event.relatedTarget) // Button that triggered the modal
-	var cpf = button.data('cpf') // Extract info from data-* attributes no script view_usuario_status.inc.php
+	var cpf = button.data('cpf') // Extract info from data-* attributes nos scripts view_pedido_cadastro_lista.inc.php e view_user_lista.inc.php
 	var id_usuario = button.data('id_usuario')
 	var rg = button.data('rg')
 	var nome = button.data('nome')
@@ -31,6 +31,21 @@ $('#modalUserPerfil').on('show.bs.modal', function (event) {
 	modal.find('#data_habilita').val(data_habilita)
 	modal.find('#unidade').val(unidade)
 	modal.find('#avatar').attr('src',avatar)
+	
+	//oculta os campos user_habilita e data_habilita, caso a chama tenha sida feita pela view_pedido_cadastro_lista.inc.php
+	if(user_habilita == 'nenhum'){//ainda nao foi habilitado
+		modal.find('#user_habilita').hide()
+		modal.find('#label_user_habilita').hide()
+		modal.find('#data_habilita').hide()
+		modal.find('#label_data_habilita').hide()
+	}
+	//exibe os campos user_habilita e data_habilita, caso a chamada tenha sida feita pela view_user_lista.inc.php
+	else{//usuario já habilitado
+		modal.find('#user_habilita').show()
+		modal.find('#label_user_habilita').show()
+		modal.find('#data_habilita').show()
+		modal.find('#label_data_habilita').show()
+	}
 	
    	//insere o select perfil na div_perfil e atualiza de acordo com a unidade do usuário
    	$.ajax({

@@ -2,7 +2,8 @@
 /***********************************************************************************************************
 * local/script name: ./admin.php
 * tela para administração do sistema                                                                     *
-* Exibe na tela alertas diversos vindos do script 'controllers/admin/admin_alertas_criar.inc.php'      *
+* Exibe na tela alertas diversos vindos do script 'controllers/admin/admin_alertas_criar.inc.php'
+* $lista_permissoes vem do perfil.inc.php     *
 * **********************************************************************************************************/
 $inc = "sim";
 $pagina = strtr(end(explode('/', $_SERVER['PHP_SELF'])),'?', true);
@@ -68,7 +69,7 @@ include_once(PATH . '/componentes/internos/php/funcoes.inc.php');
 				if (isset($_GET['flag']) and ($_GET['flag'] == md5("usuario_alterar") or $_GET['flag'] == md5("senha_alterar") or $_GET['flag'] == md5("om_alterar") or $_GET['flag'] == md5("habilitacao_cadastrar") or $_GET['flag'] == md5("habilitacao_alterar") or $_GET['flag'] == md5("logout") )){
 					include_once('controllers/usuario/usuario_alertas_criar.inc.php');
 				}
-				else if (isset($_GET['flag']) and ($_GET['flag'] == md5("categoria_cadastrar") or $_GET['flag'] == md5("categoria_alterar") or $_GET['flag'] == md5("categoria_excluir") or $_GET['flag'] == md5("diaria_cadastrar") or $_GET['flag'] == md5("diaria_alterar") or $_GET['flag'] == md5("diaria_excluir") or $_GET['flag'] == md5("user_alterar") or $_GET['flag'] == md5("area_cadastrar") or $_GET['flag'] == md5("area_alterar") or $_GET['flag'] == md5("area_vincular") or $_GET['flag'] == md5("subarea_cadastrar") or $_GET['flag'] == md5("subarea_alterar") or $_GET['flag'] == md5("subarea_vincular") or $_GET['flag'] == md5("questao_cadastrar") or $_GET['flag'] == md5("questao_alterar") or $_GET['flag'] == md5("questao_vincular") or $_GET['flag'] == md5("info_req_cadastrar") or $_GET['flag'] == md5("info_req_alterar") or $_GET['flag'] == md5("info_req_vincular") or $_GET['flag'] == md5("poss_achado_cadastrar") or $_GET['flag'] == md5("poss_achado_alterar") or $_GET['flag'] == md5("poss_achado_vincular") or $_GET['flag'] == md5("proc_ana_cadastrar") or $_GET['flag'] == md5("proc_ana_alterar") or $_GET['flag'] == md5("proc_ana_vincular") or $_GET['flag'] == md5("proc_coleta_cadastrar") or $_GET['flag'] == md5("proc_coleta_alterar") or $_GET['flag'] == md5("proc_coleta_vincular") or $_GET['flag'] == md5("fonte_info_cadastrar") or $_GET['flag'] == md5("fonte_info_alterar") or $_GET['flag'] == md5("tipo_evento_cadastrar") or $_GET['flag'] == md5("tipo_evento_alterar") or $_GET['flag'] == md5("aviso_cadastrar") or $_GET['flag'] == md5("aviso_alterar") or $_GET['flag'] == md5("perfil_administrar") )){
+				else if (isset($_GET['flag']) and ($_GET['flag'] == md5("categoria_cadastrar") or $_GET['flag'] == md5("categoria_alterar") or $_GET['flag'] == md5("categoria_excluir") or $_GET['flag'] == md5("diaria_cadastrar") or $_GET['flag'] == md5("diaria_alterar") or $_GET['flag'] == md5("diaria_excluir") or $_GET['flag'] == md5("user_alterar") or $_GET['flag'] == md5("area_cadastrar") or $_GET['flag'] == md5("area_alterar") or $_GET['flag'] == md5("area_vincular") or $_GET['flag'] == md5("subarea_cadastrar") or $_GET['flag'] == md5("subarea_alterar") or $_GET['flag'] == md5("subarea_vincular") or $_GET['flag'] == md5("questao_cadastrar") or $_GET['flag'] == md5("questao_alterar") or $_GET['flag'] == md5("questao_vincular") or $_GET['flag'] == md5("info_req_cadastrar") or $_GET['flag'] == md5("info_req_alterar") or $_GET['flag'] == md5("info_req_vincular") or $_GET['flag'] == md5("poss_achado_cadastrar") or $_GET['flag'] == md5("poss_achado_alterar") or $_GET['flag'] == md5("poss_achado_vincular") or $_GET['flag'] == md5("proc_ana_cadastrar") or $_GET['flag'] == md5("proc_ana_alterar") or $_GET['flag'] == md5("proc_ana_vincular") or $_GET['flag'] == md5("proc_coleta_cadastrar") or $_GET['flag'] == md5("proc_coleta_alterar") or $_GET['flag'] == md5("proc_coleta_vincular") or $_GET['flag'] == md5("fonte_info_cadastrar") or $_GET['flag'] == md5("fonte_info_alterar") or $_GET['flag'] == md5("tipo_evento_cadastrar") or $_GET['flag'] == md5("tipo_evento_alterar") or $_GET['flag'] == md5("aviso_cadastrar") or $_GET['flag'] == md5("aviso_alterar") or $_GET['flag'] == md5("perfil_administrar") or $_GET['flag'] == md5("permissao_administrar") )){
 					include_once('controllers/admin/admin_alertas_criar.inc.php');
 				}
 				else {
@@ -84,39 +85,56 @@ include_once(PATH . '/componentes/internos/php/funcoes.inc.php');
 				}
 				?>
 				<!-- conteudo aqui -->
+				<?php
+				if (in_array("adm_usuarios", $lista_permissoes)){?>
+					<div class="row">
+						<!-- pedidos de cadastro de usuarios -->
+						<div class="col-md-6">
+							<?php include_once('views/admin/user/view_pedido_cadastro_lista.inc.php'); ?>
+							<?php include_once('views/admin/user/view_pedido_cadastro_relacao.inc.php');?>
+						</div>
+						<!-- usuarios cadastrados -->
+						<div class="col-md-6">
+							<?php include_once('views/admin/user/view_user_lista.inc.php'); ?>
+							<?php include_once('views/admin/user/form_user_perfil.inc.php'); ?>
+							<?php include_once('views/admin/user/view_user_relacao.inc.php');?>
+						</div>
+					</div>
+				<?php
+				} ?>
 				<div class="row">
-					<!-- pedidos de cadastro de usuarios -->
-					<div class="col-md-6">
-						<?php include_once('views/admin/user/view_pedido_cadastro_lista.inc.php'); ?>
-						<?php include_once('views/admin/user/view_pedido_cadastro_relacao.inc.php');?>
-					</div>
-					<!-- usuarios cadastrados -->
-					<div class="col-md-6">
-						<?php include_once('views/admin/user/view_user_lista.inc.php'); ?>
-						<?php include_once('views/admin/user/form_user_perfil.inc.php'); ?>
-						<?php include_once('views/admin/user/view_user_relacao.inc.php');?>
-					</div>
+					<?php
+					if (in_array("adm_avisos", $lista_permissoes)){?>
+						<!-- avisos administrativos-->
+						<div class="col-md-6">
+							<?php include_once('views/admin/aviso/view_aviso.inc.php'); ?>
+							<?php include_once('views/admin/aviso/form_aviso_cadastrar.inc.php');?>
+							<?php include_once('views/admin/aviso/form_aviso_alterar.inc.php');?>
+							<?php include_once('views/admin/aviso/view_aviso_relacao.inc.php');?>
+						</div>
+					<?php
+					}
+					if (in_array("adm_perfis", $lista_permissoes)){?>
+						<!-- administra perfis -->
+						<div class="col-md-3">
+							<?php include_once('views/admin/perfil/view_perfis_administra.inc.php');?>
+							<?php include_once('views/admin/perfil/form_perfis_administra.inc.php');?>
+						</div>
+					<?php
+					}
+					if(in_array("adm_permissoes", $lista_permissoes)){?>
+						<!-- administra permissoes -->
+						<div class="col-md-3">
+							<?php include_once('views/admin/permissao/view_permissoes_administra.inc.php');?>
+							<?php include_once('views/admin/permissao/form_permissoes_administra0.inc.php');?>
+							<?php include_once('views/admin/permissao/form_permissoes_administra1.inc.php');?>
+						</div>
+						<?php
+					} ?>
 				</div>
 				<div class="row">
-					<!-- avisos administrativos-->
-					<div class="col-md-6">
-						<?php include_once('views/admin/aviso/view_aviso.inc.php'); ?>
-						<?php include_once('views/admin/aviso/form_aviso_cadastrar.inc.php');?>
-						<?php include_once('views/admin/aviso/form_aviso_alterar.inc.php');?>
-						<?php include_once('views/admin/aviso/view_aviso_relacao.inc.php');?>
-					</div>
-					<!-- adiministra perfis -->
-					<div class="col-md-3">
-						<?php include_once('views/admin/perfil/view_perfis_administra.inc.php');?>
-						<?php include_once('views/admin/perfil/form_perfis_administra.inc.php');?>
-					</div>
-					<!-- adiministra permissoes -->
-					<div class="col-md-3">
-						<?php include_once('views/admin/permissao/view_permissoes_administra.inc.php');?>
-						<?php include_once('views/admin/permissao/form_permissoes_administra.inc.php');?>
-					</div>
-				</div>
-				<div class="row">
+				<?php
+				if (in_array("adm_categorias", $lista_permissoes)){?>
 					<!-- categoria/localidades para diarias -->
 					<div class="col-md-3">
 						<?php include_once('views/admin/categoria/view_categoria.inc.php');?>
@@ -124,6 +142,9 @@ include_once(PATH . '/componentes/internos/php/funcoes.inc.php');
 						<?php include_once('views/admin/categoria/form_categoria_alterar.inc.php');?>
 						<?php include_once('views/admin/categoria/view_categoria_relacao.inc.php');?>
 					</div>
+				<?php
+				}
+				if (in_array("adm_diarias", $lista_permissoes)){?>
 					<!-- diarias -->
 					<div class="col-md-3">
 						<?php include_once('views/admin/diaria/view_diaria.inc.php');?>
@@ -131,8 +152,12 @@ include_once(PATH . '/componentes/internos/php/funcoes.inc.php');
 						<?php include_once('views/admin/diaria/form_diaria_alterar.inc.php');?>
 						<?php include_once('views/admin/diaria/view_diaria_relacao.inc.php');?>
 					</div>
+				<?php
+				} ?>
 				</div>
 				<div class="row">
+				<?php
+				if (in_array("adm_areas", $lista_permissoes)){?>
 					<!-- areas/processos -->
 					<div class="col-md-3">
 						<?php include_once('views/admin/area/view_area.inc.php');?>
@@ -141,6 +166,9 @@ include_once(PATH . '/componentes/internos/php/funcoes.inc.php');
 						<?php include_once('views/admin/area/form_area_vincular_subarea.inc.php');?>
 						<?php include_once('views/admin/area/view_area_relacao.inc.php');?>
 					</div>
+				<?php
+				}
+				if (in_array("adm_subareas", $lista_permissoes)){?>
 					<!-- subareas/subprocessos -->
 					<div class="col-md-3">
 						<?php include_once('views/admin/subarea/view_subarea.inc.php');?>
@@ -150,6 +178,9 @@ include_once(PATH . '/componentes/internos/php/funcoes.inc.php');
 						<?php include_once('views/admin/subarea/form_subarea_vincular_questao.inc.php');?>
 						<?php include_once('views/admin/subarea/view_subarea_relacao.inc.php');?>
 					</div>
+				<?php
+				}
+				if (in_array("adm_questoes", $lista_permissoes)){?>
 					<!-- questoes de auditoria -->
 					<div class="col-md-3">
 						<?php include_once('views/admin/questao/view_questao.inc.php');?>
@@ -162,8 +193,12 @@ include_once(PATH . '/componentes/internos/php/funcoes.inc.php');
 						<?php include_once('views/admin/questao/form_questao_vincular_proc_coleta.inc.php');?>
 						<?php include_once('views/admin/questao/view_questao_relacao.inc.php');?>
 					</div>
+				<?php
+				} ?>
 				</div>
 				<div class="row">
+				<?php
+				if (in_array("adm_info_requeridas", $lista_permissoes)){?>
 					<!-- informações requeridas -->
 					<div class="col-md-3">
 						<?php include_once('views/admin/info_req/view_info_req.inc.php');?>
@@ -172,6 +207,9 @@ include_once(PATH . '/componentes/internos/php/funcoes.inc.php');
 						<?php include_once('views/admin/info_req/form_info_req_vincular_questao.inc.php');?>
 						<?php include_once('views/admin/info_req/view_info_req_relacao.inc.php');?>
 					</div>
+				<?php
+				}
+				if (in_array("adm_poss_achados", $lista_permissoes)){?>
 					<!-- possíveis achados -->
 					<div class="col-md-3">
 						<?php include_once('views/admin/poss_achado/view_poss_achado.inc.php');?>
@@ -180,6 +218,9 @@ include_once(PATH . '/componentes/internos/php/funcoes.inc.php');
 						<?php include_once('views/admin/poss_achado/form_poss_achado_vincular_questao.inc.php');?>
 						<?php include_once('views/admin/poss_achado/view_poss_achado_relacao.inc.php');?>
 					</div>
+				<?php
+				}
+				if (in_array("adm_proc_analise", $lista_permissoes)){?>
 					<!-- procedimentos de análise de dados -->
 					<div class="col-md-3">
 						<?php include_once('views/admin/proc_ana/view_proc_ana.inc.php');?>
@@ -188,6 +229,9 @@ include_once(PATH . '/componentes/internos/php/funcoes.inc.php');
 						<?php include_once('views/admin/proc_ana/form_proc_ana_vincular_questao.inc.php');?>
 						<?php include_once('views/admin/proc_ana/view_proc_ana_relacao.inc.php');?>
 					</div>
+				<?php
+				}
+				if (in_array("adm_proc_coleta", $lista_permissoes)){?>
 					<!-- procedimento de coleta de dados -->
 					<div class="col-md-3">
 						<?php include_once('views/admin/proc_coleta/view_proc_coleta.inc.php');?>
@@ -196,15 +240,22 @@ include_once(PATH . '/componentes/internos/php/funcoes.inc.php');
 						<?php include_once('views/admin/proc_coleta/form_proc_coleta_vincular_questao.inc.php');?>
 						<?php include_once('views/admin/proc_coleta/view_proc_coleta_relacao.inc.php');?>
 					</div>
+				<?php
+				} ?>
 				</div>
 				<div class="row">
-					<!-- Tipos de Auditoria -->
+				<?php
+				if (in_array("adm_tipo_evento", $lista_permissoes)){?>
+					<!-- Tipos de Eventos -->
 					<div class="col-md-3">
 						<?php include_once('views/admin/tipo_evento/view_tipo_evento.inc.php');?>
 						<?php include_once('views/admin/tipo_evento/form_tipo_evento_cadastrar.inc.php');?>
 						<?php include_once('views/admin/tipo_evento/form_tipo_evento_alterar.inc.php');?>
 						<?php include_once('views/admin/tipo_evento/view_tipo_evento_relacao.inc.php');?>
 					</div>
+				<?php
+				}
+				if (in_array("adm_fontes_informacao", $lista_permissoes)){?>
 					<!-- fontes de informação -->
 					<div class="col-md-3">
 						<?php include_once('views/admin/fonte_info/view_fonte_info.inc.php');?>
@@ -212,6 +263,8 @@ include_once(PATH . '/componentes/internos/php/funcoes.inc.php');
 						<?php include_once('views/admin/fonte_info/form_fonte_info_alterar.inc.php');?>
 						<?php include_once('views/admin/fonte_info/view_fonte_info_relacao.inc.php');?>
 					</div>
+				<?php
+				} ?>
 				</div>
 				<!-- fim conteudo -->
 			</section>

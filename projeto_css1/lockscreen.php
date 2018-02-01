@@ -76,7 +76,7 @@ else{
 				<a href="controllers/autenticacao/logout.php?flag=<?php echo $flag;?>">Ou faça login com outro usuário</a>
 			</div>
 			<div class="lockscreen-footer text-center">
-				Copyright &copy; 2017 <b><a href="https://adminlte.io" class="text-black">CCIEx</a></b>
+				Copyright &copy; 2018 <b><a href="https://adminlte.io" class="text-black">CCIEx</a></b>
 				<br>
 				Todos os direitos reservados
 			</div>

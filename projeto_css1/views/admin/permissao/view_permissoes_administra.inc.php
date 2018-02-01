@@ -22,18 +22,24 @@
 					<div class="box-body">
 						<?php $selectpicker="selectpicker"; include('listas/admin/select_permissoes_administra.inc.php');?>
 					</div>
-					<div class="box-body text-center text-bold">
-						Ou
+					<div class="box-footer pull-right">
+						<!--botao Administrar permissao-->
+						<button id="btnAdminPermissao0" type="button" class="btn btn-xs btn-warning"
+							data-tooltip="tooltip"
+							data-toggle="modal"
+							data-target="#modalAdminPermissao0">
+							<i class="fa fa-pencil"></i> Administrar
+						</button>
 					</div>
 					<div class="box-body">
 						<?php $selectpicker="selectpicker"; include('listas/admin/select_perfis_administra.inc.php');?>
 					</div>
 					<div class="box-footer pull-right">
 						<!--botao Administrar permissao-->
-						<button id="btnAdminPermissao" type="button" class="btn btn-xs btn-warning"
+						<button id="btnAdminPermissao1" type="button" class="btn btn-xs btn-primary"
 							data-tooltip="tooltip"
 							data-toggle="modal"
-							data-target="#modalAdminPermissao">
+							data-target="#modalAdminPermissao1">
 							<i class="fa fa-pencil"></i> Administrar
 						</button>
 					</div>

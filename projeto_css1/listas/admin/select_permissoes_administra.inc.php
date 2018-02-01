@@ -2,7 +2,7 @@
 //select_permissoes_administra.inc.php
 include_once ('componentes/internos/php/conexao.inc.php');
 
-$sql = "SELECT id_permissao, descricao FROM adm_permissoes ORDER BY descricao";
+$sql = "SELECT id_permissao, descricao FROM adm_permissoes WHERE (permissao <> 'adm_permissoes' and permissao <> 'adm_perfis') ORDER BY descricao";//apenas o admin do CCIEx pode administrar perfis e permissões
 $con_permissao1 = $mysqli->query($sql);
 ?>
 <select class="form-control <?php echo $selectpicker;?>"  name="permissao" id="permissao">

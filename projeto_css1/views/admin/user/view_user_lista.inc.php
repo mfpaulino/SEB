@@ -24,153 +24,155 @@ $con_usuarios = $mysqli->query($sql);
 	</div>
 	<div class="box-footer text-black" style="border:1px solid black;">
 		<div class="col-sm-12">
-	<table class="table table-striped">
-		<tr class="text-bold">
+			<table class="table table-striped">
+				<tr class="text-bold">
 
-			<td>Unidade</td>
-			<td>Usuário</td>
-			<td>Perfil</td>
-			<td>Status</td>
-			<td class="text-center">Ação</td>
-		</tr>
-	<?php
-	while ($rows =  $con_usuarios->fetch_assoc()){
-		$user_codom =  $rows['codom'];
+					<td>Unidade</td>
+					<td>Usuário</td>
+					<td>Perfil</td>
+					<td>Status</td>
+					<td class="text-center">Ação</td>
+				</tr>
+			<?php
+			if($lista_perfis_admin <> ""){//evitar falha na pagina, caso o usuario nao administre ninguem
+				while ($rows =  $con_usuarios->fetch_assoc()){
+					$user_codom =  $rows['codom'];
 
-		$sql = "select sigla, denominacao from cciex_om where codom = $user_codom";
-		$con_om = $mysqli1->query($sql);
-		$row_om = $con_om->fetch_assoc();
+					$sql = "select sigla, denominacao from cciex_om where codom = $user_codom";
+					$con_om = $mysqli1->query($sql);
+					$row_om = $con_om->fetch_assoc();
 
-		/** verifica se o usuário está habilitado ou desabilitado **/
-		if($rows['status'] == "Habilitado"){
-			$fa = "fa-lock";
-			$acao = "desabilitar";
-			$title = "Desabilitar Usuário";
-		}
-		else if ($rows['status'] == "Desabilitado"){
-			$fa = "fa-unlock";
-			$acao = "habilitar";
-			$title = "Habilitar Usuário";
-		}
+					/** verifica se o usuário está habilitado ou desabilitado **/
+					if($rows['status'] == "Habilitado"){
+						$fa = "fa-lock";
+						$acao = "desabilitar";
+						$title = "Desabilitar Usuário";
+					}
+					else if ($rows['status'] == "Desabilitado"){
+						$fa = "fa-unlock";
+						$acao = "habilitar";
+						$title = "Habilitar Usuário";
+					}
 
-		/*** verifica usuario que habilitou o usuario selecionado ***/
-		$user_habilita = $rows['user_habilita'];
+					/*** verifica usuario que habilitou o usuario selecionado ***/
+					$user_habilita = $rows['user_habilita'];
 
-		$sql = "SELECT p.posto, u.nome_guerra, u.codom FROM postos p, usuarios u WHERE u.id_usuario = '$user_habilita' and p.id_posto = u.id_posto";
-		$con_habilita = $mysqli->query($sql);
-		$row_habilita = $con_habilita->fetch_assoc();
+					$sql = "SELECT p.posto, u.nome_guerra, u.codom FROM postos p, usuarios u WHERE u.id_usuario = '$user_habilita' and p.id_posto = u.id_posto";
+					$con_habilita = $mysqli->query($sql);
+					$row_habilita = $con_habilita->fetch_assoc();
 
-		$codom_habilita = $row_habilita['codom'];
-		$sql = "SELECT sigla FROM cciex_om WHERE codom = '$codom_habilita'";
-		$con_habilita_om = $mysqli1->query($sql);
-		$row_habilita_om = $con_habilita_om->fetch_assoc();
+					$codom_habilita = $row_habilita['codom'];
+					$sql = "SELECT sigla FROM cciex_om WHERE codom = '$codom_habilita'";
+					$con_habilita_om = $mysqli1->query($sql);
+					$row_habilita_om = $con_habilita_om->fetch_assoc();
 
-		$user_habilita_usuario = $row_habilita['posto'] . ' ' . $row_habilita['nome_guerra'] . ' ('.$row_habilita_om['sigla'].')';
+					$user_habilita_usuario = $row_habilita['posto'] . ' ' . $row_habilita['nome_guerra'] . ' ('.$row_habilita_om['sigla'].')';
 
-		/*** verifica se o usuário possui alguma entrada na tabela de logs ****/
-		$user_cpf = $rows['cpf'];
-		$sql_user_log = "SELECT id_log FROM logs WHERE cpf = '$user_cpf'";
-		$resultado = $mysqli->query($sql_user_log);
+					/*** verifica se o usuário possui alguma entrada na tabela de logs ****/
+					$user_cpf = $rows['cpf'];
+					$sql_user_log = "SELECT id_log FROM logs WHERE cpf = '$user_cpf'";
+					$resultado = $mysqli->query($sql_user_log);
 
 
-		if($resultado->num_rows > 0){
-			$btn_status_e = "disabled";
-		}
-		else {
-			$btn_status_e = "";
-		}
-		/****/
-		?>
-		<tr>
-			<td><?php echo $row_om['sigla'];?></td>
-			<td><?php echo $rows['posto'] ." ". $rows['nome_guerra']; ?></td>
-			<td><?php echo $rows['perfil']; ?></td>
-			<td><?php echo $rows['status'];?></td>
-			<td width="16%" class="text-center">
-				<!--botao Visualizar-->
-				<button type="button" class="btn btn-xs btn-primary"
-					data-tooltip="tooltip"
-					data-title="Exibir Perfil"
-					data-placement="left"
-					data-toggle="modal"
-					data-target="#modalUserPerfil"
-					data-id_usuario="<?php echo $rows['id_usuario'];?>"
-					data-cpf="<?php echo $rows['cpf'];?>"
-					data-rg="<?php echo $rows['rg'];?>"
-					data-nome="<?php echo $rows['nome'];?>"
-					data-email="<?php echo $rows['email'];?>"
-					data-ritex="<?php echo $rows['ritex'];?>"
-					data-celular="<?php echo $rows['celular'];?>"
-					data-usuario="<?php echo $rows['posto'].' '.$rows['nome_guerra'];?>"
-					data-perfil="<?php echo $rows['perfil'];?>"
-					data-id_perfil="<?php echo $rows['id_perfil'];?>"
-					data-user_habilita="<?php echo $user_habilita_usuario;?>"
-					data-data_habilita="<?php echo date('d/m/Y H:i:s', strtotime($rows['data_habilita']));?>"
-					data-unidade="<?php echo $row_om['sigla'];?>"
-					data-avatar="<?php echo "views/avatar/".$rows['avatar'];?>"
-					>
-					<i class="fa fa-search"></i>
-				</button>
-				<!--botao ResetarSenha-->
-				<button id="btnSenha" form="formSenha<?php echo $rows['id_usuario'];?>" type="submit" class="btn btn-xs btn-primary"
-					data-tooltip="tooltip"
-					data-toggle="confirmation"
-					data-placement="left"
-					data-btn-ok-label="Continuar"
-					data-btn-ok-icon="glyphicon glyphicon-share-alt"
-					data-btn-ok-class="btn-success"
-					data-btn-cancel-label="Parar"
-					data-btn-cancel-icon="glyphicon glyphicon-ban-circle"
-					data-btn-cancel-class="btn-danger"
-					data-title="Redefinir Senha"
-					data-content="Confirma?">
-					<i class="fa fa-key" ></i>
-				</button>
-				<!--botao Desabilitar-->
-				<button form="formMudaStatus<?php echo $rows['id_usuario'];?>" type="submit" class="btn btn-xs btn-primary"
-					data-tooltip="tooltip"
-					data-toggle="confirmation"
-					data-placement="left"
-					data-btn-ok-label="Continuar"
-					data-btn-ok-icon="glyphicon glyphicon-share-alt"
-					data-btn-ok-class="btn-success"
-					data-btn-cancel-label="Parar"
-					data-btn-cancel-icon="glyphicon glyphicon-ban-circle"
-					data-btn-cancel-class="btn-danger"
-					data-title="<?php echo $title;?>"
-					data-content="Confirma?">
-					<i class="fa <?php echo $fa;?>"></i>
-				</button
-				<!--botao Excluir-->
-				<button form="formExcluir<?php echo $rows['id_usuario'];?>" type="submit" <?php echo $btn_status_e;?> class="btn btn-xs btn-primary"
-					data-tooltip="tooltip"
-					data-toggle="confirmation"
-					data-placement="left"
-					data-btn-ok-label="Continuar"
-					data-btn-ok-icon="glyphicon glyphicon-share-alt"
-					data-btn-ok-class="btn-success"
-					data-btn-cancel-label="Parar"
-					data-btn-cancel-icon="glyphicon glyphicon-ban-circle"
-					data-btn-cancel-class="btn-danger"
-					data-title="Excluir Usuário"
-					data-content="Confirma?">
-					<i class="fa fa-trash"></i>
-				</button>
-				<form id="formSenha<?php echo $rows['id_usuario'];?>" action="controllers/admin/user/user_alterar.php" method = "POST">
-					<input type="hidden" name="id_usuario" value= "<?php echo $rows['id_usuario'];?>" />
-					<input type="hidden" name = "flag" value="resetar_senha" />
-				</form>
-				<form id="formMudaStatus<?php echo $rows['id_usuario'];?>" action="controllers/admin/user/user_alterar.php" method = "POST">
-					<input type="hidden" name="id_usuario" value="<?php echo $rows['id_usuario'];?>" />
-					<input type="hidden" name="flag" value="<?php echo $acao;?>" />
-				</form>
-				<form id="formExcluir<?php echo $rows['id_usuario'];?>" action="controllers/admin/user/user_alterar.php" method = "POST">
-					<input type="hidden" name="id_usuario" value="<?php echo $rows['id_usuario'];?>" />
-					<input type="hidden" name="flag" value="excluir" />
-				</form>
-			</td>
-		</tr>
-	<?php } ?>
+					if($resultado->num_rows > 0){
+						$btn_status_e = "disabled";
+					}
+					else {
+						$btn_status_e = "";
+					}
+					/****/
+				?>
+				<tr>
+					<td><?php echo $row_om['sigla'];?></td>
+					<td><?php echo $rows['posto'] ." ". $rows['nome_guerra']; ?></td>
+					<td><?php echo $rows['perfil']; ?></td>
+					<td><?php echo $rows['status'];?></td>
+					<td class="text-center">
+						<!--botao Visualizar-->
+						<button type="button" class="btn btn-xs btn-primary"
+							data-tooltip="tooltip"
+							data-title="Exibir Perfil"
+							data-placement="left"
+							data-toggle="modal"
+							data-target="#modalUserPerfil"
+							data-id_usuario="<?php echo $rows['id_usuario'];?>"
+							data-cpf="<?php echo $rows['cpf'];?>"
+							data-rg="<?php echo $rows['rg'];?>"
+							data-nome="<?php echo $rows['nome'];?>"
+							data-email="<?php echo $rows['email'];?>"
+							data-ritex="<?php echo $rows['ritex'];?>"
+							data-celular="<?php echo $rows['celular'];?>"
+							data-usuario="<?php echo $rows['posto'].' '.$rows['nome_guerra'];?>"
+							data-perfil="<?php echo $rows['perfil'];?>"
+							data-id_perfil="<?php echo $rows['id_perfil'];?>"
+							data-user_habilita="<?php echo $user_habilita_usuario;?>"
+							data-data_habilita="<?php echo date('d/m/Y H:i:s', strtotime($rows['data_habilita']));?>"
+							data-unidade="<?php echo $row_om['sigla'];?>"
+							data-avatar="<?php echo "views/avatar/".$rows['avatar'];?>"
+							>
+							<i class="fa fa-search"></i>
+						</button>
+						<!--botao ResetarSenha-->
+						<button id="btnSenha" form="formSenha<?php echo $rows['id_usuario'];?>" type="submit" class="btn btn-xs btn-primary"
+							data-tooltip="tooltip"
+							data-toggle="confirmation"
+							data-placement="left"
+							data-btn-ok-label="Continuar"
+							data-btn-ok-icon="glyphicon glyphicon-share-alt"
+							data-btn-ok-class="btn-success"
+							data-btn-cancel-label="Parar"
+							data-btn-cancel-icon="glyphicon glyphicon-ban-circle"
+							data-btn-cancel-class="btn-danger"
+							data-title="Redefinir Senha"
+							data-content="Confirma?">
+							<i class="fa fa-key" ></i>
+						</button>
+						<!--botao Desabilitar-->
+						<button form="formMudaStatus<?php echo $rows['id_usuario'];?>" type="submit" class="btn btn-xs btn-primary"
+							data-tooltip="tooltip"
+							data-toggle="confirmation"
+							data-placement="left"
+							data-btn-ok-label="Continuar"
+							data-btn-ok-icon="glyphicon glyphicon-share-alt"
+							data-btn-ok-class="btn-success"
+							data-btn-cancel-label="Parar"
+							data-btn-cancel-icon="glyphicon glyphicon-ban-circle"
+							data-btn-cancel-class="btn-danger"
+							data-title="<?php echo $title;?>"
+							data-content="Confirma?">
+							<i class="fa <?php echo $fa;?>"></i>
+						</button
+						<!--botao Excluir-->
+						<button form="formExcluir<?php echo $rows['id_usuario'];?>" type="submit" <?php echo $btn_status_e;?> class="btn btn-xs btn-primary"
+							data-tooltip="tooltip"
+							data-toggle="confirmation"
+							data-placement="left"
+							data-btn-ok-label="Continuar"
+							data-btn-ok-icon="glyphicon glyphicon-share-alt"
+							data-btn-ok-class="btn-success"
+							data-btn-cancel-label="Parar"
+							data-btn-cancel-icon="glyphicon glyphicon-ban-circle"
+							data-btn-cancel-class="btn-danger"
+							data-title="Excluir Usuário"
+							data-content="Confirma?">
+							<i class="fa fa-trash"></i>
+						</button>
+						<form id="formSenha<?php echo $rows['id_usuario'];?>" action="controllers/admin/user/user_alterar.php" method = "POST">
+							<input type="hidden" name="id_usuario" value= "<?php echo $rows['id_usuario'];?>" />
+							<input type="hidden" name = "flag" value="resetar_senha" />
+						</form>
+						<form id="formMudaStatus<?php echo $rows['id_usuario'];?>" action="controllers/admin/user/user_alterar.php" method = "POST">
+							<input type="hidden" name="id_usuario" value="<?php echo $rows['id_usuario'];?>" />
+							<input type="hidden" name="flag" value="<?php echo $acao;?>" />
+						</form>
+						<form id="formExcluir<?php echo $rows['id_usuario'];?>" action="controllers/admin/user/user_alterar.php" method = "POST">
+							<input type="hidden" name="id_usuario" value="<?php echo $rows['id_usuario'];?>" />
+							<input type="hidden" name="flag" value="excluir" />
+						</form>
+					</td>
+				</tr>
+			<?php }
+			}?>
 			</table>
 		</div>
 	</div>

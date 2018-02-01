@@ -19,7 +19,7 @@ if ($inc == "sim"){//variavel criada nos scripts que incluem o arquivo atual - p
 
 	$lista_admin = substr($lista_admin, 0, -1); //elimino a ultima "," da string.
 
-	$sql_admin = "SELECT p.posto, u.nome_guerra, u.codom FROM postos p, usuarios u, adm_perfis_administra a WHERE p.id_posto = u.id_posto and u.id_perfil = a.id_perfil and u.id_perfil_om = a.id_perfil_om and id_perfil_admin in ($lista_admin) order by p.id_posto ";
+	$sql_admin = "SELECT p.posto, usuarios.nome_guerra, usuarios.codom FROM postos p, usuarios, adm_perfis_administra a WHERE p.id_posto = usuarios.id_posto and usuarios.id_perfil = a.id_perfil and usuarios.id_perfil_om = a.id_perfil_om and id_perfil_admin in ($lista_admin) and cpf <> '$cpf' and status = 'Habilitado' $condicao_codom_admin order by p.id_posto ";
 	$con_admin = $mysqli->query($sql_admin);//usado no views/usuario/usuario_lista_admin.inc.php
 }
 else {

@@ -81,17 +81,16 @@ $row = $con_om->fetch_assoc();
 
 $sigla_usuario = $row['sigla'];
 $denominacao_usuario = $row['denominacao'];
-$icfex_usuario = $row['icfex'];
 
-switch ($sigla_usuario) {
+switch ($row['sigla']) {
     case 'CCIEx':
-		$nr_ci = 0;//nr icfex da tabela de om, no caso da om ser o CCIEx ou alguma vinculada
+		$nr_ci = 0;//nr icfex da tabela de om, no caso da om ser o CCIEx ou alguma ICFEx
         break;
     case '1ª ICFEx':
 		$nr_ci = 1;
         break;
     case '2ª ICFEx':
-		$nr_ci = 2;
+		$nr_ci= 2;
         break;
     case '3ª ICFEx':
 		$nr_ci = 3;
@@ -128,53 +127,7 @@ switch ($sigla_usuario) {
 		break;
 }
 
-
-switch ($icfex_usuario) {
-    case 0:
-		$sigla_ci = 'CCIEx';//sigla unidade de controle interno do usuario atual
-        break;
-    case 1:
-		$sigla_ci = '1ª ICFEx';
-        break;
-    case 2:
-		$sigla_ci = '2ª ICFEx';
-        break;
-    case 3:
-		$sigla_ci = '3ª ICFEx';
-        break;
-    case 4:
-		$sigla_ci = '4ª ICFEx';
-        break;
-    case 5:
-		$sigla_ci = '5ª ICFEx';
-        break;
-    case 6:
-		$sigla_ci = '6ª ICFEx';
-        break;
-    case 7:
-		$sigla_ci = '7ª ICFEx';
-        break;
-    case 8:
-		$sigla_ci = '8ª ICFEx';
-        break;
-    case 9:
-		$sigla_ci = '9ª ICFEx';
-        break;
-    case 10:
-		$sigla_ci = '10ª ICFEx';
-        break;
-    case 11:
-		$sigla_ci = '11ª ICFEx';
-        break;
-    case 12:
-		$sigla_ci = '12ª ICFEx';
-        break;
-   default:
-		$sigla_ci = '';
-		break;
-}
-
-/************************** lista os codom subordinados se o usuario logado for do CCIEx ou ICFEx *********************************/
+/************************** lista os codom se o usuario logado for do CCIEx ou ICFEx *********************************/
 $sql_codom = "SELECT codom FROM cciex_om WHERE icfex = $nr_ci";
 $con_codom = $mysqli1->query($sql_codom);
 
@@ -186,30 +139,12 @@ if($con_codom){
 }
 /**************************** criterio para selecioar apenas os codom que o usuario tem permissao de enxergar **************/
 if($id_perfil_om == 3){//Unidade
-	$condicao_codom = "AND codom = $codom_usuario";
+	$condicao_codom = " AND codom = $codom_usuario";
 }
 else if($id_perfil_om == 2){//ICFEx
 	$condicao_codom = "AND (codom = $codom_usuario or codom in ($lista_codom))";
 }
 else if($id_perfil_om == 1){//CCIEx
-	$condicao_codom = "AND (usuarios.id_perfil_om = 1 or usuarios.id_perfil_om = 2 or codom in ($lista_codom))"; //cciex, icfex, vinculadas
+	$condicao_codom = "";
 }
-/**************************** criterio para selecionar apenas os codom que podem enxergar o usuario atual **************/
-
-$sql_codom_admin = "SELECT codom FROM cciex_om WHERE sigla = '$sigla_ci'";
-$con_codom_admin = $mysqli1->query($sql_codom_admin);
-$row_codom_admin = $con_codom_admin->fetch_assoc();
-$codom_admin = $row_codom_admin['codom'];
-
-if($id_perfil_om == 3){//Unidade
-	$condicao_codom_admin = "AND (codom = $codom_usuario OR codom = $codom_admin)";
-}
-else if($id_perfil_om == 2){//ICFEx
-	$condicao_codom_admin = "AND (codom = $codom_usuario OR usuarios.id_perfil_om = 1)";
-}
-else if($id_perfil_om == 1){//CCIEx
-	"AND codom = $codom_usuario";
-}
-
-/**********************************************************************************************************************/
 ?>

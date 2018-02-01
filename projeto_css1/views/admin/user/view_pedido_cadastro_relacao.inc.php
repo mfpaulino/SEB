@@ -27,6 +27,7 @@ if($qtde == 0){
 								<td><b>Perfil</b></td>
 							</tr>
 							<?php
+						if($lista_perfis_admin <> ""){//evitar falha na pagina, caso o usuario nao administre ninguem
 							while ($rows =  $con_usuarios->fetch_assoc()){
 								$user_codom =  $rows['codom'];
 
@@ -40,7 +41,8 @@ if($qtde == 0){
 									<td><?php echo $rows['perfil']; ?></td>
 								</tr>
 								<?php
-							} ?>
+							}
+						}?>
 						</table>
 					</div>
 				</div>

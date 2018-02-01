@@ -120,6 +120,14 @@ if ($inc == "sim"){
 			unset($_SESSION['perfil_administrar']);
 		}
 
+		if($flag == md5("permissao_administrar")){
+
+			$msg0 = $_SESSION['permissao_administrar'];
+		}
+		else {
+			unset($_SESSION['permissao_administrar']);
+		}
+
 		if($flag == md5("area_cadastrar")){
 
 			$msg0 = $_SESSION['erro_validacao_cadastrar_area'];

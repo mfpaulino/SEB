@@ -179,17 +179,17 @@ if(isset($_POST['flag']) and isset($_SESSION['cpf'])){
 			$row = $con_om->fetch_assoc();
 
 			if(strpos($row['sigla'],'CCIEx') !== FALSE){
-				$perfil_om = 'CCIEx';
+				$perfil_om = 1;
 			}
 			else if(strpos($row['sigla'],'ICFEx') !== FALSE){
-				$perfil_om = 'ICFEx';
+				$perfil_om = 2;
 			}
 			else {
-				$perfil_om = 'Unidade';
+				$perfil_om = 3;
 			}
 			/**********************************/
 
-			$con_update = $mysqli->prepare("UPDATE usuarios SET codom = ?, perfil_om = '$perfil_om', status = 'Recebido' WHERE cpf ='$cpf'");
+			$con_update = $mysqli->prepare("UPDATE usuarios SET codom = ?, id_perfil_om = '$perfil_om', status = 'Recebido' WHERE cpf ='$cpf'");
 			$con_update->bind_param('s', $codom);
 			$con_update->execute();
 

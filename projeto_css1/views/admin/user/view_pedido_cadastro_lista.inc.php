@@ -31,61 +31,62 @@ $con_usuarios = $mysqli->query($sql);
 					<td class="text-center">Ação</td>
 				</tr>
 			<?php
-			while ($rows =  $con_usuarios->fetch_assoc()){
-				$user_codom =  $rows['codom'];
+			if($lista_perfis_admin <> ""){//evitar falha na pagina, caso o usuario nao administre ninguem
+				while ($rows =  $con_usuarios->fetch_assoc()){
+					$user_codom =  $rows['codom'];
 
-				$sql = "select sigla, denominacao from cciex_om where codom = $user_codom";
-				$con_om = $mysqli1->query($sql);
-				$row_om = $con_om->fetch_assoc();
+					$sql = "select sigla, denominacao from cciex_om where codom = $user_codom";
+					$con_om = $mysqli1->query($sql);
+					$row_om = $con_om->fetch_assoc();
 
-				/*** verifica se o perfil atual do usuario é válido para sua unidade atual(ele pode ter trocado de unidade)***/
+					/*** verifica se o perfil atual do usuario é válido para sua unidade atual(ele pode ter trocado de unidade)***/
 
-				$unidade = substr($row_om['sigla'], -5);//pega os 5 ultimos caracteres da sigla
-				$unidade = ($unidade == 'CCIEx' or $unidade == 'ICFEx') ? $unidade : 'Unidade';
+					$unidade = substr($row_om['sigla'], -5);//pega os 5 ultimos caracteres da sigla
+					$unidade = ($unidade == 'CCIEx' or $unidade == 'ICFEx') ? $unidade : 'Unidade';
 
-				$sql_user_perfis = "SELECT perfis FROM adm_perfis_unidade WHERE unidade = '$unidade'";
-				$con_user_perfis = $mysqli->query($sql_user_perfis);//verifica os perfis possiveis para a unidade do usuario
+					$sql_user_perfis = "SELECT perfis FROM adm_perfis_unidade WHERE unidade = '$unidade'";
+					$con_user_perfis = $mysqli->query($sql_user_perfis);//verifica os perfis possiveis para a unidade do usuario
 
-				$row_user_perfis = $con_user_perfis->fetch_assoc();
-				$user_perfis = unserialize($row_user_perfis['perfis']);
+					$row_user_perfis = $con_user_perfis->fetch_assoc();
+					$user_perfis = unserialize($row_user_perfis['perfis']);
 
-				$user_perfis  = implode(',',$user_perfis);//separa os valores do array com uma virgula
-				$user_perfis  = "'".$user_perfis."'";//coloca um ' no inicio e fim da string
-				$user_perfis = str_replace(",","','",$user_perfis);//substitui a virgula por "','".
+					$user_perfis  = implode(',',$user_perfis);//separa os valores do array com uma virgula
+					$user_perfis  = "'".$user_perfis."'";//coloca um ' no inicio e fim da string
+					$user_perfis = str_replace(",","','",$user_perfis);//substitui a virgula por "','".
 
-				$sql_user_perfil = "SELECT * FROM adm_perfis WHERE perfil in (".$user_perfis.") ORDER BY perfil";
-				$con_user_perfil= $mysqli->query($sql_user_perfil);//cria a lista de perfis para o usuario
-				$num_rows_user_perfil = $con_user_perfil->num_rows;
+					$sql_user_perfil = "SELECT * FROM adm_perfis WHERE perfil in (".$user_perfis.") ORDER BY perfil";
+					$con_user_perfil= $mysqli->query($sql_user_perfil);//cria a lista de perfis para o usuario
+					$num_rows_user_perfil = $con_user_perfil->num_rows;
 
 
-				$pos = strpos($user_perfis, $rows['perfil']);
-				if ($pos === false){
-					$btn_status_h = "disabled";
-					$tooltip_h = "Primeiro altere o perfil do usuário";
-				}
-				else {
-					$btn_status_h = "";
-					$tooltip_h = "Habilitar";
-				}
-				/*** verifica se o usuário possui alguma entrada na tabela de logs ****
-				**** caso tenha, desabilita o botao de excluir */
+					$pos = strpos($user_perfis, $rows['perfil']);
+					if ($pos === false){
+						$btn_status_h = "disabled";
+						$tooltip_h = "Primeiro altere o perfil do usuário";
+					}
+					else {
+						$btn_status_h = "";
+						$tooltip_h = "Habilitar";
+					}
+					/*** verifica se o usuário possui alguma entrada na tabela de logs ****
+					**** caso tenha, desabilita o botao de excluir */
 
-				$sql_user_log = "SELECT id_log FROM logs WHERE cpf = $rows[cpf]";
-				$resultado = $mysqli->query($sql_user_log);
+					$sql_user_log = "SELECT id_log FROM logs WHERE cpf = $rows[cpf]";
+					$resultado = $mysqli->query($sql_user_log);
 
-				if($resultado->numrows > 0){
-					$btn_status_e = "disabled";
-				}
-				else {
-					$btn_status_e = "";
-				}
-				/****/
+					if($resultado->numrows > 0){
+						$btn_status_e = "disabled";
+					}
+					else {
+						$btn_status_e = "";
+					}
+					/****/
 				?>
 				<tr>
 					<td><?php echo $row_om['sigla'];?></td>
 					<td><?php echo $rows['posto'] ." ". $rows['nome_guerra']; ?></td>
 					<td><?php echo $rows['perfil']; ?></td>
-					<td width="13%" class="text-center">
+					<td class="text-center">
 						<!--botao Perfil-->
 						<button type="button" class="btn btn-xs btn-primary"
 							data-tooltip="tooltip"
@@ -103,6 +104,7 @@ $con_usuarios = $mysqli->query($sql);
 							data-usuario="<?php echo $rows['posto'].' '.$rows['nome_guerra'];?>"
 							data-id_perfil="<?php echo $rows['id_perfil'];?>"
 							data-perfil="<?php echo $rows['perfil'];?>"
+							data-user_habilita="nenhum"
 							data-unidade="<?php echo $row_om['sigla'];?>"
 							data-avatar="<?php echo "views/avatar/".$rows['avatar'];?>"
 							>
@@ -142,7 +144,8 @@ $con_usuarios = $mysqli->query($sql);
 						</form>
 					</td>
 				</tr>
-			<?php } ?>
+			<?php }
+			}?>
 			</table>
 		</div>
 	</div>

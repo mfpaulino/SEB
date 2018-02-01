@@ -81,14 +81,14 @@
 							<!-- Text input-->
 							<div class="col-sm-6">
 								<div class="form-group">
-									<label for="user_habilita">Responsável Habilitação</label>
+									<label for="user_habilita" id="label_user_habilita">Responsável Habilitação</label>
 									<input name="user_habilita" id="user_habilita" type="text" class="form-control" disabled>
 								</div>
 							</div>
 							<!-- Text input-->
 							<div class="col-sm-6">
 								<div class="form-group">
-									<label for="data_habilita">Data Habilitação</label>
+									<label for="data_habilita" id="label_data_habilita">Data Habilitação</label>
 									<input name="data_habilita" id="data_habilita" type="text" class="form-control" disabled>
 								</div>
 							</div>

@@ -26,8 +26,12 @@ $con_perfis = $mysqli->query($sql);
 $i = 1;
 
 while($row_perfis = $con_perfis->fetch_assoc()){
+
 	if($qtde_lista <> 0 and $lista <> ""){//evita erro no caso do array estar vazio - perfil nao administra ninguem
+
 		$checked = in_array($row_perfis['id'],$lista) ? "checked" : "";
+
+		$disabled = $row_perfis['id'] == 1 ? "disabled" : "";//garante que o perfil CCIEx-Administrador estará desabilitado
 	}
 	?>
 	<tr>
@@ -35,7 +39,7 @@ while($row_perfis = $con_perfis->fetch_assoc()){
 			<?php echo $row_perfis['perfil']; ?>
 		</td>
 		<td width = "50%">
-			<input name= "<?php echo $i;?>" value="<?php echo $row_perfis['id'];?>" type="checkbox" class="icheck" <?php echo $checked;?> />
+			<input name= "<?php echo $i;?>" value="<?php echo $row_perfis['id'];?>" type="checkbox" class="icheck" <?php echo $checked . ' ' . $disabled;?> />
 		</td>
 	<tr>
 	<?php

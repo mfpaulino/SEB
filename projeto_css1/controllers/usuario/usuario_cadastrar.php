@@ -98,17 +98,17 @@ if (isset($_POST['flag'])){
 			$row = $con_om->fetch_assoc();
 
 			if(strpos($row['sigla'],'CCIEx') !== FALSE){
-				$perfil_om = 'CCIEx';
+				$perfil_om = 1;
 			}
 			else if(strpos($row['sigla'],'ICFEx') !== FALSE){
-				$perfil_om = 'ICFEx';
+				$perfil_om = 2;
 			}
 			else {
-				$perfil_om = 'Unidade';
+				$perfil_om = 3;
 			}
 			/**********************************/
 
-			$resultado = $mysqli->query("INSERT INTO usuarios (cpf, senha, rg, nome_guerra, nome, email, ritex, celular, avatar, dt_cad, id_posto, codom, id_perfil, perfil_om, status) VALUES ('$cpf', '$senha_criptografada', '$rg', '$nome_guerra', '$nome', '$email', '$ritex', '$celular', '$avatar', '$dt_cad','$posto', '$codom', '$perfil', '$perfil_om', 'Recebido')");
+			$resultado = $mysqli->query("INSERT INTO usuarios (cpf, senha, rg, nome_guerra, nome, email, ritex, celular, avatar, dt_cad, id_posto, codom, id_perfil, id_perfil_om, status) VALUES ('$cpf', '$senha_criptografada', '$rg', '$nome_guerra', '$nome', '$email', '$ritex', '$celular', '$avatar', '$dt_cad','$posto', '$codom', '$perfil', '$perfil_om', 'Recebido')");
 
 			if($resultado){
 
