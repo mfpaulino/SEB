@@ -20,7 +20,7 @@
 	<div class="box-footer text-black" style="border:1px solid black;">
 		<div class="row">
 			<div class="col-sm-12">
-				<form class="form-horizontal" method="POST" action="controllers/admin/categoria/categoria_alterar.php">
+				<form class="form-horizontal" action="controllers/admin/categoria/categoria_alterar.php" method="POST">
 					<div class="box-body">
 						<?php include('listas/admin/select_alterar_categoria.inc.php');?>
 						<input type="hidden" name="flag" value="excluir" />

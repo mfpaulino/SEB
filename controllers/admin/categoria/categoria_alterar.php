@@ -19,7 +19,7 @@ if(isset($_POST['flag']) and isset($_SESSION['cpf'])){
 	if($acao == "alterar"){
 
 		$categoria 			= isset($_POST['categoria']) ? mysqli_real_escape_string($mysqli, $_POST['categoria']) : "";
-		$localidade 		= isset($_POST['localidade']) ? mysqli_real_escape_string($mysqli, $_POST['localidade']) : "";
+		$localidade 		= isset($_POST['localidade']) ? $_POST['localidade'] : "";
 
 		$categoria_atual 	= $_POST['categoria_atual'];//tipo hidden
 		$localidade_atual 	= $_POST['localidade_atual'];//tipo hidden
@@ -33,16 +33,29 @@ if(isset($_POST['flag']) and isset($_SESSION['cpf'])){
 		if ($validar->validate()){
 			$altera = "nao";
 
-			if (($categoria <> "" and $categoria <> $categoria_atual) or ($localidade <> "" and $localidade <> $localidade_atual)){
+			if (($categoria <> "" and $categoria <> $categoria_atual) or ($localidade <> "" and $localidade <> unserialize($localidade_atual))){
+
+				/*****/
+				$qtde = count($localidade);
+				for($i = 0; $i < $qtde; $i++){
+					$localidades = $localidades.$localidade[$i].",";//concatena as localidades com ",".
+				}
+
+				if($localidade <> ""){
+					$localidades = substr($localidades, 0, -1);//elimina a ultima ",".
+					$localidades = explode(",",$localidades);//cria um array separando pelas ",".
+					$localidades = serialize($localidades);//cria uma string com o array serializado
+				}
+				/******/
 
 				$con_categoria = $mysqli->prepare("UPDATE adm_categorias SET categoria = ?, localidades = ? WHERE id_categoria ='$id_categoria'");
-				$con_categoria->bind_param('ss', $categoria, $localidade);
+				$con_categoria->bind_param('ss', $categoria, $localidades);
 				$resultado = $con_categoria->execute();
 
 				if($resultado){
 
 					/** log **/
-					$log = "Alterou a categoria <u>" . $categoria . "</u>. De: (".$localidade_atual.") Para: (".$localidade.")";
+					$log = "Alterou a categoria <u>" . $categoria . "</u>. De: (".$localidade_atual.") Para: (".$localidades.")";
 					$con_log = $mysqli->query("INSERT INTO logs SET cpf = '$cpf', codom = '$codom_usuario', acao = '$log', tabela = 'adm_categorias'");
 					/** fim log **/
 

@@ -27,7 +27,7 @@ if($qtde == 0){
 							while($row = $con_lista->fetch_assoc()){?>
 								<tr>
 									<td><?php echo $row['posto'];?></td>
-									<td><?php echo $row['categoria'].' ('.$row['localidades'].')';?></td>
+									<td><?php echo $row['categoria'];?></td>
 									<td><?php echo 'R$ '.number_format($row['valor'], 2, ',', '.');?></td>
 								</tr>
 								<?php

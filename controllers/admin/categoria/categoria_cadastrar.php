@@ -26,7 +26,7 @@ if (isset($_POST['flag']) and isset($_SESSION['cpf'])){
 	require_once(PATH . '/componentes/internos/php/funcoes.inc.php');
 
 	$categoria	 = isset($_POST['categoria']) ? mysqli_real_escape_string($mysqli, $_POST['categoria']) : "";
-	$localidade  = isset($_POST['localidade']) ? mysqli_real_escape_string($mysqli, $_POST['localidade']) : "";
+	$localidade = isset($_POST['localidade']) ? $_POST['localidade'] : "";
 
 	$validar = new validaForm();
 
@@ -55,7 +55,20 @@ if (isset($_POST['flag']) and isset($_SESSION['cpf'])){
 		}
 		if($validacao !== false){
 
-			$resultado = $mysqli->query("INSERT INTO adm_categorias (categoria, localidades) VALUES ('$categoria', '$localidade')");
+			/*****/
+			$qtde = count($localidade);
+			for($i = 0; $i < $qtde; $i++){
+				$localidades = $localidades.$localidade[$i].",";//concatena as localidades com ",".
+			}
+
+			if($localidade <> ""){
+				$localidades = substr($localidades, 0, -1);//elimina a ultima ",".
+				$localidades = explode(",",$localidades);//cria um array separando pelas ",".
+				$localidades = serialize($localidades);//cria uma string com o array serializado
+			}
+			/******/
+
+			$resultado = $mysqli->query("INSERT INTO adm_categorias (categoria, localidades) VALUES ('$categoria', '$localidades')");
 
 			if($resultado){
 

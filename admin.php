@@ -26,6 +26,7 @@ include_once(PATH . '/componentes/internos/php/funcoes.inc.php');
 	<link rel="stylesheet" href="componentes/externos/bootstrap/plugins/font-awesome/css/font-awesome.min.css">
 	<link rel="stylesheet" href="componentes/externos/bootstrap/plugins/Ionicons/css/ionicons.min.css">
 	<link rel="stylesheet" href="componentes/externos/bootstrap/plugins/bootstrap-select/dist/css/bootstrap-select.css">
+	<link rel="stylesheet" href="componentes/externos/bootstrap/plugins/bootstrap-multiselect/dist/css/bootstrap-multiselect.css">
 	<link rel="stylesheet" href="componentes/externos/bootstrap/plugins/bootstrap-switch/dist/css/bootstrap3/bootstrap-switch.min.css">
 	<link rel="stylesheet" href="componentes/externos/bootstrap/plugins/bootstrap-fileinput/css/fileinput.min.css">
 	<link rel="stylesheet" href="componentes/externos/bootstrap/plugins/iCheck/all.css">
@@ -284,6 +285,7 @@ include_once(PATH . '/componentes/internos/php/funcoes.inc.php');
 	<script src="componentes/externos/bootstrap/plugins/bootstrap-datepicker/dist/locales/bootstrap-datepicker.pt-BR.min.js"></script>
     <script src="componentes/externos/bootstrap/plugins/jquery-mask/jquery.maskedinput.js"></script>
 	<script src="componentes/externos/bootstrap/plugins/bootstrap-fileinput/js/fileinput.js"></script>
+	<script src="componentes/externos/bootstrap/plugins/bootstrap-multiselect/dist/js/bootstrap-multiselect.js"></script>
 	<script src="componentes/externos/bootstrap/plugins/bootstrap-select/dist/js/bootstrap-select.js"></script>
 	<script src="componentes/externos/bootstrap/plugins/bootstrap-switch/dist/js/bootstrap-switch.js"></script>
 	<script src="componentes/externos/bootstrap/plugins/iCheck/icheck.min.js"></script>

@@ -1,6 +1,6 @@
 <?php
 include_once(PATH.'/controllers/admin/alerta/alerta_home.inc.php');
-//variaveis nao criadas aqui, vêm do script acima
+//as variaveis que nao sao criadas aqui, vêm do script acima
 ?>
 <div class="col-md-6">
 	<div class="row">

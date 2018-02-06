@@ -23,6 +23,19 @@ $(document).ready(function() {
 			}
 		}
 	})
+	
+	//personaliza o select do modal cadastrar categoria
+	$('#localidade').multiselect({
+		inheritClass: true,
+		includeSelectAllOption: true,
+		enableFiltering: true,
+		selectAllJustVisible: true, //ao clicar em todos, seleciona todos os visiveis pelo filtro. Se false, seleciona todos independente do filtro
+		selectAllText: ' Selecionar todas',
+		nonSelectedText: 'Nenhuma selecionada',
+		nSelectedText: 'selecionadas',
+		allSelectedText: 'Todas foram selecionadas',
+	});
+	
 	$('#form_categoria_alterar').bootstrapValidator({
 		feedbackIcons: {
 			valid: 'glyphicon glyphicon-ok',
@@ -75,14 +88,32 @@ $('#modalAlterarCategoria').on('show.bs.modal', function (event) {
 	modal.find('#id_categoria').val(id_categoria)
 	modal.find('#categoria').val(categoria)
 	modal.find('#categoria_atual').val(categoria)
-	modal.find('#localidade').val(localidade)
 	modal.find('#localidade_atual').val(localidade)
+	
+	$('#localidade').attr({ selected : "selected" });
+	
+	$.post('controllers/admin/categoria/listar_guarnicoes_alt.inc.php',{id_categoria:id_categoria},function (res) {
+	   	$('#listar_guarnicoes').html(res);//insere a lista de perfis no modal	
+	   	
+	   	//personaliza o select do modal alterar categoria
+	   	modal.find('#localidade').multiselect({
+			inheritClass: true,
+			includeSelectAllOption: true,
+			enableFiltering: true,
+			selectAllJustVisible: true, //ao clicar em todos, seleciona todos os visiveis pelo filtro. Se false, seleciona todos independente do filtro
+			selectAllText: ' Selecionar todas',
+			nonSelectedText: 'Nenhuma selecionada',
+			nSelectedText: 'selecionadas',
+			allSelectedText: 'Todas foram selecionadas'
+		}); 
+   	})
+   	
 })
 
 //imprimir lista categoria
 document.getElementById('btnPrintCategoria').onclick = function() {
 	var conteudo = document.getElementById('area_printCategoria').innerHTML;
-	var	tela_impressao = window.open('','','width=0, height=0, top=50, left=50');
+	var tela_impressao = window.open('','','width=0, height=0, top=50, left=50');
 	tela_impressao.document.write(conteudo);
 	tela_impressao.window.print();
 	tela_impressao.window.close();

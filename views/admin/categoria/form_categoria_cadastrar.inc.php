@@ -12,10 +12,10 @@
 					</div>
 					<div class="form-group">
 						<label for="localidade" class="control-label">*Localidades:</label>
-						<textarea class="form-control" type="text" name="localidade"  id="localidade"  style="resize: vertical" maxlength="1000" rows="4" placeholder="localidade1; localidade2; localidade3..." /></textarea>
+						<br />
+						<?php include_once('controllers/admin/categoria/listar_guarnicoes_cad.inc.php');?>
 					</div>
 					<div class="form-group">
-						<!--Hidden input -->
 						<input  type="hidden" name="flag" />
 					</div>
 					<div class="modal-footer">

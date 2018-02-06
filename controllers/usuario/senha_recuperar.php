@@ -47,9 +47,9 @@ if(isset($_POST['flag'])){
 		$msg .= "A nova senha &eacute;:  <b>".$senha."</b>";
 		$msg .= "<br />";
 		$msg .= "<hr>";
-		$msg .= "Mensagem enviada automaticamente pelo SIAUDI.";
+		$msg .= "Mensagem enviada automaticamente pelo SIAUD.";
 
-		smtpmailer($row_usuario['email'], "siaudi@cciex.eb.mil.br", "SIAUDI",  "SIAUDI - ENVIO DE NOVA SENHA", $msg);
+		smtpmailer($row_usuario['email'], "siaud@cciex.eb.mil.br", "SIAUD",  "SIAUD - ENVIO DE NOVA SENHA", $msg);
 
 		/*************************************************** lista os usuarios admin que serao exibidos nas msg *************************/
 
