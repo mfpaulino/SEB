@@ -32,7 +32,7 @@
 						</div>
 					</div>
 					<div class="form-group">
-						<label>Habilitar? </label><br />
+						<label>Publicar? </label><br />
 						<input name="status" type="checkbox" data-toggle="toggle" data-size="small" data-on="Sim" data-off="Não"  value="Ativo"   />&nbsp;&nbsp;
 					</div>
 					<div class="form-group">
