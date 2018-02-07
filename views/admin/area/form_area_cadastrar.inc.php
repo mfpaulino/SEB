@@ -11,7 +11,6 @@
 						<input class="form-control" type="text" name="area"  id="area"  autofocus  placeholder="" />
 					</div>
 					<div class="form-group">
-						<!--Hidden input -->
 						<input  type="hidden" name="flag" />
 					</div>
 					<div class="modal-footer">

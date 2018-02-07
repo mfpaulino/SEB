@@ -12,7 +12,8 @@
 					</div>
 					<div class="form-group">
 						<label for="localidade" class="control-label">*Localidades:</label>
-						<textarea class="form-control" type="text" name="localidade"  id="localidade" style="resize: vertical" maxlength="1000" rows="4" placeholder="localidade1; localidade2; localidade3..." /></textarea>
+					</div>
+					<div id="listar_guarnicoes" class="form-group">
 					</div>
 					<div class="form-group">
 						<input type="hidden" name="categoria_atual"   id="categoria_atual" />

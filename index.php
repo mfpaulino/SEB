@@ -99,7 +99,7 @@ else if ($_SESSION['acesso'] == "lock"){
 	<script src="componentes/internos/js/senha_alterar.js"></script>
 	<script src="componentes/internos/js/login.js"></script>
 	<script>
-		<!-- Redimensona o tamanho padrao do modal. Está no siaudi.css-->
+		<!-- Redimensiona o tamanho padrao do modal. Está no siaudi.css-->
 		$(".modal-wide").on("show.bs.modal", function() {
 			var height = $(window).height() - 200;
 			$(this).find(".modal-body").css("max-height", height);

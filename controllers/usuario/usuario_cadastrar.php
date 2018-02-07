@@ -112,7 +112,7 @@ if (isset($_POST['flag'])){
 
 			if($resultado){
 
-				$_SESSION['sucesso_cadastro'] = "Cadastro realizado com sucesso!";
+				$_SESSION['sucesso_cadastro'] = "Cadastro realizado com sucesso!<br />Faça o login com o CPF e senha cadastrados.";
 				$_SESSION['botao'] = "success";
 			}
 			else{

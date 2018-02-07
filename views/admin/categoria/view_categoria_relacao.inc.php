@@ -23,12 +23,22 @@ if($qtde == 0){
 								<td><b>Localidades</b></td>
 							</tr>
 							<?php
-							while($row = $con_lista->fetch_assoc()){?>
+							while($row = $con_lista->fetch_assoc()){
+								$localidade = unserialize($row['localidades']);
+								natcasesort($localidade);
+								$qtde = count($localidade);
+								for ($i=0; $i < $qtde; $i++){
+									$localidades_imp = $localidades_imp . $localidade[$i] . ', ';
+								}
+								$localidades_imp = substr($localidades_imp, 0, -2);//elimina a ultima ",".
+								?>
+
 								<tr>
 									<td class="text-center"><?php echo $row['categoria'];?></td>
-									<td><?php echo $row['localidades'];?></td>
+									<td><?php echo $localidades_imp;?></td>
 								</tr>
 								<?php
+								$localidades_imp = "";
 							} ?>
 						</table>
 					</div>

@@ -33,7 +33,7 @@ if ($tempo_inatividade >= (TEMPO_MAX_INATIVIDADE)){
 	}
 	session_destroy();
 }
-else if($tempo_inatividade >= (TEMPO_MAX_INATIVIDADE - 120)){ // TEMPO_SESSAO vem de constantes.inc.php ?>
+else if($tempo_inatividade >= (TEMPO_MAX_INATIVIDADE - 120)){ // TEMPO_SESSAO vem de ./componentes/internos/php/constantes.inc.php ?>
 	<p><?php echo $usuario;?></p>
 	<a href="#"><i class="fa fa-circle text-success"></i> Online (<?php echo $tempo_restante;?> s)</a>
 	<?php

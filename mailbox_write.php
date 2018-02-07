@@ -219,7 +219,7 @@ if(isset($_POST['cpf_destinatario'])){
 				inheritClass: true,
 				includeSelectAllOption: true,
 				enableFiltering: true,
-				selectAllJustVisible: true //ao clicar em todos, seleciona todos os visiveis pelo filtro. Se false, seleciona todos independente do filtro
+				selectAllJustVisible: true, //ao clicar em todos, seleciona todos os visiveis pelo filtro. Se false, seleciona todos independente do filtro
 			});
 		});
 	</script>

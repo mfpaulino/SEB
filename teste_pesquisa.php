@@ -1,6 +1,6 @@
 <?php
 /***********************************************************************************************************
-* local/script name: ./user_habilitacao.php
+* local/script name: ./template.php
 * modelo com os itens obrigatórios para os demais scripts criados                                                                     *
 * **********************************************************************************************************/
 $inc = "sim";
@@ -47,15 +47,17 @@ include_once(PATH . '/componentes/internos/php/funcoes.inc.php');
 		<aside class="main-sidebar">
 			<section class="sidebar">
 				<?php
-				include_once('views/menu/menu_left.inc.php');?>
+				$active_template = 'active';
+				include_once('views/menu/menu_left.inc.php');
+				?>
 			</section>
 		</aside>
 		<div class="content-wrapper">
 			<section class="content-header">
-				<h1>Habilitações</h1>
+				<h1>Template</h1>
 				<ol class="breadcrumb">
 					<li><a href="index.php"><i class="fa fa-home"></i>Home</a></li>
-					<li class="active">Habilitações</li>
+					<li class="active">Template</li>
 				</ol>
 			</section>
 			<section class="content container-fluid">
@@ -77,92 +79,19 @@ include_once(PATH . '/componentes/internos/php/funcoes.inc.php');
 				if(isset($_SESSION['alterar_senha_logout']) or isset($_SESSION['alterar_codom'])){
 					session_destroy();
 				}
-
-				$sql = "SELECT h.*, a.area from usuarios_habilitacao h, adm_areas a where h.cpf = '$cpf' and h.id_area = a.id_area order by a.area, h.tipo, h.descricao";
-				$con_habilitacao = $mysqli->query($sql);
 				?>
 				<!-- conteudo aqui -->
 				<div class="row">
-					<div class="col-md-12">
-						<?php
-						if($con_habilitacao->num_rows <> 0){?>
-							<div class="box box-solid">
-								<table border="0" class="table table-hover">
-									<tr class="text-bold text-uppercase bg-light-blue">
-										<td>Área</td>
-										<td>Tipo</td>
-										<td>Descrição</td>
-										<td class="text-center">Carga-horária</td>
-										<td class="text-center text-strong">Conclusão</td>
-										<td class="text-center">Ação</td>
-									</tr>
-								<?php
-								while ($rows =  $con_habilitacao->fetch_assoc()){?>
-									<tr>
-										<td><?php echo $rows['area']; ?></td>
-										<td width="10%"><?php echo $rows['tipo']; ?></td>
-										<td><?php echo $rows['descricao']; ?></td>
-										<td width="10%" class="text-center"><?php echo $rows['carga_horaria']; ?></td>
-										<td width="10%" class="text-center"><?php echo $rows['ano_conclusao']; ?></td>
-										<td width="10%" class="text-center">
-											<!--botao Aviso-->
-											<button type="button" class="btn btn-xs btn-primary"
-												data-tooltip="tooltip"
-												data-title="Editar"
-												data-placement="left"
-												data-toggle="modal"
-												data-target="#modalAlterarHabilitacao"
-												data-id_habilitacao="<?php echo $rows['id_habilitacao'];?>"
-												data-area="<?php echo $rows['area'];?>"
-												data-id_area="<?php echo $rows['id_area'];?>"
-												data-tipo="<?php echo $rows['tipo'];?>"
-												data-descricao="<?php echo $rows['descricao'];?>"
-												data-carga_horaria="<?php echo $rows['carga_horaria'];?>"
-												data-ano_conclusao="<?php echo $rows['ano_conclusao'];?>"
-												>
-												<i class="fa fa-pencil"></i>
-											</button>
-											<!--botao Excluir-->
-											<button form="formExcluir<?php echo $rows['id_habilitacao'];?>" type="submit" class="btn btn-xs btn-primary"
-												data-tooltip="tooltip"
-												data-toggle="confirmation"
-												data-placement="left"
-												data-btn-ok-label="Continuar"
-												data-btn-ok-icon="glyphicon glyphicon-share-alt"
-												data-btn-ok-class="btn-success"
-												data-btn-cancel-label="Parar"
-												data-btn-cancel-icon="glyphicon glyphicon-ban-circle"
-												data-btn-cancel-class="btn-danger"
-												data-title="Excluir"
-												data-content="Confirma?">
-												<i class="fa fa-trash"></i>
-											</button>
-											<form id="formExcluir<?php echo $rows['id_habilitacao'];?>" action="controllers/usuario/habilitacao_alterar.php" method = "POST">
-												<input type="hidden" name="flag" value="excluir" />
-												<input type="hidden" name="flag1" value="<?php echo $pagina;?>" />
-												<input type="hidden" name="id_habilitacao" value="<?php echo $rows['id_habilitacao'];?>" />
-											</form>
-										</td>
-									</tr>
-								<?php
-								}
-								?>
-								</table>
-							</div>
-						<?php
-						}
-						else {?>
-							<div class="info-box">
-								<span class="info-box-icon bg-yellow"><i class="fa fa-warning"></i></span>
-								<div class="info-box-content">
-									<span class="info-box-number">Nenhuma habilitação cadastrada</span>
-									<span class="info-box-text"><?php echo $status_alertas;?></span>
-								</div>
-							</div>
-						<?php
-						}?>
+					<div class="col-lg-3">
+						<div class="input-group">
+							<input type="text" class="form-control" id="palavra" placeholder="Buscar por...">
+							<span class="input-group-btn">
+								<button class="btn btn-default btn-primary" id="buscar" type="button">Buscar</button>
+							</span>
+						</div>
 					</div>
 				</div>
+				<div id="dados">Aqui aparecerá os dados buscados...</div>
 				<!-- fim conteudo -->
 			</section>
 		</div>
@@ -172,6 +101,7 @@ include_once(PATH . '/componentes/internos/php/funcoes.inc.php');
 		<div class="control-sidebar-bg"></div>
 		<?php include_once('componentes/internos/php/rodape.inc.php');?>
 	</div>
+	<!-- js padrao obrigatorios -->
 	<script src="componentes/externos/jquery/dist/jquery.min.js"></script>
 	<script src="componentes/externos/bootstrap/dist/js/bootstrap.min.js"></script>
 	<script src="componentes/externos/bootstrap/plugins/bootstrap-validator/js/bootstrapValidator.min.js"></script>
@@ -180,6 +110,7 @@ include_once(PATH . '/componentes/internos/php/funcoes.inc.php');
 	<script src="componentes/externos/bootstrap/plugins/bootstrap-select/dist/js/bootstrap-select.js"></script>
 	<script src="componentes/externos/template/js/adminlte.min.js"></script>
 	<script src="componentes/externos/jquery/plugins/maskMoney/dist/jquery.maskMoney.min.js"></script>
+	<!-- js do sistema obrigatorios -->
 	<script src="componentes/internos/js/status_sessao.js"></script>
 	<script src="componentes/internos/js/status_menu_top.js"></script>
 	<script src="componentes/internos/js/senha_alterar.js"></script>
@@ -187,6 +118,9 @@ include_once(PATH . '/componentes/internos/php/funcoes.inc.php');
 	<script src="componentes/internos/js/modal_editar_perfil.js"></script>
 	<script src="componentes/internos/js/modal_editar_unidade.js"></script>
 	<script src="componentes/internos/js/habilitacao.js"></script>
+	<!-- js especificos desta pagina-->
+	<script src="componentes/internos/js/testes/buscador.js"></script>
+	<!-- scripts obrigatorios para todas as paginas -->
 	<script>
 		//exibe os titles ao passar o mouse
 		$(document).ready(function(){
