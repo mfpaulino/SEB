@@ -63,16 +63,23 @@
 						</div>
 						<div class="row">
 							<!-- Text input-->
-							<div class="col-sm-6">
+							<div class="col-sm-4">
 								<div class="form-group">
 									<label for="ritex">RITEx</label>
 									<input name="ritex" id="ritex" type="text" class="form-control" />
 								</div>
 							</div>
 							<!-- Text input-->
-							<div class="col-sm-6">
+							<div class="col-sm-4">
 								<div class="form-group">
-									<label for="celular">Celular</label>
+									<label for="fixo">Tel Fixo (DDD + Nº)</label>
+									<input name="fixo" id="fixo" type="text" class="form-control" />
+								</div>
+							</div>
+							<!-- Text input-->
+							<div class="col-sm-4">
+								<div class="form-group">
+									<label for="celular">Celular (DDD + Nº)</label>
 									<input name="celular" id="celular" type="text" class="form-control" />
 								</div>
 							</div>

@@ -154,6 +154,16 @@ include_once(PATH . '/componentes/internos/php/funcoes.inc.php');
 						<?php include_once('views/admin/diaria/view_diaria_relacao.inc.php');?>
 					</div>
 				<?php
+				}
+				if (in_array("adm_tipo_evento", $lista_permissoes)){?>
+					<!-- Tipos de Eventos -->
+					<div class="col-md-3">
+						<?php include_once('views/admin/tipo_evento/view_tipo_evento.inc.php');?>
+						<?php include_once('views/admin/tipo_evento/form_tipo_evento_cadastrar.inc.php');?>
+						<?php include_once('views/admin/tipo_evento/form_tipo_evento_alterar.inc.php');?>
+						<?php include_once('views/admin/tipo_evento/view_tipo_evento_relacao.inc.php');?>
+					</div>
+				<?php
 				} ?>
 				</div>
 				<div class="row">
@@ -210,25 +220,13 @@ include_once(PATH . '/componentes/internos/php/funcoes.inc.php');
 					</div>
 				<?php
 				}
-				if (in_array("adm_poss_achados", $lista_permissoes)){?>
-					<!-- possíveis achados -->
+				if (in_array("adm_fontes_informacao", $lista_permissoes)){?>
+					<!-- fontes de informação -->
 					<div class="col-md-3">
-						<?php include_once('views/admin/poss_achado/view_poss_achado.inc.php');?>
-						<?php include_once('views/admin/poss_achado/form_poss_achado_cadastrar.inc.php');?>
-						<?php include_once('views/admin/poss_achado/form_poss_achado_alterar.inc.php');?>
-						<?php include_once('views/admin/poss_achado/form_poss_achado_vincular_questao.inc.php');?>
-						<?php include_once('views/admin/poss_achado/view_poss_achado_relacao.inc.php');?>
-					</div>
-				<?php
-				}
-				if (in_array("adm_proc_analise", $lista_permissoes)){?>
-					<!-- procedimentos de análise de dados -->
-					<div class="col-md-3">
-						<?php include_once('views/admin/proc_ana/view_proc_ana.inc.php');?>
-						<?php include_once('views/admin/proc_ana/form_proc_ana_cadastrar.inc.php');?>
-						<?php include_once('views/admin/proc_ana/form_proc_ana_alterar.inc.php');?>
-						<?php include_once('views/admin/proc_ana/form_proc_ana_vincular_questao.inc.php');?>
-						<?php include_once('views/admin/proc_ana/view_proc_ana_relacao.inc.php');?>
+						<?php include_once('views/admin/fonte_info/view_fonte_info.inc.php');?>
+						<?php include_once('views/admin/fonte_info/form_fonte_info_cadastrar.inc.php');?>
+						<?php include_once('views/admin/fonte_info/form_fonte_info_alterar.inc.php');?>
+						<?php include_once('views/admin/fonte_info/view_fonte_info_relacao.inc.php');?>
 					</div>
 				<?php
 				}
@@ -242,31 +240,33 @@ include_once(PATH . '/componentes/internos/php/funcoes.inc.php');
 						<?php include_once('views/admin/proc_coleta/view_proc_coleta_relacao.inc.php');?>
 					</div>
 				<?php
-				} ?>
-				</div>
-				<div class="row">
-				<?php
-				if (in_array("adm_tipo_evento", $lista_permissoes)){?>
-					<!-- Tipos de Eventos -->
-					<div class="col-md-3">
-						<?php include_once('views/admin/tipo_evento/view_tipo_evento.inc.php');?>
-						<?php include_once('views/admin/tipo_evento/form_tipo_evento_cadastrar.inc.php');?>
-						<?php include_once('views/admin/tipo_evento/form_tipo_evento_alterar.inc.php');?>
-						<?php include_once('views/admin/tipo_evento/view_tipo_evento_relacao.inc.php');?>
-					</div>
-				<?php
 				}
-				if (in_array("adm_fontes_informacao", $lista_permissoes)){?>
-					<!-- fontes de informação -->
+				if (in_array("adm_proc_analise", $lista_permissoes)){?>
+					<!-- procedimentos de análise de dados -->
 					<div class="col-md-3">
-						<?php include_once('views/admin/fonte_info/view_fonte_info.inc.php');?>
-						<?php include_once('views/admin/fonte_info/form_fonte_info_cadastrar.inc.php');?>
-						<?php include_once('views/admin/fonte_info/form_fonte_info_alterar.inc.php');?>
-						<?php include_once('views/admin/fonte_info/view_fonte_info_relacao.inc.php');?>
+						<?php include_once('views/admin/proc_ana/view_proc_ana.inc.php');?>
+						<?php include_once('views/admin/proc_ana/form_proc_ana_cadastrar.inc.php');?>
+						<?php include_once('views/admin/proc_ana/form_proc_ana_alterar.inc.php');?>
+						<?php include_once('views/admin/proc_ana/form_proc_ana_vincular_questao.inc.php');?>
+						<?php include_once('views/admin/proc_ana/view_proc_ana_relacao.inc.php');?>
 					</div>
 				<?php
 				} ?>
 				</div>
+				<?php
+				if (in_array("adm_poss_achados", $lista_permissoes)){?>
+					<div class="row">
+						<!-- possíveis achados -->
+						<div class="col-md-3">
+							<?php include_once('views/admin/poss_achado/view_poss_achado.inc.php');?>
+							<?php include_once('views/admin/poss_achado/form_poss_achado_cadastrar.inc.php');?>
+							<?php include_once('views/admin/poss_achado/form_poss_achado_alterar.inc.php');?>
+							<?php include_once('views/admin/poss_achado/form_poss_achado_vincular_questao.inc.php');?>
+							<?php include_once('views/admin/poss_achado/view_poss_achado_relacao.inc.php');?>
+						</div>
+					</div>
+				<?php
+				} ?>
 				<!-- fim conteudo -->
 			</section>
 		</div>

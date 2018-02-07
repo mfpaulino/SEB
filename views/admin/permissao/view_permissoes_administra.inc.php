@@ -1,16 +1,16 @@
-<div class="box box-solid bg-red collapsed-box">
+<div class="box box-solid bg-green collapsed-box">
 	<div class="box-header">
 		<i class="fa fa-user"></i>
 		<h3 class="box-title">Permissões (Administração)</h3>
 		<div class="pull-right box-tools">
 			<div class="btn-group">
-				<button disabled type="button" title="Exibir Menu" class="btn bg-red-gradient btn-sm dropdown-toggle" data-toggle="dropdown"><i class="fa fa-caret-down fa-lg"></i></button>
+				<button disabled type="button" title="Exibir Menu" class="btn bg-green-gradient btn-sm dropdown-toggle" data-toggle="dropdown"><i class="fa fa-caret-down fa-lg"></i></button>
 				<ul class="dropdown-menu pull-right" role="menu">
 					<li><a href="#" data-toggle="modal" data-target="#modalExibirTipoEvento">Impressão</a></li>
 				</ul>
 			</div>
-			<button type="button" title="Expandir/Encolher" class="btn bg-red-gradient btn-sm" data-widget="collapse"><i class="fa fa-plus"></i></button>
-			<button type="button" title="Ocultar" class="btn bg-red-gradient btn-sm" data-widget="remove"><i class="fa fa-times"></i></button>
+			<button type="button" title="Expandir/Encolher" class="btn bg-green-gradient btn-sm" data-widget="collapse"><i class="fa fa-plus"></i></button>
+			<button type="button" title="Ocultar" class="btn bg-green-gradient btn-sm" data-widget="remove"><i class="fa fa-times"></i></button>
 		</div>
 	</div>
 	<div class="box-body no-padding" style="display:none;">

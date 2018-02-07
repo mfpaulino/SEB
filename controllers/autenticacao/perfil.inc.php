@@ -5,7 +5,7 @@ $cpf = $_SESSION['cpf'];
 $ultimoAcesso = $_SESSION['ultimoAcesso'];
 
 /* consultando os dados do usuario */
-$sql = "SELECT id_usuario, rg, nome_guerra, nome, email, ritex, celular, avatar, dt_cad, usuarios.id_posto, p.posto, codom, usuarios.id_perfil, pe.perfil, usuarios.id_perfil_om, pu.unidade as perfil_om, ultimo_acesso, acesso_anterior, status, user_habilita, data_habilita from usuarios, postos p, adm_perfis pe, adm_perfis_unidade pu where cpf = '$cpf' and usuarios.id_posto = p.id_posto and usuarios.id_perfil = pe.id_perfil and usuarios.id_perfil_om = pu.id_perfil_om";
+$sql = "SELECT id_usuario, rg, nome_guerra, nome, email, ritex, fixo, celular, avatar, dt_cad, usuarios.id_posto, p.posto, codom, usuarios.id_perfil, pe.perfil, usuarios.id_perfil_om, pu.unidade as perfil_om, ultimo_acesso, acesso_anterior, status, user_habilita, data_habilita from usuarios, postos p, adm_perfis pe, adm_perfis_unidade pu where cpf = '$cpf' and usuarios.id_posto = p.id_posto and usuarios.id_perfil = pe.id_perfil and usuarios.id_perfil_om = pu.id_perfil_om";
 $con_dados = $mysqli->query($sql);
 $row = $con_dados->fetch_assoc();
 
@@ -16,6 +16,7 @@ $posto_usuario = $row['posto'];
 $nome_guerra_usuario  = $row['nome_guerra'];
 $nome_usuario  = $row['nome'];
 $ritex_usuario = $row['ritex'];
+$fixo_usuario = $row['fixo'];
 $celular_usuario = $row['celular'];
 $email_usuario = $row['email'];
 $codom_usuario = $row['codom'];

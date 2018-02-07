@@ -52,7 +52,7 @@ if(isset($_POST['flag']) and isset($_SESSION['cpf'])){
 			$validar->set('Área', 		$area)->is_required()
 				->set('Tipo', 			$tipo)->is_required()
 				->set('Descrição', 		$descricao)->is_required()
-				->set('Carga-horária', 	$carga_horaria)->is_required()
+				->set('Carga-horária', 	$carga_horaria)->is_required()->is_num()
 				->set('Ano de conclusão',  $ano_conclusao)->is_required()->between_values($ano1, $ano2);//aceita cursos dos ultimos 40 anos
 		}
 

@@ -124,6 +124,19 @@ $(document).ready(function() {
 					}
 				}
 			},
+			fixo: {
+				validators: {
+					regexp: {
+						regexp: /^[0-9]+$/,
+						message: 'somente dígitos'
+					},
+					stringLength: {
+						min: 10,
+						max: 10,
+						message: 'Telefone inválido (DDD + Nº)'
+					}
+				}
+			},
 			celular: {
 				validators: {
 					regexp: {
@@ -133,7 +146,7 @@ $(document).ready(function() {
 					stringLength: {
 						min: 10,
 						max: 11,
-						message: 'Celular inválido'
+						message: 'Celular inválido (DDD + Nº)'
 					}
 				}
 			}

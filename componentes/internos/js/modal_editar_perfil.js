@@ -8,6 +8,7 @@ $('#modalEditar').on('show.bs.modal', function (event) {
 	var id_posto = button.data('id_posto');
 	var email = button.data('email');
 	var ritex = button.data('ritex');
+	var fixo = button.data('fixo');
 	var celular = button.data('celular');
 	var id_perfil = button.data('id_perfil');
 	var perfil = button.data('perfil');
@@ -21,6 +22,7 @@ $('#modalEditar').on('show.bs.modal', function (event) {
 	modal.find('#posto').val(id_posto)
 	modal.find('#email').val(email)
 	modal.find('#ritex').val(ritex)
+	modal.find('#fixo').val(fixo)
 	modal.find('#celular').val(celular)
 	modal.find('#perfil').val(id_perfil)
 	modal.find('#perfil_txt').val(perfil)

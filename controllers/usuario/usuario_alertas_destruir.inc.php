@@ -25,6 +25,7 @@ unset($_SESSION['alterar_nome']);
 unset($_SESSION['alterar_email']);
 unset($_SESSION['alterar_email_erro']);
 unset($_SESSION['alterar_ritex']);
+unset($_SESSION['alterar_fixo']);
 unset($_SESSION['alterar_celular']);
 unset($_SESSION['alterar_codom']);
 unset($_SESSION['alterar_perfil']);

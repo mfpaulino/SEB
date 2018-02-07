@@ -111,16 +111,23 @@
 						</div>
 						<div class ="row">
 							<!-- Text input-->
-							<div class="col-sm-6">
+							<div class="col-sm-4">
 								<div class="form-group">
 									<label for="ritex">RITEx:</label>
 									<input id="ritex" name="ritex" placeholder="somente dígitos" class="form-control" type="text">
 								</div>
 							</div>
 							<!-- Text input-->
-							<div class="col-sm-6">
+							<div class="col-sm-4">
 								<div class="form-group">
-									<label for="celular">Celular:</label>
+									<label for="fixo">Tel Fixo (DDD + Nº):</label>
+									<input id="fixo" name="fixo" placeholder="somente dígitos" class="form-control input-md" type="text">
+								</div>
+							</div>
+							<!-- Text input-->
+							<div class="col-sm-4">
+								<div class="form-group">
+									<label for="celular">Celular (DDD + Nº):</label>
 									<input id="celular" name="celular" placeholder="somente dígitos" class="form-control input-md" type="text">
 								</div>
 							</div>
