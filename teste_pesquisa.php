@@ -120,7 +120,7 @@ include_once(PATH . '/componentes/internos/php/funcoes.inc.php');
 	<script src="componentes/internos/js/habilitacao.js"></script>
 	<!-- js especificos desta pagina-->
 	<script src="componentes/internos/js/testes/buscador.js"></script>
-	<!-- scripts obrigatorios para todas as paginas -->
+	<!-- scripts obrigatorios para todas as paginas . -->
 	<script>
 		//exibe os titles ao passar o mouse
 		$(document).ready(function(){
