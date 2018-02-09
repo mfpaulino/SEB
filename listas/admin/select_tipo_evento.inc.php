@@ -8,10 +8,12 @@ $con_tipo_evento = $mysqli->query($sql);
 <select class="form-control selectpicker" data-size="10" name="tipo_evento" id="tipo_evento">
 	<option value = "">Selecione o Tipo de Evento...</option>
 	<?php
+	$i = 1;
 	while ($row_tipo_evento = $con_tipo_evento->fetch_assoc()){
 	?>
-		<option value = "<?php echo $row_tipo_evento['id_tipo_evento'].'|'.$row_tipo_evento['tipo_evento'];?>"><?php echo $row_tipo_evento['tipo_evento'];?></option>
+		<option value = "<?php echo $row_tipo_evento['id_tipo_evento'].'|'.$row_tipo_evento['tipo_evento'];?>"><?php echo $i . " - ".$row_tipo_evento['tipo_evento'];?></option>
 	<?php
+	$i ++;
 	}
 	?>
 </select>
