@@ -9,9 +9,11 @@ $con_subarea = $mysqli->query($sql);
 <select class="form-control selectpicker" data-size="10" name="subarea" id="subarea">
 	<option value="">Selecione a Subárea/Subprocesso...</option>
 	<?php
+	$i = 1;
 	while($rows_subarea = $con_subarea->fetch_assoc()){?>
-		<option value="<?php echo $rows_subarea['id_subarea'] .'|'.$rows_subarea['subarea'];?>"><?php echo $rows_subarea['subarea'];?></option>
+		<option value="<?php echo $rows_subarea['id_subarea'] .'|'.$rows_subarea['subarea'];?>"><?php echo $i . " - ".$rows_subarea['subarea'];?></option>
 	<?php
+		$i++;
 	}
 	?>
 </select>
