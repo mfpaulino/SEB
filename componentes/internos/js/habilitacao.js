@@ -20,6 +20,13 @@ $(document).ready(function() {
 					}
 				}
 			},
+			carga_horaria: {
+				validators: {
+					integer: {
+						message: 'Inválido - apenas dígitos'
+					}
+				}
+			},
 			ano_conclusao: {
 				validators: {
 					integer: {
@@ -29,7 +36,7 @@ $(document).ready(function() {
 						min: inicio,
 						max: fim,
 						message: 'Apenas os realizados nos últimos 40 anos'
-					    }
+					}
 				}
 			}
 		}
@@ -115,6 +122,13 @@ $(document).ready(function() {
 					}
 				}
 			},
+			carga_horaria: {
+				validators: {
+					integer: {
+						message: 'Inválido - apenas dígitos'
+					}
+				}
+			},
 			ano_conclusao: {
 				validators: {
 					integer: {
@@ -124,7 +138,7 @@ $(document).ready(function() {
 						min: inicio,
 						max: fim,
 						message: 'Apenas os realizados nos últimos 40 anos'
-					    }
+					}
 				}
 			}
 		}

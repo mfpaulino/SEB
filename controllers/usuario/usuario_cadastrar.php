@@ -34,6 +34,7 @@ if (isset($_POST['flag'])){
 	$codom 		 = isset($_POST['codom']) ? mysqli_real_escape_string($mysqli, $_POST['codom']) : "";
 	$perfil		 = isset($_POST['perfil']) ? mysqli_real_escape_string($mysqli, $_POST['perfil']) : "";
 	$ritex		 = isset($_POST['ritex']) ? mysqli_real_escape_string($mysqli, $_POST['ritex']) : "";
+	$fixo		 = isset($_POST['fixo']) ? mysqli_real_escape_string($mysqli, $_POST['fixo']) : "";
 	$celular	 = isset($_POST['celular']) ? mysqli_real_escape_string($mysqli, $_POST['celular']) : "";
 
 	$validar = new validaForm();
@@ -45,8 +46,9 @@ if (isset($_POST['flag'])){
 			->set('Nome', 			$nome)->is_required()
 			->set('Nome de guerra', $nome_guerra)->is_required()
 			->set('E-mail',			$email)->is_email()
-			//->set('RITEx', 		$ritex)->is_num()
-			//->set('Celular', 		$celular)->is_num()
+			//->set('RITEx',		$ritex)->is_required()->is_num()->min_length(7)->max_length(7)
+			//->set('Tel Fixo',		$ritex)->is_required()->is_num()->min_length(10)->max_length(10)
+			//->set('Celular',		$celular)->is_required()->is_num()->min_length(10)->max_length(11)
 			->set('Unidade', 		$codom)->is_required()
 			->set('Perfil', 		$perfil)->is_required();
 
@@ -108,7 +110,7 @@ if (isset($_POST['flag'])){
 			}
 			/**********************************/
 
-			$resultado = $mysqli->query("INSERT INTO usuarios (cpf, senha, rg, nome_guerra, nome, email, ritex, celular, avatar, dt_cad, id_posto, codom, id_perfil, id_perfil_om, status) VALUES ('$cpf', '$senha_criptografada', '$rg', '$nome_guerra', '$nome', '$email', '$ritex', '$celular', '$avatar', '$dt_cad','$posto', '$codom', '$perfil', '$perfil_om', 'Recebido')");
+			$resultado = $mysqli->query("INSERT INTO usuarios (cpf, senha, rg, nome_guerra, nome, email, ritex, fixo, celular, avatar, dt_cad, id_posto, codom, id_perfil, id_perfil_om, status) VALUES ('$cpf', '$senha_criptografada', '$rg', '$nome_guerra', '$nome', '$email', '$ritex', '$fixo', '$celular', '$avatar', '$dt_cad','$posto', '$codom', '$perfil', '$perfil_om', 'Recebido')");
 
 			if($resultado){
 

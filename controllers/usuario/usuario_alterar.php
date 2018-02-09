@@ -27,6 +27,7 @@ if(isset($_POST['flag']) and isset($_SESSION['cpf'])){
 	$nome_guerra = isset($_POST['nome_guerra']) ? mysqli_real_escape_string($mysqli, $_POST['nome_guerra']) : $nome_guerra_usuario;
 	$email 		 = isset($_POST['email']) ? mysqli_real_escape_string($mysqli, $_POST['email']) : $email_usuario;
 	$ritex 		 = isset($_POST['ritex']) ? mysqli_real_escape_string($mysqli, $_POST['ritex']) : $ritex_usuario;
+	$fixo 		 = isset($_POST['fixo']) ? mysqli_real_escape_string($mysqli, $_POST['fixo']) : $fixo_usuario;
 	$celular 	 = isset($_POST['celular']) ? mysqli_real_escape_string($mysqli, $_POST['celular']) : $celular_usuario;
 	$codom 		 = isset($_POST['codom']) ? mysqli_real_escape_string($mysqli, $_POST['codom']) : $codom_usuario;
 	$id_perfil 	 = isset($_POST['perfil']) ? mysqli_real_escape_string($mysqli, $_POST['perfil']) : $id_perfil_usuario;
@@ -41,6 +42,7 @@ if(isset($_POST['flag']) and isset($_SESSION['cpf'])){
 			->set('Unidade',		$codom)->is_required()
 			->set('Perfil',			$id_perfil)->is_required();
 			//->set('RITEx',		$ritex)->is_required()->is_num()->min_length(7)->max_length(7)
+			//->set('Tel Fixo',		$ritex)->is_required()->is_num()->min_length(10)->max_length(10)
 			//->set('Celular',		$celular)->is_required()->is_num()->min_length(10)->max_length(11)
 
 	$_SESSION['botao'] = "success";
@@ -157,6 +159,16 @@ if(isset($_POST['flag']) and isset($_SESSION['cpf'])){
 
 			if($con_update->affected_rows <> 0 ){
 				$_SESSION['alterar_ritex'] = "O RITEx foi alterado com sucesso!";
+				$altera = "sim";
+			}
+		}
+		if ($fixo <> "" and $fixo <> $fixo_usuario){
+			$con_update = $mysqli->prepare("UPDATE usuarios SET fixo = ? WHERE cpf ='$cpf'");
+			$con_update->bind_param('i', $fixo);
+			$con_update->execute();
+
+			if($con_update->affected_rows <> 0 ){
+				$_SESSION['alterar_fixo'] = "O Tel Fixo foi alterado com sucesso!";
 				$altera = "sim";
 			}
 		}

@@ -8,10 +8,12 @@ $con_poss_achado = $mysqli->query($sql);
 <select class="form-control selectpicker" data-size="10" name="poss_achado" id="poss_achado">
 	<option value = "">Selecione o Possível Achado...</option>
 	<?php
+	$i = 1;
 	while ($row_poss_achado = $con_poss_achado->fetch_assoc()){
 	?>
-		<option value = "<?php echo $row_poss_achado['id_poss_achado'].'|'.$row_poss_achado['poss_achado'];?>"><?php echo $row_poss_achado['poss_achado'];?></option>
+		<option value = "<?php echo $row_poss_achado['id_poss_achado'].'|'.$row_poss_achado['poss_achado'];?>"><?php echo $i . " - ".$row_poss_achado['poss_achado'];?></option>
 	<?php
+		$i++;
 	}
 	?>
 </select>

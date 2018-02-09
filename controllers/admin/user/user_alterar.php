@@ -151,7 +151,9 @@ if(isset($_POST['flag']) and isset($_SESSION['cpf'])){
 	}
 	else if($acao == "excluir"){
 
+		/*********************** deleta o usuario e os cursos desse usuario ***************************/
 		$con_del   = $mysqli->query("DELETE FROM usuarios WHERE id_usuario = '$id_usuario'");
+		$con_del_curso = $mysqli->query("DELETE FROM usuarios_habilitacao WHERE cpf = '$cpf'");
 		$con_teste = $mysqli->query("SELECT id_usuario FROM usuarios WHERE id_usuario = '$id_usuario'");
 
 		if($con_teste->num_rows == 0){

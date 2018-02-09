@@ -8,10 +8,12 @@ $con_proc_ana = $mysqli->query($sql);
 <select class="form-control selectpicker" data-size="10" name="proc_ana" id="proc_ana">
 	<option value = "">Selecione o Procedimento de Análise...</option>
 	<?php
+	$i = 1;
 	while ($row_proc_ana = $con_proc_ana->fetch_assoc()){
 	?>
-		<option value = "<?php echo $row_proc_ana['id_proc_ana'].'|'.$row_proc_ana['proc_ana'];?>"><?php echo $row_proc_ana['proc_ana'];?></option>
+		<option value = "<?php echo $row_proc_ana['id_proc_ana'].'|'.$row_proc_ana['proc_ana'];?>"><?php echo $i . " - ".$row_proc_ana['proc_ana'];?></option>
 	<?php
+		$i++;
 	}
 	?>
 </select>

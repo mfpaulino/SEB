@@ -63,16 +63,23 @@
 						</div>
 						<div class="row">
 							<!-- Text input-->
-							<div class="col-sm-6">
+							<div class="col-sm-4">
 								<div class="form-group">
 									<label for="ritex">RITEx</label>
 									<input value="<?php echo $ritex_usuario;?>" class="form-control" disabled>
 								</div>
 							</div>
 							<!-- Text input-->
-							<div class="col-sm-6">
+							<div class="col-sm-4">
 								<div class="form-group">
-									<label for="celular">Celular</label>
+									<label for="fixo">Tel Fixo (DDD + Nº)</label>
+									<input value="<?php echo $fixo_usuario;?>" class="form-control" disabled>
+								</div>
+							</div>
+							<!-- Text input-->
+							<div class="col-sm-4">
+								<div class="form-group">
+									<label for="celular">Celular (DDD + Nº)</label>
 									<input value="<?php echo $celular_usuario;?>" class="form-control" disabled>
 								</div>
 							</div>
