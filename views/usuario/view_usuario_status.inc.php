@@ -46,6 +46,7 @@ else {
 					data-nome="<?php echo $nome_usuario; ?>"
 					data-email="<?php echo $email_usuario; ?>"
 					data-ritex="<?php echo $ritex_usuario; ?>"
+					data-fixo="<?php echo $fixo_usuario; ?>"
 					data-celular="<?php echo $celular_usuario; ?>"
 					data-id_perfil="<?php echo $id_perfil_usuario; ?>"
 					data-perfil="<?php echo $perfil_usuario; ?>"

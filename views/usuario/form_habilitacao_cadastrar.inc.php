@@ -43,7 +43,7 @@
 							<div class="col-sm-6">
 								<div id="div_carga_horaria">
 									<div class="form-group">
-										<label for="carga_horaria" id="label_carga_horaria">Carga-horária*</label>
+										<label for="carga_horaria" id="label_carga_horaria">Carga-horária (Horas/Aula)*</label>
 										<input name="carga_horaria" id="carga_horaria" type="text" required class="form-control"  />
 									</div>
 								</div>

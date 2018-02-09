@@ -2,7 +2,7 @@
 //$lista_perfis_admin: vem do script perfil.inc.php
 //$condicao_codom: vem do script perfil.inc.php
 
-$sql = "SELECT id_usuario, cpf, rg, nome_guerra, nome, email, ritex, celular, avatar, dt_cad, usuarios.id_posto, p.posto, codom, usuarios.id_perfil, pe.perfil, ultimo_acesso, acesso_anterior, status from usuarios, postos p, adm_perfis pe, adm_perfis_administra pa where usuarios.status = 'Recebido' and usuarios.id_posto = p.id_posto and usuarios.id_perfil = pe.id_perfil and pa.id_perfil_admin in ($lista_perfis_admin) and (pa.id_perfil = usuarios.id_perfil and pa.id_perfil_om = usuarios.id_perfil_om) $condicao_codom order by  usuarios.id_perfil_om, usuarios.codom, usuarios.id_posto";
+$sql = "SELECT id_usuario, cpf, rg, nome_guerra, nome, email, ritex, fixo, celular, avatar, dt_cad, usuarios.id_posto, p.posto, codom, usuarios.id_perfil, pe.perfil, ultimo_acesso, acesso_anterior, status from usuarios, postos p, adm_perfis pe, adm_perfis_administra pa where usuarios.status = 'Recebido' and usuarios.id_posto = p.id_posto and usuarios.id_perfil = pe.id_perfil and pa.id_perfil_admin in ($lista_perfis_admin) and (pa.id_perfil = usuarios.id_perfil and pa.id_perfil_om = usuarios.id_perfil_om) $condicao_codom order by  usuarios.id_perfil_om, usuarios.codom, usuarios.id_posto";
 
 $con_usuarios = $mysqli->query($sql);
 ?>
@@ -100,6 +100,7 @@ $con_usuarios = $mysqli->query($sql);
 							data-nome="<?php echo $rows['nome'];?>"
 							data-email="<?php echo $rows['email'];?>"
 							data-ritex="<?php echo $rows['ritex'];?>"
+							data-fixo="<?php echo $rows['fixo'];?>"
 							data-celular="<?php echo $rows['celular'];?>"
 							data-usuario="<?php echo $rows['posto'].' '.$rows['nome_guerra'];?>"
 							data-id_perfil="<?php echo $rows['id_perfil'];?>"

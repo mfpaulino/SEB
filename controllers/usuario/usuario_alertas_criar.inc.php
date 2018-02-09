@@ -43,6 +43,7 @@ if ($inc == "sim"){
 			$msg11 = $_SESSION['alterar_avatar'];
 			$msg12 = $_SESSION['excluir_avatar'];
 			$msg13 = $_SESSION['alterar_nada'];
+			$msg14 = $_SESSION['alterar_fixo'];
 			$lista_erro_validacao = $_SESSION['alterar_lista_erro_validacao'];
 		}
 		else {
@@ -60,6 +61,7 @@ if ($inc == "sim"){
 			unset($_SESSION['alterar_avatar']);
 			unset($_SESSION['excluir_avatar']);
 			unset($_SESSION['alterar_nada']);
+			unset($_SESSION['alterar_fixo']);
 			unset($_SESSION['alterar_lista_erro_validacao']);
 		}
 		if($flag == md5("senha_alterar")){

@@ -1,7 +1,7 @@
 <div class="box box-solid bg-blue collapsed-box">
 	<div class="box-header">
 		<i class="fa fa-map-marker"></i>
-		<h3 class="box-title">Categorias</h3>
+		<h3 class="box-title">Categorias de Cidades</h3>
 		<div class="pull-right box-tools">
 			<div class="btn-group">
 				<button type="button" title="Exibir Menu" class="btn bg-blue-gradient btn-sm dropdown-toggle" data-toggle="dropdown"><i class="fa fa-caret-down fa-lg"></i></button>
