@@ -98,6 +98,7 @@ include_once(PATH . '/componentes/internos/php/funcoes.inc.php');
 						<div class="col-md-6">
 							<?php include_once('views/admin/user/view_user_lista.inc.php'); ?>
 							<?php include_once('views/admin/user/form_user_perfil.inc.php'); ?>
+							<?php include_once('views/admin/user/view_user_habilitacao.inc.php'); ?>
 							<?php include_once('views/admin/user/view_user_relacao.inc.php');?>
 						</div>
 					</div>

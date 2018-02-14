@@ -38,17 +38,14 @@ $(document).ready(function() {
 $(function(){
 	$('#btnAlteraFonteInfo').attr('disabled', 'disabled');
 	$('#btnExcluiFonteInfo').attr('disabled', 'disabled');
-	$('#btnFonteInfoVinculaInfoReq').attr('disabled', 'disabled');
 	$('#fonte_info').change(function(){
 		if($('#fonte_info').val() != ""){
 		   $('#btnAlteraFonteInfo').removeAttr('disabled');
 		   $('#btnExcluiFonteInfo').removeAttr('disabled');
-		   $('#btnFonteInfoVinculaInfoReq').removeAttr('disabled');
 		}
 		else{
 			$('#btnAlteraFonteInfo').attr('disabled', 'disabled');
 			$('#btnExcluiFonteInfo').attr('disabled', 'disabled');
-			$('#btnFonteInfoVinculaInfoReq').attr('disabled', 'disabled');
 		}
 	});
 });
@@ -63,21 +60,6 @@ $('#modalAlterarFonteInfo').on('show.bs.modal', function (event) {
 	modal.find('#id_fonte_info').val(id_fonte_info)
 	modal.find('#fonte_info').val(fonte_info)
 	modal.find('#fonte_info_atual').val(fonte_info)
-})
-
-//Informa os valores dos campos ao modal FonteInfoVincularInfoReq
-$('#modalFonteInfoVincularInfoReq').on('show.bs.modal', function (event) {
-	var array_fonte_info = $('#fonte_info').val().split('|');
-	var id_fonte_info = array_fonte_info[0]
-	var fonte_info = array_fonte_info[1]
-	var modal = $(this);
-
-	modal.find('#id_fonte_info').val(id_fonte_info);
-	modal.find('#fonte_info').val(fonte_info);	
-	
-	$.post('controllers/admin/fonte_info/listar_info_req_vinc.inc.php',{id_fonte_info:id_fonte_info},function (res) {
-	   	$('#fonte_info_listar_info_req').html(res);//insere a lista de areas no modal
-   	})	
 })
 
 //imprimir lista fonte_info

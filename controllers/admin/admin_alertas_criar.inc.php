@@ -416,6 +416,14 @@ if ($inc == "sim"){
 			unset($_SESSION['alterar_lista_erro_validacao_fonte_info']);
 		}
 
+		if($flag == md5("fonte_info_vincular")){
+
+			$msg0 = $_SESSION['fonte_info_vincular'];
+		}
+		else {
+			unset($_SESSION['fonte_info_vincular']);
+		}
+
 		if($flag == md5("tipo_evento_cadastrar")){
 
 			$msg0 = $_SESSION['erro_validacao_cadastrar_tipo_evento'];

@@ -45,6 +45,13 @@
 							data-content="">
 							<i class="fa fa-trash"></i> Excluir
 						</button>
+						<!--botao Vincular InfoReq-->
+						<button id="btnFonteInfoVinculaInfoReq" type="button" class="btn btn-xs btn-primary"
+							data-tooltip="tooltip" title="Vincular Informação Requerida"
+							data-toggle="modal"
+							data-target="#modalFonteInfoVincularInfoReq">
+							<i class="fa fa-share-alt"></i> Vinc Info Requerida
+						</button>
 					</div>
 					<input type="hidden" name="flag" value="excluir" />
 				</form>

@@ -50,7 +50,14 @@
 							data-tooltip="tooltip" title="Vincular Questão"
 							data-toggle="modal"
 							data-target="#modalInfoReqVincularQuestao">
-							<i class="fa fa-share-alt"></i> Vincular Questão
+							<i class="fa fa-share-alt"></i> Vinc Questão
+						</button>
+						<!--botao Vincular FonteInfo-->
+						<button id="btnInfoReqVinculaFonteInfo" type="button" class="btn btn-xs btn-primary"
+							data-tooltip="tooltip" title="Vincular Fonte de Informação"
+							data-toggle="modal"
+							data-target="#modalInfoReqVincularFonteInfo">
+							<i class="fa fa-share-alt"></i> Vinc Fonte Info
 						</button>
 					</div>
 					<input type="hidden" name="flag" value="excluir" />

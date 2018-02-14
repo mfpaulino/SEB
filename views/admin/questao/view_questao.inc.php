@@ -50,7 +50,7 @@
 							</dd>
 						</dl>
 						<dl>
-							<dt class="text-center"><u>Vinculação</u></dt>
+							<dt class="text-center"><u>Vinculações</u></dt>
 						</dl>
 						<dl>
 							<dd class="text-center">

@@ -39,16 +39,19 @@ $(function(){
 	$('#btnAlteraInfoReq').attr('disabled', 'disabled');
 	$('#btnExcluiInfoReq').attr('disabled', 'disabled');
 	$('#btnInfoReqVinculaQuestao').attr('disabled', 'disabled');
+	$('#btnInfoReqVinculaFonteInfo').attr('disabled', 'disabled');
 	$('#info_req').change(function(){
 		if($('#info_req').val() != ""){
 		   $('#btnAlteraInfoReq').removeAttr('disabled');
 		   $('#btnExcluiInfoReq').removeAttr('disabled');
 		   $('#btnInfoReqVinculaQuestao').removeAttr('disabled');
+		   $('#btnInfoReqVinculaFonteInfo').removeAttr('disabled');
 		}
 		else{
 			$('#btnAlteraInfoReq').attr('disabled', 'disabled');
 			$('#btnExcluiInfoReq').attr('disabled', 'disabled');
 			$('#btnInfoReqVinculaQuestao').attr('disabled', 'disabled');
+			$('#btnInfoReqVinculaFonteInfo').attr('disabled', 'disabled');
 		}
 	});
 });
@@ -77,6 +80,21 @@ $('#modalInfoReqVincularQuestao').on('show.bs.modal', function (event) {
 	
 	$.post('controllers/admin/info_req/listar_questao_vinc.inc.php',{id_info_req:id_info_req},function (res) {
 	   	$('#info_req_listar_questao').html(res);//insere a lista de questoes no modal
+   	})	
+})
+
+//Informa os valores dos campos ao modal InfoReqVincularFonteInfo
+$('#modalInfoReqVincularFonteInfo').on('show.bs.modal', function (event) {
+	var array_info_req = $('#info_req').val().split('|');
+	var id_info_req = array_info_req[0];
+	var info_req = array_info_req[1];
+	var modal = $(this);
+
+	modal.find('#id_info_req').val(id_info_req);
+	modal.find('#info_req').val(info_req);	
+	
+	$.post('controllers/admin/info_req/listar_fonte_info_vinc.inc.php',{id_info_req:id_info_req},function (res) {
+	   	$('#info_req_listar_fonte_info').html(res);//insere a lista de fontes de informação no modal
    	})	
 })
 

@@ -109,6 +109,9 @@ unset($_SESSION['questao_vincular']);
 //info_req_vincular
 unset($_SESSION['info_req_vincular']);
 
+//fonte_info_vincular
+unset($_SESSION['fonte_info_vincular']);
+
 //poss_achado_vincular
 unset($_SESSION['poss_achado_vincular']);
 
