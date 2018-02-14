@@ -113,20 +113,6 @@ $con_usuarios = $mysqli->query($sql);
 							>
 							<i class="fa fa-search"></i>
 						</button>
-						<!--botao Cursos--><!--
-						<button type="button" class="btn btn-xs btn-primary"
-							data-tooltip="tooltip"
-							data-title="Exibir Cursos"
-							data-placement="left"
-							data-toggle="modal"
-							data-target="#modalUserPerfil"
-							data-id_usuario="<?php echo $rows['id_usuario'];?>"
-							data-cpf="<?php echo $rows['cpf'];?>"
-							data-usuario="<?php echo $rows['posto'].' '.$rows['nome_guerra'];?>"
-							data-unidade="<?php echo $row_om['sigla'];?>"
-							>
-							<i class="fa fa-book"></i>
-						</button>-->
 						<!--botao ResetarSenha-->
 						<button id="btnSenha" form="formSenha<?php echo $rows['id_usuario'];?>" type="submit" class="btn btn-xs btn-primary"
 							data-tooltip="tooltip"
