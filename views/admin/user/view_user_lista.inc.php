@@ -80,7 +80,17 @@ $con_usuarios = $mysqli->query($sql);
 					else {
 						$btn_status_e = "";
 					}
-					/****/
+					/*** verifica se o usuario  possui alguma habilitação ****/
+					$sql = "SELECT cpf FROM usuarios_habilitacao WHERE cpf = '$user_cpf'";
+					$resultado = $mysqli->query($sql);
+
+					if($resultado->num_rows == 0){
+						$atributo_habilitacao = "disabled";
+					}
+					else {
+						$atributo_habilitacao = "";
+					}
+					/**************/
 				?>
 				<tr>
 					<td><?php echo $row_om['sigla'];?></td>
@@ -113,20 +123,19 @@ $con_usuarios = $mysqli->query($sql);
 							>
 							<i class="fa fa-search"></i>
 						</button>
-						<!--botao Cursos--><!--
-						<button type="button" class="btn btn-xs btn-primary"
+						<!--botao Cursos-->
+						<button type="button" <?php echo $atributo_habilitacao;?> class="btn btn-xs btn-primary"
 							data-tooltip="tooltip"
 							data-title="Exibir Cursos"
 							data-placement="left"
 							data-toggle="modal"
-							data-target="#modalUserPerfil"
+							data-target="#modalUserListaHabilitacao"
 							data-id_usuario="<?php echo $rows['id_usuario'];?>"
 							data-cpf="<?php echo $rows['cpf'];?>"
 							data-usuario="<?php echo $rows['posto'].' '.$rows['nome_guerra'];?>"
-							data-unidade="<?php echo $row_om['sigla'];?>"
 							>
 							<i class="fa fa-book"></i>
-						</button>-->
+						</button>
 						<!--botao ResetarSenha-->
 						<button id="btnSenha" form="formSenha<?php echo $rows['id_usuario'];?>" type="submit" class="btn btn-xs btn-primary"
 							data-tooltip="tooltip"

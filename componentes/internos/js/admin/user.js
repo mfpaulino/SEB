@@ -64,6 +64,24 @@ $('#modalUserPerfil').on('show.bs.modal', function (event) {
 	});	
 })
 
+//Informa os valores dos campos ao modal UserListaHabilitacao
+$('#modalUserListaHabilitacao').on('show.bs.modal', function (event) {
+	var button = $(event.relatedTarget) // Button that triggered the modal
+	var cpf = button.data('cpf') // Extract info from data-* attributes nos scripts view_pedido_cadastro_lista.inc.php e view_user_lista.inc.php
+	var id_usuario = button.data('id_usuario')
+	var usuario = button.data('usuario')
+	var modal = $(this)
+
+	modal.find('.modal-title').text('Habilitações - ' + usuario)
+	modal.find('#id_usuario').val(id_usuario)
+	modal.find('#cpf').val(cpf)
+	modal.find('#usuario').val(usuario)
+	
+	$.post('controllers/admin/user/listar_user_habilitacao.inc.php',{cpf_user:cpf},function (res) {
+	   	$('#user_listar_habilitacao').html(res);//insere a lista de habilitações no modal
+   	})	
+})
+
 //imprimir lista user_lista
 document.getElementById('btnPrintUser').onclick = function() {
 	var conteudo = document.getElementById('area_printUser').innerHTML;
@@ -76,6 +94,15 @@ document.getElementById('btnPrintUser').onclick = function() {
 //imprimir user_pedido_cadastro
 document.getElementById('btnPrintPedidoCadastro').onclick = function() {
 	var conteudo = document.getElementById('area_printPedidoCadastro').innerHTML;
+	var tela_impressao = window.open('','','width=0, height=0, top=50, left=50');
+	tela_impressao.document.write(conteudo);
+	tela_impressao.window.print();
+	tela_impressao.window.close();
+};
+
+//imprimir lista user_habilitacao
+document.getElementById('btnPrintUserHabilitacao').onclick = function() {
+	var conteudo = document.getElementById('user_listar_habilitacao').innerHTML;
 	var tela_impressao = window.open('','','width=0, height=0, top=50, left=50');
 	tela_impressao.document.write(conteudo);
 	tela_impressao.window.print();
