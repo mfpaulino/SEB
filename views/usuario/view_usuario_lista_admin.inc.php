@@ -1,14 +1,13 @@
 <?php
-if ($inc == "sim"){
-	include_once(PATH.'/controllers/usuario/usuario_lista_admin.inc.php')?>
+if ($inc == "sim"){?>
 	<div class="tab-content">
 		<div class="tab-pane active" id="control-sidebar-settings-tab">
 			<!--<h3 class="control-sidebar-heading">Administradores</h3>-->
 			<div class="form-group">
 				<br />
-				<p>A redefinição de senha e alteração do perfil poderão ser solicitadas aos seguintes usuários:</p>
-				<br />
-				<?php while($row_admin = $con_admin->fetch_assoc()){
+				<?php
+				include_once(PATH.'/controllers/usuario/usuario_lista_admin.inc.php');
+				while($row_admin = $con_admin->fetch_assoc()){
 					$codom = $row_admin['codom'];
 					$sql = "select sigla from cciex_om where codom = {$codom}";
 					$con = $mysqli1->query($sql);

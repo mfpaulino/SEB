@@ -86,6 +86,9 @@ switch ($status_usuario){
 				<div class="row">
 					<div class="col-md-12">
 						<?php include_once('views/usuario/view_usuario_status.inc.php');?>
+						<br />
+						<span class="text-bold">Os seguintes usuários podem efetuar sua habilitação no sistema:</span>
+						<?php include_once('views/usuario/view_usuario_lista_admin.inc.php');?>
 						<?php
 						if (isset($_GET['flag']) and ($_GET['flag'] == md5("usuario_alterar") or $_GET['flag'] == md5("senha_alterar") or $_GET['flag'] == md5("unidade_alterar") or $_GET['flag'] == md5("logout") )){
 
