@@ -64,9 +64,16 @@ if(isset($_POST['flag']) and isset($_SESSION['cpf'])){
 		$id_proc_coleta = $proc_coleta[0];
 		$proc_coleta = $proc_coleta[1];
 
-		$con_del   = $mysqli->query("DELETE FROM adm_proc_coleta WHERE id_proc_coleta = '$id_proc_coleta'");
-		$con_teste = $mysqli->query("SELECT id_proc_coleta FROM adm_proc_coleta WHERE id_proc_coleta = '$id_proc_coleta'");
+		/*** verificando se existe alguma vinculação com questao ***/
+		$con_teste1 = $mysqli->query("SELECT id_questao FROM adm_questoes WHERE id_proc_coleta_vinc like '%:\"$id_proc_coleta\";%'");
 
+		if($con_teste1->num_rows == 0){
+
+			//exclui apenas se nao houver nenhuma vinculação com questao
+			$con_del   = $mysqli->query("DELETE FROM adm_proc_coleta WHERE id_proc_coleta = '$id_proc_coleta'");
+		}
+
+		$con_teste = $mysqli->query("SELECT id_proc_coleta FROM adm_proc_coleta WHERE id_proc_coleta = '$id_proc_coleta'");
 		if($con_teste->num_rows == 0){
 
 			/** log **/
@@ -77,7 +84,7 @@ if(isset($_POST['flag']) and isset($_SESSION['cpf'])){
 			$_SESSION['alterar_proc_coleta'] = "Procedimento de Coleta de Dados excluído com sucesso!";
 		}
 		else{
-			$_SESSION['alterar_nada_proc_coleta'] = "ERRO 069: procedimento de coleta de dados não excluído. Por favor, tente novamente!";
+			$_SESSION['alterar_nada_proc_coleta'] = "ERRO 069: procedimento de coleta de dados não excluído. Por favor, tente novamente!<br />Verifique se não há vinculações ativas.";
 			$_SESSION['botao'] = "danger";
 		}
 	}

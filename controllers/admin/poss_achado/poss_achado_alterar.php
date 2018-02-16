@@ -64,9 +64,16 @@ if(isset($_POST['flag']) and isset($_SESSION['cpf'])){
 		$id_poss_achado = $poss_achado[0];
 		$poss_achado = $poss_achado[1];
 
-		$con_del   = $mysqli->query("DELETE FROM adm_poss_achados WHERE id_poss_achado = '$id_poss_achado'");
-		$con_teste = $mysqli->query("SELECT id_poss_achado FROM adm_poss_achados WHERE id_poss_achado = '$id_poss_achado'");
+		/*** verificando se existe alguma vinculação com questao ***/
+		$con_teste1 = $mysqli->query("SELECT id_questao FROM adm_questoes WHERE id_poss_achado_vinc like '%:\"$id_poss_achado\";%'");
 
+		if($con_teste1->num_rows == 0){
+
+			//exclui apenas se nao houver nenhuma vinculação com questao
+			$con_del   = $mysqli->query("DELETE FROM adm_poss_achados WHERE id_poss_achado = '$id_poss_achado'");
+		}
+
+		$con_teste = $mysqli->query("SELECT id_poss_achado FROM adm_poss_achados WHERE id_poss_achado = '$id_poss_achado'");
 		if($con_teste->num_rows == 0){
 
 			/** log **/
@@ -77,7 +84,7 @@ if(isset($_POST['flag']) and isset($_SESSION['cpf'])){
 			$_SESSION['alterar_poss_achado'] = "Possível Achado excluído com sucesso!";
 		}
 		else{
-			$_SESSION['alterar_nada_poss_achado'] = "ERRO 059: possível achado não excluído. Por favor, tente novamente!";
+			$_SESSION['alterar_nada_poss_achado'] = "ERRO 059: possível achado não excluído. Por favor, tente novamente!<br />Verifique se não há vinculações ativas.";
 			$_SESSION['botao'] = "danger";
 		}
 	}
