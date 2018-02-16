@@ -61,7 +61,7 @@ if (isset($_POST['flag']) and isset($_SESSION['cpf'])){
 
 	for($i = 0; $i < $qtde_sim; $i++){
 		//busca as fonte_infos vinculadas para cada info_req marcada com sim
-		$con_id_fonte_info_atual = $mysqli->query("SELECT id_fonte_info_vinc FROM adm_info_reqs WHERE id_info_req = '$lista_info_reqs_sim1[$i]' AND id_fonte_info_vinc <> ''");
+		$con_id_fonte_info_atual = $mysqli->query("SELECT id_fonte_info_vinc FROM adm_info_requeridas WHERE id_info_req = '$lista_info_reqs_sim1[$i]' AND id_fonte_info_vinc <> ''");
 
 		if($con_id_fonte_info_atual->num_rows <> 0){//se já houver alguma fonte_info vinculada:
 
