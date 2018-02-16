@@ -64,9 +64,17 @@ if(isset($_POST['flag']) and isset($_SESSION['cpf'])){
 		$id_questao = $questao[0];
 		$questao = $questao[1];
 
-		$con_del   = $mysqli->query("DELETE FROM adm_questoes WHERE id_questao = '$id_questao'");
-		$con_teste = $mysqli->query("SELECT id_questao FROM adm_questoes WHERE id_questao = '$id_questao'");
+		/*** verificando se existe alguma vinculação com subarea, informação requerida, possível achado, procedimento de análise ou proc de coleta de dados. ***/
+		$con_teste1 = $mysqli->query("SELECT id_subarea FROM adm_subareas WHERE id_questao_vinc like '%:\"$id_questao\";%'");
+		$con_teste2 = $mysqli->query("SELECT id_questao FROM adm_questoes WHERE id_questao = '$id_questao' AND (id_info_req_vinc <> '' OR id_poss_achado_vinc <> '' OR id_proc_ana_vinc <> '' OR id_proc_coleta_vinc <> '')");
 
+		if($con_teste1->num_rows == 0 and $con_teste2->num_rows == 0){
+
+			//exclui apenas se nao houver nenhuma vinculação com area ou questao
+			$con_del   = $mysqli->query("DELETE FROM adm_questoes WHERE id_questao = '$id_questao'");
+		}
+
+		$con_teste = $mysqli->query("SELECT id_questao FROM adm_questoes WHERE id_questao = '$id_questao'");
 		if($con_teste->num_rows == 0){
 
 			/** log **/
@@ -77,7 +85,7 @@ if(isset($_POST['flag']) and isset($_SESSION['cpf'])){
 			$_SESSION['alterar_questao'] = "Questão excluída com sucesso!";
 		}
 		else{
-			$_SESSION['alterar_nada_questao'] = "ERRO 074: questão não excluída. Por favor, tente novamente!";
+			$_SESSION['alterar_nada_questao'] = "ERRO 074: questão não excluída. Por favor, tente novamente!<br />Verifique se não há vinculações ativas.";
 			$_SESSION['botao'] = "danger";
 		}
 	}

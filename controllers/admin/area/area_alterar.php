@@ -64,9 +64,16 @@ if(isset($_POST['flag']) and isset($_SESSION['cpf'])){
 		$id_area = $area[0];
 		$area = $area[1];
 
-		$con_del   = $mysqli->query("DELETE FROM adm_areas WHERE id_area = '$id_area'");
-		$con_teste = $mysqli->query("SELECT id_area FROM adm_areas WHERE id_area = '$id_area'");
+		/*** verificando se existe alguma vinculação com subarea ***/
+		$con_teste1 = $mysqli->query("SELECT id_area FROM adm_areas WHERE id_area = '$id_area' AND id_subarea_vinc <> ''");
 
+		if($con_teste1->num_rows == 0){
+
+			//exclui apenas se nao houver nenhuma vinculação com subarea
+			$con_del   = $mysqli->query("DELETE FROM adm_areas WHERE id_area = '$id_area'");
+		}
+
+		$con_teste = $mysqli->query("SELECT id_area FROM adm_areas WHERE id_area = '$id_area'");
 		if($con_teste->num_rows == 0){
 
 			/** log **/
@@ -77,7 +84,7 @@ if(isset($_POST['flag']) and isset($_SESSION['cpf'])){
 			$_SESSION['alterar_area'] = "Área excluída com sucesso!";
 		}
 		else{
-			$_SESSION['alterar_nada_area'] = "ERRO 027: área não excluída. Por favor, tente novamente!";
+			$_SESSION['alterar_nada_area'] = "ERRO 027: área não excluída. Por favor, tente novamente!<br />Verifique se não há vinculações ativas.";
 			$_SESSION['botao'] = "danger";
 		}
 	}

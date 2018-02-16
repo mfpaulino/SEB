@@ -64,9 +64,16 @@ if(isset($_POST['flag']) and isset($_SESSION['cpf'])){
 		$id_proc_ana = $proc_ana[0];
 		$proc_ana = $proc_ana[1];
 
-		$con_del   = $mysqli->query("DELETE FROM adm_proc_analise WHERE id_proc_ana = '$id_proc_ana'");
-		$con_teste = $mysqli->query("SELECT id_proc_ana FROM adm_proc_analise WHERE id_proc_ana = '$id_proc_ana'");
+		/*** verificando se existe alguma vinculação com questao ***/
+		$con_teste1 = $mysqli->query("SELECT id_questao FROM adm_questoes WHERE id_proc_ana_vinc like '%:\"$id_proc_ana\";%'");
 
+		if($con_teste1->num_rows == 0){
+
+			//exclui apenas se nao houver nenhuma vinculação com questao
+			$con_del   = $mysqli->query("DELETE FROM adm_proc_analise WHERE id_proc_ana = '$id_proc_ana'");
+		}
+
+		$con_teste = $mysqli->query("SELECT id_proc_ana FROM adm_proc_analise WHERE id_proc_ana = '$id_proc_ana'");
 		if($con_teste->num_rows == 0){
 
 			/** log **/
@@ -77,7 +84,7 @@ if(isset($_POST['flag']) and isset($_SESSION['cpf'])){
 			$_SESSION['alterar_proc_ana'] = "Procedimento de Análise excluído com sucesso!";
 		}
 		else{
-			$_SESSION['alterar_nada_proc_ana'] = "ERRO 064: procedimento de análise não excluído. Por favor, tente novamente!";
+			$_SESSION['alterar_nada_proc_ana'] = "ERRO 064: procedimento de análise não excluído. Por favor, tente novamente!<br />Verifique se não há vinculações ativas.";
 			$_SESSION['botao'] = "danger";
 		}
 	}

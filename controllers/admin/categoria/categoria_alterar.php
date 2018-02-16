@@ -78,15 +78,22 @@ if(isset($_POST['flag']) and isset($_SESSION['cpf'])){
 
 		$id_categoria = $_POST['categoria'];
 
-		$con_del   = $mysqli->query("DELETE FROM adm_categorias WHERE id_categoria = '$id_categoria'");
-		$con_teste = $mysqli->query("SELECT id_categoria FROM adm_categorias WHERE id_categoria = '$id_categoria'");
+		/*** verificando se existe alguma diária cadastrada para essa categoria ***/
+		$con_teste1 = $mysqli->query("SELECT id_diaria FROM adm_diarias WHERE id_categoria = '$id_categoria'");
 
+		if($con_teste1->num_rows == 0){
+
+			//exclui apenas se nao houver nenhuma diária para essa categoria
+			$con_del   = $mysqli->query("DELETE FROM adm_categorias WHERE id_categoria = '$id_categoria'");
+		}
+
+		$con_teste = $mysqli->query("SELECT id_categoria FROM adm_categorias WHERE id_categoria = '$id_categoria'");
 		if($con_teste->num_rows == 0){
 
 			$_SESSION['alterar_categoria'] = "Categoria excluída com sucesso!";
 		}
 		else{
-			$_SESSION['alterar_nada_categoria'] = "ERRO 038: categoria não excluída. Por favor, tente novamente!";
+			$_SESSION['alterar_nada_categoria'] = "ERRO 038: categoria não excluída. Por favor, tente novamente!<br />Verifique se não há diárias cadastradas para essa categoria.";
 			$_SESSION['botao'] = "danger";
 		}
 	}

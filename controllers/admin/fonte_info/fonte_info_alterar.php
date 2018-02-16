@@ -18,7 +18,7 @@ if(isset($_POST['flag']) and isset($_SESSION['cpf'])){
 
 	if($acao == "alterar"){
 
-		$fonte_info 			= isset($_POST['fonte_info']) ? mysqli_real_escape_string($mysqli, $_POST['fonte_info']) : "";
+		$fonte_info 		= isset($_POST['fonte_info']) ? mysqli_real_escape_string($mysqli, $_POST['fonte_info']) : "";
 
 		$fonte_info_atual 	= $_POST['fonte_info_atual'];//tipo hidden
 		$id_fonte_info 		= $_POST['id_fonte_info'];//tipo hidden
@@ -64,9 +64,16 @@ if(isset($_POST['flag']) and isset($_SESSION['cpf'])){
 		$id_fonte_info = $fonte_info[0];
 		$fonte_info = $fonte_info[1];
 
-		$con_del   = $mysqli->query("DELETE FROM adm_fontes_informacao WHERE id_fonte_info = '$id_fonte_info'");
-		$con_teste = $mysqli->query("SELECT id_fonte_info FROM adm_fontes_informacao WHERE id_fonte_info = '$id_fonte_info'");
+		/*** verificando se existe alguma vinculação com informação requerida ***/
+		$con_teste1 = $mysqli->query("SELECT id_info_req FROM adm_info_requeridas WHERE id_fonte_info_vinc like '%:\"$id_fonte_info\";%'");
 
+		if($con_teste1->num_rows == 0){
+
+			//exclui apenas se nao houver nenhuma vinculação com area ou questao
+			$con_del   = $mysqli->query("DELETE FROM adm_fontes_informacao WHERE id_fonte_info = '$id_fonte_info'");
+		}
+
+		$con_teste = $mysqli->query("SELECT id_fonte_info FROM adm_fontes_informacao WHERE id_fonte_info = '$id_fonte_info'");
 		if($con_teste->num_rows == 0){
 
 			/** log **/
@@ -77,10 +84,11 @@ if(isset($_POST['flag']) and isset($_SESSION['cpf'])){
 			$_SESSION['alterar_fonte_info'] = "Fonte de Informação excluída com sucesso!";
 		}
 		else{
-			$_SESSION['alterar_nada_fonte_info'] = "ERRO 049: fonte de informação não excluída. Por favor, tente novamente!";
+			$_SESSION['alterar_nada_fonte_info'] = "ERRO 049: fonte de informação não excluída. Por favor, tente novamente!<br />Verifique se não há vinculações ativas.";
 			$_SESSION['botao'] = "danger";
 		}
 	}
+
 	$flag = md5("fonte_info_alterar");
 	header("Location:../../../admin.php?flag=$flag");
 }

@@ -469,7 +469,7 @@ if ($inc == "sim"){
 			unset($_SESSION['lista_erro_validacao_cadastrar_aviso']);
 		}
 
-		if($flag == md5("fonte_info_alterar")){
+		if($flag == md5("aviso_alterar")){
 			$msg0 = $_SESSION['alterar_erro_validacao_aviso'];
 			$msg1 = $_SESSION['alterar_aviso'];
 			$msg2 = $_SESSION['alterar_nada_aviso'];

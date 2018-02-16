@@ -64,9 +64,17 @@ if(isset($_POST['flag']) and isset($_SESSION['cpf'])){
 		$id_info_req = $info_req[0];
 		$info_req = $info_req[1];
 
-		$con_del   = $mysqli->query("DELETE FROM adm_info_requeridas WHERE id_info_req = '$id_info_req'");
-		$con_teste = $mysqli->query("SELECT id_info_req FROM adm_info_requeridas WHERE id_info_req = '$id_info_req'");
+		/*** verificando se existe alguma vinculação com questao ou fonte info ***/
+		$con_teste1 = $mysqli->query("SELECT id_questao FROM adm_questoes WHERE id_info_req_vinc like '%:\"$id_info_req\";%'");
+		$con_teste2 = $mysqli->query("SELECT id_info_req FROM adm_info_requeridas WHERE id_info_req = '$id_info_req' AND id_fonte_info_vinc <> ''");
 
+		if($con_teste1->num_rows == 0 and $con_teste2->num_rows == 0){
+
+			//exclui apenas se nao houver nenhuma vinculação com questao ou fonte info
+			$con_del   = $mysqli->query("DELETE FROM adm_info_requeridas WHERE id_info_req = '$id_info_req'");
+		}
+
+		$con_teste = $mysqli->query("SELECT id_info_req FROM adm_info_requeridas WHERE id_info_req = '$id_info_req'");
 		if($con_teste->num_rows == 0){
 
 			/** log **/
@@ -77,7 +85,7 @@ if(isset($_POST['flag']) and isset($_SESSION['cpf'])){
 			$_SESSION['alterar_info_req'] = "Informação Requerida excluída com sucesso!";
 		}
 		else{
-			$_SESSION['alterar_nada_info_req'] = "ERRO 054: informação requerida não excluída. Por favor, tente novamente!";
+			$_SESSION['alterar_nada_info_req'] = "ERRO 054: informação requerida não excluída. Por favor, tente novamente!<br />Verifique se não há vinculações ativas.";
 			$_SESSION['botao'] = "danger";
 		}
 	}

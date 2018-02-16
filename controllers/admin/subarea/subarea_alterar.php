@@ -62,9 +62,17 @@ if(isset($_POST['flag']) and isset($_SESSION['cpf'])){
 
 		$subarea = explode("|", $_POST['subarea']);//valor recebido do select_subarea
 
-		$con_del   = $mysqli->query("DELETE FROM adm_subareas WHERE id_subarea = '$subarea[0]'");
-		$con_teste = $mysqli->query("SELECT id_subarea FROM adm_subareas WHERE id_subarea = '$subarea[0]'");
+		/*** verificando se existe alguma vinculação com area ou questao ***/
+		$con_teste1 = $mysqli->query("SELECT id_area FROM adm_areas WHERE id_subarea_vinc like '%:\"$id_subarea\";%'");
+		$con_teste2 = $mysqli->query("SELECT id_subarea FROM adm_subareas WHERE id_subarea = '$subarea[0]' AND id_questao_vinc <> ''");
 
+		if($con_teste1->num_rows == 0 and $con_teste2->num_rows == 0){
+
+			//exclui apenas se nao houver nenhuma vinculação com area ou questao
+			$con_del   = $mysqli->query("DELETE FROM adm_subareas WHERE id_subarea = '$subarea[0]'");
+		}
+
+		$con_teste = $mysqli->query("SELECT id_subarea FROM adm_subareas WHERE id_subarea = '$subarea[0]'");
 		if($con_teste->num_rows == 0){
 
 			/** log **/
@@ -75,7 +83,7 @@ if(isset($_POST['flag']) and isset($_SESSION['cpf'])){
 			$_SESSION['alterar_subarea'] = "Subárea excluída com sucesso!";
 		}
 		else{
-			$_SESSION['alterar_nada_subarea'] = "ERRO 079: área não excluída. Por favor, tente novamente!";
+			$_SESSION['alterar_nada_subarea'] = "ERRO 079: área não excluída. Por favor, tente novamente!<br />Verifique se não há vinculações ativas.";
 			$_SESSION['botao'] = "danger";
 		}
 	}
