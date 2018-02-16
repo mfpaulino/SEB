@@ -57,6 +57,8 @@ if(isset($_POST['flag']) and isset($_SESSION['cpf'])){
 				$resultado = $con_perfil->execute();
 
 				if($resultado){
+					//desabilita o usuário para que seu admin possa habilitá-lo novamente. Evita que o usuario ganhe um perfil inadequado e continue a usar o sistema.
+					$con_perfil1 = $mysqli->query("UPDATE usuarios SET status = 'Desabilitado' WHERE id_usuario = '$id_usuario' AND status = 'Habilitado'");
 
 					/** log **/
 
@@ -64,7 +66,7 @@ if(isset($_POST['flag']) and isset($_SESSION['cpf'])){
 					$perfil_novo = $con_perfil_novo->fetch_assoc();
 
 					$log = "Alterou o perfil do(a) " . $usuario . " do(a) " . $unidade . " de <u>" . $perfil . "</u> para <u>" . $perfil_novo['perfil'] . "</u>.";
-					$con_log = $mysqli->query("INSERT INTO logs SET cpf = '$cpf_usuario', codom = '$codom_usuario', acao = '$log'");
+					$con_log = $mysqli->query("INSERT INTO logs SET cpf = '$cpf_usuario', codom = '$codom_usuario', acao = '$log', tabela = 'usuarios'");
 
 					/** fim log **/
 

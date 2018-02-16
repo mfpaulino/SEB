@@ -80,7 +80,9 @@ if ($inc == "sim"){?>
 				<label class="control-sidebar-subheading">
 					<a href="user_habilitacao.php" data-tooltip="tooltip" title="Visualizar" ><i class="fa fa-search"></i> Habilitações</a>
 				</label>
-					<?php include_once(PATH.'/views/usuario/view_usuario_lista_admin.inc.php');?>
+				<br />
+				<p>A redefinição de senha e alteração do perfil poderão ser solicitadas aos seguintes usuários:</p>
+				<?php include_once(PATH.'/views/usuario/view_usuario_lista_admin.inc.php');?>
 			</div>
 		</div>
 	</div>
