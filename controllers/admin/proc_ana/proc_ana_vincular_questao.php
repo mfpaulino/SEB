@@ -71,7 +71,20 @@ if (isset($_POST['flag']) and isset($_SESSION['cpf'])){
 
 			array_push($lista_proc_ana_atual, $id_proc_ana); //insere nesse array o id da proc_ana
 
-			$lista_proc_ana_nova = serialize($lista_proc_ana_atual); //transforma novamente em string para salvar no banco
+			/***** esse trecho serve para ordenar o array de id_proc_ana de forma alfabética em relação aos procedimentos de análise ***/
+			$lista  = implode(',',$lista_proc_ana_atual);//separa os valores do array com uma virgula
+			$lista  = "'".$lista."'";//coloca um ' no inicio e fim da string
+			$lista = str_replace(",","','",$lista);//substitui a virgula por "','".
+
+			$con_lista = $mysqli->query("SELECT id_proc_ana FROM adm_proc_analise WHERE id_proc_ana IN ($lista) ORDER BY proc_ana");
+			while($row_lista = $con_lista->fetch_array()){
+				$lista_proc_ana_nova = $lista_proc_ana_nova . $row_lista[0] . ","; //cria uma string com os id_proc_ana separados por ",".
+			}
+			$lista_proc_ana_nova = substr($lista_proc_ana_nova, 0, -1); //elimino a ultima "," da string.
+			$lista_proc_ana_nova = explode(",", $lista_proc_ana_nova); //crio o array
+			/*************/
+
+			$lista_proc_ana_nova = serialize($lista_proc_ana_nova); //transforma novamente em string para salvar no banco
 		}
 		else{
 			$lista_proc_ana_nova = serialize(array($id_proc_ana)); //caso nao haja nenhuma proc_ana vinculada para a subárea marcada, insere o id_proc_ana no formato serializado
@@ -98,6 +111,7 @@ if (isset($_POST['flag']) and isset($_SESSION['cpf'])){
 
 			if($key !== false){
 				unset($lista_proc_ana_atual[$key]); //exclui o id_proc_ana
+				$lista_proc_ana_atual = array_values($lista_proc_ana_atual);//organiza novamente os indices de forma sequencial
 			}
 
 			if(count($lista_proc_ana_atual) <> 0){

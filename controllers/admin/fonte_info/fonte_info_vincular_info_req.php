@@ -27,7 +27,7 @@ if (isset($_POST['flag']) and isset($_SESSION['cpf'])){
 	$lista_info_req_atual = substr($lista_info_req_atual, 0, -1); //elimino a ultima "," da string.
 	$lista_info_req_atual = explode(",", $lista_info_req_atual); //crio o array
 
-	/******* montando o array com as áres selecionadas para vinculação ***************************/
+	/******* montando o array com as info_reqs selecionadas para vinculação ***************************/
 
 	$con_qtde_info_req = $mysqli->query("SELECT id_info_req FROM adm_info_requeridas");
 	$qtde_info_req = $con_qtde_info_req->num_rows;
@@ -71,7 +71,20 @@ if (isset($_POST['flag']) and isset($_SESSION['cpf'])){
 
 			array_push($lista_fonte_info_atual, $id_fonte_info); //insere nesse array o id da fonte_info
 
-			$lista_fonte_info_nova = serialize($lista_fonte_info_atual); //transforma novamente em string para salvar no banco
+			/***** esse trecho serve para ordenar o array de id_fonte_info de forma alfabética em relação às fontes de informação ***/
+			$lista  = implode(',',$lista_fonte_info_atual);//separa os valores do array com uma virgula
+			$lista  = "'".$lista."'";//coloca um ' no inicio e fim da string
+			$lista = str_replace(",","','",$lista);//substitui a virgula por "','".
+
+			$con_lista = $mysqli->query("SELECT id_fonte_info FROM adm_fontes_informacao WHERE id_fonte_info IN ($lista) ORDER BY fonte_info");
+			while($row_lista = $con_lista->fetch_array()){
+				$lista_fonte_info_nova = $lista_fonte_info_nova . $row_lista[0] . ","; //cria uma string com os id_fonte_info separados por ",".
+			}
+			$lista_fonte_info_nova = substr($lista_fonte_info_nova, 0, -1); //elimino a ultima "," da string.
+			$lista_fonte_info_nova = explode(",", $lista_fonte_info_nova); //crio o array
+			/*************/
+
+			$lista_fonte_info_nova = serialize($lista_fonte_info_nova); //transforma novamente em string para salvar no banco
 		}
 		else{
 			$lista_fonte_info_nova = serialize(array($id_fonte_info)); //caso nao haja nenhuma fonte_info vinculada para a info_req marcada, insere o id_fonte_info no formato serializado
@@ -98,6 +111,7 @@ if (isset($_POST['flag']) and isset($_SESSION['cpf'])){
 
 			if($key !== false){
 				unset($lista_fonte_info_atual[$key]); //exclui o id_fonte_info
+				$lista_fonte_info_atual = array_values($lista_fonte_info_atual);//organiza novamente os indices de forma sequencial
 			}
 
 			if(count($lista_fonte_info_atual) <> 0){

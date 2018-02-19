@@ -71,7 +71,20 @@ if (isset($_POST['flag']) and isset($_SESSION['cpf'])){
 
 			array_push($lista_questao_atual, $id_questao); //insere nesse array o id da questao
 
-			$lista_questao_nova = serialize($lista_questao_atual); //transforma novamente em string para salvar no banco
+			/***** esse trecho serve para ordenar o array de id_questao de forma alfabética em relação às questões***/
+			$lista  = implode(',',$lista_questao_atual);//separa os valores do array com uma virgula
+			$lista  = "'".$lista."'";//coloca um ' no inicio e fim da string
+			$lista = str_replace(",","','",$lista);//substitui a virgula por "','".
+
+			$con_lista = $mysqli->query("SELECT id_questao FROM adm_questoes WHERE id_questao IN ($lista) ORDER BY questao");
+			while($row_lista = $con_lista->fetch_array()){
+				$lista_questao_nova = $lista_questao_nova . $row_lista[0] . ","; //cria uma string com os id_questao separados por ",".
+			}
+			$lista_questao_nova = substr($lista_questao_nova, 0, -1); //elimino a ultima "," da string.
+			$lista_questao_nova = explode(",", $lista_questao_nova); //crio o array
+			/*************/
+
+			$lista_questao_nova = serialize($lista_questao_nova); //transforma novamente em string para salvar no banco
 		}
 		else{
 			$lista_questao_nova = serialize(array($id_questao)); //caso nao haja nenhuma questao vinculada para a subárea marcada, insere o id_questao no formato serializado
@@ -97,7 +110,8 @@ if (isset($_POST['flag']) and isset($_SESSION['cpf'])){
 			$key  = array_search($id_questao, $lista_questao_atual); //procura o id_questao no array
 
 			if($key !== false){
-				unset($lista_questao_atual[$key]); //exclui o id_questao
+				unset($lista_questao_atual[$key]); //exclui o id_questao ( o índice tb é excluído)
+				$lista_questao_atual = array_values($lista_questao_atual);//organiza novamente os indices de forma sequencial
 			}
 
 			if(count($lista_questao_atual) <> 0){

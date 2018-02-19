@@ -71,7 +71,20 @@ if (isset($_POST['flag']) and isset($_SESSION['cpf'])){
 
 			array_push($lista_info_req_atual, $id_info_req); //insere nesse array o id da info_req
 
-			$lista_info_req_nova = serialize($lista_info_req_atual); //transforma novamente em string para salvar no banco
+			/***** esse trecho serve para ordenar o array de id_info_req de forma alfabética em relação às info requeridas***/
+			$lista  = implode(',',$lista_info_req_atual);//separa os valores do array com uma virgula
+			$lista  = "'".$lista."'";//coloca um ' no inicio e fim da string
+			$lista = str_replace(",","','",$lista);//substitui a virgula por "','".
+
+			$con_lista = $mysqli->query("SELECT id_info_req FROM adm_info_requeridas WHERE id_info_req IN ($lista) ORDER BY info_req");
+			while($row_lista = $con_lista->fetch_array()){
+				$lista_info_req_nova = $lista_info_req_nova . $row_lista[0] . ","; //cria uma string com os id_info_req separados por ",".
+			}
+			$lista_info_req_nova = substr($lista_info_req_nova, 0, -1); //elimino a ultima "," da string.
+			$lista_info_req_nova = explode(",", $lista_info_req_nova); //crio o array
+			/*************/
+
+			$lista_info_req_nova = serialize($lista_info_req_nova); //transforma novamente em string para salvar no banco
 		}
 		else{
 			$lista_info_req_nova = serialize(array($id_info_req)); //caso nao haja nenhuma info_req vinculada para a subárea marcada, insere o id_info_req no formato serializado
@@ -98,6 +111,7 @@ if (isset($_POST['flag']) and isset($_SESSION['cpf'])){
 
 			if($key !== false){
 				unset($lista_info_req_atual[$key]); //exclui o id_info_req
+				$lista_info_req_atual = array_values($lista_info_req_atual);//organiza novamente os indices de forma sequencial
 			}
 
 			if(count($lista_info_req_atual) <> 0){

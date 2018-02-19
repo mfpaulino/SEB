@@ -71,7 +71,20 @@ if (isset($_POST['flag']) and isset($_SESSION['cpf'])){
 
 			array_push($lista_proc_coleta_atual, $id_proc_coleta); //insere nesse array o id da proc_coleta
 
-			$lista_proc_coleta_nova = serialize($lista_proc_coleta_atual); //transforma novamente em string para salvar no banco
+			/***** esse trecho serve para ordenar o array de id_proc_coleta de forma alfabética em relação aos proc de coleta de dados ***/
+			$lista  = implode(',',$lista_proc_coleta_atual);//separa os valores do array com uma virgula
+			$lista  = "'".$lista."'";//coloca um ' no inicio e fim da string
+			$lista = str_replace(",","','",$lista);//substitui a virgula por "','".
+
+			$con_lista = $mysqli->query("SELECT id_proc_coleta FROM adm_proc_coleta WHERE id_proc_coleta IN ($lista) ORDER BY proc_coleta");
+			while($row_lista = $con_lista->fetch_array()){
+				$lista_proc_coleta_nova = $lista_proc_coleta_nova . $row_lista[0] . ","; //cria uma string com os id_proc_coleta separados por ",".
+			}
+			$lista_proc_coleta_nova = substr($lista_proc_coleta_nova, 0, -1); //elimino a ultima "," da string.
+			$lista_proc_coleta_nova = explode(",", $lista_proc_coleta_nova); //crio o array
+			/*************/
+
+			$lista_proc_coleta_nova = serialize($lista_proc_coleta_nova); //transforma novamente em string para salvar no banco
 		}
 		else{
 			$lista_proc_coleta_nova = serialize(array($id_proc_coleta)); //caso nao haja nenhuma proc_coleta vinculada para a subárea marcada, insere o id_proc_coleta no formato serializado
@@ -98,6 +111,7 @@ if (isset($_POST['flag']) and isset($_SESSION['cpf'])){
 
 			if($key !== false){
 				unset($lista_proc_coleta_atual[$key]); //exclui o id_proc_coleta
+				$lista_proc_coleta_atual = array_values($lista_proc_coleta_atual);//organiza novamente os indices de forma sequencial
 			}
 
 			if(count($lista_proc_coleta_atual) <> 0){
