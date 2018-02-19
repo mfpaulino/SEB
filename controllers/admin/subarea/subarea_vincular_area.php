@@ -27,7 +27,7 @@ if (isset($_POST['flag']) and isset($_SESSION['cpf'])){
 	$lista_area_atual = substr($lista_area_atual, 0, -1); //elimino a ultima "," da string.
 	$lista_area_atual = explode(",", $lista_area_atual); //crio o array
 
-	/******* montando o array com as áres selecionadas para vinculação ***************************/
+	/******* montando o array com as áreas selecionadas para vinculação ***************************/
 
 	$con_qtde_area = $mysqli->query("SELECT id_area FROM adm_areas");
 	$qtde_area = $con_qtde_area->num_rows;
@@ -71,7 +71,20 @@ if (isset($_POST['flag']) and isset($_SESSION['cpf'])){
 
 			array_push($lista_subarea_atual, $id_subarea); //insere nesse array o id da subarea
 
-			$lista_subarea_nova = serialize($lista_subarea_atual); //transforma novamente em string para salvar no banco
+			/***** esse trecho serve para ordenar o array de id_subarea de forma alfabética em relação às subáreas***/
+			$lista  = implode(',',$lista_subarea_atual);//separa os valores do array com uma virgula
+			$lista  = "'".$lista."'";//coloca um ' no inicio e fim da string
+			$lista = str_replace(",","','",$lista);//substitui a virgula por "','".
+
+			$con_lista = $mysqli->query("SELECT id_subarea FROM adm_subareas WHERE id_subarea IN ($lista) ORDER BY subarea");
+			while($row_lista = $con_lista->fetch_array()){
+				$lista_subarea_nova = $lista_subarea_nova . $row_lista[0] . ","; //cria uma string com os id_subarea separados por ",".
+			}
+			$lista_subarea_nova = substr($lista_subarea_nova, 0, -1); //elimino a ultima "," da string.
+			$lista_subarea_nova = explode(",", $lista_subarea_nova); //crio o array
+			/*************/
+
+			$lista_subarea_nova = serialize($lista_subarea_nova); //transforma novamente em string para salvar no banco
 		}
 		else{
 			$lista_subarea_nova = serialize(array($id_subarea)); //caso nao haja nenhuma subarea vinculada para a area marcada, insere o id_subarea no formato serializado
@@ -98,6 +111,7 @@ if (isset($_POST['flag']) and isset($_SESSION['cpf'])){
 
 			if($key !== false){
 				unset($lista_subarea_atual[$key]); //exclui o id_subarea
+				$lista_subarea_atual = array_values($lista_subarea_atual);//organiza novamente os indices de forma sequencial
 			}
 
 			if(count($lista_subarea_atual) <> 0){

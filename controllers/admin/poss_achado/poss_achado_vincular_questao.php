@@ -71,7 +71,20 @@ if (isset($_POST['flag']) and isset($_SESSION['cpf'])){
 
 			array_push($lista_poss_achado_atual, $id_poss_achado); //insere nesse array o id da poss_achado
 
-			$lista_poss_achado_nova = serialize($lista_poss_achado_atual); //transforma novamente em string para salvar no banco
+			/***** esse trecho serve para ordenar o array de id_poss_achado de forma alfabética em relação aos possíveis achados ***/
+			$lista  = implode(',',$lista_poss_achado_atual);//separa os valores do array com uma virgula
+			$lista  = "'".$lista."'";//coloca um ' no inicio e fim da string
+			$lista = str_replace(",","','",$lista);//substitui a virgula por "','".
+
+			$con_lista = $mysqli->query("SELECT id_poss_achado FROM adm_poss_achados WHERE id_poss_achado IN ($lista) ORDER BY poss_achado");
+			while($row_lista = $con_lista->fetch_array()){
+				$lista_poss_achado_nova = $lista_poss_achado_nova . $row_lista[0] . ","; //cria uma string com os id_poss_achado separados por ",".
+			}
+			$lista_poss_achado_nova = substr($lista_poss_achado_nova, 0, -1); //elimino a ultima "," da string.
+			$lista_poss_achado_nova = explode(",", $lista_poss_achado_nova); //crio o array
+			/*************/
+
+			$lista_poss_achado_nova = serialize($lista_poss_achado_nova); //transforma novamente em string para salvar no banco
 		}
 		else{
 			$lista_poss_achado_nova = serialize(array($id_poss_achado)); //caso nao haja nenhuma poss_achado vinculada para a subárea marcada, insere o id_poss_achado no formato serializado
@@ -98,6 +111,7 @@ if (isset($_POST['flag']) and isset($_SESSION['cpf'])){
 
 			if($key !== false){
 				unset($lista_poss_achado_atual[$key]); //exclui o id_poss_achado
+				$lista_poss_achado_atual = array_values($lista_poss_achado_atual);//organiza novamente os indices de forma sequencial
 			}
 
 			if(count($lista_poss_achado_atual) <> 0){
