@@ -22,9 +22,8 @@
 									<label for="tipo">Tipo de Habilitação*</label>
                                     <select class="form-control selectpicker" name="tipo" id="tipo" required  />
 										<option value="">Selecione o tipo de habilitação...</option>
-										<option value="Curso">Curso</option>
-										<option value="Estágio">Estágio</option>
-										<option value="Experiência">Experiência</option>
+										<option value="Capacitação">Capacitação</option>
+										<option value="Experiência profissional">Experiência profissional</option>
                                     </select>
 								</div>
 							</div>

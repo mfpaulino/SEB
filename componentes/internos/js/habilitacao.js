@@ -48,7 +48,7 @@ $(document).ready(function() {
         	var bootstrapValidator = $('#form_habilitacao_cadastrar').data('bootstrapValidator');
         	var tipo     = $(this).val();
             
-		if (tipo != "Experiência"){
+		if (tipo == "Capacitação"){
 
 			// mostra e habilita o campos carga_horaria
 			$('#div_carga_horaria',$('#form_habilitacao_cadastrar')).find('.form-control').attr('disabled', false);
@@ -150,7 +150,7 @@ $(document).ready(function() {
         	var bootstrapValidator = $('#form_habilitacao_alterar').data('bootstrapValidator');
             	var tipo    = $(this).val();
             
-		if (tipo != "Experiência"){
+		if (tipo == "Capacitação"){
 
 			// mostra e habilita o campos carga_horaria
 			$('#div_carga_horaria',$('#form_habilitacao_alterar')).find('.form-control').attr('disabled', false);
@@ -233,7 +233,7 @@ $(document).ready(function() {
 		modal.find('#carga_horaria_atual').val(carga_horaria)
 		modal.find('#ano_conclusao_atual').val(ano_conclusao)
 		
-		if(tipo == "Experiência"){
+		if(tipo == "Experiência profissional"){
 		
 			// desabilita e esconde o div carga_horaria e o label
 			$('#div_carga_horaria',$('#form_habilitacao_alterar')).find('.form-control').attr('disabled', true);
