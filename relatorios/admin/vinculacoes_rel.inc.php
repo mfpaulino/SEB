@@ -111,11 +111,7 @@ if($inc == "sim"){
 										<div class="col-sm-1"></div>
 										<div id="div_info_req'.$row_area[0].$row_subarea[0].$row_questao[0].$row_info_req[0].'" class="collapse col-sm-11">';
 
-											echo "<br />".'<button type="button" class="btn btn-xs btn-default tree collapsed" data-toggle="collapse" data-target="#div_fonte_info'.$row_area[0].$row_subarea[0].$row_questao[0].$row_info_req[0].'"></button>'."&nbsp;<b>Fontes de Informação</b> <br />";
-
-											echo '
-											<div class="col-sm-1"></div>
-											<div id="div_fonte_info'.$row_area[0].$row_subarea[0].$row_questao[0].$row_info_req[0].'" class="collapse col-sm-11">';
+											echo "<br /><b>Fontes de Informação</b><br />";
 
 												for($l = 0; $l < $qtde_fonte_info; $l++){
 													$con_fonte_info = $mysqli->query("SELECT * FROM adm_fontes_informacao WHERE id_fonte_info = '$lista_fonte_info[$l]'");
@@ -124,8 +120,6 @@ if($inc == "sim"){
 													echo "- ".$row_fonte_info[1]. "<br />";
 												}
 												echo '
-												<br />
-											</div>
 											<br />
 										</div>';
 									}
