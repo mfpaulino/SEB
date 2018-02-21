@@ -5,5 +5,5 @@
 	<br />
 	<h3><u>HTTP Erro 401.1</u> - Não autorizado: acesso negado devido a credenciais inválidas.</h3>
 	<br />
-	<h3><a href="http://localhost/desenvolvimento/intranet/servidor_mamba/seb/">Acessar Sistema</a></h3>
+	<h3><a href="https://10.67.104.8/">Acessar Sistema</a></h3>
 </div>

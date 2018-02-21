@@ -270,6 +270,16 @@ include_once(PATH . '/componentes/internos/php/funcoes.inc.php');
 					</div>
 				<?php
 				} ?>
+				<?php
+				if (in_array("adm_rel_vinc", $lista_permissoes)){?>
+					<div class="row">
+						<!-- relatorio de vinculações -->
+						<div class="col-md-12">
+							<?php include_once('relatorios/admin/vinculacoes_rel.inc.php');?>
+						</div>
+					</div>
+				<?php
+				} ?>
 				<!-- fim conteudo -->
 			</section>
 		</div>

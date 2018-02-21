@@ -31,7 +31,7 @@ if (isset($_POST['flag']) and isset($_SESSION['cpf'])){
 
 	$validar = new validaForm();
 
-	if($tipo == "Experiência"){
+	if($tipo == "Experiência profissional"){
 
 		$carga_horaria = "---";
 		$ano_conclusao = "---";

@@ -96,3 +96,15 @@
     z-index: -1;
 }
 /*fim validacao editor texto*/
+
+/** icones collapsed **/
+/* Icon when the collapsible content is shown */
+.tree:after {
+font-family: "FontAwesome";
+content: "\f068";
+}
+/* Icon when the collapsible content is hidden */
+.tree.collapsed:after {
+content: "\f067";
+}
+/** fim icones collapsed

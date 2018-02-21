@@ -30,9 +30,9 @@ $con_habilitacao = $mysqli->query($sql);
 				}?>
 				<tr>
 					<td><?php echo $rows['area']; ?></td>
-					<td width="10%"><?php echo $rows['tipo']; ?></td>
+					<td width="15%"><?php echo $rows['tipo']; ?></td>
 					<td><?php echo $rows['descricao']; ?></td>
-					<td width="10%" class="text-center"><?php echo $rows['carga_horaria'].$h; ?></td>
+					<td width="15%" class="text-center"><?php echo $rows['carga_horaria'].$h; ?></td>
 					<td width="10%" class="text-center"><?php echo $rows['ano_conclusao']; ?></td>
 				</tr>
 			<?php
