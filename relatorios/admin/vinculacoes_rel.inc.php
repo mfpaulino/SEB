@@ -5,7 +5,7 @@ if($inc == "sim"){
 <div class="box box-solid bg-aqua collapsed-box">
 	<div class="box-header">
 		<i class="fa fa-share-alt"></i>
-		<h3 class="box-title">Vizualizar Vinculações</h3>
+		<h3 class="box-title">Visualizar Vinculações</h3>
 		<div class="pull-right box-tools">
 			<button type="button" title="Expandir/Encolher" class="btn bg-aqua-gradient btn-sm" data-widget="collapse"><i class="fa fa-plus"></i></button>
 			<button type="button" title="Ocultar" class="btn bg-aqua-gradient btn-sm" data-widget="remove"><i class="fa fa-times"></i></button>
