@@ -15,7 +15,7 @@ $con_proc_ana = $mysqli->query($sql); //listo as proc_anas cadastradas no sistem
 ?>
 <table class="table table-striped table-hover">
 	<tr>
-		<td><label>Possíveis Achados:</label></td>
+		<td><label>Procedimentos de Análise de Dados:</label></td>
 		<td width="15%"><label>Vinculação:</label></td>
 	</tr>
 <?php
