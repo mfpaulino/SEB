@@ -9,9 +9,9 @@
 				<form name="form_proc_coleta_vincular_questao" id="form_proc_coleta_vincular_questao" action="controllers/admin/proc_coleta/proc_coleta_vincular_questao.php" method="POST">
 					<div class="form-group">
 						<label for="proc_coleta" class="control-label">Procedimento de Coleta:</label>
-						<textarea class="form-control" style="resize:vertical;" name="proc_coleta" id="proc_coleta"  type="text" disabled placeholder="" ></textarea>
+						<textarea class="form-control"  name="proc_coleta" id="proc_coleta" style="resize: vertical" rows="6" disabled ></textarea>
 					</div>
-					<div id="proc_coleta_listar_questao" class="form-group">
+					<div id="proc_coleta_listar_questao" class="form-group text-justify">
 					</div>
 					<div class="form-group">
 						<input type="hidden" name="id_proc_coleta" id="id_proc_coleta" />

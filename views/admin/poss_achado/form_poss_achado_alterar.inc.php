@@ -8,7 +8,7 @@
 				<form name="form_poss_achado_alterar" id="form_poss_achado_alterar" action="controllers/admin/poss_achado/poss_achado_alterar.php" method="POST">
 					<div class="form-group">
 						<label for="poss_achado" class="control-label">*Descrição:</label>
-						<input class="form-control" type="text" name="poss_achado"  id="poss_achado" autofocus  placeholder="" />
+						<textarea class="form-control" type="text" name="poss_achado"  id="poss_achado" style="resize: vertical" rows="6" autofocus ></textarea>
 					</div>
 					<div class="form-group">
 						<input type="hidden" name="poss_achado_atual"   id="poss_achado_atual" />

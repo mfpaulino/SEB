@@ -9,9 +9,9 @@
 				<form name="form_questao_vincular_info_req" id="form_questao_vincular_info_req" action="controllers/admin/questao/questao_vincular_info_req.php" method="POST">
 					<div class="form-group">
 						<label for="questao" class="control-label">Questão:</label>
-						<textarea class="form-control" style="resize:vertical;" name="questao" id="questao"  type="text" disabled placeholder="" ></textarea>
+						<textarea class="form-control" name="questao" id="questao"  style="resize:vertical;" rows="6" disabled ></textarea>
 					</div>
-					<div id="questao_listar_info_req" class="form-group">
+					<div id="questao_listar_info_req" class="form-group text-justify">
 					</div>
 					<div class="form-group">
 						<input type="hidden" name="id_questao" id="id_questao" />

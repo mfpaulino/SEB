@@ -22,7 +22,7 @@ if($qtde == 0){
 							$i = 1;
 							while($row = $con_lista->fetch_assoc()){?>
 								<tr>
-									<td><?php echo "<b>".$i . " -</b> " . $row['questao'];?></td>
+									<td class="text-justify"><?php echo "<b>".$i . " -</b> " . $row['questao'];?></td>
 								</tr>
 								<?php
 							$i++;

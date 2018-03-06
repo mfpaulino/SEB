@@ -9,9 +9,9 @@
 				<form name="form_area_vincular_subarea" id="form_area_vincular_subarea" action="controllers/admin/area/area_vincular_subarea.php" method="POST">
 					<div class="form-group">
 						<label for="area" class="control-label">Área:</label>
-						<textarea class="form-control" style="resize:vertical;" name="area" id="area"  type="text" disabled placeholder="" ></textarea>
+						<textarea class="form-control" name="area" id="area"  style="resize: vertical" rows="1" disabled ></textarea>
 					</div>
-					<div id="area_listar_subarea" class="form-group">
+					<div id="area_listar_subarea" class="form-group text-justify">
 					</div>
 					<div class="form-group">
 						<input type="hidden" name="id_area" id="id_area" />

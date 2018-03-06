@@ -8,7 +8,7 @@
 				<form name="form_proc_ana_alterar" id="form_proc_ana_alterar" action="controllers/admin/proc_ana/proc_ana_alterar.php" method="POST">
 					<div class="form-group">
 						<label for="proc_ana" class="control-label">*Descrição:</label>
-						<input class="form-control" type="text" name="proc_ana"  id="proc_ana" autofocus  placeholder="" />
+						<textarea class="form-control" type="text" name="proc_ana"  id="proc_ana" style="resize: vertical" rows="6" autofocus ></textarea>
 					</div>
 					<div class="form-group">
 						<input type="hidden" name="proc_ana_atual"   id="proc_ana_atual" />

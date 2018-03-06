@@ -5,7 +5,7 @@ include_once ('componentes/internos/php/conexao.inc.php');
 $sql = "SELECT id_proc_ana, proc_ana FROM adm_proc_analise ORDER BY proc_ana";
 $con_proc_ana = $mysqli->query($sql);
 ?>
-<select class="form-control selectpicker" data-size="10" name="proc_ana" id="proc_ana">
+<select class="form-control selectpicker" data-live-search="true" data-size="10" name="proc_ana" id="proc_ana">
 	<option value = "">Selecione o Procedimento de Análise...</option>
 	<?php
 	$i = 1;

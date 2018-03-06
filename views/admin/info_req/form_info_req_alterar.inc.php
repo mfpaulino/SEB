@@ -8,7 +8,7 @@
 				<form name="form_info_req_alterar" id="form_info_req_alterar" action="controllers/admin/info_req/info_req_alterar.php" method="POST">
 					<div class="form-group">
 						<label for="info_req" class="control-label">*Descrição:</label>
-						<input class="form-control" type="text" name="info_req"  id="info_req" autofocus  placeholder="" />
+						<textarea class="form-control" type="text" name="info_req"  id="info_req" style="resize: vertical" rows="6" autofocus ></textarea>
 					</div>
 					<div class="form-group">
 						<input type="hidden" name="info_req_atual"   id="info_req_atual" />

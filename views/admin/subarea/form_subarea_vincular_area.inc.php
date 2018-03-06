@@ -9,9 +9,9 @@
 				<form name="form_subarea_vincular_area" id="form_subarea_vincular_area" action="controllers/admin/subarea/subarea_vincular_area.php" method="POST">
 					<div class="form-group">
 						<label for="subarea" class="control-label">Subárea/Subprocesso:</label>
-						<textarea class="form-control" style="resize:vertical;" name="subarea" id="subarea"  type="text" disabled placeholder="" ></textarea>
+						<textarea class="form-control" name="subarea" id="subarea" style="resize: vertical" rows="1" disabled ></textarea>
 					</div>
-					<div id="subarea_listar_area" class="form-group">
+					<div id="subarea_listar_area" class="form-group text-justify">
 					</div>
 					<div class="form-group">
 						<input type="hidden" name="id_subarea" id="id_subarea" />

@@ -5,7 +5,7 @@ include_once ('componentes/internos/php/conexao.inc.php');
 $sql = "SELECT id_area, area FROM adm_areas ORDER BY area";
 $con_area = $mysqli->query($sql);
 ?>
-<select class="form-control <?php echo $selectpicker;?>" data-size="10" name="area" id="area">
+<select class="form-control <?php echo $selectpicker;?>" data-live-search="true" data-size="10" name="area" id="area">
 	<option value = "">Selecione a Área/Processo...</option>
 	<?php
 	$i = 1;

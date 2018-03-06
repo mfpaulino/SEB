@@ -9,9 +9,9 @@
 				<form name="form_poss_achado_vincular_questao" id="form_poss_achado_vincular_questao" action="controllers/admin/poss_achado/poss_achado_vincular_questao.php" method="POST">
 					<div class="form-group">
 						<label for="poss_achado" class="control-label">Possível Achado:</label>
-						<textarea class="form-control" style="resize:vertical;" name="poss_achado" id="poss_achado"  type="text" disabled placeholder="" ></textarea>
+						<textarea class="form-control" name="poss_achado" id="poss_achado" style="resize: vertical" rows="6" disabled ></textarea>
 					</div>
-					<div id="poss_achado_listar_questao" class="form-group">
+					<div id="poss_achado_listar_questao" class="form-group text-justify">
 					</div>
 					<div class="form-group">
 						<input type="hidden" name="id_poss_achado" id="id_poss_achado" />

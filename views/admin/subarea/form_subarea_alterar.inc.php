@@ -8,7 +8,7 @@
 				<form name="form_subarea_alterar" id="form_subarea_alterar" action="controllers/admin/subarea/subarea_alterar.php" method="POST">
 					<div class="form-group">
 						<label for="subarea" class="control-label">*Subárea/Subprocesso:</label>
-						<input class="form-control" type="text" name="subarea"  id="subarea" autofocus  placeholder="" />
+						<textarea class="form-control" type="text" name="subarea"  id="subarea" style="resize: vertical" rows="6" autofocus ></textarea>
 					</div>
 					<div class="form-group">
 						<input type="hidden" name="subarea_atual"   id="subarea_atual" />

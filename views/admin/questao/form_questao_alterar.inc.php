@@ -8,7 +8,7 @@
 				<form name="form_questao_alterar" id="form_questao_alterar" action="controllers/admin/questao/questao_alterar.php" method="POST">
 					<div class="form-group">
 						<label for="questao" class="control-label">*Descrição:</label>
-						<input class="form-control" type="text" name="questao"  id="questao" autofocus  placeholder="" />
+						<textarea class="form-control text-justify" type="text" name="questao"  id="questao"  style="resize: vertical" rows="6" autofocus ></textarea>
 					</div>
 					<div class="form-group">
 						<input type="hidden" name="questao_atual"   id="questao_atual" />

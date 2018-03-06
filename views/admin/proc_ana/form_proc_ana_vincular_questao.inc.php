@@ -9,9 +9,9 @@
 				<form name="form_proc_ana_vincular_questao" id="form_proc_ana_vincular_questao" action="controllers/admin/proc_ana/proc_ana_vincular_questao.php" method="POST">
 					<div class="form-group">
 						<label for="proc_ana" class="control-label">Procedimento de Análise:</label>
-						<textarea class="form-control" style="resize:vertical;" name="proc_ana" id="proc_ana"  type="text" disabled placeholder="" ></textarea>
+						<textarea class="form-control"  name="proc_ana" id="proc_ana"  style="resize: vertical" rows="6" disabled ></textarea>
 					</div>
-					<div id="proc_ana_listar_questao" class="form-group">
+					<div id="proc_ana_listar_questao" class="form-group text-justify">
 					</div>
 					<div class="form-group">
 						<input type="hidden" name="id_proc_ana" id="id_proc_ana" />

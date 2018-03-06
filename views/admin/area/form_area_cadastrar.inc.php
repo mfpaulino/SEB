@@ -8,7 +8,7 @@
 				<form name="form_area_cadastrar" id="form_area_cadastrar" action="controllers/admin/area/area_cadastrar.php" method="POST">
 					<div class="form-group">
 						<label for="area" class="control-label">*Área/Processo:</label>
-						<input class="form-control" type="text" name="area"  id="area"  autofocus  placeholder="" />
+						<textarea class="form-control" type="text" name="area" id="area" style="resize: vertical" rows="6" autofocus ></textarea>
 					</div>
 					<div class="form-group">
 						<input  type="hidden" name="flag" />
@@ -22,3 +22,4 @@
 		</div>
 	</div>
 </div>
+
