@@ -77,6 +77,9 @@ if (isset($_POST['flag']) and isset($_SESSION['cpf'])){
 			$lista = str_replace(",","','",$lista);//substitui a virgula por "','".
 
 			$con_lista = $mysqli->query("SELECT id_proc_coleta FROM adm_proc_coleta WHERE id_proc_coleta IN ($lista) ORDER BY proc_coleta");
+
+			$lista_proc_coleta_nova = "";
+
 			while($row_lista = $con_lista->fetch_array()){
 				$lista_proc_coleta_nova = $lista_proc_coleta_nova . $row_lista[0] . ","; //cria uma string com os id_proc_coleta separados por ",".
 			}

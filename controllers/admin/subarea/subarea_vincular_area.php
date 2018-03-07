@@ -77,6 +77,9 @@ if (isset($_POST['flag']) and isset($_SESSION['cpf'])){
 			$lista = str_replace(",","','",$lista);//substitui a virgula por "','".
 
 			$con_lista = $mysqli->query("SELECT id_subarea FROM adm_subareas WHERE id_subarea IN ($lista) ORDER BY subarea");
+
+			$lista_subarea_nova = "";
+
 			while($row_lista = $con_lista->fetch_array()){
 				$lista_subarea_nova = $lista_subarea_nova . $row_lista[0] . ","; //cria uma string com os id_subarea separados por ",".
 			}

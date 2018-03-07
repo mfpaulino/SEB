@@ -44,12 +44,14 @@ if (isset($_POST['flag']) and isset($_SESSION['cpf'])){
 
 	$lista_info_reqs_sim = array_diff($lista_info_req_nova, $lista_info_req_atual); //lista as info_reqs incluidas com os indices originais Ex (1=>'2', 3=>'6')
 	$lista_info_reqs_sim1  = array(); //cria novos indices para a lista (0=>'2', 1=>'6')
+
 	foreach($lista_info_reqs_sim  as $r){
 		$lista_info_reqs_sim1[] = $r;
 	}
 
 	$lista_info_reqs_nao = array_diff($lista_info_req_atual, $lista_info_req_nova); // lista as info_reqs excluidas
 	$lista_info_reqs_nao1  = array();
+
 	foreach($lista_info_reqs_nao  as $r){
 		$lista_info_reqs_nao1[] = $r;
 	}
@@ -77,6 +79,9 @@ if (isset($_POST['flag']) and isset($_SESSION['cpf'])){
 			$lista = str_replace(",","','",$lista);//substitui a virgula por "','".
 
 			$con_lista = $mysqli->query("SELECT id_fonte_info FROM adm_fontes_informacao WHERE id_fonte_info IN ($lista) ORDER BY fonte_info");
+
+			$lista_fonte_info_nova = "";
+
 			while($row_lista = $con_lista->fetch_array()){
 				$lista_fonte_info_nova = $lista_fonte_info_nova . $row_lista[0] . ","; //cria uma string com os id_fonte_info separados por ",".
 			}
