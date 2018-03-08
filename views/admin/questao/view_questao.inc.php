@@ -47,47 +47,12 @@
 									data-content="">
 									<i class="fa fa-trash"></i> Excluir
 								</button>
-							</dd>
-						</dl>
-						<dl>
-							<dt class="text-center"><u>Vinculações</u></dt>
-						</dl>
-						<dl>
-							<dd class="text-center">
-								<!--botao Vincular Subarea-->
-								<button id="btnQuestaoVinculaSubarea" type="button" class="btn btn-xs btn-primary"
-									data-tooltip="tooltip" title="Vincular Subárea/Subprocesso"
+								<!--botao Vincular-->
+								<button id="btnQuestaoVincula" type="button" class="btn btn-xs btn-primary"
+									data-tooltip="tooltip" title="Vincular"
 									data-toggle="modal"
-									data-target="#modalQuestaoVincularSubarea">
-									<i class="fa fa-share-alt"></i> Subárea
-								</button>
-								<!--botao Vincular Info Requerida-->
-								<button id="btnQuestaoVinculaInfoReq" type="button" class="btn btn-xs btn-primary"
-									data-tooltip="tooltip" title="Vincular Informação Requerida"
-									data-toggle="modal"
-									data-target="#modalQuestaoVincularInfoReq">
-									<i class="fa fa-share-alt"></i> Info Requeridas
-								</button>
-								<!--botao Vincular Possiveis Achados-->
-								<button id="btnQuestaoVinculaPossAchado" type="button" class="btn btn-xs btn-primary"
-									data-tooltip="tooltip" title="Vincular Possíveis Achados"
-									data-toggle="modal"
-									data-target="#modalQuestaoVincularPossAchado">
-									<i class="fa fa-share-alt"></i> Poss Achados
-								</button>
-								<!--botao Vincular Proc Análise Dados-->
-								<button id="btnQuestaoVinculaProcAna" type="button" class="btn btn-xs btn-primary"
-									data-tooltip="tooltip" title="Vincular Procedimento Análise Dados"
-									data-toggle="modal"
-									data-target="#modalQuestaoVincularProcAna">
-									<i class="fa fa-share-alt"></i> Proced Análise Dados
-								</button>
-								<!--botao Vincular Proc Coleta Dados-->
-								<button id="btnQuestaoVinculaProcColeta" type="button" class="btn btn-xs btn-primary"
-									data-tooltip="tooltip" title="Vincular Proc Coleta Dados"
-									data-toggle="modal"
-									data-target="#modalQuestaoVincularProcColeta">
-									<i class="fa fa-share-alt"></i> Proced Coleta Dados
+									data-target="#modalQuestaoVincular">
+									<i class="fa fa-share-alt"></i> Vincular
 								</button>
 							</dd>
 						</dl>

@@ -198,11 +198,7 @@ include_once(PATH . '/componentes/internos/php/funcoes.inc.php');
 						<?php include_once('views/admin/questao/view_questao.inc.php');?>
 						<?php include_once('views/admin/questao/form_questao_cadastrar.inc.php');?>
 						<?php include_once('views/admin/questao/form_questao_alterar.inc.php');?>
-						<?php include_once('views/admin/questao/form_questao_vincular_subarea.inc.php');?>
-						<?php include_once('views/admin/questao/form_questao_vincular_info_req.inc.php');?>
-						<?php include_once('views/admin/questao/form_questao_vincular_poss_achado.inc.php');?>
-						<?php include_once('views/admin/questao/form_questao_vincular_proc_ana.inc.php');?>
-						<?php include_once('views/admin/questao/form_questao_vincular_proc_coleta.inc.php');?>
+						<?php include_once('views/admin/questao/form_questao_vincular.inc.php');?>
 						<?php include_once('views/admin/questao/view_questao_relacao.inc.php');?>
 					</div>
 				<?php

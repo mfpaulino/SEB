@@ -33,8 +33,8 @@ if (isset($_POST['flag']) and isset($_SESSION['cpf'])){
 	$qtde_subarea = $con_qtde_subarea->num_rows;
 
 	for($i = 1; $i <= $qtde_subarea; $i++){
-		if($_POST[$i] <> ""){
-			$lista_subarea_nova = $lista_subarea_nova.$_POST[$i].","; //cria uma string com os id_subarea separados por ",".
+		if($_POST["subarea".$i] <> ""){
+			$lista_subarea_nova = $lista_subarea_nova.$_POST["subarea".$i].","; //cria uma string com os id_subarea separados por ",".
 		}
 	}
 	$lista_subarea_nova = substr($lista_subarea_nova, 0, -1); //elimino a ultima "," da string.
@@ -131,6 +131,120 @@ if (isset($_POST['flag']) and isset($_SESSION['cpf'])){
 			$altera = "sim";
 		}
 	}
+
+	/**** informacoes requeridas ********/
+
+	$busca_info_req = $mysqli->query("SELECT id_info_req FROM adm_info_requeridas");
+	$qtde = $busca_info_req->num_rows;//apenas para calcular a quantidade de info_reqs
+
+	$id_info_req = "";
+
+	for($i = 1; $i <= $qtde; $i++){
+		if($_POST["info_req".$i] <> ""){
+			$id_info_req = $id_info_req.$_POST["info_req".$i].",";//concatena os id_info_req com ",".
+		}
+	}
+
+	if($id_info_req <> ""){
+		$id_info_req = substr($id_info_req, 0, -1);//elimina a ultima ",".
+		$id_info_req = explode(",",$id_info_req);//cria um array separando pelas ",".
+		$id_info_req_vinc = serialize($id_info_req);//cria uma string com o array serializado
+	}
+	else{
+		$id_info_req_vinc = "";
+	}
+
+	$con_vinc = $mysqli->query("UPDATE adm_questoes SET id_info_req_vinc = '$id_info_req_vinc' where id_questao = '$id_questao'");//atualiza a lista de info_reqs vinculadas
+
+	if ($mysqli->affected_rows <> 0 ){
+		$altera = "sim";
+	}
+
+	/*********** procedimentos de coleta de dados *************/
+
+	$busca_proc_coleta = $mysqli->query("SELECT id_proc_coleta FROM adm_proc_coleta");
+	$qtde = $busca_proc_coleta->num_rows;//apenas para calcular a quantidade de proc_coleta
+
+	$id_proc_coleta = "";
+
+	for($i = 1; $i <= $qtde; $i++){
+		if($_POST["proc_coleta".$i] <> ""){
+			$id_proc_coleta = $id_proc_coleta.$_POST["proc_coleta".$i].",";//concatena os id_proc_coleta com ",".
+		}
+	}
+
+	if($id_proc_coleta <> ""){
+		$id_proc_coleta = substr($id_proc_coleta, 0, -1);//elimina a ultima ",".
+		$id_proc_coleta = explode(",",$id_proc_coleta);//cria um array separando pelas ",".
+		$id_proc_coleta_vinc = serialize($id_proc_coleta);//cria uma string com o array serializado
+	}
+	else{
+		$id_proc_coleta_vinc = "";
+	}
+
+	$con_vinc = $mysqli->query("UPDATE adm_questoes SET id_proc_coleta_vinc = '$id_proc_coleta_vinc' where id_questao = '$id_questao'");//atualiza a lista de proc_coletas vinculadas
+
+	if ($mysqli->affected_rows <> 0 ){
+		$altera = "sim";
+	}
+
+	/************ procedimentos de analise de dados **********************/
+
+	$busca_proc_ana = $mysqli->query("SELECT id_proc_ana FROM adm_proc_analise");
+	$qtde = $busca_proc_ana->num_rows;//apenas para calcular a quantidade de proc_ana
+
+	$id_proc_ana = "";
+
+	for($i = 1; $i <= $qtde; $i++){
+		if($_POST["proc_ana".$i] <> ""){
+			$id_proc_ana = $id_proc_ana.$_POST["proc_ana".$i].",";//concatena os id_proc_ana com ",".
+		}
+	}
+
+	if($id_proc_ana <> ""){
+		$id_proc_ana = substr($id_proc_ana, 0, -1);//elimina a ultima ",".
+		$id_proc_ana = explode(",",$id_proc_ana);//cria um array separando pelas ",".
+		$id_proc_ana_vinc = serialize($id_proc_ana);//cria uma string com o array serializado
+	}
+	else{
+		$id_proc_ana_vinc = "";
+	}
+
+	$con_vinc = $mysqli->query("UPDATE adm_questoes SET id_proc_ana_vinc = '$id_proc_ana_vinc' where id_questao = '$id_questao'");//atualiza a lista de proc_anas vinculadas
+
+	if ($mysqli->affected_rows <> 0 ){
+		$altera = "sim";
+	}
+
+	/************************** possiveis achados **************************/
+
+	$busca_poss_achado = $mysqli->query("SELECT id_poss_achado FROM adm_poss_achados");
+	$qtde = $busca_poss_achado->num_rows;//apenas para calcular a quantidade de poss_achados
+
+	$id_poss_achado = "";
+
+	for($i = 1; $i <= $qtde; $i++){
+		if($_POST["poss_achado".$i] <> ""){
+			$id_poss_achado = $id_poss_achado.$_POST["poss_achado".$i].",";//concatena os id_poss_achado com ",".
+		}
+	}
+
+	if($id_poss_achado <> ""){
+		$id_poss_achado = substr($id_poss_achado, 0, -1);//elimina a ultima ",".
+		$id_poss_achado = explode(",",$id_poss_achado);//cria um array separando pelas ",".
+		$id_poss_achado_vinc = serialize($id_poss_achado);//cria uma string com o array serializado
+	}
+	else{
+		$id_poss_achado_vinc = "";
+	}
+
+	$con_vinc = $mysqli->query("UPDATE adm_questoes SET id_poss_achado_vinc = '$id_poss_achado_vinc' where id_questao = '$id_questao'");//atualiza a lista de poss_achados vinculadas
+
+	if ($mysqli->affected_rows <> 0 ){
+		$altera = "sim";
+	}
+
+	/********************************************************/
 
 	if ($altera == "sim"){
 		$_SESSION['questao_vincular'] = "Alteração de vinculação realizada com sucesso!";

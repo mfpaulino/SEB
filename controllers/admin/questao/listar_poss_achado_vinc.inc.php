@@ -13,13 +13,21 @@ $lista_id_poss_achado = unserialize($row_questao[0]);//coloco os ids em um array
 $sql = "SELECT id_poss_achado, poss_achado FROM adm_poss_achados ORDER BY poss_achado";
 $con_poss_achado = $mysqli->query($sql); //listo as poss_achados cadastradas no sistema
 ?>
-<table class="table table-striped table-hover">
-	<tr>
-		<td><label>Possíveis Achados:</label></td>
-		<td width="15%"><label>Vinculação:</label></td>
+<a id="pa"></a>
+<table class="table">
+	<tr class="bg-primary">
+		<td width="6%"class="text-center"><a href="#topo" title="Voltar ao topo"><i class="fa fa-arrow-circle-up"></i></a> <a href="#bottom" title="Ir para baixo"><i class="fa fa-arrow-circle-down"></i></a></td>
+		<td class="text-center">&nbsp;&nbsp;<label>Possíveis Achados</label></td>
+		<td width="6%"class="text-center"><a href="#topo" title="Voltar ao topo"><i class="fa fa-arrow-circle-up"></i></a> <a href="#bottom" title="Ir para baixo"><i class="fa fa-arrow-circle-down"></i></a></td>
+
 	</tr>
+</table>
+<div class="text-center">
+	| <a href="#sub">Subáreas/subprocessos</a> | <a href="#ir">Informações Requeridas</a> | <a href="#pcd">Procedimentos de Coleta de Dados</a> | <a href="#pad">Procedimentos de Análise de Dados</a> |<br /><br />
+</div>
+<table class="table table-striped table-hover">
 <?php
-$i = 1;//apenas para criar um nr de ordem para a lista
+$m = 1;//apenas para criar um nr de ordem para a lista
 while($row_poss_achado = $con_poss_achado->fetch_assoc()){
 	$checked="";
 	if($row_questao[0] <> ""){//para evitar que a função in_array seja executada para um array vazio
@@ -29,13 +37,13 @@ while($row_poss_achado = $con_poss_achado->fetch_assoc()){
 	}
 	?>
 	<tr>
-		<td><?php echo "<b>".$i."-</b> ".$row_poss_achado['poss_achado'];?></td>
-		<td width="15%">
-			<input name="<?php echo $i;?>" type="checkbox" value="<?php echo $row_poss_achado['id_poss_achado'];?>" <?php echo $checked;?> />
+		<td class="text-justify"><?php echo "<b>".$m."-</b> ".$row_poss_achado['poss_achado'];?></td>
+		<td width="10%" class="text-center">
+			<input name="<?php echo "poss_achado".$m;?>" type="checkbox" value="<?php echo $row_poss_achado['id_poss_achado'];?>" <?php echo $checked;?> />
 		</td>
 	</tr>
 	<?php
-	$i++;
+	$m++;
 }
 ?>
 </table>
@@ -43,8 +51,8 @@ while($row_poss_achado = $con_poss_achado->fetch_assoc()){
 /***estiliza os checkbox***/
 $qtde = $con_poss_achado->num_rows;
 echo '<script>';
-for ($i = 1; $i <= $qtde; $i++){
-	echo '$("[name=\''.$i.'\']").bootstrapSwitch();';
+for ($m = 1; $m <= $qtde; $m++){
+	echo '$("[name=\'poss_achado'.$m.'\']").bootstrapSwitch();';
 }
 echo '
 </script>';

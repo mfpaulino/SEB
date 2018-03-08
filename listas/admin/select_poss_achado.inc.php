@@ -5,7 +5,7 @@ include_once ('componentes/internos/php/conexao.inc.php');
 $sql = "SELECT id_poss_achado, poss_achado FROM adm_poss_achados ORDER BY poss_achado";
 $con_poss_achado = $mysqli->query($sql);
 ?>
-<select class="form-control selectpicker" data-live-search="true" data-size="10" name="poss_achado" id="poss_achado">
+<select class="form-control selectpicker" data-live-search="true" data-live-search-placeholder="Pesquisar..." data-size="10" name="poss_achado" id="poss_achado">
 	<option value = "">Selecione o Possível Achado...</option>
 	<?php
 	$i = 1;

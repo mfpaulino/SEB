@@ -13,13 +13,21 @@ $lista_id_proc_coleta = unserialize($row_questao[0]);//coloco os ids em um array
 $sql = "SELECT id_proc_coleta, proc_coleta FROM adm_proc_coleta ORDER BY proc_coleta";
 $con_proc_coleta = $mysqli->query($sql); //listo as proc_coletas cadastradas no sistema
 ?>
-<table class="table table-striped table-hover">
-	<tr>
-		<td><label>Procedimentos de Coleta de Dados:</label></td>
-		<td width="15%"><label>Vinculação:</label></td>
+<a id="pcd"></a>
+<table class="table">
+	<tr class="bg-primary">
+		<td width="6%"class="text-center"><a href="#topo" title="Voltar ao topo"><i class="fa fa-arrow-circle-up"></i></a> <a href="#bottom" title="Ir para baixo"><i class="fa fa-arrow-circle-down"></i></a></td>
+		<td class="text-center">&nbsp;&nbsp;<label>Procedimentos de Coleta de Dados</label></td>
+		<td width="6%"class="text-center"><a href="#topo" title="Voltar ao topo"><i class="fa fa-arrow-circle-up"></i></a> <a href="#bottom" title="Ir para baixo"><i class="fa fa-arrow-circle-down"></i></a></td>
+
 	</tr>
+</table>
+<div class="text-center">
+	| <a href="#sub">Subáreas/subprocessos</a> | <a href="#ir">Informações Requeridas</a> | <a href="#pad">Procedimentos de Análise de Dados</a> | <a href="#pa">Possíveis Achados</a> |<br /><br />
+</div>
+<table class="table table-striped table-hover">
 <?php
-$i = 1;//apenas para criar um nr de ordem para a lista
+$k = 1;//apenas para criar um nr de ordem para a lista
 while($row_proc_coleta = $con_proc_coleta->fetch_assoc()){
 	$checked="";
 	if($row_questao[0] <> ""){//para evitar que a função in_array seja executada para um array vazio
@@ -29,13 +37,13 @@ while($row_proc_coleta = $con_proc_coleta->fetch_assoc()){
 	}
 	?>
 	<tr>
-		<td><?php echo "<b>".$i."-</b> ".$row_proc_coleta['proc_coleta'];?></td>
-		<td width="15%">
-			<input name="<?php echo $i;?>" type="checkbox" value="<?php echo $row_proc_coleta['id_proc_coleta'];?>" <?php echo $checked;?> />
+		<td class="text-justify"><?php echo "<b>".$k."-</b> ".$row_proc_coleta['proc_coleta'];?></td>
+		<td width="10%" class="text-center">
+			<input name="<?php echo "proc_coleta".$k;?>" type="checkbox" value="<?php echo $row_proc_coleta['id_proc_coleta'];?>" <?php echo $checked;?> />
 		</td>
 	</tr>
 	<?php
-	$i++;
+	$k++;
 }
 ?>
 </table>
@@ -43,8 +51,8 @@ while($row_proc_coleta = $con_proc_coleta->fetch_assoc()){
 /***estiliza os checkbox***/
 $qtde = $con_proc_coleta->num_rows;
 echo '<script>';
-for ($i = 1; $i <= $qtde; $i++){
-	echo '$("[name=\''.$i.'\']").bootstrapSwitch();';
+for ($k = 1; $k <= $qtde; $k++){
+	echo '$("[name=\'proc_coleta'.$k.'\']").bootstrapSwitch();';
 }
 echo '
 </script>';
