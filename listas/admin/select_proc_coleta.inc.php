@@ -6,7 +6,7 @@ $sql = "SELECT id_proc_coleta, proc_coleta FROM adm_proc_coleta ORDER BY proc_co
 $con_proc_coleta = $mysqli->query($sql);
 ?>
 <select class="form-control selectpicker" data-live-search="true" data-live-search-placeholder="Pesquisar..." data-size="10" name="proc_coleta" id="proc_coleta">
-	<option value = "">Selecione o Procedimento de Coleta...</option>
+	<option value = "">Selecione o Procedimento de Coleta de Dados...</option>
 	<?php
 	$i = 1;
 	while ($row_proc_coleta = $con_proc_coleta->fetch_assoc()){

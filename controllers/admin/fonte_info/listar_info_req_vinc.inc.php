@@ -9,7 +9,7 @@ $con_info_req = $mysqli->query($sql); //listo as info_reqs cadastradas no sistem
 ?>
 <table class="table table-striped table-hover">
 	<tr>
-		<td><label>Áreas/Processos:</label></td>
+		<td><label>Informações Requeridas:</label></td>
 		<td width="15%"><label>Vinculação:</label></td>
 	</tr>
 <?php

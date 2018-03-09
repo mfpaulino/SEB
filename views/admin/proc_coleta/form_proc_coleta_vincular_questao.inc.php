@@ -8,7 +8,7 @@
 			<div class="modal-body">
 				<form name="form_proc_coleta_vincular_questao" id="form_proc_coleta_vincular_questao" action="controllers/admin/proc_coleta/proc_coleta_vincular_questao.php" method="POST">
 					<div class="form-group">
-						<label for="proc_coleta" class="control-label">Procedimento de Coleta:</label>
+						<label for="proc_coleta" class="control-label">Procedimento de Coleta de Dados:</label>
 						<textarea class="form-control"  name="proc_coleta" id="proc_coleta" style="resize: vertical" rows="6" disabled ></textarea>
 					</div>
 					<div id="proc_coleta_listar_questao" class="form-group text-justify">

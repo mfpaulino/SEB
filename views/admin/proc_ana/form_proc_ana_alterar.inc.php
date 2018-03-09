@@ -2,7 +2,7 @@
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header fundo">
-				<h4 class="modal-title">Editar Procedimento de Análise</h4>
+				<h4 class="modal-title">Editar Procedimento de Análise de Dados</h4>
 			</div>
 			<div class="modal-body">
 				<form name="form_proc_ana_alterar" id="form_proc_ana_alterar" action="controllers/admin/proc_ana/proc_ana_alterar.php" method="POST">

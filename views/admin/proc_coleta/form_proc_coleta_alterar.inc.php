@@ -2,7 +2,7 @@
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header fundo">
-				<h4 class="modal-title">Editar Procedimento de Coleta</h4>
+				<h4 class="modal-title">Editar Procedimento de Coleta de Dados</h4>
 			</div>
 			<div class="modal-body">
 				<form name="form_proc_coleta_alterar" id="form_proc_coleta_alterar" action="controllers/admin/proc_coleta/proc_coleta_alterar.php" method="POST">
