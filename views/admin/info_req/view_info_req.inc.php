@@ -45,19 +45,12 @@
 							data-content="">
 							<i class="fa fa-trash"></i> Excluir
 						</button>
-						<!--botao Vincular Questao-->
-						<button id="btnInfoReqVinculaQuestao" type="button" class="btn btn-xs btn-primary"
-							data-tooltip="tooltip" title="Vincular Questão"
+						<!--botao Vincular-->
+						<button id="btnInfoReqVincula" type="button" class="btn btn-xs btn-primary"
+							data-tooltip="tooltip" title="Vincular"
 							data-toggle="modal"
-							data-target="#modalInfoReqVincularQuestao">
-							<i class="fa fa-share-alt"></i> Vinc Questão
-						</button>
-						<!--botao Vincular FonteInfo-->
-						<button id="btnInfoReqVinculaFonteInfo" type="button" class="btn btn-xs btn-primary"
-							data-tooltip="tooltip" title="Vincular Fonte de Informação"
-							data-toggle="modal"
-							data-target="#modalInfoReqVincularFonteInfo">
-							<i class="fa fa-share-alt"></i> Vinc Fonte Info
+							data-target="#modalInfoReqVincular">
+							<i class="fa fa-share-alt"></i> Vincular
 						</button>
 					</div>
 					<input type="hidden" name="flag" value="excluir" />

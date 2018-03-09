@@ -38,7 +38,7 @@ while($row_info_req = $con_info_req->fetch_assoc()){
 	?>
 	<tr>
 		<td class="text-justify"><?php echo "<b>".$j."-</b> ".$row_info_req['info_req'];?></td>
-		<td width="10%" class="text-center">
+		<td width="10%" class="text-right">
 			<input name="<?php echo "info_req".$j;?>" type="checkbox" value="<?php echo $row_info_req['id_info_req'];?>" <?php echo $checked;?> />
 		</td>
 	</tr>

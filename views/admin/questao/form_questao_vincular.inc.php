@@ -3,7 +3,8 @@
 		<div class="modal-content">
 			<div class="modal-header fundo">
 				<button type="button" class="close" data-dismiss="modal">&times;</button>
-				<a id="topo"></a><h4 class="modal-title">Vinculações</h4>
+				<a id="topo"></a>
+				<h4 class="modal-title">Vinculações</h4>
 			</div>
 			<div class="modal-body">
 				<form name="form_questao_vincular" id="form_questao_vincular" action="controllers/admin/questao/questao_vincular.php" method="POST">

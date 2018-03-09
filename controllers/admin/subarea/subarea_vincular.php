@@ -33,8 +33,8 @@ if (isset($_POST['flag']) and isset($_SESSION['cpf'])){
 	$qtde_area = $con_qtde_area->num_rows;
 
 	for($i = 1; $i <= $qtde_area; $i++){
-		if($_POST[$i] <> ""){
-			$lista_area_nova = $lista_area_nova.$_POST[$i].","; //cria uma string com os id_area separados por ",".
+		if($_POST["s_area".$i] <> ""){
+			$lista_area_nova = $lista_area_nova.$_POST["s_area".$i].","; //cria uma string com os id_area separados por ",".
 		}
 	}
 	$lista_area_nova = substr($lista_area_nova, 0, -1); //elimino a ultima "," da string.
@@ -131,6 +131,36 @@ if (isset($_POST['flag']) and isset($_SESSION['cpf'])){
 			$altera = "sim";
 		}
 	}
+
+	/*********** vincular questoes ********************************/
+
+	$busca_questao = $mysqli->query("SELECT id_questao FROM adm_questoes");
+	$qtde = $busca_questao->num_rows;//apenas para calcular a quantidade de questoes
+
+	$id_questao = "";
+
+	for($i = 1; $i <= $qtde; $i++){
+		if($_POST["s_questao".$i] <> ""){
+			$id_questao = $id_questao.$_POST["s_questao".$i].",";//concatena os id_questao com ",".
+		}
+	}
+
+	if($id_questao <> ""){
+		$id_questao = substr($id_questao, 0, -1);//elimina a ultima ",".
+		$id_questao = explode(",",$id_questao);//cria um array separando pelas ",".
+		$id_questao_vinc = serialize($id_questao);//cria uma string com o array serializado
+	}
+	else{
+		$id_questao_vinc = "";
+	}
+
+	$con_vinc = $mysqli->query("UPDATE adm_subareas SET id_questao_vinc = '$id_questao_vinc' where id_subarea = '$id_subarea'");//atualiza a lista de questoes vinculadas
+
+	if ($mysqli->affected_rows <> 0 ){
+			$altera = "sim";
+	}
+
+	/***************************************************************/
 
 	if ($altera == "sim"){
 		$_SESSION['subarea_vincular'] = "Alteração de vinculação realizada com sucesso!";

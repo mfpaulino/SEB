@@ -13,11 +13,19 @@ $lista_id_questao = unserialize($row_subarea[0]);//coloco os ids em um array
 $sql = "SELECT id_questao, questao FROM adm_questoes ORDER BY questao";
 $con_questao = $mysqli->query($sql); //listo as questoes cadastradas no sistema
 ?>
-<table class="table table-striped table-hover">
-	<tr>
-		<td><label>Questões:</label></td>
-		<td width="15%"><label>Vinculação:</label></td>
+<a id="s_questao"></a>
+<table class="table">
+	<tr class="bg-primary">
+		<td width="6%"class="text-center"><a href="#topo" title="Voltar ao topo"><i class="fa fa-arrow-circle-up"></i></a> <a href="#bottom" title="Ir para baixo"><i class="fa fa-arrow-circle-down"></i></a></td>
+		<td class="text-center">&nbsp;&nbsp;<label>Questões</label></td>
+		<td width="6%"class="text-center"><a href="#topo" title="Voltar ao topo"><i class="fa fa-arrow-circle-up"></i></a> <a href="#bottom" title="Ir para baixo"><i class="fa fa-arrow-circle-down"></i></a></td>
+
 	</tr>
+</table>
+<div class="text-center">
+	| <a href="#s_area">Áreas/Processos</a> | <br /><br />
+</div>
+<table class="table  table-striped table-hover">
 <?php
 $i = 1;//apenas para criar um nr de ordem para a lista
 while($row_questao = $con_questao->fetch_assoc()){
@@ -29,9 +37,9 @@ while($row_questao = $con_questao->fetch_assoc()){
 	}
 	?>
 	<tr>
-		<td><?php echo "<b>".$i."-</b> ".$row_questao['questao'];?></td>
-		<td width="15%">
-			<input name="<?php echo $i;?>" type="checkbox" value="<?php echo $row_questao['id_questao'];?>" <?php echo $checked;?> />
+		<td class="text-justify"><?php echo "<b>".$i."-</b> ".$row_questao['questao'];?></td>
+		<td class="text-right" width="13%">
+			<input name="<?php echo "s_questao".$i;?>" type="checkbox" value="<?php echo $row_questao['id_questao'];?>" <?php echo $checked;?> />
 		</td>
 	</tr>
 	<?php
@@ -44,7 +52,7 @@ while($row_questao = $con_questao->fetch_assoc()){
 $qtde = $con_questao->num_rows;
 echo '<script>';
 for ($i = 1; $i <= $qtde; $i++){
-	echo '$("[name=\''.$i.'\']").bootstrapSwitch();';
+	echo '$("[name=\'s_questao'.$i.'\']").bootstrapSwitch();';
 }
 echo '
 </script>';

@@ -38,7 +38,7 @@ while($row_subarea = $con_subarea->fetch_assoc()){
 	?>
 	<tr>
 		<td class="text-justify"><?php echo "<b>".$i."-</b> ".$row_subarea['subarea'];?></td>
-		<td width="10%" class="text-center">
+		<td width="10%" class="text-right">
 			<input name="<?php echo "subarea".$i;?>" type="checkbox" value="<?php echo $row_subarea['id_subarea'];?>" <?php echo $checked;?> />
 		</td>
 	</tr>

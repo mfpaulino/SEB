@@ -38,7 +38,7 @@ while($row_proc_ana = $con_proc_ana->fetch_assoc()){
 	?>
 	<tr>
 		<td class="text-justify"><?php echo "<b>".$l."-</b> ".$row_proc_ana['proc_ana'];?></td>
-		<td width="10%" class="text-center">
+		<td width="10%" class="text-right">
 			<input name="<?php echo "proc_ana".$l;?>"  type="checkbox" value="<?php echo $row_proc_ana['id_proc_ana'];?>" <?php echo $checked;?> />
 		</td>
 	</tr>

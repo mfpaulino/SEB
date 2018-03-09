@@ -46,12 +46,19 @@
 							data-content="">
 							<i class="fa fa-trash"></i> Excluir
 						</button>
-						<!--botao Vincular-->
-						<button id="btnSubareaVincula" type="button" class="btn btn-xs btn-primary"
-							data-tooltip="tooltip" title="Vincular"
+						<!--botao Vincular Area-->
+						<button id="btnSubareaVinculaArea" type="button" class="btn btn-xs btn-primary"
+							data-tooltip="tooltip" title="Vincular Área/Processo"
 							data-toggle="modal"
-							data-target="#modalSubareaVincular">
-							<i class="fa fa-share-alt"></i> Vincular
+							data-target="#modalSubareaVincularArea">
+							<i class="fa fa-share-alt"></i> Vinc Área/Proc
+						</button>
+						<!--botao Vincular Questao-->
+						<button id="btnSubareaVinculaQuestao" type="button" class="btn btn-xs btn-primary"
+							data-tooltip="tooltip" title="Vincular Questão"
+							data-toggle="modal"
+							data-target="#modalSubareaVincularQuestao">
+							<i class="fa fa-share-alt"></i> Vinc Questão
 						</button>
 					</div>
 					<input type="hidden" name="flag" value="excluir" />

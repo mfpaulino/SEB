@@ -38,7 +38,7 @@ while($row_poss_achado = $con_poss_achado->fetch_assoc()){
 	?>
 	<tr>
 		<td class="text-justify"><?php echo "<b>".$m."-</b> ".$row_poss_achado['poss_achado'];?></td>
-		<td width="10%" class="text-center">
+		<td width="10%" class="text-right">
 			<input name="<?php echo "poss_achado".$m;?>" type="checkbox" value="<?php echo $row_poss_achado['id_poss_achado'];?>" <?php echo $checked;?> />
 		</td>
 	</tr>

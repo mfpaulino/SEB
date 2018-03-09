@@ -186,8 +186,7 @@ include_once(PATH . '/componentes/internos/php/funcoes.inc.php');
 						<?php include_once('views/admin/subarea/view_subarea.inc.php');?>
 						<?php include_once('views/admin/subarea/form_subarea_cadastrar.inc.php');?>
 						<?php include_once('views/admin/subarea/form_subarea_alterar.inc.php');?>
-						<?php include_once('views/admin/subarea/form_subarea_vincular_area.inc.php');?>
-						<?php include_once('views/admin/subarea/form_subarea_vincular_questao.inc.php');?>
+						<?php include_once('views/admin/subarea/form_subarea_vincular.inc.php');?>
 						<?php include_once('views/admin/subarea/view_subarea_relacao.inc.php');?>
 					</div>
 				<?php
@@ -212,8 +211,7 @@ include_once(PATH . '/componentes/internos/php/funcoes.inc.php');
 						<?php include_once('views/admin/info_req/view_info_req.inc.php');?>
 						<?php include_once('views/admin/info_req/form_info_req_cadastrar.inc.php');?>
 						<?php include_once('views/admin/info_req/form_info_req_alterar.inc.php');?>
-						<?php include_once('views/admin/info_req/form_info_req_vincular_questao.inc.php');?>
-						<?php include_once('views/admin/info_req/form_info_req_vincular_fonte_info.inc.php');?>
+						<?php include_once('views/admin/info_req/form_info_req_vincular.inc.php');?>
 						<?php include_once('views/admin/info_req/view_info_req_relacao.inc.php');?>
 					</div>
 				<?php

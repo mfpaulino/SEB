@@ -38,7 +38,7 @@ while($row_proc_coleta = $con_proc_coleta->fetch_assoc()){
 	?>
 	<tr>
 		<td class="text-justify"><?php echo "<b>".$k."-</b> ".$row_proc_coleta['proc_coleta'];?></td>
-		<td width="10%" class="text-center">
+		<td width="10%" class="text-right">
 			<input name="<?php echo "proc_coleta".$k;?>" type="checkbox" value="<?php echo $row_proc_coleta['id_proc_coleta'];?>" <?php echo $checked;?> />
 		</td>
 	</tr>
