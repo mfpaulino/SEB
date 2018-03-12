@@ -50,7 +50,7 @@
 							data-tooltip="tooltip" title="Vincular Informação Requerida"
 							data-toggle="modal"
 							data-target="#modalFonteInfoVincularInfoReq">
-							<i class="fa fa-share-alt"></i> Vinc Info Requerida
+							<i class="fa fa-share-alt"></i> Vincular
 						</button>
 					</div>
 					<input type="hidden" name="flag" value="excluir" />

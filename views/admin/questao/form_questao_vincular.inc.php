@@ -3,7 +3,7 @@
 		<div class="modal-content">
 			<div class="modal-header fundo">
 				<button type="button" class="close" data-dismiss="modal">&times;</button>
-				<a id="topo"></a>
+				<a id="q_topo"></a>
 				<h4 class="modal-title">Vinculações</h4>
 			</div>
 			<div class="modal-body">
@@ -22,7 +22,7 @@
 						<input type="hidden" name="flag" />
 					</div>
 					<div class="modal-footer">
-						<button type="submit" class="btn btn-success">Enviar</button><a id="bottom"></a>
+						<button type="submit" class="btn btn-success">Enviar</button><a id="q_bottom"></a>
 						<button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
 					</div>
 				</form>

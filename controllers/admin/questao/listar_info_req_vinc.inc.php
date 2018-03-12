@@ -13,17 +13,17 @@ $lista_id_info_req = unserialize($row_questao[0]);//coloco os ids em um array
 $sql = "SELECT id_info_req, info_req FROM adm_info_requeridas ORDER BY info_req";
 $con_info_req = $mysqli->query($sql); //listo as info_reqs cadastradas no sistema
 ?>
-<a id="ir"></a>
+<a id="q_ir"></a>
 <table class="table">
 	<tr class="bg-primary">
-		<td width="6%"class="text-center"><a href="#topo" title="Ir para cima"><i class="fa fa-arrow-circle-up"></i></a> <a href="#bottom" title="Ir para baixo"><i class="fa fa-arrow-circle-down"></i></a></td>
+		<td width="6%"class="text-center"><a href="#q_topo" title="Ir para cima"><i class="fa fa-arrow-circle-up"></i></a> <a href="#q_bottom" title="Ir para baixo"><i class="fa fa-arrow-circle-down"></i></a></td>
 		<td class="text-center">&nbsp;&nbsp;<label>Informações Requeridas</label></td>
-		<td width="6%"class="text-center"><a href="#topo" title="Ir para cima"><i class="fa fa-arrow-circle-up"></i></a> <a href="#bottom" title="Ir para baixo"><i class="fa fa-arrow-circle-down"></i></a></td>
+		<td width="6%"class="text-center"><a href="#q_topo" title="Ir para cima"><i class="fa fa-arrow-circle-up"></i></a> <a href="#q_bottom" title="Ir para baixo"><i class="fa fa-arrow-circle-down"></i></a></td>
 
 	</tr>
 </table>
 <div class="text-center">
-	| <a href="#sub">Subáreas/subprocessos</a> | <a href="#pcd">Procedimentos de Coleta de Dados</a> | <a href="#pad">Procedimentos de Análise de Dados</a> | <a href="#pa">Possíveis Achados</a> |<br /><br />
+	| <a href="#q_sub">Subáreas/subprocessos</a> | <a href="#q_pcd">Procedimentos de Coleta de Dados</a> | <a href="#q_pad">Procedimentos de Análise de Dados</a> | <a href="#q_pa">Possíveis Achados</a> |<br /><br />
 </div>
 <table class="table table-striped table-hover">
 <?php

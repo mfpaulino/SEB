@@ -50,7 +50,7 @@
 							data-tooltip="tooltip" title="Vincular Questão"
 							data-toggle="modal"
 							data-target="#modalProcColetaVincularQuestao">
-							<i class="fa fa-share-alt"></i> Vincular Questão
+							<i class="fa fa-share-alt"></i> Vincular
 						</button>
 					</div>
 					<input type="hidden" name="flag" value="excluir" />
