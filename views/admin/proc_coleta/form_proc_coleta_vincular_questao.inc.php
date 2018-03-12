@@ -3,7 +3,7 @@
 		<div class="modal-content">
 			<div class="modal-header fundo">
 				<button type="button" class="close" data-dismiss="modal">&times;</button>
-				<h4 class="modal-title">Vincular Questão</h4>
+				<h4 class="modal-title">Vinculações</h4>
 			</div>
 			<div class="modal-body">
 				<form name="form_proc_coleta_vincular_questao" id="form_proc_coleta_vincular_questao" action="controllers/admin/proc_coleta/proc_coleta_vincular_questao.php" method="POST">

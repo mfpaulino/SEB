@@ -3,7 +3,7 @@
 		<div class="modal-content">
 			<div class="modal-header fundo">
 				<button type="button" class="close" data-dismiss="modal">&times;</button>
-				<h4 class="modal-title">Vincular Questão</h4>
+				<h4 class="modal-title">Vinculações</h4>
 			</div>
 			<div class="modal-body">
 				<form name="form_poss_achado_vincular_questao" id="form_poss_achado_vincular_questao" action="controllers/admin/poss_achado/poss_achado_vincular_questao.php" method="POST">

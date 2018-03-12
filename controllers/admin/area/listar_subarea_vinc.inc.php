@@ -13,12 +13,11 @@ $lista_id_subarea = unserialize($row_area[0]);//coloco os ids em um array
 $sql = "SELECT id_subarea, subarea FROM adm_subareas ORDER BY subarea";
 $con_subarea = $mysqli->query($sql); //listo as subareas cadastradas no sistema
 ?>
-<a id="q_sub"></a>
 <table class="table">
 	<tr class="bg-primary">
-		<td width="6%"class="text-center"><!--<a href="#q_topo" title="Voltar ao topo"><i class="fa fa-arrow-circle-up"></i></a> <a href="#q_bottom" title="Ir para baixo"><i class="fa fa-arrow-circle-down"></i></a>--></td>
-		<td class="text-center">&nbsp;&nbsp;<label>Subáreas/Subprocessos</label></td>
-		<td width="6%"class="text-center"><!--<a href="#q_topo" title="Voltar ao topo"><i class="fa fa-arrow-circle-up"></i></a> <a href="#q_bottom" title="Ir para baixo"><i class="fa fa-arrow-circle-down"></i></a>--></td>
+		<td width="6%"class="text-center"></td>
+		<td class="text-center"><label>Subáreas/Subprocessos</label></td>
+		<td width="6%"class="text-center"></td>
 
 	</tr>
 </table>
