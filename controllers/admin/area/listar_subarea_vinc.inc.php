@@ -13,11 +13,16 @@ $lista_id_subarea = unserialize($row_area[0]);//coloco os ids em um array
 $sql = "SELECT id_subarea, subarea FROM adm_subareas ORDER BY subarea";
 $con_subarea = $mysqli->query($sql); //listo as subareas cadastradas no sistema
 ?>
-<table class="table table-striped table-hover">
-	<tr>
-		<td><label>Subáreas:</label></td>
-		<td width="15%"><label>Vinculação:</label></td>
+<a id="q_sub"></a>
+<table class="table">
+	<tr class="bg-primary">
+		<td width="6%"class="text-center"><!--<a href="#q_topo" title="Voltar ao topo"><i class="fa fa-arrow-circle-up"></i></a> <a href="#q_bottom" title="Ir para baixo"><i class="fa fa-arrow-circle-down"></i></a>--></td>
+		<td class="text-center">&nbsp;&nbsp;<label>Subáreas/Subprocessos</label></td>
+		<td width="6%"class="text-center"><!--<a href="#q_topo" title="Voltar ao topo"><i class="fa fa-arrow-circle-up"></i></a> <a href="#q_bottom" title="Ir para baixo"><i class="fa fa-arrow-circle-down"></i></a>--></td>
+
 	</tr>
+</table>
+<table class="table table-striped table-hover">
 <?php
 $i = 1;//apenas para criar um nr de ordem para a lista
 while($row_subarea = $con_subarea->fetch_assoc()){
@@ -29,8 +34,8 @@ while($row_subarea = $con_subarea->fetch_assoc()){
 	}
 	?>
 	<tr>
-		<td><?php echo "<b>".$i."-</b> ".$row_subarea['subarea'];?></td>
-		<td width="15%">
+		<td class="text-justify"><?php echo "<b>".$i."-</b> ".$row_subarea['subarea'];?></td>
+		<td width="10%" class="text-right">
 			<input name="<?php echo $i;?>" type="checkbox" value="<?php echo $row_subarea['id_subarea'];?>" <?php echo $checked;?> />
 		</td>
 	</tr>

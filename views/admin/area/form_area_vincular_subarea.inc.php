@@ -3,7 +3,7 @@
 		<div class="modal-content">
 			<div class="modal-header fundo">
 				<button type="button" class="close" data-dismiss="modal">&times;</button>
-				<h4 class="modal-title">Vincular Subárea/Subprocesso</h4>
+				<h4 class="modal-title">Vinculações</h4>
 			</div>
 			<div class="modal-body">
 				<form name="form_area_vincular_subarea" id="form_area_vincular_subarea" action="controllers/admin/area/area_vincular_subarea.php" method="POST">

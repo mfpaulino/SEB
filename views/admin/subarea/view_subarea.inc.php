@@ -22,7 +22,6 @@
 			<div class="col-sm-12">
 				<form class="form-horizontal" method="POST" action="controllers/admin/subarea/subarea_alterar.php">
 					<div class="box-body">
-						<label for="subarea" >Subárea/Subprocesso*</label>
 						<?php include_once('listas/admin/select_subarea_adm.inc.php');?>
 					</div>
 					<div class="box-footer pull-right">
