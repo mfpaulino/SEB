@@ -38,7 +38,7 @@ while($row_area = $con_area->fetch_assoc()){
 	?>
 	<tr>
 		<td class = "text-justify"><?php echo "<b>".$i."-</b> ".$row_area['area'];?></td>
-		<td class="text-right" width="13%">
+		<td width="10%" class="text-right">
 			<input name="<?php echo "s_area".$i;?>" type="checkbox" value="<?php echo $row_area['id_area'];?>" <?php echo $checked;?> />
 		</td>
 	</tr>
