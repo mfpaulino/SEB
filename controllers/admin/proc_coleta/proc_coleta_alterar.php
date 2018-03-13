@@ -18,7 +18,7 @@ if(isset($_POST['flag']) and isset($_SESSION['cpf'])){
 
 	if($acao == "alterar"){
 
-		$proc_coleta 			= isset($_POST['proc_coleta']) ? mysqli_real_escape_string($mysqli, $_POST['proc_coleta']) : "";
+		$proc_coleta 			= isset($_POST['proc_coleta']) ? $_POST['proc_coleta'] : "";
 
 		$proc_coleta_atual 	= $_POST['proc_coleta_atual'];//tipo hidden
 		$id_proc_coleta 		= $_POST['id_proc_coleta'];//tipo hidden

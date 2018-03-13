@@ -25,7 +25,7 @@ if (isset($_POST['flag']) and isset($_SESSION['cpf'])){
 	require_once(PATH . '/componentes/internos/php/validaForm.class.php');
 	require_once(PATH . '/componentes/internos/php/funcoes.inc.php');
 
-	$fonte_info	 = isset($_POST['fonte_info']) ? mysqli_real_escape_string($mysqli, $_POST['fonte_info']) : "";
+	$fonte_info	 = isset($_POST['fonte_info']) ? $_POST['fonte_info'] : "";
 
 	$validar = new validaForm();
 

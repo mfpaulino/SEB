@@ -18,7 +18,7 @@ if(isset($_POST['flag']) and isset($_SESSION['cpf'])){
 
 	if($acao == "alterar"){
 
-		$area 			= isset($_POST['area']) ? mysqli_real_escape_string($mysqli, $_POST['area']) : "";
+		$area 			= isset($_POST['area']) ? $mysqli, $_POST['area'] : "";
 
 		$area_atual 	= $_POST['area_atual'];//tipo hidden
 		$id_area 		= $_POST['id_area'];//tipo hidden

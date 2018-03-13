@@ -18,7 +18,7 @@ if(isset($_POST['flag']) and isset($_SESSION['cpf'])){
 
 	if($acao == "alterar"){
 
-		$subarea = isset($_POST['subarea']) ? mysqli_real_escape_string($mysqli, $_POST['subarea']) : "";
+		$subarea = isset($_POST['subarea']) ? $_POST['subarea'] : "";
 
 		$subarea_atual 	= $_POST['subarea_atual'];//tipo hidden
 		$id_subarea 	= $_POST['id_subarea'];//tipo hidden

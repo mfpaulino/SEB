@@ -18,7 +18,7 @@ if(isset($_POST['flag']) and isset($_SESSION['cpf'])){
 
 	if($acao == "alterar"){
 
-		$proc_ana 			= isset($_POST['proc_ana']) ? mysqli_real_escape_string($mysqli, $_POST['proc_ana']) : "";
+		$proc_ana 			= isset($_POST['proc_ana']) ? $_POST['proc_ana'] : "";
 
 		$proc_ana_atual 	= $_POST['proc_ana_atual'];//tipo hidden
 		$id_proc_ana 		= $_POST['id_proc_ana'];//tipo hidden

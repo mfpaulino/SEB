@@ -25,7 +25,7 @@ if (isset($_POST['flag']) and isset($_SESSION['cpf'])){
 	require_once(PATH . '/componentes/internos/php/validaForm.class.php');
 	require_once(PATH . '/componentes/internos/php/funcoes.inc.php');
 
-	$tipo_evento	 = isset($_POST['tipo_evento']) ? mysqli_real_escape_string($mysqli, $_POST['tipo_evento']) : "";
+	$tipo_evento	 = isset($_POST['tipo_evento']) ? $_POST['tipo_evento'] : "";
 
 	$validar = new validaForm();
 

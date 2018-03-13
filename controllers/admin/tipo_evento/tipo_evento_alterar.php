@@ -18,7 +18,7 @@ if(isset($_POST['flag']) and isset($_SESSION['cpf'])){
 
 	if($acao == "alterar"){
 
-		$tipo_evento 			= isset($_POST['tipo_evento']) ? mysqli_real_escape_string($mysqli, $_POST['tipo_evento']) : "";
+		$tipo_evento 			= isset($_POST['tipo_evento']) ? $_POST['tipo_evento'] : "";
 
 		$tipo_evento_atual 	= $_POST['tipo_evento_atual'];//tipo hidden
 		$id_tipo_evento 		= $_POST['id_tipo_evento'];//tipo hidden

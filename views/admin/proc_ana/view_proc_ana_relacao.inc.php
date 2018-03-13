@@ -22,7 +22,7 @@ if($qtde == 0){
 							$i = 1;
 							while($row = $con_lista->fetch_assoc()){?>
 								<tr>
-									<td class="text-justify"><?php echo "<b>".$i . " -</b> " . $row['proc_ana'];?></td>
+									<td class="text-justify"><?php echo "<b>".$i . " -</b> " . nl2br($row['proc_ana']);?></td>
 								</tr>
 								<?php
 							$i++;

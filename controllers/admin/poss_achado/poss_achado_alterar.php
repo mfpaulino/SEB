@@ -18,7 +18,7 @@ if(isset($_POST['flag']) and isset($_SESSION['cpf'])){
 
 	if($acao == "alterar"){
 
-		$poss_achado 			= isset($_POST['poss_achado']) ? mysqli_real_escape_string($mysqli, $_POST['poss_achado']) : "";
+		$poss_achado 			= isset($_POST['poss_achado']) ? $_POST['poss_achado'] : "";
 
 		$poss_achado_atual 	= $_POST['poss_achado_atual'];//tipo hidden
 		$id_poss_achado 		= $_POST['id_poss_achado'];//tipo hidden

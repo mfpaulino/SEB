@@ -25,7 +25,7 @@ if (isset($_POST['flag']) and isset($_SESSION['cpf'])){
 	require_once(PATH . '/componentes/internos/php/validaForm.class.php');
 	require_once(PATH . '/componentes/internos/php/funcoes.inc.php');
 
-	$poss_achado	 = isset($_POST['poss_achado']) ? mysqli_real_escape_string($mysqli, $_POST['poss_achado']) : "";
+	$poss_achado	 = isset($_POST['poss_achado']) ? $_POST['poss_achado'] : "";
 
 	$validar = new validaForm();
 
