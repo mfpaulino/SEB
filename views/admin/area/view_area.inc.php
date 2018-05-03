@@ -50,7 +50,7 @@
 							data-tooltip="tooltip" title=""
 							data-toggle="modal"
 							data-target="#modalAreaVincularSubarea">
-							<i class="fa fa-share-alt"></i> Vincular Subárea
+							<i class="fa fa-share-alt"></i> Vincular
 						</button>
 					</div>
 					<input type="hidden" name="flag" value="excluir" />

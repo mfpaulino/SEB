@@ -12,7 +12,7 @@ if($qtde == 0){
 		<div class="modal-content">
 			<div class="modal-header fundo">
 				<button type="button" class="close" data-dismiss="modal">&times;</button>
-				<h4 class="modal-title">Procedimentos de Coleta Cadastrados</h4>
+				<h4 class="modal-title">Procedimentos de Coleta de Dados Cadastrados</h4>
 			</div>
 			<div class="modal-body">
 				<div class="box">
@@ -22,7 +22,7 @@ if($qtde == 0){
 							$i = 1;
 							while($row = $con_lista->fetch_assoc()){?>
 								<tr>
-									<td><?php echo "<b>".$i . " -</b> " . $row['proc_coleta'];?></td>
+									<td class="text-justify"><?php echo "<b>".$i . " -</b> " . nl2br($row['proc_coleta']);?></td>
 								</tr>
 								<?php
 							$i++;

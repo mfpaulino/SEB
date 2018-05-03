@@ -3,15 +3,15 @@
 		<div class="modal-content">
 			<div class="modal-header fundo">
 				<button type="button" class="close" data-dismiss="modal">&times;</button>
-				<h4 class="modal-title">Vincular Informação Requerida</h4>
+				<h4 class="modal-title">Vinculações</h4>
 			</div>
 			<div class="modal-body">
 				<form name="form_fonte_info_vincular_info_req" id="form_fonte_info_vincular_info_req" action="controllers/admin/fonte_info/fonte_info_vincular_info_req.php" method="POST">
 					<div class="form-group">
 						<label for="fonte_info" class="control-label">Fonte de Informação:</label>
-						<textarea class="form-control" style="resize:vertical;" name="fonte_info" id="fonte_info"  type="text" disabled placeholder="" ></textarea>
+						<textarea class="form-control" name="fonte_info" id="fonte_info"  style="resize: vertical" rows="6" disabled ></textarea>
 					</div>
-					<div id="fonte_info_listar_info_req" class="form-group">
+					<div id="fonte_info_listar_info_req" class="form-group text-justify">
 					</div>
 					<div class="form-group">
 						<input type="hidden" name="id_fonte_info" id="id_fonte_info" />

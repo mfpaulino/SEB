@@ -43,6 +43,10 @@ if(isset($_GET['flag'])){//vem da tela de bloqueio
 		  header("Location:admin.php");
 		  break;
 
+		case md5("auditoria.php"):
+		  header("Location:auditoria.php");
+		  break;
+
 		case md5(PAGINA_INICIAL):
 		  header("Location:".PAGINA_INICIAL);
 		  break;
@@ -142,6 +146,7 @@ if(isset($_GET['flag'])){//vem da tela de bloqueio
 	<script src="componentes/externos/bootstrap/plugins/bootstrap-confirmation/bootstrap-confirmation.min.js"></script>
 	<script src="componentes/externos/bootstrap/plugins/bootstrap-select/dist/js/bootstrap-select.js"></script>
 	<script src="componentes/externos/bootstrap/plugins/bootstrap-fileinput/js/fileinput.js"></script>
+    <script src="componentes/externos/bootstrap/plugins/jquery-maskedinput/dist/jquery.maskedinput.js"></script>
 	<script src="componentes/externos/template/js/adminlte.min.js"></script>
 	<script src="componentes/internos/js/status_sessao.js"></script>
 	<script src="componentes/internos/js/status_menu_top.js"></script>

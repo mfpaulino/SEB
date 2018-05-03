@@ -13,13 +13,21 @@ $lista_id_proc_ana = unserialize($row_questao[0]);//coloco os ids em um array
 $sql = "SELECT id_proc_ana, proc_ana FROM adm_proc_analise ORDER BY proc_ana";
 $con_proc_ana = $mysqli->query($sql); //listo as proc_anas cadastradas no sistema
 ?>
-<table class="table table-striped table-hover">
-	<tr>
-		<td><label>Procedimentos de Análise de Dados:</label></td>
-		<td width="15%"><label>Vinculação:</label></td>
+<a id="q_pad"></a>
+<table class="table">
+	<tr class="bg-primary">
+		<td width="6%"class="text-center"><a href="#q_topo" title="Voltar ao topo"><i class="fa fa-arrow-circle-up"></i></a> <a href="#q_bottom" title="Ir para baixo"><i class="fa fa-arrow-circle-down"></i></a></td>
+		<td class="text-center">&nbsp;&nbsp;<label>Procedimentos de Análise de Dados</label></td>
+		<td width="6%"class="text-center"><a href="#q_topo" title="Voltar ao topo"><i class="fa fa-arrow-circle-up"></i></a> <a href="#q_bottom" title="Ir para baixo"><i class="fa fa-arrow-circle-down"></i></a></td>
+
 	</tr>
+</table>
+<div class="text-center">
+	| <a href="#q_sub">Subáreas/subprocessos</a> | <a href="#q_ir">Informações Requeridas</a> | <a href="#q_pcd">Procedimentos de Coleta de Dados</a> | <a href="#q_pa">Possíveis Achados</a> |<br /><br />
+</div>
+<table class="table table-striped table-hover">
 <?php
-$i = 1;//apenas para criar um nr de ordem para a lista
+$l = 1;//apenas para criar um nr de ordem para a lista
 while($row_proc_ana = $con_proc_ana->fetch_assoc()){
 	$checked="";
 	if($row_questao[0] <> ""){//para evitar que a função in_array seja executada para um array vazio
@@ -29,13 +37,13 @@ while($row_proc_ana = $con_proc_ana->fetch_assoc()){
 	}
 	?>
 	<tr>
-		<td><?php echo "<b>".$i."-</b> ".$row_proc_ana['proc_ana'];?></td>
-		<td width="15%">
-			<input name="<?php echo $i;?>" type="checkbox" value="<?php echo $row_proc_ana['id_proc_ana'];?>" <?php echo $checked;?> />
+		<td class="text-justify"><?php echo "<b>".$l."-</b> ".$row_proc_ana['proc_ana'];?></td>
+		<td width="10%" class="text-right">
+			<input name="<?php echo "proc_ana".$l;?>"  type="checkbox" value="<?php echo $row_proc_ana['id_proc_ana'];?>" <?php echo $checked;?> />
 		</td>
 	</tr>
 	<?php
-	$i++;
+	$l++;
 }
 ?>
 </table>
@@ -43,8 +51,8 @@ while($row_proc_ana = $con_proc_ana->fetch_assoc()){
 /***estiliza os checkbox***/
 $qtde = $con_proc_ana->num_rows;
 echo '<script>';
-for ($i = 1; $i <= $qtde; $i++){
-	echo '$("[name=\''.$i.'\']").bootstrapSwitch();';
+for ($l = 1; $l <= $qtde; $l++){
+	echo '$("[name=\'proc_ana'.$l.'\']").bootstrapSwitch();';
 }
 echo '
 </script>';

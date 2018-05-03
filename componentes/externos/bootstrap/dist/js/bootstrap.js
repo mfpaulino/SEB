@@ -975,7 +975,7 @@ if (typeof jQuery === 'undefined') {
     this.isShown = true
 
     this.checkScrollbar()
-    this.setScrollbar()
+    //this.setScrollbar() /*comentado por Paulino ao fechar o modal a janela estava diminuido na largura */
     this.$body.addClass('modal-open')
 
     this.escape()

@@ -7,11 +7,15 @@ $id_proc_ana = $_POST['id_proc_ana'];
 $sql = "SELECT id_questao, questao FROM adm_questoes ORDER BY questao";
 $con_questao = $mysqli->query($sql); //listo as questoes cadastradas no sistema
 ?>
-<table class="table table-striped table-hover">
-	<tr>
-		<td><label>Questões:</label></td>
-		<td width="15%"><label>Vinculação:</label></td>
+<table class="table">
+	<tr class="bg-primary">
+		<td width="6%"class="text-center"></td>
+		<td class="text-center"><label>Questões</label></td>
+		<td width="6%"class="text-center"></td>
+
 	</tr>
+</table>
+<table class="table table-striped table-hover">
 <?php
 $i = 1;//apenas para criar um nr de ordem para a lista
 while($row_questao = $con_questao->fetch_assoc()){
@@ -29,8 +33,8 @@ while($row_questao = $con_questao->fetch_assoc()){
 	}
 	?>
 	<tr>
-		<td><?php echo "<b>".$i."-</b> ".$row_questao['questao'];?></td>
-		<td width="15%">
+		<td class="text-justify"><?php echo "<b>".$i."-</b> ".$row_questao['questao'];?></td>
+		<td width="10%" class="text-right">
 			<input name="<?php echo $i;?>" type="checkbox" value="<?php echo $row_questao['id_questao'];?>" <?php echo $checked;?> />
 		</td>
 	</tr>

@@ -29,8 +29,8 @@ if ($inc == "sim"){?>
 					</span>
 				</a>
 				<ul class="treeview-menu">
-					<li class="<?php echo $active_plan_piv;?>"><a href="#"><i class="fa fa-caret-right"></i> PIV / PAAA</a></li>
-					<li class="<?php echo $active_plan_auditoria;?>"><a href="#"><i class="fa fa-caret-right"></i> Auditoria</a></li>
+					<li class="<?php echo $active_plan_piv;?>"><a href="#"><i class="fa fa-caret-right"></i> PAAA</a></li>
+					<li class="<?php echo $active_plan_auditoria;?>"><a href="auditoria.php"><i class="fa fa-caret-right"></i> Programa de Trabalho</a></li>
 				</ul>
 			</li>
 			<li class="treeview <?php echo $active_execucao;?>">

@@ -6,7 +6,7 @@ $sql = 	"SELECT id_subarea, subarea FROM adm_subareas ORDER BY subarea";
 $con_subarea = $mysqli->query($sql);
 ?>
 
-<select class="form-control selectpicker" data-size="10" name="subarea" id="subarea">
+<select class="form-control selectpicker" data-live-search="true" data-live-search-placeholder="Pesquisar..." data-size="10" name="subarea" id="subarea">
 	<option value="">Selecione a Subárea/Subprocesso...</option>
 	<?php
 	$i = 1;

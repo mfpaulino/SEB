@@ -22,7 +22,6 @@
 			<div class="col-sm-12">
 				<form class="form-horizontal" method="POST" action="controllers/admin/subarea/subarea_alterar.php">
 					<div class="box-body">
-						<label for="subarea" >Subárea/Subprocesso*</label>
 						<?php include_once('listas/admin/select_subarea_adm.inc.php');?>
 					</div>
 					<div class="box-footer pull-right">
@@ -46,19 +45,12 @@
 							data-content="">
 							<i class="fa fa-trash"></i> Excluir
 						</button>
-						<!--botao Vincular Area-->
-						<button id="btnSubareaVinculaArea" type="button" class="btn btn-xs btn-primary"
-							data-tooltip="tooltip" title="Vincular Área/Processo"
+						<!--botao Vincular-->
+						<button id="btnSubareaVincula" type="button" class="btn btn-xs btn-primary"
+							data-tooltip="tooltip" title="Vincular"
 							data-toggle="modal"
-							data-target="#modalSubareaVincularArea">
-							<i class="fa fa-share-alt"></i> Vinc Área/Proc
-						</button>
-						<!--botao Vincular Questao-->
-						<button id="btnSubareaVinculaQuestao" type="button" class="btn btn-xs btn-primary"
-							data-tooltip="tooltip" title="Vincular Questão"
-							data-toggle="modal"
-							data-target="#modalSubareaVincularQuestao">
-							<i class="fa fa-share-alt"></i> Vinc Questão
+							data-target="#modalSubareaVincular">
+							<i class="fa fa-share-alt"></i> Vincular
 						</button>
 					</div>
 					<input type="hidden" name="flag" value="excluir" />

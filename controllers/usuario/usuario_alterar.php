@@ -154,7 +154,7 @@ if(isset($_POST['flag']) and isset($_SESSION['cpf'])){
 		}
 		if ($ritex <> "" and $ritex <> $ritex_usuario){
 			$con_update = $mysqli->prepare("UPDATE usuarios SET ritex = ? WHERE cpf ='$cpf'");
-			$con_update->bind_param('i', $ritex);
+			$con_update->bind_param('s', $ritex);
 			$con_update->execute();
 
 			if($con_update->affected_rows <> 0 ){
@@ -164,7 +164,7 @@ if(isset($_POST['flag']) and isset($_SESSION['cpf'])){
 		}
 		if ($fixo <> "" and $fixo <> $fixo_usuario){
 			$con_update = $mysqli->prepare("UPDATE usuarios SET fixo = ? WHERE cpf ='$cpf'");
-			$con_update->bind_param('i', $fixo);
+			$con_update->bind_param('s', $fixo);
 			$con_update->execute();
 
 			if($con_update->affected_rows <> 0 ){
@@ -174,7 +174,7 @@ if(isset($_POST['flag']) and isset($_SESSION['cpf'])){
 		}
 		if ($celular <> "" and $celular <> $celular_usuario){
 			$con_update = $mysqli->prepare("UPDATE usuarios SET celular = ? WHERE cpf ='$cpf'");
-			$con_update->bind_param('i', $celular);
+			$con_update->bind_param('s', $celular);
 			$con_update->execute();
 
 			if($con_update->affected_rows <> 0 ){

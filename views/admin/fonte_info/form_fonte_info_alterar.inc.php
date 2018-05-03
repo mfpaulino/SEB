@@ -8,7 +8,7 @@
 				<form name="form_fonte_info_alterar" id="form_fonte_info_alterar" action="controllers/admin/fonte_info/fonte_info_alterar.php" method="POST">
 					<div class="form-group">
 						<label for="fonte_info" class="control-label">*Descrição:</label>
-						<input class="form-control" type="text" name="fonte_info"  id="fonte_info" autofocus  placeholder="" />
+						<textarea class="form-control" type="text" name="fonte_info"  id="fonte_info" style="resize: vertical" rows="6" autofocus ></textarea>
 					</div>
 					<div class="form-group">
 						<input type="hidden" name="fonte_info_atual"   id="fonte_info_atual" />

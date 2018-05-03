@@ -80,7 +80,7 @@
 							<div class="col-sm-4">
 								<div class="form-group">
 									<label for="celular">Celular (DDD + Nº)</label>
-									<input name="celular" id="celular" type="text" class="form-control" />
+									<input name="celular" id="celular" type="text" maxlength="15" class="form-control" />
 								</div>
 							</div>
 						</div>

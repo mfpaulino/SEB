@@ -25,7 +25,7 @@ if (isset($_POST['flag']) and isset($_SESSION['cpf'])){
 	require_once(PATH . '/componentes/internos/php/validaForm.class.php');
 	require_once(PATH . '/componentes/internos/php/funcoes.inc.php');
 
-	$tipo_evento	 = isset($_POST['tipo_evento']) ? mysqli_real_escape_string($mysqli, $_POST['tipo_evento']) : "";
+	$tipo_evento	 = isset($_POST['tipo_evento']) ? $_POST['tipo_evento'] : "";
 
 	$validar = new validaForm();
 
@@ -38,7 +38,7 @@ if (isset($_POST['flag']) and isset($_SESSION['cpf'])){
 
 		if($busca_tipo_evento->num_rows > 0){
 
-			$_SESSION['tipo_evento_duplicada'] = "ERRO 085: Tipo de Auditoria já cadastrado!";
+			$_SESSION['tipo_evento_duplicada'] = "ERRO 095: Tipo de Auditoria já cadastrado!";
 			$_SESSION['botao'] = "danger";
 
 			$validacao = false;
@@ -59,14 +59,14 @@ if (isset($_POST['flag']) and isset($_SESSION['cpf'])){
 			}
 			else{
 
-				$_SESSION['erro_cadastro_tipo_evento'] = "ERRO 086: cadastro não realizado, tente novamente!<br />Em caso de persistir o erro, entrar em contato com o suporte técnico.";
+				$_SESSION['erro_cadastro_tipo_evento'] = "ERRO 096: cadastro não realizado, tente novamente!<br />Em caso de persistir o erro, entrar em contato com o suporte técnico.";
 				$_SESSION['botao'] = "danger";
 			}
 
 		}
 	}
 	else {
-		$_SESSION['erro_validacao_cadastrar_tipo_evento'] = "ERRO 087: dados inconsistentes, preencha novamente o formulário!";
+		$_SESSION['erro_validacao_cadastrar_tipo_evento'] = "ERRO 097: dados inconsistentes, preencha novamente o formulário!";
 		$_SESSION['botao'] = "danger";
 
 		$_SESSION['lista_erro_validacao_cadastrar_tipo_evento'] = $validar->get_errors(); //Captura os erros de todos os campos

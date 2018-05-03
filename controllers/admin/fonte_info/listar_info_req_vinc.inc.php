@@ -7,11 +7,15 @@ $id_fonte_info = $_POST['id_fonte_info'];
 $sql = "SELECT id_info_req, info_req FROM adm_info_requeridas ORDER BY info_req";
 $con_info_req = $mysqli->query($sql); //listo as info_reqs cadastradas no sistema
 ?>
-<table class="table table-striped table-hover">
-	<tr>
-		<td><label>Áreas/Processos:</label></td>
-		<td width="15%"><label>Vinculação:</label></td>
+<table class="table">
+	<tr class="bg-primary">
+		<td width="6%"class="text-center"></td>
+		<td class="text-center"><label>Informações Requeridas</label></td>
+		<td width="6%"class="text-center"></td>
+
 	</tr>
+</table>
+<table class="table table-striped table-hover">
 <?php
 $i = 1;//apenas para criar um nr de ordem para a lista
 while($row_info_req = $con_info_req->fetch_assoc()){
@@ -29,8 +33,8 @@ while($row_info_req = $con_info_req->fetch_assoc()){
 	}
 	?>
 	<tr>
-		<td><?php echo "<b>".$i."-</b> ".$row_info_req['info_req'];?></td>
-		<td width="15%">
+		<td class="text-justify"><?php echo "<b>".$i."-</b> ".$row_info_req['info_req'];?></td>
+		<td width="10%" class="text-right">
 			<input name="<?php echo $i;?>" type="checkbox" value="<?php echo $row_info_req['id_info_req'];?>" <?php echo $checked;?> />
 		</td>
 	</tr>

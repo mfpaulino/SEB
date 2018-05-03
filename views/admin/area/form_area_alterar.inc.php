@@ -8,7 +8,7 @@
 				<form name="form_area_alterar" id="form_area_alterar" action="controllers/admin/area/area_alterar.php" method="POST">
 					<div class="form-group">
 						<label for="area" class="control-label">*Descrição:</label>
-						<input class="form-control" type="text" name="area"  id="area" autofocus  placeholder="" />
+						<textarea class="form-control" type="text" name="area"  id="area" style="resize: vertical" rows="6" autofocus ></textarea>
 					</div>
 					<div class="form-group">
 						<input type="hidden" name="area_atual"   id="area_atual" />

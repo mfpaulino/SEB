@@ -25,7 +25,7 @@ if (isset($_POST['flag']) and isset($_SESSION['cpf'])){
 	require_once(PATH . '/componentes/internos/php/validaForm.class.php');
 	require_once(PATH . '/componentes/internos/php/funcoes.inc.php');
 
-	$proc_ana	 = isset($_POST['proc_ana']) ? mysqli_real_escape_string($mysqli, $_POST['proc_ana']) : "";
+	$proc_ana	 = isset($_POST['proc_ana']) ? $_POST['proc_ana'] : "";
 
 	$validar = new validaForm();
 

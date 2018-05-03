@@ -23,7 +23,7 @@ if($qtde == 0){
 							$i = 1;
 							while($row = $con_avisos->fetch_assoc()){?>
 								<tr>
-									<td><?php echo "<b>".$i . " - " . $row['titulo']. "</b><br />". $row['texto'];?>  </td>
+									<td class="text-justify"><?php echo "<b>".$i . " - " . $row['titulo']. "</b><br />". $row['texto'];?>  </td>
 								</tr>
 								<?php
 							$i++;

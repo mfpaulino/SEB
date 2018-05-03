@@ -8,7 +8,7 @@
 				<form name="form_fonte_info_cadastrar" id="form_fonte_info_cadastrar" action="controllers/admin/fonte_info/fonte_info_cadastrar.php" method="POST">
 					<div class="form-group">
 						<label for="fonte_info" class="control-label">*Fonte de Informação:</label>
-						<input class="form-control" type="text" name="fonte_info"  id="fonte_info"  autofocus  placeholder="" />
+						<textarea class="form-control" type="text" name="fonte_info"  id="fonte_info" style="resize: vertical" rows="6" autofocus ></textarea>
 					</div>
 					<div class="form-group">
 						<!--Hidden input -->

@@ -6,21 +6,21 @@
 				<h4 class="modal-title" id="modalAlterarHabilitacaoLabel">Editar Habilitação</h4>
 			</div>
 			<div class="modal-body">
-				<form name="form_habilitacao_alterar" id="form_habilitacao_alterar" method="POST" action="controllers/usuario/habilitacao_alterar.php" enctype="multipart/form-data">
+				<form name="form_habilitacao" id="form_habilitacao_alterar" method="POST" action="controllers/usuario/habilitacao_alterar.php" enctype="multipart/form-data">
 					<div class="col-sm-12">
 						<div class="row">
 							<!-- Select input-->
 							<div class="col-sm-6">
 								<div class="form-group">
 									<label for="area">Área/Processo*</label>
-									<?php $selectpicker="";include('listas/admin/select_area.inc.php');?>
+									<?php $selectpicker="selectpicker";include('listas/admin/select_area.inc.php');?>
 								</div>
 							</div>
 							<!-- input radio-->
 							<div class="col-sm-6">
 								<div class="form-group">
 									<label for="tipo">Tipo de Habilitação*</label>
-                                    <select class="form-control" name="tipo" id="tipo" required  />
+                                    <select class="form-control selectpicker" name="tipo" id="tipo" required  />
 										<option value="">Selecione o tipo de habilitação...</option>
 										<option value="Capacitação">Capacitação</option>
 										<option value="Experiência profissional">Experiência profissional</option>

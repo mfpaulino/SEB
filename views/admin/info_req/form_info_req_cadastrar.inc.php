@@ -8,7 +8,7 @@
 				<form name="form_info_req_cadastrar" id="form_info_req_cadastrar" action="controllers/admin/info_req/info_req_cadastrar.php" method="POST">
 					<div class="form-group">
 						<label for="info_req" class="control-label">*Informação Requerida:</label>
-						<input class="form-control" type="text" name="info_req"  id="info_req"  autofocus  placeholder="" />
+						<textarea class="form-control" type="text" name="info_req"  id="info_req" style="resize: vertical" rows="6" autofocus ></textarea>
 					</div>
 					<div class="form-group">
 						<!--Hidden input -->

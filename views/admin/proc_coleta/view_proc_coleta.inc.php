@@ -6,7 +6,7 @@
 			<div class="btn-group">
 				<button type="button" title="Exibir Menu" class="btn bg-teal-gradient btn-sm dropdown-toggle" data-toggle="dropdown"><i class="fa fa-caret-down fa-lg"></i></button>
 				<ul class="dropdown-menu pull-right" role="menu">
-					<li><a href="#" data-toggle="modal" data-target="#modalCadastrarProcColeta">Cadastrar Procedimento de Coleta</a></li>
+					<li><a href="#" data-toggle="modal" data-target="#modalCadastrarProcColeta">Cadastrar Procedimento de Coleta de Dados</a></li>
 					<li class="divider"></li>
 					<li><a href="#" data-toggle="modal" data-target="#modalExibirProcColeta">Listar/Imprimir</a></li>
 				</ul>
@@ -50,7 +50,7 @@
 							data-tooltip="tooltip" title="Vincular Questão"
 							data-toggle="modal"
 							data-target="#modalProcColetaVincularQuestao">
-							<i class="fa fa-share-alt"></i> Vincular Questão
+							<i class="fa fa-share-alt"></i> Vincular
 						</button>
 					</div>
 					<input type="hidden" name="flag" value="excluir" />

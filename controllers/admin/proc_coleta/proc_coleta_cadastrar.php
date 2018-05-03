@@ -25,7 +25,7 @@ if (isset($_POST['flag']) and isset($_SESSION['cpf'])){
 	require_once(PATH . '/componentes/internos/php/validaForm.class.php');
 	require_once(PATH . '/componentes/internos/php/funcoes.inc.php');
 
-	$proc_coleta	 = isset($_POST['proc_coleta']) ? mysqli_real_escape_string($mysqli, $_POST['proc_coleta']) : "";
+	$proc_coleta	 = isset($_POST['proc_coleta']) ? $_POST['proc_coleta'] : "";
 
 	$validar = new validaForm();
 

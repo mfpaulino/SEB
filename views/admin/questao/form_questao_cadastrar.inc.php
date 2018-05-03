@@ -8,7 +8,7 @@
 				<form name="form_questao_cadastrar" id="form_questao_cadastrar" action="controllers/admin/questao/questao_cadastrar.php" method="POST">
 					<div class="form-group">
 						<label for="questao" class="control-label">*Questão:</label>
-						<input class="form-control" type="text" name="questao"  id="questao"  autofocus  placeholder="" />
+						<textarea class="form-control" type="text" name="questao"  id="questao"  style="resize: vertical" rows="6" autofocus ></textarea>
 					</div>
 					<div class="form-group">
 						<!--Hidden input -->

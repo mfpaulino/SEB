@@ -7,11 +7,19 @@ $id_questao = $_POST['id_questao'];
 $sql = "SELECT id_subarea, subarea FROM adm_subareas ORDER BY subarea";
 $con_subarea = $mysqli->query($sql); //listo as subareas cadastradas no sistema
 ?>
-<table class="table table-striped table-hover">
-	<tr>
-		<td><label>Subáreas/Subprocessos:</label></td>
-		<td width="15%"><label>Vinculação:</label></td>
+<a id="q_sub"></a>
+<table class="table">
+	<tr class="bg-primary">
+		<td width="6%"class="text-center"><a href="#q_topo" title="Voltar ao topo"><i class="fa fa-arrow-circle-up"></i></a> <a href="#q_bottom" title="Ir para baixo"><i class="fa fa-arrow-circle-down"></i></a></td>
+		<td class="text-center">&nbsp;&nbsp;<label>Subáreas/Subprocessos</label></td>
+		<td width="6%"class="text-center"><a href="#q_topo" title="Voltar ao topo"><i class="fa fa-arrow-circle-up"></i></a> <a href="#q_bottom" title="Ir para baixo"><i class="fa fa-arrow-circle-down"></i></a></td>
+
 	</tr>
+</table>
+<div class="text-center">
+	| <a href="#q_ir">Informações Requeridas</a> | <a href="#q_pcd">Procedimentos de Coleta de Dados</a> | <a href="#q_pad">Procedimentos de Análise de Dados</a> | <a href="#q_pa">Possíveis Achados</a> |<br /><br />
+</div>
+<table class="table table-striped table-hover">
 <?php
 $i = 1;//apenas para criar um nr de ordem para a lista
 while($row_subarea = $con_subarea->fetch_assoc()){
@@ -29,9 +37,9 @@ while($row_subarea = $con_subarea->fetch_assoc()){
 	}
 	?>
 	<tr>
-		<td><?php echo "<b>".$i."-</b> ".$row_subarea['subarea'];?></td>
-		<td width="15%">
-			<input name="<?php echo $i;?>" type="checkbox" value="<?php echo $row_subarea['id_subarea'];?>" <?php echo $checked;?> />
+		<td class="text-justify"><?php echo "<b>".$i."-</b> ".$row_subarea['subarea'];?></td>
+		<td width="10%" class="text-right">
+			<input name="<?php echo "subarea".$i;?>" type="checkbox" value="<?php echo $row_subarea['id_subarea'];?>" <?php echo $checked;?> />
 		</td>
 	</tr>
 	<?php
@@ -44,7 +52,8 @@ while($row_subarea = $con_subarea->fetch_assoc()){
 $qtde = $con_subarea->num_rows;
 echo '<script>';
 for ($i = 1; $i <= $qtde; $i++){
-	echo '$("[name=\''.$i.'\']").bootstrapSwitch();';
+	//echo '$("#'.$i.'").bootstrapSwitch();';
+	echo '$("[name=\'subarea'.$i.'\']").bootstrapSwitch();';
 }
 echo '
 </script>';

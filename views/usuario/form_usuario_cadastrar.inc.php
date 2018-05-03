@@ -128,7 +128,7 @@
 							<div class="col-sm-4">
 								<div class="form-group">
 									<label for="celular">Celular (DDD + Nº):</label>
-									<input id="celular" name="celular" placeholder="somente dígitos" class="form-control input-md" type="text">
+									<input id="celular" name="celular" maxlength="15" placeholder="somente dígitos" class="form-control input-md" type="text">
 								</div>
 							</div>
 						</div>

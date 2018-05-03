@@ -2,13 +2,13 @@
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header fundo">
-				<h4 class="modal-title">Cadastrar Procedimento de Coleta</h4>
+				<h4 class="modal-title">Cadastrar Procedimento de Coleta de Dados</h4>
 			</div>
 			<div class="modal-body">
 				<form name="form_proc_coleta_cadastrar" id="form_proc_coleta_cadastrar" action="controllers/admin/proc_coleta/proc_coleta_cadastrar.php" method="POST">
 					<div class="form-group">
 						<label for="proc_coleta" class="control-label">*Procedimento de Coleta de Dados:</label>
-						<input class="form-control" type="text" name="proc_coleta"  id="proc_coleta"  autofocus  placeholder="" />
+						<textarea class="form-control" type="text" name="proc_coleta"  id="proc_coleta"  style="resize: vertical" rows="6" autofocus ></textarea>
 					</div>
 					<div class="form-group">
 						<!--Hidden input -->

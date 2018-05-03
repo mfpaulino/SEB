@@ -5,7 +5,7 @@ include_once ('componentes/internos/php/conexao.inc.php');
 $sql = "SELECT id_fonte_info, fonte_info FROM adm_fontes_informacao ORDER BY fonte_info";
 $con_fonte_info = $mysqli->query($sql);
 ?>
-<select class="form-control selectpicker" data-size="10" name="fonte_info" id="fonte_info">
+<select class="form-control selectpicker" data-live-search="true" data-live-search-placeholder="Pesquisar..." data-size="10" name="fonte_info" id="fonte_info">
 	<option value = "">Selecione a Fonte de Informação...</option>
 	<?php
 	$i = 1;

@@ -6,7 +6,7 @@
 				<h4 class="modal-title" id="modalHabilitacaoLabel">Cadastrar Habilitações</h4>
 			</div>
 			<div class="modal-body">
-				<form name="form_habilitacao_cadastrar" id="form_habilitacao_cadastrar" method="POST" action="controllers/usuario/habilitacao_cadastrar.php" enctype="multipart/form-data">
+				<form name="form_habilitacao" id="form_habilitacao_cadastrar" method="POST" action="controllers/usuario/habilitacao_cadastrar.php" enctype="multipart/form-data">
 					<div class="col-sm-12">
 						<div class="row">
 							<!-- Select input-->
