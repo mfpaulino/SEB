@@ -94,7 +94,7 @@ if(isset($_POST['flag']) and isset($_SESSION['cpf'])){
 
 				$con_ano_conclusao = $mysqli->prepare("UPDATE usuarios_habilitacao SET ano_conclusao = ? WHERE id_habilitacao ='$id_habilitacao'");
 				$con_ano_conclusao->bind_param('s', $ano_conclusao);
-				$ano_conclusao = $con_ano_conclusao->execute();
+				$resultado = $con_ano_conclusao->execute();
 			}
 
 			if($resultado){

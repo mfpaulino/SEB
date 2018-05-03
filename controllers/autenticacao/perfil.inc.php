@@ -185,7 +185,7 @@ if($con_codom){
 	}
 	$lista_codom = substr($lista_codom, 0, -1);//elimina a ultima ",".
 }
-/**************************** criterio para selecioar apenas os codom que o usuario tem permissao de enxergar **************/
+/**************************** criterio para selecionar apenas os codom que o usuario tem permissao de enxergar (para listar usuarios) **************/
 if($id_perfil_om == 3){//Unidade
 	$condicao_codom = "AND codom = $codom_usuario";
 }

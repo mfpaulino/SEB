@@ -63,7 +63,7 @@ else{
 						<input type="hidden" name="flag" value="<?php echo $pagina_lock;?>"/>
 						<input type="hidden" name="flag1" value="lock" />
 						<div class="input-group-btn">
-							<button type="submit" class="btn"><i class="fa fa-arrow-right text-muted"></i></button>
+							<button type="submit" class="btn"><i class="fa fa-unlock text-muted"></i></button>
 						</div>
 					</div>
 				</form>
@@ -73,7 +73,7 @@ else{
 			</div>
 			<div class="text-center">
 				<?php $flag = md5("logout");?>
-				<a href="controllers/autenticacao/logout.php?flag=<?php echo $flag;?>">Ou faça login com outro usuário</a>
+				<a href="controllers/autenticacao/logout.php?flag=<?php echo $flag;?>">Fazer login com outro usuário</a>
 			</div>
 			<div class="lockscreen-footer text-center">
 				Copyright &copy; 2018 <b><a href="https://adminlte.io" class="text-black">CCIEx</a></b>

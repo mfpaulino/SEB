@@ -22,7 +22,7 @@
 			<div class="col-sm-12">
 				<form class="form-horizontal" method="POST" action="controllers/admin/tipo_evento/tipo_evento_alterar.php">
 					<div class="box-body">
-						<?php include('listas/admin/select_tipo_evento.inc.php');?>
+						<?php $selectpicker = "selectpicker"; include('listas/admin/select_tipo_evento.inc.php');?>
 					</div>
 					<div class="box-footer pull-right">
 						<!--botao Alterar tipo_evento-->

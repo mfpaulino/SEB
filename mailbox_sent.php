@@ -366,6 +366,7 @@ $proximo = $pag +1;
 	<script src="componentes/externos/bootstrap/plugins/bootstrap-confirmation/bootstrap-confirmation.min.js"></script>
 	<script src="componentes/externos/bootstrap/plugins/bootstrap-fileinput/js/fileinput.js"></script>
 	<script src="componentes/externos/bootstrap/plugins/bootstrap-select/dist/js/bootstrap-select.js"></script>
+    <script src="componentes/externos/bootstrap/plugins/jquery-maskedinput/dist/jquery.maskedinput.js"></script>
 	<script src="componentes/externos/bootstrap/plugins/iCheck/icheck.min.js"></script>
 	<script src="componentes/externos/template/js/adminlte.min.js"></script>
 	<script src="componentes/internos/js/senha_alterar.js"></script>

@@ -85,6 +85,18 @@
 .modal.modal-wide .modal-dialog {
   width: 65%;
 }
+.modal.modal-wide.mini .modal-dialog{
+  width: 25%;
+}
+.modal.modal-wide.peq .modal-dialog{
+  width: 45%;
+}
+.modal.modal-wide.med .modal-dialog {
+  width: 65%;
+}
+.modal.modal-wide.grd .modal-dialog{
+  width: 85%;
+}
 .modal-wide .modal-body {
   overflow-y: auto;
 }
@@ -108,3 +120,7 @@ content: "\f068";
 content: "\f067";
 }
 /** fim icones collapsed
+
+/* crud */
+.none{display: none;}
+/* fim crud */

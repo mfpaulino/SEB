@@ -48,6 +48,7 @@ include_once(PATH . '/controllers/menu/menu_top_msg.inc.php');
 		<!-- alertas do sistema -->
 		<li class="dropdown notifications-menu">
 			<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-warning" title="Alertas"></i><span class="label label-warning"><?php echo $tot_alertas;?></span></a>
+			<?php if($tot_alertas > 0){?>
 			<ul class="dropdown-menu">
 				<li class="header"><b>Alertas do Sistema</b></li>
 				<li>
@@ -61,6 +62,7 @@ include_once(PATH . '/controllers/menu/menu_top_msg.inc.php');
 				</li>
 				<li class="footer"><a href="user.php">Ver todos os alertas</a></li>
 			</ul>
+			<?php } ?>
 		</li>
 		<!-- avisos administrativos -->
 		<li class="dropdown notifications-menu">

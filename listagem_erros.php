@@ -278,6 +278,30 @@
 	<tr>
 		<td>092</td><td>user_alterar.php</td>
 	</tr>
+	<tr>
+		<td>093</td><td>tipo_evento_alterar.php</td>
+	</tr>
+	<tr>
+		<td>094</td><td>tipo_evento_alterar.php</td>
+	</tr>
+	<tr>
+		<td>095</td><td>tipo_evento_cadastrar.php</td>
+	</tr>
+	<tr>
+		<td>096</td><td>tipo_evento_cadastrar.php</td>
+	</tr>
+	<tr>
+		<td>097</td><td>tipo_evento_cadastrar.php</td>
+	</tr>
+	<tr>
+		<td>098</td><td>auditoria_acao.php</td>
+	</tr>
+	<tr>
+		<td>099</td><td>auditoria_acao.php</td>
+	</tr>
+	<tr>
+		<td>100</td><td>auditoria_acao.php</td>
+	</tr>
 </table>
 
 

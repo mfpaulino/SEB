@@ -1,4 +1,5 @@
 $(document).ready(function() {
+	//validacao
 	$('#form_usuario_cadastrar').bootstrapValidator({
 		feedbackIcons: {
 			valid: 'glyphicon glyphicon-ok',
@@ -44,6 +45,10 @@ $(document).ready(function() {
 				validators: {
 					notEmpty: {
 						message: 'Preenchimento obrigatório'
+					},
+					regexp: {
+						regexp: /^[0-9]+$/,
+						message: 'somente dígitos'
 					}
 				}
 			},
@@ -114,12 +119,12 @@ $(document).ready(function() {
 			ritex: {
 				validators: {
 					regexp: {
-						regexp: /^[0-9]+$/,
+						regexp: /^[0-9-]+$/,
 						message: 'somente dígitos'
 					},
 					stringLength: {
-						min: 7,
-						max: 7,
+						min: 8,
+						max: 8,
 						message: 'RITEx inválido'
 					}
 				}
@@ -127,12 +132,12 @@ $(document).ready(function() {
 			fixo: {
 				validators: {
 					regexp: {
-						regexp: /^[0-9]+$/,
+						regexp: /^[0-9-()\s]+$/,
 						message: 'somente dígitos'
 					},
 					stringLength: {
-						min: 10,
-						max: 10,
+						min: 14,
+						max: 14,
 						message: 'Telefone inválido (DDD + Nº)'
 					}
 				}
@@ -140,16 +145,49 @@ $(document).ready(function() {
 			celular: {
 				validators: {
 					regexp: {
-						regexp: /^[0-9]+$/,
+						regexp: /^[0-9()-\s]+$/,
 						message: 'somente dígitos'
 					},
 					stringLength: {
-						min: 10,
-						max: 11,
+						min: 14,
+						max: 15,
 						message: 'Celular inválido (DDD + Nº)'
 					}
 				}
 			}
 		}
 	})
+	//fim validacao
+	//mascaras
+	$("#ritex").mask("999-9999");
+	
+	$("#fixo").mask("(99) 9999-9999");
+	
+	$('#celular').focusout(function(){
+		var phone, element;
+		element = $(this);
+		element.unmask();
+		phone = element.val().replace(/\D/g, '');
+		if(phone.length > 10) {
+			element.mask("(99) 99999-999?9");
+		} else {
+			element.mask("(99) 9999-9999?9");
+		}
+	}).trigger('mouseout');
+	//fim mascaras	
+	
+	// revalidando apos sair do input - necessario, pois usa outro plugin jquery (maskedinput)
+	$('#ritex').on('mouseout', function(e) {
+	   $('#form_usuario_cadastrar').bootstrapValidator('revalidateField', 'ritex');
+	});	
+	
+	// revalidando apos sair do input - necessario, pois usa outro plugin jquery (maskedinput)
+	$('#fixo').on('mouseout', function(e) {
+	   $('#form_usuario_cadastrar').bootstrapValidator('revalidateField', 'fixo');
+	});
+	
+	// revalidando apos sair do input - necessario, pois usa outro plugin jquery (maskedinput)
+	$('#celular').on('mouseout', function(e) {
+	   $('#form_usuario_cadastrar').bootstrapValidator('revalidateField', 'celular');
+	});	
 });
