@@ -16,7 +16,8 @@ if ($mysqli->connect_errno) {
 // setando  utf8
 mysqli_set_charset($mysqli,"utf8");
 
-//conexao para a tabela de OM no servidor do SISADE
+/*
+//conexao para a tabela de OM em servidor separado
 $servidor1 = "localhost";
 $bd1 = "cciex_sistemas";
 
@@ -29,4 +30,5 @@ if ($mysqli1->connect_errno) {
 
 // setando  utf8
 mysqli_set_charset($mysqli1,"utf8");
+*/
 ?>

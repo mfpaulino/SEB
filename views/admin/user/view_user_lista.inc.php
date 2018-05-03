@@ -39,7 +39,8 @@ $con_usuarios = $mysqli->query($sql);
 					$user_codom =  $rows['codom'];
 
 					$sql = "select sigla, denominacao from cciex_om where codom = $user_codom";
-					$con_om = $mysqli1->query($sql);
+					$con_om = $mysqli->query($sql);
+					//$con_om = $mysqli1->query($sql);
 					$row_om = $con_om->fetch_assoc();
 
 					/** verifica se o usuário está habilitado ou desabilitado **/
@@ -63,7 +64,8 @@ $con_usuarios = $mysqli->query($sql);
 
 					$codom_habilita = $row_habilita['codom'];
 					$sql = "SELECT sigla FROM cciex_om WHERE codom = '$codom_habilita'";
-					$con_habilita_om = $mysqli1->query($sql);
+					$con_habilita_om = $mysqli->query($sql);
+					//$con_habilita_om = $mysqli1->query($sql);
 					$row_habilita_om = $con_habilita_om->fetch_assoc();
 
 					$user_habilita_usuario = $row_habilita['posto'] . ' ' . $row_habilita['nome_guerra'] . ' ('.$row_habilita_om['sigla'].')';

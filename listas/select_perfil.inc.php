@@ -9,7 +9,8 @@ if(isset($_POST['codom'])){
 	$codom = $_POST['codom'];
 
 	$sql_unidade = "select sigla from cciex_om WHERE codom = '$codom'";
-	$con_unidade = $mysqli1->query($sql_unidade);
+	$con_unidade = $mysqli->query($sql_unidade);
+	//$con_unidade = $mysqli1->query($sql_unidade);
 
 	$row_unidade = $con_unidade->fetch_assoc();
 	$unidade = substr($row_unidade['sigla'], -5);//pega os 5 ultimos caracteres da sigla

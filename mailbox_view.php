@@ -36,7 +36,8 @@ if(isset($_GET['flag'])){
 		$row_msg = $con_msg->fetch_assoc();
 
 		$sql_sigla = "SELECT sigla FROM cciex_om WHERE codom = $row_msg[codom]";
-		$con_sigla = $mysqli1->query($sql_sigla);
+		$con_sigla = $mysqli->query($sql_sigla);
+		//$con_sigla = $mysqli1->query($sql_sigla);
 		$row_sigla = $con_sigla->fetch_assoc();
 	}
 	else{//cx enviados

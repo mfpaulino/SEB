@@ -137,7 +137,8 @@ if(isset($_POST['cpf_destinatario'])){
 												<?php
 												while($row = $con_destinatario->fetch_assoc()){
 													$sql_sigla = "select sigla from cciex_om where codom = '$row[codom]' limit 1";
-													$con_sigla = $mysqli1->query($sql_sigla);
+													$con_sigla = $mysqli->query($sql_sigla);
+													//$con_sigla = $mysqli1->query($sql_sigla);
 													$row_sigla = $con_sigla->fetch_assoc();?>
 													<option value="<?php echo $row['id_usuario'];?>"><?php echo $row['posto'] . " " . $row['nome_guerra'] . " - " . $row_sigla['sigla'];?></option>
 												<?php

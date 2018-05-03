@@ -36,7 +36,8 @@ $con_usuarios = $mysqli->query($sql);
 					$user_codom =  $rows['codom'];
 
 					$sql = "select sigla, denominacao from cciex_om where codom = $user_codom";
-					$con_om = $mysqli1->query($sql);
+					$con_om = $mysqli->query($sql);
+					//$con_om = $mysqli1->query($sql);
 					$row_om = $con_om->fetch_assoc();
 
 					/*** verifica se o perfil atual do usuario é válido para sua unidade atual(ele pode ter trocado de unidade)***/

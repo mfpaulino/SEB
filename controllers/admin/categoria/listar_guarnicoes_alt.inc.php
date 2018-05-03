@@ -34,7 +34,8 @@ for ($i = 0;$i < $qtde_1; $i++){
 	$localidades = $localidades . $arr_localidades_1[$i] . '\',\''; //cria a string para o criterio da consulta ('guarnicao1', 'guarnicao2',...)
 }
 $sql = "SELECT distinct guarnicao FROM cciex_om WHERE op_ativa = 'sim' and  guarnicao not in ('$localidades') ORDER BY guarnicao";
-$con_guarnicao_dsp = $mysqli1->query($sql);
+$con_guarnicao_dsp = $mysqli->query($sql);
+//$con_guarnicao_dsp = $mysqli1->query($sql);
 ?>
 <select name="localidade[]" id="localidade" class="form-control" multiple="multiple">
 	<optgroup label="Guarnições Selecionadas">

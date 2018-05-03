@@ -227,7 +227,8 @@ $proximo = $pag +1;
 											$row_destinatario = $con_destinatario->fetch_assoc();
 
 											$sql_sigla = "SELECT sigla FROM cciex_om WHERE codom = '$row_destinatario[codom]' limit 1";
-											$con_sigla = $mysqli1->query($sql_sigla);
+											$con_sigla = $mysqli->query($sql_sigla);
+											//$con_sigla = $mysqli1->query($sql_sigla);
 											$row_sigla = $con_sigla->fetch_assoc();
 
 											$destinatario = $destinatario . "[".$row_destinatario['posto']." ". $row_destinatario['nome_guerra']." - ".$row_sigla['sigla']."] ";
@@ -240,7 +241,8 @@ $proximo = $pag +1;
 											$qtde_lidos = $qtde_lidos + $con_lidos->num_rows;
 
 											$sql_sigla_lidos = "SELECT sigla FROM cciex_om WHERE codom = '$row_lidos[codom]' limit 1";
-											$con_sigla_lidos = $mysqli1->query($sql_sigla_lidos);
+											$con_sigla_lidos = $mysqli->query($sql_sigla_lidos);
+											//$con_sigla_lidos = $mysqli1->query($sql_sigla_lidos);
 											$row_sigla_lidos = $con_sigla_lidos->fetch_assoc();
 
 											if($qtde_lidos == 0){

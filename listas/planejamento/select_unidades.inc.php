@@ -12,7 +12,8 @@ else {
 }
 
 $sql = "SELECT codom, sigla  FROM cciex_om WHERE op_ativa = 'sim' $criterio_codom ORDER BY sigla";
-$con = $mysqli1->query($sql);
+$con = $mysqli->query($sql);
+//$con = $mysqli1->query($sql);
 ?>
 <select name="unidade[]" id="unidade" multiple class="form-control <?php echo $selectpicker;?>" title="Selecione..." data-live-search="true" data-live-search-placeholder="Pesquisar..."  <?php echo $required;?> >
 	<?php

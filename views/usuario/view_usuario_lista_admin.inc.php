@@ -10,7 +10,8 @@ if ($inc == "sim"){?>
 				while($row_admin = $con_admin->fetch_assoc()){
 					$codom = $row_admin['codom'];
 					$sql = "select sigla from cciex_om where codom = {$codom}";
-					$con = $mysqli1->query($sql);
+					$con = $mysqli->query($sql);
+					//$con = $mysqli1->query($sql);
 					$row_om = $con->fetch_assoc();
 					echo '- ' . $row_admin['posto'].' '.$row_admin['nome_guerra'].' ('.$row_om['sigla'].')<br />';
 				}

@@ -187,7 +187,8 @@ if(isset($_POST['flag']) and isset($_SESSION['cpf'])){
 			/********* perfil da OM do usuario (CCIEx, ICFEx, Unidade) ****/
 
 			$sql = "select sigla from cciex_om where codom = '$codom'";
-			$con_om = $mysqli1->query($sql);
+			$con_om = $mysqli->query($sql);
+			//$con_om = $mysqli1->query($sql);
 			$row = $con_om->fetch_assoc();
 
 			if(strpos($row['sigla'],'CCIEx') !== FALSE){
@@ -206,9 +207,11 @@ if(isset($_POST['flag']) and isset($_SESSION['cpf'])){
 			$con_update->execute();
 
 			if($con_update->affected_rows <> 0 ){
-				$con_unidade = $mysqli1->query("SELECT denominacao FROM cciex_om  WHERE codom = '$codom'");
+				$con_unidade = $mysqli->query("SELECT denominacao FROM cciex_om  WHERE codom = '$codom'");
+				//$con_unidade = $mysqli1->query("SELECT denominacao FROM cciex_om  WHERE codom = '$codom'");
 				$row_unidade = $con_unidade->fetch_assoc();
-				$mysqli1->close();
+				$mysqli->close();
+				//$mysqli1->close();
 
 				$_SESSION['alterar_codom'] = "Alteração da Unidade realizada com sucesso!<br /><br />Nova Unidade: ".$row_unidade['denominacao'];
 				$altera = "sim";

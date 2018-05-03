@@ -38,7 +38,8 @@ $row_habilita = $con_habilita->fetch_assoc();
 
 $codom_habilita = $row_habilita['codom'];
 $sql = "SELECT sigla FROM cciex_om WHERE codom = '$codom_habilita'";
-$con_om = $mysqli1->query($sql);
+$con_om = $mysqli->query($sql);
+//$con_om = $mysqli1->query($sql);
 $row_om = $con_om->fetch_assoc();
 
 $user_habilita_usuario = $row_habilita['posto'] . ' ' . $row_habilita['nome_guerra']. ' ('.$row_om['sigla'].')';
@@ -76,7 +77,8 @@ $id_perfil_admin = $rows_admin['id_perfil_admin'];
 
 /*********** dados OM do usuario ***********************/
 $sql = "select sigla, denominacao, icfex from cciex_om where codom = '$codom_usuario'";
-$con_om = $mysqli1->query($sql);
+$con_om = $mysqli->query($sql);
+//$con_om = $mysqli1->query($sql);
 
 $row = $con_om->fetch_assoc();
 
@@ -177,7 +179,8 @@ switch ($icfex_usuario) {
 
 /************************** lista os codom subordinados se o usuario logado for do CCIEx ou ICFEx *********************************/
 $sql_codom = "SELECT codom FROM cciex_om WHERE icfex = $nr_ci";
-$con_codom = $mysqli1->query($sql_codom);
+$con_codom = $mysqli->query($sql_codom);
+//$con_codom = $mysqli1->query($sql_codom);
 
 if($con_codom){
 	while($row_codom = $con_codom->fetch_assoc()){
@@ -198,7 +201,8 @@ else if($id_perfil_om == 1){//CCIEx
 /**************************** criterio para selecionar apenas os codom que podem enxergar o usuario atual **************/
 
 $sql_codom_admin = "SELECT codom FROM cciex_om WHERE sigla = '$sigla_ci'";
-$con_codom_admin = $mysqli1->query($sql_codom_admin);
+$con_codom_admin = $mysqli->query($sql_codom_admin);
+//$con_codom_admin = $mysqli1->query($sql_codom_admin);
 $row_codom_admin = $con_codom_admin->fetch_assoc();
 $codom_admin = $row_codom_admin['codom'];
 

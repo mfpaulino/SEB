@@ -186,7 +186,8 @@ $proximo = $pag +1;
 									while($row_ja_lidos = $con_limite->fetch_assoc()){
 
 										$sql_sigla = "SELECT sigla FROM cciex_om WHERE codom = '$row_ja_lidos[codom]' limit 1";
-										$con_sigla = $mysqli1->query($sql_sigla);
+										$con_sigla = $mysqli->query($sql_sigla);
+										//$con_sigla = $mysqli1->query($sql_sigla);
 										$row_sigla = $con_sigla->fetch_assoc();
 
 										if(date('d/m/Y') - 1 == date('d/m/Y', strtotime($row_ja_lidos['data']))){

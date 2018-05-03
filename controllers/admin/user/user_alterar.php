@@ -29,7 +29,8 @@ if(isset($_POST['flag']) and isset($_SESSION['cpf'])){
 	$row_usuario = $con_usuario->fetch_assoc();
 
 	$sql = "select sigla from cciex_om where codom = '$row_usuario[codom]'";
-	$con_om = $mysqli1->query($sql);
+	$con_om = $mysqli->query($sql);
+	//$con_om = $mysqli1->query($sql);
 	$row_om = $con_om->fetch_assoc();
 
 	$usuario = $row_usuario['posto'] . " " . $row_usuario['nome_guerra'];

@@ -23,7 +23,8 @@ for ($i = 0;$i < $qtde_1; $i++){
 }
 
 $sql = "SELECT distinct guarnicao FROM cciex_om WHERE op_ativa ='sim' and  guarnicao not in ('$localidades') ORDER BY guarnicao"; //and guarnicao not like '%$localidades%'
-$con_guarnicao = $mysqli1->query($sql);
+$con_guarnicao = $mysqli->query($sql);
+//$con_guarnicao = $mysqli1->query($sql);
 ?>
 <select name="localidade[]" id="localidade" class="form-control" multiple="multiple">
 	<?php

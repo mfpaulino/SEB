@@ -96,7 +96,8 @@ if (isset($_POST['flag'])){
 			/********* perfil da OM do usuario (CCIEx, ICFEx, Unidade) ****/
 
 			$sql = "select sigla from cciex_om where codom = '$codom'";
-			$con_om = $mysqli1->query($sql);
+			$con_om = $mysqli->query($sql);
+			//$con_om = $mysqli1->query($sql);
 			$row = $con_om->fetch_assoc();
 
 			if(strpos($row['sigla'],'CCIEx') !== FALSE){

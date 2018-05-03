@@ -8,7 +8,8 @@ if ($inc == "sim"){
 	$row_ultimo_correio = $con_ultimo_correio->fetch_assoc();
 
 	$sql_sigla_ultimo_correio = "SELECT sigla FROM cciex_om WHERE codom = '$row_ultimo_correio[codom]' limit 1";
-	$con_sigla_ultimo_correio = $mysqli1->query($sql_sigla_ultimo_correio);
+	$con_sigla_ultimo_correio = $mysqli->query($sql_sigla_ultimo_correio);
+	//$con_sigla_ultimo_correio = $mysqli1->query($sql_sigla_ultimo_correio);
 	$row_sigla_ultimo_correio = $con_sigla_ultimo_correio->fetch_assoc();
 
 	if($row_correio['qtde_msg'] == 0){

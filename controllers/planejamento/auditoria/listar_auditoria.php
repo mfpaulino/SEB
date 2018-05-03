@@ -26,7 +26,8 @@ while ($rows =  $con_auditorias->fetch_assoc()){
 	$om = substr($rows['unidades'], 0, -1);
 	$lst_om = "";
 
-	$con_om = $mysqli1->query("SELECT sigla FROM cciex_om WHERE codom IN ($om)");
+	$con_om = $mysqli->query("SELECT sigla FROM cciex_om WHERE codom IN ($om)");
+	//$con_om = $mysqli1->query("SELECT sigla FROM cciex_om WHERE codom IN ($om)");
 	while($row_om = $con_om->fetch_assoc()){
 		$lst_om = $lst_om . $row_om['sigla'].", ";
 	}
