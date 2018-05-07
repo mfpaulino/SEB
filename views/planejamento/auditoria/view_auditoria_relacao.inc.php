@@ -43,6 +43,14 @@ $lst_id = implode(",", $lst_id);
 
 $sql = "SELECT plan_auditoria.*, id_tipo_evento FROM plan_auditoria, adm_tipo_evento WHERE tipo = tipo_evento AND id_auditoria IN ($lst_id) ORDER BY ano DESC, id_auditoria DESC";
 $con_auditorias = $mysqli->query($sql);
+
+$tot_auditorias = $con_auditorias->num_rows;
+if($tot_auditorias == 0){
+	$atributo_auditoria = "disabled";
+}
+else{
+	$atributo_auditoria = "";
+}
 ?>
 <div class="modal fade modal-wide" id="modalExibirAuditoria" role="dialog">
 	<div class="modal-dialog">
@@ -153,7 +161,7 @@ $con_auditorias = $mysqli->query($sql);
 				</div>
 			</div>
 			<div class="modal-footer">
-				<button id="btnPrintAuditoria" class="btn btn-default" <?php echo $atributo_area;?> ><i class="fa fa-print"></i> Imprimir</button>
+				<button id="btnPrintAuditoria" class="btn btn-default" <?php echo $atributo_auditoria;?> ><i class="fa fa-print"></i> Imprimir</button>
 			</div>
 		</div>
 	</div>
