@@ -87,14 +87,18 @@ include_once(PATH . '/componentes/internos/php/funcoes.inc.php');
 				?>
 				<!-- conteudo aqui -->
 				<div class="row">
+					<?php
+					if (in_array("plan_aud_list", $lista_permissoes)){?>
 					<!-- cadastro de auditoria -->
 					<div class="col-md-12">
 						<?php include_once('views/planejamento/auditoria/view_auditoria.inc.php'); ?>
 						<?php include_once('views/planejamento/auditoria/form_auditoria_cadastrar.inc.php');?>
 						<?php include_once('views/planejamento/auditoria/form_auditoria_alterar.inc.php');?>
-						<?php //include_once('views/plano/auditoria/view_auditoria_relacao.inc.php');?>
+						<?php include_once('views/planejamento/auditoria/view_auditoria_relacao.inc.php');?>
 						<div id="div_alerta"></div>
 					</div>
+						<?php
+					} ?>
 				</div>
 				<!-- fim conteudo -->
 			</section>

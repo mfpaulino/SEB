@@ -312,3 +312,13 @@ function excluirAuditoria(){
 /*************************** fim exclusao ****************************************/
 
 
+//imprimir lista auditoria
+document.getElementById('btnPrintAuditoria').onclick = function() {
+	var conteudo = document.getElementById('area_printAuditoria').innerHTML;
+	var tela_impressao = window.open('','','width=0, height=0, top=50, left=50');
+	tela_impressao.document.write(conteudo);
+	tela_impressao.window.print();
+	tela_impressao.window.close();
+};
+
+

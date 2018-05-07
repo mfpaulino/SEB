@@ -116,7 +116,7 @@ while ($rows =  $con_auditorias->fetch_assoc()){
 	$tipo = $rows['id_tipo_evento'] . "|" .$rows['tipo'];
 
 
-	if($id_perfil_om <> '3'){
+	if (in_array("plan_aud_edit", $lista_permissoes)){
 		$acao = '
 		<a href="#" class="fa fa-edit"
 			data-tooltip="tooltip"  title="Editar"

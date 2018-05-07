@@ -7,11 +7,11 @@
 				<button type="button" title="Exibir Menu" class="btn bg-blue-gradient btn-sm dropdown-toggle" data-toggle="dropdown"><i class="fa fa-caret-down fa-lg"></i></button>
 				<ul class="dropdown-menu pull-right" role="menu">
 					<?php
-					if($id_perfil_om <> "3"){
+					if (in_array("plan_aud_cad", $lista_permissoes)){
 						echo '<li><a href="#" data-toggle="modal" data-target="#modalCadastrarAuditoria">Cadastrar Auditoria</a></li>';
 					}
 					?>
-					<li><a href="#" data-toggle="modal" data-target="#modalExibirAviso">Listar/Imprimir</a></li>
+					<li><a href="#" data-toggle="modal" data-target="#modalExibirAuditoria">Listar/Imprimir</a></li>
 				</ul>
 			</div>
 			<button type="button" title="Expandir/Encolher" class="btn bg-blue-gradient btn-sm" data-widget="collapse"><i class="fa fa-plus"></i></button>
