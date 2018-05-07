@@ -8,13 +8,14 @@ var table = $('#example').DataTable({
 		"infoFiltered": "(procurado nos _MAX_ registros disponíveis)",
 		"clipText": 'Copiado para área de trnasferência'
 	},
-	"order":[],
+	"order": [[ 0, "desc" ],[ 1, "asc" ],[ 2, "asc" ]],
 	"ajax":{
 		url:"controllers/planejamento/auditoria/listar_auditoria.php",
 		dataSrc: ''
 	},
 	columns: [
 		{ data: 'ano' },
+		{ data: 'uci' },
 		{ data: 'unidades' },
 		{ data: 'natureza' },
 		{ data: 'tipo' },
@@ -25,7 +26,7 @@ var table = $('#example').DataTable({
 	],
 	"columnDefs":[
 		{
-		"targets":[4,5,7],
+		"targets":[5,6,8],
 		"orderable":false
 		}
 	],

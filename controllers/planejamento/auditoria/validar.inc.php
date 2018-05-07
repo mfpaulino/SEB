@@ -42,7 +42,7 @@ if (isset($_POST['flag']) and isset($_SESSION['cpf'])){
 		for($i=0; $i < count($unidade); $i++){
 			$lst_unidade = $lst_unidade . $unidade[$i] . ","; //cria uma string com os codom separados por ",".
 		}
-		$lst_unidade = substr($lst_unidade, 0, -1); //elimino a ultima "," da string.
+		//$lst_unidade = substr($lst_unidade, 0, -1); //elimino a ultima "," da string.
 
 		for($i=0; $i < count($equipe); $i++){
 			$lst_equipe = $lst_equipe . $equipe[$i] . ","; //cria uma string com os id_usuarios separados por ",".

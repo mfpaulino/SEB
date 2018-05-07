@@ -6,7 +6,11 @@
 			<div class="btn-group">
 				<button type="button" title="Exibir Menu" class="btn bg-blue-gradient btn-sm dropdown-toggle" data-toggle="dropdown"><i class="fa fa-caret-down fa-lg"></i></button>
 				<ul class="dropdown-menu pull-right" role="menu">
-					<li><a href="#" data-toggle="modal" data-target="#modalCadastrarAuditoria">Cadastrar Auditoria</a></li>
+					<?php
+					if($id_perfil_om <> "3"){
+						echo '<li><a href="#" data-toggle="modal" data-target="#modalCadastrarAuditoria">Cadastrar Auditoria</a></li>';
+					}
+					?>
 					<li><a href="#" data-toggle="modal" data-target="#modalExibirAviso">Listar/Imprimir</a></li>
 				</ul>
 			</div>
@@ -24,6 +28,7 @@
 				<thead>
 					<tr>
 						<th>Ano</th>
+						<th>Unid C I</th>
 						<th>Unidade(s)</th>
 						<th>Natureza</th>
 						<th>Tipo</th>
@@ -36,6 +41,7 @@
 				<tfoot>
 					<tr>
 						<th width="6%">Ano</th>
+						<th>Unid C I</th>
 						<th>Unidade(s)</th>
 						<th width="10%">Natureza</th>
 						<th>Tipo</th>

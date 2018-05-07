@@ -3,12 +3,15 @@
 
 include_once('componentes/internos/php/conexao.inc.php');
 
-if($id_perfil_om == 2 or $id_perfil_om == 3){
+if($id_perfil_om == 1){//cciex
+	$criterio_codom = "";//todas as om
+}
+elseif($id_perfil_om == 2){//icfex
 	//$criterio_codom = $condicao_codom; // com a "UG" ICFEx
 	$criterio_codom = " AND codom IN ($lista_codom)"; //sem a "UG" ICFEx
 }
-else {
-	$criterio_codom = "";
+elseif($id_perfil_om == 3){
+	$criterio_codom = " AND codom = '$codom_usuario'";
 }
 
 $sql = "SELECT codom, sigla  FROM cciex_om WHERE op_ativa = 'sim' $criterio_codom ORDER BY sigla";
