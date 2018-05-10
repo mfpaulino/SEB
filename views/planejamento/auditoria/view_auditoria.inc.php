@@ -24,9 +24,11 @@
 			<button id="Btnfiltro" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-filter"></span> Aplicar Filtros</button>
 			<button id="Btnfiltro1" class="btn btn-default btn-xs"><span class="fa fa-close"></span> Limpar Filtros</button></div>
 			<br />
-			<table id="example" class="table table-striped table-hover" style="width:100%">
+			<button onclick="abrirModal('1');">ok</button>
+			<table id="table_auditoria" class="table table-striped table-hover" style="width:100%">
 				<thead>
 					<tr>
+						<th></th>
 						<th>Ano</th>
 						<th>Unid C I</th>
 						<th>Unidade(s)</th>
@@ -35,11 +37,12 @@
 						<th>Período</th>
 						<th>Equipe</th>
 						<th>NUP</th>
-						<td class="text-center text-bold" width="5%">Ação</td>
+						<th class="text-center text-bold" width="5%">Ação</td>
 					</tr>
 				</thead>
 				<tfoot>
 					<tr>
+						<th></th>
 						<th width="6%">Ano</th>
 						<th>Unid C I</th>
 						<th>Unidade(s)</th>

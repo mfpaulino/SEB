@@ -95,6 +95,7 @@ include_once(PATH . '/componentes/internos/php/funcoes.inc.php');
 						<?php include_once('views/planejamento/auditoria/form_auditoria_cadastrar.inc.php');?>
 						<?php include_once('views/planejamento/auditoria/form_auditoria_alterar.inc.php');?>
 						<?php include_once('views/planejamento/auditoria/view_auditoria_relacao.inc.php');?>
+						<?php include_once('views/planejamento/auditoria/form_mtz_planejamento_cadastrar.inc.php');?>
 						<div id="div_alerta"></div>
 					</div>
 						<?php
@@ -130,6 +131,7 @@ include_once(PATH . '/componentes/internos/php/funcoes.inc.php');
 	<script src="componentes/internos/js/modal_editar_perfil.js"></script>
 	<script src="componentes/internos/js/modal_editar_unidade.js"></script>
 	<script src="componentes/internos/js/planejamento/auditoria.js"></script>
+	<script src="componentes/internos/js/planejamento/matriz.js"></script>
 	<script>
 		//exibe os titles ao passar o mouse
 		$(document).ready(function(){

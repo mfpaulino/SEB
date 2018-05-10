@@ -811,16 +811,24 @@ table.dataTable tbody td.selected a {
   color: #a2d4ed;
 }
 
-/* paulino*/
+/* paulino
 tfoot input {
         width: 100%;
         padding: 3px;
         box-sizing: border-box;
 }
-/*paulino */
+/*paulino 
 
 td.highlight {
     background-color: whitesmoke !important;
 }
-
+/* paulino subtabela */
+td.details-control {
+    background: url('../../../../internos/img/details_open.png') no-repeat center center;
+    cursor: pointer;
+}
+tr.shown td.details-control {
+    background: url('../../../../internos/img/details_close.png') no-repeat center center;
+}
+/**/
 

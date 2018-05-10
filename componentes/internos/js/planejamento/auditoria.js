@@ -1,5 +1,32 @@
 /********************* Inicio DataTable ****************************/    
-var table = $('#example').DataTable({
+/************************** Tabela filha ***************************/
+function format ( d ) {
+    return '<table>'+
+        '<tr>'+
+            '<td><b>Matriz de Planejamento:</b></td>'+
+            '<td>&nbsp;'+d.mtz_acao1+'&nbsp;</td>'+
+            '<td>&nbsp;'+d.mtz_acao2+'&nbsp;</td>'+
+            '<td>&nbsp;'+d.mtz_acao3+'</td>'+
+        '</tr>'+
+        '<tr>'+
+            '<td>&nbsp;</td>'+
+        '</tr>'+
+        '<tr>'+
+            '<td><b>Programa de Trabalho:</b></td>'+
+            '<td>&nbsp;'+d.prog_trab_acao1+'&nbsp;</td>'+
+            '<td>&nbsp;'+d.prog_trab_acao2+'&nbsp;</td>'+
+            '<td>&nbsp;'+d.prog_trab_acao3+'</td>'+
+        '</tr>'+
+        '<tr>'+
+            '<td>&nbsp;</td>'+
+        '</tr>'+
+    '</table>';
+}
+/************************* tabela principal *****************************************/
+var table = $('#table_auditoria').DataTable({
+	"infoCallback": function( settings, start, end, max, total, pre ) {
+		 return "Total de Registros: " + total;
+		 },
 	"language": {
 		"lengthMenu": "Exibindo _MENU_ registros por página",
 		"zeroRecords": "Nenhum registro encontrado",
@@ -8,12 +35,17 @@ var table = $('#example').DataTable({
 		"infoFiltered": "(procurado nos _MAX_ registros disponíveis)",
 		"clipText": 'Copiado para área de trnasferência'
 	},
-	"order": [[ 0, "desc" ],[ 1, "asc" ],[ 2, "asc" ]],
+	"order": [[ 1, "desc" ],[ 2, "asc" ],[ 3, "asc" ]],
 	"ajax":{
 		url:"controllers/planejamento/auditoria/listar_auditoria.php",
 		dataSrc: ''
 	},
 	columns: [
+	{
+                "className": 'details-control',
+                "data": null,
+                "defaultContent": ''
+            },
 		{ data: 'ano' },
 		{ data: 'uci' },
 		{ data: 'unidades' },
@@ -26,17 +58,37 @@ var table = $('#example').DataTable({
 	],
 	"columnDefs":[
 		{
-		"targets":[5,6,8],
+		"targets":[0,6,7,9],
 		"orderable":false
 		}
 	],
 	"drawCallback": function( settings ) {
 		$('[data-tooltip="tooltip"]').tooltip();
 	}
-});
+
+
+   });
+
+
+// Add event listener for opening and closing details
+    $('#table_auditoria tbody').on('click', 'td.details-control', function () {
+        var tr = $(this).closest('tr');
+        var row = table.row( tr );
+ 
+        if ( row.child.isShown() ) {
+            // This row is already open - close it
+            row.child.hide();
+            tr.removeClass('shown');
+        }
+        else {
+            // Open this row
+            row.child( format(row.data()) ).show();
+            tr.addClass('shown');
+        }
+    } );
 	
 //permite selecionar a linha ficando azul
-$('#example tbody').on( 'click', 'tr', function () {
+$('#table_auditoria tbody').on( 'click', 'tr', function () {
 	$(this).toggleClass('selected');
 } );
 
@@ -49,9 +101,11 @@ $("#Btnfiltro").click(function(){
 	$("#Btnfiltro").hide();
 
 	//desenha as caixas de texto
-	$('#example thead th').each( function () {
-		var title = $('#example tfoot th').eq( $(this).index() ).text();
-		$(this).html( '<input class="form-control"  style="width:100%" type="text" placeholder="'+title+'" />' );
+	$('#table_auditoria thead th').each( function () {
+		var title = $('#table_auditoria tfoot th').eq( $(this).index() ).text();
+		if (title != '' && title != 'Ação'){//nao cria o input de busca na coluna 0 e na coluna ação
+			$(this).html( '<input class="form-control"  style="width:100%" type="text" placeholder="'+title+'" />' );
+		}
 	} );
 
 	// Aplica a busca
@@ -59,7 +113,7 @@ $("#Btnfiltro").click(function(){
 		$( 'input', table.column( colIdx ).header() ).on( 'keyup change', function () {
 		    table
 			.column( colIdx )
-			.search (this.value.replace(/,/g, "|"), true, false)
+			.search (this.value.replace(/,/g, "|"), true, false)//permite buscar mais de um termo por coluna separados por ","
 			.draw();
 		} );
 		//impede a ordenacao ao clicar na caixa texto
@@ -77,9 +131,9 @@ $("#Btnfiltro1").click(function(){
 
 	$("#Btnfiltro").show();
 	$("#Btnfiltro1").hide();
-	$('#example').find('input').hide();	
-	$('#example thead th').each( function () {
-		var title = $('#example tfoot th').eq( $(this).index() ).text();
+	$('#table_auditoria').find('input').hide();	
+	$('#table_auditoria thead th').each( function () {
+		var title = $('#table_auditoria tfoot th').eq( $(this).index() ).text();
 		$(this).html( '<th>'+title+'</th>' );
 	} );
 	
