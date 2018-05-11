@@ -124,7 +124,23 @@ while ($rows =  $con_auditorias->fetch_assoc()){
 
 	if (in_array("plan_aud_edit", $lista_permissoes)){
 		$acao = '
-		<a href="#" class="fa fa-edit" onclick="editAuditoria('.$rows['id_auditoria'].')">
+		<a href="#" class="fa fa-edit"
+			data-tooltip="tooltip"  title="Editar"
+			data-toggle="modal"
+			data-target="#modalAlterarAuditoria"
+			data-id_auditoria="'.$rows['id_auditoria'].'"
+			data-ano="'.$rows['ano'].'"
+			data-nup="'.$rows['nup'].'"
+			data-equipe="'.$rows['equipe'].'"
+			data-ch_equipe="'.$rows['chefe'].'"
+			data-natureza="'.$rows['natureza'].'"
+			data-unidades="'.$rows['unidades'].'"
+			data-periodo="'.$periodo.'"
+			data-tipo="'.$tipo.'"
+			data-user_cad="'.$rows['user_cad'].'"
+			data-user_alt="'.$rows['user_alt'].'"
+			data-dt_cad="'.$rows['data_cad'].'"
+			data-dt_alt="'.$rows['data_alt'].'">
 		</a>
 		&nbsp;&nbsp;
 		<a href="#" class="fa fa-trash"

@@ -131,7 +131,6 @@ include_once(PATH . '/componentes/internos/php/funcoes.inc.php');
 	<script src="componentes/internos/js/modal_editar_perfil.js"></script>
 	<script src="componentes/internos/js/modal_editar_unidade.js"></script>
 	<script src="componentes/internos/js/planejamento/auditoria.js"></script>
-	<script src="componentes/internos/js/planejamento/matriz.js"></script>
 	<script>
 		//exibe os titles ao passar o mouse
 		$(document).ready(function(){

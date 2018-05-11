@@ -13,7 +13,7 @@
 							<div class="col-sm-2">
 								<div class="form-group">
 									<label for="ano">Ano</label>
-                                    <select class="form-control selectpicker" name="ano" id="ano" required  />
+                                    <select class="form-control selectpicker" name="ano" id="id_ano" required  />
 										<option value="<?php echo date('Y')-1;?>"><?php echo date('Y')-1;?></option>
 										<option value="<?php echo date('Y');?>" selected><?php echo date('Y');?></option>
 										<option value="<?php echo date('Y')+1;?>"><?php echo date('Y')+1;?></option>
@@ -25,7 +25,7 @@
 							<div class="col-sm-4">
 								<div class="form-group">
 									<label for="ano">Natureza <abbr title="campo obrigatório">*</abbr></label>
-                                    <select class="form-control selectpicker" name="natureza" id="natureza" title="Selecione.." required />
+                                    <select class="form-control selectpicker" name="natureza" id="id_natureza" title="Selecione.." required />
 										<option value="Programada">Programada</option>
 										<option value="Não programada">Não programada</option>
                                     </select>
@@ -54,7 +54,7 @@
 										<div class="input-group-addon">
 											<i class="fa fa-calendar"></i>
 										</div>
-										<input type="text" class="form-control daterange" name="periodo" id="periodo" required />
+										<input type="text" class="form-control daterange" name="periodo" id="id_periodo" required />
 									</div>
 								</div>
 							</div>
@@ -86,7 +86,7 @@
 								</div>
 							</div>
 						</div>
-						<div class="row"><input type="text" id="nup1" required /></div>
+						<div class="row">&nbsp;</div>
 						<div class="row">&nbsp;</div>
 						<div class="row">&nbsp;</div>
 						<div class="row">&nbsp;</div>

@@ -24,7 +24,6 @@
 			<button id="Btnfiltro" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-filter"></span> Aplicar Filtros</button>
 			<button id="Btnfiltro1" class="btn btn-default btn-xs"><span class="fa fa-close"></span> Limpar Filtros</button></div>
 			<br />
-			<button onclick="abrirModal('1');">ok</button>
 			<table id="table_auditoria" class="table table-striped table-hover" style="width:100%">
 				<thead>
 					<tr>
